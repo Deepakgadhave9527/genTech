@@ -25,6 +25,7 @@ Cross-browser compatibility ensures that web applications work consistently acro
    - The affected components are re-rendered, and the new virtual DOM is used for future comparisons.
 
 
+
 ================================================================================
 ### Why the UI Doesn't Reflect Changes Without `useState`
 
