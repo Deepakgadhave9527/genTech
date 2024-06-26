@@ -1,0 +1,458 @@
+##################################################################################################################
+17Q. What is the best way to access redux store outside a react component?
+To access redux store outside a react component, Redux connect function works great for regular React components.
+
+In the examples below shows how to access a JWT token from the Redux store.
+--
+-------------------------------------------------------------------------------
+
+Q17. Explain the components of Redux.
+Redux is composed of the following components:
+Action — Actions are payloads of information that send data from our application to our store. They are the only
+source of information for the store. We send them to the store using store.dispatch(). Primarly, they are just an
+object describes what happened in our app.
+Reducer — Reducers specify how the application’s state changes in response to actions sent to the store. Remember that
+actions only describe what happened, but don’t describe how the application’s state changes. So this place determines
+how state will change to an action.
+Store — The Store is the object that brings Action and Reducer together. The store has the following responsibilities:
+Holds application state; Allows access to state via getState(); Allows state to be updated via dispatch(action);
+Registers listeners via subscribe(listener); Handles unregistering of listeners via the function returned by
+subscribe(listener).
+It’s important to note that we’ll only have a single store in a Redux application. When we want to split your data
+handling logic, we’ll use reducer composition instead of many stores.
+
+
+---------------------------------------------------------------------------------
+
+1Q. What is Redux?
+
+
+- Redux is a predictable state container for JavaScript applications.
+- Redux is a state management tool
+
+-There is a central store that holds the entire state of the application.
+-Each component can access the stored state without having to send down props from one component to another.
+-There are three building parts: actions, store, and reducers.
+1. Actions in Redux
+
+Action is static information about the event that initiates a state change. When you update your state with Redux, you
+always start with an action. Actions are in the form of Javascript objects, containing a type and an optional payload.
+Actions are sent using the store.dispatch() method. Actions are created via an action creator.
+
+Action creators are simple functions that help to create actions. They are functions that return action objects, and
+then, the returned object is sent to various reducers in the application..
+
+2. Reducers in Redux
+
+Reducers are pure functions that take the current state of an application, perform an action, and return a new state.
+These states are stored as objects, and they specify how the state of an application changes in response to an action
+sent to the store.
+
+It is based on the reduce function in JavaScript, where a single value is calculated from multiple values after a
+callback function has been carried out.
+
+
+
+3. Store in Redux
+
+A Store is an object that holds the whole state tree of your application. The Redux store is the application state
+stored as objects. Whenever the store is updated, it will update the React components subscribed to it. The store has
+the responsibility of storing, reading, and updating state.
+
+When using Redux with React, states will no longer need to be lifted up; thus, it makes it easier to trace which
+action causes any change.
+
+4. Dispatch
+
+Dispatch is a method that triggers an action with type and payload to Reducer.
+
+
+5. Subscribe
+
+Subscribe is a method that is used to subscribe data/state from the Store.
+
+store.subscribe()
+6. Provider
+
+The Provider is a component that has a reference to the Store and provides the data from the Store to the component it
+wraps.
+
+7. Connect
+
+Connect is a function that communicates with the Provider.
+
+8. Middleware
+
+Middleware is the suggested way to extend Redux with custom functionality. Middlewares are used to dispatch async
+functions. We configure Middleware's while creating a store.
+
+Syntax
+
+const store = createStore(reducers, initialState, middleware);
+
+
+
+
+
+It helps you write applications that behave consistently, run in different environments (client, server, and native),
+and are easy to test.
+
+Simply put, Redux is a state management tool. While it is mostly used with React, it can be used with any other
+JavaScript framework or library. With Redux, the state of your application is kept in a store, and each component can
+access any state that it needs from this store.
+
+How Redux works
+
+There is a central store that holds the entire state of the application. Each component can access the stored state
+without having to send down props from one component to another. There are three building parts: actions, store, and
+reducers.
+
+Benefits and limitations of Redux
+
+1. State transfer
+
+State is stored together in a single place called the ‘store.’ While you do not need to store all the state variables
+in the ‘store,’ it is especially important to when state is being shared by multiple components or in a more complex
+architecture. It also allows you to call state data from any component easily.
+
+2. Predictability
+
+Redux is “a predictable state container for Javascript apps.” Because reducers are pure functions, the same result
+will always be produced when a state and action are passed in.
+
+3. Maintainability
+
+Redux provides a strict structure for how the code and state should be managed, which makes the architecture easy to
+replicate and scale for somebody who has previous experience with Redux.
+
+4. Ease of testing and debugging
+
+Redux makes it easy to test and debug your code since it offers powerful tools such as Redux DevTools in which you can
+time travel to debug, track your changes, and much more to streamline your development process.
+
+↥ back to top
+2Q. Explain pros and cons of Redux?
+Pros using redux
+
+Central store, any component can access any state from the store, there is no need of passing props back and forth.
+Another way to look at centralised store, it persists the state of a component even after the component has unmounted.
+Prevents unnecessary re-renders, as when the state changes it returns new state which uses shallow copy.
+Testing will be easy as UI and data management are separated.
+History of state is maintained which helps in implementing features like undo very easily.
+Cons using redux
+
+No encapsulation. Any component can access the data which can cause security issues.
+Boilerplate code. Restricted design.
+As state is immutable in redux, the reducer updates the state by returning a new state every time which can cause
+excessive use of memory.
+
+---------------------------------------------------------------------------------.
+
+1. Actions in Redux
+
+Action is static information about the event that initiates a state change. When you update your state with Redux, you
+always start with an action. Actions are in the form of Javascript objects, containing a type and an optional payload.
+Actions are sent using the store.dispatch() method. Actions are created via an action creator.
+
+Action creators are simple functions that help to create actions. They are functions that return action objects, and
+then, the returned object is sent to various reducers in the application..
+
+2. Reducers in Redux
+
+Reducers are pure functions that take the current state of an application, perform an action, and return a new state.
+These states are stored as objects, and they specify how the state of an application changes in response to an action
+sent to the store.
+
+It is based on the reduce function in JavaScript, where a single value is calculated from multiple values after a
+callback function has been carried out.
+
+
+
+3. Store in Redux
+
+A Store is an object that holds the whole state tree of your application. The Redux store is the application state
+stored as objects. Whenever the store is updated, it will update the React components subscribed to it. The store has
+the responsibility of storing, reading, and updating state.
+
+When using Redux with React, states will no longer need to be lifted up; thus, it makes it easier to trace which
+action causes any change.
+
+4. Dispatch
+
+Dispatch is a method that triggers an action with type and payload to Reducer.
+
+
+5. Subscribe
+
+Subscribe is a method that is used to subscribe data/state from the Store.
+
+store.subscribe()
+6. Provider
+
+The Provider is a component that has a reference to the Store and provides the data from the Store to the component it
+wraps.
+
+7. Connect
+
+Connect is a function that communicates with the Provider.
+
+8. Middleware
+
+Middleware is the suggested way to extend Redux with custom functionality. Middlewares are used to dispatch async
+functions. We configure Middleware's while creating a store.
+
+Syntax
+
+const store = createStore(reducers, initialState, middleware);
+---------------------------------------------------------------------------------
+
+
+
+
+
+
+6. What are the different lifecycle methods in React?
+-Each component in React has a lifecycle which you can monitor and manipulate during its three main phases.
+-The three phases are: Mounting, Updating, and Unmounting.
+
+A] Mounting:
+Mounting means putting elements into the DOM.
+React has four built-in methods that gets called, in this order, when mounting a component:
+
+1) constructor()
+2) getDerivedStateFromProps()
+3) render()
+4) componentDidMount()
+
+
+Every component in React has lifecycle methods that we can tap into, to trigger changes
+at a particular phase of the life cycle.
+Each component in react goes through three phases: Mounting, Updating, and Unmounting.
+There are corresponding lifecycle methods for each of the three phases:
+
+**Note- In this article, we are discussing the use of lifecycle methods in class components. For utilising lifecycle
+methods in functional components, react hooks are used.
+
+
+
+
+Mounting:
+
+There are four built-in lifecycle methods that are called in the following order when a component is mounted:
+constructor( ) - This is called before anything else. We can set the initial state of the component inside this
+method. The constructor method is used to set the initial state and bind methods to the component.
+
+getDerivedStateFromProps( ) - This is called before rendering the elements in the DOM.
+In this method, we can set the state of the component based on the props we received. This method is used very rarely.
+
+render( ) - This is the only required method in the class component. This method returns the HTML elements which are
+going to be rendered inside the DOM.
+
+componentDidMount( ) - It is called right after the component is rendered inside the DOM. All the statements which
+require the DOM nodes can be executed in this method. Network requests from a remote end-point can also be
+instantiated in this method.
+
+Updating:
+
+Updates in react are caused by changes in state or props. Update leads to
+re-rendering of the component.
+The following
+methods are called when a component is re-rendered:
+
+getDerivedStateFromProps( ) - This method is called again when a component is being re-rendered.
+
+shouldComponentUpdate( ) - This method is called before rendering the component when new props are received. It lets
+React know if the component’s output is affected by the newly received props or by the state change. By default, it
+returns true.
+
+render( ) - To re-render the HTML inside the DOM, the render( ) method gets called again.
+getSnapshotBeforeUpdate( ) - This method is called just before the newly rendered HTML gets committed to the DOM. It
+stores the previous state of the component so that React has an idea of what parts of the DOM needs to be updated.
+
+componentDidUpdate( ) - It is called after the component gets re-rendered. This method works just like the
+componentDidMount( ) method, the difference is that this method does not get called on initial render.
+
+Unmounting:
+
+componentWillUnmount( ) - This method is called just before the component gets destroyed. Any clean up statements
+should be executed inside this method.
+
+####################################### HOOKS #####################################################
+
+
+Q20. Explain React Router 5 features?
+
+React Router 5 embraces the power of hooks and has introduced four different hooks to help with routing.
+
+
+
+
+useHistory
+
+- The useHistory hook gives you access to the history instance that you may use to navigate.
+
+- Provides access to the history prop in React Router
+- Refers to the history package dependency that the router uses
+- A primary use case would be for programmatic routing with functions, like push,goback replace, etc.
+
+
+useLocation
+
+Provides access to the location prop in React Router
+
+It is similar to window.location in the browser itself, but this is accessible everywhere as it represents the *
+Router
+state and location.
+A primary use case for this would be to access the query params or the complete route string.
+
+
+useParams
+
+Provides access to search parameters in the URL
+This was possible earlier only using match.params.
+
+
+useRouteMatch
+
+Provides access to the match object
+If it is provided with no arguments, it returns the closest match in the component or its parents.
+A primary use case would be to construct nested paths.
+
+
+---------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+Q.11What are hooks?
+
+-Hooks are the new feature introduced in the React 16.8 version.
+-It allows you to use state and other React features without writing a class.
+-Hooks are the functions which "hook into" React state and lifecycle features from function
+components.
+-Hooks don’t work inside classes
+
+<!-- 
+  1.Hooks are the new feature introduced in the React V16.8.0 version.
+  2.Hooks are functions that let you “hook into” React state and lifecycle features from function components features
+  without writing a class.
+  3.Hooks don’t work inside classes — they let you use React without classes.
+  
+  Note:
+  Hooks are backward-compatible, which means it does not contain any breaking changes. Also, it does not replace your
+  knowledge of React concepts.
+  
+  Q.when to use Hooks?
+  If you write a function component and realize you need to add some state to it, previously you had to convert it to a
+  class. Now you can use a Hook inside the existing function component. -->
+
+
+
+---------------------------------------------------------------------------------
+
+Q11. What is useState() in React?
+
+<!-- useState state is hook maintained local state in the component -->
+
+state can be maintained by using useState() hook.
+
+<!-- The useState() is a Hook that allows to have state variables in functional components. -->
+const [array,setArray]=React.useState()
+
+The first parameter in the array is the current state value.
+The second parameter is the function that will allow you to update the state value.
+useState is one of build-in react hooks available in 0.16.7 version.
+
+useState should be used only inside functional components.
+---------------------------------------------------------------------------------
+
+Q12. What is useReducer() in React?
+
+-useReducer is a React hook function that accepts a reducer function, and an initial state. ...
+-This hook function returns an array with 2 values.
+
+-He first one is the state value, and the second value is the dispatch function which is further used to trigger an
+action with the help of array destructuring.
+
+
+useReducer is usually preferable to useState when you have complex state logic that involves multiple sub-values or
+when
+the next state depends on the previous one.
+
+
+
+
+
+It accepts a reducer function with the application initial state, returns the current application state, then
+dispatches
+a function.
+
+Although useState() is a Basic Hook and useReducer() is an Additional Hook, useState() is actually implemented with
+useReducer(). This means useReducer() is primitive and we can use useReducer() for everything can do with useState().
+Reducer is so powerful that it can apply for various use cases.
+
+---------------------------------------------------------------------------------
+
+
+Q13. What is useContext() in React?
+
+creatContex()
+
+-useContext hook is used to create common data that can be accessed throughout the
+component hierarchy without passing the props down manually to each level.
+
+-Context defined will be available to all the child components without involving “props”.
+
+The React Context API allows to easily access data at different levels of the component tree, without having to pass
+data down through props.
+
+
+Q133. Exlain is useCallback(), useMemo(), useImperativeHandle(),
+useLayoutEffect(), useDebugValue() in React?
+
+
+
+
+
+
+
+
+1. useCallback()
+
+-React's useCallback() Hook can be used to optimize the rendering behavior of your React function
+components.
+-The useCallback will return a memoized version of the callback that only changes if one of the
+dependencies has changed.
+
+-
+-This is useful when passing callbacks to optimized child components that rely on reference equality to
+prevent unnecessary renders (e.g. shouldComponentUpdate).
+
+
+
+2. useMemo()
+
+React's useMemo() Hook can be used to optimize the computation costs of your React function components.
+The useMemo()
+is similar to useCallback() except it allows you to apply memoization to any value type (not just functions).
+
+It does this by accepting a function which returns the value and then that function is only called when the value
+needs to be retrieved (which typically will only happen once each time an element in the dependencies array changes
+between renders).
+
+Example:
+
+React application which renders a list of users and allows us to filter the users by their name. The filter happens
+only when a user explicitly clicks a button; not already when the user types into the input field.
+
+
+
+3. useImperativeHandle()
+
+useImperativeHandle() customizes the instance value that is exposed to parent components when using ref. As always,
+imperative code using refs should be avoided in most cases. useImperativeHandle should be used with forwardRef.

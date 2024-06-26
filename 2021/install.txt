@@ -1,0 +1,5 @@
+npm i mongoose express body-parser cors dotenv
+nmm init -y
+npm i express
+npm i body-parser
+npm i dotenv

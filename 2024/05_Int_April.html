@@ -1,0 +1,774 @@
+temporal dead zone in javascript4
+iterators and generators in javascript
+web workers
+implicit type conversion in javascript?//coercion
+
+
+------------------------------------------------------------------------------------------------
+
+### Cascading (in CSS)
+
+Cascading in CSS determines which styles are applied based on:
+
+1. **Source Order**: Later styles override earlier ones.
+2. **Specificity**: More specific selectors take precedence.
+3. **Importance**: `!important` rules override others.
+4. **Inheritance**: Some properties inherit values from parent elements.
+
+### Example
+
+```css
+p { color: blue; }           /* General */
+.highlight p { color: red; } /* More specific */
+p { color: green !important; } /* Highest priority */
+```
+
+### Summary
+- **Cascading**: The method of applying CSS rules based on order, specificity, importance, and inheritance.
+------------------------------------------------------------------------------------------------
+
+### Conditional Rendering
+
+Conditional rendering is the practice of displaying different UI elements based on specific conditions.
+
+### Example
+
+In React:
+
+```javascript
+function Greeting({ isLoggedIn }) {
+  return isLoggedIn ? <h1>Welcome back!</h1> : <h1>Please sign in.</h1>;
+}
+```
+
+### Summary
+- **Purpose:** Show different content based on conditions.
+- **How:** Use conditional statements like `if` or the ternary operator within the render method.
+
+
+------------------------------------------------------------------------------------------------
+
+what are rule use hooks in react
+Hook Rules
+There are 3 rules for hooks: Hooks can only be called inside React function components.
+ Hooks can only be called at the top level of a component. 
+ Hooks cannot be conditional.
+
+------------------------------------------------------------------------------------------------
+
+what is routing in react js
+
+In a single-page React Application,
+routing refers to the process of navigating
+between different pages without triggering a full page reload.
+
+React Router DOM is an npm package that enables you to implement dynamic routing in a web app.
+
+---------------------------------------------------------------------------------------------------
+
+why arrow functions ?
+
+- Lexical this binding, avoiding this confusion.
+-Arrow functions do not have their own this context; instead, 
+they inherit this from the parent scope at the time they are defined. 
+
+- Concise syntax for defining functions.
+- no need to return for single-expression functions.
+- No binding of arguments object.
+- Convenient for use in callbacks, especially with array methods.
+
+Arrow functions streamline JavaScript code, making it shorter, clearer, and more expressive, particularly in modern development practices
+.
+------------------------------------------------------------------------------------------------
+StrictMode
+
+-StrictMode is a tool for highlighting potential problems in an application. 
+-Like Fragment, StrictMode does not render any visible UI. 
+-React introduces additional checks and warnings for potential issues during development.
+-It's not for production use
+-It helps identify unsafe lifecycles, deprecated APIs, and other potential problems.
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+synthetic events 
+In React, synthetic events are a layer of abstraction over native browser events.
+They provide a consistent interface for handling events across different browsers
+and offer additional features.
+
+
+You can attach event handlers like onClick to React elements,
+ and React passes a synthetic event object to your handler function. 
+ This object contains information about the event, 
+ such as the target element, 
+ and provides methods like stopPropagation() and preventDefault() for controlling event behavior. 
+ They make event handling consistent and efficient in React components.
+
+<!-- 
+
+
+- Attach event handlers like onClick to React elements.
+- React passes a synthetic event object to your handler function.
+- The event object contains information such as the target element.
+- Use methods like stopPropagation() and preventDefault() to control event behavior.
+- Synthetic events ensure consistent and efficient event handling in React components. -->
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+Internationalization vs Localization
+
+1. Internationalization (i18n):- 
+Making software for different languages, regions, and cultures by designing it flexibly. 
+This includes separating text from code, using language-neutral formats for dates and numbers,
+ and ensuring UI layouts can handle various text lengths and directions.
+
+2. Localization (l10n): 
+
+Customizing software for specific languages, regions, or cultures by translating text, 
+formatting dates and numbers, and adapting the UI to match local expectations.
+It involves creating language-specific versions of the software and tailoring the user experience accordingly.
+
+
+
+------------------------------------------------------------------------------------------------
+splice and slice
+
+In React.js, splice and slice are both methods used to manipulate arrays,
+ but they have different purposes:
+
+- splice()  :
+  - Changes the contents of an array by removing or replacing existing elements and/or adding new elements.
+  - Modifies the original array in place.
+  - Syntax: array.splice(startIndex, deleteCount, item1, item2, ...)
+  - startIndex: The index at which to start changing the array.
+  - deleteCount: The number of elements to remove from the array (if set to 0, no elements are removed).
+  - Example:
+    
+    const array = [1, 2, 3, 4, 5];
+    array.splice(2, 1); // Removes 1 element starting from index 2
+    // Result: array is now [1, 2, 4, 5]
+  
+    
+
+- slice():
+  - Returns a shallow copy of a portion of an array into a new array object selected from startIndex to endIndex (endIndex is not included).
+  - Does not modify the original array.
+  - Syntax: array.slice(startIndex, endIndex)
+  - startIndex: The index at which to begin the extraction (inclusive).
+  - endIndex: The index before which to end the extraction (exclusive).
+  - Example:
+    
+    const array = [1, 2, 3, 4, 5];
+    const newArray = array.slice(1, 4); // Returns a new array with elements from index 1 to index 3
+    // Result: newArray is [2, 3, 4]
+  
+
+In short, splice changes the original array by adding, removing, or replacing elements, 
+while slice returns a portion of the array as a new array without modifying the original.
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+Redux Overview:
+- It  state management tool for JavaScript applications.
+- Utilizes a central store to hold the entire application state.
+- Components can access stored state without prop drilling.
+
+Key Building Parts:
+1. Actions:
+   - Define events initiating state changes.
+   - Represented as JavaScript objects with a type and optional payload.
+   - Sent using store.dispatch() method.
+   - Created via action creators, which are functions returning action objects.
+
+
+// Example of an action creator
+const incrementCounter = (amount) => {
+  return {
+    type: 'INCREMENT_COUNTER',
+    payload: amount
+  };
+};
+
+// Dispatching the action
+store.dispatch(incrementCounter(5));
+
+2. Reducers:
+   - Pure functions taking current state and action to produce a new state.
+   - Based on the reduce function in JavaScript.
+   - Specify how application state changes in response to dispatched actions.
+
+
+// Example of a reducer
+const counterReducer = (state = 0, action) => {
+  switch (action.type) {
+    case 'INCREMENT_COUNTER':
+      return state + action.payload;
+    default:
+      return state;
+  }
+};
+
+3. Store:
+   - Object holding the entire state tree of the application.
+   - Responsible for storing, reading, and updating state.
+   - Updates trigger re-renders in React components subscribed to it.
+
+
+// Example of creating a Redux store
+import { createStore } from 'redux';
+
+const store = createStore(counterReducer);
+
+Redux Workflow:
+- Dispatch: Method triggering actions with type and payload to reducers.
+- Subscribe: Method used to subscribe to state updates from the store (store.subscribe()).
+- Provider: Component providing the store data to its wrapped components.
+- Connect: Function facilitating communication with the provider.
+- Middleware: Used to extend Redux with custom functionality, often for dispatching asynchronous functions.
+
+Benefits of Redux (Additional Points):
+- Predictable Data Flow:
+  - Redux enforces a unidirectional data flow, making it easier to understand how data changes in the application over time.
+- Developer Tools:
+  - Redux comes with a set of developer tools like Redux DevTools, which allow developers to inspect the state and actions, track changes, and debug the application efficiently.
+
+These additional points provide more insight into the benefits and usage of Redux in JavaScript applications, along with code examples to illustrate their implementation. Let me know if you need further explanation or assistance!
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+Here's why we use return () => { ... }:
+
+Cleanup Function Definition: The return statement defines the cleanup function.
+ This function will be called when the component unmounts or before the effect runs again if any dependencies change.
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+Object.freeze()
+Object.seal()
+Object.preventExtensions()
+
+Object.freeze(), Object.seal(), and Object.preventExtensions() are 
+all methods in JavaScript used for controlling object mutability,
+ but they have different levels of restriction.
+
+1. Object.freeze(): 
+   - This method completely freezes an object, making it immutable. 
+   - Once an object is frozen, you cannot add, remove, or modify any properties of the object.
+   - This means that the object becomes "read-only."
+   - Example:
+     
+     const obj = { prop: 1 };
+     Object.freeze(obj);
+     obj.prop = 2; // This will fail silently or throw an error in strict mode
+    
+
+2. Object.seal():
+- This method prevents new properties from being added to an object,
+- You cannot add or remove properties from a sealed object.
+- You can still modify existing properties' values.
+
+   - Example:
+     
+     const obj = { prop: 1 };
+     Object.seal(obj);
+     obj.prop = 2; // This will change the value of 'prop'
+     obj.newProp = 3; // This will fail silently or throw an error in strict mode
+    
+
+3. Object.preventExtensions():
+   - you cannot addd  new properties  added to an object,
+    but it allows existing properties to be modified or deleted.
+   - Essentially, it makes an object non-extensible.
+
+   - Example:
+     
+     const obj = { prop: 1 };
+     Object.preventExtensions(obj);
+     obj.prop = 2; // This will change the value of 'prop'
+     obj.newProp = 3; // This will fail silently or throw an error in strict mode
+     delete obj.prop; // This will delete the 'prop' property
+    
+
+In summary, 
+ Object.freeze() makes an object completely immutable, 
+Object.seal() makes it so you can modify existing properties but not add or remove them,
+Object.preventExtensions() only prevents new properties from being added while allowing existing properties to be modified or removed.
+
+
+------------------------------------------------------------------------------------------------
+
+##Session Storage:
+- Data stored in session storage is scoped to the current browsing session.
+- It is only available within the same tab or window that created it.
+- Data is lost when the tab or window is closed or the session ends.
+- Each browsing session maintains its own separate session storage.
+- Data stored in one session will not be accessible in another session, even if it's on the same website.
+
+
+1. Storing Data:
+
+sessionStorage.setItem('key', 'value');
+
+2. Retrieving Data:
+
+var value = sessionStorage.getItem('key');
+
+3. Removing an Item:
+
+sessionStorage.removeItem('key');
+
+4. Clearing All Data:
+
+sessionStorage.clear();
+
+
+##Local Storage:
+
+- Data stored in local storage is scoped to the same origin (protocol, domain, and port).
+- It is accessible across multiple tabs and windows of the same origin.
+- Data available even after the browser is closed and reopened.
+- Each origin maintains its own separate local storage.
+- Data stored in local storage will be available across different sessions, allowing for continuity of user preferences and application state.
+
+Here's how you can use JavaScript to store, retrieve, and clear data from both Session Storage and Local Storage, along with methods for removing individual items and clearing all stored data:
+
+
+
+1. Storing Data:
+
+localStorage.setItem('key', 'value');
+
+2. Retrieving Data:
+
+var value = localStorage.getItem('key');
+
+3. Removing an Item:
+
+localStorage.removeItem('key');
+
+4. Clearing All Data:
+
+localStorage.clear();
+
+------------------------------------------------------------------------------------------------
+ 
+Explain Hoisting in javascript.
+Hoisting is the default behaviour of javascript where  the variable and function
+declarations are moved on top during the compilation phase
+
+clousure inner function can be access of outer function
+
+
+------------------------------------------------------------------------------------------------
+4. Difference between “ == “ and “ === “ operators.
+Both are comparison operators.
+The difference between both the operators is that “==” is used to compare values whereas,
+ “ === “ is used to compare both values and types.
+
+
+------------------------------------------------------------------------------------------------
+5. Difference between var and let keyword in javascript.
+
+
+- var Keyword:
+  - Function-scoped
+  - Hoisted
+  - Can be redeclared within the same scope
+  var x = 5;
+  var x = 10;
+  
+  console.log(x); // Outputs 10
+
+  
+- let Keyword:
+  - Block-scoped
+  - Not hoisted
+  - Cannot be redeclared within the same block scope
+
+let y = 5;
+let y = 10; // SyntaxError: Identifier 'y' has already been declared
+
+const z = 5;
+const z = 10; // SyntaxError: Identifier 'z' has already been declared
+
+
+
+------------------------------------------------------------------------------------------------
+server side rendering (SSR) and client side rendering (CSR).
+
+
+
+In the world of web development, 
+there are two main methods for rendering web pages:
+server side rendering (SSR) and client side rendering (CSR).
+
+What is Server Side Rendering (SSR)?
+
+-Server Side Rendering is the traditional way of rendering web pages.
+-When a user requests a page from the server, the server processes the 
+request and generates the complete HTML file, 
+which is send to browser
+-The browser receives the complete HTML file and displays it to the user.
+SSR: Better performance, Faster initial load, better SEO, and security.
+
+
+What is Client Side Rendering (CSR)?
+Client Side Rendering is a more modern approach to rendering web pages.
+In this method, the server sends only the necessary data and JavaScript files to the browser. 
+Browser generates HTML with JavaScript.
+Allows dynamic content and improved user experience.
+
+
+Differences:
+
+SSR: Better performance, Faster initial load, better SEO, and security.
+CSR: More dynamic, better user experience, and reduces server load.
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+Authentication and authorization are two essential concepts in web development, 
+ used together to manage access control and secure resources.
+ Here's a brief overview of each:
+
+1. Authentication:
+   - Authentication is the process of verifying the identity of a user, 
+   typically through credentials such as username and password.
+   - Common authentication mechanisms include:
+     - Form-based authentication: Users provide credentials via a login form.
+     - Token-based authentication: Users receive a token after successful login, which is then used to authenticate subsequent requests.
+     - OAuth/OpenID Connect: Third-party authentication protocols used for single sign-on (SSO) and social login.
+    where user credentials are verified against a database or external identity provider.
+   - The goal of authentication is to ensure that users are who they claim to be before granting access to protected resources or features.
+   - Authentication is often implemented at the application level,
+
+2. Authorization:
+   - Authorization is the process of determining whether a user 
+   has the necessary permissions to access a resource or perform a specific action.
+   - Once a user is authenticated, authorization rules are applied to determine what they can and cannot do within the application.
+   - Authorization can be based on various factors, including user roles, groups, attributes, or custom policies.
+   - Common authorization mechanisms include:
+     - Role-based access control (RBAC): Users are assigned roles (e.g., admin, editor, viewer) with corresponding permissions.
+     - Attribute-based access control (ABAC): Access decisions are based on user attributes, resource properties, and environmental conditions.
+   - Authorization is typically enforced at the application level, with access control rules defined and enforced within the application logic or middleware.
+   
+
+In summary, authentication verifies user identity, while authorization controls user access to resources based on their identity and permissions. Together, these concepts form the foundation of access control and security in web applications.
+------------------------------------------------------------------------------------------------
+accessibility
+
+
+Web accessibility  is the design and creation of websites that can be used by everyone.
+<!-- Accessibility support is necessary to allow assistive technology to interpret web pages. -->
+Accessibility in ReactJS refers 
+to the web applications built with React are usable by people with disabilities. 
+<!-- This includes individuals who may have visual, auditory, motor, or cognitive impairments.  -->
+React provides various tools and techniques to make applications more accessible, such as:
+-
+1. Semantic HTML:
+-Using appropriate HTML elements to provide meaning and structure to the content.
+ For example, using <button> instead of <div> for clickable elements.
+
+2. ARIA attributes:
+-Accessible Rich Internet Applications (ARIA) attributes can be added
+ to HTML elements to provide additional information to assistive technologies. 
+React supports adding ARIA attributes to components to enhance accessibility.
+
+3. Keyboard navigation:
+-Ensuring that all interactive elements can be accessed and operated using a keyboard alone,
+ without relying on mouse or touch input.
+
+4. Focus management: Managing focus to ensure that users can navigate through the application in a logical order, 
+and that focus is not trapped within certain elements.
+
+5. Screen reader support: Testing applications with screen readers to ensure that content is properly announced and navigable.
+
+6. Providing alternative text for images: Adding descriptive alt text to images to ensure that users with visual impairments understand the content.
+
+7. Handling dynamic content: Ensuring that dynamically generated content is accessible and properly announced by assistive technologies.
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+What is assistive technology in websites?
+Screen readers, voice recognition software, reading assistants, and switch devices that replace the need to use a keyboard or mouse are examples of assistive technologies.
+
+
+------------------------------------------------------------------------------------------------
+Interceptors
+
+Interceptors are a powerful feature provided by libraries such as Axios or HTML5 Fetch api 
+that allow you to intercept and manipulate HTTP requests or responses globally 
+before they are handled by your application. 
+In the context of React.js, interceptors can be used to perform tasks such as adding authentication headers, logging requests, modifying responses, or handling errors.
+
+
+
+
+------------------------------------------------------------------------------------------------
+Code optimization 
+
+Code optimization in React.js involves improving the efficiency, performance, 
+and overall quality of your codebase without changing its functionality. 
+
+It includes techniques such as minimizing unnecessary re-renders, 
+reducing bundle size, optimizing network requests, managing state efficiently, 
+enhancing code readability, and maintaining code maintainability.
+
+1. React.StrictMode:
+  - Use React.StrictMode to detect potential issues in your codebase during development.
+  -It helps identify unsafe lifecycles, deprecated APIs, and other potential problems.
+
+2. Memoization:
+  Memoization is a technique used to optimize expensive computations by caching the results. React provides a useMemo hook for memoizing values.
+  
+  import React, { useMemo } from 'react';
+ 
+  const Component = ({ data }) => {
+    const processedData = useMemo(() => {
+      // Expensive computation
+      return data.map(item => item * 2);
+    }, [data]);
+  
+    return (
+      <div>
+        {processedData.map((item, index) => (
+          <div key={index}>{item}</div>
+        ))}
+      </div>
+    );
+  };
+
+3. Code Splitting:
+  Splitting your code into smaller chunks allows lazy-loading components when needed, reducing the initial bundle size and speeding up the initial load time.
+  
+  import React, { lazy, Suspense } from 'react';
+
+  const LazyComponent = lazy(() => import('./LazyComponent'));
+  
+  const App = () => (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LazyComponent />
+    </Suspense>
+  );
+
+4. Avoid Inline Styles:
+  - Inline styles can clutter your components and make maintenance difficult. 
+  -Prefer using CSS classes or styled-components for better separation of concerns and easier styling management.
+
+5. Debouncing and Throttling:
+  - Debouncing and throttling are code optimization techniques that help improve performance by
+   controlling the rate at which functions are executed in response to frequent events.
+  - Debouncing function is excuated after specif delay perdia passes since las time function invokde 
+    while throttling limits the number of times the function can be called over a certain period.
+
+  
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+

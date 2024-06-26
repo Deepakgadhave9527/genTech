@@ -1,0 +1,992 @@
+
+
+================================= Closures===============================================
+Closures are a fundamental concept in JavaScript, providing the ability to access an outer function's scope from an inner function
+even after the outer function has finished executing
+
+
+
+- When a customer visits an online store, a new shopping cart is created.
+- This cart contains a private list of items, inaccessible directly from outside.
+- To manage the cart, specific functions are provided:
+  - One for adding items.
+  - One for removing items.
+  - One for viewing the cart's contents.
+- These functions can access the private list, even though it's hidden from the outside.
+- When a customer adds an item:
+  - The function modifies the private list to include the new item.
+- When a customer removes an item:
+  - Another function checks the list and updates it accordingly.
+- To view the cart:
+  - A function reads and displays the list without changing it.
+- This use of closures ensures that the cart’s internal list remains encapsulated and secure, only modifiable through the designated functions.
+- The private list retains its state throughout the customer’s session because the functions maintain a reference to it.
+- This encapsulation:
+  - Enhances security by preventing direct tampering.
+  - Ensures that each customer's cart operates independently and consistently throughout their shopping experience.
+
+<!-- 
+Certainly! Here's a concise explanation using a continuous format:
+
+When a customer visits an online store, a new shopping cart is created. This cart contains a private list of items, inaccessible directly from outside. To manage the cart, specific functions are provided: one for adding items, one for removing items, and one for viewing the cart's contents. These functions can access the private list, even though it's hidden from the outside. When a customer adds an item, the function modifies the private list to include the new item. When they remove an item, another function checks the list and updates it accordingly. To view the cart, a function reads and displays the list without changing it. 
+
+This use of closures ensures that the cart’s internal list remains encapsulated and secure, only modifiable through the designated functions. The private list retains its state throughout the customer’s session because the functions maintain a reference to it. This encapsulation enhances security by preventing direct tampering and ensures that each customer's cart operates independently and consistently throughout their shopping experience. -->
+
+
+
+
+================================================================================================================================================================
+
+Event loop 
+
+The event loop is a mechanism that allows JavaScript to execute asynchronous code in a single-threaded environment.
+
+with help of  Event loop  we can know  the execution of code in Javascript and also 
+ helps manage the execution of asynchronous code,
+
+ 
+ We have 3 main things here to consider 
+
+ CallStack,
+ Micro Task Queue(promise, callbacks, etc.,), 
+ Macro Task Queue(setTimeout, setInterval, I/O operations, DOM events, etc.,)
+
+
+### Call Stack
+with help of  Call Stack e JavaScript engine keeps track of function calls.
+When a function is called, it is pushed onto the Call Stack.
+When the function completes, it is pop out out the stack. 
+
+The Call Stack operates in a last-in-first-out (LIFO) manner.
+
+
+### Micro Task Queue
+Microtas that are executed immediately right after the current script finishes but before the browser performs any rendering or handling of input/output operations.
+
+
+Microtasks are given higher priority than macrotasks.
+
+The Microtasks Task Queue is used to handle Microtasks, which include:
+
+- Promise callbacks (e.g., `.then`, `.catch`)
+- MutationObserver callbacks
+
+The event loop first completes all microtasks before moving on to macrotasks.
+
+
+
+### Macro Task Queue
+
+Macro tasks are executed after all microtasks have been completed.
+
+
+
+The Macro Task Queue is used to handle macrotasks, which include:
+
+- `setTimeout`
+- `setInterval`
+- I/O operations
+- DOM events (e.g., `click`, `load`)
+
+
+
+ It works by constantly checking two queues: the microtask queue and the macrotask queue. 
+ <!-- These queues store the callbacks of the asynchronous operations that are waiting to be executed. -->
+
+ The main difference between microtask and macrotask queue is their priority. 
+ The event loop always gives higher priority to the microtask queue, a
+ and will process all the callbacks in the microtask queue before moving on to the macrotask queue. 
+
+
+
+
+
+### How the Event Loop Works
+1. **Execution Context:** JavaScript starts by executing the global context, which is the main code file.
+2. **Call Stack:** Functions are pushed onto the Call Stack and executed. If a function contains an asynchronous operation (e.g., `setTimeout`), the operation is offloaded to the browser or Node.js environment.
+3. **Task Queues:** 
+   - When an asynchronous operation completes, its callback is placed into the appropriate queue (Micro Task Queue or Macro Task Queue).
+4. **Event Loop:** 
+   - The event loop continuously checks the Call Stack. If the Call Stack is empty, it starts processing the Micro Task Queue.
+   - All microtasks are processed before moving on to the Macro Task Queue.
+   - Once the Micro Task Queue is empty, the event loop will process one task from the Macro Task Queue.
+
+### Example
+
+Consider the following code:
+
+```javascript
+console.log('Start');
+
+setTimeout(() => {
+  console.log('Timeout');
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log('Promise');
+});
+
+console.log('End');
+```
+
+**Execution Flow:**
+
+1. `'Start'` is logged to the console.
+2. `setTimeout` is called, its callback is placed in the Macro Task Queue.
+3. `Promise.resolve().then` is called, its callback is placed in the Micro Task Queue.
+4. `'End'` is logged to the console.
+5. The Call Stack is now empty.
+6. The event loop checks the Micro Task Queue and executes the promise callback, logging `'Promise'` to the console.
+7. The event loop then checks the Macro Task Queue and executes the timeout callback, logging `'Timeout'` to the console.
+
+**Output:**
+```
+Start
+End
+Promise
+Timeout
+```
+
+By understanding the event loop and its components, you can better manage asynchronous operations in JavaScript and predict the order of execution for your code.
+
+<!-- Microtasks are operations scheduled to run right after the current script finishes but before the browser performs any rendering or handling of input/output operations. -->
+
+<!-- Microtasks are tasks that are executed immediately after the currently executing script and before any rendering or I/O operations. -->
+
+
+<!-- 
+The Event loop is a concept that helps us to know the execution of code in Javascript. 
+
+The event loop in JavaScript is a fundamental concept that helps manage the execution of asynchronous code, -->
+
+ <!-- single-threaded environment of JavaScript to handle concurrent operations. 
+ It works by constantly checking two queues: the microtask queue and the macrotask queue. These queues store the callbacks of the asynchronous operations that are waiting to be executed.
+
+ The main difference between microtask and macrotask queue is their priority. 
+ The event loop always gives higher priority to the microtask queue, and will process all the callbacks in the microtask queue before moving on to the macrotask queue. -->
+
+
+
+<!-- The Call Stack is where the JavaScript engine keeps track of function calls. -->
+
+ -->
+<!-- Macrotasks are tasks that are scheduled to be executed after the current executing script and after all microtasks have been processed -->
+
+
+
+
+
+
+
+================================================================================================================================================================
+Single-Threaded Execution:
+
+JavaScript executes code in a single-threaded manner, meaning one operation is performed at a time.
+The event loop helps manage this single-threaded execution, especially for asynchronous tasks.
+
+
+
+
+
+================================================================================================================================================================
+
+
+useContext vs Redux
+
+
+
+**useContext:**
+
+-useContext is a hook provided by React.
+-useContext is relatively easy to understand and requires less code compared to Redux.
+
+-useContext hook is used to create common data that can be accessed throughout the
+component hierarchy without passing the props down manually to each level.
+
+-When the value of the Context will changes, all components consuming that Context will re-render.
+
+- useContext is suitable for simpler applications with basic state management needs.
+
+
+-Changes to the state are made by updating the value of the Context directly.
+-useContext allows direct mutation of the state within the Context.
+-It is better suited for smaller to medium-sized applications or for managing simpler global state needs.
+-It allows components to consume data from a Context and s
+hare it across the component tree without having to pass props manually at every level.
+
+**Redux:**
+
+-Redux is a state management library, commonly used with React applications.
+-It is used to manage the data and state of larger applications in a predictable and centralized manner.
+-Changes to the state in Redux are made using pure functions called reducers, which take the current state and an action as arguments and return the new state.
+-Redux only re-renders the components that are affected by the updated state, optimizing performance.
+-Redux can handle complex state updates and asynchronous actions more efficiently than useContext.
+- Redux is preferable for complex applications with intricate state management requirements.
+
+-The state in Redux is read-only, and changes are made by dispatching actions, which are handled by reducers to produce a new state.
+-Redux is perfect for larger applications with complex state management needs, offering a structured and predictable way to manage application state.
+-It can be complex to understand, especially for beginners, due to its concepts like actions, reducers, middleware, and store setup.
+
+
+
+
+================================================================================================================================================================
+
+CSS preprocessor
+
+A CSS preprocessor is a tool that converts code written in its scripting language into standard CSS. 
+This conversion enhances the capabilities of CSS by providing features like 
+-Variables
+  - Nesting
+  - Mixins
+  - Functions
+
+
+   These features help streamline the development process, reduce repetition, and make the CSS codebase easier to manage. -->
+   
+<!-- 
+
+  - Reduces repetition.
+  - organized, and easier to maintain
+    - Other programming constructs -->
+
+
+<!-- 
+- A CSS preprocessor is a scripting language that extends the capabilities of standard CSS.
+- Allows developers to write CSS in a more expressive and maintainable way.
+- Introduces features such as:
+  - 
+
+
+A CSS preprocessor is a scripting language that extends the capabilities of standard CSS. It allows developers to write CSS in a more expressive and maintainable way, introducing features such as variables, nesting, mixins, functions, and other programming constructs. These features help streamline the development process, reduce repetition, and make the CSS codebase easier to manage. -->
+
+
+
+
+
+
+
+================================================================================================================================================================
+### Media Queries in CSS
+
+A media query is a CSS technique used to apply styles to a web page based on specific characteristics of the device or browser viewing the page.
+With media queries, you can conditionally apply CSS rules based on factors like screen size, device orientation, resolution, and more.
+"With media queries, we can create responsive designs that for different devices and screen sizes."
+
+
+The `@media` rule is used in media queries to apply different styles for different media types/devices.
+
+#### Examples:
+
+- Extra small devices (phones, 600px and down):
+
+@media only screen and (max-width: 600px) {...}
+
+
+- Small devices (portrait tablets and large phones, 600px and up):
+
+@media only screen and (min-width: 600px) {...}
+
+
+- Medium devices (landscape tablets, 768px and up):
+
+@media only screen and (min-width: 768px) {...}
+
+
+- Large devices (laptops/desktops, 992px and up):
+
+@media only screen and (min-width: 992px) {...}
+
+
+- Extra large devices (large laptops and desktops, 1200px and up):
+
+@media only screen and (min-width: 1200px) {...}
+
+
+#### Breakpoints:
+
+- Mobile (extra small device) xs: size <= 575.98px
+- Tablet (small device) sm: size >= 576px && size <= 767.98px
+- Laptop (medium device) md: size >= 768px && size <= 991.98px
+- Desktop (large device) lg: size >= 991.98px && size <= 1199.98px
+- Big screen (extra large device) xl: size >= 1200px
+
+### Media Types:
+Media types specify the target device or output medium. Some common media types include:
+
+- all
+- braille
+- handheld
+- print
+- screen
+- speech
+- tty
+- TV
+
+
+
+
+
+================================================================================
+
+
+
+
+Automatic Batching 
+
+-Batching react 18 features
+-Batching in React adding group of multiple state thats update sinto a single re-render for better performance.
+    
+
+ 
+    <!-- Batching is when React groups multiple state updates into a single re-render for better performance. -->
+    
+    // Before: only React events were batched.
+setTimeout(() => {
+  setCount(c => c + 1);
+  setFlag(f => !f);
+  // React will render twice, once for each state update (no batching)
+}, 1000);
+
+// After: updates inside of timeouts, promises,
+// native event handlers or any other event are batched.
+setTimeout(() => {
+  setCount(c => c + 1);
+  setFlag(f => !f);
+  // React will only re-render once at the end (that's batching!)
+}, 1000); 
+
+
+
+================================================================================
+Callback hell
+
+
+
+Callback hell is a phenomenon where a Callback is called inside another Callback. 
+It is the nesting of multiple Callbacks inside a function. 
+
+where multiple asynchronous operations are nested within each other as callbacks.
+This can result in code that is difficult to read, understand, and maintain
+
+ The two common ways of escaping the callback heare are by using promises and async/await.
+
+// Nested callbacks
+doSomething(function(result1) {
+  doSomethingElse(result1, function(result2) {
+    doAnotherThing(result2, function(result3) {
+      console.log('Final Result:', result3);
+    });
+  });
+});
+
+// Using Promises
+doSomething()
+  .then(result1 => {
+    return doSomethingElse(result1);
+  })
+  .then(result2 => {
+    return doAnotherThing(result2);
+  })
+  .then(result3 => {
+    console.log('Final Result:', result3);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+
+
+
+
+
+
+================================================================================
+
+
+Why middleware is required in React?
+In React applications, asynchronous operations like making API calls or handling side effects can be managed effectively using middleware. 
+Middleware allows developers to intercept certain actions, perform asynchronous tasks, 
+and then dispatch new actions with the results once the tasks are complete.
+
+
+
+
+
+
+
+================================================================================
+
+curried function
+
+ curried function is a function that takes one argument at a time, returning a new function each time,
+ until all arguments are provided and the final result is returned.
+
+<!-- 
+In JavaScript, a curried function is a function that takes one argument at a time, returning a new function each time, until all arguments are provided and the final result is returned. This allows for partial application and greater flexibility in function composition and usage. -->
+
+
+function add(a) {
+    return function(b) {
+        return function(c) {
+            return function(d) {
+                return a + b + c + d;
+            };
+        };
+    };
+}
+
+
+const result = add(1)(2)(3)(4); // Result: 10
+console.log(result);
+
+
+
+
+
+function calculateDiscount(baseDiscount) {
+    return function(minimumPurchase) {
+        return function(isPremiumCustomer) {
+            return function(amount) {
+                let discount = baseDiscount;
+                if (minimumPurchase && amount >= minimumPurchase) {
+                    discount += 10; // Additional discount for reaching minimum purchase
+                }
+                if (isPremiumCustomer) {
+                    discount += 5; // Additional discount for premium customers
+                }
+                return amount - (amount * (discount / 100));
+            };
+        };
+    };
+}
+
+// Apply discounts based on different criteria
+const discountCalculator = calculateDiscount(15)(100)(true);
+const finalPrice = discountCalculator(200); // Result: $170
+
+console.log(finalPrice); // Output: 170
+
+
+
+
+
+Suppose you're building an e-commerce platform, and you have a function that calculates the total price of items in a shopping cart.
+ However, different customers may have different discounts based on their membership level. You want to create a flexible function that can calculate the total price for any customer,
+  taking into account their membership discount.
+
+<script>
+// Curried function to calculate total price with discount
+function calculateTotalPrice(discount) {
+  return function(items) {
+    const totalPrice = items.reduce((acc, item) => acc + item.price, 0);
+    return totalPrice * (1 - discount);
+  };
+}
+
+// Sample shopping cart items
+const cartItems = [
+  { name: 'Product A', price: 20 },
+  { name: 'Product B', price: 30 },
+  { name: 'Product C', price: 40 }
+];
+
+// Define discount rates for different membership levels
+const standardDiscount = 0.1; // 10% discount for standard members
+
+// Create specialized version of the calculateTotalPrice function for standard members
+const calculateTotalPriceForStandardMember = calculateTotalPrice(standardDiscount);
+
+// Calculate total price for standard member
+const totalPriceForStandardMember = calculateTotalPriceForStandardMember(cartItems);
+
+console.log("Total price for standard member:", totalPriceForStandardMember); // Output: 81 (10% discount applied)
+
+
+</script>
+
+
+
+
+================================================================================
+Debounce vs Throttling
+
+- Debouncing and throttling are two commonly used techniques in web development to optimize performance and reduce the load on web servers.
+- These techniques are particularly useful when dealing with events that can trigger multiple times in quick succession, such as user inputs or page scrolling.
+- By implementing debouncing and throttling, we can limit the number of times a function is called and prevent overwhelming the server with requests.
+- This results in a better user experience and improved website performance.
+
+
+function is only executed after a specified delay period has passed since the last time the function was invoked. 
+
+while throttling limits the number of times the function can be called over a certain period.
+
+
+Debounicng real world example
+When you search for something on Flipkart's website, the search results appear as you type. But if every keystroke triggers a request, 
+it could slow down the website. That's where debouncing comes in. It delays the request until you stop typing for a short period of time, ensuring that only the final keystroke triggers the request. This prevents the server from being overloaded with requests and delivers search results quickly.
+
+
+
+### Debounce
+
+function is only executed after a specified delay period has passed since the last time the function was invoked. 
+
+debounce is useful for restricting the frequency of function execution, particularly for events that occur rapidly, such as typing or window resizing
+
+#### Key Points:
+- Delays execution of a function until after a specified wait time.
+- Useful for scenarios like search input fields, window resizing, etc.
+- Prevents a function from being called too frequently.
+
+#### Example:
+html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debounce Example</title>
+</head>
+<body>
+    <input type="text" id="search" placeholder="Type to search...">
+    <script>
+        function debounce(func, wait) {
+            let timeout;
+            return function(...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                    func.apply(this, args);
+                }, wait);
+            };
+        }
+
+        function searchQuery() {
+            console.log('Searching for:', document.getElementById('search').value);
+        }
+
+        const debouncedSearch = debounce(searchQuery, 300);
+
+        document.getElementById('search').addEventListener('input', debouncedSearch);
+    </script>
+</body>
+</html>
+
+
+### Throttling
+
+Throttling ensures that a function is only executed at most once in a specified time period. It limits the rate at which a function can be executed, regardless of how many times an event fires in that period.
+
+#### Key Points:
+- Limits the frequency of function execution to at most once per specified time period.
+- Useful for scenarios like scroll events, mouse movement, etc.
+- Ensures a function is not called more often than the specified time interval.
+
+
+
+A real-world example of throttling is scrolling on a website. When you scroll down a page, the browser fires a scroll event for every pixel you move. If you have a lot of content on the page, this can cause performance issues as the browser tries to handle all the events.
+
+To fix this, we can use throttling to limit the number of scroll events that the browser handles. For example, we might set a limit of one scroll event per 100 milliseconds. This means that the browser will handle only one scroll event during that time, no matter how many times the event is fired.
+
+#### Example:
+html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Throttling Example</title>
+</head>
+<body>
+    <div id="content" style="height: 1500px; background: linear-gradient(white, black);">
+        Scroll down to see the effect in the console log.
+    </div>
+    <script>
+        function throttle(func, limit) {
+            let lastFunc;
+            let lastRan;
+            return function(...args) {
+                const context = this;
+                if (!lastRan) {
+                    func.apply(context, args);
+                    lastRan = Date.now();
+                } else {
+                    clearTimeout(lastFunc);
+                    lastFunc = setTimeout(function() {
+                        if ((Date.now() - lastRan) >= limit) {
+                            func.apply(context, args);
+                            lastRan = Date.now();
+                        }
+                    }, limit - (Date.now() - lastRan));
+                }
+            };
+        }
+
+        function onScroll() {
+            console.log('Scroll event triggered at:', new Date().toLocaleTimeString());
+        }
+
+        const throttledScroll = throttle(onScroll, 1000);
+
+        window.addEventListener('scroll', throttledScroll);
+    </script>
+</body>
+</html>
+
+
+### Summary
+- **Debounce** delays the execution of a function until after a specified wait time has passed since the last invocation.
+
+
+
+- **Throttling** ensures that a function is called at most once in a specified time period.
+
+Both techniques help in optimizing performance and improving user experience by controlling the rate of function execution in response to frequent events.
+
+
+
+
+
+
+
+
+================================================================================
+
+
+
+1. **Split Method**:
+   - Splits a string into an array of substrings based on a specified separator.
+   const str = "Hello,World";
+   const arr = str.split(","); // ['Hello', 'World']
+   
+
+2. **Reverse Method**:
+   - Reverses the order of elements in an array.
+   const arr = [1, 2, 3, 4, 5];
+   arr.reverse(); // [5, 4, 3, 2, 1]
+   
+
+3. **Join Method**:
+   - Joins all elements of an array into a single string, separated by a specified separator.
+   const arr = ['Hello', 'World'];
+   const str = arr.join(", "); // 'Hello, World'
+   
+
+These examples demonstrate how each method works in a simple and straightforward manner.
+
+
+
+
+
+
+
+
+
+================================================================================
+How many way object will create
+
+
+1. Object Literal
+2. Object Constructor
+3. The new Keyword
+4. Object.assign()
+5. Object.create()
+6. Object.fromEntries()
+
+1. **Using Object Literal:**
+   const obj = {
+     name: "John",
+     age: 30,
+   };
+
+
+2. **Using Object Constructor:**
+   const obj = new Object();
+   obj.name = "John";
+   obj.age = 30;
+
+3. **Using the new Keyword:**
+   function ObjectName(name, age) {
+     this.name = name;
+     this.age = age;
+   }
+   const obj = new ObjectName("John", 30);
+
+
+4. **Using Object.assign():**
+   const obj = Object.assign({}, { name: "John", age: 30 });
+
+5. **Using Object.create():**
+   const protoObj = { name: "John", age: 30 };
+   const obj = Object.create(protoObj);
+
+6. **Using Object.fromEntries():**
+   const entries = [['name', 'John'], ['age', 30]];
+   const obj = Object.fromEntries(entries);
+
+
+
+
+
+
+
+
+
+
+================================== props.children ==============================================
+
+A parent component can easily pass any necessary content, including dynamically generated layout features or other components, to its child component 
+<!-- using props.children. -->
+ The child component can then access this content through props.children and render it accordingly.
+<!-- 
+parent component can easily pass whatever is necessary to its child, even generated layout features or other component
+props.children its access the that content  and  to render whatever content is passed to it. -->
+
+const Layout = (props) => {
+    return (
+      <div className="layout">
+        <header>Header Section</header>
+        <main>{props.children}</main>
+        <footer>Footer Section</footer>
+      </div>
+    );
+  };
+
+
+  const App = () => {
+    const generateContent = () => {
+      return <p>This is dynamically generated content!</p>;
+    };
+  
+    return (
+      <Layout>
+        <h1>Main Title</h1>
+        {generateContent()}
+        <p>Some additional content.</p>
+      </Layout>
+    );
+  };
+  
+
+
+
+
+
+
+
+
+
+
+================================================================================
+Babel
+
+Babel is a JavaScript compiler.
+Babel can also convert JavaScript code from one version to another, making it compatible with all browsers.
+Browsers cannot understand JSX code
+
+We use Babel with React to transpile the JSX code into simple React functions that can be understood by browsers. 
+Using this way we can assure that our JSX code can work in almost any browser
+
+
+1.
+2. It transpiles JavaScript ES6 code to equivalent JavaScript compatible with all browsers.
+3. Browsers cannot understand JSX code.
+4. A transpiler like Babel is needed to convert JSX to regular JavaScript.
+5. Babel can also convert JavaScript code from one version to another, making it more understandable.
+
+Babel is capable of converting JavaScript code from one version (such as ES6) to another version (such as ES5), allowing developers to use the latest language features while ensuring compatibility with older environments.
+
+
+
+
+
+
+
+
+
+
+================================================================================
+
+
+
+callback
+callback is a function passed as an argument to another function,
+which gets invoked after the main function completes its execution.
+ 
+They are commonly used to handle asynchronous operations in JavaScript.
+
+Callbacks are commonly used in programming to handle asynchronous tasks, such as fetching data from a server, reading files, or handling user interactions.
+
+
+
+================================================================================
+
+
+
+how handle asynchronous operations 
+
+Handling asynchronous operations in programming involves
+managing tasks that may take variable amounts of time to complete without blocking the execution of other code.
+
+Asynchronous operations can be handled using various techniques, including callbacks, Promises, async/await, and event listeners
+
+
+
+
+
+
+
+
+
+
+================================================================================
+
+
+
+
+
+================================================================================================================================================================
+
+Redux vs Redux Toolkit
+
+### Redux:
+
+- Core library for state management.
+- Involves writing significant boilerplate.
+- Requires manual handling of immutability.
+- Asynchronous logic typically requires middleware.
+
+### Redux Toolkit:
+
+- Provides utility functions to simplify Redux usage.
+- Reduces boilerplate significantly.
+- Offers built-in immutability helpers.
+- Built-in support for handling asynchronous logic.
+
+- Seamless integration with Redux DevTools Extension.
+
+
+
+
+
+
+
+
+
+
+
+================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+

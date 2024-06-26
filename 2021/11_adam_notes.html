@@ -1,0 +1,856 @@
+1) What is JavaScript?
+
+JavaScript is a scripting language. It is different from Java language. It is object-based, lightweight, cross-platform
+translated language.
+It is widely used for client-side validation.
+The JavaScript is responsible for translating the JavaScript code for the web browser
+
+
+2) What is anonymous Function in javascript.
+
+Anonymous Function is a function that does not have any name. it can only be accessed by a variable it is stored in as a
+function as a value.
+An anonymous function can also have multiple arguments, but only one expression.
+
+3) what is templelet literal :-Template literals allow variables in strings: `sanket${19}`
+
+4) what is the js variable
+
+  In JavaScript,
+a variable stores the data value that can be changed later on.
+There are 3 ways to declare a JavaScript variable:
+
+var
+let
+const
+
+var
+Function-scoped or globally-scoped
+Accidental global variables
+reassignable and redeclarable
+
+let
+Block scoped
+Temporal dead zone
+Reassignable, not redeclarable
+
+const
+Block scoped
+Temporal dead zone
+Not reassignable, not redeclarable/
+
+5) what is the js operator
+
+An operator performs some operation on single or multiple operands (data value) and produces a result.
+JavaScript includes following categories of operators.
+
+Arithmetic Operators * - + --- Arithmetic operators are used to perform mathematical operations between numeric
+operands.
+Comparison Operators > < !=--- javaScript provides comparison operators that compare two operands and return a boolean
+    value true or false. Logical Operators && ! || ( or ) --- the logical operators are used to combine two or more
+    conditions Assignment Operators --- JavaScript provides the assignment operators to assign values to
+    variables=+=-=Conditional Operators if else, switch Ternary Operator 6)What are Events in JavaScript? Javascript has
+    events that provide a dynamic interface to a webpage. These events are connected to elements in the Document Object
+    Model(DOM). 7)What are Events in JavaScript...? Types of Events in JavaScript Onclick Event Onkeyup Event
+    Onmouseover Event Onload Event Onfocus Event Onmouseover OnBlur Event 8) what is the data type There are 2 kinds of
+    data types, each of which are further divided into sub-types. Primitive data types : Data types which are
+    pre-defined and supported by the programming language. -- String, Number,boolen, Undefind ,Value Non-primitive data
+    types : Data types which are created by the user and not pre-defined by the language itself. -- Array, Object 1.
+    Number: Number type stands for both integers and floating points. Many mathematical operations are carried out using
+    these numbers. 2. String: Strings are used to store data that involves characters, like names or addresses. You can
+    perform operations like string concatenation, in JavaScript. 3. Boolean: Boolean type only has 2 types of return
+    values, true and false. This type is usually used to check if something is correct or incorrec 4. Null value: A null
+    value is used to declare a variable as empty, or as a variable with an unknown value. 5 Undefined value: An
+    undefined value is very similar to null value as it also makes a type of its own. The meaning of undefined is “value
+    is not assigned”. 9) What is The String -s The String is represent a sequence of characters.Strings are useful for
+    holding data that can be represented in text form. 10) Js String methods Some of the important javascript string
+    functions include: charAt(x) This function will return the character at the x position within the string.
+    charCodeAt(x) This function will return the unicode value of the character at position ‘x’ within the string.
+    concat(v1,v2..) This function will return the unicode value of the character at position ‘x’ within the string.
+    fromCharcode(c1,c2) Function will return a string created by using specified sequence of unicode values(argc1,c2
+    indexOf(substr, [start]) indexOf() is a string method that is used to find the location of a substring in a string
+    lastIndexOf(substr, [start]) The JavaScript string lastIndexOf() method retrieves the position of a char value
+    present in the given string from last position. JavaScript ----------------------- replace(regexp/substr,
+    replacetext) search(regexp) slice(start, [end]) This function returns a substring of the string based on the “start”
+    and “end” index arguments split(delimiter, [limit]) the split() method divides a String into an ordered list of
+    substrings, puts these substrings into an array, and returns the array. substr(start, [length]) substring(from,
+    [to]) toLowerCase() This will return the string with all of its characters converted to lowercase toUpperCase() This
+    will return the string with all of its characters converted to uppercase includes() It is used to check whether a
+    string contains the specified string or characters. endsWith() repeat() valueOf() trim() This function removes
+    whitespace from both ends of a string. 11) array is a single variable used to store different elements. and access
+    them by a single variable. 1. Using an array literal const array1=["eat", "sleep" ]; 2. Using the new keyword const
+    array2=new Array("eat", "sleep" ); 12) ARRAY methods Array.isArray()==Determine if a value is an array.
+    push()==Insert an element at the end of the array.=> arr.push("dog")
+    includes() == check value present or not [1,2,3,4,5].includes(2) // True;
+    pop() == Remove an element from the end of the array.=> arr.pop();
+    shift()== Remove a first element from an array => arr.shift();
+    unshift()== method adds one or more elements to the beginning of an array => arr.unshift("dog");
+    slice(start,end) == Create a shallow copy of an array.=> [1,2,3,4].slice( 1, 2) op:[2,3]
+    length== Determine the size of an array => arr.length()
+    at()== method would help you access the elements of an array =>arr.at(index)
+    concat()==used to merge two or more arrays =>arr3= arr1.concat(arr2)
+    find()== method returns the value of the first element in array that satisfies the provided testing function.
+    reverse()== method reverses an array in place. array1.reverse()
+    every()==method checks all the given elements in an array are satisfying the provided condition
+    =>[1,2,3].every(()=>val> 2); op:true
+    join(")== method creates and returns a new string arr.join(-)
+    indexOf()== It returns the index of the first occurrence of an element in the array. If an element is not found, the
+    indexOf() method returns -1.
+
+    splice(index,delete, add) == The splice() method helps you add, update, and remove elements in an array.
+    const names = ['t', 'a', 'b'].splice(1, 0, 'k'); // ['t',"k", 'a', 'b']
+
+    filter()== The filter() method creates a new array with all elements that pass the test implemented by the provided
+    function.**
+    numbers.filter(value => value >= 0)
+
+    flat()== method creates a new array with all sub-array elements concatenated into it recursively up to the specified
+    depth.**
+    arr = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]];
+    arr.flat(Infinity);
+    // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+    reduce()== method reduces the array to a single value from left to right.This method leaves the original array
+    unchanged.
+    var arr = [10, 20, 30, 40, 50];
+    var val = arr.reduce((prev, curr) => prev + curr);
+    console.log(val)
+
+    map()== method calls the specified function for every array element and returns the new array.
+    This method doesn't change the original array.
+    var arr=[2,4,6];
+    var result=arr.map(x=>x*3);
+
+    The some() methods checks if atleast a single array element passes the test, implemented by the provided function.
+    If the test is passed, it returns true. Else, returns false. array.some(even) // true
+
+    The sort() array method
+    The default sort() method converts the element types into strings and then sorts them.
+    The default sorting order is ascending. The sort() method changes the original array.
+    const numbers = [23, 5, 100, 56, 9, 13, 37, 10, 1]
+    function ascendingComp(a, b){
+    return (a-b);
+    }
+    numbers.sort(ascendingComp);
+
+    forEach() ==method executes a provided function once for each array element.
+    const a = ["a", "b", "c"];
+    a.forEach((entry) => {
+    console.log(entry);
+    });
+
+    -** Difference between the for each and map ***
+    const myAwesomeArray = [1, 2, 3, 4, 5]
+    myAwesomeArray.forEach(x => x * x)
+    //>>>>>>>>>>>>>return value: undefined
+    myAwesomeArray.map(x => x * x)
+    //>>>>>>>>>>>>>return value: [1, 4, 9, 16, 25]
+
+    13)What is the JavaScript object
+    An object is a collection of data and functionality
+
+    Each key-value pair is called a property.
+    The key of a property can be a string and the value of a property can be any valid JavaScript value e.g., a string,
+    a number, an array, and even a function.
+    When a function is a property ofan object, its often called a method.
+
+    14)what is the object method=>
+
+    JavaScript methods are actions that can be performed on objects.
+    A JavaScript method is a property containing a function definition .
+
+    15)what is the object property
+    Each key-value pair is called a property.
+    Properties are the values assoyciated with a JavaScript object.
+
+    16)Optional chaining (?.) The optional chaining ?. is a safe way to access nested object properties, even if an
+    intermediate property doesnt exist.
+    const adventurer = {
+    name: 'Alice',
+    cat: {
+    name: 'Dinah'
+    }
+    };
+    const dogName = adventurer.cat?.name;
+    console.log(dogName);
+
+    16)what is function in js
+    A JavaScript function is a block of code designed to perform a particular task.
+    Function parameters are listed in the parentheses ().
+    Function arguments are the values received by the function when it is called.
+    function name(parameter1, parameter2, parameter3) {
+    // code to be executed
+    }
+    17)
+    to get time n date : new Date().toLocaleString() : 7/17/2021, 7:34:11 PM
+    to get the time : new Date().toLocaleTimeString() : 7:25:37 PM
+    to get the date : new Date().toLocaleDateString() : 7/17/2021
+    : new Date() : Sat Jul 17 2021 19:37:28 GMT+0530 (India Standard Time)
+    : new Date() .getMonth() + 1 : month number
+    : new Date() .getFullYear(); : 2021
+    : new Date() .getHours(); : 20
+
+    let monthNumber = (new Date().getMonth()+1);
+
+    let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+    "November", "December"];
+
+    let monthName = monthNames[monthNumber];
+    getFullYear() Get the year as a four digit number (yyyy)
+    getMonth() Get the month as a number (0-11)
+    getDate() Get the day as a number (1-31)
+    getHours() Get the hour (0-23)
+    getMinutes() Get the minute (0-59)
+    getSeconds() Get the second (0-59)
+    getMilliseconds() Get the millisecond (0-999)
+    getTime() Get the time (milliseconds since January 1, 1970)
+    getDay() Get the weekday as a number (0-6)
+    Date.now() Get the time. ECMAScript 5.
+
+    18) what is math constant
+
+    Math.E // returns Euler's number
+    Math.PI // returns PI
+    Math.SQRT2 // returns the square root of 2
+    Math.SQRT1_2 // returns the square root of 1/2
+    Math.LN2 // returns the natural logarithm of 2
+    Math.LN10 // returns the natural logarithm of 10
+    Math.LOG2E // returns base 2 logarithm of E
+    Math.LOG10E // returns base 10 logarithm of E
+
+    19) what is the math method
+
+    Math.round(x) returns the nearest integer: Math.round(4.9); // returns 5 Math.round(4.4); // returns 4
+    Math.ceil(x) rounded UP to its nearest integer: Math.ceil(4.9); // returns 5 Math.round(4.4); // returns 5
+    Math.floor(x) rounded DOWN to its nearest integer: Math.floor(4.9); // returns 4 Math.round(4.4); // returns 4
+    Math.trunc(x) returns the integer part of x: Math.trunc(4.9); // returns 4 Math.round(4.4); // returns 4
+    Math.min() Math.min(0, 150, 30, 20, -8, -200); // returns -200
+    Math.max() Math.min(0, 150, 30, 20, -8, -200); // returns 150
+    Math.sqrt(x) returns the square root of x: Math.sqrt(64); // returns 8
+    Math.random() returns a random number Math.floor(Math.random() * 10); // between 0-10
+
+    20) WHAT ARE THE CONDITION PROPERTY N TYPE
+
+    Conditional statements are used to perform different actions based on different conditions.
+    i) IF CONDITION - IF statement to specify a block of JavaScript code to be executed if a condition is true
+    if (condition1) {
+    // block of code to be executed if condition1 is true
+    } else if (condition2) {
+    // block of code to be executed if the condition1 is false and condition2 is true
+    } else {
+    // block of code
+    }
+
+    21) What is the ternary operator
+
+    A ternary operator evaluates ( check ) a condition and executes a block of code based on the condition.
+    Its syntax is:
+    condition ? expression1true : expression2 false
+    TERNARY OPERATOR:-
+    grade = (marks < 30) ? 'Fail' : 'Pass' ; multiple Ternary operetor var grade=(marks < 30) ? 'Fail' : (marks < 60)
+        ? 'Pass' : (marks < 90) ? 'Distinction' : 'High Distinction' ; 22) What is the while loop :- In while loop check
+        condition.if condition True the statement continues to execute. When condition becomes false, the statement
+        stops executing. while (condition) { statement } //Infinite loop let e=0; while (e>= 0) {
+        e++;
+        }
+
+        23) what is the do while loop:-
+
+        The first thing that happens in this loop is the statement is executed. Once that happens, condition is checked.
+        If condition evaluates to true, the statement executes again.
+        The statement keeps executing until condition evaluates to false.
+        do {
+        statement
+        } while (condition);
+
+        24)what is the FOR LOOP
+        The for loop repeats a block of code as long as a certain condition is met. It is typically used to execute a
+        block of code for certain number of times. Its syntax is:
+        for(initialization; condition; increment) {
+        // Code to be executed
+        }
+        25) what is the FOR IN LOOP
+
+        The for-in loop is a special type of a loop that iterates over the properties of an object, or the elements of
+        an array.
+        const arr = [ 'hello', 1, 'JavaScript' ];
+        for (let x in arr) {
+        console.log(arr[x]);
+        }
+        const salaries= { Jack : 24000, Paul : 34000, Monica : 55000 }
+        // using for...in
+        for ( let i in salaries) {
+        // add a currency symbol
+        let salary = "$" + salaries[i];
+        // display the values
+        console.log(`${i} : ${salary}`);
+        }
+
+        26) What is the FOR OF loop in js
+
+        The for..of loop in JavaScript allows you to iterate over iterable (arrays, sets, maps, strings etc). its not
+        work on the object
+        ***for...of with Arrays
+        const students = ['John', 'Sara', 'Jack'];
+        for ( let val of students ) {
+        console.log(val);
+        }
+        ***for...of with Strings
+        const string = 'code'
+        for (let i of string) {
+        console.log(i);
+        }
+        27) what is While loop
+
+        The while statement creates a loop that executes a specified statement as long as the test condition evaluates
+        to true.
+        let n = 0; while (n < 3) { n++ } console.log(n); 28) what is Do while loop The condition is evaluated after
+            executing the statement, resulting in the specified statement executing at least once. let result='' ; let
+            i=0; do { i=i + 1; result=result + i; } while (i < 5); console.log(result); 29)What is a Switch Statement? a
+            switch statement is a control-flow statement that tests the value of an expression against multiple cases.
+            switch statement can be an alternative to an if else statement // program for a simple calculator let
+            result; const operator=prompt('Enter operator ( either +, -, * or / ): ');
+const num1 = parseFloat(prompt(' Enter first number: '));
+const num2 = parseFloat(prompt(' Enter second number: '));
+
+switch(operator) {
+    case ' +': result=num1 + num2; console.log(`${num1} + ${num2}=${result}`); break; case '-' : result=num1 - num2;
+            console.log(`${num1} - ${num2}=${result}`); break; case '*' : result=num1 * num2; console.log(`${num1} *
+            ${num2}=${result}`); break; case '/' : result=num1 / num2; console.log(`${num1} / ${num2}=${result}`);
+            break; default: console.log('Invalid operator'); break; } 30) what is the if else The if/else statement
+            executes a block of code if a specified condition is true. if (condition1) { // code to be executed if
+            condition1 is true } else if (condition2) { // code to be executed if condition2 is true } else { // code to
+            be executed if both false } 16)what is function in js A JavaScript function is a block of code designed to
+            perform a particular task. Function parameters are listed in the parentheses (). Function makes the code
+            reusable. You can declare it once and use it multiple times. Function makes the program easier as each small
+            task is divided into a function. Function increases readability. Function arguments are the values received
+            by the function when it is called. function name(parameter1, parameter2, parameter3) { // code to be
+            executed } Q9. What is a name function in JavaScript & how to define it? A named function declares a name as
+            soon as it is defined. It can be defined using function keyword as : function named(){ // write code here }
+            17) what is the anonymous function in js Aonymous function is a function without a name We often use
+            anonymous functions as arguments of other functions. For example: setTimeout(function () {
+            console.log('Execute later after 1 second') }, 1000); 32)What is immediately invoked function expression in
+            Javascript? when a function is invoked immediately, even without the instantiation (function(){ const
+            sayHello='Hello' ; console.log(sayHello); })(); 33) what is the currying Currying is a technique of
+            evaluating function with multiple arguments, into sequence of functions with single argument function sum(a,
+            b, c) { return a + b + c; } let curriedSum=curry(sum); alert( curriedSum(1, 2, 3) ); // 6, still callable
+            normally alert( curriedSum(1)(2,3) ); // 6, currying of 1st arg alert( curriedSum(1)(2)(3) ); // 6, full
+            currying add(3, 4); // returns 7 34) what is return statemet The return statement stops the execution of a
+            function and returns a value from that function. 35) what is the call back function A callback is a function
+            passed as an argument to another function. A callback is a function that will be executed after another
+            function gets executed. If we want to execute a function right after the return of some other function, then
+            callbacks can be used. 36)what is the arrow function ES6 Arrow functions are anonymous functions (the
+            functions without a name and not bound with an identifier). They don't return any value and can declare
+            without the function keyword. Arrow functions cannot be used as the constructors
+            
+            ----------------------------- function Car (model, year, reg_no) { this.model=model; this.year=year;
+            this.reg_no=reg_no; }; let my_chevy=new Car("Chevrolet", 2015, "CHE-2015" ); let my_prius=new Car("Toyota",
+            2020, "TOY-2020" ); console.log(my_chevy); console.log(my_prius); ----------------------------- 37)What is
+            argument objects in JavaScript & how to get the type of arguments passed to a function? JavaScript variable
+            arguments represents the arguments that are passed to a function. Using typeof operator, we can get the type
+            of arguments passed to a function. For example − function func(x){ console.log(typeof x, arguments.length);
+            } func(); //==> "undefined", 0
+            func(7); //==> "number", 1
+            func("1", "2", "3"); //==> "string", 3'
+
+            38) Q12. What are the scopes of a variable in JavaScript?
+
+            The scope of a variable is the region of your program in which it is defined. JavaScript variable will have
+            only two scopes
+            • Global Variables − A global variable has global scope which means it is visible everywhere in your
+            JavaScript code.
+            • Local Variables − A local variable will be visible only within a function where it is defined. Function
+            parameters are always local to that function.
+
+
+            39) What is the Hoisting in js
+            Hoisting is a default behaviour of javascript where all the variable and function declarations are moved on
+            top.
+            hoi= 3;
+            console.log(hoi); // outputs 3 even when the variable is declared after it is initialized
+            var hoi;
+
+            40) Explain Implicit Type Coercion in javascript.
+            Implicit type coercion in javascript is automatic conversion of value from one data type to another.
+            It takes place when the operands of an expression are of different data types.
+            var x = 3;
+            var y = "3";
+            x + y // Returns "33"
+
+
+            41) What is the Higher Order function in js
+
+            Higher-order functions are functions that take other functions as arguments or return functions as their
+            results.
+
+            42) what is the lexical scope
+
+            Lexical scope is the ability for a function scope to access variables from the parent scope.
+
+            43)What is a Closure?
+            A closure is the combination of a function bundled together (enclosed)
+            with references to its surrounding state (the lexical environment).
+
+            is the ability to access variables from the parent scope.
+
+            44) What is the Prototype
+
+            The prototype is an object that is associated with every functions and objects by default in JavaScript,
+            where function's prototype property is accessible and modifiable and object's prototype property (aka
+            attribute) is not visible.
+
+            45) What is the Constructor
+
+            Constructor functions technically are regular functions. There are two conventions though:
+            They are named with capital letter first.
+            They should be executed only with "new" operator.
+
+            46) What is the Promises?
+
+            Promises are useful when you have to handle more than one asynchronous task, one after another.
+            The then() method is called when the promise is resolved successfully.
+            The catch() method is used with the callback when the promise is rejected or if an error occurs.
+
+            Example:
+            api().then(function(result) {
+            return api2() ;
+            }).then(function(result2) {
+            return api3();
+            }).then(function(result3) {
+            // do work
+            }).catch(function(error) {
+            //handle any error that may occur before this point
+            });
+
+            47) What is the Async Await
+            Async/await helps with writing completely synchronous-looking code while performing asynchronous tasks.
+            await is used to wait for a promise to resolve or reject, and can only be used inside an asynchronous
+            function.
+            its es7 features.
+
+            async function j(){
+            const q = await
+            }
+
+            const q= async () =>{
+            const e = await
+            }
+
+            8888eval() is a global function in JavaScript that evaluates a specified string as JavaScript code and
+            executes it.
+
+            ***********
+
+            48) What is the DOM
+
+            DOM allows us to interact with the webpage via Javascript. The entire webpage is considered as a Document
+            that is made up of different
+            elements or objects ex : buttons, links , paragraphs. When the HTML is parsed by the browser it creates a
+            DOM tree with the root element as Document.
+
+            the document object model (DOM) is an "application programming interface for valid HTML and well-formed XML
+            documents.
+            It defines the logical structure of documents and the way a document is accessed and manipulated".
+
+            48) What is the BOM
+
+            BOM -> Browser Object Model is a larger representation of everything provided by the browser including the
+            current document, location, history,
+            frames, and any other functionality the browser may expose to JavaScript. The Browser Object Model is not
+            standardized and can change based on different browsers.
+            The BOM (Browser Object Model) consists of the objects navigator, history, screen, location and document
+            which are children of window.
+
+            49) Top 10 Essential JavaScript DOM methods List
+
+            1) getElementId : let myVar = document.getElementById(“my_squad”);
+            getElementId is a method to access any element virtually. It accesses the first element with the specified
+            ID.
+            2) getElementsByTagName : let myVar= document.getElementsByTagName(“abc”);
+            3)getElementsByClassName : let para=document.getElementsByClassName(classname)
+            4) getElementsByName : var x = document.getElementsByName("fname");
+            5)querySelector : let class= document.querySelector(".example");
+            6)querySelectorAll : var x = document.querySelectorAll(".example");
+
+            7) Node: Any element on a page including text & whitespaces of a DOM structure is known as “NODE.” Nodes can
+            be between XHTML Tags.
+
+            Nodes available in DOM:
+            node.childNodes
+            node.firstChild
+            node.lastChild
+            node.parentNode
+            node.nextSibling
+            node.previousSibling
+
+            8) createElement :var btn = document.createElement("BUTTON"); Create a HTML element
+
+            9) appendChild() This method is used to create a text node as the last child of the node.
+            var node = document.createElement("LI"); // Create a <li> node
+                var textnode = document.createTextNode("Water"); // Create a text node
+                node.appendChild(textnode); // Append the text to
+            <li>
+                document.getElementById("myList").appendChild(node); // Append
+            <li> to <ul> with id="myList"
+
+                    9) removeChild:
+                    var myLinkList = document.getElementById(“list”)
+                    var myRemovedLink = myLinkList.lastChild;
+                    myLinkList.removeChild(myRemoveLink);
+
+                    7) getAttribute: you can access the value of any attribute of an element on a page.
+                    var myLinkFive = document.getElementById(“Prod_5”);
+                    var myLinkAttribute = myLinkFive.getAttribute(“abc”);
+
+                    8) setAttribute:A useful method to replace values in the attribute. Assigning a new value to an
+                    existing attribute is done using setAttribute.
+                    Var myLinkFive = document.getElementById(“Prod_5);
+                    myLinkFive.setAttribute(“abc”, ”Awesome”);
+
+                    10) removeAttribute document.getElementById("myAnchor").removeAttribute("href");
+
+                    11) remove() The remove() method removes the element from the DOM.
+                    var myobj = document.getElementById("demo");
+                    myobj.remove();
+
+                    12) innerHTML:
+                    Var myContentHolder = document.getElementById(“abc”);
+                    myContentHolder.innerHTML = “<p> These are the most essential DOM methods in JavaScript</p>”;
+
+                    13) var text = document.createTextNode("hii i am adam:");
+
+                    <!-- ------------------------------------------------------------- -->
+                    1)What is the react js
+                    ReactJS is a free and open - source front - end JavaScript library for building user interfaces or
+                    UI components.
+                    React can be used as a base in the development of single - page or mobile applications.
+                    It is maintained by Facebook and a community of individual developers and companies.'
+                    It is an open - source, component - based, front - end library responsible only for the
+                    application’s view layer.
+
+                    2) Why React ?
+                    Virtual DOM:
+                    Server - Side Rendering:
+                    Easy creation of dynamic applications:
+                    Improved performance:
+                    Reusable components:
+                    Unidirectional data flow
+                    Dedicated tools for easy debugging:
+                    It can be used for the development of both web and mobile apps:
+
+
+                    3) what is the virtual dom
+                    The virtual DOM is only a virtual representation of the DOM.
+                    Everytime the state of our application changes, the virtual DOM gets updated instead of the real
+                    DOM.
+
+
+                    2) Differentiate between Real DOM and Virtual DOM.
+                    Real DOM Virtual DOM
+                    1. It updates slow. 1. It updates faster.
+                    2. Can directly update HTML. 2. Can’t directly update HTML.
+                    3. Creates a new DOM if element updates. 3. Updates the JSX if element updates.
+                    4. DOM manipulation is very expensive. 4. DOM manipulation is very easy.
+                    5. Too much of memory wastage. 5. No memory wastage.
+
+                    3. What are the features of React ?
+                    It uses the virtual DOM instead of the real DOM.
+                    It uses server - side rendering.
+                    It follows uni - directional data flow or data binding.
+
+                    4) what is the model view controller
+                    The Model - View - Controller(MVC) is an architectural pattern that separates an application into
+                    three main logical
+                    components: the model, the view, and the controller.
+
+
+
+                    4) What is the JSX - JavaScript Syntax Extension
+                    JSX allows us to write HTML directly within the JavaScript code.
+                    This makes the code easier to understand and debug, as it avoids the usage of complex JavaScript DOM
+                    structures.
+                    JSX stands for JavaScript XML.It is simply a syntax extension of JavaScript.It allows us to directly
+                    write HTML in React
+
+
+                    5) Why Jsx
+                    Advantages of JSX:
+                    JSX makes it easier to write or add HTML in React.
+                    JSX can easily convert HTML tags to react elements.
+                    It is faster than regular JavaScript.
+                    JSX allows us to put HTML elements in DOM without using appendChild() or createElement() method.
+                    As JSX is an expression, we can use it inside of if statements and for loops, assign it to
+                    variables, accept it as
+                    arguments, or return it from functions.
+                    JSX prevents XSS(cross - site - scripting) attacks popularly known as injection attacks.
+                    It is type - safe, and most of the errors can be found at compilation time.
+
+                    8) What is the State
+                    The state is a built -in React object that is used to contain data or information about the
+                    component.
+                    The state in a component can change over time, and whenever the component re - renders.
+
+                    11)what is the props(propertise)
+                    It provides a way to pass data from one component to other components in the same way as arguments
+                    are passed in a
+                    function.
+                    Props are passed to components like function arguments.
+                    Props can be passed to components only via parent to child.
+                    Props data is immutable(read - only).
+
+
+                    12) What is difference between props and state
+                    State Props
+                    Use Case State is used to store the data of the components that have to be rendered to the view
+                    Props are used to pass
+                    data and event handlers to the children components
+                    Mutability State holds the data and can change over time Props are immutable—once set, props can't
+                    be changed
+                    Component State can only be used in class components Props can be used in both functional and class
+                    components
+                    Updation Event handlers generally update state The parent component sets props for the children
+                    components
+
+
+
+                    5) what is the Components ***
+
+                    Components are the building blocks of any React application, and a single app usually consists of
+                    multiple components.
+                    A component is essentially a piece of the user interface.React splits the UI into independent,
+                    reusable parts that can
+                    be processed separately.
+
+                    There are two types of components in React:
+
+                    1) function components
+                    2) class componets
+
+                    6) what is Function Components
+                    These components have no state they have only render method, so they are also called stateless
+                    components.
+
+                    ==> It is just simple function which return JSX.
+                    ==> Functional component doesn't have render() method.
+                    ==> In functional component we can use only props not state.
+                    ==> We can not use react's lifecycle methods inside functional component
+
+                    7) What is the Class Components
+
+                    These components can hold and manage their state and have a separate render method for returning JSX
+                    on the screen.
+                    They are also called stateful components, as they can have a state.''
+
+                    ==> It is also retruns JSX.
+                    ==> It has render() method.
+                    ==> In class component we can use both props and state.
+                    ==> We can use react's lifecycle methods inside class component.
+
+                    8) What are the differences between controlled and uncontrolled components ?
+                    Controlled Components Uncontrolled Components
+                    1. They do not maintain their own state 1. They maintain their own state
+                    2. Data is controlled by the parent component *
+                    2. Data is controlled by the DOM *
+                    3. They take in the current values through props and then notify the changes via callbacks 3. Refs
+                    are used to get their
+                    current values
+
+                    13) What are Component Lifecycle Methods ?
+                    The component lifecycle methods are divided among three different phases, as -
+                    1 Mounting
+                    Mounting is the phase in which our React component mounts on the DOM
+                    2 Updating
+                    After the mounting phase where the component has been created, the update phase comes into the
+                    scene.This is where
+                    components state changes and hence, re - rendering takes place.
+                    3 Unmounting
+                    s This is the last phase in the components lifecycle.As the name clearly suggests, the component
+                    gets unmounted from the
+                    DOM in this phase.
+
+                    13)Explain the lifecycle methods of components.
+                    getInitialState(): Is executed before the creation of the component.
+                    componentDidMount(): Is executed when the component gets rendered and placed on the DOM.
+                    shouldComponentUpdate(): Is called when a component determines changes to the DOM and returns a
+                    “true” or “false” value
+                    based on certain conditions.
+                    componentDidUpdate(): Is called immediately after rendering takes place.
+                    componentWillUnmount(): Is called immediately before a component is destroyed and unmounted
+                    permanently.
+                    componentWillMount() This method is called just before a component mounts on the DOM or the render
+                    method is called
+                    componentWillUpdate() This method is called before the unmounting of the component takes
+                    place.Before the removal of the
+                    component from the DOM
+
+
+
+                    14) Mounting * * * * * * * * * * * *
+                    This phase comes onto the scene after the initialization phase is completed.
+                    In this phase, our component renders the first time.The methods that are available in this phase
+                    are:
+                    1. componentWillMount()
+                    This method is called just before a component mounts on the DOM or the render method is called.After
+                    this method, the
+                    component gets mounted.
+                    2. componentDidMount()
+                    This method is called after the component gets mounted on the DOM.
+
+                    15) Updating
+                    In this phase, the data of the component(state & props) updates in response to user events like
+                    clicking, typing and so
+                    on.This results in the re - rendering of the component.
+                    The methods that are available in this phase are:
+                    1.shouldComponentUpdate()
+                    This method determines whether the component should be updated or not.By default, it returns true.
+                    But at some point, if you want to re - render the component on some condition, then
+                    shouldComponentUpdate method is
+                    invoke.
+                    or Is invoked when a component determines changes to the DOM and returns a “true” or “false” value
+                    based on certain
+                    conditions.
+                    2. componentWillUpdate()
+                    It is called once after the‘shouldComponentUpdate method.
+                    If you want to perform some calculation before re - rendering of the component and after updating
+                    the state and prop,
+                    then this is the best place to do it.
+                    3. ComponentDidUpdate()
+                    This method is called just after the re - rendering of the component.
+                    After the new (updated) component gets updated on the DOM, the‘componentDidUpdate’method is
+                    executed.
+                    This method receives arguments like prevProps and prevState.
+                    16) Unmounting
+                    This is the last phase in the components lifecycle.As the name clearly suggests, the component gets
+                    unmounted from the
+                    DOM in this phase.
+                    The method that is available in this phase is:
+                    1. componentWillUnmount()
+                    This method is called before the unmounting of the component takes place.Before the removal of the
+                    component from the
+                    DOM, ‘componentWillUnMount’ executes.
+                    This method denotes the end of the components lifecycle.
+
+                    16) What is the Hooks
+                    Hooks are the functions that allows you to use React state and lifecycle features in function
+                    components.It does not
+                    work inside classes.
+
+                    Hooks are a new feature added in React v16.8.It allows to use all React features without writing
+                    class components. For example, before version 16.8, we need a class component to manage state of
+                    a component.Now we can keep state in a functional component using useState hook.
+
+                    17) what is the useState ?
+                    The useState() hook allows React developers to update, handle and manipulate state inside functional
+                    components without
+                    needing to convert it to a class component
+                    ex-- const [state, setState] = useState(initialstate)
+                    ex-- const [sum, setsum] = useState(function generateRandomInteger() { 5 + 7);}) we can write
+                    function inside ;
+
+                    18)what is the useEffect ?
+                    React useEffect is a function that gets executed for 3 different React component lifecycles.
+                    Those lifecycles are componentDidMount, componentDidUpdate, and componentWillUnmount lifecycles.
+                    useEffect(callback, dependencies)
+
+                    useEffect(() => {
+                    effect
+                    return () => {
+                    clean
+                    }, [])
+
+                    19)Does useEffect run after every render ?
+                    Yes! By default, it runs both after the first render and after every update.
+
+                    20) What is the useContext
+                    useContext hook allows passing data to children elements without using redux.
+                    React Context is a powerful state management feature in React.
+                    Instead of passing the props down through each component, React Context allows you to broadcast
+                    props to the components
+                    below.
+
+                    import React from "react";
+                    import ReactDOM from "react-dom";
+                    const NumberContext = React.createContext();
+                    function App() {
+                    return (
+                    <NumberContext.Provider value={42}>
+                        <Display />
+                    </NumberContext.Provider>
+                    );
+                    }
+
+                    import React, { useContext } from 'react';
+                    function Display() {
+                    const value = useContext(NumberContext);
+                    return <div>The answer is {value}.</div>;
+                    }
+
+
+
+                    21)What is the Pure Component
+                    Pure Components in React are the components which do not re - renders when the value of state and
+                    props has been updated
+                    with the same values.
+                    We can convert component to pure component as below : -
+                    For class components react provides React.PureComponent base class.
+                    For Functional component react provides React.memo HOC(Higher Order Component).
+
+                    22)what is the React Memo hooks
+                    React.memo() is similar to PureComponent in that it will help us control when our components
+                    rerender.
+                    Components will only rerender if its props have changed!
+                    Normally all of our React components in our tree will go through a render when changes are made.
+                    With PureComponent and React.memo(), we can have only some components render.
+
+                    23) How to prevent re - renders in React ?
+                    Reason for re - renders in React:
+                    Re - rendering of a component and it’s child components occur when props or state of the component
+                    has been changed.
+                    shouldComponentUpdate() method, which prevents the child component from re - rendering.
+                    useing the React memo and pure components
+
+                    21)What is Pure Functions ? (optional)
+                    In Javascript, when functions returns same output when same input is passed is called Pure
+                    functions.
+                    It is like returning same data for same input.So in pure function output only depend on its input
+                    arguments.
+                    Pure functions does not produced any side effects as well.In past you may have already created so
+                    many pure function.
+
+                    25) what is the error boundry ?
+                    if we get any JavaScript errors inside components, it corrupts the React ? s internal state and put
+                    React in a broken
+                    state on next renders.
+                    There are no ways to handle these errors in React components, nor it provides any methods to recover
+                    from them.
+                    But, React 16 introduces a new concept to handle the errors by using the error boundaries - Now, if
+                    any JavaScript error
+                    found in a part of the UI, it does not break the whole app.
+
+                    Error boundaries are React components which catch JavaScript errors anywhere in our app, log those
+                    errors, and display a
+                    fallback UI.
+                    It does not break the whole app component tree and only renders the fallback UI whenever an error
+                    occurred in a
+                    component.
+                    Error boundaries catch errors during rendering in component lifecycle methods, and constructors of
+                    the whole tree below
+                    them.
+
+                    26 ) useDispatch hook
+
+                    In react - redux the useDispatch hook gives us access to our store's dispatch method. Dispatch is
+                    used to send actions
+                    into our redux store and is the only way we can affect
+                    the store from within a component.
+
+                    The only works with function components.Class components cannot use hooks and need to use the legacy
+                    connect higher
+                    order component and a mapDispatchToProps function to
+                    gain a way to dispatch actions from components.
+
+                    27 ) Redux is an open - source JavaScript library for managing application state.It is most commonly
+                    used with libraries
+                    such as React or Angular for building user interface
+
+                    28 ) Allows you to extract data from the Redux store state, using a selector function.

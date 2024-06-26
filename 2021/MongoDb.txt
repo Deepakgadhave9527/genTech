@@ -1,0 +1,566 @@
+
+
+///-==============================================================
+Data ?
+
+
+Information ?
+
+
+
+
+Database? 
+
+
+a well organized data is called database. 
+
+
+
+DBMS (DataBase Management System)
+
+    DBMS is a software used to create and manipulate the databases in electronic form. 
+
+
+Ex. MySQL, Mongodb, MSSQL, Oracle, PostgreS etc. 
+
+
+
+Data Model:- 
+
+    Data model represents how the data is being stored/arraneged in the database. 
+
+    Types of Data models 
+
+    There are plenty of data models but you can group them in two categories
+
+    1. Relational (SQL) data model
+        In Relational data model the data is stored in the tables having columns (fields)
+        and rows (records). 
+
+        In relational data models tables can have relationships between each other. 
+
+
+
+
+    2. NoSQL data models 
+
+        All the data models which are not relational are considered/referred as NoSQL
+
+        NoSQL stands for Not only SQL 
+
+
+
+
+
+
+
+
+Relational Databases 
+
+To create and manage the relational databases you requires relational DBMSs. 
+
+Relational databases are also called SQL databases. 
+
+
+
+Relational DBMS 
+
+The DBMS which manipulates the relational databases are called RDBMS. 
+
+Ex: MySQL, PostgreS, MSSQL, Oracle, etc.
+
+
+SQL (Structured Query Language)
+
+SQL is used to compose the the commands to be passed to the RDMBS. 
+
+Structured English Query Language - SEQueL
+
+
+
+SQL vs MySQL 
+
+
+
+
+
+Structured data vs Unstructured Data 
+
+
+Structured data:- 
+
+    If the number of fields and types of fields will always be the same then it is called 
+    Structured data. 
+
+    Structured data predictable. 
+
+    Ex; user registration having fixed nubmer of fields. 
+
+
+    To store the Structured data relational databases are preferred because relational
+    databases are Structured.
+
+
+Unstructured data:- 
+
+    If the number of fields and type of fields will not be same then it is called 
+    Unstructured data. 
+
+    Unstructured data is not predictable. 
+
+
+    Ex:- 
+
+        - forms having dynamic fields will generate Unstructured database
+        - social networking site will generate Unstructured data 
+
+To store Unstructured data NoSQL databases are preferred because NoSQL databases
+can store Unstructured data very convenienly.
+
+
+
+
+
+
+
+
+MySQL            vs              Mongodb
+
+==================================================
+
+Database        =>              Database 
+
+
+Table           =>              Collection
+
+
+Field (column)  =>              Field
+
+
+Record (row)    =>              Document
+
+
+
+
+
+
+
+- List all databases 
+> show dbs; 
+
+
+- to view current selected database 
+> db
+
+- to create/select a database 
+> use databasename
+
+- to drop the data 
+> use database;
+> db.dropDatabase();
+
+
+
+
+Collections 
+
+
+Creating collection 
+use plural names for collection 
+There are 2 ways to create a collection. 
+
+1. By using createCollection(collectionname) function
+
+> db.createCollection("users");
+
+2. By inserting a document. 
+
+> db.employees.insert({name:"abcd",age:10})
+
+
+
+To List all the collections 
+
+> show collections;
+
+
+To delete the collection 
+> db.collectionName.drop()
+
+
+
+Documents
+
+
+- To insert single document 
+ insert() - to insert one or more documents 
+
+
+
+{
+    "name":"Topper Skills",
+    "mobile":"11111",
+    "email":"topper@gmail.com",
+    city:"Pune",
+    age:5,
+    salary:10000
+}
+
+
+ > db.employees.insert(
+     {
+    "name":"Topper Skills",
+    "mobile":"11111",
+    "email":"topper@gmail.com",
+    city:"Pune",
+    age:5,
+    salary:10000
+})
+
+
+
+- insertOne() - to insert one document 
+
+db.employees.insertOne(
+     {
+    "name":"Topper Skills",
+    "mobile":"11111",
+    "email":"topper@gmail.com",
+    city:"Pune",
+    age:5,
+    salary:10000
+})
+
+
+insertMany() - to insert multiple documents 
+
+
+> db.employees.insertMany([
+    {
+    "name":"dddd",
+    "mobile":"5555",
+    "email":"aaaa@gmail.com",
+    city:"Mumbai",
+    age:2,
+    salary:80000
+},
+{
+    "name":"eeee",
+    "mobile":"6666",
+    "email":"eeee@gmail.com",
+    city:"Pune",
+    age:60,
+    salary:50000
+},
+{
+    "name":"ffff",
+    "mobile":"7777",
+    "email":"ffff@gmail.com",
+    city:"Nashik",
+    age:55,
+    salary:70000
+}
+])
+
+
+
+- To remove documents 
+remove({}) - remove all the documents 
+remove({name:"bbbb"}) - remove a document having name "bbbb" 
+
+> db.employees.remove({name:"bbbbb"})
+
+
+- Updating documents 
+
+- add a field in an existing document 
+update(criteria,updatevalues, options)
+
+- add a dept field in the employee documents having city pune
+    replacing all fields except _id 
+> db.employees.update({city:"Pune"},{dept:"development"})
+
+adding new fields and updating existing 
+
+
+> db.employees.update({city:"Mumbai"},{$set:{dept:"development"}})
+
+- add country to all the employees
+> db.employees.update({},{$set:{country:"India"}},{multi:true})
+
+
+
+deleting a field of a document
+
+- delete email from document of name "aaaa"
+> db.employees.update({name:"aaaa"},{$unset:{email:""}})
+
+
+Renaming a field name
+- rename mobile to phone 
+> db.employees.update({}, {$rename:{mobile:"phone"}},{multi:true})
+
+
+- increment the salary of all employees by 5000
+
+> db.employees.update({},{$inc:{salary:5000}},{multi:true})
+
+
+
+update or insert (upsert)
+
+if there is no matching document then insert a new document
+
+update name and mobile of employees from nagpur 
+> db.employees.update({city:"nagpur},{$set:{name:"dddd",mobile:"66666"}},{upsert:true})
+
+
+
+
+Fetching the documents 
+
+find(); 
+
+- fetch all the documents of employees collection 
+
+> db. employees.find()
+> db. employees.find({})
+
+- fetch all employees from pune city 
+
+> db.employees.find({city:"Pune"})
+
+
+- Fetch all the emaployees from pune and nashik city
+
+-- below statement will return employees from Nashik only
+> db.employees.find({city:"Pune",city:"Nashik"})
+
+> db.employees.find({$or:[{city:"Pune"},{city:"Nashik"}]})
+
+
+
+
+$gt
+$gte
+$lt
+$lte
+$ne
+
+
+- fetch all employees having salary greater than 30000
+
+> db.employees.find({salary:{$gt:30000}})
+
+- fetch all employees having salary greater than or equals to 30000
+
+> db.employees.find({salary:{$gte:30000}})
+
+
+- fetch all employees having salary between 20000 and 40000
+> db.employees.find({$and:[{salary:{$gt:20000}},{salary:{$lte:40000}}]})
+
+
+Projection - fetch documents with selected fields
+
+> db.employees.find({},{_id:0,name:1,city:1});
+
+
+count() - counts number of documents returned by find()
+
+- find total employees
+> db.employees.find().count()
+
+- find total employees from pune city
+> db.employees.find({city:"Pune"}).count()
+
+
+- find total employees from above 30 years old
+> db.employees.find({age:{$gte:30}}).count()
+
+
+sort({field:1}) - sorts documents fetched by find() in ascending order
+sort({field:-1}) - sorts documents fetched by find() in descending order
+
+- fetch all the documents in ascending order by name
+> db.employees.find().sort({name:1})
+
+
+limit(number) - limits the number of documents
+
+- fetch only 2 employees
+> db.employees.find().limit(2)
+
+
+skip(number):- this skips the first documents
+
+
+
+
+
+{1}
+{2}
+{3}
+{4}
+
+
+
+limit(2) - {1},{2}
+skip(2) - {3},{4}
+
+
+- Find employee having highest salary
+> db.employees.find().sort({salary:-1}).limit(1)
+
+- Find employee having lowest salary
+> db.employees.find({salary:{$exists:true}}).sort({salary:1}).limit(1)
+
+30000
+40000
+60000
+70000
+
+
+- Find employee having second higest salary
+> db.employees.find({salary:{$exists:true}}).sort({salary:-1}).skip(1).limit(1)
+
+- Find employee having third higest salary
+> db.employees.find({salary:{$exists:true}}).sort({salary:-1}).skip(2).limit(1)
+
+80000
+70000
+60000
+40000
+30000
+
+
+
+
+
+Find all the documents not having salary field 
+
+> db.employees.find({salary:{$exists:false}})
+
+
+How do u perform join in mongodb?
+
+$lookupmovember
+
+}
+
+
+
+
+
+
+
+
+
+
+
+> db.customers.insertMany([
+    {"id":1,
+    "name":"dddd",
+    "mobile":"5555",
+    "email":"aaaa@gmail.com",
+    city:"Mumbai",
+    age:2,
+},
+{
+    "id":2,
+    "name":"eeee",
+    "mobile":"6666",
+    "email":"eeee@gmail.com",
+    city:"Pune",
+    age:60,
+},
+{
+    "id":3,
+    "name":"ffff",
+    "mobile":"7777",
+    "email":"ffff@gmail.com",
+    city:"Nashik",
+    age:55,
+},
+{
+    "id":4,
+    "name":"gggg",
+    "mobile":"7777",
+    "email":"ggg@gmail.com",
+    city:"Nashik",
+    age:55,
+}
+])
+
+
+
+
+
+> db.orders.insertMany([
+    {
+        orderId:1,
+        custId:1,
+        cart: "Iphone",
+        amount:20000,
+        status:"pending"
+    },
+    {
+        orderId:2,
+        custId:1,
+        cart: "Macbook",
+        amount:30000,
+        status:"delivered"
+    },
+    {
+        orderId:3,
+        custId:2,
+        cart: "Macbook",
+        amount:35000,
+        status:"delivered"
+    },
+    {
+        orderId:4,
+        custId:3,
+        cart: "Printer",
+        amount:40000,
+        status:"pending"
+    },
+     {
+        orderId:5,
+        custId:4,
+        cart: "Printer",
+        amount:45000,
+        status:"shipped"
+    },
+     {
+        orderId:6,
+        custId:3,
+        cart: "mobile",
+        amount:800,
+        status:"pending"
+    },
+    {
+        orderId:7,
+        custId:3,
+        cart: "shirt",
+        amount:800,
+        status:"pending"
+    }
+])
+
+
+
+- join the documents from customers and orders collections
+
+> db.customers.aggregate([
+    {
+        $lookupmovember
+            from: "orders",
+            localField: "id",
+            foreignField: "custId",
+            as:"orders"
+
+        }
+    }
+])
+

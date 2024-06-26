@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/modernizr@3.13.0/lib/cli.min.js"></script>
+    <style>
+    .no-cssgrid .grid-container {
+      display: block;
+    }
+
+    .cssgrid .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  </style>
+  <title>Modernizr Example</title>
+</head>
+<body>
+  <div class="grid-container">
+    <div>Item 1</div>
+    <div>Item 2</div>
+    <div>Item 3</div>
+  </div>
+
+  <script>
+ const person = {
+    firstName: 'John',
+    lastName: 'Doe',
+};
+
+const GetParams =() =>{
+  console.log(this);
+    console.log(this.firstName + ' ' + this.lastName);
+}
+
+GetParams.call(person); 
+
+  </script>
+</body>
+</html>

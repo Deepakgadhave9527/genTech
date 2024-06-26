@@ -1,0 +1,2946 @@
+/*
+Usage of Javascript: -
+    - To handle the user and web browser events
+    - To validate the user inputs
+    - To perform any arithmetic operations
+    - To Manipulate the DOM 
+    - To create a web server using nodejs
+    - To perform database operations using nodejs
+    - To perform file operations using nodejs
+    - To create APIs using nodejs
+
+Advantages of Javascript: -
+    - It can be executed at client side as well as server side
+    - It is light weight and fast
+    - It gets executed asynchronously
+    - As it gets executed inside the web browsers it improves the user experience
+    - High server configuration is not required
+
+Limitation of Javascript: -
+    - Javascript cannot be used to perform database operations inside the web browser.
+    - Javascript cannot perform file operations inside the web browser
+
+
+
+## How to execute javascript code ?
+
+There are 2 places to execute the javascript code 
+1. Web browser
+
+In The web browsers there is a software called Javascript engine.
+Javascript engine is used to execute the javascript code. 
+- Embed the javascript code inside the web page using < script > element and
+load the web page inside the web browser.
+  
+2. Nodejs
+
+Nodejs is a software developed using C, C++ and javascript which comes
+with built in packages(small libraries) which uses the V8 javascript engine
+of Google chrome to execute the javascript code.
+    
+Nodejs provides runtime environment to execute the javascript code without outside the web browser. 
+
+// Note:- Web browser specific features(like alert, window, document, etc) cannot be executed using nodejs
+
+
+## Keywords: - The words which are reserved by the prorgamming language are
+called keywords.
+
+    Example: if, else, do, while, let, const, class, var, etc.
+
+Literal:- A constant value which can be assigned to a variable is called Literal
+
+Example:
+1000 - number literal
+"abcd" - string literal
+true - boolean literal
+{ } - object literal
+[] - array literal
+etc. 
+
+Comments: - comments are the non executable statements which are used to
+write the meta data about the source code.
+
+1. Single line comment
+
+// single line comment
+
+
+2. Multi line comment/*
+
+multi 
+line
+comment
+*/ 
+
+
+// =================================================================================
+/*
+// Operators
+
+// unary operators: -
+    The operators which works on single value are called unary operators
+    
+// Example:
+
+increment operator(++) - increases the value by one
+
+
+
+ //post increment 
+var a = 10;
+console.log(a++);//10
+console.log(a)//11
+
+//pre increment
+var b=10
+console.log(++b);
+console.log(b);
+
+
+
+decrement operators (--) - decreases the value by one 
+
+ //post decrement 
+var a = 10;
+console.log(a--);//10
+console.log(a)//9
+
+//pre decrement
+var b=10
+console.log(--b);
+console.log(b);
+
+
+// binary operators:-
+
+    - Arithmetic operators
+        +, -, *, /,
+
+    % (Modulus) - It calculates the remainder
+        
+        
+      
+        12 % 5 = 2
+        9 % 5 = 4
+        9 % 2 = 1
+            
+        
+        
+
+    - Comparison operators
+        == (compare two values without checking the datatypes)
+        > greater than 
+        >= greater than or equals to 
+        < less than 
+        <= less than or equals to 
+        != not equals to 
+
+        === (compares two values and their datatypes)
+        !==  return true if value or data types is not same 
+
+    - Logical Operators
+        
+        && - AND
+        
+
+0   0 = 0
+1   0 = 0
+0   1 = 0
+1   1 = 1
+    
+    
+10 > 10 && 20 < 20
+        
+AND operator will check second condition only if the first condition become
+        true otherwise it will not check 
+    
+    
+    
+    
+    || - OR
+    
+    0   0 = 0
+    1   0 = 1
+    0   1 = 1
+    1   1 = 1
+    
+    10>10 || 20<20
+
+OR operator will check the second condition only if first becomes false
+    
+    
+
+        !
+        
+    - assignment operators
+
+        =
+        +=
+        -=
+        *=
+        /=
+
+// ternary operators 
+condition ? true statement: false statement;
+
+// Looping statements:- 
+// The looping statements are used to repetitively execute the same statments by changing the data. 
+
+
+for loop:- 
+Syntax:- 
+
+    for(initialization ; condition  ; increment/decrement){
+        body;
+
+    }
+
+initialization:- 
+
+In this section new or existing variables are initialized 
+This section gets executed only once.
+In this section you can declare and initialize one or more variables. 
+
+Example: 
+    var i;
+    for(i=10)
+    for(var a = 10, b = 0, c = 20 ; ;  )
+
+Condition:- 
+
+- This section gets executed each time just before the body execution. 
+- This section controls the number of iterations. 
+
+Example:- 
+for(var i=0; i <= 10 && i >= 0 ; )
+
+
+Increment / Decrement:- 
+This section gets executed after body execution. 
+In this section you can increment and or decrement the variables values. 
+Example: 
+for(var i=0; i<=10; ++i ){
+
+}
+
+
+
+// & is bitwise and , it evaluates all conditions 
+// & expectes 2 numbers
+
+// && is logical and, it evaluates second condition only if first becomes true 
+// && refers 2 condition/boolean values
+
+
+==============================================================================================
+
+// while loop
+
+the while loop is preferred when number of iterations are not fixed and
+a counter variable is not required.
+
+// Syntax:
+
+while(condition){
+    body
+}
+
+// Example:
+
+var i = 1;
+while (i <= 10) {
+  console.log(i);
+  i++;
+}
+
+// var line = readLine();
+
+while(line != undefined){
+    console.log(line);
+        line = readLine();
+}
+
+
+
+
+while(true){
+    wait for client request
+    acceptRequest
+    process
+    send response
+}
+
+
+
+do while loop 
+in do while the condition will be checked before second iteration. 
+The first iteration will get executed without checking the condition
+
+
+Syntax: 
+
+do{
+body
+
+}while(condition);
+
+
+Example: 
+
+do{
+    take user input 
+    check the user operation 
+    perform operation
+    
+}while(operation != stop)
+
+// ## Jumping statements
+break
+continue
+return
+
+The break and continue statements are only used inside the loop,
+and the break can also be used inside the switch
+
+The break terminates the execution of a loop and switch.
+The continue statement skips the current iteration of the loop.
+
+for (var i = 1; i <= 10; i++) {
+  //   if (i == 5) break;
+  if (i == 5) continue;
+  console.log(i);
+}
+
+
+//##============== Datatypes
+
+
+Statically typed languages:- 
+The langauges in which the data type of variable and function return value is known at the time of compilation
+such languages are called statically typed languages. 
+
+
+Example: C, C++, Java, etc
+
+// C
+int num; 
+num = 100; valid
+num = "abcd"; invalid
+
+
+Dynamically typed languages:- 
+
+The langauges in which the data type of variable and function return value 
+is not known at the time of compilation such languages are called 
+dynamically typed languages. 
+
+Example: Javascript, Python, PHP, etc. 
+
+// Javascript
+var num;
+num = 100;
+num = true; 
+num = "abcd;"
+
+
+Data types:- 
+
+Primitive datatypes 
+    string
+    number
+    boolean 
+    undefined 
+    bigint 
+    Symbol 
+
+
+Derived datatypes
+    object 
+    function 
+
+
+
+
+//  =======To find the datatype of any value/variable you can use typeof operator 
+
+To store the values inside the object some of the primitive datatypes have  
+Wrappers to wrap the value in an object. 
+
+
+string -> String 
+number -> Number
+boolean - >Boolean 
+bigint -> BigInt 
+
+Example: 
+var city = "Pune"; // value in primitive variable
+var cityObj = new String("Pune"); //value in an object
+
+
+// string datatype
+a string is called a sequence of characters. 
+To represent a string value you can use either single quote (' ') or double quote(" ")
+
+
+
+string is immutable:- 
+If an object/variable cannot be modified then it is called immutable. 
+
+Why is string immutable?
+
+- The string values are stored inside the string constant pool which 
+does not allows duplication of the values, if multiple variables 
+are storing the same value then all the variables get address of same 
+value. If one of the variable changes the value then same will get 
+changed for all remaining variables who are refering the value, this may 
+lead to inconsistency in the program, to avoid this problem string is made 
+immutable. 
+
+String concatenation:-
+ There are 2 ways to concat the string
+ 1. By using concat() function
+
+var a = "abcd";
+a = a.concat("efg");//abcdefg
+
+ 2. By using concatenation operator +
++ operator concat the string if one or more operator are string type
+a = a + "efg";
+console.log(a);
+
+
+
+To find the position you have follwing methods
+
+indexOf(sbustring)-> returns the position of the passed substring,
+first occurance, if the provided sub string is not available then
+it will return -1
+
+indexOf(sbustring, startPosition):- you can start finding the sub string
+ position from a particular position.
+
+lastIndexOf(sbustring):- this will return the position of last occurance
+of the string
+
+lastIndexOf(sbustring, startPosition)
+
+search(substr/regex);
+    The search() can accpts sub string and regular expression
+    start position cannot be passed
+var name1 = "Topper Skills123123";
+
+
+
+===================================================================================================================
+
+Finding a character on a position.
+
+charAt():- returns a character of the provided position.
+charCodeAt():- return the encoding code of a  character of provided position
+console.log(str.charCodeAt(0)); //97
+
+// Accessing the substring from a string?
+Following are the methods to get substring
+
+1. slice():- it can accepts positive and negative indexes
+            It cannot swap the positions
+
+            slice(startIndex):- return substring from startIndex to
+            the end of string
+            slice(startIndex, endIndex):- returns substring from start
+            index to end index (endindex is excluded)
+
+2. substring():- it can accepts only positive positions
+                It swaps the positions if start position is greater than
+                end position.
+
+3. substr():- It accepts start position and total length
+            It cannot accepts end position
+
+
+// Replacing a sub string
+
+// Repalce all Pune by Mumbai
+var str = "abcd pune abcd Pune abc pune";
+var rstr = str.replace("pune", "Mumbai");\\ abcd Mumbai abcd Pune abc pune
+
+
+var rstr = str.replace(/pune/gi, "Mumbai");
+// g - matches all the occurances
+// i - search case insensitively
+
+console.log(str);
+console.log(rstr);
+
+// remove all the digits from the string
+var str = "abc333def12hij65656klm0948nop";
+
+var rstr = str.replace(/[0-9]/g, "");
+
+console.log(rstr);
+
+// Changing the case of string
+
+var str = "Topper Skills";
+console.log(str.toLowerCase());
+console.log(str.toUpperCase());
+
+
+// Reversing a string
+// The string is immutable means you cannot modify it, so there is no reverse()
+// function provided.
+
+var str = "abcd";
+var rstr = "";
+===========================================
+
+number datatype
+
+The number datatype represents all types number.
+
+
+NaN (Not a Number):-
+
+NaN is a value of number type
+NaN represents an invalid number
+NaN is returned when you expects a number but got invalid number.
+
+console.log(typeof NaN);
+console.log(10 * "10a");
+console.log(isNaN(100));
+console.log(isNaN(100 * 20));
+console.log(isNaN(100 * "20"));
+console.log(isNaN(100 * "10a"));//true
+console.log(isNaN(true));
+console.log(isNaN("100a"));//true
+console.log("***********************");
+console.log(Number.isNaN(100));
+console.log(Number.isNaN(100 * 20));
+console.log(Number.isNaN(100 * "20"));
+console.log(Number.isNaN(100 * "10a"));//true
+console.log(Number.isNaN(true));
+console.log(Number.isNaN("100a"));
+
+
+the global isNaN() will convert the provided value to number to check 
+if it is NaN or not, if value does not get converted means its NaN. 
+
+the Number.isNaN() will not convert the provided value, it just compare 
+the provided value or result of an expression with NaN. 
+
+
+Infinity
+-Infinity
+
+The positive and negative infinity values are of number datatype.
+
+positive infinity represents a number which is very big, it is out of
+capacity of the javascript engine.
+
+negative infinity represents a number which is very small, it is out of
+capacity of the javascript engine.
+
+console.log(typeof Infinity);
+console.log(typeof -Infinity);
+
+===================================================
+
+Converting a string value into number.
+ Following are the functions to convert a string into number.
+ 1. Number()
+ 2. parseFloat()
+ 3. parseInt()
+
+
+Number() - converts the whole value into number. Only valid number numbers are converted 
+otherwise it returns NaN. 
+
+parseFloat() - it parses a string value and extracts a valid floating/integer number.
+
+parseInt() - it parses a string value and extracts a valid integer number.
+
+
+// floor() - this will not increment the integer part
+// ceil() - this will increment the integer part
+
+// Generating a random number
+// console.log(Math.random());
+// console.log(Math.floor(Math.random() * 10));
+// console.log(Math.floor(Math.random() * 100));
+// 0-1
+// 0.25 * 10 = 2.5
+// Math.floor(2.5)
+
+// Findinfg minimum or maximum number
+
+// console.log(Math.min(1, 20, 43, 3));
+// console.log(Math.max(1, 20, 43, 3));
+
+
+// undefined
+// null
+console.log(typeof undefined);
+console.log(typeof null);
+
+undefined is a value of type undefined 
+the undefined is used as placeholder value for variable,
+ parameters etc. if those are not initialized. 
+
+
+ If a function is not returning a value then its default value will be undefined. 
+ If a variable is declared but not initalized then its value will be undefined 
+ If a function is acalled without passing arguments then the value of that function parameters 
+ will be undefined. 
+ Whereever you expect a primitive value and if that value is not available then it 
+ may be undefined. 
+
+
+ null is object type value 
+ The null is used in place of an object 
+ If you do not have an object then use null 
+ null works like a placeholder for object value. 
+
+Undefined variable vs undeclared variable 
+
+
+undefined variable: -
+
+If a variable is declared but not initialized then its value is undefined such variable 
+is called undefined variable. 
+- It will not give you error. 
+Example: 
+
+var city;
+
+undeclared variable:- 
+
+If a variable is not yet declared means it does not exist is called undeclared variable. 
+The undeclared variable raises ReferenceError. 
+
+Example: 
+console.log(mobile);: ReferenceError: mobile is not defined
+
+object & class 
+
+a class is a model of object 
+A class defines state and behaviour of the objects 
+By using a class multiple objects having simil properties can be created 
+a class is not a collection of objects. 
+
+a class represents a logical entity like a category 
+
+
+
+Object 
+
+An object is an instance of a class. 
+An object can represents a real life physical as well as logical(bank account) entity. 
+
+An object has state(current values) and behaviour (activities)
+
+
+
+
+Example: 
+
+// ES6
+class Horse {
+
+    // state - properties
+    color; 
+    age;
+    weight;
+    height;
+    name;
+    price; 
+    breed;
+
+    // behaviour - methods
+    eating(){
+
+    }
+    running(){
+
+    }
+}
+
+
+
+
+
+
+
+
+Object:- 
+object literal { }
+
+Creating an object 
+There are mulitple ways to create the object, following are 2 of those. 
+
+1.  By using object literal
+Syntax: 
+    var objReferece = {
+        propertyName: propertyValue
+    }
+
+    Example:- 
+        var person = {
+            name: "Topper Skills",
+            mobile: "7875580668"
+        }
+
+ This way is suitable if you do not want to follow any structure(state, behaviour). 
+
+
+
+2. By using new operator 
+Syntax: 
+        var objReferece = new Constructor()
+        var objReferece = new ClassName()
+        var objReferece = new FunctionName()
+
+        Example:- 
+
+        var per1 = new Person();
+
+
+This way is preferred to create multiple objects having similar structure(state, behaviour)
+
+
+
+// // Here, dog1 is not an object, its a reference varaible used to refer an object.
+
+// Object properties
+An object can have multiple properties separated with comma ,
+A property name should follow lower camel case naming standard, means first word should be in
+lower case and first letter of all the subsequent words must be in uppercase.
+Example:
+
+firstName - correct
+mobile
+panNumber
+fileName
+
+Note: If there is a space between property name then the name must be wrpeed in double quote
+"first name"
+Ex:
+var person = {
+    "first name": "Topper",
+    lastName: "Skills"
+}
+
+// Note: If you want to use a variable value as property name then enclose the variable in []
+// Example:
+ var aa ="mobile"
+var obj = {
+  firstName: "Topper",
+  lastName: "Skills",
+  [aa]: "7875580668",
+};
+
+
+// // object property value
+// a value is assigned to an object property using colon :
+
+Follwing are the possible types of  values to be assign to object property
+- string,
+- number
+- boolean
+- undefined
+- null
+- object
+- array
+- function
+
+console.log(obj); 
+
+
+//  Accssing object properties
+There are two ways to accesss the object properties.
+1. By using dot(.) operator
+Syntax:
+objectName.propertyName
+Example:
+person.firstName
+
+this is preferred way if there is no space between property name and property name is known
+
+2. By using []
+Syntax:
+objectName["propertyName"]
+objectName[variableName]
+
+Example :
+person["firstName"]
+person["first name"]
+person[variable]
+
+
+
+// Object cloning
+
+Crreating a duplicate object of an existing object is called object cloning
+There are 2 types of object cloning
+
+1. Shallow cloning
+    In shallow cloning only direct/main object gets cloned but not the
+    object which are referred by the properties of main object.
+
+2. Deep cloning
+In deep cloning all the object direct/main and nested objects will be
+cloned.
+
+var person = {
+  name: "Topper Skills",
+  mobile: "7875580668",
+  address: {
+    street: "Navale IT park",
+    city: "Pune",
+    pincode: 411041,
+  },
+};
+
+var person2 = Object.assign({}, person);
+
+person.mobile = "123";
+person.address.city = "Mumbai";
+
+console.log(person.mobile); //123
+console.log(person2.mobile); //78755..
+
+console.log(person.address.city); //Mumbai
+console.log(person2.address.city); //Mumbai
+
+
+var person = {
+  name: "Topper Skills",
+  mobile: "7875580668",
+  address: {
+    street: "Navale IT park",
+    city: "Pune",
+    pincode: 411041,
+  },
+};
+
+// Deep cloning
+
+// convert the object into string(json) JSON.stringify(obj)
+// then
+// convert (parse) the string(json) into javascript object, JSON.parse(str)
+
+var str = JSON.stringify(person); //object to string
+var person2 = JSON.parse(str); //string to object
+// OR
+// var person2 = JSON.parse(JSON.stringify(person))
+
+person.mobile = "123";
+person.address.city = "Mumbai";
+
+console.log(person.mobile); //123
+console.log(person2.mobile); //78755..
+
+console.log(person.address.city); //Mumbai
+console.log(person2.address.city); //Pune
+
+// Constructor function
+A javascript which is used to intialize the object properties is called constructor function
+The name of constructor function should start with uppercase
+
+The constructor function is used to create the similar objects.
+
+// Example:
+
+function Person(name, m, city) {
+  this.name = name;
+  this.mobile = m;
+  this.city = city;
+}
+
+var per1 = new Person("aa", "1111", "Pune");
+var per2 = new Person("bbb", "2222", "Mumba");
+
+console.log(per2);
+
+
+// primitive vs reference variable
+
+primitive variables are used to store primitive values
+Primitive variables copies values from another variables
+
+Reference varaibles are used to refer the objects and arrays
+
+// primitive variables
+let a = 10;
+let b = a;
+a = 20;
+
+console.log(a); //20
+console.log(b); //10
+
+// reference variables
+
+var x = { name: "abcd" };
+var y = x;
+x.name = "pqr";
+console.log(x.name); //pqr
+console.log(y.name); //pqr
+
+
+// Array:-
+An array is a group of consecutive memory blocks used to store multiple values,
+ each block in the array is identified by a unique number called an index.
+
+ In Javascript, an array can store any types of data.
+ As Javascript is dynamic language there is no need to mention the
+ size of an array while declaring, it grows dynamically.
+
+// Array Delcaration:-
+
+var arrayName;
+
+Creating an Array
+
+arrayName = []
+
+var arrayName = new Array(length);
+
+Example:
+
+// var nums = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+// Finding total number of elements of an array
+// console.log(nums.length); //10
+
+// Adding elements in an array without functions
+// nums[10] = 110;
+// // nums[15] = 120;
+// nums[nums.length] = 120;
+// nums[3] = 400;
+// console.log(nums);
+
+// Adding Elements with function
+
+// push():- this adds the elements at the end of the array and returns total
+// number of elements in the array.
+
+// unshift():- this adds the elements at the start of the array and returns
+// total number of elements in the array.
+
+// var nums = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+// console.log(nums.push(200, 300, 400));
+// console.log(nums);
+// console.log(nums.unshift(999, 888, 777));
+// console.log(nums);
+
+var nums = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+// Removing elements without using function
+// delete nums[2];
+// Removing the lements using functions
+// pop():- removes and returns last element from array.
+
+// shift():- removes and returns first element from an array
+
+console.log(nums.pop());
+console.log(nums);
+
+console.log(nums.shift());
+console.log(nums);
+
+
+// splice():- this method can be used to add, replace and remove the elements
+
+// Syntax:-
+
+// splice(index,delcount, el1,el2,elN)
+
+var nums = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+// splice for deleting elements
+// nums.splice(0, 2);
+// nums.splice(5, 1);
+// console.log(nums);
+
+// splice for adding elements
+
+// nums.splice(3, 0, 555, 666, 777);
+// console.log(nums);
+
+var nums = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+// Accessing array elements
+1. arrayName[index];
+console.log(nums[4]);
+
+// forEach():
+- it accepts a function having  three parameters (value, index, array)
+- It does not return anything
+- This function is suitable to perform operatoins on existing array .
+
+Syntax:
+
+forEach(function(value, index, array){
+
+})
+
+nums.forEach(function (val, index, arr) {
+  console.log(val);
+});
+
+map():- The map() method is used to iterate the array, process each element
+of the array and return a new array of processed elements.
+The size of new array and existing is alway same.
+Prefer map() method if you do not want to change the existing array.
+
+Syntax:
+
+var newArray = arrayName.map(function(value,index,array){
+  return value;
+})
+
+// Q. transform all the cities into uppercase and returns an array of transformed
+// cities without modifying the existing cities array.
+
+var cities = ["pune", "Mumbai", "Nashik", "Satara", "bangluru"];
+
+var newCities = cities.map(function (city, i) {
+  return city.toUpperCase();
+});
+
+console.log(cities);
+console.log(newCities);
+
+var nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// Create a new array of even numbers from existing array
+
+filter():- It returns an array of filtered elements.
+
+var evenArr = nums.filter(function (value, index, arr) {
+  return value % 2 == 0;
+});
+// reduce():- It returns a value instead of an array
+
+// var nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// var sum = nums.reduce(function (preVal, val, i, arr) {
+//   return preVal + val;
+// }, 0);
+
+// console.log(sum);
+
+// / Sorting array elements
+// Reversing array elements
+
+// var arr = [100, 2, 9, 35, 8, 64, 5];
+// console.log(arr);
+// arr.reverse();
+// console.log(arr);
+
+// var chars = ["d", "b", "Z", "p", "a"];
+// chars.sort();
+// console.log(chars);
+var arr = [100, 2, 9, 35, 8, 64, 5];
+
+// function compare(a, b) {
+//   a - b;
+// }
+console.log(arr);
+arr.sort(function (a, b) {
+  return b - a;
+});
+console.log(arr);
+
+// compare function
+
+a = 10
+b = 20
+
+a - b
+
+0 = equal
++ve = a is greater
+-ve = a is smaller
+
+
+// Find minimum and maximum numbers from an array
+
+var arr = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+// var min = arr.sort(function (a, b) {
+//   return a - b;
+// })[0];
+// var max = arr.sort(function (a, b) {
+//   return b - a;
+// })[0];
+
+// console.log(min);
+// console.log(max);
+
+console.log(Math.min(...arr));
+console.log(Math.max(...arr));
+// Combining / cancatenating multiple arrays
+
+// concat():- used to concat multiple arrays
+
+var arr1 = [1, 2, 3, 4, 5, 6, 7];
+var arr2 = [10, 20, 30, 40, 50];
+var arr3 = [100, 200, 300, 400, 500];
+
+// var arr4 = arr1.concat(arr2, arr3);
+var arr4 = [...arr3, ...arr1, ...arr2];
+
+console.log(arr4);
+
+// Creating a new array by copying the elements from existing array 
+var arr = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+var arr2 = arr.slice(3, 8);
+console.log(arr2);
+
+
+// Find groups of 3 numbers incrementing by one
+var arr = [1, 2, 3, 4, 8, 5, 6, 7, 9, 8, 2, 3, 4];
+
+// 1,2,3
+// 2,3,4,
+// 5,6,7
+
+// 2,3,4
+
+// i=0
+
+// arr[i] = 1
+// arr[i+1] = 2
+// arr[i+2] = 3
+for (var i = 0; i < arr.length - 2; i++)
+  if (arr[i] + 1 == arr[i + 1] && arr[i + 1] + 1 == arr[i + 2]) {
+    console.log(arr[i], arr[i + 1], arr[i + 2]);
+  }
+
+
+// Find total duplicate numbers
+var arr = [1, 2, 5, 8, 1, 6, 9, 8, 2, 1];
+
+// 1 = 3
+// 2 = 2
+// 5 = 1
+// 8 = 2
+// 6 = 1
+// 9 = 1
+
+// Solution 1;
+for (var i = 0; i < arr.length; i++) {
+  var count = 1;
+  for (var j = i + 1; j < arr.length; j++) {
+    if (arr[i] == arr[j]) {
+      count++;
+      arr.splice(j, 1);
+      j--;
+    }
+  }
+  console.log(arr[i] + " = " + count);
+}
+
+// Solution 2
+
+for (var i = 0; i < arr.length; i++) {
+  var count = 1;
+  var ind = i;
+  while ((ind = arr.indexOf(arr[i], ind + 1)) != -1) {
+    count++;
+    arr.splice(ind, 1);
+  }
+
+  console.log(arr[i] + " = " + count);
+}
+
+// includes():-  returns true if the provided element is avaiable in the array
+
+var arr = [10, 20, 30, 40, 50, 60, 70, 80, 90];
+console.log(arr.includes(20));
+console.log(arr.includes(200));
+
+
+
+Function:- 
+    Function is named block of logically related statements. 
+    The function is used to perform a specific operation of different data 
+    Fucntion can accpts/takes input data using parameters 
+    a function can return a value 
+    Benefits of function:- 
+    - Code/logic reusability 
+    - code modularity
+
+
+    Syntax:- 
+    function functionName(parameters){
+        body
+    }
+
+
+// function declaration/definition
+function add(a, b) {
+  return a + b;
+}
+
+console.log("Sum: ", add(10, 20));
+
+// a, b are the parameters
+
+// 10, 20 are the arguments
+
+
+Function parameters:- 
+        The function parameters are used to take input into the function  
+        at the time calling the function. 
+        parameters are like local variables
+        The default value of parameters is undefined 
+
+
+Function arguments:- 
+        The function argument is a value which is passed to the function 
+        at the time of calling the function. 
+
+        The argument can be a value or variable or expression. 
+
+// Note: In javascript matching number of and type of parameters and arguments
+// is not mandatory.
+
+function add(a, b) {
+  return a + b;
+}
+
+console.log(add()); //NaN
+console.log(add(10)); //NaN
+console.log(add(10, 20)); //30
+console.log(add(10, 20, 30, 40)); //30
+
+// Note: In javascript a function can be assigned to a variable like a value
+// A function can be passed as an argument to another function.
+
+function add(a, b) {
+  return a + b;
+}
+
+var aa = add;
+console.log(add(10, 20));
+console.log(aa(10, 20));
+
+
+Types of function is javascript
+
+1. Named function
+2. Anonymous function 
+3. Arrow function (ES6)
+
+
+callback function
+higher order function
+pure function
+constructor function 
+
+
+Types of function is javascript
+
+1. Named function
+    If a function is defined with a name then it is called a named function
+
+    Example: 
+        function add(a,b){
+            return a+b;
+        }
+
+2. Anonymous function 
+        If a function is defined without name then it is called anonymous 
+        function
+        Example: 
+
+        var add = function(a,b){
+            return a+b;
+        }
+
+
+        var person = {
+            name: "Topper Skills",
+            profile: function (){
+                return this.name;
+            }
+        }
+
+
+// Hoisting:-
+Hoisting is a default behaviour of the javascript in which all the function
+and variable declarations are moved to top of the current scope.
+
+nam1 = "Topper Skills"; //variable initialization
+console.log(nam1); //variable use
+
+var nam1; //variable declaration
+
+Function Declaration vs Function Expression:-
+
+Function Declaration:- 
+    If the function definition line starts with 'function' keyword then 
+    it is called function declaration. 
+    Ex: 
+    function add(a,b){
+         return a+b;
+        }
+
+        - Function declarations are hoisted 
+
+Function Expression:- 
+If the function definition line does not starts with 'function' keyword 
+then is is called function expression. 
+Ex: 
+        var add = function(a,b){
+            return a+b;
+        }
+
+  - Function expressions are not hoisted 
+
+Self Invoking Function Expression (SIFE)
+SIFE is used to limit the scope / to create a new scope
+
+function greet() {
+  console.log("Hello Topper Skills");
+}
+
+greet();
+
+(function () {
+  console.log("Hello Topper Skills");
+})();
+
+
+// Default function parameters:- (ES6)
+
+If you assign a value to the function parameter then it is called
+default function parameter.
+If a parameter does not have matching argument then it uses the default
+function parameter.
+
+
+
+'arguments' object in function:-
+
+the arguments object provides the details(arguments, caller, callee)
+ of a function call.
+
+function add(a, b) {
+  console.log(arguments);
+  console.log("Total args: ", arguments.length);
+  console.log("Callee : ", arguments.callee.name);
+  console.log("Caller : ", arguments.callee.caller.name);
+
+  return a + b;
+}
+
+
+
+function avg() {
+  var sum = 0;
+  for (var n of arguments) sum += n;
+  return sum / arguments.length;
+}
+
+console.log(avg(10)); //10
+console.log(avg(10, 20)); //15
+console.log(avg(10, 20, 30)); //20
+console.log(avg(10, 20, 30, 40, 50, 60, 70, 80, 90)); //50
+
+// Tasks-
+// Define 5 function for
+// 1. calculate sum of all array elements and return
+
+function sum(arr) {
+  var sum = arr.reduce(function (pre, val) {
+    return pre + val;
+  }, 0);
+  return sum;
+}
+
+// 2. find and return minimum number from an array
+function min(arr) {
+  return Math.min(...arr);
+}
+// 3. find and return maximum number from an array
+function max(arr) {
+  return Math.max(...arr);
+}
+// 4. return an array of even numbers
+function even(arr) {
+  return arr.filter(function (num) {
+    return num % 2 == 0;
+  });
+}
+// 5. return an array of odd numbers
+function odd(arr) {
+  return arr.filter(function (num) {
+    return num % 2 != 0;
+  });
+}
+// All the above functions will accept a number array as an argument
+
+// Define a function that will accept 2 array
+// 1. first array will contain numbers
+//     Ex: [1,2,3,4,5,6,7,8,9]
+
+// 2. second array will contain commands/operations
+//     Ex: ["even","sum"]
+
+function operations(nums, cmds) {
+  var result = nums;
+  for (var cmd of cmds) {
+    switch (cmd) {
+      case "even": {
+        result = even(result);
+        break;
+      }
+      case "odd": {
+        result = odd(result);
+        break;
+      }
+      case "sum": {
+        result = sum(result);
+        break;
+      }
+      case "min": {
+        result = min(result);
+        break;
+      }
+      case "max": {
+        result = max(result);
+        break;
+      }
+    }
+  }
+  return result;
+}
+
+var nums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+// var result = operations(nums, ["even", "sum"]);
+// var result = operations(nums, ["odd", "sum"]);
+var result = operations(nums, ["odd", "even"]);
+
+console.log(result);
+
+
+// Fuction return statement:-
+
+A function can return a value.
+The 'return' statement is used to terminate execution of a function and
+returns a value
+
+If a function is not returning a value then its value will be undefined
+
+Note: The value which you want to return must be on same line as 'return'
+statement is.
+
+You should not write statements after the return statement inside a
+function.
+
+function f1() {
+  return {
+    name: "Topper Skills",
+  };
+}
+
+function f2() {
+  return
+    {
+    name: "Topper Skills";
+  }
+}
+
+console.log(f1());
+console.log(f2());
+
+Scope:- 
+The level of accessibility / availability of variable,function,etc.
+in the program is called scope. 
+
+In javascript There are 3 scopes  (for interview fix quetions)
+1. Global scope
+    If you declare a variable inside a module(javascript file) directly 
+    then its scope becomes global. 
+
+2. function scope 
+    If you declare a variable inside a function the its scope becomes 
+    function scope. 
+    Ex: parameters and loval variables of a function have function scope 
+
+3. block scope 
+    If you declare a variable inside a block (if,else,switch,for,etc.)
+    then its scope becomes block scope. 
+    Note: If you declare a variable using 'var' keyword then  the scope of 
+    variable will not be block scope.
+    For block scoped variable use 'let' or 'const' keyword.
+
+// Imp: For each function call an unique scope gets created and a copy of all
+// local variables gets created inside that scope.
+
+function f1(a) {
+  var b = a + 10;
+  console.log(a);
+  console.log(b);
+}
+
+f1(5);
+f1();
+
+In javascript functions can be nested. 
+
+
+// Closure:-
+A closure is a combination of a nested function and lexical scope
+By using closure a nested function can use the variable of outer function.
+
+
+Multiple variables having same in a same scope is not possible. 
+
+if you declare a varible having same name in the same scope then it will 
+conflict with the existing variable and existing variable will be repalced 
+with the latest declared variable. 
+
+By using closure a nested function can access the variables of outer function 
+with help of lexical scope even after the execution of outer function is 
+finished
+
+
+///12 apr
+
+
+Context:-
+    context is an object on which the function is called.
+    context is a current running object inside the function.
+
+'this' keyword:-
+    this keyword is used to refer the context.
+    this keyword is used to refer/point the current running object.
+
+function f1() {
+    console.log(this);
+}
+
+var obj = { name: "Topper Skills" };
+var obj2 = { name: "Topper Skills Pune", mobile: "7875580668" };
+
+f1();
+
+f1.call(obj);
+f1.call(obj2);
+
+// To call a function of a specific object you can use below methods
+// call()
+// apply()
+
+
+function f1(a, b) {
+    console.log(this, a, b);
+}
+
+var obj = { name: "Topper Skills" };
+
+f1.call(obj, [10, 20]);
+f1.call(obj, 10, 20);
+f1.apply(obj, [10, 20]);
+
+To call a function of a specific object you can use below methods
+call()- accepts arguments as seperate values
+apply() - accepts arguments as an array elements
+
+
+bind() - it binds a function with an object and return the binded function.
+It does not bind the existing function instead if create a new function to bind.
+
+function f1(a, b) {
+    console.log(this, a, b);
+}
+
+var obj = { name: "Topper Skills" };
+
+var bindedFun = f1.bind(obj);
+
+f1(10, 20);
+bindedFun(10, 20);
+
+
+
+// Constructor function :-
+
+The constructor function is used to initialize the object properties
+
+constructor function name should start with a uppercase letter
+
+The constructor function is useful to create mulitple objects having similar properties
+
+function Student(roll, name, mobile, std) {
+    this.rollNo = roll;
+    this.name = name;
+    this.mobile = mobile;
+    this.std = std;
+}
+
+var s1 = new Student(1, "aaa", "1111", 2)
+var s2 = new Student(2, "bbbbb", "22222", 2)
+var s3 = new Student(3, "cccccc", "333333", 3)
+
+function printProfile(stud) {
+    console.log(stud.name);
+    console.log(stud.rollNo);
+    console.log(stud.mobile);
+    console.log(stud.std);
+}
+
+printProfile(s1);
+printProfile(s2);
+printProfile(s3);
+
+
+
+// Date:- The date maintains date and time
+
+// miliseconds
+
+// 1000 miliseconds = 1 second
+
+// 10000000
+
+// 0 miliseconds 1/1/1970  00:00:00:000
+
+// To create a date  use Date() constructor
+
+// Date():- returns current date and time in UTC
+// Date(miliseconds)
+// Date(year,month)
+// Date(year,month,date)
+// Date(year,month,date,hour)
+// Date(year,month,date,hour, minutes)
+// Date(year,month,date,hour, minutes,seconds)
+// Date(year,month,date,hour, minutes,seconds, miliseconds)
+
+Error: -
+
+    Abnormal condition which stops execution of the software application is called an error
+If an error raised then it will terminate the whole application and not a part of the app.
+
+
+Types of error: -
+
+    - Error
+    - SyntaxError
+    - TypeError
+    - ReferenceError
+    - EvalError
+    - URIError
+    - RangeError
+
+
+
+
+Error Handling: -
+    The errors must be handled to avoid unexpected application ternimation and to show user
+friendly error messages.
+Following are the main purposes of error handling
+    - to avoid application crash
+        - to provide alterative solution
+            - to display user friendly error messages.
+
+
+
+Error Handling: -
+
+    To handle the error You need
+1. try block
+    - try block is used to write statements which may raise the errors
+        - all the statements of try block after the errored statements will not get exeucted even
+after error handling. 
+    - try block can be nested
+    - Do not write all(irrelevant) statements, write related statements inside a try.
+
+
+2. catch block
+    - catch block must be after the end of try block, no other statements are allowed between
+try and catch.
+- try without catch block is allowed but catch without try block is not allowed. 
+    - catch block is used to write alternative solution and display error messages
+    - without catch block error handling is not possible
+        - catch block accepts an error object as a parameter. 
+    - In javascript multiple catches are not allowed. 
+
+
+3. finally block
+
+    - finally block is optional to use in error handling
+        - finally block can be used just after the try block of catch block
+            - finally block will always gets executed despite error raised or not. 
+    - finally block is used to release the resources(db connection, file)
+
+
+4. throw keyword
+
+- the throw keyword is used to raise and throw an error in call stack. 
+    - the throw keyword is used to raise custom error.
+
+
+
+    console.log("before statements");
+
+try {
+    console.log(abc);
+} catch (e) {
+    console.log(e.message);
+} finally {
+    console.log("finally");
+}
+
+console.log("after statements");
+
+
+function encrypt(key, str) {
+    if (!key) {
+        throw new Error("Key is must");
+    }
+    return str + key;
+}
+
+function f1() {
+    try {
+        // encrypt(undefined, "abcd");
+        console.log(encrypt("sjdhf", "abcd"));
+    } catch (e) {
+        console.log("Something went wrong");
+    }
+}
+// ===================================================================
+
+DOM - Document Object Model
+
+DOM is  a dynamic representation of a webpage maintained by the web browser.
+
+
+
+window vs document
+
+window is a global object of javascript it is used to load / display a web page content in the web
+browser.
+
+The window object represents a tab of a web browser, it includes navigation model, histoy,
+    location, document, etc.
+
+
+document represents a web page in the web browser.
+
+document object is a part of window object.
+
+Using document object you can dynamically update the content on the viewport.
+
+
+DOM tree: -
+
+    The web browser reads the web page content and creates a DOM tree in sync with the viewport
+
+The DOM tree has nodes, each node is an object of javascript
+
+There are two types DOM tree nodes
+1. DOM element node
+The nodes which are created for html elements are called element node
+
+2. DOM text node
+The nodes which are created for text and spaces are called text nodes
+
+
+Accessing DOM nodes: -
+
+    There are 6 methods of document to access the DOM node
+
+1. getElementById(id): - returns a node which matches the provided id. 
+
+2. getElementsByName(name): - returns a list of nodes which matches the provided name
+
+3. getElementsByTagName(tagname): - returns a list of nodes which matches the provided tagname
+
+4. getElementsByClassName(class): - returns a list of nodes which matches the provided class name 
+
+5. querySelector(css selector): - returns a node which matches the provided css selector. 
+
+6. querySelectorAll(css selector): - returns a list of nodes which matches the provided css selector
+
+
+Following are the properties to change the content
+
+    - textContent : - This property only work with text data
+textContent does not parses the html elements from the string
+
+    - innerHTML : - This proprety works with text and html elements
+innerHTML parses the the html elements from the string value
+innerHTML replaces the child of the element with assigned content
+
+    - outerHTML: -  This proprety works with text and html elements
+outerHTML parses the  html elements from the string value
+outerHTML replaces the element itself with assigned content
+
+
+
+
+Follwing are the method to manipulate the attributes of an element
+setAttribute(aname,avalue); - to add an attribute
+hasAttribute(aname); - return true if attribute is avaiable otherwise return false.
+removeAttribute(aname); - to remove an attribute
+
+
+
+DOM tree traversal: -
+
+
+    - To access parent node
+        - parentNode: -  returns a parent node
+
+
+            - To access child nodes
+
+                - firstChild   : - returns a first child node including element or text node
+                    - firstElementChild : - returns a first element child node by ignoring text node
+                        - lastChild : -  returns a last child node including element or text node
+                            - lastElementChild: - returns a last element child node by ignoring text node
+                                - childNodes: - returns a list of child nodes including text and element nodes
+                                    - children: - returns a list of element child nodes by ignoring text node
+                                        - childElementCount: - returns total number of child element  nodes
+
+
+
+                                            - To access Sibling nodes
+
+
+                                                - nextSibling : - returns a next sibling node including text and element nodes
+                                                    - nextElementSibling: - returns next element sibling by ignoring text nodes
+                                                        - previousSibling : - returns previous sibling node including text and element nodes
+                                                            - previousElementSibling : - returns a previous element sibling node by ignoring text node
+
+
+
+
+Event: -
+    An action performed at a particular time
+
+There are 2 categories of events
+1. Browser event
+These are the events performed by the web browser
+load
+offline
+online
+
+2. user event
+These are the events performed by the website user.
+    click
+change
+mousemove
+
+
+
+Event Handling: -
+    If you want perform any activity on events then you need to listen to the events.
+
+
+
+Ways of listening to events
+
+1. By using event attributes
+2. By using event property
+3. By using addEventListener() function
+
+
+
+    addEventListener(eventname, callbackfucntion, propagationphase)
+This method is used to listen to any events of a node
+
+eventname: - this should be a valid event name like 'click', 'change', 'mousemove', etc.
+
+    callbackfucntion: - it can be any javascript function which will gets executed on the particuler
+event of the node.
+
+    propagationphase: - to enable capturing phase pass true or to enble bubbling phase pass false
+      default is false
+
+==================================================
+
+window = tab of a web browser
+
+document = web page
+
+
+
+window content = webpage, all the web resources(CSS, JS, Images) of the web page.
+
+document content = html
+
+
+=====================================================
+
+============================================================
+
+
+<!-- BOM - Browser Object Model
+
+It is not a standard.
+ -->
+<!--
+Popups
+There are 3 popups
+1. alert()
+  It is used to show warning messages to the user
+
+2. confirm()
+ It is used to take user confirmation
+
+
+3. prompt()
+ It is used to take user input  -->
+
+
+==========================================================
+
+
+ES6 - ECMA Script 6 - ES2015 - ECMA Script 2015
+
+
+
+ES6 vs Javascript
+
+
+ES2015 is one of the versions of ECMA Script.
+
+ECMA Script is a specification released by the ECMA international to standardize the Javascript
+
+
+ES6 is a major update in the Javascript which introduced many new features.
+
+==============================================================
+
+
+let and const keywords
+
+ In javascript to declare a variable you can use 'var' keyword, but since ES6 there are 2 more keywords
+ introduced to declare the variables.
+
+
+
+ var:-
+    - it is hoisted
+    - It is not block scoped
+    - It is rewritable
+
+
+let:-
+    - It is not hoisted
+    - It is block scoped
+    - It is rewritable
+
+
+const:-
+    - It is not hoisted
+    - It is block scoped
+    - It is readonly
+
+
+    Note:- Prefer using const if you do not have to change the value of the declared variable.
+
+===================================================================================================================
+
+/
+=================================================================================================================
+
+// const:-
+
+// const is used to declare a readonly variable
+// const variables should initialized at the time of declaration
+
+// const num = 10;
+// num = 100;
+// console.log(num);
+
+const person = {
+  name: "abcd",
+  city: "Pune",
+};
+
+person.name = "Topper Skills"; //possible
+
+person = {}; //not possible
+
+
+=============================================================================================================
+
+// Object destructuring:-
+//     Object destructuring is used to declare and initialzize variables by extracting the values from
+//     object properties.
+
+const person = {
+  name: "Topper Skills",
+  mobile: "7875580668",
+  email: "topperskills@gmail.com",
+  city: "Pune",
+};
+
+// without Object destructuring
+// const phone = person.mobile;
+
+// const email = person.email;
+
+// const city = person.city;
+
+// with Object destructuring
+// Property name and variable name must be same
+const { mobile: phone, email, city } = person;
+
+console.log(phone, email, city);
+
+==================================================================================================================
+
+// Array Destructuring:-
+
+const nums = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+// const a = nums[0];
+// const b = nums[1];
+// const c = nums[2];
+// const d = nums[4];
+// with destructuring
+
+const [a, b, c, , d] = nums;
+
+console.log(a, b, c, d);
+
+// Spread operator:-
+// It is used to extract elements of an array or to extract properties from an iterable object.
+
+const arr = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+console.log(...arr);
+
+
+const per = {
+  name: "TOpper Skills",
+  mobile: "7875580668",
+  email: "topperskills@gmail.com",
+};
+const iterObj = Object.keys(per);
+console.log(...iterObj);
+
+==============================================================
+
+
+// Rest operator:-
+// The rest operator is used to store all the arguments which do not have matching parameters.
+// The rest is an array.
+
+// Example:
+
+function add(a, b, ...args) {
+  console.log(a, b);
+  console.log(args);
+}
+
+add(10, 20);
+add(10, 20, 30, 40, 50);
+
+===============================================================
+
+// arguments object vs rest operator
+
+Arguments is an object
+
+rest is an array
+
+Arguments gives the details of a function call including caller, callee, arguments.
+
+Rest operator does not give details about the function call, it gives only the arguments which do not have
+matching parameters
+
+Arguments object gives all the arguments despite those arguments have matching parameters or not
+
+Rest oeprator does not give the arguments which have matching parameters
+
+The arguments object is builtin
+
+The rest operation is not built, you need to declare it after all the parameters of a function
+
+============================================================
+
+// Arrow function:-
+ The arrow function helps to define a function is very less code
+ In the arrow function 'this' always refers to the context under which the function is defined.
+
+ Syntax:-
+
+ (parameters) => {body}
+
+ Define a function to calculate square
+// Rules:
+
+If there is only one parameter then writing paranthesis () is optional
+
+If there is single statement/expression in the body then return statement and curly braces are optional
+
+// const sq2 = a => a * a;
+
+
+// 'this' keyword in Named and anonymous function always refers to the object on which these function are called.
+
+// It means it does not matter where the functions are defined but it matters where the functions are called.
+
+// 'this' in arrow function will always refers to the context (object) under which the function is defined.
+// It does not matter where the function is called.
+
+============================================================
+
+
+Prototype:-
+
+This is not ES6 specific feature
+
+Javascript is a Prototype based language.
+
+
+
+Prototype is an object to which other objects can inherit to achieve reusability.
+
+In Javascript with each function an anonymous object gets created called prototype object.
+
+
+====================================================
+
+In javascript there is a build in function called "Object"
+
+The prototype of Object function is the prototype of all the objects created in Javascript
+
+
+
+      // Accessing prototype
+      // There are 2 ways to access the prototype object.
+
+      // 1. By using dunder proto
+
+      // _propo_
+
+      // 2. By using Object.getPrototypeOf()
+
+
+=========================================================
+
+
+// class :-
+
+class is a model of an object.
+
+By using a class you can create mutliple similar objects.
+
+In javascript class is a function
+
+In javascript classes are converted to the constructor functions
+
+Syntax:
+
+class ClassName{
+
+}
+
+// Example:-
+
+class Employee {}
+
+// console.log(typeof Employee);
+
+Programming Model:-
+  A Programming model represents a set of features which are used to develop a programming Language.
+  A programming model is just a specification, it does not comes with any tools.
+
+
+
+Following are some of the programming models
+
+1. Object oriented programming model
+
+
+2. Procedure oriented / structural programming model
+
+
+3. Functional programming model
+
+etc.
+
+
+
+
+Programming Language:-
+    A Programming is used to develop the software, it comes rules(syntaxes), library(built in), tools (compilers)
+
+
+    Example: ChannelSplitterNode,C++, Java, Javascript, etc.
+
+
+
+
+
+
+
+
+
+
+
+
+Object Oriented Programming Language?
+
+Characteristics of Object oriented programming
+
+  - object
+  - class
+
+  - Inheritance
+  - Polymorphism
+
+  - Encapsulation
+  - Abstraction
+Inheritance:-
+
+  Inheritance is a mechanism in which a class acquires the properties of another class
+  It is one of the characteristics of OOP
+  It is used to reuse the code
+
+
+  The inheritance is achived using extends keyword
+
+  Example:-
+
+
+  class A{
+
+  }
+
+  class B extends A{
+
+  }
+
+  A is a super class
+  B is a subclass
+
+class Person {
+  name;
+  mobile;
+  email;
+  city;
+  age;
+
+  printProfile() {}
+  login() {}
+}
+
+class Student extends Person {
+  rollNo;
+}
+
+class Teacher extends Person {
+  empId;
+  salary;
+}
+
+Types of inheritance
+
+
+
+1. Single
+    In Single inheritance there is only one sub class and one super class
+
+
+    Example:
+
+        class Animal{}
+      class Horse extends Animal{}
+
+
+
+2. Multilevel
+
+In Multilevel inheritance one super clase is a sub class  is sub class of another super class and so on.
+
+
+Example:
+
+        class A{}
+
+        class B extends A{}
+
+        class C extends B{}
+
+        class N extends C{}
+
+
+
+
+
+
+3. Hierarchical
+
+  In heirarchical inheritance one super class is inherited by more than one sub classes
+
+  Example:
+
+
+
+      class A{}
+
+      class B extends A{}
+
+      class C extends A{}
+
+      class D extends A{}
+
+
+
+4. Multiple (not suported)
+5. Hybrid (not supported)
+
+// constructor method in a class.
+
+The constructor of a class is used to initialize the properties of the objects.
+
+A class can have only one constructor
+
+In case of inheritance super class constructor must be called from sub class constructor if subclass has
+its own constructor.
+
+class A {
+  constructor(name, mobile) {
+    this.name = name;
+    this.mobile = mobile;
+  }
+}
+
+class B extends A {
+  city;
+
+  constructor(n, m, city) {
+    super(n, m);
+    this.city = city;
+  }
+}
+
+const b = new B("Topper Skills", "7875580668", "Pune");
+
+console.log(b);
+
+  }
+
+  // use the arrow function as method if u want that context of the method always should be
+  // the same class object
+  getCity = () => {
+    console.log(this.city);
+  };
+}
+
+Polymorphism :-
+
+Poly = many
+morph = forms
+
+Same name and different forms is called polymorphism
+
+
+There is boy named Ram, age 20
+
+
+
+
+There are 2 ways to achieve the polymorphism.
+
+1. By using method overloading (Javascript does not support method overloading)
+
+    In method loading you can define more than one method having same name in a single class
+
+    Rules:-
+
+        - Methods must be in same class
+        - Method names must be same
+        - Method parameters must be different(number or type parameters)
+        - Method body can be same
+
+
+        Example:-
+
+
+class Addition{
+    add(int a,int b){
+        return a+b;
+    }
+
+    add(int a,float b){
+        return a+b;
+    }
+
+}
+
+add(10,20)
+add(10,20.3)
+
+
+Q. Why does Javascript not support method overloading?
+
+In method overloading number of parameters or type of parameters must be different. But
+Javascript is dynamic typed language so type parameters cannot defined and matching
+number of arguments and parameters at the time of calling function is not mandatory
+therefore method overloading is not supported.
+
+// ---------------------------------------------------
+Method Overriding:- 
+
+If the super class method is not fulfilling the requirement of sub class then sub 
+defined its own method having same name as super class method this concept is called 
+method overriding. 
+
+
+class Person {
+  name;
+  mobile;
+  email;
+  city;
+
+  constructor(name, mobile, email, city) {
+    this.name = name;
+    this.mobile = mobile;
+    this.email = email;
+    this.city = city;
+  }
+
+  //   overriden method
+  printProfile() {
+    console.log(
+      "Name: " + this.name,
+      "Mobile: " + this.mobile,
+      "Email: " + this.email,
+      "City: " + this.city
+    );
+  }
+}
+
+class Employee extends Person {
+  empId;
+  salary;
+
+  constructor(name, mobile, email, city, id, salary) {
+    super(name, mobile, email, city);
+    this.empId = id;
+    this.salary = salary;
+  }
+
+  //   overriding method
+  printProfile() {
+    console.log(
+      "ID: " + this.empId,
+      "Name: " + this.name,
+      "Mobile: " + this.mobile,
+      "Email: " + this.email,
+      "City: " + this.city,
+      "Salary: " + this.salary
+    );
+  }
+}
+
+const em = new Employee( "Topper Skills","7875580668","topperskills@gmail.com","Pune",11,10000);
+
+em.printProfile(); //sub class
+
+
+============================================================
+
+Set:-
+    Set is like an array but it stores only unique elements.
+
+An array is used to store multiple elements of any type, an array can store duplicate
+elements.
+
+// Example:-
+
+// const pincodes = [411001, 411002, 411003, 411001];//411001 it duplicate
+// console.log(pincodes);
+
+// Creating a set
+1. Creating empty set.
+const s1 = new Set();
+console.log(s1);
+
+// 2. Creating set with elements
+const pincodes = [411001, 411002, 411003, 411001]; //411001 it duplicate
+
+const s2 = new Set(pincodes);
+console.log(s2);
+
+// adding elements into the set
+// add(value) - adds an element and returns the set after adding the element
+const ss = s2.add(411004);
+console.log(s2);
+console.log(ss)
+;
+
+// Check whether an element exists or not
+console.log(s2.has(411001)); //true
+console.log(s2.has(411009)); //false
+
+//delete an element from the set
+const isDeleted = s2.delete(411002);
+if (isDeleted) {
+  console.log("deleted");
+} else {
+  console.log("not deleted");
+}
+console.log(s2);
+
+// get total number of elements of set
+console.log("Total: " + s2.size);
+
+const allElements = s2.values();
+
+for (const ele of allElements) console.log(ele);
+
+s2.clear();
+
+console.log(s2);
+
+===========================================================================================================
+
+Map:- The Map is used to store key value pairs .
+
+A key value pair is called an entry
+A key must be unique
+the values can be duplicate
+
+Creating Map
+
+1. creating empty map
+
+const m1 = new Map();
+
+console.log(m1);
+
+// 2. Creating Map with existing entries
+
+const pincodes = [
+  [411001, "Shivajinagar"],
+  [411002, "Shukrawar peth"],
+  [411018, "Kothrud"],
+];
+
+const pincodeMap = new Map(pincodes);
+console.log(pincodeMap);
+
+// Adding entries in the map
+
+pincodeMap.set(411041, "Vadgaon Bu.");
+pincodeMap.set(411041, "Narhe");
+pincodeMap.set(411046, "Ambegaon");
+
+console.log(pincodeMap);
+
+// Checking whether an entry is avaiable or not
+
+if (pincodeMap.has(411048)) {
+  console.log("411041 is available");
+} else {
+  console.log("411041 is not available");
+}
+
+// Deleting an entry
+
+pincodeMap.delete(411046);
+
+console.log(pincodeMap);
+
+// get a value associated with a key
+
+console.log(pincodeMap.get(411001));
+
+// Checking total number of entries
+
+console.log("Total: ", pincodeMap.size);
+
+// Print all the keys
+for (const key of pincodeMap.keys()) {
+  console.log(key);
+  console.log(key + " -> " + pincodeMap.get(key));
+}
+
+// Print all the values
+
+for (const v of pincodeMap.values()) console.log(v);
+
+// get all entries
+
+const entries = pincodeMap.entries();
+
+console.log(entries);
+// for (const en of entries) {
+//   //   console.log(en[0] + " ** " + en[1]);
+
+//   // array destructing
+
+//   const [key, val] = en;
+//   console.log(key + " ** " + val);
+// }
+
+for (const [key, val] of entries) {
+  console.log(key + " ** " + val);
+}
+
+pincodeMap.clear();
+
+console.log(pincodeMap);
+
+// Adding entries in the map
+
+pincodeMap.set(411041, "Vadgaon Bu.");
+pincodeMap.set(411041, "Narhe");
+pincodeMap.set(411046, "Ambegaon");
+
+pincodeMap.forEach(function (value, key, map) {
+  //   console.log(value, key);
+
+  map.set(key, "Location: " + value);
+});
+
+console.log(pincodeMap);
+
+=============================================================================================================
+
+class Student {
+  name;
+  roll;
+  constructor(name, roll) {
+    this.name = name;
+    this.roll = roll;
+  }
+}
+
+const students = new Map();
+
+for (let i = 1; i <= 100; i++) {
+  const s = new Student("stud" + i, i);
+  students.set(i, s);
+}
+
+console.log(students);
+
+console.log(students.get(51).name);
+//---------------------------Synchronous vs Asynchronous
+
+
+Synchronous:-
+
+            one by one 
+
+
+
+            news paper delivery
+            
+            
+
+            Printing press 
+
+
+            Deliver to district 
+
+            deliver to taluka 
+
+            Local news paper agencies 
+
+            deliver to customers 
+
+
+
+
+
+Asynchronous:-
+
+
+
+Pharma store 
+
+5 pharmacist 
+
+
+10 customers 
+Note:-  Javascript is a Synchronous programming language. 
+
+        Javascript is single threaded. 
+
+        But the execution environment of the Javascript is asynchronous.
+
+// synchronous execution
+
+function f1() {
+  console.log("f1");
+}
+
+function f2() {
+  console.log("f2");
+}
+
+function f3() {
+  console.log("f3");
+}
+
+console.log("one");
+f1();
+console.log("two");
+f2();
+console.log("three");
+f3();
+console.log("four");
+
+// Asynchronous execution
+
+function f1() {
+  setTimeout(() => {
+    console.log("f1");
+  }, 100);
+}
+
+function f2() {
+  setTimeout(() => {
+    console.log("f2");
+  }, 100);
+}
+
+function f3() {
+  setTimeout(() => {
+    console.log("f3");
+  }, 100);
+}
+
+console.log("one");
+f1();
+console.log("two");
+f2();
+console.log("three");
+f3();
+console.log("four");
+
+How does javascript code gets executed asynchronously when there is one thread? 
+
+=> Javascript is single threaded, synchronous but the environment in which the javascript
+code gets executed is asynchronous. 
+
+The javascript runtime(event loop) performs non blocking IO operations by offloading most of the work 
+to operating system. 
+//callback
+
+function getServerData(dis){
+
+    setTimeout(()=>{
+        console.log("Data Recieved");
+        dis("Server Data");
+    },2000);
+}
+
+function display(data){
+
+    console.log("Displaying Data",data)
+}
+getServerData(display);
+//display();
+
+function getServerData(dis) {
+  setTimeout(() => {
+    console.log("received data");
+    dis("server data");
+  }, 2000);
+}
+
+// callback
+function display(data) {
+  console.log("displaying data...", data);
+}
+
+getServerData(display);
+
+// To write async code you need
+
+1. callback
+
+        A callback is a normal javascript function which is passed as an argument to
+        another function to perform future operation.
+
+A callback is used to perform any future operation after an asynchronous operation. 
+
+//         Example 1:
+
+//         const button = document.getElementById("btn");
+
+//         button.addEventListener("click",handleClick)
+
+//         function handleClick(){
+
+//             console.log("button clicked...");
+//         }
+
+//         Example 2: get data from server and display in a table
+
+//         There are 2 operations
+
+function getServerData(dis) {
+  setTimeout(() => {
+    console.log("received data");
+    dis("server data");
+  }, 2000);
+}
+
+// callback
+function display(data) {
+  console.log("displaying data...", data);
+}
+
+getServerData(display);
+
+// 2. Promise
+
+// 3. async await
+
+
+ 
+
+Higher Order function :- 
+    A function which accepts another function as an argument is called a higher 
+    order function. 
+    The higher order function is used to perform different operations. 
+
+    Example: addEventListener
+
+    button.addEventListener("click",()=>{})
+
+======================================================================================================================
+
+// Promise:-
+
+// A promise is an object which is used to perform asynchronous operations.
+
+// A promise gets settled(either resolved or rejected) in future.
+
+// If promise gets resolved then it calls the callback passed to then() function.
+
+// If promise gets rejected then it called the callback passed to catch() function.
+
+new Promise((resolve, reject) => {
+  // get data from server
+
+  setTimeout(() => {
+    const data = "server data";
+    // const data = "";
+
+    if (data) {
+      resolve(data);
+    } else {
+      reject("could not get data");
+    }
+  }, 5000);
+})
+
+  .then((data) => {
+    console.log("i got data from server: " + data);
+  })
+
+  .catch((err) => {
+    console.log(err);
+  });
+
+================================================================================================================
+
+// Promise:-
+
+// A promise is an object which is used to perform asynchronous operations.
+
+// A promise gets settled(either resolved or rejected) in future.
+
+// If promise gets resolved then it calls the callback passed to then() function.
+
+// If promise gets rejected then it called the callback passed to catch() function.
+
+//   then chaining
+
+// Writing multiple thens one after another for a promise is called then chaining
+
+// A then() returns a promise
+
+new Promise((resolve, reject) => {
+
+  setTimeout(() => {
+    const data = JSON.stringify({
+      name: "Topper skills",
+      mobile: "7875580668",
+      age: 5,
+    });
+    // const data = "";
+
+    if (data) {
+      resolve(data);
+    } else {
+      reject("could not get data");
+    }
+  }, 5000);
+})
+
+  .then((data) => {
+    console.log(data);
+    return JSON.parse(data);
+  })
+
+  .then((data) => {
+    console.log("i got data from server: ", data);
+  })
+
+  .catch((err) => {
+    console.log(err);
+  });
+
+=======================================================================================================================
+
+/ async await
+
+// The async await is used to pause the execution of a function until a promise gets settled
+
+// await should only be used inside the async function.
+
+async function getServerData() {
+    
+  const p = await new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("server data");
+    }, 2000);
+  });
+
+  console.log("received server data...");
+
+  return p;
+}
+
+getServerData()
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+
+===============================================================================================================
+
+
+    
+
+
+
+
+    
+
+
+

@@ -1,0 +1,659 @@
+//========Multipage application vs Single page application=====
+
+A] Multipage application
+
+-If an application / website has multiple requestable web pages then that application
+is called multi page application.
+
+-To fetch the different content you need to fetch different webpages from the server
+
+-Multipage application is slow because each request will be send to the server then server
+will return a web page as response.
+
+-It utilizes the server resources so high configuration server is required.
+
+-It utilizes more bandwidth
+
+-It is slow.
+
+-It recreates the DOM for each request
+
+
+
+B] Single page application
+
+-If an application has single requestable web page then that application is called
+single page application.
+
+-in SPA all the content will get loaded in the web browser on first request, after that
+all the request will be served from web browser itself.
+
+-it does not utilizes the server resources for each request because the content will
+be serverd from web browser.
+
+-less bandwidth is required
+
+-it is slow for first request and fast from second request
+
+-Webpack :-It does not re create the DOM tree for content change
+
+
+//========================Babel:-================
+Babel:-
+-Babel is a javascript compiler
+-The babel can convert javascript code from one version to another.
+
+
+//================Webpack :- ==============
+
+-Webpack :-
+
+-Webpack is javascript module bundler.
+
+-In javascript a file is considered a module if executed using nodejs.
+
+
+## start webpack cammand---
+
+npm i webpack webpack-cli
+
+## output cammand--
+
+npx webpack
+
+## node server package.json Cammand---
+
+npm init -y
+
+
+//===========================Server-Side Rendering: =====================
+
+## What is Server-Side Rendering:
+In server-side rendering when a user makes a request to a webpage, the server
+prepares an HTML page by fetching user-specific data and sends it to the user’s machine over the internet.
+The browser then construes the content and displays the page.
+This entire process of fetching data from the database,
+creating an HTML page and sending it to client happens in mere milliseconds.
+
+Now Imagine that a user clicks a link on the page, the browser sends a request to the server
+and the entire process is
+carried out by the server again.
+This process not only increases the load on the server but also consumes unnecessary internet bandwidth.
+
+
+
+**Server-side pros:
+Search engines can crawl the site for better SEO.
+The initial page load is faster.
+Great for static sites.
+
+**Server-side cons:
+Frequent server requests.
+An overall slow page rendering.
+Full page reloads.
+Non-rich site interactions.
+//===========================Client-Side Rendering =====================
+
+## What is Client-Side Rendering:
+
+Client-side rendering is a reasonably new approach to rendering websites, and it didn't really become popular until
+JavaScript libraries started incorporating it.
+
+When we talk about client-side rendering,
+it’s about rendering content in the browser using JavaScript. So instead of
+getting all the content from the HTML document itself,
+a bare-bones HTML document with a JavaScript file in initial
+loading itself is received, which renders the rest of the site using the browser.
+
+With client-side rendering, the initial page load is naturally a bit slow.
+However, after that, every subsequent page
+load is very fast. In this approach, communication with server happens only for getting the run-time data.
+Moreover,
+there is no need to reload the entire UI after every call to the server.
+The client-side framework manages to update UI
+with changed data by re-rendering only that particular DOM element.
+
+Today, Angular and React.js are some of the best examples of libraries used in client-side rendering.
+
+To help you understand the pros and cons of each approach,
+listed below are a few pointers that will guide you towards
+the right decision.
+
+**Client-side pros:
+Rich site interactions
+Fast website rendering after the initial load.
+Great for web applications.
+Robust selection of JavaScript libraries.
+
+**Client-side cons:
+Low SEO if not implemented correctly.
+Initial load might require more time.
+In most cases, requires an external library.
+Now that you’re aware of the pros and cons of each approach,
+let’s take a look at ideal scenarios for their implementation.
+
+Develop seamless applications and websites with Clarion’s web development experts. Get in touch today!
+
+When to use server-side rendering
+An application has very simple UI with fewer pages/features
+An application has less dynamic data
+Read preference of the site is more than write
+The focus is not on rich site and has few users
+When to use client-side rendering
+An application has very complex UI with many pages/features
+An application has large and dynamic data
+Write preference of the site is more than reading
+The focus is on rich site and a huge number of users
+In a nutshell, server-side rendering is like receiving a pre-assembled toy train set whereas client-side rendering is
+like receiving a dismantled one that you need to assemble yourself. You have to decide whether you’d like to play with a
+pre-assembled one or prefer assembling it just the way you want it.
+
+
+//==============================================================================
+#01 Multipage application
+
+If an application / website has multiple requestable web pages then that application
+is called multi page application.
+
+To fetch the different content you need to fetch different webpages from the server
+
+Multipage application is slow because each request will be send to the server then server
+will return a web page as response.
+
+It utilizes the server resources so high configuration server is required.
+
+It utilizes more bandwidth
+
+It is slow.
+
+It re creates the DOM for each request
+
+
+
+#02 Single page application
+
+If an application has single requestable web page then that application is called
+single page application.
+
+in SPA all the content will get loaded in the web browser on first request, after that
+all the request will be served from web browser itself.
+
+it does not utilizes the server resources for each request because the content will
+be serverd from web browser.
+
+less bandwidth is required
+
+it is slow for first request and fast from second request
+
+It does not re create the DOM tree for content change
+
+
+//===========================Babel =====================
+Babel:-
+
+Babel is a javascript compiler
+Babel is transcompiler to convert your javascript es6 code to the equivalent javascript
+which is compatible with all the browser.
+
+browsers can't understand JSX code.
+You need a transpiler to convert your JSX to regular Javascript that browsers can understand
+The most widely used transpiler right now is Babel.
+
+The babel can convert javascript code from one version to another.
+
+
+//===========================Webpack =====================
+Webpack :-
+
+Webpack is javascript module bundler.
+
+In javascript a file is considered a module if executed using nodejs.
+
+install two package
+
+npm i webpack webpack-cli
+
+//=========================== =====================
+
+Reactjs:-
+
+It is a javascript library used to develop user interfaces.
+
+Reactjs is developed by Facebook
+
+JSX, javascript
+
+Released 2011 (used internally )
+2013 publicly
+
+Virtual DOM
+
+Not complete solution to develop an application
+
+easy to learn
+
+
+
+
+
+
+
+Angular:-
+
+It is a typescript based web framework used to develop single page apps
+
+Angular is developed by Google
+
+
+HTML, CSS , typescript
+
+
+released in 2016
+
+version 2.x
+
+Regular DOM
+
+Provides complete solution to develop an application
+
+
+as its big it takes time to learn
+
+
+
+Angularjs:-
+
+It is javascrit framework used to develop single page applications
+
+
+Angular is developed by Google
+
+
+HTML, CSS, javascript
+
+released in 2010
+
+Version 1.x
+
+//===========================folder Structure =====================
+
+evening folder (project root directory)
+
+node_modules folder:- this folder is used to store all the third
+party nodejs packages like react, webpack, etc.
+
+This folder can be regenerated by executing "npm install" command
+in the project root directory.
+
+The npm install command first checks the project dependencies
+in the package.json file and then installs all the dependencies
+in the node_modules folder.
+
+node_modules contains many packages therefore it is very heavy
+directory so you should not take backup of this directory.
+
+
+public folder:-
+
+This folder contains the static assets of the project, and
+the only web page (index.html) file.
+
+
+.gitignore file:-
+this file is used to avoid adding the files and folders into the
+git repository, if you want to ignore any file then just add
+that file in the .gitignore file.
+If you are not using git then you can delete this file.
+
+package-lock.json file:-
+This file contains details of all the installed packages.
+
+
+package.json :-
+this is the project configuration file.
+this is mandatory file.
+
+README.md file:-
+
+This file contains the details about using the react application
+You can delete this file.
+
+
+
+src folder:-
+
+this the folder where your source code files are added
+
+
+
+App.css file:-
+
+this file is used to format the App component
+you can delete if you want
+
+
+App.js file:-
+
+This file is used to create the root component which is App.
+
+
+
+App.test.js file:-
+This file is used to test the root (App) component
+
+
+index.css file:-
+
+This file is used to write some global CSS.
+
+
+index.js file:-
+This file is the entry point of reactjs application
+This is mandatory file.
+
+
+logo.svg file:-
+This can be deleted
+
+
+reportWebVitals.js file:-
+
+This file can be used to create Progressive web application
+This can be deleted.
+
+
+
+//=========================== =====================
+
+setupTests.js file:-
+
+This file is used to configure the unit testing.
+You can delete this file
+
+/ npx create-react-app projectname
+
+// npm start
+
+// development server
+
+// 3000
+
+// http://localhost:3000
+
+// React element:-
+
+// React element is a basic building block of react application.
+
+// React element is equivalent to html element.
+
+// How to create the react element.
+
+// 1. By using React.createElement() method.
+
+// Create a title.
+
+// const h1 = React.createElement("h1",null,"Topper Skills");
+
+// 2. By using JSX
+
+// const h1 = <h1>Topper Skills</h1>
+
+
+//=========================== JSX =====================
+
+
+// JSX (JavaScript and XML)
+
+// JSX provides a way to write the react elements.
+// JSX is a html like syntax.
+// JSX gets converted to react elements by calling React.createElement(), this will be
+// done by the babel.
+// If you write JSX in a file then React package must be imported
+As JSX gets converted to Javascript so you cannot use Javascript keywords as JSX attributes
+Example:-
+Do not use 'class' attribute instead use 'className'
+Do not use 'for' attribute instead use 'htmlFor'
+In JSX all the attribute must follows lower camel casing, first word in lower case
+and first letter of all subsequent words must start with uppercase
+Example:
+Do not use 'tabindex' instead use 'tabIndex'
+
+
+JSX Expression:-
+If you want write Javascript code inside the JSX then you can use JSX expression.
+
+Syntax:
+{ Javascript code }
+
+Example:
+
+<img src={path} />
+
+<p>10+10 = {10+10}</p>
+
+
+//=========================== Components =====================
+
+
+
+Components:-
+A component is a patch on the web page.
+A component is a reusable UI.
+a Component is used to group one or more react elements.
+To create a component you requires HTML(JSX), CSS(JSS) and Javascript.
+
+By using components you can develop an application quickly, easily and more maintainable.
+
+
+In Reactjs there are two types of components
+
+1. class component
+If a Javascript class extends either React.Component or React.PureComponent class
+and overrides render() method then that class is called class component.
+
+Example:
+
+
+class MyComponent extends React.Component{
+render(){
+return <h1>My COmponent </h1>
+}
+}
+
+
+2. function components
+
+If a Javascript function returns react elements then that function is called
+function component.
+
+Example:-
+
+function MyComponent(){
+return <h1>My Component</h1>
+}
+
+
+// stateless component
+// stateful component
+// pure component
+// impure component
+// controlled
+// uncontrolled
+// higher order component
+// root component
+
+
+
+//=========================== props =====================
+
+props:-
+
+props short for properties.
+
+props is a readonly object
+
+props object is used to pass data from parent component to child component
+
+props works like waterfall, it always move from top to bottom components in component tree
+
+props cannot be passed from child to parent component
+
+In case of class component props will be available at 'this.props'
+
+In case of function component props can be accessed as a first parameter.
+
+props.children is a special property which returns the child content between opening and
+closing tags of the component
+Example:
+
+<A>
+    <B />
+</A>
+
+inside the A component B component can be accessed using 'props.children'
+
+
+//=========================== State =====================
+
+
+
+State
+
+state is the data used by a component during multiple renderings.
+
+There are 2 types of states
+
+1. local (component level) state:-
+
+The state (data) maintained by a component for itself which cannot be accessed by any other
+component such state is called local/component level state.
+
+the local state is encapsulated within a component which cannot be accessed DIRECTLY
+by any other component.
+
+If a child component need the state of parent component then that state can be passed
+using props.
+
+If parent component needs state of child component then it can be passed to parent
+component using the concept called 'lifting state up'.
+
+Example:-
+
+maintaining state of a form.
+
+
+In case of class component local state can be maintained using 'state' property
+
+
+In case of function component state can be maintained by using useState() hook.
+
+
+
+2. global (application level) state:-
+
+If a value is required in multiple components of an application then application
+level state is maintained.
+
+
+Example:
+
+maintaining current loggedin user
+
+The global state can be maintained using third party library like 'Redux'.
+
+
+//=========================== Life cycle =====================
+
+
+Life cycle
+
+life cycle of a component includes all activities from component creation to destroy.
+
+The life cycle of a component is devided into three parts.
+
+1. mounting phase
+In mounting phase a component is created and inserted into the DOM.
+
+Methods of mounting phase :-
+
+- constructor():-
+The constructor() gets executed only once at the time of creating an object
+of the class component.
+The constructor() is useful only in two situations
+1. If you want initialize the state
+Example:-
+constructor(){
+this.state = {}
+}
+2. To bind the event handlers with the class object.
+Example:-
+
+constructor(){
+this.handleClick = this.handleClick.bind(this)
+}
+
+If you do not need above cases then do not constructor.
+
+- static getDerivedStateFromProps(nextProps, prevState)
+
+this method will get executed on both mounting and updating phases.
+
+this method is used to update the state based on props values.
+
+this method returns either an object to be merged with the state or null
+
+- render()
+
+This is the only mandatory method to be used in the class component.
+this method returns react elements, array, fragments, boolan, null, portals,etc.
+this method is called before each rendering
+this method is responsible for updating the UI
+
+- componentDidMount()
+this method gets executed after mounting a component.
+this method gets executed only once.
+this method is used perform one time initialization operations like
+fetching data from server, initializing a timer, etc.
+``````````````````````````````````````````````````````````````````````````````````````
+2. updating phase
+In updating phase, a mounted componented is modified.
+
+Methods of updating phase :-
+
+- static getDerivedStateFromProps(nextProps, prevState)
+- shouldComponentUpdate(nextProps, nextState)
+
+this method controls the rerenderings of the component.
+this method returns boolean value.
+If this returns true then component will rerender if this returns false then component
+will not rerender.
+This method will execute before render() method from second time.
+This method is implemented by React.PureComponent class
+This method helps to improve the performance of the application
+
+
+// - render()
+// - getSnapshotBeforeUpdate(prevProps, prevState)
+This method gets executed just after the render() method and before updating
+the DOM.
+This method is used hold some previous values like previous state and previous
+props.
+The value returned by this method will be availble as third parameter in
+componentDidUpdate() method
+
+- componentDidUpdate(prevProps, prevState)
+This method will get executed after updating the dom.
+If you want to perform any operation after updating the application then write
+that code here.
+3. unmounting phase
+
+
+In unmounting phase the mounted component is removed from the DOM.
+
+Methods of unmounting phase:-
+
+- componentWillUnmount()
+
+This method will get executed only once before removing the component from DOM.
+This method is used to perform resource releasing/cleaning operations like
+clear timer, close connections, etc.

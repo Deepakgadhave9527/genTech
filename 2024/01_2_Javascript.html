@@ -1,0 +1,1020 @@
+
+//===============ECMA Script 6======================
+
+ES6 - ECMA Script 6 - ES2015 - ECMA Script 2015
+
+ES6 vs Javascript
+
+ES2015 is one of the versions of ECMA Script.
+
+ECMA Script is a specification released by the ECMA international to standardize the Javascript
+
+
+ES6 is a major update in the Javascript which introduced many new features.
+
+=========
+
+const:-
+
+const is used to declare a readonly variable
+const variables should initialized at the time of declaration
+
+
+//=====================================================================================================
+
+Comments: - comments are the non executable statements which are used to
+write the meta data about the source code.
+
+1. Single line comment
+
+// single line comment
+
+
+2. Multi line comment/*
+
+multi
+line
+comment
+*/
+
+
+//================================= String=================================
+1] string datatype
+-a string is called a sequence of characters.
+-if we assign any textual value or data to variable
+
+To represent a string value you can use either single quote (' ') or double quote(" ")
+
+
+## string is 1 :-
+If an object/variable cannot be modified then it is called immutable.
+
+Why is string immutable?
+
+- The string values are stored inside the string constant pool which
+does not allows duplication of the values, if multiple variables
+are storing the same value then all the variables get address of same
+value. If one of the variable changes the value then same will get
+changed for all remaining variables who are refering the value, this may
+lead to inconsistency in the program, to avoid this problem string is made
+immutable.
+
+String concatenation:-
+There are 2 ways to concat the string
+1. By using concat() function
+
+var a = "abcd";
+a = a.concat("efg");//abcdefg
+
+2. By using concatenation operator +
++ operator concat the string if one or more operator are string type
+a = a + "efg";
+console.log(a);
+
+
+
+Q.7 method are use for string
+
+//01 length:
+-string.length return lenght of string.
+e.g.var text="ABCD"
+console.log(text.lenght)\\4
+
+//02 indexOf()
+-The indexOf() method returns the position of the first occurrence of a specified value in a string.
+-This method returns -1 if the value to search for never occurs.
+-The indexOf() method is case sensitive.
+
+string.indexOf(searchvalue, start)
+
+//2.1 lastIndexOf():
+-The lastIndexOf() method returns the position of the last occurrence of a specified value in a string.
+-This method returns -1 if the value to search for never occurs.
+-The indexOf() method is case sensitive.
+
+string.lastIndexOf(searchvalue, start)
+
+// 03 slice()
+-The slice() method extracts parts of a string and returns the extracted parts in a new string.
+-it can accepts positive and negative indexes.
+-if parameter is negative the position is counted from end of string
+-It cannot swap the Positions
+
+
+string.slice(startPositions, endPositions)
+startPositions:start with zero position
+endPositions:start with one position
+
+slice(startIndex):- return substring from startIndex to
+the end of string
+slice(startIndex, endIndex):- returns substring from start
+index to end index (endindex is excluded)
+
+
+//04 substring():-
+-The substring() method extracts parts of a string and returns the extracted parts in a new string.
+-it can accepts only positive positions
+-negative values mean 0 to start
+-It swaps the positions if start position is greater than end position.
+-The substring() method does not change the original string.
+
+string.substring(start, length)
+
+
+
+
+//05 substr():
+-substr method extract parts of a string and retrun a new string
+-It accepts start position and total length
+-It cannot accepts end position
+
+
+The substr() method returns a portion of the string, starting at the specified index and extending for a
+given number of characters afterwards.
+
+string.substr(start, length)
+
+
+
+
+
+
+//06 replace():
+-replace method replace specified value within another value in a string
+
+-The replace() method searches a string for a specified value, or a regular expression, and returns a new string
+where the specified values are replaced.
+
+string.replace(searchvalue, newvalue)
+
+If you are replacing a value (and not a regular expression),
+only the first instance of the value will be replaced.
+
+
+// 05 upperCase() and lowerCase()
+
+-The toUpperCase() method converts a string to uppercase letters.
+string.toUpperCase()
+
+-The toLowerCase() method converts a string to lowercase letters.
+string.toLowerCase()
+
+
+//07 charAt():
+
+-The charAt() method returns the character at the specified index in a string.
+- returns a character of the provided position.
+string.charAt(index)
+
+
+//08 charCodeAt():
+- return the encoding code of a character of provided position
+string.charCodeAt(index)
+
+//===================================== Number ======================================
+
+2. Number datatype
+The number datatype represents all types number.
+
+
+Q.8 Method of Number
+1 isNaN():
+-This function return true if value is not a number ;
+if number value then it will return false
+
+-The Number.isNaN() method determines whether a value is NaN (Not-A-Number).
+-NaN is a value of number type
+-NaN represents an invalid number
+-NaN is returned when you expects a number but got invalid number.
+
+the global isNaN() will convert the provided value to number to check
+if it is NaN or not, if value does not get converted means its NaN.
+
+the Number.isNaN() will not convert the provided value, it just compare
+the provided value or result of an expression with NaN.
+
+Infinity
+-Infinity
+
+The positive and negative infinity values are of number datatype.
+
+positive infinity represents a number which is very big, it is out of
+capacity of the javascript engine.
+
+negative infinity represents a number which is very small, it is out of
+capacity of the javascript engine.
+
+console.log(typeof Infinity);\\number
+console.log(typeof -Infinity);\\number
+
+
+
+
+
+//02 toExponential():
+-The toExponential() method converts a number into an exponential notation.
+number.toExponential(x)
+where x= Optional. An integer between 0 and 20 representing the number of digits in the notation after the decimal
+point.
+
+
+
+
+//03 toFixed():
+-toFixed() returns a string, with the number written with a specified number of decimals:
+var x = 9.656;
+x.toFixed(0); // returns 10
+x.toFixed(2); // returns 9.66
+x.toFixed(4); // returns 9.6560
+x.toFixed(6); // returns 9.656000
+
+number.toFixed(decimal)
+
+
+
+## Converting a string value into number.
+Following are the functions to convert a string into number.
+1. Number()
+2. parseFloat()
+3. parseInt()
+
+1. Number()
+Number() - it converts the whole value into number. Only valid number numbers are converted
+otherwise it returns NaN.
+-Number() can also convert a date to a number:
+
+Number(true); // returns 1
+Number(false); // returns 0
+Number("10"); // returns 10
+Number(" 10"); // returns 10
+Number("10 "); // returns 10
+Number(" 10 "); // returns 10
+Number("10.33"); // returns 10.33
+Number("10,33"); // returns NaN
+Number("10 33"); // returns NaN
+Number("John"); // returns NaN
+
+2. parseFloat()
+-parseFloat() parses a string and returns a number.
+-Spaces are allowed.
+-If the first character cannot be converted to a number, parseFloat() returns NaN.
+
+parseFloat(string)
+
+
+-it parses a string value and extracts a valid floating/integer number
+-Only the first number is returned:
+
+parseFloat("10"); // returns 10
+parseFloat("10.33"); // returns 10.33
+parseFloat("10 20 30"); // returns 10
+parseFloat("10 years"); // returns 10
+parseFloat("years 10"); // returns NaN
+
+
+3. parseInt():
+-if string as float value it will return integer number.
+-The parseInt() function parses a string and returns an integer.
+
+-it parses a string value and extracts a valid integer number.
+
+parseInt("10"); // returns 10
+parseInt("10.33"); // returns 10
+parseInt("10 20 30"); // returns 10
+parseInt("10 years"); // returns 10
+parseInt("years 10"); // returns NaN
+
+
+//===================================JavaScript Math===========================
+
+//01 ceil():
+-The ceil() method rounds a number UPWARDS to the nearest integer, and returns the result.
+-this will increment the integer part
+
+Math.ceil(x)
+
+Math.ceil(1.4)\\2
+Math.ceil(1.9)\\2
+Math.ceil(1.0)\\1
+
+//02 floor()
+-The floor() method rounds a number DOWNWARDS to the nearest integer, and returns the result.
+- this will not increment the integer part
+
+Math.floor(x)
+x Required. The number you want to round
+
+Math.floor(1.0)\\1
+Math.floor(1.5)\\1
+Math.floor(1.9)\\1
+
+//03 Math.round():
+-The round() method rounds a number to the nearest integer.
+-2.49 will be rounded down (2),
+-2.5 will be rounded up (3).
+
+Math.round(x)
+x =. The number you want to round
+
+Math.round(2.0)\\2
+Math.round(2.4)\\2
+Math.round(2.5)\\3
+Math.round(2.9)\\3
+
+//04 Math.random()
+-Generating a random number
+
+//05 Math.pow(x, y):The pow() method returns the value of x to the power of y (x^y).
+
+
+Math.pow(2, 2)//4
+Maath.pow(3,2)//9
+
+
+// Math.max()
+-The min() method returns the number with the lowest value.
+Math.min(5, 10);
+Math.max(n1, n2, n3, ..., nX)
+
+
+
+//Math.max()
+-The max() method returns the number with the highest value.
+Math.max(5, 10);
+Math.max(n1, n2, n3, ..., nX)
+
+//==============================undefined===================================================
+03 undefined Datatype
+
+-If a variable is declared but not initalized then its value will be undefined
+-If a function is not returning a value then its default value will be undefined.
+-If a function is a called without passing arguments then the value of that function parameters will be undefined.
+-Whereever you expect a primitive value and if that value is not available then it may be undefined.
+
+console.log(typeof undefined)\\undefined;
+undefined is a value of type undefined
+
+
+the undefined is used as placeholder value for variable,
+parameters etc. if those are not initialized.
+
+//==============================null===================================================
+03 null Datatype
+
+// null
+
+The null is used in place of an object
+If you do not have an object then use null
+null works like a placeholder for object value.
+
+
+console.log(typeof null)\\object;
+null is object type value
+
+
+
+//======================== Undefined variable vs undeclared variable ===================
+
+undefined variable: -
+
+If a variable is declared but not initialized then its value is undefined such variable
+is called undefined variable.
+- It will not give you error.
+Example:
+
+var cit
+
+undeclared variable:-
+
+If a variable is not yet declared means it does not exist is called undeclared variable.
+The undeclared variable raises ReferenceError.
+
+Example:
+console.log(mobile);
+ReferenceError: mobile is not defined
+
+//========================== object & class =====================
+
+A] class
+-a class is a model of object
+-A class defines state and behaviour of the objects
+-By using a class multiple objects having similar properties can be created
+-a class is not a collection of objects.
+
+a class represents a logical entity like a category
+
+// ES6
+class Horse {
+
+// state - properties
+color;
+age;
+weight;
+height;
+name;
+price;
+breed;
+
+// behaviour - methods
+eating(){}
+running(){}
+
+}
+
+B] Object
+
+-An object is an instance of a class.
+-An object can represents a real life physical as well as logical(bank account) entity.
+-An object has state(current values) and behaviour (activities)
+
+Object:-
+object literal {}
+
+
+e.g
+
+##Creating an object
+There are mulitple ways to create the object, following are 2 of those.
+
+1. By using object literal
+Syntax:
+
+var objReferece = {
+propertyName: propertyValue
+}
+
+Example:-
+var person = {
+name: "Topper Skills",
+mobile: "7875580668"
+}
+
+This way is suitable if you do not want to follow any structure(state, behaviour).
+
+
+
+2. By using new operator
+Syntax:
+var objReferece = new Constructor()
+var objReferece = new ClassName()
+var objReferece = new FunctionName()
+
+Example:-
+
+var per1 = new Person();
+
+
+This way is preferred to create multiple objects having similar structure(state, behaviour)
+
+
+## A] Object properties:-
+
+--An object can have multiple properties separated with comma ,
+A property name should follow lower camel case naming standard, means first word should be in
+lower case and first letter of all the subsequent words must be in uppercase.
+Example:
+
+firstName - correct
+mobile
+panNumber
+fileName
+
+Note: If there is a space between property name then the name must be wrpeed in double quote
+"first name"
+Ex:
+var person = {
+"first name": "Topper",
+lastName: "Skills"
+}
+
+// Note: If you want to use a variable value as property name then enclose the variable in []
+
+var aa ="mobile"
+var obj = {
+firstName: "Topper",
+lastName: "Skills",
+[aa]: "7875580668",
+};
+
+
+## B] object property value:
+-a value is assigned to an object property using colon :
+Follwing are the possible types of values to be assign to object property
+- string,
+- number
+- boolean
+- undefined
+- null
+- object
+- array
+- function
+
+
+## C] Accssing object properties
+
+
+// 1. By using dot(.) operator
+
+Syntax:
+objectName.propertyName
+Example:
+person.firstName
+
+this is preferred way if there is no space between property name and property name is known
+
+2. By using []
+
+Syntax:
+objectName["propertyName"]
+objectName[variableName]
+
+Example :
+person["firstName"]
+person["first name"]
+person[variable]
+
+
+
+//========== Constructor function =========================================
+
+-A javascript which is used to intialize the object properties is called constructor function
+-The name of constructor function should start with uppercase
+
+-The constructor function is used to create the similar objects.
+
+// Example:
+
+function Person(name, m, city) {
+this.name = name;
+this.mobile = m;
+this.city = city;
+}
+
+var per1 = new Person("aa", "1111", "Pune");
+var per2 = new Person("bbb", "2222", "Mumba");
+
+
+//========== primitive vs reference variable=================
+## A] primitive variables:
+
+-primitive variables are used to store primitive values
+-Primitive variables copies values from another variables
+
+// primitive variables
+let a = 10;
+let b = a;
+a = 20;
+
+console.log(a); //20
+console.log(b); //10
+
+
+## B] reference variables:
+-Reference varaibles are used to refer the objects and arrays
+
+var x = { name: "abcd" };
+var y = x;
+x.name = "pqr";
+console.log(x.name); //pqr
+console.log(y.name); //pqr
+
+//======================= Array =====================================
+
+## Array:-
+An array is a group of consecutive memory blocks used to store multiple values,
+each block in the array is identified by a unique number called an index.
+-JavaScript arrays are used to store multiple values in a single variable.
+-In Javascript, an array can store any types of data.`
+-As Javascript is dynamic language there is no need to mention the
+size of an array while declaring, it grows dynamically.
+
+// Array Delcaration:-
+
+var arrayName;
+
+Creating an Array
+
+arrayName = []
+
+var arrayName = new Array(length);
+
+// Accessing array elements
+
+1. arrayName[index];
+console.log(nums[4]);
+
+
+
+
+
+
+//==Method Of Array
+
+#01. toString()
+-this method is convert array value to string value separate by commas.
+-this method is for convert array to string of arrays value
+
+array.toString()
+
+#02. join()
+-The join() method returns the array as a string.
+-The elements will be separated by a specified separator.
+-The default separator is comma (,).
+
+array.join(separator)
+
+- This method is used for all join array element into string but addtional provide separator
+
+
+#03. pop()
+-This method is used to removes last element of array
+-removes and returns last element from array.
+
+#04. push()
+-This method is used for add element to the array at the end;
+-this adds the elements at the end of the array and returns total
+number of elements in the array.
+
+#05. shift()
+- This method is used for the remove first element in the array
+
+-removes and returns first element from an array
+
+
+#06. unshift()
+-This method is used for add element in array in the first index
+-this adds the elements at the start of the array and returns
+total number of elements in the array.
+
+#07. The length property provides an easy way to append a new element to an array:
+
+#08. The delete property provides to delete element
+
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+delete fruits[0]
+console.log(fruits)\\ [ "Orange", "Apple", "Mango"];
+
+#09. concat()
+contact method is used to join two or more array and return new array
+
+#10. sort()
+this method is used to sort array alphabetically
+
+#11. reverse()
+-In This method is used to reverse element of the array and its decending order
+
+#12. numeric sort() - campare funcation
+
+var sort = numb.sort(function (a, b) {
+return (a - b)
+})
+
+a = 10
+b = 20
+a - b
+0 = equal
++ve = a is greater
+-ve = a is smaller
+
+#13. Finding total number of elements of an array
+console.log(Array.length); 10
+
+#14. splice():
+- this method can be used to add, replace and remove the elements
+Syntax:-
+splice(index,delcount, el1,el2,elN)
+
+
+=========================ECMA-5 Array Method ==================
+
+#01.String.trim()
+
+#02.Array.isArray:
+-array.isArray- isArray() method cheak wheater object is an array
+-if object is array it return true other wise is false
+
+Array.isArray(arrayName);
+
+#03a.forEach()
+-method calls a function once for each array element
+-it accepts a function having three parameters (value, index, array)
+- It does not return anything
+- This function is suitable to perform operatoins on existing array .
+
+Syntax:
+
+forEach(function(value, index, array){
+
+})
+
+#04.map():-
+-method is create new array from another array
+-The map() method is used to iterate the array, process each element
+of the array and return a new array of processed elements.
+-The size of new array and existing is alway same.
+-Prefer map() method if you do not want to change the existing array.
+
+#05.a.filter():
+-This Method create a new array with all element that pass the test implement by provided function
+- and It returns an array of filtered elements.
+
+array.filter(callback(element, index, arr), thisValue)
+
+-The filter() method creates an array filled with all array elements that pass a test (provided as a function).
+- This method used to create a new array by consisting of only those elements which satisfy a condition
+
+
+The main difference between forEach and filter is that
+forEach just loop over the array and executes the callback but filter
+executes the callback and check its return value.
+If the value is true element remains in the resulting array but if the return
+value is false the element will be removed for the resulting array.
+
+
+#07.a.reduce()
+-a.reduce is method is used for the reduce the array into is single value
+- this method is exuced in from left to write
+
+array.reduce(function(total, currentValue, currentIndex, arr), initialValue)
+
+
+#08.a.reduceRight()
+-a.reduceRight is method is used to reduce the array into in single value
+/-this method is excuted from right to left
+
+array.reduce(function(total, currentValue, currentIndex, arr), initialValue)
+
+
+
+#09.a.every()
+-every() method checks wheather all the given element in array are satisfying provided condtion
+-it return true when condtion is satsfying for all the given element in array
+-it return false when condion is not satfying in single element in the array
+
+array.every(function(currentValue, index, arr), thisValue)
+
+
+#10.a.some();
+-some() method checks some of the element are in array are satisfying privoided contion
+-it will return true
+-it wiill return false when not satisfying condtion of all given array in the element
+
+
+#11.a.indexOf()
+-array indexOf() methods it will return postion of array element
+-it will search from 0 index means left to right
+Returns -1 if the item is not found.
+array.indexOf(item, start)
+
+
+
+#12.a.lastIndexOf()
+-array method lastIndexOf it retuen postion of element of array
+-it will search from ent to start means (last index to starting index) end to start
+
+
+#13.JSON.parse()
+-JSON.parse() is method used to convert string to obj
+
+#14.JSON.stringify():
+-method is used to convert to obj to str
+
+#15 includes():
+-includes method check/determines elemnets are availbale or not
+-it return true provided element is avaiable in the array
+-it return flase provided element is not avaiable in the array
+
+-The includes() method determines whether an array contains a specified element.
+- returns true if the provided element is avaiable in the array
+
+
+
+
+//======================== Function =============================
+## Function:
+-Function is named block of logically related statements.
+-The function is used to perform a specific operation of different data
+-Fucntion can accpts/takes input data using parameters
+-a function can return a value
+
+Benefits of function:-
+- Code/logic reusability
+- code modularity
+
+
+Syntax:-
+function functionName(parameters){
+body
+}
+functionName(argument)
+
+A] Function parameters:-
+-The function parameters are used to take input into the function
+at the time calling the function.
+-parameters are like local variables
+-The default value of parameters is undefined
+
+
+B] Function arguments:-
+-The function argument is a value which is passed to the function
+at the time of calling the function.
+
+-The argument can be a value or variable or expression.
+
+// Note: In javascript matching number of and type of parameters and arguments is not mandatory.
+// Note: In javascript a function can be assigned to a variable like a value
+// A function can be passed as an argument to another function.
+
+
+## ===========Types of function is javascript=========
+
+1. Named function
+2. Anonymous function
+3. Arrow function (ES6)
+
+4.callback function
+5.higher order function
+6.pure function
+7.constructor function
+
+## Types of function is javascript
+A]. Named function
+-If a function is defined with a name then it is called a named function
+
+Example:
+function add(a,b){
+return a+b;
+}
+
+B]. Anonymous function
+If a function is defined without name then it is called anonymous
+function
+Example:
+
+var add = function(a,b){
+return a+b;
+}
+
+
+//=============================Hoisting =====================
+## Hoisting:-
+-Hoisting is a javascript mechanism in which all the function
+and variable declarations are moved to top of the current scope.
+
+-Hoisting is a default behaviour of the javascript in which all the function
+and variable declarations are moved to top of the current scope.
+
+var nam1; //variable declaration
+nam1 = "Topper"; //variable initialization
+console.log(nam1); //variable use
+
+
+
+
+## Function Declaration:-
+-If the function definition line starts with 'function' keyword then
+-it is called function declaration.
+Ex:
+function add(a,b){
+return a+b;
+}
+
+-Function declarations are hoisted
+
+
+C].Function Expression:-
+-If the function definition line does not starts with 'function' keyword
+then is is called function expression.
+Ex:
+var add = function(a,b){
+return a+b;
+}
+- Function expressions are not hoisted
+
+
+D].Self Invoking Function Expression (SIFE)
+immediately Invoked Function Expression is javascript function that runs as soon as it is defined
+-SIFE is used to limit the scope / to create a new scope
+
+(function () {
+console.log("Hello Topper Skills");
+})();
+
+
+E] Default function parameters:- (ES6)
+
+If you assign a value to the function parameter then it is called
+default function parameter.
+If a parameter does not have matching argument then it uses the default
+function parameter.
+
+
+//============'arguments' object in function:-===================
+
+the arguments object provides the details(arguments, caller, callee)
+of a function call.
+
+function add(a, b) {
+console.log(arguments);
+console.log("Total args: ", arguments.length);
+console.log("Callee : ", arguments.callee.name);
+console.log("Caller : ", arguments.callee.caller.name);
+return a + b;
+}
+add("a","b")
+
+
+
+
+
+
+//================ Fuction return statement:-==============
+## Fuction return statement:
+-The 'return' statement is used to terminate execution of a function and
+returns a value
+-A function can return a value.
+-If a function is not returning a value then its value will be undefined
+
+//Note: The value which you want to return must be on same line as 'return'
+statement is.
+
+You should not write statements after the return statement inside a
+function.
+function f1() {
+return {
+name: "Topper Skills",
+};
+}
+
+function f2() {
+return
+{
+name: "Topper Skills";
+}
+}
+
+
+console.log(f1());\\{name: "Topper Skills"}
+console.log(f2());\\undefined
+
+
+//==========================Scope====================
+
+Scope:-
+The level of accessibility / availability of variable,function,etc.
+in the program is called scope.
+
+In javascript There are 3 scopes
+1. Global scope
+If you declare a variable inside a module(javascript file) directly
+then its scope becomes global.
+
+-A Variable declear outside the function ,scope is called as Global scope.
+-A glolbal variable has global scope, all script and function on web can access it.
+
+2. function scope/Local Scope
+If you declare a variable inside a function the its scope becomes
+function scope/Local Scope
+Ex: parameters and loval variables of a function have function scope
+
+3. block scope
+If you declare a variable inside a block (if,else,switch,for,etc.)
+then its scope becomes block scope.
+Note: If you declare a variable using 'var' keyword then the scope of
+variable will not be block scope.
+For block scoped variable use 'let' or 'const' keyword.
+
+// Imp: For each function call an unique scope gets created and a copy of all
+// local variables gets created inside that scope.
+
+
+
+//----------------------------------------------
+-Multiple variables having same in a same scope is not possible.
+
+-if you declare a varible having same name in the same scope then it will
+conflict with the existing variable and existing variable will be repalced
+with the latest declared variable.
+
+-By using closure a nested function can access the variables of outer function
+with help of lexical scope even after the execution of outer function is
+finished
+
+defined after the variable declaration.
+But the opposite is not true; the variables defined inside a function will not
+be accessible outside that function.
+
+//======================Context=====================
+
+Context:-
+context is an object on which the function is called.
+context is a current running object inside the function.
+
+'this' keyword:-
+this keyword is used to refer the context.
+this keyword is used to refer/point the current running object.
+
+
+uchita100497@gmail.com
+akshaylagad1299@gmail.com- 9604118342
+

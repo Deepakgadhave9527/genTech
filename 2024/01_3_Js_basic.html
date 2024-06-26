@@ -1,0 +1,877 @@
+
+//===========================JavaScript =========================
+
+
+Q1. What is JavaScript?
+
+
+- JavaScript:    
+                   -JavaScript is a lightweight and fast scripting language primarily used for client-side web development.
+- Dynamic Web Pages:    
+                   -With JavaScript, you can dynamically update and modify both HTML and CSS on web pages.
+- Data Manipulation:    
+                   -JavaScript empowers you to calculate, manipulate, and validate data, 
+                   -making it an essential tool for interactive and data-driven web applications.
+- Prototype-based Language:    
+                   -JavaScript is a prototype-based language, meaning that objects inherit properties and methods from other objects.
+- Client-Side Scripting:    
+                   -JavaScript is predominantly used for client-side scripting, enabling interactive and responsive user experiences directly within the web browser.
+- Dynamic Behavior:    
+                   -JavaScript adds dynamic behavior to web pages, allowing for interactive elements, animations, and dynamic content updates without requiring a page reload.
+- Storing Information:    
+                   -JavaScript can store and manipulate data locally on the client side, facilitating tasks such as form validation, user authentication, and managing user preferences.
+- Request Handling:    
+                   -JavaScript can handle HTTP requests and responses asynchronously, enabling features like AJAX for fetching data from servers without refreshing the entire page.
+- Cross-Platform:    
+                   -JavaScript is not limited to web browsers; it is also utilized in various non-browser environments, such as server-side development (Node.js) and mobile app development (React Native, Ionic).
+- Extensibility:    
+                   -JavaScript's modular and flexible nature allows developers to extend its functionality through libraries, frameworks, and plugins, catering to a wide range of development needs.
+
+
+JavaScript is a versatile and powerful programming language primarily used for client-side scripting on web pages. Here's a refined overview:
+
+- JavaScript light weight and fast scripting language for web page
+with help of JavaScript you can update and change both HTML and CSS.
+and also calculate, manipulate and validate data.
+javascript is prototype based language
+
+-JavaScript is a very powerful language for client-side scripting language.
+-JavaScript is programming language for the web,
+-you can update and change both HTML and CSS.
+-JavaScript can calculate, manipulate and validate data.
+-and also used in many non browesr environment.
+-javascript is prototype based language
+
+-you can use it add dynamic behavior, store information and handle request and response on a website. 
+
+
+Q2 Data types available in JavaScript
+
+#Statically typed languages:-
+The langauges in which the data type of variable and
+function return value is known at the time of compilation
+such languages are called statically typed languages.
+
+
+Example: C, C++, Java, etc
+
+// C
+int num;
+num = 100; valid
+num = "abcd"; invalid
+
+#Dynamically typed languages:-
+
+The langauges in which the data type of variable and function return value
+is not known at the time of compilation such languages are called
+dynamically typed languages.
+
+Example: Javascript, Python, PHP, etc.
+
+// Javascript
+var num;
+num = 100;
+num = true;
+num = "abcd;
+--------------------------
+Q.what is Datatype?
+-the type of value or type of data which is assign to a variable is called ad datatypes
+
+There are 8 basic data types in JavaScript.
+
+# JavaScript is having following primitive data type
+A] Primitive datatypes:-
+string
+number
+boolean
+undefined
+null
+bigint
+Symbol
+
+B]Derived data type
+# JavaScript is having following Derived data type
+object
+function
+
+1]undefined:
+-this unique datatype which only available in JavaScript non in any other language
+-if we just declare a variable and not assigned any value to it.
+-then the default value is called undefined
+e.g.
+var a;
+console.log(a)// undefined
+console.log(typeof a)// undefined
+
+2] null data:
+if we just declare variable and assign some dummy value instead of actual value is null data type
+var a = null;
+console.log(a)//null
+console.log( typeof a)//object
+
+3] Number:
+if we assign any numerical value or data to variable is called as number datatype
+
+4] string:
+-if we assign any textual value or data to variable
+5] Boolean :
+- if we assign true or false value to a variable is called as boolean Datatype
+
+5] Symbols:
+Symbols are new primitive type introduced in ES6.
+Symbols are completely unique identifiers. Just like their primitive
+counterparts (Number, String, Boolean),
+they can be created using the factory function Symbol() which returns a Symbol.
+
+//=====================================================================================================
+Usage of Javascript: -
+- To handle the user and web browser events
+- To validate the user inputs
+- To perform any arithmetic operations
+- To Manipulate the DOM
+- To create a web server using nodejs
+- To perform database operations using nodejs
+- To perform file operations using nodejs
+- To create APIs using nodejs
+
+Advantages of Javascript: -
+- It can be executed at client side as well as server side
+- It is light weight and fast
+- It gets executed asynchronously
+- As it gets executed inside the web browsers it improves the user experience
+- High server configuration is not required
+
+Limitation of Javascript: -
+- Javascript cannot be used to perform database operations inside the web browser.
+- Javascript cannot perform file operations inside the web browser
+
+//=====================================================================================================
+
+
+## How to execute javascript code ?
+
+There are 2 places to execute the javascript code
+1. Web browser
+
+In The web browsers there is a software called Javascript engine.
+Javascript engine is used to execute the javascript code.
+- Embed the javascript code inside the web page using <code><script></script></code> element and load the web page
+inside
+the web browser.
+
+2. Nodejs
+
+Nodejs is a software developed using C, C++ and javascript which comes
+with built in packages(small libraries) which uses the V8 javascript engine
+of Google chrome to execute the javascript code.
+
+Nodejs provides runtime environment to execute the javascript code without outside the web browser.
+
+// Note:- Web browser specific features(like alert, window, document, etc) cannot be executed using nodejs
+
+
+//=====================================================================================================
+
+## Keywords: - The words which are reserved by the prorgamming language are
+called keywords.
+
+Example: if, else, do, while, let, const, class, var, etc.
+
+Literal:- A constant value which can be assigned to a variable is called Literal
+
+Example:
+1000 - number literal
+"abcd" - string literal
+true - boolean literal
+{ } - object literal
+[] - array literal
+etc.
+
+//===================================Constructor function====================
+
+-In javascript which is used to intialize the object properties is called constructor function
+
+-The constructor function is used to initialize the object properties
+-constructor function name should start with a uppercase letter
+
+The constructor function is useful to create mulitple objects having similar properties
+
+function Student(roll, name, mobile, std) {
+this.rollNo = roll;
+this.name = name;
+this.mobile = mobile;
+this.std = std;
+}
+
+var s1 = new Student(1, "aaa", "1111", 2)
+var s2 = new Student(2, "bbbbb", "22222", 2)
+var s3 = new Student(3, "cccccc", "333333", 3)
+
+function printProfile(stud) {
+console.log(stud.name);
+console.log(stud.rollNo);
+console.log(stud.mobile);
+console.log(stud.std);
+}
+
+printProfile(s1);
+printProfile(s2);
+printProfile(s3);
+
+
+//========================== Error ==============================
+
+Error: -
+
+Abnormal condition which stops execution of the software application is called an error
+
+If an error raised then it will terminate the whole application and not a part of the app.
+
+
+Types of error: -
+
+- Error
+- SyntaxError
+- TypeError
+- ReferenceError
+- EvalError
+- URIError
+- RangeError
+
+
+
+
+//===============================Error Handling====================
+
+Error Handling: -
+The errors must be handled to avoid unexpected application ternimation and to show user
+friendly error messages.
+Following are the main purposes of error handling
+- to avoid application crash
+- to provide alterative solution
+- to display user friendly error messages.
+
+
+
+Error Handling: -
+
+To handle the error You need
+1. try block
+- try block is used to write statements which may raise the errors
+- all the statements of try block after the errored statements will not get exeucted even
+after error handling.
+- try block can be nested
+- Do not write all(irrelevant) statements, write related statements inside a try.
+
+
+2. catch block
+- catch block must be after the end of try block, no other statements are allowed between
+try and catch.
+- try without catch block is allowed but catch without try block is not allowed.
+- catch block is used to write alternative solution and display error messages
+- without catch block error handling is not possible
+- catch block accepts an error object as a parameter.
+- In javascript multiple catches are not allowed.
+
+
+3. finally block
+
+- finally block is optional to use in error handling
+- finally block can be used just after the try block of catch block
+- finally block will always gets executed despite error raised or not.
+- finally block is used to release the resources(db connection, file)
+
+
+4. throw keyword
+
+- the throw keyword is used to raise and throw an error in call stack.
+- the throw keyword is used to raise custom error.
+
+--------------------------
+
+list of statements used in an error handling,
+
+1] try: This statement is used to test a block of code for errors.
+
+2] catch: This statement is used to handle the error
+
+3] throw: This statement is used to create custom errors.
+
+4] finally: This statement is used to execute code after try and catch regardless of the result.
+
+----------------------------
+console.log("before statements");
+
+try {
+console.log(abc);
+} catch (e) {
+console.log(e.message);
+} finally {
+console.log("finally");
+}
+
+console.log("after statements");
+
+
+//=======================Document Object Model==============================
+
+DOM - Document Object Model
+DOM is a dynamic representation of a webpage maintained by the web browser.
+
+
+
+<!-- -------------window vs document ----------- -->
+
+window is a global object of javascript it is used to load / display a web page
+content in the web browser.
+
+The window object represents a tab of a web browser, it includes navigation model, histoy,
+location, document, etc.
+
+
+document represents a web page in the web browser.
+
+document object is a part of window object.
+
+Using document object you can dynamically update the content on the viewport.
+
+
+//====================DOM tree===========================
+DOM tree: -
+
+The web browser reads the web page content and creates a DOM tree in sync with the viewport
+
+The DOM tree has nodes, each node is an object of javascript
+
+There are two types DOM tree nodes
+1. DOM element node
+The nodes which are created for html elements are called element node
+
+2. DOM text node
+The nodes which are created for text and spaces are called text nodes
+
+
+Accessing DOM nodes: -
+
+There are 6 methods of document to access the DOM node
+
+1. getElementById(id): - returns a node which matches the provided id.
+
+2. getElementsByName(name): - returns a list of nodes which matches the provided name
+
+3. getElementsByTagName(tagname): - returns a list of nodes which matches the provided tagname
+
+4. getElementsByClassName(class): - returns a list of nodes which matches the provided class name
+
+5. querySelector(css selector): - returns a node which matches the provided css selector.
+
+6. querySelectorAll(css selector): - returns a list of nodes which matches the provided css selector
+
+
+Following are the properties to change the content
+
+- textContent : - This property only work with text data
+textContent does not parses the html elements from the string
+
+- innerHTML : - This proprety works with text and html elements
+innerHTML parses the the html elements from the string value
+innerHTML replaces the child of the element with assigned content
+
+- outerHTML: - This proprety works with text and html elements
+outerHTML parses the html elements from the string value
+outerHTML replaces the element itself with assigned content
+
+
+
+
+Follwing are the method to manipulate the attributes of an element
+
+setAttribute(aname,avalue); - to add an attribute
+hasAttribute(aname); - return true if attribute is avaiable otherwise return false.
+removeAttribute(aname); - to remove an attribute
+
+
+
+//=============== DOM tree traversa ===============================
+
+- To access parent node
+- parentNode: - returns a parent node
+
+
+- To access child nodes
+
+- firstChild : - returns a first child node including element or text node
+- firstElementChild : - returns a first element child node by ignoring text node
+- lastChild : - returns a last child node including element or text node
+- lastElementChild: - returns a last element child node by ignoring text node
+- childNodes: - returns a list of child nodes including text and element nodes
+- children: - returns a list of element child nodes by ignoring text node
+- childElementCount: - returns total number of child element nodes
+
+
+
+- To access Sibling nodes
+
+
+- nextSibling : - returns a next sibling node including text and element nodes
+- nextElementSibling: - returns next element sibling by ignoring text nodes
+- previousSibling : - returns previous sibling node including text and element nodes
+- previousElementSibling : - returns a previous element sibling node by ignoring text node
+
+
+//================= Event=================================
+Event: -
+An action performed at a particular time
+
+There are 2 categories of events
+1. Browser event
+These are the events performed by the web browser
+load
+offline
+online
+
+2. user event
+These are the events performed by the website user.
+click
+change
+mousemove
+
+
+//==========================Event Handling:===================
+Event Handling: -
+If you want perform any activity on events then you need to listen to the events.
+
+Ways of listening to events
+
+1. By using event attributes
+2. By using event property
+3. By using addEventListener() function
+
+addEventListener(eventname, callbackfucntion, propagationphase)
+This method is used to listen to any events of a node
+
+eventname: - this should be a valid event name like 'click', 'change', 'mousemove', etc.
+
+callbackfucntion: - it can be any javascript function which will gets executed on the particuler
+event of the node.
+
+propagationphase: - to enable capturing phase pass true or to enble bubbling phase pass false
+default is false
+
+
+
+//===============BOM - Browser Object Model======================
+
+It is not a standard.
+
+Popups
+There are 3 popups
+1. alert()
+It is used to show warning messages to the user
+
+2. confirm()
+It is used to take user confirmation
+
+
+3. prompt()
+It is used to take user input
+
+
+
+//=====================class ====================================
+## class :-
+
+-class is a model of an object.
+-By using a class you can create mutliple similar objects.
+-In javascript class is a function
+-In javascript classes are converted to the constructor functions
+
+Syntax:
+class ClassName{
+}
+// Example:-
+
+class Employee {}
+
+// console.log(typeof Employee);
+
+
+//=================================Programming Model==========================
+
+Programming Model:-
+A Programming model represents a set of features which are used to develop a programming Language.
+A programming model is just a specification, it does not comes with any tools.
+
+Following are some of the programming models
+
+1. Object oriented programming model
+
+2. Procedure oriented / structural programming model
+
+3. Functional programming model
+
+etc.
+
+
+
+
+Programming Language:-
+A Programming is used to develop the software, it comes rules(syntaxes),
+library(built in), tools (compilers)
+
+
+Example: ChannelSplitterNode,C++, Java, Javascript, etc.
+
+
+
+//===================Object Oriented Programming=============
+
+Object Oriented Programming Language?
+
+Characteristics of Object oriented programming
+
+- object
+- class
+
+- Inheritance
+- Polymorphism
+
+- Encapsulation
+- Abstraction
+
+//===================Inheritance================
+## Inheritance:-
+
+-Inheritance is a mechanism in which a class acquires the properties of another class
+-It is one of the characteristics of OOP
+-It is used to reuse the code
+
+
+The inheritance is achived using extends keyword
+
+Example:-
+
+class A{}
+class B extends A{}
+
+A is a super class
+B is a subclass
+
+
+//========Types of inheritance
+
+1. Single
+-In Single inheritance there is only one sub class and one super class
+
+Example:
+
+class Animal{}
+class Horse extends Animal{}
+
+2. Multilevel
+
+-In Multilevel inheritance one super clase is a sub class is sub class of another super class and so on.
+Example:
+
+class A{}
+
+class B extends A{}
+
+class C extends B{}
+
+class N extends C{}
+
+
+3. Hierarchical
+
+-In heirarchical inheritance one super class is inherited by more than one sub classes
+
+Example:
+
+
+
+class A{}
+
+class B extends A{}
+
+class C extends A{}
+
+class D extends A{}
+
+
+
+4. Multiple (not suported)
+5. Hybrid (not supported)
+
+
+
+
+//================ ===============constructor=======================
+
+// constructor method in a class.
+
+-The constructor of a class is used to initialize the properties of the objects.
+-A class can have only one constructor
+-In case of inheritance super class constructor must be called from sub class constructor if subclass has
+-its own constructor.
+
+class A {
+constructor(name, mobile) {
+this.name = name;
+this.mobile = mobile;
+}
+}
+
+class B extends A {
+city;
+
+constructor(n, m, city) {
+super(n, m);
+this.city = city;
+}
+}
+
+const b = new B("Topper Skills", "7875580668", "Pune");
+
+console.log(b);
+
+}
+
+
+// use the arrow function as method if u want that context of the method always should be
+// the same class object
+getCity = () => {
+console.log(this.city);
+};
+}
+
+
+
+//=====================Polymorphism ======================
+Polymorphism :-
+
+Poly = many
+morph = forms
+
+Same name and different forms is called polymorphism
+There is boy named Ram, age 20
+
+There are 2 ways to achieve the polymorphism.
+
+1. By using method overloading (Javascript does not support method overloading)
+
+In method loading you can define more than one method having same name in a single class
+
+Rules:-
+
+- Methods must be in same class
+- Method names must be same
+- Method parameters must be different(number or type parameters)
+- Method body can be same
+
+
+Example:-
+
+
+class Addition{
+add(int a,int b){
+return a+b;
+}
+
+add(int a,float b){
+return a+b;
+}
+
+}
+
+add(10,20)
+add(10,20.3)
+
+
+Q. Why does Javascript not support method overloading?
+
+In method overloading number of parameters or type of parameters must be different. But
+Javascript is dynamic typed language so type parameters cannot defined and matching
+number of arguments and parameters at the time of calling function is not mandatory
+therefore method overloading is not supported.
+
+
+Method Overriding:-
+
+If the super class method is not fulfilling the requirement of sub class then sub
+defined its own method having same name as super class method this concept is called
+method overriding.
+
+
+
+
+
+forEach():
+- it accepts a function having three parameters (value, index, array)
+- It does not return anything
+- This function is suitable to perform operatoins on existing array .
+
+Syntax:
+
+forEach(function(value, index, array){
+
+})
+
+
+
+
+//======================================= Operators==============================================================
+<pre>
+Q5 Operators
+
+JavaScript operators are used to assign values, compare values, perform arithmetic operations, and more.
+JavaScript Arithmetic Operators. ...
+JavaScript Assignment Operators. ...
+JavaScript String Operators. ...
+Comparison Operators. ...
+Conditional (Ternary) Operator. ...
+Logical Operators. ...
+JavaScript Bitwise Operators. ...
+The typeof Operator.
+
+1] unary operators: -
+    The operators which works on single value are called unary operators
+ 
+// Example:
+increment operator(++) - increases the value by one
+
+ //post increment 
+var a = 10;
+console.log(a++);//10
+console.log(a)//11
+
+//pre increment
+var b=10
+console.log(++b);//11
+console.log(b);//11
+
+decrement operators (--) - decreases the value by one 
+
+ //post decrement 
+var a = 10;
+console.log(a--);//10
+console.log(a)//9
+
+//pre decrement
+var b=10
+console.log(--b);9
+console.log(b);0
+
+
+2] binary operators:-
+
+    - Arithmetic operators
+        +, -, *, /,
+
+% (Modulus) - It calculates the remainder  
+        12 % 5 = 2
+        9 % 5 = 4
+        9 % 2 = 1
+            
+        
+        
+
+4] Comparison operators
+        == (compare two values without checking the datatypes)
+        > greater than 
+        >= greater than or equals to 
+        < less than 
+        <= less than or equals to 
+        != not equals to 
+
+        === (compares two values and their datatypes)
+        !==  return true if value or data types is not same 
+
+5] Logical Operators
+        
+        && - AND
+        
+
+0   0 = 0
+1   0 = 0
+0   1 = 0
+1   1 = 1
+    
+    
+        
+AND operator will check second condition only if the first condition become
+        true otherwise it will not check 
+    
+    
+    
+    
+    || - OR
+    
+    0   0 = 0
+    1   0 = 1
+    0   1 = 1
+    1   1 = 1
+    
+    <!-- 10>10 || 20<20 -->
+
+    
+OR operator will check the second condition only if first becomes false
+    
+    
+
+        !
+        
+6] assignment operators
+
+        =
+        +=
+        -=
+        *=
+        /=
+
+7] ternary operators 
+condition ? true statement: false statement;
+
+</pre>
+//================================================================
+
+Q typeof(): find the datatype of any value/variable you can use typeof operator
+
+
+
+
+-However, the arrow functions are only callable and not constructible,
+-i.e arrow functions can never be used as
+constructor functions. Hence, they can never be invoked with the new keyword.
+
+
+-arrow functions do not have their own this
+-arrow function they dont have own this and equals to this of the outer function.
+-this inside the arrow function is bound lexically and equals to this of the outer function.
+If the arrow function has one expression, then the expression is returned implicitly, even without using the return
+keyword.
+
+
+// Arrow function:-
+-The arrow function helps to define a function is very less code
+
+Syntax:-
+
+(parameters) => {body}
+
+Define a function to calculate square
+// Rules:
+
+If there is only one parameter then writing paranthesis () is optional
+
+If there is single statement/expression in the body then return statement and curly braces are optional
+
+const sq2 = a => a * a;
+
+
+'this' keyword in Named and anonymous function always refers to the object on which these function are called.
+
+It means it does not matter where the functions are defined but it matters where the functions are called.
+
+'this' in arrow function will always refers to the context (object) under which the function is defined.
+It does not matter where the function is called.

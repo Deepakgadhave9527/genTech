@@ -1,0 +1,133 @@
+
+// Nodejs:-
+
+Nodejs is a software tool developed using C, C++ and javascript which provides runtime
+environment to execute javascript code outside/without the web browser.
+
+Nodejs uses the V8 javascript engine of Google chrome web browser.
+
+Nodejs does not supports the DOM specific concepts like there is no window and document
+objects available in the nodejs.
+
+1]if you want connect only one database then you can use connect()
+   -default Connection
+
+ mongoose.connect(URL)
+
+2]if you want connect or use many database then you can use createConnection().
+- create an instance connection
+mongoose.createConnection()
+
+
+
+
+
+
+
+// to define Schema for product Collection
+- the schema is used to validate the structure of the document to be added 
+in collectiob
+
+create model to validate with the schema
+const insert = mongoose.model("collectionName singular",SchemaName);
+
+const insertDoc =new insert(doc)
+
+insertdoc.save().then().catch() 
+
+
+
+// console.log(window);
+// console.log(document);
+// console.log(document.getElementById("title"));
+
+The nodejs supports some of the important features like file operations, database operations, etc
+which are not supported in the web browser.
+
+There are a lots of libraries(packages) in the nodejs
+
+There are 2 categoties of packages
+
+1. Built in packages of nodejs
+
+2. Third party packages
+
+  There is a tool used to install/update/uninstall the third party packages called
+  NPM (Node Package Manager)
+
+
+
+nodeje command passed to under stand DB to n 
+between nodeJS  and MongoDb translator 
+mmongoDb
+dirver
+
+
+
+
+
+
+
+
+
+
+
+
+The official MongoDB Node.js driver allows Node.js applications to connect to MongoDB and work with data. 
+
+
+
+What is Mongoose used for?
+Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node. js. 
+It manages relationships between data, provides schema validation,
+and is used to translate between objects in code and the representation of those objects in MongoDB.
+
+
+
+
+
+
+
+
+
+
+
+
+server create app.listen(PORT,CB(req,res)
+
+request-In req ob is give data from (data )client to server
+response - res obj is send data server to client
+app.get("path",CB);
+
+res.send() is middler to send message response to server to clinet 
+
+app.use() used to Mounts the middleware function or mount to a specified path,the middleware function is executed when the base path matches.
+
+
+
+Difference between app.use() and app.get() methods:
+
+app.use() method
+
+-It can be used for making routes modular (like exposing a set of routes from an npm module that other web applications could use).
+-It is intended for binding middleware to your application. 
+The path is a mount path and limits the middleware to only apply any paths requested that begin with it.
+-The middleware function is executed when the base of the requested path matches path.
+-It will allow for all http requests matching that route.
+-Syntax: app.use([path,],callback[,callback…])	
+
+app.get() methods:
+
+-The method is used to expose the GET method.
+-It is intended for matching and handling a specific route when requested by get http.
+-Routes HTTP GET requests to the specified path with the specified callback functions.
+-It will only be allowed for http GET requests to that particular route
+-Syntax: app.get(path, callback)
+
+
+
+
+
+
+
+
