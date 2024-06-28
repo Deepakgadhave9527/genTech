@@ -177,7 +177,6 @@ The event loop in JavaScript is a fundamental concept that helps manage the exec
 
 
 
-
 ================================================================================================================================================================
 Single-Threaded Execution:
 
@@ -514,12 +513,13 @@ Debounce vs Throttling
 - Debouncing and throttling are two commonly used techniques in web development to optimize performance and reduce the load on web servers.
 - These techniques are particularly useful when dealing with events that can trigger multiple times in quick succession, such as user inputs or page scrolling.
 - By implementing debouncing and throttling, we can limit the number of times a function is called and prevent overwhelming the server with requests.
-- This results in a better user experience and improved website performance.
 
 
 function is only executed after a specified delay period has passed since the last time the function was invoked. 
 
 while throttling limits the number of times the function can be called over a certain period.
+
+- This results in a better user experience and improved website performance.
 
 
 Debounicng real world example

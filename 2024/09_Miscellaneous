@@ -1,3 +1,79 @@
+================================================================================
+when you update multiple states in a single function
+
+
+
+
+================================================================================
+
+
+
+
+
+why const array can be changed in javascript
+how it works and why changes to a const array (likely referring to state managed by useState) are allowed:
+
+-const keyword is used to declare variables whose values cannot be reassigned.
+ However,
+-if you use const to declare an array, you can still change the contents of the array. 
+-This is because const only ensures that the reference to the array remains constant, not the content of the array itself.
+
+changes to the contents of the state variable (like an array) are allowed because const refers to the reference (pointer) to the state object, not the immutability of the object itself
+
+================================================================================
+
+why const allows changes to arrays (non-primitives) but doesn't allow reassignment for primitives, and why changes to a const array are allowed.
+
+Primitives
+Primitives in JavaScript include numbers, strings, booleans, null, undefined, and symbols. 
+These are immutable, meaning their values cannot be changed once created. 
+When you assign a primitive to a variable, the variable holds the actual value.
+
+const with Primitives
+When you use const with a primitive value, the value itself is stored in the variable and cannot be changed.
+
+const a = 5;
+const b = a; // b gets the value 5, not a reference
+
+b = 10; // This will throw an error because b is a const and cannot be reassigned
+console.log(a); // Output: 5
+console.log(b); // Output: Error, as reassignment is not allowed for const variables
+
+
+Non-Primitives
+Non-primitives include objects, arrays, and functions. 
+These are mutable, meaning their contents can be changed.
+When you assign a non-primitive to a variable, the variable holds a reference to the object in memory.
+
+const with Non-Primitives (Arrays and Objects)
+When you use const with a non-primitive (like an array), the reference to the array is stored in the variable. This reference cannot be changed, but the contents of the array can be modified.
+
+The const keyword ensures that the reference to the array is constant, not the array's contents.
+
+
+For primitives, const makes the value itself immutable and the reference unchangeable.
+For non-primitives, const makes the reference unchangeable, but the contents of the object or array can still be modified.
+
+const array1 = [1, 2, 3];
+const array2 = array1; // array2 gets the reference to the same array
+
+array2[0] = 10; // Modifies the content of the array
+console.log(array1); // Output: [10, 2, 3]
+console.log(array2); // Output: [10, 2, 3]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Cross-browser compatibility ensures that web applications work consistently across different browsers and versions. give the consistent user experience across different web browsers
 
