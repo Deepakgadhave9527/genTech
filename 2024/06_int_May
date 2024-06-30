@@ -1,5 +1,39 @@
 
 
+### A) Multipage Application (MPA)
+
+- **Definition**: An application/website with multiple requestable web pages is called a multipage application.
+- **Content Fetching**: Different content requires fetching different web pages from the server.
+- **Performance**: Multipage applications can be slower because each request is sent to the server, and the server returns a web page as a response.
+- **Server Resources**: Utilizes server resources for each request, often requiring high-configuration servers.
+- **Bandwidth**: Uses more bandwidth as each page load requires a full page download.
+- **DOM Recreation**: Recreates the DOM for each request.
+- Load all content in a single HTML page.
+- Dynamically update content using JavaScript frameworks like React or Angular.
+- Enable smoother user experiences by avoiding full page reloads.
+- May have slower initial load times due to loading all resources upfront.
+- Suitable for complex web applications with frequent user interactions.
+
+
+### B) Single Page Application (SPA)
+
+- **Definition**: An application with a single requestable web page is called a single page application.
+- **Content Loading**: In SPAs, all the content is loaded in the web browser on the first request. Subsequent requests are handled by the browser.
+- **Server Resources**: Does not utilize server resources for each request because the content is served from the web browser.
+- **Bandwidth**: Requires less bandwidth since the initial load fetches the full application, and subsequent interactions are handled client-side.
+- **Performance**: Slow for the first request due to the initial load but fast for subsequent requests.
+
+- Consist of multiple HTML pages, each loaded separately from the server.
+- Require full page reloads when navigating between pages.
+- Generally simpler to build and maintain compared to SPAs.
+- Often faster to load because only necessary content for each page is loaded.
+- Better suited for content-driven websites with less interactivity.
+
+
+
+
+====================================================================================
+
 https://www.wisdomgeek.com/development/web-development/javascript/javascript-promises-combinators-race-all-allsettled-any/
 
 ### Promises in JavaScript
@@ -52,7 +86,7 @@ Promises provide a more effective way to handle asynchronous code, avoiding call
    - Returns a single promise that settles with the result (or rejection reason) of the first settled promise.
 
 
-+
+===============================================================================
 **Virtual DOM (VDOM)**:
 The Virtual DOM is a concept that used improve the efficiency of web page updates.
  It is a lightweight, in-memory representation of the actual DOM. 
@@ -61,7 +95,7 @@ The Virtual DOM is a concept that used improve the efficiency of web page update
  The real DOM is then updated with only the parts that have changed.
  <!-- only the parts that have changed are updated in the real DOM. -->
  
-================================================================================================================================================================
+===============================================================================
 
 **Reconciliation**:
 Reconciliation is the algorithm that React uses to update the UI. 
@@ -79,7 +113,7 @@ This explanation highlights the key concepts of the Virtual DOM and reconciliati
 
 
 
-===================================================================================================================================================
+===============================================================================
 
 
 
@@ -126,7 +160,7 @@ This explanation highlights the key concepts of the Virtual DOM and reconciliati
 
 
 
-===================================================================================================================================================
+===============================================================================
 
 What is the box model in CSS?
 
@@ -141,7 +175,7 @@ that describes the layout and design of elements on a web page.
 
 
 
-====================================================================================================================================================
+================================================================================
 
 
 Flexbox:
@@ -165,7 +199,7 @@ Utilizes properties like display: grid, grid-template-rows, and grid-template-co
 
 
 
-====================================================================================================================================================
+================================================================================
 
 
 Sure, let's compare Flexbox and CSS Grid across various aspects:
@@ -211,7 +245,7 @@ In summary, Flexbox is well-suited for simpler layouts and alignment tasks, whil
 
 
 
-====================================================================================================================================================
+================================================================================
 
 display none and visibility hidden
 
@@ -225,7 +259,7 @@ I         It's not rendered and doesn't affect the document flow.
 
 
 
-====================================================================================================================================================
+================================================================================
 
 
 
@@ -291,7 +325,7 @@ sticky
 
 
 
-====================================================================================================================================================
+================================================================================
 
 
 ##Block Elements:
@@ -321,7 +355,7 @@ sticky
 
 
 
-====================================================================================================================================================
+================================================================================
 
 specificity
 
@@ -355,7 +389,7 @@ when multiple conflicting rules exist
 
 
 
-====================================================================================================================================================
+================================================================================
 
 CSS selector can contain more than one simple selector. Between the simple selectors, we can include a combinator.
 
@@ -371,7 +405,7 @@ general sibling selector (~)
 
 
 
-====================================================================================================================================================
+================================================================================
 Webpack
 
  Webpack is a popular open-source module bundler for JavaScript applications.
@@ -389,7 +423,7 @@ Webpack
 
 
 
-====================================================================================================================================================
+================================================================================
 
 
 

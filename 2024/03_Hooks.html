@@ -186,17 +186,9 @@ const theme = useContext(context)
 
 
     useCallback: Returns a memoized callback.
-
-    {/* -React's useCallback() Hook can be used to optimize the rendering behavior of your React function
-    components.
-    -This is useful when passing callbacks to optimized child components that rely on reference equality to
-    prevent unnecessary renders (e.g. shouldComponentUpdate).
-    useCallback: The useCallback is a react hook that returns a
-    memoized callback when passed a function and a list of dependencies as parameters.
-    Its very useful when a component is passing a callback to
-    its child component to prevent the rendering of the child component.
-    It only changes the callback when one of its dependencies gets changed. */}
-
+    The useCallback hook in React is used to memoize a callback function,
+     ensuring that it only changes if one of its dependencies changes.
+      This is particularly useful for preventing unnecessary re-renders when passing functions to child components.
 
     ---------------------------------------------------------------------------------
 
@@ -228,7 +220,9 @@ const theme = useContext(context)
     It recalculated the value only when one of its dependencies change.
     It is useful to avoid expensive calculations on every render when the returned value is not going to change. */}
     ---------------------------------------------------------------------------------
-
+    React.memo is a higher-order component in React that memoizes a component, meaning it will only re-render if its props change. This is particularly useful for functional components to optimize performance by preventing unnecessary re-renders.
+    ---------------------------------------------------------------------------------
+  
     useImperativeHandle()
 
     useImperativeHandle() customizes the instance value that is exposed to parent components when using ref. As always,

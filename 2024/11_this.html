@@ -1,0 +1,168 @@
+<script>
+  //Normal Function
+  function function1() {
+    console.log(this === window); //T
+    console.log(this);
+  }
+  function1();
+
+  console.log("-----------obj1-----------");
+
+  const obj1 = {
+    name: "HArry",
+    func1: function () {
+      console.log(this); //obj1
+      console.log(this.name); //harry
+      console.log(this === obj1); //T
+    },
+  };
+  obj1.func1();
+
+  console.log("-----------obj2-----------");
+
+  const obj2 = {
+    name: "potter",
+    func2: function () {
+      console.log(this); //obj2
+        setTimeout(function () {
+          console.log(this); //window
+          console.log(this === window);//T
+        }, 1000);
+    },
+  };
+  obj2.func2();
+
+  console.log("-----------obj3-----------");
+
+  const obj3 = {
+    name: "Tom",
+    func3: function () {
+      console.log(this); //externalObj
+      console.log(this.name); //X-Man
+      console.log(this === externalObj); //T
+    },
+  };
+  const externalObj = {
+    name: "X-Man",
+  };
+  obj3.func3.call(externalObj);
+  //Apply,Bind is same This value as call
+
+  console.log("-----------obj4-----------");
+
+  const obj4 = {
+    name: "Y-Man",
+    func4() {
+      console.log(this); //obj4
+      console.log(this === obj4); //T
+    },
+  };
+  obj4.func4();
+
+  console.log("-----------obj5-----------");
+
+  const obj5 = {
+    name: "Z-Man",
+    func5() {
+      console.log(this); //obj4
+      console.log(this === window); //T
+    },
+  };
+  const Result = obj5.func5;
+  Result();
+
+  //Arrow Function
+  console.log("---------- arrowFunc1------------");
+
+  const arrowFunc1 = () => {
+    console.log(this); //window
+    console.log(this === window);
+  };
+  arrowFunc1();
+
+  console.log("---------- obj6------------");
+
+  const obj6 = {
+    name: "Rajesh",
+    func6: () => {
+      console.log(this === window); //T
+      console.log(this); //window
+    },
+  };
+  obj6.func6();
+
+  console.log("---------- obj7------------");
+  const obj7 = {
+    name: "Raksi",
+    func7: function () {
+      console.log(this); //obj7
+      return () => {
+        console.log(this); //obj7
+        // console.log(this == window); //F
+        console.log(this == obj7); //T
+      };
+    },
+  };
+
+  obj7.func7()();
+
+  console.log("---------- obj8------------");
+
+  const obj8 = {
+    name: "Lax",
+    func8: () => {
+      console.log(this); //Window
+      setTimeout(()=>{
+          console.log(this);//Window
+          console.log(this===window);//T
+
+      },1000)
+    },
+  };
+  obj8.func8();
+
+  console.log("---------- obj9------------");
+
+  const obj9 = {
+    name: "Lax",
+    func9: () => {
+      console.log(this); //Window
+      // setTimeout(function(){
+      //     console.log(this);;//Window
+      //     console.log(this===window);//T
+
+      // },1000)
+    },
+  };
+  obj9.func9();
+
+  console.log("---------- obj10------------");
+
+  const name = "Global";
+
+  const obj10 = {
+    name: "Lax",
+    func10: () => {
+      console.log(this); //Window
+      console.log(this.name); //Global
+    },
+  };
+  const externalObj2 = {
+    name: "jacky",
+  };
+  obj10.func10.call(externalObj2);
+
+  console.log("---------- obj11------------");
+
+  const obj11 = {
+    name: "deepak",
+    func11: function () {
+        console.log(obj11===this);//T
+      setTimeout(() => {
+        console.log(this); //obj11
+        console.log(this == obj11); //T
+      }, 1000);
+    },
+  };
+  obj11.func11();
+</script>
