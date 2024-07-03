@@ -57,12 +57,68 @@
     -----------------------------------------------------------------------------
 
     02 useReducer()
+    The useReducer hook in React is used for managing state in a component, especially when the state logic is complex and involves multiple sub-values or when the next state depends on the previous one.
+     It is an alternative to useState and is inspired by Redux. 
 
     -useReducer is a React hook function that accepts a reducer function, and an initial state. ...
     -This hook function returns an array with 2 values.
 
     -He first one is the state value, and the second value is the dispatch function which is further
     used to trigger an action with the help of array destructuring.
+       
+    const INITIAL_STATE = {
+          title: "",
+          description: "",
+          price: 0,
+          category: "",
+          tags: [],
+          quantity: 0,
+          comments: ""
+        };
+
+
+    const reducerFunction = (state, action) => {
+        switch (action.type) {
+          case "Change_Input":
+            return {
+              ...state,
+              [action.payload.name]: action.payload.value
+            };
+          case "Add_Tags":
+            return {
+              ...state,
+              tags: [...state.tags, ...action.payload]
+            };
+          case "Increment":
+            return {
+              ...state,
+              quantity: state.quantity + 1
+            };
+          case "Decrement":
+            return {
+              ...state,
+              quantity: state.quantity - 1
+            };
+          case "Remove_Tag":
+            return {
+              ...state,
+              tags: state.tags.filter(tag => tag !== action.payload)
+            };
+          default:
+            return state;
+        }
+      };
+
+      const [state, dispatch] = useReducer(reducerFunction, INITIAL_STATE)
+
+
+      const OnHandleChange = (e) => {
+        const { name, value } = e.target;
+        dispatch({
+          type: "Change_Input",
+          payload: { name, value }
+        });
+      };
 
 
     useReducer is usually preferable to useState when you have complex state

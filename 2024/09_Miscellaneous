@@ -96,6 +96,7 @@ When you use const with a non-primitive (like an array), the reference to the ar
 
 The const keyword ensures that the reference to the array is constant, not the array's contents.
 
+================================================================================
 
 For primitives, const makes the value itself immutable and the reference unchangeable.
 For non-primitives, const makes the reference unchangeable, but the contents of the object or array can still be modified.
