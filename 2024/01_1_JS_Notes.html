@@ -15,7 +15,10 @@ introduced to declare the variables.
 var:-
 - it is hoisted
 - It is function scoped
-<!-- - It is rewritable -->
+- It  rewritable
+var x = 10;
+x = 20; // Valid: Updates the value of x
+
 - Can be redeclared within the same scope
 var x = 5;
 var x = 10;
@@ -24,7 +27,10 @@ var x = 10;
 let:-
 - It is not hoisted
 - It is block scoped
-<!-- - It is rewritable -->
+- It is rewritable
+
+let y = 10;
+y = 20; // Valid: Updates the value of y
 
 - Cannot be redeclared within the same block scope
 
@@ -37,13 +43,20 @@ ReferenceError: Cannot access 'a' before initialization
 const:-
 - It is not hoisted
 - It is block scoped
+-const is not  rewritable
+
+const x = 10;
+x = 20; // Error: Assignment to constant variable.
+
 - Cannot be redeclared within the same block scope
 
 const z = 5;
 const z = 10; // SyntaxError: Identifier 'z' has already been declared
 
-
-
+For primitives, 
+const makes the value itself immutable and the reference unchangeable.
+For non-primitives, 
+const makes the reference unchangeable, but the contents of the object or array can still be modified.
 
 
 //================================= Closure ========================
@@ -240,6 +253,11 @@ JavaScript provides a typeof operator that can examine a value and tell you what
 var a;
 typeof a; // "undefined"
 
+
+console.log(typeof undefined); // Output: "undefined"
+console.log(typeof null);      // Output: "object"
+console.log(typeof NaN);       // Output: "number"
+
 let a;
 
 a = "hello world";
@@ -283,6 +301,7 @@ const greetArrow = (name) => {
 console.log(typeof greetArrow); // "function"
 
 
+
 ========================== ES6 features ==================================
 
 Below is the list of top ES6 features every JavaScript developer should know,
@@ -301,11 +320,10 @@ Object.assign() and Object.is()
 
 ========================== Prototype ==================================
 Prototype:-
+- Every object in JavaScript has a prototype, which is another object that provides shared properties and methods.
+-Prototypes are the mechanism by which JavaScript objects iinherit properties and method from one another.
 
 -Javascript is a Prototype based language.
--Prototypes are the mechanism by which JavaScript objects inherit features from one another.
-- Every object in JavaScript has a prototype, which is another object that provides shared properties and methods.
-- The prototype mechanism allows objects to inherit properties and methods from their prototypes.
 
 
 
