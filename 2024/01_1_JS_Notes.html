@@ -1,3 +1,415 @@
+
+
+##============ Object cloning============
+
+-Crreating a duplicate object of an existing object is called object cloning
+
+There are 2 types of object cloning
+
+1. Shallow cloning
+-In shallow cloning only direct/main object gets cloned but not the object
+which are referred by the properties of main object.
+
+-changing value of cloned object will be refect into
+orginal object as well because both are point same refrance object
+
+const original = { a: 1, b: { c: 2 } };
+const clone = { ...original };
+
+
+clone.b.c = 3;
+console.log(original.b.c); // Output: 3
+
+This happens because original.b and clone.b point to the same object in memory.
+
+const original = {
+  name: 'John',
+  age: 30,
+  address: { city: 'New York', country: 'USA' }
+};
+
+const shallowClone = Object.assign({}, original);
+
+console.log(shallowClone === original); // false (different objects)
+console.log(shallowClone.address === original.address); // true (same reference)
+
+
+
+2. Deep cloning
+-In deep cloning all the object direct/main and nested objects will be cloned.
+
+-changing value of cloned object will be not refect into
+orginal object as well because both are point different refrance object
+
+const original = { a: 1, b: { c: 2 } };
+
+const clone = JSON.parse(JSON.stringify(original));
+clone.b.c = 3;
+console.log(original.b.c); // Output: 2
+
+const original = {
+  name: 'John',
+  age: 30,
+  address: { city: 'New York', country: 'USA' }
+};
+
+const deepClone = JSON.parse(JSON.stringify(original));
+
+console.log(deepClone === original); // false (different objects)
+console.log(deepClone.address === original.address); // false (different objects)
+
+
+
+
+var person = {
+name: "deepak",
+add: {
+road: "MRG",
+puc: 65
+}
+
+}
+//var person2 = person;
+//person2.name="wadikar"
+
+// shallow cloning
+let person2 = Object.assign({}, person)
+person2.name = "patil";
+person2.add.road = "pa";
+
+//deep cloning
+var p3 = JSON.parse(JSON.stringify(person));
+p3.add.road = "MGm3"
+
+console.log(person)
+console.log(person2)
+console.log(p3)
+
+
+const obj={
+name:"ABC",
+age:20,
+address:{
+city:'Beijing',
+country:'China'
+}
+}
+const obj2 ={...obj}
+obj2.name="PQR"
+
+const obj3 =Object.assign({},obj)
+obj3.age=21
+
+const obj4=JSON.parse(JSON.stringify(obj))
+obj4.address.city="Pune"
+console.log("obj",obj);
+console.log("obj2",obj2);
+console.log("obj3",obj3);
+console.log("obj4",obj4);
+
+
+
+
+
+
+// Original object with nested properties
+const original = {
+    name: 'John',
+    age: 30,
+    address: { city: 'New York', country: 'USA' }
+};
+
+// Shallow clone using Object.assign or spread syntax
+const shallowClone = Object.assign({}, original);
+
+// Modify the shallow clone
+shallowClone.name = 'Jane';
+shallowClone.address.city = 'San Francisco';
+
+// Log both original and shallow clone
+console.log(original);    // Output: { name: 'John', age: 30, address: { city: 'San Francisco', country: 'USA' } }
+console.log(shallowClone); // Output: { name: 'Jane', age: 30, address: { city: 'San Francisco', country: 'USA' } }
+
+
+
+//=========================================Set====================
+Set:-
+Set is like an array but it stores only unique elements.
+
+An array is used to store multiple elements of any type, an array can store duplicate
+elements.
+
+// Creating a set
+1. Creating empty set.
+const s1 = new Set();
+
+// add(value) - adds an element and returns the set after adding the element
+
+
+
+//============================map ===============================
+Map:- The Map is used to store key value pairs .
+
+A key value pair is called an entry
+A key must be unique
+the values can be duplicate
+
+Creating Map
+
+1. creating empty map
+
+const m1 = new Map();
+
+set()
+delete()
+value()
+keys()
+
+
+//=============================sync and asynch=================
+Note:- Javascript is a Synchronous programming language.
+
+Javascript is single threaded.
+
+But the execution environment of the Javascript is asynchronous.
+
+// synchronous execution
+
+How does javascript code gets executed asynchronously when there is one thread?
+
+=> Javascript is single threaded, synchronous but the environment in which the javascript
+code gets executed is asynchronous.
+
+The javascript runtime(event loop) performs non blocking IO operations by offloading most of the work
+to operating system.
+/
+/callback
+
+// To write async code you need
+
+1. callback
+
+A callback is a normal javascript function which is passed as an argument to
+another function to perform future operation.
+
+A callback is used to perform any future operation after an asynchronous operation.
+
+
+// 2. Promise
+
+// 3. async await
+
+
+
+//== ==============================Higher Order function :-==============================
+Higher Order function :-
+A function which accepts another function as an argument is called a higher
+order function.
+The higher order function is used to perform different operations.
+
+Example: addEventListener
+
+
+
+//=================== promise =============================
+Promise:
+In JavaScript,
+ a Promise is an object representing the eventual completion or failure of an asynchronous operation and its resulting value. 
+ Promises provide a way to handle asynchronous code more effectively, avoiding callback hell and making code easier to read and maintain.
+
+
+
+In JavaScript, a Promise is an object that will produce a single value some time in the future.
+ If the promise is successful, it will produce a resolved value
+ ,but if something goes wrong then it will produce a reason why the promise failed. 
+The possible outcomes here are similar to that of promises in real life.
+
+
+
+
+-Promise are thr ideal choice for handling asynchronous operation in simplest manner
+-they can handle multiple asynchronous operation easily and provide better error handling then Callback and event
+#promise has four strategist
+1]fulfilled: Action related to the promise succeeded
+2] Rejected : Action related to the promise failed
+3] pending- Neither fulfilled nor rejected yet means promise still pending.
+4]settle- The Promise has been either fulfilled or rejected.
+
+A].then():
+-then() function is invoked when a promise is resolved and a result is received.
+
+B].catch()
+catch() function is invoked when a promise is either rejected or some error has occured in execution.
+
+Applications
+Promises are used for asynchronous handling of events.
+Promises are used to handle asynchronous http requests.
+
+
+
+
+
+A promise is an object which is used to perform asynchronous operations.
+
+A promise gets settled(either resolved or rejected) in future.
+
+If promise gets resolved then it calls the callback passed to then() function.
+
+If promise gets rejected then it called the callback passed to catch() function.
+then chaining
+
+Writing multiple thens one after another for a promise is called then chaining
+
+A then() returns a promise
+
+
+
+
+
+//===========================asynch await =========================
+
+
+-The async await is used to pause the execution of a function until a promise gets settled
+
+
+-async keyword Put the before a function , tells the function to return a Promise
+-await" keyword is used within an async function to pause its execution until a Promise is settled.
+- It waits for the Promise to resolve (either fulfilled or rejected) and then returns its result.
+-await should only be used inside the async function.
+
+
+
+
+//===========================asynch await =========================
+async await
+
+-The async await is used to pause the execution of a function until a promise gets settled
+
+A] - Async Keyword:
+
+-async keyword Put the before a function , tells the function to return a Promise
+- This allows the function to use the "await" keyword internally to handle asynchronous operations.
+
+
+B]- Await Keyword:
+
+
+- "await" keyword is used within an async function to pause its execution until a Promise is settled.
+- It waits for the Promise to resolve (either fulfilled or rejected) and then returns its result.
+- Note: The "await" keyword can only be used inside async functions, otherwise, it would result in a SyntaxError.
+
+
+
+-await should only be used inside the async function.
+
+-The await keyword simply makes JavaScript wait until that Promise settles and then returns its result
+-await keyword only works inside async functions, otherwise you would get a SyntaxError.
+
+
+//===========================global object =========================
+
+
+Q1. what is global object in javascript?
+-A global object is an object that always exists in the global scope
+-In a web browser, the global object is the window object
+-The global object can be accessed using the "this" operator in the global scope
+-The global object in JavaScript is an always defined object that provides
+variables and functions, and is available anywhere.
+
+
+
+window is a global object of javascript it is used to load / display a web page
+content in the web browser.
+
+The window object represents a tab of a web browser, it includes navigation model, histoy,
+location, document, etc.
+
+document represents a web page in the web browser.
+
+document object is a part of window object.
+
+Using document object you can dynamically update the content on the viewport.
+
+//===========================this =========================
+
+
+Q2. What is this?
+
+In JavaScript, the `this` keyword refers to the current execution context.
+Its value depends on how a function is called and where it is called.
+The behavior of `this` can vary in different situations:
+
+<!-- -The JavaScript this keyword refers to the object it belongs to. -->
+-Alone, this refers to the global object.
+-In a function, this refers to the global object.
+-In a method, this refers to the owner object.
+
+-In a function, in strict mode, this is undefined.
+-In an event, this refers to the element that received the event.
+-Methods like call(), and apply() can refer this to any object.
+
+
+It has different values depending on where it is used:
+
+
+
+
+1. Global context:
+In the global scope, `this` refers to the global object, which is `window` in web browsers and `global` in Node.js.
+
+console.log(this === window); // true in a browser environment
+
+
+2. Function context: Inside a function, the value of `this` depends on how the function is called. If the function is called as a method of an object, `this` refers to that object.
+
+const obj = {
+name: 'example',
+greet: function() {
+console.log('Hello, ' + this.name);
+}
+};
+
+obj.greet(); // Output: Hello, example
+
+
+3. Constructor context: When a function is used as a constructor with the `new` keyword, `this` refers to the newly created instance.
+
+function Person(name) {
+this.name = name;
+}
+
+const person1 = new Person('John');
+console.log(person1.name); // Output: John
+
+
+4. Explicit binding: You can explicitly set the value of `this` using `call()`, `apply()`, or `bind()` methods.
+
+function greet() {
+console.log('Hello, ' + this.name);
+}
+
+const obj1 = { name: 'Alice' };
+const obj2 = { name: 'Bob' };
+
+greet.call(obj1); // Output: Hello, Alice
+greet.apply(obj2); // Output: Hello, Bob
+
+const greetBob = greet.bind(obj2);
+greetBob(); // Output: Hello, Bob
+
+<button id="myButton">Click Me</button>
+<script>
+  document.getElementById('myButton').addEventListener('click', function() {
+    console.log(this); // Refers to the button element
+  });
+
+  document.getElementById('myButton').addEventListener('click', () => {
+    console.log(this); // Refers to the global object or undefined (depending on the environment), not the button element
+  });
+</script>
+
+Understanding the context in which `this` is used is crucial for writing effective JavaScript code.
+
 =================================================================================================================
 let and const var keywords
 
@@ -541,417 +953,6 @@ console.log(boundPrintFullName()) // Output: "John Doe"
 - return a new function ,allow you to pass any number of argument
 - it binds a function with an object and return the binded function.
 It does not bind the existing function instead if create a new function to bind
-
-
-##============ Object cloning============
-
--Crreating a duplicate object of an existing object is called object cloning
-
-There are 2 types of object cloning
-
-1. Shallow cloning
--In shallow cloning only direct/main object gets cloned but not the object
-which are referred by the properties of main object.
-
--changing value of cloned object will be refect into
-orginal object as well because both are point same refrance object
-
-const original = { a: 1, b: { c: 2 } };
-const clone = { ...original };
-
-
-clone.b.c = 3;
-console.log(original.b.c); // Output: 3
-
-This happens because original.b and clone.b point to the same object in memory.
-
-const original = {
-  name: 'John',
-  age: 30,
-  address: { city: 'New York', country: 'USA' }
-};
-
-const shallowClone = Object.assign({}, original);
-
-console.log(shallowClone === original); // false (different objects)
-console.log(shallowClone.address === original.address); // true (same reference)
-
-
-
-2. Deep cloning
--In deep cloning all the object direct/main and nested objects will be cloned.
-
--changing value of cloned object will be not refect into
-orginal object as well because both are point different refrance object
-
-const original = { a: 1, b: { c: 2 } };
-
-const clone = JSON.parse(JSON.stringify(original));
-clone.b.c = 3;
-console.log(original.b.c); // Output: 2
-
-const original = {
-  name: 'John',
-  age: 30,
-  address: { city: 'New York', country: 'USA' }
-};
-
-const deepClone = JSON.parse(JSON.stringify(original));
-
-console.log(deepClone === original); // false (different objects)
-console.log(deepClone.address === original.address); // false (different objects)
-
-
-
-
-var person = {
-name: "deepak",
-add: {
-road: "MRG",
-puc: 65
-}
-
-}
-//var person2 = person;
-//person2.name="wadikar"
-
-// shallow cloning
-let person2 = Object.assign({}, person)
-person2.name = "patil";
-person2.add.road = "pa";
-
-//deep cloning
-var p3 = JSON.parse(JSON.stringify(person));
-p3.add.road = "MGm3"
-
-console.log(person)
-console.log(person2)
-console.log(p3)
-
-
-const obj={
-name:"ABC",
-age:20,
-address:{
-city:'Beijing',
-country:'China'
-}
-}
-const obj2 ={...obj}
-obj2.name="PQR"
-
-const obj3 =Object.assign({},obj)
-obj3.age=21
-
-const obj4=JSON.parse(JSON.stringify(obj))
-obj4.address.city="Pune"
-console.log("obj",obj);
-console.log("obj2",obj2);
-console.log("obj3",obj3);
-console.log("obj4",obj4);
-
-
-
-
-
-
-// Original object with nested properties
-const original = {
-    name: 'John',
-    age: 30,
-    address: { city: 'New York', country: 'USA' }
-};
-
-// Shallow clone using Object.assign or spread syntax
-const shallowClone = Object.assign({}, original);
-
-// Modify the shallow clone
-shallowClone.name = 'Jane';
-shallowClone.address.city = 'San Francisco';
-
-// Log both original and shallow clone
-console.log(original);    // Output: { name: 'John', age: 30, address: { city: 'San Francisco', country: 'USA' } }
-console.log(shallowClone); // Output: { name: 'Jane', age: 30, address: { city: 'San Francisco', country: 'USA' } }
-
-
-
-//=========================================Set====================
-Set:-
-Set is like an array but it stores only unique elements.
-
-An array is used to store multiple elements of any type, an array can store duplicate
-elements.
-
-// Creating a set
-1. Creating empty set.
-const s1 = new Set();
-
-// add(value) - adds an element and returns the set after adding the element
-
-
-
-//============================map ===============================
-Map:- The Map is used to store key value pairs .
-
-A key value pair is called an entry
-A key must be unique
-the values can be duplicate
-
-Creating Map
-
-1. creating empty map
-
-const m1 = new Map();
-
-set()
-delete()
-value()
-keys()
-
-
-//=============================sync and asynch=================
-Note:- Javascript is a Synchronous programming language.
-
-Javascript is single threaded.
-
-But the execution environment of the Javascript is asynchronous.
-
-// synchronous execution
-
-How does javascript code gets executed asynchronously when there is one thread?
-
-=> Javascript is single threaded, synchronous but the environment in which the javascript
-code gets executed is asynchronous.
-
-The javascript runtime(event loop) performs non blocking IO operations by offloading most of the work
-to operating system.
-/
-/callback
-
-// To write async code you need
-
-1. callback
-
-A callback is a normal javascript function which is passed as an argument to
-another function to perform future operation.
-
-A callback is used to perform any future operation after an asynchronous operation.
-
-
-// 2. Promise
-
-// 3. async await
-
-
-
-//== ==============================Higher Order function :-==============================
-Higher Order function :-
-A function which accepts another function as an argument is called a higher
-order function.
-The higher order function is used to perform different operations.
-
-Example: addEventListener
-
-
-
-//=================== promise =============================
-Promise:
-In JavaScript,
- a Promise is an object representing the eventual completion or failure of an asynchronous operation and its resulting value. 
- Promises provide a way to handle asynchronous code more effectively, avoiding callback hell and making code easier to read and maintain.
-
-
-
-In JavaScript, a Promise is an object that will produce a single value some time in the future.
- If the promise is successful, it will produce a resolved value
- ,but if something goes wrong then it will produce a reason why the promise failed. 
-The possible outcomes here are similar to that of promises in real life.
-
-
-
-
--Promise are thr ideal choice for handling asynchronous operation in simplest manner
--they can handle multiple asynchronous operation easily and provide better error handling then Callback and event
-#promise has four strategist
-1]fulfilled: Action related to the promise succeeded
-2] Rejected : Action related to the promise failed
-3] pending- Neither fulfilled nor rejected yet means promise still pending.
-4]settle- The Promise has been either fulfilled or rejected.
-
-A].then():
--then() function is invoked when a promise is resolved and a result is received.
-
-B].catch()
-catch() function is invoked when a promise is either rejected or some error has occured in execution.
-
-Applications
-Promises are used for asynchronous handling of events.
-Promises are used to handle asynchronous http requests.
-
-
-
-
-
-A promise is an object which is used to perform asynchronous operations.
-
-A promise gets settled(either resolved or rejected) in future.
-
-If promise gets resolved then it calls the callback passed to then() function.
-
-If promise gets rejected then it called the callback passed to catch() function.
-then chaining
-
-Writing multiple thens one after another for a promise is called then chaining
-
-A then() returns a promise
-
-
-
-
-
-//===========================asynch await =========================
-
-
--The async await is used to pause the execution of a function until a promise gets settled
-
-
--async keyword Put the before a function , tells the function to return a Promise
--await" keyword is used within an async function to pause its execution until a Promise is settled.
-- It waits for the Promise to resolve (either fulfilled or rejected) and then returns its result.
--await should only be used inside the async function.
-
-
-
-
-//===========================asynch await =========================
-async await
-
--The async await is used to pause the execution of a function until a promise gets settled
-
-A] - Async Keyword:
-
--async keyword Put the before a function , tells the function to return a Promise
-- This allows the function to use the "await" keyword internally to handle asynchronous operations.
-
-
-B]- Await Keyword:
-
-
-- "await" keyword is used within an async function to pause its execution until a Promise is settled.
-- It waits for the Promise to resolve (either fulfilled or rejected) and then returns its result.
-- Note: The "await" keyword can only be used inside async functions, otherwise, it would result in a SyntaxError.
-
-
-
--await should only be used inside the async function.
-
--The await keyword simply makes JavaScript wait until that Promise settles and then returns its result
--await keyword only works inside async functions, otherwise you would get a SyntaxError.
-
-
-//===========================global object =========================
-
-
-Q1. what is global object in javascript?
--A global object is an object that always exists in the global scope
--In a web browser, the global object is the window object
--The global object can be accessed using the "this" operator in the global scope
--The global object in JavaScript is an always defined object that provides
-variables and functions, and is available anywhere.
-
-
-
-window is a global object of javascript it is used to load / display a web page
-content in the web browser.
-
-The window object represents a tab of a web browser, it includes navigation model, histoy,
-location, document, etc.
-
-document represents a web page in the web browser.
-
-document object is a part of window object.
-
-Using document object you can dynamically update the content on the viewport.
-
-//===========================this =========================
-
-
-Q2. What is this?
-
-In JavaScript, the `this` keyword refers to the current execution context.
-Its value depends on how a function is called and where it is called.
-The behavior of `this` can vary in different situations:
-
-<!-- -The JavaScript this keyword refers to the object it belongs to. -->
--Alone, this refers to the global object.
--In a function, this refers to the global object.
--In a method, this refers to the owner object.
-
--In a function, in strict mode, this is undefined.
--In an event, this refers to the element that received the event.
--Methods like call(), and apply() can refer this to any object.
-
-
-It has different values depending on where it is used:
-
-
-
-
-1. Global context:
-In the global scope, `this` refers to the global object, which is `window` in web browsers and `global` in Node.js.
-
-console.log(this === window); // true in a browser environment
-
-
-2. Function context: Inside a function, the value of `this` depends on how the function is called. If the function is called as a method of an object, `this` refers to that object.
-
-const obj = {
-name: 'example',
-greet: function() {
-console.log('Hello, ' + this.name);
-}
-};
-
-obj.greet(); // Output: Hello, example
-
-
-3. Constructor context: When a function is used as a constructor with the `new` keyword, `this` refers to the newly created instance.
-
-function Person(name) {
-this.name = name;
-}
-
-const person1 = new Person('John');
-console.log(person1.name); // Output: John
-
-
-4. Explicit binding: You can explicitly set the value of `this` using `call()`, `apply()`, or `bind()` methods.
-
-function greet() {
-console.log('Hello, ' + this.name);
-}
-
-const obj1 = { name: 'Alice' };
-const obj2 = { name: 'Bob' };
-
-greet.call(obj1); // Output: Hello, Alice
-greet.apply(obj2); // Output: Hello, Bob
-
-const greetBob = greet.bind(obj2);
-greetBob(); // Output: Hello, Bob
-
-<button id="myButton">Click Me</button>
-<script>
-  document.getElementById('myButton').addEventListener('click', function() {
-    console.log(this); // Refers to the button element
-  });
-
-  document.getElementById('myButton').addEventListener('click', () => {
-    console.log(this); // Refers to the global object or undefined (depending on the environment), not the button element
-  });
-</script>
-
-Understanding the context in which `this` is used is crucial for writing effective JavaScript code.
 
 //===========================Bubbling and Capturing =========================
 
