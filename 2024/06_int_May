@@ -8,6 +8,7 @@
 - **Server Resources**: Utilizes server resources for each request, often requiring high-configuration servers.
 - **Bandwidth**: Uses more bandwidth as each page load requires a full page download.
 - **DOM Recreation**: Recreates the DOM for each request.
+
 - Load all content in a single HTML page.
 - Dynamically update content using JavaScript frameworks like React or Angular.
 - Enable smoother user experiences by avoiding full page reloads.
