@@ -15,22 +15,21 @@ introduced to declare the variables.
 var:-
 - it is hoisted
 - It is function scoped
+- Can be redeclared within the same scope
+var x = 5;
+var x = 10;
+
 - It  rewritable
 var x = 10;
 x = 20; // Valid: Updates the value of x
 
-- Can be redeclared within the same scope
-var x = 5;
-var x = 10;
+
 
 
 let:-
 - It is not hoisted
 - It is block scoped
-- It is rewritable
 
-let y = 10;
-y = 20; // Valid: Updates the value of y
 
 - Cannot be redeclared within the same block scope
 
@@ -40,18 +39,26 @@ let y = 10; // SyntaxError: Identifier 'y' has already been declared
 hoisting error
 ReferenceError: Cannot access 'a' before initialization
 
+- It is rewritable
+
+let y = 10;
+y = 20; // Valid: Updates the value of y
+
+
 const:-
 - It is not hoisted
 - It is block scoped
--const is not  rewritable
-
-const x = 10;
-x = 20; // Error: Assignment to constant variable.
 
 - Cannot be redeclared within the same block scope
 
 const z = 5;
 const z = 10; // SyntaxError: Identifier 'z' has already been declared
+
+-const is not  rewritable
+
+const x = 10;
+x = 20; // Error: Assignment to constant variable.
+
 
 For primitives, 
 const makes the value itself immutable and the reference unchangeable.
@@ -697,6 +704,28 @@ const s1 = new Set();
 
 
 
+const mySet =new Set([1,2,4,,5,6,6,,33,2,4,5,6,6,4,4,4,1,1,11,"A","a"])
+console.log(mySet)
+
+mySet.add({
+    name:"Abc"
+});
+mySet.add({second:'This is second value'});
+mySet.add('third','This is third value')
+mySet.add('APlle')
+mySet.add("apple")
+console.log(mySet)
+mySet.delete(1)
+for(let val of mySet){
+    console.log("val --",val)
+}
+// mySet.clear()
+
+
+
+
+console.log(mySet)
+
 //============================map ===============================
 Map:- The Map is used to store key value pairs .
 
@@ -714,6 +743,7 @@ set()
 delete()
 value()
 keys()
+
 
 
 //=============================sync and asynch=================
