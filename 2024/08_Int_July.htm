@@ -1,0 +1,119 @@
+================================================================================
+Question: What is memoization in JavaScript?
+
+Answer: Memoization is an optimization technique used primarily to speed up computer
+ programs by storing the results of expensive function 
+ calls and returning the cached result when the same inputs occur again. 
+ It is particularly useful for functions with expensive or repetitive computations.
+================================================================================
+Question: What are generators in JavaScript?
+
+Answer: Generators are special types of functions that can be paused and resumed, 
+allowing for control over the function's execution.
+ They are defined using the function* syntax and use the yield keyword to pause execution.
+
+function* generatorExample() {
+    yield 1;
+    yield 2;
+    yield 3;
+}
+
+const gen = generatorExample();
+
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2
+console.log(gen.next().value); // 3
+================================================================================
+Immediately Invoked Function Expression (IIFE)
+Question: What is an Immediately Invoked Function Expression (IIFE) in JavaScript?
+
+Answer: An IIFE is a function that is executed immediately after it is defined. It is often used to create a local scope to avoid polluting the global scope.
+
+(function() {
+    console.log("This function runs immediately!");
+})();
+
+(function(name) {
+    console.log("Hello, " + name + "!");
+})("World");
+
+================================================================================
+
+**Question:** What are iterators in JavaScript?
+
+**Answer:** Iterators are objects that enable traversal through a collection of data, such as arrays or strings. They provide a standardized way to loop through elements by implementing a specific interface with a `next` method that returns an object with two properties: `value` and `done`.
+
+**Example:**
+
+// Example of an iterator using an array
+const array = [1, 2, 3];
+const iterator = array[Symbol.iterator]();
+
+console.log(iterator.next()); // { value: 1, done: false }
+console.log(iterator.next()); // { value: 2, done: false }
+console.log(iterator.next()); // { value: 3, done: false }
+console.log(iterator.next()); // { value: undefined, done: true }
+
+// Creating a custom iterator
+function makeIterator(array) {
+    let index = 0;
+    return {
+        next: function() {
+            if (index < array.length) {
+                return { value: array[index++], done: false };
+            } else {
+                return { value: undefined, done: true };
+            }
+        }
+    };
+}
+
+const customIterator = makeIterator([10, 20, 30]);
+
+console.log(customIterator.next()); // { value: 10, done: false }
+console.log(customIterator.next()); // { value: 20, done: false }
+console.log(customIterator.next()); // { value: 30, done: false }
+console.log(customIterator.next()); // { value: undefined, done: true }
+
+================================================================================
+
+Iterators in JavaScript
+Question: What are iterators in JavaScript?
+
+Answer: Iterators are objects that enable traversal through a collection of data, such as arrays or strings. They provide a standardized way to loop through elements by implementing a specific interface with a next method that returns an object with two properties: value and done.
+
+Key Points:
+Purpose: To traverse collections of data.
+Interface: next() method returning { value, done }.
+Example:
+javascript
+Copy code
+// Example of an iterator using an array
+const array = [1, 2, 3];
+const iterator = array[Symbol.iterator]();
+
+console.log(iterator.next()); // { value: 1, done: false }
+console.log(iterator.next()); // { value: 2, done: false }
+console.log(iterator.next()); // { value: 3, done: false }
+console.log(iterator.next()); // { value: undefined, done: true }
+
+// Creating a custom iterator
+function makeIterator(array) {
+    let index = 0;
+    return {
+        next: function() {
+            if (index < array.length) {
+                return { value: array[index++], done: false };
+            } else {
+                return { value: undefined, done: true };
+            }
+        }
+    };
+}
+
+const customIterator = makeIterator([10, 20, 30]);
+
+console.log(customIterator.next()); // { value: 10, done: false }
+console.log(customIterator.next()); // { value: 20, done: false }
+console.log(customIterator.next()); // { value: 30, done: false }
+console.log(customIterator.next()); // { value: undefined, done: 
