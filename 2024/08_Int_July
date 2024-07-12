@@ -26,7 +26,7 @@ Answer: Memoization is an optimization technique used primarily to speed up comp
 
 
 
- 
+
 ================================================================================
 Question: What are generators in JavaScript?
 
@@ -67,7 +67,10 @@ It is often used to create a local scope to avoid polluting the global scope.
 
 Question: What are iterators in JavaScript?
 
-Answer: Iterators are objects that enable traversal through a collection of data, such as arrays or strings. They provide a standardized way to loop through elements by implementing a specific interface with a `next` method that returns an object with two properties: `value` and `done`.
+Answer: Iterators are objects that enable traversal through a collection of data, 
+such as arrays or strings. They provide a standardized way to loop through elements by 
+implementing a specific interface with a `next` method that returns an object 
+with two properties: `value` and `done`.
 
 Example:
 
