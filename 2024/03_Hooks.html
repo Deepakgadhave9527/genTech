@@ -241,6 +241,11 @@ const theme = useContext(context)
     -And making your application faster and more efficient.
 
 
+    const memoizedCallback = useCallback(() => {
+      // Your callback logic here
+  }, [dependencies]);
+
+  
     useCallback: Returns a memoized callback.
     The useCallback hook in React is used to memoize a callback function,
      ensuring that it only changes if one of its dependencies changes.
