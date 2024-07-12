@@ -65,3 +65,18 @@ delayTime();
 
 //=================================================================================
 
+function  outerFunction(){
+  var count=0
+  function inncremnt(){
+  count++
+  console.log(count)
+  }
+  return inncremnt
+  }
+  const counter1=outerFunction()
+  counter1()
+//=================================================================================
+  let a='a,b,c,c'
+  let arr=a.split(",");
+  let uniq=[...new Set(arr)];
+  console.log(uniq)
