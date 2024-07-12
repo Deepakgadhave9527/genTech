@@ -1,10 +1,4 @@
 =================================================================================================================
-
--A lexical scope in JavaScript means that a variable defined outside a function can
-be accessible inside another function
-
-
-=================================================================================================================
 let and const var keywords
 
 In javascript to declare a variable you can use 'var' keyword, but since ES6 there are 2 more keywords
@@ -704,28 +698,6 @@ const s1 = new Set();
 
 
 
-const mySet =new Set([1,2,4,,5,6,6,,33,2,4,5,6,6,4,4,4,1,1,11,"A","a"])
-console.log(mySet)
-
-mySet.add({
-    name:"Abc"
-});
-mySet.add({second:'This is second value'});
-mySet.add('third','This is third value')
-mySet.add('APlle')
-mySet.add("apple")
-console.log(mySet)
-mySet.delete(1)
-for(let val of mySet){
-    console.log("val --",val)
-}
-// mySet.clear()
-
-
-
-
-console.log(mySet)
-
 //============================map ===============================
 Map:- The Map is used to store key value pairs .
 
@@ -743,7 +715,6 @@ set()
 delete()
 value()
 keys()
-
 
 
 //=============================sync and asynch=================
