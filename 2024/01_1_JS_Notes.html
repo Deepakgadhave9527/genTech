@@ -1,8 +1,4 @@
 
-=================================================================================================================
-
--A lexical scope in JavaScript means that a variable defined outside a function can
-be accessible inside another function
 
 
 =================================================================================================================
@@ -51,7 +47,7 @@ const:-
 - It is block scoped
 
 - Cannot be redeclared within the same block scope
-4
+
 const z = 5;
 const z = 10; // SyntaxError: Identifier 'z' has already been declared
 
@@ -70,6 +66,8 @@ const makes the reference unchangeable, but the contents of the object or array 
 //================================= Closure ========================
 ## Closure:-
  closure is ablity to provide access outer function scope to inner function 
+
+ access variables from that scope even after the outer function has finished executing
 
 -A closure is a combination of a nested function and lexical scope
 -By using closure a nested function can use the variable of outer function.
@@ -97,6 +95,19 @@ return innerFunction;
 
 const innerFunc = outerFunction();
 innerFunc(); // Output: I am outer
+
+function createCounter() {
+  let count = 0;
+  return function() {
+    count++;
+    return count;
+  };
+}
+
+const counter = createCounter();
+console.log(counter()); // 1
+console.log(counter()); // 2
+
 
 
 

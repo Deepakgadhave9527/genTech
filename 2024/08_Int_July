@@ -3,7 +3,7 @@ Semantic Elements
 
 A semantic element clearly describes its meaning to both the browser and the developer.
 
-Semantic elements in HTML provide meaning to the web content they enclose,
+Semantic elements in HTßML provide meaning to the web content they enclose,
 helping both browsers and developers understand the structure and purpose of the content.
 They improve accessibility, SEO, and maintainability of web pages.
 
@@ -107,6 +107,7 @@ Example:
 
 // Example of an iterator using an array
 const array = [1, 2, 3];
+
 const iterator = array[Symbol.iterator]();
 
 console.log(iterator.next()); // { value: 1, done: false }
@@ -135,54 +136,13 @@ console.log(customIterator.next()); // { value: 20, done: false }
 console.log(customIterator.next()); // { value: 30, done: false }
 console.log(customIterator.next()); // { value: undefined, done: true }
 
-================================================================================
-
-Iterators in JavaScript
-What are iterators in JavaScript?
-
-Answer: Iterators are objects that enable traversal through a collection of data, such as arrays or strings. They provide a standardized way to loop through elements by implementing a specific interface with a next method that returns an object with two properties: value and done.
-
-Key Points:
-Purpose: To traverse collections of data.
-Interface: next() method returning { value, done }.
-Example:
-javascript
-Copy code
-// Example of an iterator using an array
-const array = [1, 2, 3];
-const iterator = array[Symbol.iterator]();
-
-console.log(iterator.next()); // { value: 1, done: false }
-console.log(iterator.next()); // { value: 2, done: false }
-console.log(iterator.next()); // { value: 3, done: false }
-console.log(iterator.next()); // { value: undefined, done: true }
-
-// Creating a custom iterator
-function makeIterator(array) {
-let index = 0;
-return {
-next: function() {
-if (index < array.length) {
-return { value: array[index++], done: false };
-} else {
-return { value: undefined, done: true };
-}
-}
-};
-}
-
-const customIterator = makeIterator([10, 20, 30]);
-
-console.log(customIterator.next()); // { value: 10, done: false }
-console.log(customIterator.next()); // { value: 20, done: false }
-console.log(customIterator.next()); // { value: 30, done: false }
-console.log(customIterator.next()); // { value: undefined, done:
 
 ================================================================================
 
 What are PropTypes?
 PropTypes is a type-checking library included with React.
 It allows you to specify the expected types for props that a component should receive, providing runtime type validation.
+
 npm install prop-types
 
 ================================================================================
@@ -279,7 +239,8 @@ web components.
 
 ### Elements
 
-- Elements are the simplest building blocks of React applications and describe what you want to see on the screen.
+- Elements are the simplest building blocks of React applications and
+ describe what you want to see on the screen.
 - A basic building block representing a DOM node.
 - Used to describe what the UI should look like.
 - A plain object representing a DOM node.
@@ -296,6 +257,7 @@ web components.
 ### Tags
 
 - Tags are the syntax used to create elements.
+- A tag is a part of HTML syntax used to create an element.
 - Tags can be opening, closing, or self-closing.
 
 <div> <!-- Opening tag -->
@@ -328,12 +290,14 @@ Patch vs Put
 
 - **PUT**
 
-  - The PUT method is used to update an entire resource. If the resource exists, it will be completely replaced with the new data provided.
+  - The PUT method is used to update an entire resource.
+  - If the resource exists, it will be completely replaced with the new data provided.
   - PUT replaces the entire resource.
   - If your form or component allows the user to update an entire resource (e.g., editing all fields of a user profile), you might use PUT.
 
 - **PATCH**
-  - The PATCH method is used to apply partial updates to a resource. This means you only send the fields you want to update, and the rest of the resource remains unchanged.
+  - The PATCH method is used to apply partial updates to a resource.
+  - This means you only send the fields you want to update, and the rest of the resource remains unchanged.
   - PATCH updates only the specified fields.
   - If your form or component allows the user to update only specific fields (e.g., changing the user's email address or password), you might use PATCH.
 
@@ -383,3 +347,39 @@ Patch vs Put
 - Generally simpler to build and maintain compared to SPAs.
 - Often faster to load because only necessary content for each page is loaded.
 - Better suited for content-driven websites with less interactivity.
+====================================================================================
+
+
+why  const varible array/object can be changed in javascript
+
+-const keyword is used to declare variables whose values cannot be reassigned.
+
+
+=================================================================================================================
+
+-A lexical scope in JavaScript means that a variable defined outside a function can be accessible inside another function
+
+Function Scope:
+Each function in JavaScript creates a new scope. Variables defined within a function are not accessible outside of it.
+
+Block Scope:
+Variables declared with let and const are block-scoped, meaning they are only accessible within the nearest set of curly braces {} in which they are defined.
+
+Nested Scopes:
+Inner functions have access to variables and functions in their outer scopes. This nesting can continue indefinitely, allowing inner functions to access variables from all outer scopes up to the global scope.
+
+function outerFunction() {
+  var outerVar = 'I am outside!';
+
+  function innerFunction() {
+    var innerVar = 'I am inside!';
+    console.log(outerVar); // Accessible
+    console.log(innerVar); // Accessible
+  }
+
+  innerFunction();
+  console.log(outerVar); // Accessible
+  // console.log(innerVar); // Uncaught ReferenceError: innerVar is not defined
+}
+
+outerFunction();
