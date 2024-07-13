@@ -83,6 +83,17 @@ console.log("This function runs immediately!");
 console.log("Hello, " + name + "!");
 })("World");
 
+
+
+Encapsulation: Creates private scopes for variables and functions, preventing conflicts and unintended modifications in the global scope.
+
+Avoiding Global Pollution: Keeps the global namespace clean, minimizing naming clashes with other scripts or libraries and maintaining modular, self-contained code.
+
+Immediate Execution: Runs code immediately after declaration, useful for initialization tasks, configuring settings, or starting applications at the desired moment.
+
+Data Privacy: Utilizes closures to maintain data privacy, hiding internal variables and functions while exposing only necessary parts, fundamental to the Module Pattern.
+
+
 ================================================================================
 
 What are iterators in JavaScript?
