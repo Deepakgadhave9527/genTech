@@ -1,6 +1,6 @@
 
 
-================================= Closures===============================================
+=============Closures===============================================
 Closures are a fundamental concept in JavaScript, providing the ability to access an outer function's scope from an inner function
 even after the outer function has finished executing
 
