@@ -1,5 +1,10 @@
 ================================================================================
 Semantic Elements
+
+A semantic element clearly describes its meaning to both the browser and the developer.
+
+
+
 Semantic elements in HTML provide meaning to the web content they enclose, 
 helping both browsers and developers understand the structure and purpose of the content.
  They improve accessibility, SEO, and maintainability of web pages.
@@ -9,29 +14,38 @@ Meaningful Structure: Conveys the role of the content.
 Improved Accessibility: Aids assistive technologies in navigating content.
 SEO Benefits: Helps search engines better index and rank pages.
 Common Semantic Elements:
-<header>: Introductory content or navigation.
-<nav>: Navigation links.
-<main>: Main content of a document.
-<section>: Thematic grouping of content.
-<article>: Self-contained content (e.g., blog posts).
-<aside>: Tangentially related content (e.g., sidebars).
-<footer>: Footer content for a section.
-================================================================================
-Question: What is memoization in JavaScript?
 
-Answer: Memoization is an optimization technique used primarily to speed up computer
- programs by storing the results of expensive function 
- calls and returning the cached result when the same inputs occur again. 
+<article>
+<aside>
+<details>
+<figcaption>
+<figure>
+<footer>
+<header>
+<main>
+<mark>
+<nav>
+<section>
+<summary>
+<time>
+================================================================================
+ What is memoization in JavaScript?
+
+ Memoization is an optimization technique used primarily to speed up computer programs
+ by storing the results of expensive function calls 
+ and returning the cached result when the same inputs occur again. 
+
  It is particularly useful for functions with expensive or repetitive computations.
 
 
 
 
 ================================================================================
-Question: What are generators in JavaScript?
+ What are generators in JavaScript?
 
-Answer: Generators are special types of functions that can be paused and resumed, 
+ Generators are special types of functions that can be paused and resumed, 
 allowing for control over the function's execution.
+ 
  They are defined using the function* syntax and use the yield keyword to pause execution.
 
 function* generatorExample() {
@@ -50,7 +64,7 @@ console.log(gen.next().value); // 3
 ================================================================================
 
 Immediately Invoked Function Expression (IIFE)
-Question: What is an Immediately Invoked Function Expression (IIFE) in JavaScript?
+ What is an Immediately Invoked Function Expression (IIFE) in JavaScript?
 
 Answer: An IIFE is a function that is executed immediately after it is defined. 
 It is often used to create a local scope to avoid polluting the global scope.
@@ -65,7 +79,7 @@ It is often used to create a local scope to avoid polluting the global scope.
 
 ================================================================================
 
-Question: What are iterators in JavaScript?
+ What are iterators in JavaScript?
 
 Answer: Iterators are objects that enable traversal through a collection of data, 
 such as arrays or strings. They provide a standardized way to loop through elements by 
@@ -107,7 +121,7 @@ console.log(customIterator.next()); // { value: undefined, done: true }
 ================================================================================
 
 Iterators in JavaScript
-Question: What are iterators in JavaScript?
+ What are iterators in JavaScript?
 
 Answer: Iterators are objects that enable traversal through a collection of data, such as arrays or strings. They provide a standardized way to loop through elements by implementing a specific interface with a next method that returns an object with two properties: value and done.
 
