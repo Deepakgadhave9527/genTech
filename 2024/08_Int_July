@@ -71,9 +71,8 @@ console.log(gen.next()); // { value: undefined, done: true }
 ================================================================================
 
 Immediately Invoked Function Expression (IIFE)
-What is an Immediately Invoked Function Expression (IIFE) in JavaScript?
 
-Answer: An IIFE is a function that is executed immediately after it is defined.
+An IIFE is a function that is executed immediately after it is defined.
 It is often used to create a local scope to avoid polluting the global scope.
 
 (function() {
