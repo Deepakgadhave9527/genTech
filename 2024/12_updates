@@ -1,0 +1,86 @@
+
+====================================================================================================================================
+
+When to prefer `useReducer` over `useState`:
+
+- **Managing Complex State**:
+  - When your state becomes complex, with multiple related pieces of data or nested objects/arrays, `useReducer` provides a more organized approach.
+  - It's easier to manage intricate state structures with a reducer function that handles various actions and transitions.
+
+- **Global State Management**:
+  - For applications requiring global state, where multiple components need access to the same state, `useReducer` paired with `useContext` can be powerful.
+  - It allows you to manage global state in a more structured manner, making it easier to maintain and scale.
+
+- **Dynamic State Transitions**:
+  - When state transitions involve complex logic or depend on various conditions, `useReducer` offers a flexible and declarative way to handle them.
+  - By dispatching different actions to the reducer function, you can express complex state changes more intuitively.
+
+- **Undo/Redo Functionality**:
+  - Implementing undo/redo functionality can be more straightforward with `useReducer`.
+  - You can keep track of state history and easily revert or replay state changes by dispatching appropriate actions.
+
+- **Form State Management**:
+  - For forms with complex validation logic or dynamic field dependencies, `useReducer` can be beneficial.
+  - You can manage form state, validation errors, and submission status more effectively by encapsulating the logic within a reducer function.
+
+- **Optimizing Performance**:
+  - In some cases, using `useReducer` can lead to better performance compared to `useState`, especially with deeply nested state or frequent updates.
+  - By centralizing state management and avoiding unnecessary re-renders, you can optimize performance.
+
+Overall, `useReducer` shines in scenarios where state management requires more structure, flexibility, and scalability. While `useState` is suitable for simpler needs, `useReducer` offers a more advanced approach for handling complex state.
+
+====================================================================================================================================
+
+
+Event delegation in JavaScript is a technique where you attach a single event listener to a parent element, rather than to multiple child elements individually.
+This approach leverages event bubbling in the DOM, where an event occurring on a nested element will bubble up through its ancestors.
+
+Here's how event delegation works:
+
+1. **Attach Listener to Parent Element**: Instead of attaching event listeners to each child element, you attach a single event listener to the parent element that contains all the child elements you are interested in.
+
+2. **Use Event Bubbling**: When an event happens (like a click) on a child element, the event bubbles up through its ancestors in the DOM hierarchy.
+
+3. **Check the Target Element**: In the event handler function attached to the parent element, you can check the `event.target` property to determine which specific child element triggered the event. This allows you to conditionally execute different actions based on which child element was clicked.
+
+### Example:
+
+Suppose you have a list of items in an unordered list (`<ul>`) and you want to handle click events on each list item (`<li>`).
+
+<ul id="parentList">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+</ul>
+
+In JavaScript, you can delegate the click event handling to the parent `<ul>` element:
+
+```javascript
+const parentList = document.getElementById('parentList');
+
+parentList.addEventListener('click', function(event) {
+    if (event.target.tagName === 'LI') {
+        console.log('Clicked on:', event.target.textContent);
+        // Perform actions based on the clicked list item
+    }
+});
+
+In this example:
+
+- The `click` event listener is added to the `parentList`.
+- When a `<li>` element is clicked, the event bubbles up to the `parentList`.
+- Inside the event handler, `event.target` refers to the actual element that triggered the event (in this case, the `<li>`).
+- You can then perform actions based on the specific `<li>` element that was clicked.
+
+====================================================================================================================================
+classList
+
+The classList JavaScript allows us to add, remove, replace, toggle or check whether the specified CSS class is present or not
+
+
+add()	Adds one or more tokens to the list
+contains()	Returns true if the list contains a class
+remove()	Removes one or more tokens from the list
+toggle()	Toggles between tokens in the list
+replace()	Replaces a token in the list
+
