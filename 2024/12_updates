@@ -111,3 +111,15 @@ contains()	Returns true if the list contains a classs
 remove()	Removes one or more tokens from the list
 toggle()	Toggles between tokens in the list
 replace()	Replaces a token in the list
+
+====================================================================================================================================
+
+1. What is the DOM?
+The DOM is the Document Object Model, which is a tree-like structure that represents the HTML document. 
+It is used by JavaScript to access and manipulate the document.
+
+====================================================================================================================================
+An event listener in JavaScript is a function that waits for a specific event to occur on an element and then executes a specified action. Events can be user actions like clicks, key presses, mouse movements, or system-generated events like page load.
+
+Use addEventListener() to attach an event listener to an element.
+Use removeEventListener() to detach an event listener.
