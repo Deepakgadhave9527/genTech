@@ -4,10 +4,14 @@
 ### Callbacks
 
 - **Definition:** Callbacks are functions that are passed as arguments to other functions to be executed later upon completion of an asynchronous operation.
-- **Usage:** They have been a foundational approach in JavaScript for handling asynchronous tasks since its early days.
-- **Syntax:** Typically defined inline or as named functions passed directly as arguments.
+
 - **Error Handling:** Involves passing error objects or values as the first argument to the callback function, leading to a decentralized error handling approach.
+
 - **Readability:** Asynchronous operations nested within callbacks can result in "callback hell," making the code harder to read and maintain, especially when managing multiple asynchronous tasks.
+
+<!-- 
+- **Usage:** They have been a foundational approach in JavaScript for handling asynchronous tasks since its early days.
+- **Syntax:** Typically defined inline or as named functions passed directly as arguments. -->
 
 ### Promises
 

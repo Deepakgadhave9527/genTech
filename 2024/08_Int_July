@@ -1,25 +1,23 @@
+Single Page Applications (SPAs), which build pages in our browser using JavaScript,
+ MPAs depend on the server to generate and refresh pages
 
-] Multipage application
-
-Multi-Page Application (MPA)
-An MPA consists of multiple pages, each with its own URL. When a user navigates to a new page, the browser reloads and fetches the new HTML content from the server.
+### Multi-Page Application (MPA)
 
 -If an application / website has multiple requestable web pages then that application
-is called multi page application.
+ is called multi page application.
 
--To fetch the different content you need to fetch different webpages from the server
+-An MPA consists of multiple pages, each with its own URL. When a user navigates to a new page,
+ the browser reloads and fetches the new HTML content from the server.
 
 -Multipage application is slow because each request will be send to the server then server
-will return a web page as response.
+ will return a web page as response.
 
+-It recreates the DOM for each request
 -It utilizes the server resources so high configuration server is required.
 
 -It utilizes more bandwidth
 
--It is slow.
-
--It recreates the DOM for each request
-
+-To fetch the different content you need to fetch different webpages from the server
 
 
 B] Single page application
@@ -33,7 +31,7 @@ An SPA loads a single HTML page and dynamically updates the content as the user 
 -If an application has single requestable web page then that application is called
 single page application.
 
--in SPA all the content will get loaded in the web browser on first request, after that
+-In SPA all the content will get loaded in the web browser on first request, after that
 all the request will be served from web browser itself.
 
 -it does not utilizes the server resources for each request because the content will
@@ -45,11 +43,6 @@ be serverd from web browser.
 
 -Webpack :-It does not re create the DOM tree for content change
 
-- Load all content in a single HTML page.
-- Dynamically update content using JavaScript frameworks like React or Angular.
-- Enable smoother user experiences by avoiding full page reloads.
-- May have slower initial load times due to loading all resources upfront.
-- Suitable for complex web applications with frequent user interactions.
 
 
 ================================================================================
