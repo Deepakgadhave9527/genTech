@@ -1,83 +1,201 @@
+.================================================================================
+### Working with Object Methods in JavaScript
 
+For plain objects, JavaScript provides several methods to interact with their properties:
 
-### Variable Declaration in JavaScript
+1. `Object.keys(obj)` – returns an array of the object's keys.
+2. `Object.values(obj)` – returns an array of the object's values.
+3. `Object.entries(obj)` – returns an array of the object's `[key, value]` pairs.
 
-In JavaScript, variables can be declared using `var`, `let`, and `const` keywords. Here’s a breakdown of their differences and behaviors:
+### Example with an Array
 
-#### `var`
-- **Hoisting**: Variables declared with `var` are hoisted to the top of their scope, meaning they can be accessed before their declaration but will be `undefined` until assigned a value.
-- **Scope**: `var` is function-scoped, meaning it is only accessible within the function it is declared in.
-- **Redeclaration**: Variables declared with `var` can be redeclared within the same scope.
-  ```javascript
-  var x = 5;
-  var x = 10; // Valid
-  ```
-- **Rewritable**: Variables declared with `var` can be reassigned.
-  ```javascript
-  var x = 10;
-  x = 20; // Valid
-  ```
+Even though arrays are objects with numeric keys, the same methods can be applied to them.
 
-#### `let`
-- **Hoisting**: Variables declared with `let` are hoisted, but they are not initialized. Accessing them before the declaration results in a `ReferenceError`.
-- **Scope**: `let` is block-scoped, meaning it is only accessible within the block `{}` it is declared in.
-- **Redeclaration**: Variables declared with `let` cannot be redeclared within the same block scope.
-  ```javascript
-  let y = 5;
-  let y = 10; // SyntaxError: Identifier 'y' has already been declared
-  ```
-  Attempting to access before declaration:
-  ```javascript
-  console.log(a); // ReferenceError: Cannot access 'a' before initialization
-  let a = 10;
-  ```
-- **Rewritable**: Variables declared with `let` can be reassigned.
-  ```javascript
-  let y = 10;
-  y = 20; // Valid
-  ```
+#### Example Array
 
-#### `const`
-- **Hoisting**: Variables declared with `const` are hoisted, but they are not initialized. Accessing them before the declaration results in a `ReferenceError`.
-- **Scope**: `const` is block-scoped, meaning it is only accessible within the block `{}` it is declared in.
-- **Redeclaration**: Variables declared with `const` cannot be redeclared within the same block scope.
-  ```javascript
-  const z = 5;
-  const z = 10; // SyntaxError: Identifier 'z' has already been declared
-  ```
-  Attempting to access before declaration:
-  ```javascript
-  console.log(b); // ReferenceError: Cannot access 'b' before initialization
-  const b = 10;
-  ```
-- **Not Rewritable**: Variables declared with `const` cannot be reassigned.
-  ```javascript
-  const x = 10;
-  x = 20; // Error: Assignment to constant variable.
-  ```
+```javascript
+const array1 = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+```
 
-#### `const` with Primitives and Non-Primitives
-- **Primitives**: For primitive values (e.g., numbers, strings), `const` makes the value itself immutable and the reference unchangeable.
-  ```javascript
-  const num = 5;
-  num = 10; // Error: Assignment to constant variable.
-  ```
-- **Non-Primitives**: For objects and arrays, `const` makes the reference unchangeable, but the contents of the object or array can still be modified.
-  ```javascript
-  const arr = [1, 2, 3];
-  arr[0] = 4; // Valid: The contents of the array can be modified
-  arr = [4, 5, 6]; // Error: Assignment to constant variable.
-  
-  const obj = { a: 1 };
-  obj.a = 2; // Valid: The properties of the object can be modified
-  obj = { b: 2 }; // Error: Assignment to constant variable.
-  ```
+### Using Object Methods
+
+#### Getting Keys
+
+```javascript
+const keys = Object.keys(array1);
+console.log(keys); // ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+```
+
+#### Getting Values
+
+```javascript
+const values = Object.values(array1);
+console.log(values); // [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+```
+
+#### Getting Entries
+
+```javascript
+const entries = Object.entries(array1);
+console.log(entries); 
+// [["0", 10], ["1", 20], ["2", 30], ["3", 40], ["4", 50], ["5", 60], ["6", 70], ["7", 80], ["8", 90], ["9", 100]]
+```
+
+### Using Spread Operator
+
+When you want to log the values or entries individually, you can use the spread operator (`...`):
+
+```javascript
+console.log(...values); 
+// 10 20 30 40 50 60 70 80 90 100
+
+console.log(...entries);
+// ["0", 10] ["1", 20] ["2", 30] ["3", 40] ["4", 50] ["5", 60] ["6", 70] ["7", 80] ["8", 90] ["9", 100]
+```
+
+### Example with a Plain Object
+
+For completeness, here's how it looks with a plain object:
+
+```javascript
+const object1 = { a: 10, b: 20, c: 30 };
+
+const keys = Object.keys(object1);
+const values = Object.values(object1);
+const entries = Object.entries(object1);
+
+console.log(keys); // ["a", "b", "c"]
+console.log(values); // [10, 20, 30]
+console.log(entries); 
+// [["a", 10], ["b", 20], ["c", 30]]
+
+console.log(...entries); 
+// ["a", 10] ["b", 20] ["c", 30]
+```
 
 ### Summary
-- `var`: Function-scoped, hoisted, can be redeclared, and is rewritable.
-- `let`: Block-scoped, hoisted but not initialized, cannot be redeclared in the same block, and is rewritable.
-- `const`: Block-scoped, hoisted but not initialized, cannot be redeclared in the same block, and is not rewritable. For primitives, `const` values are immutable; for objects and arrays, the reference is unchangeable but contents can be modified.
 
+- **`Object.keys(obj)`** returns an array of keys from the object.
+- **`Object.values(obj)`** returns an array of values from the object.
+- **`Object.entries(obj)`** returns an array of `[key, value]` pairs from the object.
+
+Using these methods with arrays, which are objects with numeric keys, demonstrates their flexibility. The spread operator can help display the values or entries individually for better readability.================================================================================
+### Object Destructuring in JavaScript
+
+Object destructuring allows you to extract values from an object and assign them to variables in a concise and readable way. This is particularly useful when working with complex objects.
+
+### Example Object
+
+```javascript
+const person = {
+  name: "Topper Skills",
+  mobile: "7875580668",
+  email: "topperskills@gmail.com",
+  city: "Pune",
+};
+```
+
+### Without Object Destructuring
+
+```javascript
+const phone = person.mobile;
+const email = person.email;
+const city = person.city;
+
+console.log(phone, email, city); // 7875580668 topperskills@gmail.com Pune
+```
+
+### With Object Destructuring
+
+To extract the properties directly into variables:
+
+```javascript
+const { mobile: phone, email, city } = person;
+
+console.log(phone, email, city); // 7875580668 topperskills@gmail.com Pune
+```
+
+In this example:
+- `mobile` is assigned to a variable `phone`.
+- `email` and `city` are assigned to variables with the same names.
+
+### Destructuring Nested Properties
+
+Destructuring can also be used to extract nested properties from objects.
+
+```javascript
+const car = {
+  brand: "Hyundai",
+  model: "Verna",
+  info: {
+    price: 1200000,
+    color: "white",
+    bio: {
+      age: 20,
+    },
+  },
+};
+```
+
+### Extracting Nested Properties
+
+To extract a nested property, you can use a similar syntax:
+
+```javascript
+const { info: { bio: { age } } } = car;
+
+console.log(age); // 20
+```
+
+In this example:
+- `age` is extracted from the nested `bio` object inside `info`.
+
+### Renaming Nested Properties
+
+You can also rename the nested properties while destructuring:
+
+```javascript
+const { info: { bio: { age: age3 } } } = car;
+
+console.log(age3); // 20
+```
+
+In this example:
+- The nested `age` property is assigned to a new variable named `age3`.
+
+### Summary
+
+Object destructuring simplifies the process of extracting properties from objects, making your code more concise and readable. It is particularly useful for working with complex objects and nested structures. Here’s a combined example to illustrate both simple and nested destructuring:
+
+```javascript
+const person = {
+  name: "Topper Skills",
+  mobile: "7875580668",
+  email: "topperskills@gmail.com",
+  city: "Pune",
+};
+
+const { mobile: phone, email, city } = person;
+console.log(phone, email, city); // 7875580668 topperskills@gmail.com Pune
+
+const car = {
+  brand: "Hyundai",
+  model: "Verna",
+  info: {
+    price: 1200000,
+    color: "white",
+    bio: {
+      age: 20,
+    },
+  },
+};
+
+const { info: { bio: { age } } } = car;
+console.log(age); // 20
+
+const { info: { bio: { age: age3 } } } = car;
+console.log(age3); // 20
+```
 ================================================================================
 State Declaration:
 When using useState in React, you typically declare state variables using const. This does not mean the state value itself cannot change, but rather the references to the state variable (count) and the state updater function (setCount) are constant

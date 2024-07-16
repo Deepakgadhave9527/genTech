@@ -125,33 +125,34 @@ email: "topperskills@gmail.com",
 city: "Pune",
 };
 
-without Object destructuring
+### without Object destructuring
+
 const phone = person.mobile;
-
 const email = person.email;
-
 const city = person.city;
 
-with Object destructuring
+### with Object destructuring
 Property name and variable name must be same
 
 const { mobile: phone, email, city } = person;
-
 console.log(phone, email, city);
 
 
+### Destructuring Nested Properties
 
 const car = {
 brand: "Hyundai",
 model: "Verna",
 info: {
-price: 1200000, // Nested properties
+price: 1200000,
 color: "white",
 bio:{
 age:20
 }
 }
 }
+
+
 const {info:{bio:{age}}}=car
 console.log(age)//20
 
@@ -175,6 +176,16 @@ const [a, b, c, d] = nums;
 
 console.log(a, b, c, d);
 
+const nestedArray = [1, [2, 3, 7], [4, [5, 6]]];
+
+const [first, [, third], [fourth, [fifth, sixth]]] = nestedArray;
+
+console.log(first); // 1
+console.log(third); // 3
+console.log(fourth); // 4
+console.log(fifth); // 5
+console.log(sixth); // 6
+
 
 //============================Object.keys, values, entries =============
 
@@ -185,6 +196,21 @@ Object.keys(obj) – returns an array of keys.
 Object.values(obj) – returns an array of values.
 Object.entries(obj) – returns an array of [key, value] pairs.
 
+const object1 = { a: 10, b: 20, c: 30 };
+
+const keys = Object.keys(object1);
+const values = Object.values(object1);
+const entries = Object.entries(object1);
+
+console.log(keys); // ["a", "b", "c"]
+console.log(values); // [10, 20, 30]
+console.log(entries); 
+// [["a", 10], ["b", 20], ["c", 30]]
+
+console.log(...entries); 
+// ["a", 10] ["b", 20] ["c", 30]
+
+--------------------------------------------------------------------------------------------------- 
 const object1 = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 
 var key =Object.keys(object1);
