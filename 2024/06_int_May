@@ -35,12 +35,15 @@ Promises provide a more effective way to handle asynchronous code, avoiding call
     - Resolves when all input promises have resolved.
 
    - Returns a single promise that resolves to an array of the results of the input promises.
-    -If any of the promise rejected  as soon as any one of the input promises rejects.
+   [ 'Wisdom', 'Geek', 'Wisdom' ]
+
 
 #### Promise.allSettled()
    - Executes multiple promises in parallel and waits for all of them to settle, meaning each promise either resolves or rejects.
+
    - Resolves when all input promises have settled (either resolved or rejected).
-- Returns a single promise that resolves to an array of objects describing the outcome of each promise (each object has a status of either "fulfilled" or "rejected" and the corresponding value or reason).
+
+  - Returns a single promise that resolves to an array of objects describing the outcome of each promise (each object has a status of either "fulfilled" or "rejected" and the corresponding value or reason).
 
 Outputs:
 [
@@ -259,7 +262,6 @@ sticky
      its default/static position
    - Holds its space in the layout.
   - measurement of the length (top, right, bottom, left) starts from default/static position.
-  - It will hold the space
 
 
 -  ##Absolute ##: 

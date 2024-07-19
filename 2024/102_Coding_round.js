@@ -80,3 +80,53 @@ function  outerFunction(){
   let arr=a.split(",");
   let uniq=[...new Set(arr)];
   console.log(uniq)
+
+//=================================================================================
+  function check() {
+    let x = y = 0;
+    x++;
+    return x;
+  }
+  
+  check();
+  console.log(typeof x); // => ???
+  console.log(typeof y); // => ???
+  //=================================================================================
+  
+  var i;
+  for (i = 0; i < 3; i++) {
+    const log = () => {
+      console.log(i);
+    }
+    setTimeout(log, 100);
+  }
+  
+  let x = true
+  setTimeout (()=>{
+  
+  x= false
+  },2000)
+  while (x)
+  {
+  console.log(“hello”)
+  }
+  
+  //=================================================================================
+  const arr5 =[1,2,3,4,[5,6,7]]
+  
+  function flattenArray(arr){
+      let result=[]
+    function recursivArr(input){
+          for(let i=0;i<input.length;i++){
+          if(Array.isArray(input[i])){
+              recursivArr(input[i])
+          }else{
+              result.push(input[i])
+          }
+      }
+    }
+    recursivArr(arr)
+    return result
+  }
+  const fltArr=flattenArray(arr5)
+  console.log(fltArr)
