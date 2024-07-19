@@ -58,7 +58,7 @@ Promises can be composed using methods like Promise.all, Promise.race, Promise.a
 Promises are a part of the ES6 (ECMAScript 2015) standard, meaning they are natively supported in modern JavaScript engines and have a consistent behavior across different environments.
 ===================================
 
-1. What is the DOM?
+ What is the DOM?
 The DOM is the Document Object Model, which is a tree-like structure that represents the HTML document. 
 It is used by JavaScript to access and manipulate the document.
 
@@ -221,7 +221,7 @@ In this case, both `null` and `undefined` are considered loosely equal because t
   //=======================================
 
 
-1. `console.log(typeof undefined);`
+1. console.log(typeof undefined);`
    - This will output `undefined`. In JavaScript, `typeof undefined` returns `"undefined"` because `undefined` is a type representing an uninitialized or non-existent value.
 
 2. `console.log(typeof null);`
