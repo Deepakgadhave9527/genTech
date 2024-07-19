@@ -130,3 +130,21 @@ function  outerFunction(){
   }
   const fltArr=flattenArray(arr5)
   console.log(fltArr)
+
+
+  let nestedArray = [1, [2, 3], [4, [5, 6]], 7,[8,[9,10,[11,[13]]]]];
+
+
+const flatArr=(inp)=>{
+  return  inp.reduce((acc,item)=>{
+        if(Array.isArray(item)){
+           const subArr= flatArr(item)
+            acc=acc.concat(subArr)
+        }else{
+            acc.push(item)
+        }
+        return acc
+    },[])
+    
+}
+console.log(flatArr(nestedArray))
