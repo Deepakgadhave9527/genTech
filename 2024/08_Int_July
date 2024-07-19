@@ -1,4 +1,5 @@
 
+==========================================
 
 Single Page Applications (SPAs), which build pages in our browser using JavaScript,
  MPAs depend on the server to generate and refresh pages
@@ -50,7 +51,7 @@ be serverd from web browser.
 
 
 
-================================================================================
+==========================================
 
 ReactJS is an open-source JavaScript library used for building user interfaces, particularly single-page applications
 Developed and maintained by Facebook,  eact allows developers to create large web applications that can update and render efficiently in response to changing data.
@@ -91,7 +92,7 @@ Developed and maintained by Facebook,  eact allows developers to create large we
 4. **Flexibility:**
    - React can be used for web, mobile (with React Native), and even desktop applications, making it a versatile choice for developers. -->
 
-================================================================================
+==========================================
 
 What is JavaScript?
 -JavaScript is  programming language primarily used for web development. 
@@ -105,7 +106,7 @@ What is JavaScript?
 
 
 
-================================================================================
+==========================================
 A semantic element clearly describes its meaning to both the browser and the developer.
 
 Semantic elements in HTßML provide meaning to the web content they enclose,
@@ -131,7 +132,7 @@ Common Semantic Elements:
 <section>
 <summary>
 <time>
-================================================================================
+==========================================
  What is memoization in JavaScript?
 
 Memoization is an optimization technique used primarily to speed up computer programs
@@ -140,7 +141,7 @@ and returning the cached result when the same inputs occur again.
 
 It is particularly useful for functions with expensive or repetitive computations.
 
-================================================================================
+==========================================
 What are generators in JavaScript?
 
 Generators are special types of functions that can be paused and resumed,
@@ -173,7 +174,7 @@ console.log(gen.next()); // { value: 2, done: false }
 console.log(gen.next()); // { value: 3, done: false }
 console.log(gen.next()); // { value: undefined, done: true }
 
-================================================================================
+==========================================
 
 Immediately Invoked Function Expression (IIFE)
 
@@ -200,7 +201,7 @@ Avoiding Global Pollution: Keeps the global namespace clean, minimizing naming c
 Data Privacy: Utilizes closures to maintain data privacy, hiding internal variables and functions while exposing only necessary parts, fundamental to the Module Pattern.
 
 
-================================================================================
+==========================================
 
 What are PropTypes?
 PropTypes is a type-checking library included with React.
@@ -208,11 +209,11 @@ It allows you to specify the expected types for props that a component should re
 
 npm install prop-types
 
-================================================================================
+==========================================
 
 In React, a ref (short for reference) is an object that allows you to directly access and interact with a DOM element
 
-================================================================================
+==========================================
 
 whats forwardref react
 
@@ -252,7 +253,7 @@ return (
 
 export default App;
 
-================================================================================
+==========================================
 
 ### Axios
 
@@ -287,7 +288,7 @@ export default App;
 
 This format highlights the specific reasons and scenarios where Axios or Fetch would be preferred based on their capabilities and characteristics.
 
-====================================================================================
+==============================================
 
 Q15 is the Shadow DOM the same as the Virtual DOM?
 -No, they are different.
@@ -298,7 +299,7 @@ web components.
 - This is a browser technology designed primarily for encapsulating and scoping variables, DOM, and CSS within web components.
 - It allows you to create self-contained components with their own DOM structure and styling, isolated from the rest of the document.
 
-====================================================================================
+==============================================
 
 ### Elements
 
@@ -315,7 +316,7 @@ web components.
 - Components are more complex structures that define both the logic and structure of the UI, and they can include multiple elements and other components.
 - A reusable and encapsulated piece of the UI, which can manage its own logic and state.
 
-====================================================================================
+==============================================
 
 ### Tags
 
@@ -348,7 +349,7 @@ Elements are the structures that define the document's content and structure.
 An element consists of an opening tag, content (optional), and a closing tag.
 Elements define the structure and content of a web page. -->
 
-====================================================================================
+==============================================
 Patch vs Put
 
 - **PUT**
@@ -364,7 +365,7 @@ Patch vs Put
   - PATCH updates only the specified fields.
   - If your form or component allows the user to update only specific fields (e.g., changing the user's email address or password), you might use PATCH.
 
-====================================================================================
+==============================================
 
 ### Multipage Application (MPA)
 
@@ -410,7 +411,7 @@ Patch vs Put
 - Generally simpler to build and maintain compared to SPAs.
 - Often faster to load because only necessary content for each page is loaded.
 - Better suited for content-driven websites with less interactivity.
-====================================================================================
+==============================================
 
 
 why  const varible array/object can be changed in javascript
@@ -418,7 +419,7 @@ why  const varible array/object can be changed in javascript
 -const keyword is used to declare variables whose values cannot be reassigned.
 
 
-=================================================================================================================
+===========================================================================
 
 -A lexical scope in JavaScript means that a variable defined outside a function can be accessible inside another function
 
@@ -447,150 +448,3 @@ function outerFunction() {
 
 outerFunction();
 
-
-
-=========================================================================
-
-Generators and iterators are closely related concepts in JavaScript that allow for efficient handling of sequences and collections of data. Here's an overview of both, including their definitions, usage, and how they interrelate.
-
-### Iterators
-
-**Iterators** are objects that allow for sequential access to elements in a collection, one at a time. An iterator must implement a `next()` method that returns an object with two properties:
-- `value`: The next value in the sequence.
-- `done`: A boolean indicating whether the iteration is complete.
-
-#### Example of an Iterator:
-
-const myArray = [1, 2, 3];
-const iterator = myArray[Symbol.iterator]();
-
-console.log(iterator.next()); // { value: 1, done: false }
-console.log(iterator.next()); // { value: 2, done: false }
-console.log(iterator.next()); // { value: 3, done: false }
-console.log(iterator.next()); // { value: undefined, done: true }
-
-
-====================================================================
-
-
-### Generators
-
-**Generators** are special functions that can pause their execution and resume it later. They return a generator object, which is both an iterator and an iterable. Generators use the `function*` syntax and `yield` to produce values.
-
-#### Example of a Generator:
-
-function* simpleGenerator() {
-    yield 1;
-    yield 2;
-    yield 3;
-}
-
-const gen = simpleGenerator();
-
-console.log(gen.next()); // { value: 1, done: false }
-console.log(gen.next()); // { value: 2, done: false }
-console.log(gen.next()); // { value: 3, done: false }
-console.log(gen.next()); // { value: undefined, done: true }
-
-====================================================================
-
-### Differences Between Generators and Iterators
-
-1. **Creation**:
-   - **Iterators**: Can be created manually or derived from iterable objects (like arrays, maps, sets).
-   - **Generators**: Defined using the `function*` syntax and `yield` keyword.
-
-2. **State Management**:
-   - **Iterators**: Manually manage the internal state to track the current position in the sequence.
-   - **Generators**: Automatically manage the internal state; pausing and resuming are handled by `yield`.
-
-3. **Ease of Use**:
-   - **Iterators**: Require explicit implementation of the `next()` method.
-   - **Generators**: Provide a simpler way to create iterators with less boilerplate code.
-
-### Using Generators to Implement Iterators
-
-Generators can be used to implement iterators in a more concise and readable manner.
-
-#### Example of Using a Generator to Create an Iterator:
-
-function* idGenerator() {
-    let id = 1;
-    while (true) {
-        yield id++;
-    }
-}
-
-const gen = idGenerator();
-
-console.log(gen.next().value); // 1
-console.log(gen.next().value); // 2
-console.log(gen.next().value); // 3
-
-
-### Practical Use Cases
-
-1. **Infinite Sequences**:
-   - Generators can create infinite sequences, such as the example above with `idGenerator`.
-
-2. **Asynchronous Programming**:
-   - Generators can be used with Promises to handle asynchronous operations in a synchronous-looking manner.
-
-3. **Custom Iterators**:
-   - Generators make it easy to create custom iterators for objects.
-
-### Example: Generator for Fibonacci Sequence
-
-function* fibonacci() {
-    let [prev, curr] = [0, 1];
-    while (true) {
-        yield curr;
-        [prev, curr] = [curr, prev + curr];
-    }
-}
-
-const fib = fibonacci();
-
-console.log(fib.next().value); // 1
-console.log(fib.next().value); // 1
-console.log(fib.next().value); // 2
-console.log(fib.next().value); // 3
-console.log(fib.next().value); // 5
-
-
-### Combining Generators with Promises
-
-Generators can be combined with Promises to handle asynchronous workflows.
-
-function* fetchGenerator() {
-    const data = yield fetch('https://jsonplaceholder.typicode.com/posts/1')
-        .then(response => response.json());
-    console.log(data);
-}
-
-const gen = fetchGenerator();
-const promise = gen.next().value;
-
-promise.then(data => gen.next(data));
-
-
-### Summary
-
-- **Iterators** provide a way to access elements sequentially.
-- **Generators** simplify the creation of iterators and can pause/resume execution.
-- Generators are useful for managing stateful sequences, handling asynchronous tasks, and creating custom iterators.
-
-====================================================================
-
-### Why Use Promises Instead of Callbacks?
-
-1. **Readability**: Avoids "callback hell" with cleaner code.
-2. **Error Handling**: Centralized error handling with `.catch()`.
-3. **Control**: Maintains control over asynchronous flow.
-4. **Composability**: Easily run and manage multiple async operations.
-
-Promises can be composed using methods like Promise.all, Promise.race, Promise.allSettled, and Promise.any. This allows for running multiple asynchronous operations in parallel and handling their results collectively.
-
-5. **Standardization**: Native support in modern JavaScript (ES6).
-
-Promises are a part of the ES6 (ECMAScript 2015) standard, meaning they are natively supported in modern JavaScript engines and have a consistent behavior across different environments.
