@@ -1,0 +1,30 @@
+================================================================================
+### Why the UI Doesn't Reflect Changes Without useState
+
+
+1. State Management:
+   - With useState: React's useState hook manages state in functional components. When the state changes via setCount, React knows to re-render the component with the new state value.
+   - Without useState: A regular variable change does not notify React to re-render the component. React is unaware of the change in the variable, so the UI does not update.
+
+2. Re-render Trigger:
+   - With useState: Changing state via setCount schedules a re-render of the component, allowing React to update the DOM with the new state value.
+   - Without useState: Directly changing a variable does not trigger a re-render, so the component function does not re-execute to reflect the updated value in the DOM.
+
+3. React’s Rendering Mechanism:
+   - With useState: React's reconciliation algorithm detects state changes and efficiently updates the DOM based on those changes.
+   - Without useState: The reconciliation algorithm is not triggered, as React does not detect changes to regular variables.
+
+4. Functional Component Execution:
+   - With useState: On state change, the functional component re-runs, recalculating the UI with the updated state.
+   - Without useState: The component function does not re-run on variable change, so the UI remains unchanged.
+
+5. UI Update:
+   - With useState: The UI updates to display the new state value after the re-render.
+   - Without useState: The UI remains static, showing the initial variable value, because no re-render occurs.
+
+==================================================================================
+An event listener in JavaScript is a functions() that waits for a specific event to occur on an element and then executes a specified action. Events can be user actions like clicks, key presses, mouse movements, or system-generated events like page load.
+
+Use addEventListener() to attach an event listener to an element.
+Use removeEventListener() to detach an event listener.
+
