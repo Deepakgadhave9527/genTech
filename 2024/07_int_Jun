@@ -781,6 +781,7 @@ Babel can also convert JavaScript code from one version to another, making it co
 Browsers cannot understand JSX code
 
 "Use Babel with React to transpile JSX code into plain JavaScript functions and other syntax that browsers can understand."
+
 Using this way we can assure that our JSX code can work in almost any browser
 
 

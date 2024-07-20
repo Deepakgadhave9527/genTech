@@ -323,7 +323,10 @@ sticky
 - Width, height, margins, and padding can be set.
 - Examples: `<div>`, `<p>`, `<li>`, `<img>` (when you want it to behave as a block).
 
+Inline-block elements behave like:
 
+- **Inline elements**: They sit next to each other horizontally.
+- **Block elements**: They respect width and height properties and can have margins and padding.
 
 
 

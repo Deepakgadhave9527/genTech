@@ -148,3 +148,55 @@ const flatArr=(inp)=>{
     
 }
 console.log(flatArr(nestedArray))
+
+
+
+const [count, setCount] = useState(1);
+for (let i = 0; i < 10; i++) {
+  setCount(count++);
+}
+console.log(count);
+
+
+
+
+console.log(1);
+setTimeout(() => {
+  console.log(2);
+}, -10);
+new Promise((resolve, reject) => {
+  resolve('4');
+}).then((data) => console.log(data));
+console.log(3);
+
+//op
+1
+3
+4
+2
+
+
+const input = [3, 2, 4, 1, 2, 1, 4, 6];
+const output = [...new Set(input)] // Remove duplicates
+                   .sort((a, b) => a - b) // Sort
+                   .slice(0, 2); // Pick the first two items
+
+console.log(output); // Output: [1, 2]
+
+
+console.log(a);
+
+function xyz() {
+    a = 10;
+    console.log(a);
+    var a;
+}
+
+xyz();
+var a = 20;
+
+undefined
+10
+
+
+

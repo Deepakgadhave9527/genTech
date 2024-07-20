@@ -595,9 +595,10 @@ Semantic Elements
 
 
 Cross-browser compatibility ensures that web applications work consistently across different browsers and versions. give the consistent user experience across different web browsers
+- **CSS Prefixes**: Use vendor prefixes (-webkit-, -moz-, -ms-, -o-) for CSS properties that require them
 
 - **Browser Testing**: Test the application on major browsers (Chrome, Firefox, Safari, Edge) and their different versions.
-- **CSS Prefixes**: Use vendor prefixes (-webkit-, -moz-, -ms-, -o-) for CSS properties that require them.
+.
 - **Feature Detection**: Use feature detection libraries like Modernizr to detect browser capabilities.
 - **Polyfills**: Use polyfills for missing features in older browsers (e.g., ES6 features in IE).
 - **Normalize/Reset CSS**: Use CSS reset (normalize.css) to ensure consistent styling across browsers.

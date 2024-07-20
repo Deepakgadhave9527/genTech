@@ -1,4 +1,39 @@
 
+
+### Pure Functions
+- *Deterministic*: Always return the same output for the same input.
+- *No Side Effects*: Do not alter external state or rely on it.
+- *Benefits*: Easier to understand, test, compose, and optimize (e.g., memoization).
+
+*Example*:
+javascript
+function add(a, b) {
+    return a + b;
+}
+
+console.log(add(2, 3)); // Always returns 5
+
+
+### Impure Functions
+- *Non-deterministic*: Output can vary for the same input.
+- *Side Effects*: Modify external state, perform I/O operations, etc.
+- *Challenges*: Harder to reason about, test, and maintain.
+
+*Example*:
+javascript
+let count = 0;
+
+function increment() {
+    count += 1;
+    return count;
+}
+
+console.log(increment()); // Output depends on external `count` variable
+
+
+### Summary
+- *Pure functions*: Predictable, testable, and composable.
+- *Impure functions*: Necessary for state changes and I/O operations but harder to manage.
 =========================================================================
 
 Generators and iterators are closely related concepts in JavaScript that allow for efficient handling of sequences and collections of data. Here's an overview of both, including their definitions, usage, and how they interrelate.
