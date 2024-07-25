@@ -15,6 +15,12 @@
   - Useful when you want to manage the event at the specific element level without affecting its ancestors.
   - Prevents Bubbling: Stops the event from bubbling up to parent elements.
 
+
+ `stopImmediatePropagation()` 
+  stopImmediatePropagation prevents the event from triggering other event listeners on the same element and stops the event from bubbling up the DOM tree.
+
+  stopImmediatePropagation stops the current event from calling any more event listeners on the same element and stops it from moving up to parent elements.
+
 =========================================================================
 ### Pure Functions
 - *Deterministic*: Always return the same output for the same input.
