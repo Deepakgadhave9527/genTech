@@ -21,26 +21,24 @@ var x = 10;
 x = 20; // Valid: Updates the value of x
 
 
-
-
 let:-
 - It is not hoisted
 - It is block scoped
 
-
 - Cannot be redeclared within the same block scope
-
 let y = 5;
 let y = 10; // SyntaxError: Identifier 'y' has already been declared
 
-hoisting error
-ReferenceError: Cannot access 'a' before initialization
 
 - It is rewritable
 
 let y = 10;
 y = 20; // Valid: Updates the value of y
 
+
+
+hoisting error
+ReferenceError: Cannot access 'a' before initialization
 
 const:-
 - It is not hoisted
@@ -462,27 +460,35 @@ A]Noraml function
 
 -this value inside a regular function is dynamic and depends on the invocation.
 -Noraml functions created using function declarations or expressions
--In normal function arguments object are available
--Arguments object gives the details of a function call including caller, callee, arguments.
+
 -Noraml functions are constructible, invoked with the new keyword
 -Noraml functions used have duplicate named parameters
 -Noraml function is hoisted
+
+-In normal function arguments object are available
+-Arguments object gives the details of a function call including caller, callee, arguments.
 
 
 B]Arrow function
 -Arrow functions do not have their own this context.
  Instead, they inherit this from the surrounding lexical scope (the context in which they are defined).
- -In Arrow function arguments object NOT available
+
 -arrow function cannot be used as a constructor. NOT invoked with the new keyword
 -Arrow functions can never have duplicate named parameters, whether in strict or non-strict mode.
 -Arrow function is Not hoisted
+-In Arrow function arguments object NOT available
+
 
 
 -Arrow function — also called fat arrow function
--Curly brackets aren’t required if only one expression is present.
+
+-Curly brackets arent required if only one expression is present.
 let add = (x, y) => x + y;
--If there’s only one argument, then the parentheses are not required either:
-let squareNum = x => x * x;arrow functions do not have their own this value.
+
+-If theres only one argument, then the parentheses are not required either:
+let squareNum = x => x * x;
+
+arrow functions do not have their own this value.
 Instead, they inherit the this value from the enclosing lexical scop
 
 

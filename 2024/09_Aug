@@ -17,7 +17,13 @@
 
 - **React API**: HOCs are not a formal part of the React API; rather, they are a pattern that emerges from React's compositional nature. They leverage the ability to compose components and add functionality in a reusable way.
 
+=========================================================================
+- `preventDefault()` is a JavaScript method used to stop the default action associated with an event from occurring.
+  - Example: Prevent a form from submitting.
+  - Example: Prevent a link from navigating to a new page.
+  - Example: Prevent a context menu from appearing.
 
+<<<<<<< HEAD
 ### Summary
 
 - **Definition**: HOCs are functions that take a component and return a new component with enhanced functionality.
@@ -30,6 +36,16 @@ Your understanding is correct, and you’ve captured the key concepts of HOCs ef
 
 
 ==================================================================================
+=======
+- `stopPropagation()` is a JavaScript method used to prevent an event from bubbling up the event chain.
+  - When an event is triggered, it normally propagates up from the target element to its ancestors in the DOM.
+  - By calling `stopPropagation()` on the event object, you stop this propagation.
+  - Ensures that the event doesn't trigger handlers on parent elements.
+  - Useful when you want to manage the event at the specific element level without affecting its ancestors.
+  - Prevents Bubbling: Stops the event from bubbling up to parent elements.
+
+=========================================================================
+>>>>>>> 82d501e (Virtual)
 ### Pure Functions
 - *Deterministic*: Always return the same output for the same input.
 - *No Side Effects*: Do not alter external state or rely on it.
@@ -64,6 +80,7 @@ console.log(increment()); // Output depends on external `count` variable
 ### Summary
 - *Pure functions*: Predictable, testable, and composable.
 - *Impure functions*: Necessary for state changes and I/O operations but harder to manage.
+
 =========================================================================
 
 Generators and iterators are closely related concepts in JavaScript that allow for efficient handling of sequences and collections of data. Here's an overview of both, including their definitions, usage, and how they interrelate.
@@ -93,8 +110,8 @@ console.log(iterator.next()); // { value: undefined, done: true }
 **Generators** are special functions that can pause their execution and resume it later. 
 allowing for control over the function's execution.
 
-It allow to control excuation of function 
-They return a generator object, which is both an iterator and an iterable.
+<!-- It allow to control excuation of function 
+They return a generator object, which is both an iterator and an iterable. -->
 
 They are defined using the function* syntax and use the yield keyword to pause execution.
 
@@ -195,6 +212,8 @@ for (let value of arr) {
   }, 1);
 }
 
+Since var does not create a new scope for each iteration, all callbacks reference the same x varibale.
+Since let creates a new scope for each iteration, each callback references its own unique x varibale.
 
 ### First Loop (Using var):
 
@@ -303,8 +322,12 @@ In this case, both `null` and `undefined` are considered loosely equal because t
   
 - `null === undefined`: The `===` operator checks for strict equality without type conversion.
  It compares both the value and the type of the operands.
-  Since `null` and `undefined` are of different types (`null` is of type `"object"` and `undefined` is of type `"undefined"`),
+ 
   `null === undefined` evaluates to `false`.
+
+
+
+ Since `null` and `undefined` are of different types (`null` is of type `"object"` and `undefined` is of type `"undefined"`),
 
   //=======================================
 
@@ -315,7 +338,7 @@ In this case, both `null` and `undefined` are considered loosely equal because t
 2. `console.log(typeof null);`
    - This will output `"object"`. This is a historical quirk in JavaScript. `typeof null` returns `"object"` because `null` is considered a primitive value that represents the intentional absence of any object value.
 
-3. `console.log(typeof NaN);`
+3. `console.log(typeof NaN);
    - This will output `"number"`. `NaN` stands for "Not-a-Number" and is considered a special value in JavaScript of the number type. Therefore, `typeof NaN` returns `"number"`.
 
    console.log(typeof undefined); // Output: "undefined"
@@ -348,6 +371,8 @@ console.log(3 > 2 > 1); outputs false because 3 > 2 evaluates to true, but then 
 
 Chained Comparisons: When you chain comparison operators like 1 < 2 < 3, JavaScript evaluates them sequentially from left to right.
 Type Coercion: JavaScript implicitly converts true and false to 1 and 0 respectively when compared with numeric values.
+
+
 //=======================================
 
 
