@@ -1,3 +1,0 @@
-# genTech
-# genTech
-# genTech
