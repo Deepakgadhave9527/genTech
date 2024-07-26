@@ -402,37 +402,3 @@ Babel is capable of converting JavaScript code from one version (such as ES6) to
 
 
 
-
-================================================================================
-
-
-
-callback
-callback is a function passed as an argument to another function,
-which gets invoked after the main function completes its execution.
- 
-They are commonly used to handle asynchronous operations in JavaScript.
-
-Callbacks are commonly used in programming to handle asynchronous tasks, such as fetching data from a server, reading files, or handling user interactions.
-
-
-
-================================================================================
-
-
-
-how handle asynchronous operations 
-
-Handling asynchronous operations in programming involves
-managing tasks that may take variable amounts of time to complete without blocking the execution of other code.
-
-Asynchronous operations can be handled using various techniques, including callbacks, Promises, async/await, and event listeners
-
-
-================================================================================
-
-
-
-
-
-

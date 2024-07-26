@@ -1,5 +1,280 @@
 
 
+//===========================this =========================
+
+
+Q2. What is this?
+
+In JavaScript, the `this` keyword refers to the current execution context.
+Its value depends on how a function is called and where it is called.
+The behavior of `this` can vary in different situations:
+
+<!-- -The JavaScript this keyword refers to the object it belongs to. -->
+-Alone, this refers to the  window object.
+-In a normal function, this refers to the  window object.
+-In a method, this refers to the owner object.
+
+-In a function, in strict mode, this is undefined.
+-In an event, this refers to the element that received the event.
+-Methods like call(), and apply() can refer this to any object.
+
+
+It has different values depending on where it is used:
+
+
+
+
+1. Global context:
+In the global scope, `this` refers to the global object, which is `window` in web browsers and `global` in Node.js.
+
+console.log(this === window); // true in a browser environment
+
+
+2. Function context: Inside a function, the value of `this` depends on how the function is called. If the function is called as a method of an object, `this` refers to that object.
+
+const obj = {
+name: 'example',
+greet: function() {
+console.log('Hello, ' + this.name);
+}
+};
+
+obj.greet(); // Output: Hello, example
+
+
+3. Constructor context: When a function is used as a constructor with the `new` keyword, `this` refers to the newly created instance.
+
+function Person(name) {
+this.name = name;
+}
+
+const person1 = new Person('John');
+console.log(person1.name); // Output: John
+
+
+4. Explicit binding: You can explicitly set the value of `this` using `call()`, `apply()`, or `bind()` methods.
+
+function greet() {
+console.log('Hello, ' + this.name);
+}
+
+const obj1 = { name: 'Alice' };
+const obj2 = { name: 'Bob' };
+
+greet.call(obj1); // Output: Hello, Alice
+greet.apply(obj2); // Output: Hello, Bob
+
+const greetBob = greet.bind(obj2);
+greetBob(); // Output: Hello, Bob
+
+<button id="myButton">Click Me</button>
+<script>
+  document.getElementById('myButton').addEventListener('click', function() {
+    console.log(this); // Refers to the button element
+  });
+
+  document.getElementById('myButton').addEventListener('click', () => {
+    console.log(this); // Refers to the global object or undefined (depending on the environment), not the button element
+  });
+</script>
+
+Understanding the context in which `this` is used is crucial for writing effective JavaScript code.
+
+//===========================Bubbling and Capturing =========================
+
+
+A) Bubbling
+
+-The bubbling principle is simple.
+-When an event happens on an element, it first runs the handlers on it,
+then on its parent, then all the way up on other ancestors.
+
+-With bubbling, the event is first captured and handled by the innermost element and
+then propagated to outer elements.
+
+
+B] capturing
+
+- capturing principle is simple.
+-when an event happen on element ,it first run the parent element of then lastly run handler
+
+
+-With capturing, the event is first captured by the outermost element and
+propagated to the inner elements.
+
+-Capturing is also called "trickling", which helps remember the propagation order:
+
+stopPropagation prevents further propagation of the current event in the capturing and bubbling phases.
+
+preventDefault prevents the default action the browser makes on that event.
+
+
+
+========================== typeof ==================================
+
+Q1: What is typeof operator?
+
+JavaScript provides a typeof operator that can examine a value and tell you what type it is:
+var a;
+typeof a; // "undefined"
+
+
+console.log(typeof undefined); // Output: "undefined"
+console.log(typeof null);      // Output: "object"
+console.log(typeof NaN);       // Output: "number"
+
+let a;
+
+a = "hello world";
+console.log(typeof a); // "string"
+
+a = 42;
+console.log(typeof a); // "number"
+
+a = true;
+console.log(typeof a); // "boolean"
+
+a = null;
+console.log(typeof a); // "object" -- weird, bug
+
+a = undefined;
+console.log(typeof a); // "undefined"
+
+a = { b: "c" };
+console.log(typeof a); // "object"
+
+a = [1, 2, 3];
+console.log(typeof a); // "object"
+console.log(Array.isArray(a)); // true
+
+<!-- The typeof operator for arrays returns "object" because arrays are a special type of object in JavaScript.
+ If you want to specifically check if a variable is an array, you can use  -->
+
+function greet(name) {
+    return "Hello, " + name + "!";
+}
+console.log(typeof greet); // "function"
+
+const greetExpression = function(name) {
+    return "Hello, " + name + "!";
+};
+console.log(typeof greetExpression); // "function"
+
+const greetArrow = (name) => {
+    return "Hello, " + name + "!";
+};
+console.log(typeof greetArrow); // "function"
+
+
+
+========================== ES6 features ==================================
+
+Below is the list of top ES6 features every JavaScript developer should know,
+
+Default parameters
+Spread and Rest syntaxes (…)
+let and const
+promise
+Destructuring assignment
+Arrow function expressions
+Classes
+
+Template literals (Template strings)
+Tagged Templates
+Object.assign() and Object.is()
+
+========================== Prototype ==================================
+Prototype:-
+- Every object in JavaScript has a prototype, which is another object that provides shared properties and methods.
+-Prototypes are the mechanism by which JavaScript objects iinherit properties and method from one another.
+
+-Javascript is a Prototype based language.
+
+
+
+
+Types of Prototypes in JavaScript
+Object Prototype
+Function Prototype
+Prototype Chain
+
+
+
+
+There are two main ways to set the prototype of an object:
+
+1. By using `__proto__`
+   - The `__proto__` property can be used to directly set the prototype of an object.
+   let animal = { eats: true };
+   let rabbit = { jumps: true };
+   rabbit.__proto__ = animal; // Setting the prototype
+   console.log(rabbit.eats); // Output: true
+   
+
+2. By using `Object.setPrototypeOf()`
+   - The `Object.setPrototypeOf(obj, prototype)` method sets the prototype of `obj` to `prototype`.
+   let animal = { eats: true };
+   let rabbit = { jumps: true };
+   Object.setPrototypeOf(rabbit, animal); // Setting the prototype
+   console.log(rabbit.eats); // Output: true
+   
+
+
+
+
+### Types of Prototypes in JavaScript
+
+1. Object Prototype
+   - Every object has a prototype, from which it inherits properties and methods.
+   - Access via `Object.getPrototypeOf(obj)` or `obj.__proto__`.
+
+   let obj = {};
+   console.log(obj.__proto__); // Output: {}
+   
+
+2. Function Prototype
+   - Functions have a `prototype` property used when creating objects with `new`.
+   - Example:
+       function Person(name) {
+         this.name = name;
+     }
+     Person.prototype.greet = function() {
+         console.log('Hello, ' + this.name);
+     };
+     let alice = new Person('Alice');
+     alice.greet(); // Output: Hello, Alice
+     
+
+3. Prototype Chain
+   - Objects inherit properties and methods from their prototype, forming a chain.
+   - Example:
+       let animal = { eats: true };
+     let rabbit = { jumps: true };
+     rabbit.__proto__ = animal;
+     console.log(rabbit.eats); // Output: true
+     
+
+
+
+<!-- 
+- In JavaScript, the prototype is a fundamental concept for object-oriented programming.
+
+-In javascript there is a build in function called "Object"
+
+-Prototype is an object to which other objects can inherit to achieve reusability.
+-The prototype of Object function is the prototype of all the objects created in Javascript
+-In Javascript with each function an anonymous object gets created called prototype object.
+
+Definition: In JavaScript, a prototype is an object that serves as a template for other objects to inherit properties and methods.
+Prototypes enable objects to inherit behavior and promote code reusability by sharing properties and methods among multiple instances. -->
+
+//==============================JavaScript Use Strict=========================
+The "+" directive was new in ECMAScript version 5
+
+purpose of "use strict" is to indicate that the code should be executed in "strict mode".
+With strict mode, you can
+not, use undeclared variables.
+
 
 =================================================================================================================
 let and const var keywords
@@ -286,172 +561,6 @@ matching parameters
 -The arguments object is built-in
 -The rest operation is not built, you need to declare it after all the parameters of a function
 
-
-
-========================== typeof ==================================
-
-Q1: What is typeof operator?
-
-JavaScript provides a typeof operator that can examine a value and tell you what type it is:
-var a;
-typeof a; // "undefined"
-
-
-console.log(typeof undefined); // Output: "undefined"
-console.log(typeof null);      // Output: "object"
-console.log(typeof NaN);       // Output: "number"
-
-let a;
-
-a = "hello world";
-console.log(typeof a); // "string"
-
-a = 42;
-console.log(typeof a); // "number"
-
-a = true;
-console.log(typeof a); // "boolean"
-
-a = null;
-console.log(typeof a); // "object" -- weird, bug
-
-a = undefined;
-console.log(typeof a); // "undefined"
-
-a = { b: "c" };
-console.log(typeof a); // "object"
-
-a = [1, 2, 3];
-console.log(typeof a); // "object"
-console.log(Array.isArray(a)); // true
-
-<!-- The typeof operator for arrays returns "object" because arrays are a special type of object in JavaScript.
- If you want to specifically check if a variable is an array, you can use  -->
-
-function greet(name) {
-    return "Hello, " + name + "!";
-}
-console.log(typeof greet); // "function"
-
-const greetExpression = function(name) {
-    return "Hello, " + name + "!";
-};
-console.log(typeof greetExpression); // "function"
-
-const greetArrow = (name) => {
-    return "Hello, " + name + "!";
-};
-console.log(typeof greetArrow); // "function"
-
-
-
-========================== ES6 features ==================================
-
-Below is the list of top ES6 features every JavaScript developer should know,
-
-Default parameters
-Spread and Rest syntaxes (…)
-let and const
-promise
-Destructuring assignment
-Arrow function expressions
-Classes
-
-Template literals (Template strings)
-Tagged Templates
-Object.assign() and Object.is()
-
-========================== Prototype ==================================
-Prototype:-
-- Every object in JavaScript has a prototype, which is another object that provides shared properties and methods.
--Prototypes are the mechanism by which JavaScript objects iinherit properties and method from one another.
-
--Javascript is a Prototype based language.
-
-
-
-
-Types of Prototypes in JavaScript
-Object Prototype
-Function Prototype
-Prototype Chain
-
-
-
-
-There are two main ways to set the prototype of an object:
-
-1. By using `__proto__`
-   - The `__proto__` property can be used to directly set the prototype of an object.
-   let animal = { eats: true };
-   let rabbit = { jumps: true };
-   rabbit.__proto__ = animal; // Setting the prototype
-   console.log(rabbit.eats); // Output: true
-   
-
-2. By using `Object.setPrototypeOf()`
-   - The `Object.setPrototypeOf(obj, prototype)` method sets the prototype of `obj` to `prototype`.
-   let animal = { eats: true };
-   let rabbit = { jumps: true };
-   Object.setPrototypeOf(rabbit, animal); // Setting the prototype
-   console.log(rabbit.eats); // Output: true
-   
-
-
-
-
-### Types of Prototypes in JavaScript
-
-1. Object Prototype
-   - Every object has a prototype, from which it inherits properties and methods.
-   - Access via `Object.getPrototypeOf(obj)` or `obj.__proto__`.
-
-   let obj = {};
-   console.log(obj.__proto__); // Output: {}
-   
-
-2. Function Prototype
-   - Functions have a `prototype` property used when creating objects with `new`.
-   - Example:
-       function Person(name) {
-         this.name = name;
-     }
-     Person.prototype.greet = function() {
-         console.log('Hello, ' + this.name);
-     };
-     let alice = new Person('Alice');
-     alice.greet(); // Output: Hello, Alice
-     
-
-3. Prototype Chain
-   - Objects inherit properties and methods from their prototype, forming a chain.
-   - Example:
-       let animal = { eats: true };
-     let rabbit = { jumps: true };
-     rabbit.__proto__ = animal;
-     console.log(rabbit.eats); // Output: true
-     
-
-
-
-<!-- 
-- In JavaScript, the prototype is a fundamental concept for object-oriented programming.
-
--In javascript there is a build in function called "Object"
-
--Prototype is an object to which other objects can inherit to achieve reusability.
--The prototype of Object function is the prototype of all the objects created in Javascript
--In Javascript with each function an anonymous object gets created called prototype object.
-
-Definition: In JavaScript, a prototype is an object that serves as a template for other objects to inherit properties and methods.
-Prototypes enable objects to inherit behavior and promote code reusability by sharing properties and methods among multiple instances. -->
-
-//==============================JavaScript Use Strict=========================
-The "+" directive was new in ECMAScript version 5
-
-purpose of "use strict" is to indicate that the code should be executed in "strict mode".
-With strict mode, you can
-not, use undeclared variables.
 
 
 //============================== Noraml function vs arrow function =========================
@@ -952,111 +1061,3 @@ document represents a web page in the web browser.
 document object is a part of window object.
 
 Using document object you can dynamically update the content on the viewport.
-
-//===========================this =========================
-
-
-Q2. What is this?
-
-In JavaScript, the `this` keyword refers to the current execution context.
-Its value depends on how a function is called and where it is called.
-The behavior of `this` can vary in different situations:
-
-<!-- -The JavaScript this keyword refers to the object it belongs to. -->
--Alone, this refers to the  window object.
--In a normal function, this refers to the  window object.
--In a method, this refers to the owner object.
-
--In a function, in strict mode, this is undefined.
--In an event, this refers to the element that received the event.
--Methods like call(), and apply() can refer this to any object.
-
-
-It has different values depending on where it is used:
-
-
-
-
-1. Global context:
-In the global scope, `this` refers to the global object, which is `window` in web browsers and `global` in Node.js.
-
-console.log(this === window); // true in a browser environment
-
-
-2. Function context: Inside a function, the value of `this` depends on how the function is called. If the function is called as a method of an object, `this` refers to that object.
-
-const obj = {
-name: 'example',
-greet: function() {
-console.log('Hello, ' + this.name);
-}
-};
-
-obj.greet(); // Output: Hello, example
-
-
-3. Constructor context: When a function is used as a constructor with the `new` keyword, `this` refers to the newly created instance.
-
-function Person(name) {
-this.name = name;
-}
-
-const person1 = new Person('John');
-console.log(person1.name); // Output: John
-
-
-4. Explicit binding: You can explicitly set the value of `this` using `call()`, `apply()`, or `bind()` methods.
-
-function greet() {
-console.log('Hello, ' + this.name);
-}
-
-const obj1 = { name: 'Alice' };
-const obj2 = { name: 'Bob' };
-
-greet.call(obj1); // Output: Hello, Alice
-greet.apply(obj2); // Output: Hello, Bob
-
-const greetBob = greet.bind(obj2);
-greetBob(); // Output: Hello, Bob
-
-<button id="myButton">Click Me</button>
-<script>
-  document.getElementById('myButton').addEventListener('click', function() {
-    console.log(this); // Refers to the button element
-  });
-
-  document.getElementById('myButton').addEventListener('click', () => {
-    console.log(this); // Refers to the global object or undefined (depending on the environment), not the button element
-  });
-</script>
-
-Understanding the context in which `this` is used is crucial for writing effective JavaScript code.
-
-//===========================Bubbling and Capturing =========================
-
-
-A) Bubbling
-
--The bubbling principle is simple.
--When an event happens on an element, it first runs the handlers on it,
-then on its parent, then all the way up on other ancestors.
-
--With bubbling, the event is first captured and handled by the innermost element and
-then propagated to outer elements.
-
-
-B] capturing
-
-- capturing principle is simple.
--when an event happen on element ,it first run the parent element of then lastly run handler
-
-
--With capturing, the event is first captured by the outermost element and
-propagated to the inner elements.
-
--Capturing is also called "trickling", which helps remember the propagation order:
-
-stopPropagation prevents further propagation of the current event in the capturing and bubbling phases.
-
-preventDefault prevents the default action the browser makes on that event.
