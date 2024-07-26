@@ -1,0 +1,27 @@
+
+================================================================================
+
+Redux vs Redux Toolkit
+
+### Redux:
+
+- Core library for state management.
+- Involves writing significant boilerplate.
+- Requires manual handling of immutability.
+- Asynchronous logic typically requires middleware.
+
+### Redux Toolkit:
+
+- Provides utility functions to simplify Redux usage.
+- Reduces boilerplate significantly.
+- Offers built-in immutability helpers.
+- Built-in support for handling asynchronous logic.
+
+- Seamless integration with Redux DevTools Extension.
+
+
+
+
+
+
+
