@@ -1,0 +1,50 @@
+### Set vs. Map
+#Map
+
+Definition: A Map is a built-in JavaScript object that stores key-value pairs. It allows you to associate each key with a specific value and provides efficient methods for adding, retrieving, and deleting key-value pairs. Keys in a Map must be unique, while values can be duplicated.
+
+Set:
+
+Definition: A Set is a built-in JavaScript object that allows you to store a collection of unique values. It ensures that no duplicate values are stored and provides methods for adding, checking, and removing values. Sets do not associate values with specific keys.
+
+- **Set:**
+  - **Definition:** A `Set` stores unique values, with no key-value pairs. It automatically removes duplicates.
+  - **Stores:** Unique values only.
+  - **Key-Value:** No key-value pairs.
+  - **Uniqueness:** Ensures all values are unique.
+  - **Methods:** `add(value)`, `delete(value)`, `has(value)`, `size`.
+
+- **Map:**
+  - **Definition:** A `Map` stores key-value pairs, where each key maps to a specific value. Keys must be unique, but values can be duplicated.
+  - **Stores:** Key-value pairs.
+  - **Key-Value:** Each key maps to a value.
+  - **Uniqueness:** Keys must be unique; values can be duplicated.
+  - **Methods:** `set(key, value)`, `get(key)`, `delete(key)`, `has(key)`, `size`.
+
+========================================================================
+
+- **Absolute Units:** 
+Absolute length units are fixed and do not change relative to any other elements or the viewport. They are typically used when you need precise, static measurements.
+
+Fixed measurements that don't change relative to other elements. 
+
+Examples 
+ 
+`px` (pixels), 
+`pt` (points), 
+`in` (inches).
+
+- **Relative Units:** 
+
+Relative length units are based on other dimensions, such as the dimensions of the viewport, the font size, or the parent element. These units are useful for creating flexible and responsive layouts.
+
+Measurements based on other dimensions or the viewport. 
+
+
+Examples 
+
+ `%` (percentage of the parent element), 
+`em` (relative to the font size of the element),
+`rem` (relative to the root element's font size),
+`vw` (viewport width), and `vh` (viewport height).
+

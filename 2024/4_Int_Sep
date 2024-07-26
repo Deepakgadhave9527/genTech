@@ -1,10 +1,5 @@
 
-=========================================================================
-- **Absolute Units:** Fixed measurements that don't change relative to other elements. Examples include `px` (pixels), `pt` (points), and `in` (inches).
-
-- **Relative Units:** Measurements based on other dimensions or the viewport. Examples include `%` (percentage of the parent element), `em` (relative to the font size of the element), `rem` (relative to the root element's font size), `vw` (viewport width), and `vh` (viewport height).
-
-
+=
 
 =========================================================================
 
