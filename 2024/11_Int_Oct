@@ -48,3 +48,45 @@ Examples
 `rem` (relative to the root element's font size),
 `vw` (viewport width), and `vh` (viewport height).
 
+
+========================================================================
+   
+   `React.memo` is a utility that optimizes functional components by ensuring they only re-render when their props change.
+   
+    React.memo is a higher-order component in React that memoizes a component, meaning 
+    it will only re-render if its props change.
+     This is particularly useful for functional components to optimize performance by preventing unnecessary re-renders.
+
+========================================================================
+### calc()
+
+- The `calc()` function in CSS provides a flexible way to perform dynamic calculations directly within your stylesheets.
+
+- It allows you to combine different units (e.g., percentages, pixels) and perform mathematical operations.
+
+- You can use it to adjust CSS property values dynamically.
+- It is especially useful for creating responsive layouts and adjusting dimensions based on various factors.
+
+========================================================================
+### var()
+
+var() function in CSS allows you to use the value of a custom property (variable) in your styles
+
+:root {
+  --main-color: #3498db;
+  --padding: 20px;
+}
+
+.container {
+  background-color: var(--main-color);
+  padding: var(--padding);
+}
+
+Here are the benefits of using `var()` in CSS:
+
+- **Reusability:** Define a value once and use it throughout your stylesheet.
+- **Maintainability:** Update a value in one place, and the change is reflected everywhere it's used.
+- **Consistency:** Ensure consistent styling by using the same variables for similar properties.
+- **Flexibility:** Easily adjust values for different themes or designs by changing variable values.
+- **Scoped Variables:** Variables can be defined at different levels (global or local) for fine-grained control over styling.
+

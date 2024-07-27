@@ -282,6 +282,7 @@ const theme = useContext(context)
     It is useful to avoid expensive calculations on every render when the returned value is not going to change. */}
     ---------------------------------------------------------------------------------
     React.memo is a higher-order component in React that memoizes a component, meaning it will only re-render if its props change. This is particularly useful for functional components to optimize performance by preventing unnecessary re-renders.
+    
     ---------------------------------------------------------------------------------
   
     useImperativeHandle()
