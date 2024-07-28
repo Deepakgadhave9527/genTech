@@ -33,12 +33,14 @@ Coercion in programming refers to the automatic or implicit conversion of values
 In JavaScript, t
 his process is often automatic, especially when using the loose equality operator (==).
 
+
 ------------------------------------------------------------------------------------------------
 
 
 (null == undefined) //true
 (null === undefined) //false
 Both null and undefined represent the absence of a value.
+
 null is explicitly set by the programmer to indicate "no value," while undefined typically means a variable has been declared but has not yet been assigned a value.
  Because both represent an absence or non-existence of value, they are treated as equal in the context of loose equality.
 

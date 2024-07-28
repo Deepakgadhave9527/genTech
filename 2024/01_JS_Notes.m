@@ -256,17 +256,17 @@ There are two main ways to set the prototype of an object:
 
 
 
-<!-- 
-- In JavaScript, the prototype is a fundamental concept for object-oriented programming.
 
--In javascript there is a build in function called "Object"
+// - In JavaScript, the prototype is a fundamental concept for object-oriented programming.
 
--Prototype is an object to which other objects can inherit to achieve reusability.
--The prototype of Object function is the prototype of all the objects created in Javascript
--In Javascript with each function an anonymous object gets created called prototype object.
+// -In javascript there is a build in function called "Object"
 
-Definition: In JavaScript, a prototype is an object that serves as a template for other objects to inherit properties and methods.
-Prototypes enable objects to inherit behavior and promote code reusability by sharing properties and methods among multiple instances. -->
+// -Prototype is an object to which other objects can inherit to achieve reusability.
+// -The prototype of Object function is the prototype of all the objects created in Javascript
+// -In Javascript with each function an anonymous object gets created called prototype object.
+
+// Definition: In JavaScript, a prototype is an object that serves as a template for other objects to inherit properties and methods.
+// Prototypes enable objects to inherit behavior and promote code reusability by sharing properties and methods among multiple instances. 
 
 //==============================JavaScript Use Strict=========================
 The "+" directive was new in ECMAScript version 5
