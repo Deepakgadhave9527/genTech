@@ -1,4 +1,8 @@
+=========================================================================
+
+
 Q1. Is javascript a dynamically typed language or a statically typed language ?
+
 Javascript is a dynamically typed language.
 It means all type checks are done at run time ( When program is executing )
 So, we can just assign anything to the variable and it works fine.
@@ -8,7 +12,11 @@ So, we can just assign anything to the variable and it works fine.
   console.log(a) // 0
   a = "Hello"
   console.log(a) // "Hello"
-          
+
+=========================================================================
+
+
+
 Q2. What are the different datatypes in javascript ? (Most asked)
 Primitive datatypes:
 String
@@ -23,10 +31,23 @@ Array
 Object
 Date
 
+
+=========================================================================
+
+
 Q3. What is Hoisting in javascript ? (Most asked)
+
 In other scripting/server side languages, variables or functions must be declared before using it.
-In javascript, variables and functions can be used before declaring it. The javascript compiler moves all the declarations of variables and functions on top. so there will not be any error. This is called hoisting.
-👉 Interview Tip: Mention buzz word 'temporal dead zone' for let & const in above answer so that interviewer will ask What is temporal dead zone. 😉
+
+In javascript, variables and functions can be used before declaring it.
+ The javascript compiler moves all the declarations of variables and functions on top. 
+ so there will not be any error. This is called hoisting.
+
+👉Interview Tip: Mention buzz word 'temporal dead zone' for let & const in above answer so that interviewer will ask What is temporal dead zone. 😉
+
+=========================================================================
+
+
 Q4. What are the various things hoisted in javascript ?
 
   Function declarations: Fully hoisted.
@@ -35,8 +56,15 @@ Q4. What are the various things hoisted in javascript ?
   Anonymous Function expressions: Not hoisted
   let and const - Hoisted but not initialized. (Temporal dead zone).
   class declarations - Hoisted but not initialized.
-          
+
+
+
 Good Reference: https://stackabuse.com/hoisting-in-javascript/
+
+
+
+=========================================================================
+
 Q5. What is temporal dead zone ?
 It is a specific time period in the execution of javascript code where the variables declared with let and const exists but cannot be accessed until the value is assigned.
 Any attempt to access them result in reference errors.
@@ -47,17 +75,28 @@ Any attempt to access them result in reference errors.
     var counter1 = 1;
     let counter2 = 2;
   }
-          
+
+
+=========================================================================
+       
 Q6. What are the differences let, var and const ? (Most asked)
+
 Scope:
 Variables declared with var are function scoped.( available through out the function where its declared ) or global scoped( if defined outside the function ).
 Variables declared with let and const are block scoped.
+
 Reassignment:
 var and let can be reassigned.
 const cannot be reassigned.
+
 Hoisting:
 var gets hoisted and initialized with undefined.
 let and const - gets hoisted to the top of the scope but does not get assigned any value.(temporal dead zone)
+
+
+=========================================================================
+
+
 Q7. List out some key features of ES6 ? (Most asked)
 Arrow functions
 Let and Const declarations.
@@ -70,7 +109,12 @@ Classes
 Modules
 Map, Set, Weakmap, Weakset
 👉 Interview Tip: Here try to explain definations (provided in below questions) for these features so that you can kill 2-3 min of interview time 😉
+
+
+=========================================================================
+
 Q8. What are limitations of arrow functions in javascript ?
+
 Arrow functions are introduced in ES6. They are simple and shorter way to write functions in javascript.
 Arrow functions cannot be accessed before initialization
 Arrow function does not have access to arguments object
@@ -78,6 +122,10 @@ Arrow function does not have their own this. Instead, they inherit this from the
 Arrow functions cannot be used as constructors. Using them with the 𝙣𝙚𝙬 keyword to create instances throws a TypeError.
 Arrow functions cannot be used as generator functions.
 👉 Note: Arrow functions + this combination questions will be asked here. Please explore on this combinations.
+
+
+=========================================================================
+
 Q9. What’s the spread operator in javascript ?
 Spread operator is used to spread or expand the elements of an iterable like array or string into individual elements.
 Uses:
@@ -101,6 +149,10 @@ Passing array of values as individual arguments to a function.
   createExample(…a)
           
 👉 Interview Tip: Practice the above examples mentioned and showcase them in interviews to make interviewer think that you are a practical person. 😉
+
+
+=========================================================================
+
 Q10. What is rest operator in javascript ?
 Rest operator is used to condense multiple elements into single array or object.
 This is useful when we dont know how many parameters a function may receive and you want to capture all of them as an array.
@@ -126,9 +178,14 @@ It allows us to assign the object properties and array values to distinct variab
 
   const [a,b] = [1,2];
   console.log(a,b) // 1,2
+
+  =========================================================================
+
           
 Q12. What are the differences between Map and Set ?
-Map
+
+
+### Map
 Map is the collection of key value pairs
 Map is two dimensional
 new Map([iterable]) – creates the map, with optional iterable (e.g. array) of [key,value] pairs for initialization.
@@ -149,8 +206,10 @@ map.size – returns the current element count.
   O/P
   ["name","saikrishna"]
   ["id","1"]
-          
-Set
+
+
+
+### Set
 Set is a collection of unique values
 Set is one dimensional
 new Set([iterable]) – creates the set, and if an iterable object is provided (usually an array), copies values from it into the set.
@@ -171,6 +230,9 @@ set.size – is the elements count.
   1
   Saikrishna
           
+=========================================================================
+
+
 Q13. What are modules in javascript ?
 Modules allows us to break down the large piece of code into smaller parts.
 Modules helps us to write more reusable and maintenable code.
@@ -203,14 +265,26 @@ In Pass by reference, parameters passed as an arguments does not creates their o
 
   addToArr(arr);
   console.log(arr);  // Output: [1, 2, 3, 4]
+
+  =========================================================================
+
             
 Q15. What is the difference between map and filter ? (Frequently asked)
+
 Both map and filter are useful in JavaScript when working with an arrays.
-map transforms each element of an array and creates a new array which contains the transformed elements. whereas filter will creates a new array with only those elements which satisfies the specified condition.
+map transforms each element of an array and creates a new array which contains the transformed elements.
+ whereas filter will creates a new array with only those elements which satisfies the specified condition.
+
+ =========================================================================
+
 Q16. What is the difference between map() and forEach() (Frequently asked)
 map method is used to transform the elements of an array. Whereas forEach method is used to loop through the elements of an array.
 map method will return a new array with the transformed values. forEach method does not return a new array.
 map method can be used with other array methods like filter method. whereas forEach method cannot be used with other array methods as it does not return any array.
+
+=========================================================================
+
+
 Q17. What is the difference between for-in and for-of ?
 Both for-in and for-of are used to iterate over the datastructure.
 for-in:
@@ -218,6 +292,9 @@ for-in iterates over the enumerable property keys of an object.
 for-of:
 for-of is used to iterate over the values of an iterable object.
 Examples of iterable objects are array,string,nodelists etc. (for of on object returns error)
+
+=========================================================================
+
 Q18. What is difference between find vs findIndex ?
 find:
 It will return the first element of array that passes specified condition.
@@ -247,6 +324,8 @@ It will return the index of first element of an array that passes the specified 
   Output:
   2
           
+ =========================================================================
+
 Q19. What is the difference between Pure and Impure functions?
 Pure Functions:
 Pure functions are the functions which will return same output for same arguments passed to the function.
@@ -270,6 +349,10 @@ This will modify non local state.
   console.log(greeting1("Saikrishna Nangunuri"));
           
 Good Reference: https://www.scaler.com/topics/pure-function-in-javascript/
+
+
+ =========================================================================
+
 Q20. What are the differences between call(), apply() and bind() ? (Frequently asked)
 Call method will invoke the function immediately with the given this value and allows us to pass the arguments one by one with comma separator.
 Apply method will invoke the function immediately with given this value and allows us to pass the arguments as an array.
@@ -291,7 +374,7 @@ Bind method will return a new function with the given this value and arguments w
 
   printName.call(name1,"Call Hello");
   printName.call(name2,"Call Hello");
-  printName.apply(name2,["Apply Hello'])
+  printName.apply(name2,[Apply Hello])
           
 The only difference between call and apply is that syntax of how we pass the arguments.
 bind: This gives us a copy which can be invoked or executed later rather than directly invoking it whereever we are writing this line of code.
@@ -314,6 +397,9 @@ We can use bind() for events like onClick where you dont know when they will be 
   let bindPrintName = printName.bind(name1,"Iam from the bind method");
   bindPrintName()
           
+
+  =========================================================================
+
 Q21. What are the different ways to create object in javascript ? (Most asked)
 Object literal :
 
@@ -349,7 +435,9 @@ This is used when we want to include properties from multiple other objects into
   };
 
   let course = Object.assign({},lesson,teacher);
-          
+
+  =========================================================================
+
 Q22. Whats the difference between Object.keys,values and entries ?
 Object.keys(): This will return the array of keys
 Object.values(): This will return the array of values
@@ -399,7 +487,9 @@ Will prevent the addition of new properties but we can modify existing propertie
   data: {
     a: 20
   }
-          
+
+    =========================================================================
+           
 Q24. What is a polyfill in javascript ?
 👉 **Interview Tip:** If polyfill is asked, then 99% they will ask you to write a polyfill. So practice atleast 2-3 polyfills (map,foreach compulsary)
 A polyfill is a piece of code which provides the modern functionality to the older browsers that does not natively support it.
@@ -660,6 +750,8 @@ clear() – delete everything.
 key(index) – get the key on a given position.
 length – the number of stored items.
 Good Reference: https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API#concepts_and_usage
+
+
 Q43. What is the difference between Indexeddb and sessionstorage ?
 IndexedDb:
 It is used for storing large amount of structured data.
@@ -861,7 +953,10 @@ Event bubbling is a type of event propagation where the event first triggers on 
     </script>
   </body>
   </html>
-          
+
+
+   =========================================================================
+         
 Q53. What is event capturing ?
 Event capturing is a type of event propagation where the event is first captured by the outermost element, and then successively triggers on the descendants (children) of the target element in the same nesting hierarchy till it reaches the innermost DOM element.
 You can enable event capturing by passing true as the third argument to addEventListener.
@@ -911,6 +1006,9 @@ copyWithin(): copies array element to another position Eg: [”a”,”b”,”c
 flat(): creates a new array with all the sub array elements
 fill(): will fill all the elements of an array from a start index ti an end index with a stati value.
 Good Reference: https://www.w3schools.com/js/js_array_methods.asp
+
+  =========================================================================
+
 Q55. What are the differences between some and every in javascript ?
 some(): will check if atleast one of the element in the array satisfies the specified condition. It returns true if any element passes the condition. else returns false.
 
@@ -1034,7 +1132,12 @@ Good Reference: https://apidog.com/blog/axios-vs-fetch/
     console.error('There has been a problem with your axios operation:', error);
   });
           
+   =========================================================================
+         
 Q60. Is javascript synchronous or asynchronous and single threaded or multithreaded ?
-Javascript is a synchronous single threaded language. This means that it executes line by line in order and each line must finish executing before the next line starts.
-However, javascript has can handle asynchronous operations using mechanisms like callbacks, promises and async/await. These mechanisms allows javascript to perform tasks such as network requests, file reading, setTimeout/setInterval without blocking the main thread.
-These mechanisms allow JavaScript to delegate tasks to the browser and then continue executing other code while waiting for those tasks to complete. This asynchronous behavior gives the illusion of concurrency, even though JavaScript itself remains single-threaded.
+Javascript is a synchronous single threaded language.
+ This means that it executes line by line in order and each line must finish executing before the next line starts.
+However, javascript has can handle asynchronous operations using mechanisms like callbacks, promises and async/await. 
+These mechanisms allows javascript to perform tasks such as network requests, file reading, setTimeout/setInterval without blocking the main thread.
+These mechanisms allow JavaScript to delegate tasks to the browser and then continue executing other code while waiting for those tasks to complete. 
+This asynchronous behavior gives the illusion of concurrency, even though JavaScript itself remains single-threaded.

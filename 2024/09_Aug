@@ -1,5 +1,26 @@
 
 
+### parse
+
+- `JSON.parse()` takes a JSON string and transforms it into a JavaScript object.
+
+
+```javascript
+// Converting a JSON string to a JavaScript object
+const jsonString = '{"name":"John", "age":30, "city":"New York"}';
+const jsonObject = JSON.parse(jsonString);
+console.log(jsonObject);  // Output: {name: "John", age: 30, city: "New York"}
+
+### stringify
+
+- `JSON.stringify()` takes a JavaScript object and transforms it into a JSON string.
+
+// Converting a JavaScript object to a JSON string
+const jsObject = {name: "Jane", age: 25, city: "Chicago"};
+const jsonStr = JSON.stringify(jsObject);
+console.log(jsonStr);  // Output: '{"name":"Jane","age":25,"city":"Chicago"}'
+
+
 
 =========================================================================
 - `preventDefault()` is a JavaScript method used to stop the default action associated with an event from occurring.
