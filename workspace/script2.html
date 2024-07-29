@@ -1,0 +1,36 @@
+<script>
+
+
+// Debounce function definition
+function debounce(func, wait) {
+    let timeout;
+    return function(...args) {
+        const context = this;
+
+        clearTimeout(timeout);
+        console.log("timeout",timeout)
+
+        timeout = setTimeout(() => func.apply(context, args), wait);
+    };
+}
+
+const obj = {
+    name: "RRY",
+    greet(age) {
+        console.log(`Hello ${this.name}, Age: ${age}`);
+    }
+};
+
+// Create a debounced version of the greet method
+const debouncedGreet = debounce(obj.greet.bind(obj), 1000);
+
+// Simulate rapid calls to the debounced function
+debouncedGreet(10);
+debouncedGreet(20);
+
+// Only the last call will be executed after 1 second
+
+
+
+
+</script>

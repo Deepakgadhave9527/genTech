@@ -490,11 +490,11 @@ var key =Object.keys(object1);
 var val =Object.values(object1)
 var entries =Object.entries(object1)
 
-console.log(key);\\> Array ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+console.log(key); Array ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
-console.log(...val);\\ 10 20 30 40 50 60 70 80 90 100\\> Array [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+console.log(...val); 10 20 30 40 50 60 70 80 90 100\\> Array [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 
-console.log(...entries); \\Array ["0", 10] Array ["1", 20] Array ["2", 30] Array ["3", 40] Array ["4", 50] Array ["5",
+console.log(...entries); -+Array ["0", 10] Array ["1", 20] Array ["2", 30] Array ["3", 40] Array ["4", 50] Array ["5",
 60] Array ["6", 70] Array["7", 80] Array ["8", 90] Array ["9", 100]
 
 // expected output: Array ["a", "b", "c"]
