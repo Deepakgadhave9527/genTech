@@ -19,28 +19,41 @@
 
 // const counter = new Counter();
 // counter.start();
-function d(){
-}
-const c =()=>{
-    console.log(this);
+// function d(){
+// }
+// const c =()=>{
+//     console.log(this);
 
-}
-const obj={
-    name:"ab",
-    abc:function(){
-        console.log(this);
+// }
+// const obj2={
+//     name:"ab",
+//     abc:function(){
+//         console.log(this);
   
-return "this"
-    },
-    arrow:()=>{
-        console.log(this); 
-    }
+// return "this"
+//     },
+//     arrow:()=>{
+//         console.log(this); 
+//     }
+// }
+
+// // setTimeout(obj.abc,1000)
+// setTimeout(obj2.abc,1000)
+
+
+
+const obj =new Object({nam:"A"})
+
+function Obj(name,age){
+    this.name=name,
+    this.age=age
 }
+Obj.prototype.fu1=function(){
+    console.log(obj)
 
-// setTimeout(obj.abc,1000)
-setTimeout(obj.abc,1000)
+}
+const obj1 =new Obj("ag",3)
 
-
-
+console.log(obj1.fu1())
 
 </script>
