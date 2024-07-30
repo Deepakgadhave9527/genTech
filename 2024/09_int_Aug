@@ -255,7 +255,6 @@ Suppose you have a list of items in an unordered list (`<ul>`) and you want to h
 
 In JavaScript, you can delegate the click event handling to the parent `<ul>` element:
 
-```javascript
 const parentList = document.getElementById('parentList');
 
 parentList.addEventListener('click', function(event) {
