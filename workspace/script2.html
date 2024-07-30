@@ -1,34 +1,44 @@
 <script>
 
+// class Counter {
+//   constructor() {
+//     this.count = 0;
+//   }
 
-// Debounce function definition
-function debounce(func, wait) {
-    let timeout;
-    return function(...args) {
-        const context = this;
+//   increment() {
+//     this.count += 1;
+//     console.log(this.count);
+//   }
 
-        clearTimeout(timeout);
-        console.log("timeout",timeout)
+//   start() {
+//           console.log(this);
 
-        timeout = setTimeout(() => func.apply(context, args), wait);
-    };
+//     setInterval(this.increment.bind(this), 1000); 
+//   }
+// }
+
+// const counter = new Counter();
+// counter.start();
+function d(){
+}
+const c =()=>{
+    console.log(this);
+
+}
+const obj={
+    name:"ab",
+    abc:function(){
+        console.log(this);
+  
+return "this"
+    },
+    arrow:()=>{
+        console.log(this); 
+    }
 }
 
-const obj = {
-    name: "RRY",
-    greet(age) {
-        console.log(`Hello ${this.name}, Age: ${age}`);
-    }
-};
-
-// Create a debounced version of the greet method
-const debouncedGreet = debounce(obj.greet.bind(obj), 1000);
-
-// Simulate rapid calls to the debounced function
-debouncedGreet(10);
-debouncedGreet(20);
-
-// Only the last call will be executed after 1 second
+// setTimeout(obj.abc,1000)
+setTimeout(obj.abc,1000)
 
 
 
