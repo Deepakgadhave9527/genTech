@@ -185,7 +185,7 @@ Avoiding Global Pollution: Keeps the global namespace clean, minimizing naming c
 Data Privacy: Utilizes closures to maintain data privacy, hiding internal variables and functions while exposing only necessary parts, fundamental to the Module Pattern.
 
 
-==========================================
+================= PropTypes=========================
 
 What are PropTypes?
 PropTypes is a type-checking library included with React.
@@ -193,9 +193,16 @@ It allows you to specify the expected types for props that a component should re
 
 npm install prop-types
 
-==========================================
+
+
+==================== ref ======================
 
 In React, a ref (short for reference) is an object that allows you to directly access and interact with a DOM element
+
+
+
+
+
 
 ==========================================
 
