@@ -7,15 +7,17 @@
 // Problem: Flatten a nested array
 
 
-const arr = [1,2,3,4,[5,6,7]];
+// Problem 1: Flatten a Nested Array
 
-function flattenArray(arr){
+const arr1 = [1, 2, 3, 4, [5, 6, 7]];
+
+function flattenArray(arr) {
     let result = [];
-    function recursivArr(input){
-        for(let i=0;i<input.length;i++){
-            if(Array.isArray(input[i])){
+    function recursivArr(input) {
+        for (let i = 0; i < input.length; i++) {
+            if (Array.isArray(input[i])) {
                 recursivArr(input[i]);
-            }else{
+            } else {
                 result.push(input[i]);
             }
         }
@@ -23,19 +25,15 @@ function flattenArray(arr){
     recursivArr(arr);
     return result;
 }
-const fltArr = flattenArray(arr);
-console.log(fltArr);
 
-// Output: [1, 2, 3, 4, 5, 6, 7]
+const fltArr1 = flattenArray(arr1);
+console.log('Flatten a Nested Array:', fltArr1); // Output: [1, 2, 3, 4, 5, 6, 7]
 
+// Problem 2: Flatten a Deeply Nested Array
 
+const input2 = [1, 2, [3, 4, [5, [6]]]];
 
-// Problem: Flatten a deeply nested array
-
-
-const input = [1, 2, [3, 4, [5, [6]]]];
-
-function flatArr(arr){
+function flatArr(arr) {
     let result = [];
     arr.forEach(element => {
         if (Array.isArray(element)) {
@@ -46,66 +44,18 @@ function flatArr(arr){
     });
     return result;
 }
-const op = flatArr(input);
-console.log(op);
 
-// Output: [1, 2, 3, 4, 5, 6]
+const op2 = flatArr(input2);
+console.log('Flatten a Deeply Nested Array:', op2); // Output: [1, 2, 3, 4, 5, 6]
 
+// Problem 3: Flatten Deeply Nested Arrays Using Reduce
 
+let nestedArray3 = [1, [2, 3], [4, [5, 6]], 7, [8, [9, 10, [11, [13]]]]];
 
-  // Problem: Flatten a nested array
-
-const arr = [1, 2, 3, 4, [5, 6, 7]];
-
-
-
-function flattenArray(arr) {
-    let result = [];
-    function recursivArr(input) {
-        for (let i = 0; i < input.length; i++) {
-            if (Array.isArray(input[i])) {
-                recursivArr(input[i]);
-            } else {
-                result.push(input[i]);
-            }
-        }
-    }
-    recursivArr(arr);
-    return result;
-}
-const fltArr = flattenArray(arr);
-console.log(fltArr); // Output: [1, 2, 3, 4, 5, 6, 7]
-
-
-
-// Problem: Flatten nested arrays using recursion
-const arr5 = [1, 2, 3, 4, [5, 6, 7]];
-
-function flattenArray(arr) {
-    let result = [];
-    function recursivArr(input) {
-        for (let i = 0; i < input.length; i++) {
-            if (Array.isArray(input[i])) {
-                recursivArr(input[i]);
-            } else {
-                result.push(input[i]);
-            }
-        }
-    }
-    recursivArr(arr);
-    return result;
-}
-const fltArr = flattenArray(arr5);
-console.log(fltArr);
-// Output: [1, 2, 3, 4, 5, 6, 7]
-
-// Problem: Flatten deeply nested arrays using reduce
-let nestedArray = [1, [2, 3], [4, [5, 6]], 7, [8, [9, 10, [11, [13]]]]];
-
-const flatArr = (inp) => {
+const flatArr3 = (inp) => {
     return inp.reduce((acc, item) => {
         if (Array.isArray(item)) {
-            const subArr = flatArr(item);
+            const subArr = flatArr3(item);
             acc = acc.concat(subArr);
         } else {
             acc.push(item);
@@ -113,8 +63,8 @@ const flatArr = (inp) => {
         return acc;
     }, []);
 }
-console.log(flatArr(nestedArray));
-// Output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13]
+
+console.log('Flatten Deeply Nested Arrays Using Reduce:', flatArr3(nestedArray3)); // Output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13]
 
 
 
