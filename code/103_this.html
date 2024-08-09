@@ -1,0 +1,741 @@
+
+=================================== 1===================================
+const arr =[1,2,3,4,[5,6,7]]
+
+function flattenArray(arr){
+    let result=[]
+  function recursivArr(input){
+        for(let i=0;i<input.length;i++){
+        if(Array.isArray(input[i])){
+            recursivArr(input[i])
+        }else{
+            result.push(input[i])
+        }
+    }
+  }
+  recursivArr(arr)
+  return result
+}
+const fltArr=flattenArray(arr)
+console.log(fltArr)
+
+
+
+
+const obj = {
+  id: 10,
+  name: "Emma Taylor",
+  age: 27,
+  city: "Atlanta",
+  isStudent: true,
+  courses: ["Music", "Dance"],
+  address: {
+    street: "987 Elm Lane",
+    zipCode: "30301",
+    add: {
+      port: "987 Elm Lane 8888888",
+      pin: "30301",
+    },
+  }
+};
+
+for (let key in obj) {
+  if (key === "address") {
+    for (let keyOfAddress in obj[key]) {
+      if (keyOfAddress === "add") {
+        for (let keyOfAdd in obj[key][keyOfAddress]) {
+          console.log(keyOfAdd + ": " + obj[key][keyOfAddress][keyOfAdd]);
+        }
+      } else {
+        console.log(keyOfAddress + ": " + obj[key][keyOfAddress]);
+      }
+    }
+  } else {
+    console.log(key + ": " + obj[key]);
+  }
+}
+
+
+const input = [1, 2, [3, 4, [5, [6]]]]
+
+// output =[1,2,3,4,5,6]
+
+function flatArr(arr){
+    let result=[];
+    arr.forEach(element=>{
+        if(Array.isArray(element)){
+            result=result.concat(flatArr(element))
+        }else{
+            result.push(element)
+        }
+    })
+    return result
+}
+const op=flatArr(input)
+console.log(op)
+
+
+
+
+
+async function async1() {
+  console.log("async1 start");
+  await async2();
+  console.log("async1 end");
+}
+ 
+async function async2() {
+  console.log("async2");
+}
+console.log("script start”);
+
+setTimeout(function () {
+  console.log("setTimeout");
+}, 0);
+ 
+async1();
+ 
+new Promise(function (resolve) {
+  console.log("promise1");
+  resolve();
+}).then(function () {
+  console.log("promise2");
+});
+ 
+console.log("script end");
+
+
+const obj = {
+  id: 10,
+  name: "Emma Taylor",
+  age: 27,
+  city: "Atlanta",
+  isStudent: true,
+  courses: ["Music", "Dance"],
+  address: {
+    street: "987 Elm Lane",
+    zipCode: "30301",
+    add: {
+      port: "987 Elm Lane 8888888",
+      pin: "30301",
+    },
+  }
+};
+
+for (let key in obj) {
+  if (key === "address") {
+    for (let keyOfAddress in obj[key]) {
+      if (keyOfAddress === "add") {
+        for (let keyOfAdd in obj[key][keyOfAddress]) {
+          console.log(keyOfAdd + ": " + obj[key][keyOfAddress][keyOfAdd]);
+        }
+      } else {
+        console.log(keyOfAddress + ": " + obj[key][keyOfAddress]);
+      }
+    }
+  } else {
+    console.log(key + ": " + obj[key]);
+  }
+}
+
+
+const input = [1, 2, [3, 4, [5, [6]]]]
+
+// output =[1,2,3,4,5,6]
+
+function flatArr(arr){
+    let result=[];
+    arr.forEach(element=>{
+        if(Array.isArray(element)){
+            result=result.concat(flatArr(element))
+        }else{
+            result.push(element)
+        }
+    })
+    return result
+}
+const op=flatArr(input)
+console.log(op)
+
+
+
+const array =[1,1,2,3,3,5,7,9]
+
+const remove=array.filter((value,index,arr)=>{
+    return arr.indexOf(value)===index
+})
+console.log(remove)
+
+=================================== 2===================================
+
+
+
+// let marks=[37,12,28,9,100,100,56,80,5,12]
+// const rankTransform = (arr) => {
+
+//     let  sortUnqiue=Array.from(new Set(arr)).sort((a,b)=>b-a)
+// let rankmap={}
+// sortUnqiue.map((value,i)=>{
+    
+//     return  rankmap[value]=i+1
+// })
+
+
+
+//     let output =arr.map(value=>rankmap[value])
+//     console.log(arr)
+
+
+// return output;
+// }
+// console.log(rankTransform(marks))
+// // o/p=> [4, 6, 5, 7, 1, 1, 3, 2, 8, 6]
+
+
+
+// const obj = {obj1: {obj2: {name: 'Rocket'}}}
+
+
+
+// const {obj1:{obj2: {name}}}=obj
+// console.log(name)
+
+// var player = 'Virat';
+// function displayName() {
+// if(player === 'Virat') {
+// var player = 'VK';
+// console.log(player);//vk
+// }
+// console.log(player);//Virat
+// }
+// console.log(displayName())
+
+
+
+
+
+Promise.resolve(10).then(val =>console.log('script3'));
+
+console.log('script1');
+
+setTimeout(()=> {
+console.log('script2');
+});
+
+//script1
+//script3
+//script2
+
+
+
+
+
+
+
+
+
+
+=================================== 3===================================
+
+
+
+
+function check() {
+  let x = y = 0;
+  x++;
+  return x;
+}
+
+check();
+console.log(typeof x); // => ???
+console.log(typeof y); // => ???
+
+
+var i;
+for (i = 0; i < 3; i++) {
+  const log = () => {
+    console.log(i);
+  }
+  setTimeout(log, 100);
+}
+
+let x = true
+setTimeout (()=>{
+
+x= false
+},2000)
+while (x)
+{
+console.log(“hello”)
+}
+
+const fruits ={
+	apple: {
+		'variety1': 120,
+		'variety2': 340,
+	},
+	oranges: {
+		'variety1': 450,
+		'variety2': 600,
+		'variety3': 20
+	},
+	banana: {
+		'variety1': 19,
+		'variety2': 80
+	}
+}
+
+// ouput=[banana,oranges,apple]
+
+const sortFruitsByVariety=(fruitData)=>{
+    const fruitsVariteyCount=[]
+    for(const fruit in fruitData){
+        const variteyCountValue=Object.keys(fruitData[fruit]).length
+        console.log(variteyCountValue)
+        fruitsVariteyCount.push({
+            fruit:fruit,
+        })
+        
+    }
+    fruitsVariteyCount.sort((a,b)=>{
+        return b.variteyCountValue-a.variteyCountValue
+    })
+    return fruitsVariteyCount.map(item=>item.fruit)
+   
+}
+console.log(sortFruitsByVariety(fruits))
+
+============================
+==============
+==============
+==============
+==============
+
+const array1=[1,2,3,4,5,6]
+const array2=[4,5,6,7,8,9]
+
+// output=[1,2,3,7,8,9]
+
+const  unCommon =()=>{
+    const unCommon1=array1.filter((val)=>array2.includes(val))
+    const unCommon2=array2.filter((val)=>array1.includes(val))
+    return [...unCommon1,...unCommon2]
+}
+log(unCommon())
+
+
+
+=================================== 4===================================
+
+
+
+
+
+const arr =[1,2,3,4,[5,6,7]]
+
+function flattenArray(arr){
+    let result=[]
+  function recursivArr(input){
+        for(let i=0;i<input.length;i++){
+        if(Array.isArray(input[i])){
+            recursivArr(input[i])
+        }else{
+            result.push(input[i])
+        }
+    }
+  }
+  recursivArr(arr)
+  return result
+}
+const fltArr=flattenArray(arr)
+console.log(fltArr)
+
+
+
+
+
+
+const [count, setCount] = useState(1);
+for (let i = 0; i < 10; i++) {
+  setCount(count++);
+}
+console.log(count);
+
+
+
+
+console.log(1);
+setTimeout(() => {
+  console.log(2);
+}, -10);
+new Promise((resolve, reject) => {
+  resolve('4');
+}).then((data) => console.log(data));
+console.log(3);
+
+//op
+1
+3
+4
+2
+
+
+const input = [3, 2, 4, 1, 2, 1, 4, 6];
+const output = [...new Set(input)] // Remove duplicates
+                   .sort((a, b) => a - b) // Sort
+                   .slice(0, 2); // Pick the first two items
+
+console.log(output); // Output: [1, 2]
+
+——————
+console.log(a);
+
+function xyz() {
+    a = 10;
+    console.log(a);
+    var a;
+}
+
+xyz();
+var a = 20;
+
+undefined
+10
+
+
+
+
+=================================== 5===================================
+
+
+
+
+
+function abc(){
+	setTimeout(() => {
+		console.log('k')
+	}, 0) // 0 ms
+	console.log('a')
+	axios.get('/url').then(() => { console.log('b')}) // Assume api taking 100 ms to respond
+	setTimeout(() => {
+		console.log('c')
+	}, 0) // 0 ms
+	console.log('d')
+}
+abc()
+
+
+
+
+Gupta, Shekhar to Everyone (20 Jul 2024, 11:35 AM)
+const [count, setCount] = useState(1)
+For (1..10) {
+setCount(count++)
+}
+
+Console.log(count)
+console.log(a)
+function xyz() {
+    a = 10
+    console.log(a)
+    var a
+}
+xyz();
+var a = 20;
+ 
+Gupta, Shekhar to Everyone (20 Jul 2024, 11:41 AM)
+console.log(a)
+Var a = 10
+console.log(a)
+let  a = 10
+ 
+Gupta, Shekhar to Everyone (20 Jul 2024, 11:48 AM)
+console.log(1)
+setTimeout(() => {
+    console.log(2)
+}, -10)
+new Promise((resolve, reject) => {
+  resolve('4');
+}).then((data) => console.log(data));
+console.log(3)
+ 
+You to Everyone (20 Jul 2024, 11:49 AM)
+1432
+1342
+ 
+Gupta, Shekhar to Everyone (20 Jul 2024, 11:50 AM)
+input = [3, 2, 4, 1, 2, 1, 4,6]
+output=[1, 2]
+Sort
+Remove duplicate
+Pick the 0 and 1 index
+
+
+
+
+
+
+
+
+var Person = function(firstName) {
+    this.firstName = firstName
+}
+ 
+var person = new Person('Madhu')
+ 
+Person.sayHello = function() {
+    alert('Hello ' + this.firstName);
+}
+ 
+person.sayHello()
+
+Input: [A, B, C, D, A, C, A, B, D, A, B]
+ 
+Output: { A: 4, B: 3... }
+7003395930
+
+
+
+function medianAndSort(num1,num2){
+    let mergedArray=num1.concat(num2).sort((a,b)=>a-b)
+    let len=mergedArray.length;
+    if(len %2 ===1){
+        return mergedArray[Math.floor(len/2)]
+        
+    }else{
+        return (mergedArray[len/2-1]+ mergedArray[len/2])/2
+    }
+    
+}
+let num1=[1,3];
+let num2=[2]
+let num3=[1,2]
+let num4=[3,4]
+let num5=[1, 3, 8]
+let num6=[7, 9, 10, 11]
+let num7=[]
+let num8=[1]
+console.log("eg-4",medianAndSort(num7,num8))
+console.log("eg-1",medianAndSort(num1,num2))
+console.log("eg-2",medianAndSort(num3,num4))
+console.log("eg-3",medianAndSort(num5,num6))
+
+
+
+=================================== 6===================================
+
+
+function highestAverageService(jsonString) {
+  const payments = JSON.parse(jsonString);
+  const averages = {};
+
+  payments.forEach(([service, amount]) => {
+    averages[service] = (averages[service] || { total: 0, count: 0 });
+    averages[service].total += amount;
+    averages[service].count++;
+  });
+
+  return Object.keys(averages).reduce((a, b) => averages[a].total / averages[a].count > averages[b].total / averages[b].count ? a : b);
+}
+
+const jsonString = '[["Swiggy", 123], ["Swiggy", 227], ["Zomato", 103], ["Zomato", 171], ["Dunzo", 131], ["Zomato", 122], ["Swiggy", 181]]';
+console.log(highestAverageService(jsonString)); // Output: Swiggy
+
+
+
+
+
+ Javascript
+
+/* Get the second most frequently occurring element, including the frequency count; if two numbers share the same frequency, the smallest one will be selected.*/
+
+const sortedArray = [1, 2, 4, 4, 6, 6, 4,
+
+5 6, 6, 7, 7, 9, 7, 10]; 6 function mostRepeatedAndFreq (arr) {
+
+// Start code here
+
+const result = mostRepeatedAndFreq(sortedArray); console. log(result); // [4, 3] // Where 4 is the second most r nd 3 is the Frequency count
+
+epeated.element
+
+
+
+
+
+
+
+
+function consecutiveLetterCount(input) {
+    if (input.length === 0) return '';
+
+    let result = '';
+    let count = 1;
+
+    for (let i = 1; i <= input.length; i++) {
+        if (input[i] === input[i - 1]) {
+            count++;
+        } else {
+            result += input[i - 1] + count;
+            count = 1;
+        }
+    }
+
+    return result;
+}
+
+const input = "aaavvccfr";
+const output = consecutiveLetterCount(input);
+console.log(output); // Output: "a3v2c2fr1"
+
+
+
+
+
+function medianAndSort(num1,num2){
+    let mergedArray=num1.concat(num2).sort((a,b)=>a-b)
+    let len=mergedArray.length;
+    if(len %2 ===1){
+        return mergedArray[Math.floor(len/2)]
+        
+    }else{
+        return (mergedArray[len/2-1]+ mergedArray[len/2])/2
+    }
+    
+}
+let num1=[1,3];
+let num2=[2]
+let num3=[1,2]
+let num4=[3,4]
+let num5=[1, 3, 8]
+let num6=[7, 9, 10, 11]
+let num7=[]
+let num8=[1]
+console.log("eg-4",medianAndSort(num7,num8))
+console.log("eg-1",medianAndSort(num1,num2))
+console.log("eg-2",medianAndSort(num3,num4))
+console.log("eg-3",medianAndSort(num5,num6))
+
+
+
+let a = true;
+let b = "true";
+
+console.log(a == b);  // true
+console.log(a === b); // false
+
+
+
+let a = true;
+let b = 1;
+
+console.log(a == b);  // true
+console.log(a === b); // false
+
+
+
+=================================== 7===================================
+
+var Person = function (firstName, lastName, age) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.age = age;
+
+  this.sayHello = function () {
+    console.log("Hello, " + this.firstName + " " + this.lastName);
+  };
+};
+
+// Creating a new Person instance
+var person = new Person("John", "Doe", 50);
+
+// Calling the sayHello method
+person.sayHello(); // This will output: Hello, John Doe
+
+
+function Test() {
+    console.log(x); // Output:
+    var x = 10;
+    console.log(x); // Output:
+    
+    console.log(y); // Output:
+    if (true) {
+        var y = 20;
+        console.log(y); // Output:
+    }
+    console.log(y); // Output:
+
+    let z = 30;
+    console.log(z); // Output:
+
+    if (true) {
+        let a = 40;
+        console.log(a); // Output:
+    }
+    console.log(a); // Output:
+}
+
+Test();
+
+
+
+
+function promiseWithTimeout(timeoutMs, promise) {
+    // Create a promise that will reject after the timeout period
+    const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Promise timed out')), timeoutMs);
+    });
+
+    // Return a race between the provided promise and the timeout promise
+    return Promise.race([promise, timeoutPromise]);
+}
+
+// Helper function to simulate an async operation with a delay
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+// Example usage
+const timeoutMs = 5000; // Timeout duration in milliseconds
+const asyncOperation = delay(3000).then(() => 'Operation complete');
+
+// Use the promiseWithTimeout function to handle timeout
+promiseWithTimeout(timeoutMs, asyncOperation)
+    .then(result => {
+        console.log('Result:', result);
+    })
+    .catch(error => {
+        console.error('Error:', error.message);
+    });
+
+
+
+function lengthOfLastWord(s) {
+    // Trim any extra spaces from the start and end of the string
+    s = s.trim();
+    
+    // Split the string into an array of words
+    const words = s.split(' ');
+    
+    // Get the last word from the array
+    const lastWord = words[words.length - 1];
+    
+    // Return the length of the last word
+    return lastWord.length;
+}
+
+
+function twoSum(nums, target) {
+    const map = new Map();
+    let result = [];
+    
+    nums.forEach((num, i) => {
+        const complement = target - num;
+        
+        if (map.has(complement)) {
+            result = [map.get(complement), i];
+        }
+        
+        map.set(num, i);
+    });
+    
+    return result;
+}
