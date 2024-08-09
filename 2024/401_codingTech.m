@@ -187,6 +187,36 @@ console.log(remove);
 
 
 
+// Solution 1: Using Set
+const array1 = [1, 1, 2, 3, 3, 5, 7, 9];
+const removeDuplicates1 = [...new Set(array1)];
+console.log(removeDuplicates1); // Output: [1, 2, 3, 5, 7, 9]
+
+// Solution 2: Using filter and indexOf
+const array2 = [1, 1, 2, 3, 3, 5, 7, 9];
+const removeDuplicates2 = array2.filter((value, index, arr) => arr.indexOf(value) === index);
+console.log(removeDuplicates2); // Output: [1, 2, 3, 5, 7, 9]
+
+// Solution 3: Using reduce and includes
+const array3 = [1, 1, 2, 3, 3, 5, 7, 9];
+const removeDuplicates3 = array3.reduce((acc, value) => {
+    if (!acc.includes(value)) {
+        acc.push(value);
+    }
+    return acc;
+}, []);
+console.log(removeDuplicates3); // Output: [1, 2, 3, 5, 7, 9]
+
+// Solution 4: Using a for loop and a temporary array
+const array4 = [1, 1, 2, 3, 3, 5, 7, 9];
+const removeDuplicates4 = [];
+for (const value of array4) {
+    if (!removeDuplicates4.includes(value)) {
+        removeDuplicates4.push(value);
+    }
+}
+console.log(removeDuplicates4); // Output: [1, 2, 3, 5, 7, 9]
+
 
 
 
