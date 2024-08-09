@@ -328,10 +328,7 @@ const theme = useContext(context)
     --
 
 
-
-Here's a detailed overview of React Hooks with various examples and explanations, as requested:
-
----
+-----------------------------------------------------------------------------------------------
 
 ## **React Hooks Overview**
 
