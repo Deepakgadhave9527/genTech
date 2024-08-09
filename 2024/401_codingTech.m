@@ -1,4 +1,27 @@
 
+// Problem Statement 1
+console.log(null == undefined); // Output: true
+console.log(null === undefined); // Output: false
+
+// Problem Statement 2
+console.log(typeof undefined); // Output: "undefined"
+console.log(typeof null); // Output: "object"
+console.log(typeof NaN); // Output: "number"
+
+// Problem Statement 3
+console.log(NaN === NaN); // Output: false
+console.log(NaN == NaN); // Output: false
+
+// Problem Statement 4
+console.log(1 < 2 < 3); // Output: true
+console.log(3 > 2 > 1); // Output: false
+
+// Problem Statement 5
+console.log("5" + 3); // Output: "53"
+console.log("5" - 3); // Output: 2
+console.log("5" * 3); // Output: 15
+console.log("5" / 3); // Output: 1.6666666666666667
+
 
 
 //====================== Problem ================================
