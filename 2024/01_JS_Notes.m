@@ -167,69 +167,10 @@ console.log(typeof greetArrow); // "function"
 
 
 
-========================== ES6 features ==================================
-
-Below is the list of top ES6 features every JavaScript developer should know,
-
-Default parameters
-Spread and Rest syntaxes (…)
-let and const
-promise
-Destructuring assignment
-Arrow function expressions
-Classes
-
-Template literals (Template strings)
-Tagged Templates
-Object.assign() and Object.is()
-
-
-1. let and const:
-                           -  Block-scoped variables and constants.
-2. Arrow Functions:
-                           -  Shorter syntax for function expressions.
-3. Template Literals:
-                           -  String interpolation and multi-line strings.
-4. Destructuring Assignment:
-                           -  Unpacking values from arrays or objects into variables.
-5. Default Parameters:
-                           -  Default values for function parameters.
-6. Rest and Spread Operators:
-                           -  Collecting arguments into an array or spreading elements.
-7. Classes:
-                           -  Syntactic sugar for creating objects and dealing with inheritance.
-8. Modules:
-                           -  Import and export statements for modular code.
-9. Promises:
-                           -  A native way to handle asynchronous operations.
-10. Symbol:
-                           -  A new primitive type for unique identifiers.
-11. Iterators and Generators:
-                           -  Custom iteration and lazy sequences.
-12. Map and Set:
-                           -  New collection types with key-value pairs and unique values.
-13. WeakMap and WeakSet:
-                           -  Collections with weak references to keys.
-14. Enhanced Object Literals:
-                           -  Shorthand syntax for methods and properties.
-15. Object.assign():
-                           -  Merging objects.
-16. String Methods:
-                           -  New methods like `includes()`, `startsWith()`, and `endsWith()`.
-17. Number Methods:
-                           -  New methods like `Number.isNaN()` and `Number.isFinite()`.
-18. Math Methods:
-                           -  New methods like `Math.pow()` and `Math.trunc()`.
-19. New Data Structures:
-                           -  `WeakMap` and `WeakSet` for better memory management.
-20. For…of Loop:
-                           -  Iterating over iterable objects.
-
-These features collectively enhance JavaScript’s capabilities, making it more powerful and expressive.
-
 ========================== Prototype ==================================
 Prototype:-
-- Every object in JavaScript has a prototype, which is another object that provides shared properties and methods.
+- Every object in JavaScript has a prototype,
+ which is another object that provides shared properties and methods.
 -Prototypes are the mechanism by which JavaScript objects iinherit properties and method from one another.
 
 -Javascript is a Prototype based language.
@@ -1105,3 +1046,244 @@ document represents a web page in the web browser.
 document object is a part of window object.
 
 Using document object you can dynamically update the content on the viewport.
+
+========================== ES6 features ==================================
+
+Below is the list of top ES6 features every JavaScript developer should know,
+
+
+1. let and const:
+2. Arrow Functions:
+3. Template Literals:
+4. Destructuring Assignment:
+5. Default Parameters:
+6. Rest and Spread Operators:
+7. Classes:
+8. Modules:
+9. Promises:
+10. Symbol:
+11. Iterators and Generators:
+12. Map and Set:
+13. WeakMap and WeakSet:
+14. Enhanced Object Literals:
+15. Object.assign():
+16. String Methods:
+17. Number Methods:
+18. Math Methods:
+19. New Data Structures:
+20. For…of Loop:
+
+
+Default parameters
+Spread and Rest syntaxes (…)
+let and const
+promise
+Destructuring assignment
+Arrow function expressions
+Classes
+
+Template literals (Template strings)
+Tagged Templates
+Object.assign() and Object.is()
+
+1. **let and const**
+   ```javascript
+   let x = 10;
+   const y = 20;
+   x = 15; // Allowed
+   // y = 25; // Error: Assignment to constant variable
+   ```
+
+2. **Arrow Functions**
+   ```javascript
+   const add = (a, b) => a + b;
+   console.log(add(2, 3)); // 5
+   ```
+
+3. **Template Literals**
+   ```javascript
+   const name = 'World';
+   const greeting = `Hello, ${name}!`;
+   console.log(greeting); // Hello, World!
+   ```
+
+4. **Destructuring Assignment**
+   ```javascript
+   const [a, b] = [1, 2];
+   const { name, age } = { name: 'Alice', age: 30 };
+   console.log(a, b); // 1 2
+   console.log(name, age); // Alice 30
+   ```
+
+5. **Default Parameters**
+   ```javascript
+   function greet(name = 'Guest') {
+     return `Hello, ${name}!`;
+   }
+   console.log(greet()); // Hello, Guest!
+   console.log(greet('John')); // Hello, John!
+   ```
+
+6. **Rest and Spread Operators**
+   - **Rest Operator**:
+     ```javascript
+     function sum(...numbers) {
+       return numbers.reduce((acc, num) => acc + num, 0);
+     }
+     console.log(sum(1, 2, 3, 4)); // 10
+     ```
+   - **Spread Operator**:
+     ```javascript
+     const arr = [1, 2, 3];
+     const newArr = [0, ...arr, 4];
+     console.log(newArr); // [0, 1, 2, 3, 4]
+     ```
+
+7. **Classes**
+   ```javascript
+   class Person {
+     constructor(name) {
+       this.name = name;
+     }
+     greet() {
+       return `Hello, ${this.name}!`;
+     }
+   }
+   const john = new Person('John');
+   console.log(john.greet()); // Hello, John!
+   ```
+
+8. **Modules**
+   - **Export**:
+     ```javascript
+     // module.js
+     export const pi = 3.14;
+     export function add(a, b) {
+       return a + b;
+     }
+     ```
+   - **Import**:
+     ```javascript
+     // main.js
+     import { pi, add } from './module.js';
+     console.log(pi); // 3.14
+     console.log(add(2, 3)); // 5
+     ```
+
+9. **Promises**
+   ```javascript
+   const myPromise = new Promise((resolve, reject) => {
+     setTimeout(() => resolve('Done!'), 1000);
+   });
+
+   myPromise.then(result => console.log(result)); // Done!
+   ```
+
+10. **Symbol**
+    ```javascript
+    const sym1 = Symbol('description');
+    const sym2 = Symbol('description');
+    console.log(sym1 === sym2); // false
+    ```
+
+11. **Iterators and Generators**
+    ```javascript
+    function* generator() {
+      yield 1;
+      yield 2;
+      yield 3;
+    }
+    const gen = generator();
+    console.log(gen.next().value); // 1
+    console.log(gen.next().value); // 2
+    ```
+
+12. **Map and Set**
+    - **Map**:
+      ```javascript
+      const map = new Map();
+      map.set('key1', 'value1');
+      console.log(map.get('key1')); // value1
+      ```
+    - **Set**:
+      ```javascript
+      const set = new Set([1, 2, 3]);
+      set.add(4);
+      console.log(set.has(2)); // true
+      ```
+
+13. **WeakMap and WeakSet**
+    - **WeakMap**:
+      ```javascript
+      const weakMap = new WeakMap();
+      const obj = {};
+      weakMap.set(obj, 'value');
+      console.log(weakMap.get(obj)); // value
+      ```
+    - **WeakSet**:
+      ```javascript
+      const weakSet = new WeakSet();
+      const obj = {};
+      weakSet.add(obj);
+      console.log(weakSet.has(obj)); // true
+      ```
+
+14. **Enhanced Object Literals**
+    ```javascript
+    const name = 'Alice';
+    const person = {
+      name,
+      greet() {
+        return `Hello, ${this.name}!`;
+      }
+    };
+    console.log(person.greet()); // Hello, Alice!
+    ```
+
+15. **Object.assign()**
+    ```javascript
+    const target = { a: 1 };
+    const source = { b: 2 };
+    Object.assign(target, source);
+    console.log(target); // { a: 1, b: 2 }
+    ```
+
+16. **String Methods**
+    ```javascript
+    const str = 'Hello, World!';
+    console.log(str.includes('World')); // true
+    console.log(str.startsWith('Hello')); // true
+    console.log(str.endsWith('!')); // true
+    ```
+
+17. **Number Methods**
+    ```javascript
+    console.log(Number.isNaN(NaN)); // true
+    console.log(Number.isFinite(123)); // true
+    ```
+
+18. **Math Methods**
+    ```javascript
+    console.log(Math.pow(2, 3)); // 8
+    console.log(Math.trunc(4.9)); // 4
+    ```
+
+19. **For…of Loop**
+    ```javascript
+    const iterable = [10, 20, 30];
+    for (const value of iterable) {
+      console.log(value); // 10, 20, 30
+    }
+    ```
+
+20. **Tagged Templates**
+    ```javascript
+    function tag(strings, ...values) {
+      return strings.reduce((acc, str, i) => acc + str + (values[i] || ''), '');
+    }
+    const name = 'World';
+    const message = tag`Hello, ${name}!`;
+    console.log(message); // Hello, World!
+    ```
+
+These examples demonstrate how each ES6 feature can be used in practice.
