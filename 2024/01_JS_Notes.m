@@ -183,6 +183,50 @@ Template literals (Template strings)
 Tagged Templates
 Object.assign() and Object.is()
 
+
+1. let and const:
+                           -  Block-scoped variables and constants.
+2. Arrow Functions:
+                           -  Shorter syntax for function expressions.
+3. Template Literals:
+                           -  String interpolation and multi-line strings.
+4. Destructuring Assignment:
+                           -  Unpacking values from arrays or objects into variables.
+5. Default Parameters:
+                           -  Default values for function parameters.
+6. Rest and Spread Operators:
+                           -  Collecting arguments into an array or spreading elements.
+7. Classes:
+                           -  Syntactic sugar for creating objects and dealing with inheritance.
+8. Modules:
+                           -  Import and export statements for modular code.
+9. Promises:
+                           -  A native way to handle asynchronous operations.
+10. Symbol:
+                           -  A new primitive type for unique identifiers.
+11. Iterators and Generators:
+                           -  Custom iteration and lazy sequences.
+12. Map and Set:
+                           -  New collection types with key-value pairs and unique values.
+13. WeakMap and WeakSet:
+                           -  Collections with weak references to keys.
+14. Enhanced Object Literals:
+                           -  Shorthand syntax for methods and properties.
+15. Object.assign():
+                           -  Merging objects.
+16. String Methods:
+                           -  New methods like `includes()`, `startsWith()`, and `endsWith()`.
+17. Number Methods:
+                           -  New methods like `Number.isNaN()` and `Number.isFinite()`.
+18. Math Methods:
+                           -  New methods like `Math.pow()` and `Math.trunc()`.
+19. New Data Structures:
+                           -  `WeakMap` and `WeakSet` for better memory management.
+20. For…of Loop:
+                           -  Iterating over iterable objects.
+
+These features collectively enhance JavaScript’s capabilities, making it more powerful and expressive.
+
 ========================== Prototype ==================================
 Prototype:-
 - Every object in JavaScript has a prototype, which is another object that provides shared properties and methods.
