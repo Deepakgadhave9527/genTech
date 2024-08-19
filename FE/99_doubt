@@ -1,5 +1,29 @@
 
 
+  dependencies are packages essential for running the application in production. 
+npm install
+ The `dependencies` property is used to list the packages that are required for the project to run in a production or deployment environment
+
+ When you install the project dependencies using `npm install`, the packages listed in the `dependencies` section are installed.
+Dependencies can be added to your project by running :
+
+npm i <package_name> 
+
+dependencies` includes packages needed for the application to run in a production environment, while `devDependencies` includes packages required during development and testing but are not necessary for the production deployment.
+
+ The `devDependencies` property is used to list the packages that are only required during development, such as testing frameworks, build tools, and development-specific utilities.
+
+ — These packages are not necessary for the application to run in a production environment but are helpful during development and testing phases.
+
+DevDependencies are the packages a developer needs during development. 
+
+Dev dependencies can be added to your project by running :
+
+npm i <package_name> 
+--save-dev
+
+
+
 Tags are the syntax used to create elements.
 A tag is a part of HTML syntax used to create an element.
 A tag is a single component of an element.

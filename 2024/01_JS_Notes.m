@@ -1005,7 +1005,7 @@ A then() returns a promise
 
 
 -async keyword Put the before a function , tells the function to return a Promise
--await" keyword is used within an async function to pause its execution until a Promise is settled.
+-await keyword is used within an async function to pause its execution until a Promise is settled.
 - It waits for the Promise to resolve (either fulfilled or rejected) and then returns its result.
 -await should only be used inside the async function.
 

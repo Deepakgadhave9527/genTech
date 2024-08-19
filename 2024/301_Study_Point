@@ -1,6 +1,11 @@
 
 ===========================================================================
 
+use multiple <Routes> components and include both routing components (RootRouter and RootRouter2) in your App component, is not the recommended approach.
+
+Multiple <Routes> Components: Using multiple <Routes> components can lead to routing conflicts and unpredictable behavior. React Router is designed to handle routing with a single <Routes> component.
+
+
 ### Absolute Paths
 Absolute paths are full paths starting from the root of the application
 
@@ -138,3 +143,4 @@ do {
 } while (num > 0);
 ```
 ===========================================================================
+
