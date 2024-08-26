@@ -1,64 +1,12 @@
-<script>
-  const a = {
-    name: "Harry",
-    run2: () => {
-      console.log("aS obj");
-    },
-  };
-  const b = {
-    name: "pot",
-    run: () => {
-      console.log("b obj");
-    },
-  };
-  b.__proto__ = {
-    address: "namees",
-  };
-  a.__proto__ = b;
-  a.run();
-  console.log(a.address);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
 
-  ///------------------------------------------------------------------------
-
-  function Student(name, age, clas, sub) {
-    this.name = name;
-    this.age = age;
-    this.clas = clas;
-    this.sub = sub;
-  }
-
-  const stud1 = new Student("aj", 15, 5, "marathi");
-  console.log(stud1);
-  console.log(stud1.name);
-
-  stud1.address = "Hinglo";
-  // console.log(stud1);
-  // console.log(stud1.address);
-
-  stud1.getFull = function () {
-    console.log("this.name", this.address);
-  };
-  stud1.getFull();
-
-  function Profile(name, age, sub, clas) {
-    this.name = name;
-    this.age = age;
-    this.clas = clas;
-    this.sub = sub;
-    this.fullData = function () {
-      return console.log(this.name, this.age);
-    };
-  }
-
-  Profile.prototype.getFullName = function () {
-    console.log("getFullName", this.name, this.age);
-  };
-  const pro1 = new Profile("elon", 22, "Eng", 12);
-
-  pro1.getFull = function () {
-    console.log("this.clas", this.clas);
-  };
-  console.log("pro1", pro1);
-  pro1.getFullName();
-  pro1.getFull();
-</script>
+  <script src="../399_javascript.js"></script>
+</body>
+</html>

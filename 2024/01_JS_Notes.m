@@ -239,26 +239,28 @@ There are two main ways to set the prototype of an object:
      console.log(rabbit.eats); // Output: true
      
 
-
-
-
-// - In JavaScript, the prototype is a fundamental concept for object-oriented programming.
-
-// -In javascript there is a build in function called "Object"
-
-// -Prototype is an object to which other objects can inherit to achieve reusability.
-// -The prototype of Object function is the prototype of all the objects created in Javascript
-// -In Javascript with each function an anonymous object gets created called prototype object.
-
-// Definition: In JavaScript, a prototype is an object that serves as a template for other objects to inherit properties and methods.
-// Prototypes enable objects to inherit behavior and promote code reusability by sharing properties and methods among multiple instances. 
-
 //==============================JavaScript Use Strict=========================
 The "+" directive was new in ECMAScript version 5
 
 purpose of "use strict" is to indicate that the code should be executed in "strict mode".
 With strict mode, you can
 not, use undeclared variables.
+
+Certainly! Heres a list of key restrictions and changes applied by `"use strict"` in JavaScript:
+
+1. Eliminates `this` coercion
+2. Disallows undeclared variables
+3. Disallows duplicate parameter names
+4. Disallows `with` statements
+5. Disallows octal literals
+6. Disallows `eval` from modifying scope
+7. Disallows `delete` on variables and functions
+8. Requires unique function parameter names
+9. `arguments` object is not linked to parameters
+10. Prohibits `getter` and `setter` methods with the same name
+11. Avoids silent errors
+12. No `this` binding in class methods
+13. Disallows future reserved keywords
 
 
 =================================================================================================================
@@ -312,7 +314,8 @@ const z = 10; // SyntaxError: Identifier 'z' has already been declared
 -const is not  rewritable
 
 const x = 10;
-x = 20; // Error: Assignment to constant variable.
+x = 20; //  TypeError: Assignment to constant variable.
+
 
 
 For primitives, 
@@ -320,7 +323,12 @@ const makes the value itself immutable and the reference unchangeable.
 For non-primitives, 
 const makes the reference unchangeable, but the contents of the object or array can still be modified.
 
+let and const
+Not Hoisted , but with a Temporal Dead Zone (TDZ). The declaration is hoisted, 
+but the variable is not accessible until the code execution reaches the let declaration.
+ Accessing the variable before its declaration results in a ReferenceError.
 
+ 
 //================================= Closure ========================
 ## Closure:-
  closure is ablity to provide access outer function scope to inner function 
@@ -1086,7 +1094,7 @@ Template literals (Template strings)
 Tagged Templates
 Object.assign() and Object.is()
 
-1. **let and const**
+1. let and const
    ```javascript
    let x = 10;
    const y = 20;
@@ -1094,7 +1102,7 @@ Object.assign() and Object.is()
    // y = 25; // Error: Assignment to constant variable
    ```
 
-2. **Arrow Functions**
+2. Arrow Functions
    ```javascript
    const add = (a, b) => a + b;
    console.log(add(2, 3)); // 5
