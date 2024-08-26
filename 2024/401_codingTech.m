@@ -1594,4 +1594,71 @@ console.log(stringArray3);
 // Output: ["banana aw", "date bc", "apple mz", "cherry op"]
 
 
+  //=================================================================================
+
+  anagrams example in javascript with and without using sort
+
+  function Compare(str1, str2) {
+    if (str1.length !== str2.length) {
+        return false;
+    }
+
+    const frequencyCounter = {};
+
+    for (let char of str1.toLowerCase()) {
+        frequencyCounter[char] = (frequencyCounter[char] || 0) + 1;
+    }
+
+    for (let char of str2.toLowerCase()) {
+        if (!frequencyCounter[char]) {
+            return false;
+        }
+        frequencyCounter[char] -= 1;
+    }
+
+    for (let count in frequencyCounter) {
+        if (frequencyCounter[count] !== 0) {
+            return false;
+        }
+    }
+
+    return true;
+}
+//------------------------------------------------------------------------
+function Compare(str1, str2){
+     if (str1.length !== str2.length) {
+        return false
+     }
   
+    return str1.toLowerCase().split("").sort().join("") === str2.toLowerCase().split("").sort().join("")
+}
+
+console.log(Compare("Listen", "Silent")) //true
+console.log(Compare("Mary", "arms")) //false
+
+//=================================================================================
+flatten the resulting array of arrays. //
+How can make flattenf array for single array to fllatend
+
+function splitArray(arr, chunkSize) {
+    const result = [];
+    for (let i = 0; i < arr.length; i += chunkSize) {
+        result.push(arr.slice(i, i + chunkSize));
+    }
+    return result;
+}
+
+
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+const chunkSize = 3;
+
+const arr_new = splitArray(arr, chunkSize);
+console.log(arr_new);
+
+//=================================================================================
+flat array
+const flat2 =[[1,2,3,],[1,2,3,4,5]]
+const output=[1,2,3,4,5] 
+
+const result1=Array.from(new Set(flat2.flat()))
+console.log(result1)
