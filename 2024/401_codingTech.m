@@ -351,7 +351,7 @@ function check() {
 
 
   // Problem: `for` loop and `setTimeout` behavior
-  var i;
+  var i; and let i
  
  
   for (i = 0; i < 3; i++) {
