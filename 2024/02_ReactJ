@@ -7,6 +7,16 @@ react .fragment add group of multiple elements without adding an extra node in D
 
 React fragment uses two syntaxes
 
+
+React fragments allow you to group multiple elements without adding an extra node to the DOM.
+
+React fragments use two syntaxes:
+
+1. `<Fragment> ... </Fragment>`: Use this when you need to pass a key prop, typically in list rendering inside a `map()` method.
+2. `<> ... </>`: Use this shorthand syntax when you do not need to pass a key prop.
+
+<!-- 
+
 1. <Fragment> content </Fragment>
 
 This syntax should be used only when you are using fragment inside the map() method
@@ -14,11 +24,17 @@ in list rendering because you need pass key prop.
 <Fragment> accept only key prop
 
   2. <> content </>
-  Use this syntax whenever you do not have to pass key prop
+  Use this syntax whenever you do not have to pass key prop -->
 
   ---------------------------------------------------------------------------------
 
   Q22. What are error boundaries in React?
+
+  - Error boundaries in React catch JavaScript errors anywhere in their child component tree and log those errors.
+- Error boundaries display a fallback UI instead of the component tree that crashed, helping to prevent the entire application from crashing due to a single error.
+- Use `getDerivedStateFromError()` to update the state to indicate an error has occurred.
+- Use `componentDidCatch()` to log error information.
+
 
   - Error boundaries in React components catch JavaScript errors occurring anywhere in their child component tree.
   log thosee errors
@@ -446,7 +462,7 @@ Q10. What are controlled and uncontrolled components in React?
 
 
 -In a controlled component, form data is handled by a React component.
--uncontrolled components, where form data is handled by the DOM itself.
+- In an uncontrolled component, form data is handled by the DOM, and refs are used to access that data.
 
 
 ## Controlled Component:
