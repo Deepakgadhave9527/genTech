@@ -264,6 +264,16 @@ CSS preprocessor
 - **Mixins**
 - **Functions**"
 
+   These features help the development process, 
+      reduce repetition,
+     - Enhanced capabilities like **loops**, **functions**, and **conditionals**.
+     - **Cleaner**, more modular code.
+     - **Reusability** of code (via variables, mixins, etc.).
+    - Improved **maintainability** and **organization** of styles.
+    and make the CSS codebase easier to manage.
+
+
+
   -Variables :to store values (like colors, fonts, etc.) and reuse them throughout your stylesheet.
       - Example: `$primary-color: #3498db;`
 
@@ -288,15 +298,6 @@ CSS preprocessor
   - **Inheritance (Extends)**: Share styles between selectors to reduce redundancy.
     - Example: `.button { @extend .btn; }`
 
-
-   These features help the development process, 
-      reduce repetition,
-     - Enhanced capabilities like **loops**, **functions**, and **conditionals**.
-     - **Cleaner**, more modular code.
-     - **Reusability** of code (via variables, mixins, etc.).
-    - Improved **maintainability** and **organization** of styles.
-
-    and make the CSS codebase easier to manage. -->
  
   
 
