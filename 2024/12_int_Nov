@@ -126,65 +126,6 @@ Cleanup Function Definition: The return statement defines the cleanup function.
  This function will be called when the component unmounts or before the effect runs again if any dependencies change.
 
 
-
-//=================== promise =============================
-Promise:
-In JavaScript,
- a Promise is an object representing the eventual completion or failure of an asynchronous operation and its resulting value. 
- Promises provide a way to handle asynchronous code more effectively, avoiding callback hell and making code easier to read and maintain.
-
-
-
-In JavaScript, a Promise is an object that will produce a single value some time in the future.
- If the promise is successful, it will produce a resolved value
- ,but if something goes wrong then it will produce a reason why the promise failed. 
-The possible outcomes here are similar to that of promises in real life.
-
-
-
-
--Promise are thr ideal choice for handling asynchronous operation in simplest manner
--they can handle multiple asynchronous operation easily and provide better error handling then Callback and event
-#promise has four strategist
-1]fulfilled: Action related to the promise succeeded
-2] Rejected : Action related to the promise failed
-3] pending- Neither fulfilled nor rejected yet means promise still pending.
-4]settle- The Promise has been either fulfilled or rejected.
-
-A].then():
--then() function is invoked when a promise is resolved and a result is received.
-
-B].catch()
-catch() function is invoked when a promise is either rejected or some error has occured in execution.
-
-Applications
-Promises are used for asynchronous handling of events.
-Promises are used to handle asynchronous http requests.
-
-
-
-
-
-A promise is an object which is used to perform asynchronous operations.
-
-A promise gets settled(either resolved or rejected) in future.
-
-If promise gets resolved then it calls the callback passed to then() function.
-
-If promise gets rejected then it called the callback passed to catch() function.
-then chaining
-
-Writing multiple thens one after another for a promise is called then chaining
-
-A then() returns a promise
-
-
-
-
-
-
-
-
 ================================================================================
 
 why typescript is used in react
@@ -236,22 +177,8 @@ Cross-browser compatibility ensures that web applications work consistently acro
 
 - **CSS Prefixes**: Use vendor prefixes (e.g., `-webkit-`, `-moz-`, `-ms-`, `-o-`) for CSS properties that require them to ensure compatibility with various browser engines.
 
+
 ================================================================================
- React's Reconciliation ?
-
-
-React's reconciliation is the process by which React updates the user interface efficiently when the component state or props change. Here’s a brief overview:
-
-- **Virtual DOM**: React maintains a lightweight representation of the actual DOM called the Virtual DOM. When state or props change, React first updates the Virtual DOM.
-
-- **Diffing Algorithm**: React uses a diffing algorithm to compare the new Virtual DOM with the previous version. It identifies changes by comparing nodes, minimizing the number of updates needed.
-
-- **Re-rendering**: Once differences are identified, React determines the most efficient way to apply these changes to the actual DOM, updating only the parts that have changed.
-
-- **Batch Updates**: React batches multiple updates together to improve performance and reduce the number of DOM manipulations.
-
-In summary, React’s reconciliation process ensures that the UI updates efficiently and optimally by comparing and applying changes to the DOM based on the Virtual DOM.
-
 
 
 **Promises** and **async/await** are both tools in JavaScript for handling asynchronous operations, but they differ in syntax and usage:
@@ -309,3 +236,243 @@ In summary, **Promises** are suited for straightforward asynchronous tasks and i
 
 ================================================================================
 
+========================== ES6 features ==================================
+
+Below is the list of top ES6 features every JavaScript developer should know,
+
+
+1. let and const:
+2. Arrow Functions:
+3. Template Literals:
+4. Destructuring Assignment:
+5. Default Parameters:
+6. Rest and Spread Operators:
+7. Classes:
+8. Modules:
+9. Promises:
+10. Symbol:
+11. Iterators and Generators:
+12. Map and Set:
+13. WeakMap and WeakSet:
+14. Enhanced Object Literals:
+15. Object.assign():
+16. String Methods:
+17. Number Methods:
+18. Math Methods:
+19. New Data Structures:
+20. For…of Loop:
+
+
+Default parameters
+Spread and Rest syntaxes (…)
+let and const
+promise
+Destructuring assignment
+Arrow function expressions
+Classes
+
+Template literals (Template strings)
+Tagged Templates
+Object.assign() and Object.is()
+
+1. let and const
+   ```javascript
+   let x = 10;
+   const y = 20;
+   x = 15; // Allowed
+   // y = 25; // Error: Assignment to constant variable
+   ```
+
+2. Arrow Functions
+   ```javascript
+   const add = (a, b) => a + b;
+   console.log(add(2, 3)); // 5
+   ```
+
+3. **Template Literals**
+   ```javascript
+   const name = 'World';
+   const greeting = `Hello, ${name}!`;
+   console.log(greeting); // Hello, World!
+   ```
+
+4. **Destructuring Assignment**
+   ```javascript
+   const [a, b] = [1, 2];
+   const { name, age } = { name: 'Alice', age: 30 };
+   console.log(a, b); // 1 2
+   console.log(name, age); // Alice 30
+   ```
+
+5. **Default Parameters**
+   ```javascript
+   function greet(name = 'Guest') {
+     return `Hello, ${name}!`;
+   }
+   console.log(greet()); // Hello, Guest!
+   console.log(greet('John')); // Hello, John!
+   ```
+
+6. **Rest and Spread Operators**
+   - **Rest Operator**:
+     ```javascript
+     function sum(...numbers) {
+       return numbers.reduce((acc, num) => acc + num, 0);
+     }
+     console.log(sum(1, 2, 3, 4)); // 10
+     ```
+   - **Spread Operator**:
+     ```javascript
+     const arr = [1, 2, 3];
+     const newArr = [0, ...arr, 4];
+     console.log(newArr); // [0, 1, 2, 3, 4]
+     ```
+
+7. **Classes**
+   ```javascript
+   class Person {
+     constructor(name) {
+       this.name = name;
+     }
+     greet() {
+       return `Hello, ${this.name}!`;
+     }
+   }
+   const john = new Person('John');
+   console.log(john.greet()); // Hello, John!
+   ```
+
+8. **Modules**
+   - **Export**:
+     ```javascript
+     // module.js
+     export const pi = 3.14;
+     export function add(a, b) {
+       return a + b;
+     }
+     ```
+   - **Import**:
+     ```javascript
+     // main.js
+     import { pi, add } from './module.js';
+     console.log(pi); // 3.14
+     console.log(add(2, 3)); // 5
+     ```
+
+9. **Promises**
+   ```javascript
+   const myPromise = new Promise((resolve, reject) => {
+     setTimeout(() => resolve('Done!'), 1000);
+   });
+
+   myPromise.then(result => console.log(result)); // Done!
+   ```
+
+10. **Symbol**
+    ```javascript
+    const sym1 = Symbol('description');
+    const sym2 = Symbol('description');
+    console.log(sym1 === sym2); // false
+    ```
+
+11. **Iterators and Generators**
+    ```javascript
+    function* generator() {
+      yield 1;
+      yield 2;
+      yield 3;
+    }
+    const gen = generator();
+    console.log(gen.next().value); // 1
+    console.log(gen.next().value); // 2
+    ```
+
+12. **Map and Set**
+    - **Map**:
+      ```javascript
+      const map = new Map();
+      map.set('key1', 'value1');
+      console.log(map.get('key1')); // value1
+      ```
+    - **Set**:
+      ```javascript
+      const set = new Set([1, 2, 3]);
+      set.add(4);
+      console.log(set.has(2)); // true
+      ```
+
+13. **WeakMap and WeakSet**
+    - **WeakMap**:
+      ```javascript
+      const weakMap = new WeakMap();
+      const obj = {};
+      weakMap.set(obj, 'value');
+      console.log(weakMap.get(obj)); // value
+      ```
+    - **WeakSet**:
+      ```javascript
+      const weakSet = new WeakSet();
+      const obj = {};
+      weakSet.add(obj);
+      console.log(weakSet.has(obj)); // true
+      ```
+
+14. **Enhanced Object Literals**
+    ```javascript
+    const name = 'Alice';
+    const person = {
+      name,
+      greet() {
+        return `Hello, ${this.name}!`;
+      }
+    };
+    console.log(person.greet()); // Hello, Alice!
+    ```
+
+15. **Object.assign()**
+    ```javascript
+    const target = { a: 1 };
+    const source = { b: 2 };
+    Object.assign(target, source);
+    console.log(target); // { a: 1, b: 2 }
+    ```
+
+16. **String Methods**
+    ```javascript
+    const str = 'Hello, World!';
+    console.log(str.includes('World')); // true
+    console.log(str.startsWith('Hello')); // true
+    console.log(str.endsWith('!')); // true
+    ```
+
+17. **Number Methods**
+    ```javascript
+    console.log(Number.isNaN(NaN)); // true
+    console.log(Number.isFinite(123)); // true
+    ```
+
+18. **Math Methods**
+    ```javascript
+    console.log(Math.pow(2, 3)); // 8
+    console.log(Math.trunc(4.9)); // 4
+    ```
+
+19. **For…of Loop**
+    ```javascript
+    const iterable = [10, 20, 30];
+    for (const value of iterable) {
+      console.log(value); // 10, 20, 30
+    }
+    ```
+
+20. **Tagged Templates**
+    ```javascript
+    function tag(strings, ...values) {
+      return strings.reduce((acc, str, i) => acc + str + (values[i] || ''), '');
+    }
+    const name = 'World';
+    const message = tag`Hello, ${name}!`;
+    console.log(message); // Hello, World!
+    ```
+
+These examples demonstrate how each ES6 feature can be used in practice.

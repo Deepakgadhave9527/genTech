@@ -1,29 +1,5 @@
 
 ========================================================================
-- A common use case for the `bind` method in JavaScript is to maintain the correct context (`this`) when passing methods as callbacks or event handlers.
-- In JavaScript, the value of `this` can change depending on how a function is called.
-- For instance, when a method is used as an event handler, `this` usually refers to the element that triggered the event, not the object that owns the method.
-- By using `bind`, you can create a new function where `this` is explicitly set to the desired context, ensuring that the method behaves correctly regardless of how it's called.
-- This is particularly useful in scenarios such as object-oriented programming and event handling, where preserving the context is crucial for the method's functionality.
-- `bind` can also be used to preset initial arguments, allowing partial application of functions.
-
-
-
- comparison of `bind`, `call`, and `apply`:
-
-- **`bind`**: Creates a new function with a specified `this` context and optionally preset arguments. The new function can be called later with its own arguments.
-  - **Example**: `const boundFunc = func.bind(context, arg1, arg2);`
-
-- **`call`**: Immediately invokes a function with a specified `this` context and arguments provided individually.
-  - **Example**: `func.call(context, arg1, arg2);`
-
-- **`apply`**: Immediately invokes a function with a specified `this` context and arguments provided as an array or array-like object.
-  - **Example**: `func.apply(context, [arg1, arg2]);`
-
-In summary:
-- `bind` creates a new function for later use, while `call` and `apply` execute the function immediately.
-- `call` takes arguments individually, whereas `apply` takes arguments as an array.
-========================================================================
 React Portals
 
 - React Portals render children into a DOM node outside the parent component’s DOM hierarchy.
@@ -62,29 +38,6 @@ Quirks mode is a browser rendering mode that emulates older,
 non-standard behavior to maintain compatibility with legacy websites, 
 leading to inconsistent layouts and styling.
 
-========================================================================
-### Set vs. Map
-#Map
-
-Definition: A Map is a built-in JavaScript object that stores key-value pairs. It allows you to associate each key with a specific value and provides efficient methods for adding, retrieving, and deleting key-value pairs. Keys in a Map must be unique, while values can be duplicated.
-
-Set:
-
-Definition: A Set is a built-in JavaScript object that allows you to store a collection of unique values. It ensures that no duplicate values are stored and provides methods for adding, checking, and removing values. Sets do not associate values with specific keys.
-
-- **Set:**
-  - **Definition:** A `Set` stores unique values, with no key-value pairs. It automatically removes duplicates.
-  - **Stores:** Unique values only.
-  - **Key-Value:** No key-value pairs.
-  - **Uniqueness:** Ensures all values are unique.
-  - **Methods:** `add(value)`, `delete(value)`, `has(value)`, `size`.
-
-- **Map:**
-  - **Definition:** A `Map` stores key-value pairs, where each key maps to a specific value. Keys must be unique, but values can be duplicated.
-  - **Stores:** Key-value pairs.
-  - **Key-Value:** Each key maps to a value.
-  - **Uniqueness:** Keys must be unique; values can be duplicated.
-  - **Methods:** `set(key, value)`, `get(key)`, `delete(key)`, `has(key)`, `size`.
 
 ========================================================================
 

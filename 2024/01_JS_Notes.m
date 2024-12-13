@@ -733,6 +733,33 @@ console.log(boundPrintFullName()) // Output: "John Doe"
 It does not bind the existing function instead if create a new function to bind
 
 
+
+========================================================================
+- A common use case for the `bind` method in JavaScript is to maintain the correct context (`this`) when passing methods as callbacks or event handlers.
+- In JavaScript, the value of `this` can change depending on how a function is called.
+- For instance, when a method is used as an event handler, `this` usually refers to the element that triggered the event, not the object that owns the method.
+- By using `bind`, you can create a new function where `this` is explicitly set to the desired context, ensuring that the method behaves correctly regardless of how it's called.
+- This is particularly useful in scenarios such as object-oriented programming and event handling, where preserving the context is crucial for the method's functionality.
+- `bind` can also be used to preset initial arguments, allowing partial application of functions.
+
+
+
+ comparison of `bind`, `call`, and `apply`:
+
+- **`bind`**: Creates a new function with a specified `this` context and optionally preset arguments. The new function can be called later with its own arguments.
+  - **Example**: `const boundFunc = func.bind(context, arg1, arg2);`
+
+- **`call`**: Immediately invokes a function with a specified `this` context and arguments provided individually.
+  - **Example**: `func.call(context, arg1, arg2);`
+
+- **`apply`**: Immediately invokes a function with a specified `this` context and arguments provided as an array or array-like object.
+  - **Example**: `func.apply(context, [arg1, arg2]);`
+
+In summary:
+- `bind` creates a new function for later use, while `call` and `apply` execute the function immediately.
+- `call` takes arguments individually, whereas `apply` takes arguments as an array.
+
+
 ##============ Object cloning============
 
 -Crreating a duplicate object of an existing object is called object cloning
@@ -921,6 +948,32 @@ value()
 keys()
 
 
+
+========================================================================
+### Set vs. Map
+#Map
+
+Definition: A Map is a built-in JavaScript object that stores key-value pairs. It allows you to associate each key with a specific value and provides efficient methods for adding, retrieving, and deleting key-value pairs. Keys in a Map must be unique, while values can be duplicated.
+
+Set:
+
+Definition: A Set is a built-in JavaScript object that allows you to store a collection of unique values. It ensures that no duplicate values are stored and provides methods for adding, checking, and removing values. Sets do not associate values with specific keys.
+
+- **Set:**
+  - **Definition:** A `Set` stores unique values, with no key-value pairs. It automatically removes duplicates.
+  - **Stores:** Unique values only.
+  - **Key-Value:** No key-value pairs.
+  - **Uniqueness:** Ensures all values are unique.
+  - **Methods:** `add(value)`, `delete(value)`, `has(value)`, `size`.
+
+- **Map:**
+  - **Definition:** A `Map` stores key-value pairs, where each key maps to a specific value. Keys must be unique, but values can be duplicated.
+  - **Stores:** Key-value pairs.
+  - **Key-Value:** Each key maps to a value.
+  - **Uniqueness:** Keys must be unique; values can be duplicated.
+  - **Methods:** `set(key, value)`, `get(key)`, `delete(key)`, `has(key)`, `size`.
+  
+
 //=============================sync and asynch=================
 Note:- Javascript is a Synchronous programming language.
 
@@ -967,12 +1020,92 @@ Example: addEventListener
 
 
 //=================== promise =============================
+
+
+===================================================================
+
+### Why Use Promises Instead of Callbacks?
+
+1. **Readability**: Avoids "callback hell" with cleaner code.
+2. **Error Handling**: Centralized error handling with `.catch()`.
+3. **Control**: Maintains control over asynchronous flow.
+4. **Composability**: Easily run and manage multiple async operations.
+
+Promises can be composed using methods like Promise.all, Promise.race, Promise.allSettled, and Promise.any. This allows for running multiple asynchronous operations in parallel and handling their results collectively.
+
+5. **Standardization**: Native support in modern JavaScript (ES6).
+
+Promises are a part of the ES6 (ECMAScript 2015) standard, meaning they are natively supported in modern JavaScript engines and have a consistent behavior across different environments.
+
+
+====================================================================================
+
+https://www.wisdomgeek.com/development/web-development/javascript/javascript-promises-combinators-race-all-allsettled-any/
+
+### Promises in JavaScript
+
+- Promise is an object that representing the eventual completion or failure of an asynchronous operation and its resulting value. 
+
+Promises provide a more effective way to handle asynchronous code, avoiding callback hell and making the code easier to read and maintain.
+
+- Outcome: A promise will produce a single value sometime in the future. If the promise is successful, it will produce a resolved value. If something goes wrong, it will produce a reason for the failure.
+- States:
+
+  1. Fulfilled: Action related to the promise succeeded.
+  2. Rejected: Action related to the promise failed.
+  3. Pending: Neither fulfilled nor rejected yet; the promise is still pending.
+  4. Settled: The promise has been either fulfilled or rejected.
+
+### Promise Methods
+
+- then(): 
+  - Invoked when a promise is resolved and a result is received.
+  - Allows chaining multiple asynchronous operations.
+- catch(): 
+  - Invoked when a promise is either rejected or some error has occurred during execution.
+  - Provides better error handling than callbacks and events.
+
+### Differences between Promise.all(), Promise.allSettled(), Promise.any(), and Promise.race()
+
+#### Promise.all()
+   - Executes multiple promises in parallel and waits for all of them to resolve.
+   - Rejects as soon as any one of the input promises rejects.
+    - Resolves when all input promises have resolved.
+
+   - Returns a single promise that resolves to an array of the results of the input promises.
+   [ 'Wisdom', 'Geek', 'Wisdom' ]
+
+
+#### Promise.allSettled()
+   - Executes multiple promises in parallel and waits for all of them to settle, meaning each promise either resolves or rejects.
+
+   - Resolves when all input promises have settled (either resolved or rejected).
+
+  - Returns a single promise that resolves to an array of objects describing the outcome of each promise (each object has a status of either "fulfilled" or "rejected" and the corresponding value or reason).
+
+Outputs:
+[
+  { status: 'fulfilled', value:  'Wisdom' },
+  { status: 'rejected',  reason: 'Geek' },
+]
+
+#### Promise.any()
+
+1. Purpose: 
+   - Executes multiple promises in parallel and waits for any one of them to resolve.
+   - Resolves as soon as any one of the input promises resolves.
+   - Rejects if all input promises reject.
+
+#### Promise.race()
+   - Executes multiple promises in parallel and waits for the first one to settle (either resolve or reject whether it was a success or failure.).
+   - Returns a single promise that settles with the result (or rejection reason) of the first settled promise.
+
+
+
 Promise:
 In JavaScript,
  a Promise is an object representing the eventual completion or failure of an asynchronous operation and its resulting value. 
  Promises provide a way to handle asynchronous code more effectively, avoiding callback hell and making code easier to read and maintain.
-
-
 
 In JavaScript, a Promise is an object that will produce a single value some time in the future.
  If the promise is successful, it will produce a resolved value
@@ -1084,244 +1217,3 @@ document represents a web page in the web browser.
 document object is a part of window object.
 
 Using document object you can dynamically update the content on the viewport.
-
-========================== ES6 features ==================================
-
-Below is the list of top ES6 features every JavaScript developer should know,
-
-
-1. let and const:
-2. Arrow Functions:
-3. Template Literals:
-4. Destructuring Assignment:
-5. Default Parameters:
-6. Rest and Spread Operators:
-7. Classes:
-8. Modules:
-9. Promises:
-10. Symbol:
-11. Iterators and Generators:
-12. Map and Set:
-13. WeakMap and WeakSet:
-14. Enhanced Object Literals:
-15. Object.assign():
-16. String Methods:
-17. Number Methods:
-18. Math Methods:
-19. New Data Structures:
-20. For…of Loop:
-
-
-Default parameters
-Spread and Rest syntaxes (…)
-let and const
-promise
-Destructuring assignment
-Arrow function expressions
-Classes
-
-Template literals (Template strings)
-Tagged Templates
-Object.assign() and Object.is()
-
-1. let and const
-   ```javascript
-   let x = 10;
-   const y = 20;
-   x = 15; // Allowed
-   // y = 25; // Error: Assignment to constant variable
-   ```
-
-2. Arrow Functions
-   ```javascript
-   const add = (a, b) => a + b;
-   console.log(add(2, 3)); // 5
-   ```
-
-3. **Template Literals**
-   ```javascript
-   const name = 'World';
-   const greeting = `Hello, ${name}!`;
-   console.log(greeting); // Hello, World!
-   ```
-
-4. **Destructuring Assignment**
-   ```javascript
-   const [a, b] = [1, 2];
-   const { name, age } = { name: 'Alice', age: 30 };
-   console.log(a, b); // 1 2
-   console.log(name, age); // Alice 30
-   ```
-
-5. **Default Parameters**
-   ```javascript
-   function greet(name = 'Guest') {
-     return `Hello, ${name}!`;
-   }
-   console.log(greet()); // Hello, Guest!
-   console.log(greet('John')); // Hello, John!
-   ```
-
-6. **Rest and Spread Operators**
-   - **Rest Operator**:
-     ```javascript
-     function sum(...numbers) {
-       return numbers.reduce((acc, num) => acc + num, 0);
-     }
-     console.log(sum(1, 2, 3, 4)); // 10
-     ```
-   - **Spread Operator**:
-     ```javascript
-     const arr = [1, 2, 3];
-     const newArr = [0, ...arr, 4];
-     console.log(newArr); // [0, 1, 2, 3, 4]
-     ```
-
-7. **Classes**
-   ```javascript
-   class Person {
-     constructor(name) {
-       this.name = name;
-     }
-     greet() {
-       return `Hello, ${this.name}!`;
-     }
-   }
-   const john = new Person('John');
-   console.log(john.greet()); // Hello, John!
-   ```
-
-8. **Modules**
-   - **Export**:
-     ```javascript
-     // module.js
-     export const pi = 3.14;
-     export function add(a, b) {
-       return a + b;
-     }
-     ```
-   - **Import**:
-     ```javascript
-     // main.js
-     import { pi, add } from './module.js';
-     console.log(pi); // 3.14
-     console.log(add(2, 3)); // 5
-     ```
-
-9. **Promises**
-   ```javascript
-   const myPromise = new Promise((resolve, reject) => {
-     setTimeout(() => resolve('Done!'), 1000);
-   });
-
-   myPromise.then(result => console.log(result)); // Done!
-   ```
-
-10. **Symbol**
-    ```javascript
-    const sym1 = Symbol('description');
-    const sym2 = Symbol('description');
-    console.log(sym1 === sym2); // false
-    ```
-
-11. **Iterators and Generators**
-    ```javascript
-    function* generator() {
-      yield 1;
-      yield 2;
-      yield 3;
-    }
-    const gen = generator();
-    console.log(gen.next().value); // 1
-    console.log(gen.next().value); // 2
-    ```
-
-12. **Map and Set**
-    - **Map**:
-      ```javascript
-      const map = new Map();
-      map.set('key1', 'value1');
-      console.log(map.get('key1')); // value1
-      ```
-    - **Set**:
-      ```javascript
-      const set = new Set([1, 2, 3]);
-      set.add(4);
-      console.log(set.has(2)); // true
-      ```
-
-13. **WeakMap and WeakSet**
-    - **WeakMap**:
-      ```javascript
-      const weakMap = new WeakMap();
-      const obj = {};
-      weakMap.set(obj, 'value');
-      console.log(weakMap.get(obj)); // value
-      ```
-    - **WeakSet**:
-      ```javascript
-      const weakSet = new WeakSet();
-      const obj = {};
-      weakSet.add(obj);
-      console.log(weakSet.has(obj)); // true
-      ```
-
-14. **Enhanced Object Literals**
-    ```javascript
-    const name = 'Alice';
-    const person = {
-      name,
-      greet() {
-        return `Hello, ${this.name}!`;
-      }
-    };
-    console.log(person.greet()); // Hello, Alice!
-    ```
-
-15. **Object.assign()**
-    ```javascript
-    const target = { a: 1 };
-    const source = { b: 2 };
-    Object.assign(target, source);
-    console.log(target); // { a: 1, b: 2 }
-    ```
-
-16. **String Methods**
-    ```javascript
-    const str = 'Hello, World!';
-    console.log(str.includes('World')); // true
-    console.log(str.startsWith('Hello')); // true
-    console.log(str.endsWith('!')); // true
-    ```
-
-17. **Number Methods**
-    ```javascript
-    console.log(Number.isNaN(NaN)); // true
-    console.log(Number.isFinite(123)); // true
-    ```
-
-18. **Math Methods**
-    ```javascript
-    console.log(Math.pow(2, 3)); // 8
-    console.log(Math.trunc(4.9)); // 4
-    ```
-
-19. **For…of Loop**
-    ```javascript
-    const iterable = [10, 20, 30];
-    for (const value of iterable) {
-      console.log(value); // 10, 20, 30
-    }
-    ```
-
-20. **Tagged Templates**
-    ```javascript
-    function tag(strings, ...values) {
-      return strings.reduce((acc, str, i) => acc + str + (values[i] || ''), '');
-    }
-    const name = 'World';
-    const message = tag`Hello, ${name}!`;
-    console.log(message); // Hello, World!
-    ```
-
-These examples demonstrate how each ES6 feature can be used in practice.

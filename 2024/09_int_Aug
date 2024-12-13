@@ -146,26 +146,6 @@ console.log(gen.next()); // { value: undefined, done: true }
 
 
 
-===================================================================
-
-### Why Use Promises Instead of Callbacks?
-
-1. **Readability**: Avoids "callback hell" with cleaner code.
-2. **Error Handling**: Centralized error handling with `.catch()`.
-3. **Control**: Maintains control over asynchronous flow.
-4. **Composability**: Easily run and manage multiple async operations.
-
-Promises can be composed using methods like Promise.all, Promise.race, Promise.allSettled, and Promise.any. This allows for running multiple asynchronous operations in parallel and handling their results collectively.
-
-5. **Standardization**: Native support in modern JavaScript (ES6).
-
-Promises are a part of the ES6 (ECMAScript 2015) standard, meaning they are natively supported in modern JavaScript engines and have a consistent behavior across different environments.
-===================================
-
- What is the DOM?
-The DOM is the Document Object Model, which is a tree-like structure that represents the HTML document. 
-It is used by JavaScript to access and manipulate the document.
-
 ==============================================
 - **`for...in`**: Iterates over object keys (properties).
 - **`for...of`**: Iterates over iterable values (arrays, strings, etc.).

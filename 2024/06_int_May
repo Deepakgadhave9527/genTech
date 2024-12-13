@@ -1,68 +1,5 @@
 
 
-====================================================================================
-
-https://www.wisdomgeek.com/development/web-development/javascript/javascript-promises-combinators-race-all-allsettled-any/
-
-### Promises in JavaScript
-
-- Promise is an object that representing the eventual completion or failure of an asynchronous operation and its resulting value. 
-
-Promises provide a more effective way to handle asynchronous code, avoiding callback hell and making the code easier to read and maintain.
-
-- Outcome: A promise will produce a single value sometime in the future. If the promise is successful, it will produce a resolved value. If something goes wrong, it will produce a reason for the failure.
-- States:
-
-  1. Fulfilled: Action related to the promise succeeded.
-  2. Rejected: Action related to the promise failed.
-  3. Pending: Neither fulfilled nor rejected yet; the promise is still pending.
-  4. Settled: The promise has been either fulfilled or rejected.
-
-### Promise Methods
-
-- then(): 
-  - Invoked when a promise is resolved and a result is received.
-  - Allows chaining multiple asynchronous operations.
-- catch(): 
-  - Invoked when a promise is either rejected or some error has occurred during execution.
-  - Provides better error handling than callbacks and events.
-
-### Differences between Promise.all(), Promise.allSettled(), Promise.any(), and Promise.race()
-
-#### Promise.all()
-   - Executes multiple promises in parallel and waits for all of them to resolve.
-   - Rejects as soon as any one of the input promises rejects.
-    - Resolves when all input promises have resolved.
-
-   - Returns a single promise that resolves to an array of the results of the input promises.
-   [ 'Wisdom', 'Geek', 'Wisdom' ]
-
-
-#### Promise.allSettled()
-   - Executes multiple promises in parallel and waits for all of them to settle, meaning each promise either resolves or rejects.
-
-   - Resolves when all input promises have settled (either resolved or rejected).
-
-  - Returns a single promise that resolves to an array of objects describing the outcome of each promise (each object has a status of either "fulfilled" or "rejected" and the corresponding value or reason).
-
-Outputs:
-[
-  { status: 'fulfilled', value:  'Wisdom' },
-  { status: 'rejected',  reason: 'Geek' },
-]
-
-#### Promise.any()
-
-1. Purpose: 
-   - Executes multiple promises in parallel and waits for any one of them to resolve.
-   - Resolves as soon as any one of the input promises resolves.
-   - Rejects if all input promises reject.
-
-#### Promise.race()
-   - Executes multiple promises in parallel and waits for the first one to settle (either resolve or reject whether it was a success or failure.).
-   - Returns a single promise that settles with the result (or rejection reason) of the first settled promise.
-
-
 ===============================================================================
 **Virtual DOM (VDOM)**:
 The Virtual DOM is a concept that used improve the efficiency of web page updates.
@@ -85,6 +22,22 @@ It works by comparing the current Virtual DOM tree to the updated one and calcul
 **Optimization Techniques**:
 1. **Tree Diffing**: React compares the current and updated Virtual DOM trees, identifying the minimal changes required.
 2. **Batching**: React batches multiple changes into a single update, reducing the number of updates to both the Virtual DOM and the real DOM.
+
+
+React's reconciliation
+
+
+React's reconciliation is the process by which React updates the user interface efficiently when the component state or props change. Here’s a brief overview:
+
+- **Virtual DOM**: React maintains a lightweight representation of the actual DOM called the Virtual DOM. When state or props change, React first updates the Virtual DOM.
+
+- **Diffing Algorithm**: React uses a diffing algorithm to compare the new Virtual DOM with the previous version. It identifies changes by comparing nodes, minimizing the number of updates needed.
+
+- **Re-rendering**: Once differences are identified, React determines the most efficient way to apply these changes to the actual DOM, updating only the parts that have changed.
+
+- **Batch Updates**: React batches multiple updates together to improve performance and reduce the number of DOM manipulations.
+
+In summary, React’s reconciliation process ensures that the UI updates efficiently and optimally by comparing and applying changes to the DOM based on the Virtual DOM.
 
 
 ===============================================================================
