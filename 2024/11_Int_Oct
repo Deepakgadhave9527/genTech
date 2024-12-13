@@ -158,14 +158,6 @@ javascript
 
 ========================================================================
 
-prototype is used to define properties and methods for constructor functions.
-prototype exists only on functions (specifically, constructor functions).
-
-__proto__ is used to access or set the prototype of an individual object.
-__proto__ exists on all objects.
-
-========================================================================
-
 In React.js development, the `window` object is often used for tasks related to application behavior and user interactions. Here are some `window` methods commonly used in React applications:
 
 1. **`window.addEventListener()`**: Registers event listeners for various events (e.g., resize, scroll) to handle changes or interactions in the application.
