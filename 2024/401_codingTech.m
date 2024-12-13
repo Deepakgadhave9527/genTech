@@ -1,4 +1,94 @@
 
+
+
+===========================================
+
+
+
+console.log(null == undefined); // Output: true
+console.log(null === undefined); // Output: false
+
+
+- `null == undefined`:
+In this case, both `null` and `undefined` are considered loosely equal because they represent absence of value. 
+ Therefore, `null == undefined` evaluates to `true`.
+  
+- `null === undefined`: The `===` operator checks for strict equality without type conversion.
+ It compares both the value and the type of the operands.
+ 
+  `null === undefined` evaluates to `false`.
+
+
+
+ Since `null` and `undefined` are of different types (`null` is of type `"object"` and `undefined` is of type `"undefined"`),
+
+  //=======================================
+
+
+1. console.log(typeof undefined);`
+   - This will output `undefined`. In JavaScript, `typeof undefined` returns `"undefined"` because `undefined` is a type representing an uninitialized or non-existent value.
+
+2. `console.log(typeof null);`
+   - This will output `"object"`. This is a historical quirk in JavaScript. `typeof null` returns `"object"` because `null` is considered a primitive value that represents the intentional absence of any object value.
+
+3. `console.log(typeof NaN);
+   - This will output `"number"`. `NaN` stands for "Not-a-Number" and is considered a special value in JavaScript of the number type. Therefore, `typeof NaN` returns `"number"`.
+
+   console.log(typeof undefined); // Output: "undefined"
+   console.log(typeof null);      // Output: "object"
+   console.log(typeof NaN);       // Output: "number"
+   
+//=======================================
+console.log(typeof NaN); // Outputs: "number"
+
+typeof NaN returns "number" in JavaScript because NaN 
+(Not a Number) is categorized as a numeric value within the languages type system
+
+
+//=======================================
+
+
+console.log(NaN === NaN); // Outputs: false
+console.log(NaN == NaN); // Outputs: false
+
+
+Both NaN === NaN and NaN == NaN evaluate to false in JavaScript
+ because NaN is considered not equal to any value, including NaN itself.
+
+
+ //=======================================
+
+
+console.log(1 < 2 < 3); outputs true because 1 < 2 evaluates to true, and then true < 3 (which is 1 < 3) also evaluates to true.
+console.log(3 > 2 > 1); outputs false because 3 > 2 evaluates to true, but then true > 1 (which is 1 > 1) evaluates to false
+
+Chained Comparisons: When you chain comparison operators like 1 < 2 < 3, JavaScript evaluates them sequentially from left to right.
+Type Coercion: JavaScript implicitly converts true and false to 1 and 0 respectively when compared with numeric values.
+
+
+//=======================================
+
+
+1. **String Concatenation with `+`:**
+   
+   console.log("5" + 3); // "53"
+   
+   - The `+` operator treats the operation as string concatenation because one operand is a string.
+
+2. **Arithmetic Operations with `-`, `*`, `/`:**
+   
+   console.log("5" - 3); // 2
+   console.log("5" * 3); // 15
+   console.log("5" / 3); // 1.6666666666666667
+   
+   - The `-`, `*`, and `/` operators treat the operation as arithmetic, so they convert the string `"5"` to the number `5`.
+
+### Summary:
+- The `+` operator can perform both string concatenation and numeric addition. If one operand is a string, JavaScript concatenates.
+- The `-`, `*`, and `/` operators only perform arithmetic operations and convert their operands to numbers if necessary.
+
+//====================== Problem ================================
+
 // Problem Statement 1
 console.log(null == undefined); // Output: true
 console.log(null === undefined); // Output: false

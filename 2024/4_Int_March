@@ -317,6 +317,20 @@ With media queries, you can conditionally apply CSS rules based on factors like 
 "With media queries, we can create responsive designs that for different devices and screen sizes."
 
 
+
+
+- A media query is a CSS technique used to apply styles to a web page based on specific characteristics of the device or browser viewing the page.
+
+- Media queries allow you to apply CSS rules conditionally based on factors like screen size, device orientation, resolution, and more.
+
+- With media queries, we can create responsive designs that adjust the layout and styling of a webpage for different devices, screen sizes, resolutions, and orientations.
+
+- Media queries ensure that websites are user-friendly and optimized across a wide range of devices, from mobile phones to large desktop monitors.
+
+- They are essential for building adaptive, flexible, and accessible web pages. 
+
+
+
 The `@media` rule is used in media queries to apply different styles for different media types/devices.
 
 #### Examples:
@@ -380,11 +394,8 @@ Automatic Batching
 -Batching react 18 features
 -Batching in React adding group of multiple state thats update sinto a single re-render for better performance.
     
-
- 
-    <!-- Batching is when React groups multiple state updates into a single re-render for better performance. -->
     
-    // Before: only React events were batched.
+// Before: only React events were batched.
 setTimeout(() => {
   setCount(c => c + 1);
   setFlag(f => !f);
@@ -412,7 +423,7 @@ It is the nesting of multiple Callbacks inside a function.
 where multiple asynchronous operations are nested within each other as callbacks.
 This can result in code that is difficult to read, understand, and maintain
 
- The two common ways of escaping the callback heare are by using promises and async/await.
+ The two common ways of escaping the callback Hell heare are by using promises and async/await.
 
 // Nested callbacks
 doSomething(function(result1) {

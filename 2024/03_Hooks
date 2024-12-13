@@ -9,6 +9,23 @@
 
 
     --------------------------------------------------------------------
+
+    
+   
+   `React.memo` is a utility that optimizes functional components by ensuring they only re-render when their props change.
+   
+    React.memo is a higher-order component in React that memoizes a component, meaning 
+    
+    it will only re-render if its props change.
+     This is particularly useful for functional components to optimize performance by preventing unnecessary re-renders.
+
+     React.memo is not a hook. 
+
+     It is a higher-order component (HOC) that memoizes functional components to prevent unnecessary re-renders when props haven't changed.
+
+     It is used to prevent unnecessary re-renders of functional components when their props have not changed.
+
+========================================================================
     01 useeffect()
 
 

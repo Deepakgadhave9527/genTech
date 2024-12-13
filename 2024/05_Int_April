@@ -7,20 +7,24 @@
 
 temporal dead 
 
-The Temporal Dead Zone in JavaScript is 
-the period during which 
-variables declared with let, const  exist in their scope but are not yet initialized.
+The Temporal Dead Zone in JavaScript is the period during which variables declared with let, const  exist in their scope but are not yet initialized.
+
 Accessing such variables in the TDZ results in a ReferenceError
 
 
-
-
+console.log(a); // ReferenceError: Cannot access 'a' before initialization
+let a = 5;
 
 
 ------------------------------------------------------------------------------------------------
 Implicit type coercion
 
 Implicit type coercion in JavaScript is the automatic conversion of values from one type to another.
+
+let result = '5' + 1; // '51' (string)
+let result2 = '5' - 1; // 4 (number)
+
+
 Avoiding Implicit Coercion
 
 Use the strict equality operator (===) which does not perform type coercion.
@@ -39,10 +43,20 @@ his process is often automatic, especially when using the loose equality operato
 
 (null == undefined) //true
 (null === undefined) //false
-Both null and undefined represent the absence of a value.
 
-null is explicitly set by the programmer to indicate "no value," while undefined typically means a variable has been declared but has not yet been assigned a value.
- Because both represent an absence or non-existence of value, they are treated as equal in the context of loose equality.
+null:
+Type: object
+Represents "no value" intentionally set by the programmer.
+
+undefined:
+Type: undefined
+Typically means a variable is declared but has not been assigned any value yet.
+
+Why == considers them equal:
+Both null and undefined represent absence of a value or non-existence. Therefore, when using loose equality (==), JavaScript treats them as equal.
+
+Why === considers them different:
+In strict equality (===), JavaScript compares both value and type. Since null and undefined have different types (object and undefined), they are not equal.
 
 
 
@@ -103,10 +117,11 @@ Hooks cannot be conditional.
 what is routing in react js
 
 In a single-page React Application,
-routing refers to the process of navigating
-between different pages without triggering a full page reload.
+routing refers to the process of navigating between different pages without triggering a full page reload.
 
 React Router DOM is an npm package that enables you to implement dynamic routing in a web app.
+
+
 
 ---------------------------------------------------------------------------------------------------
 
@@ -127,41 +142,34 @@ making it shorter, clearer, and more expressive, particularly in modern developm
 ------------------------------------------------------------------------------------------------
 StrictMode
 
--StrictMode is a tool for highlighting potential problems in an application. 
--Like Fragment, StrictMode does not render any visible UI. 
+-StrictMode is a tool for highlighting potential problems in an application.
+-It helps identify unsafe lifecycles, deprecated APIs, and other potential problems.
+
+- Unsafe lifecycle methods
+- Legacy string refs
+- Unexpected side effects
+- Potential memory leaks
+- Deprecated or obsolete APIs
+
 -React introduces additional checks and warnings for potential issues during development.
 -It's not for production use
--It helps identify unsafe lifecycles, deprecated APIs, and other potential problems.
+
+-Like Fragment, StrictMode does not render any visible UI. 
+
 
 
 
 
 ------------------------------------------------------------------------------------------------
 
-synthetic events 
-In React, synthetic events are a layer of abstraction over native browser events.
-They provide a consistent interface for handling events across different browsers
-and offer additional features.
+**Synthetic Events in React**:  
+In React, **synthetic events** are a layer of abstraction over native browser events. They provide a **consistent interface** for handling events across different browsers and offer **additional features** to improve event handling.
 
+You can attach event handlers, like **`onClick`**, to React elements, and React passes a **synthetic event object** to your handler function. This object contains information about the event, such as the **target element**, and provides methods like **`stopPropagation()`** and **`preventDefault()`** for controlling event behavior. 
 
-You can attach event handlers like onClick to React elements,
- and React passes a synthetic event object to your handler function. 
- This object contains information about the event, 
- such as the target element, 
- and provides methods like stopPropagation() and preventDefault() for controlling event behavior. 
- They make event handling consistent and efficient in React components.
+These methods allow you to **prevent the event from propagating** through the DOM or **prevent the default browser action** (like following a link or submitting a form).
 
-               <!-- 
-
-
-- Attach event handlers like onClick to React elements.
-- React passes a synthetic event object to your handler function.
-- The event object contains information such as the target element.
-- Use methods like stopPropagation() and preventDefault() to control event behavior.
 - Synthetic events ensure consistent and efficient event handling in React components. -->
-
-
-
 
 
 
@@ -346,69 +354,6 @@ The difference between both the operators is that “==” is used to compare va
  “ === “ is used to compare both values and types.
 
 
-------------------------------------------------------------------------------------------------
-server side rendering (SSR) and client side rendering (CSR).
-
-
-
-In the world of web development, 
-there are two main methods for rendering web pages:
-server side rendering (SSR) and client side rendering (CSR).
-
-What is Server Side Rendering (SSR)?
-
--Server Side Rendering is the traditional way of rendering web pages.
--When a user requests a page from the server, the server processes the 
-request and generates the complete HTML file, 
-which is send to browser
--The browser receives the complete HTML file and displays it to the user.
-SSR: Better performance, Faster initial load, better SEO, and security.
-
-
-What is Client Side Rendering (CSR)?
-Client Side Rendering is a more modern approach to rendering web pages.
-In this method, the server sends only the necessary data and JavaScript files to the browser. 
-Browser generates HTML with JavaScript.
-Allows dynamic content and improved user experience.
-
-
-Differences:
-
-SSR: Better performance, Faster initial load, better SEO, and security.
-CSR: More dynamic, better user experience, and reduces server load.
-
-
-
-
-
-------------------------------------------------------------------------------------------------
-Authentication and authorization are two essential concepts in web development, 
- used together to manage access control and secure resources.
- Here's a brief overview of each:
-
-1. Authentication:
-   - Authentication is the process of verifying the identity of a user, 
-   typically through credentials such as username and password.
-   - Common authentication mechanisms include:
-     - Form-based authentication: Users provide credentials via a login form.
-     - Token-based authentication: Users receive a token after successful login, which is then used to authenticate subsequent requests.
-     - OAuth/OpenID Connect: Third-party authentication protocols used for single sign-on (SSO) and social login.
-    where user credentials are verified against a database or external identity provider.
-   - The goal of authentication is to ensure that users are who they claim to be before granting access to protected resources or features.
-   - Authentication is often implemented at the application level,
-
-2. Authorization:
-   - Authorization is the process of determining whether a user 
-   has the necessary permissions to access a resource or perform a specific action.
-   - Once a user is authenticated, authorization rules are applied to determine what they can and cannot do within the application.
-   - Authorization can be based on various factors, including user roles, groups, attributes, or custom policies.
-   - Common authorization mechanisms include:
-     - Role-based access control (RBAC): Users are assigned roles (e.g., admin, editor, viewer) with corresponding permissions.
-     - Attribute-based access control (ABAC): Access decisions are based on user attributes, resource properties, and environmental conditions.
-   - Authorization is typically enforced at the application level, with access control rules defined and enforced within the application logic or middleware.
-   
-
-In summary, authentication verifies user identity, while authorization controls user access to resources based on their identity and permissions. Together, these concepts form the foundation of access control and security in web applications.
 ------------------------------------------------------------------------------------------------
 accessibility
 

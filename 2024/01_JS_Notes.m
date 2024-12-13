@@ -331,6 +331,33 @@ Not Hoisted , but with a Temporal Dead Zone (TDZ). The declaration is hoisted,
 but the variable is not accessible until the code execution reaches the let declaration.
  Accessing the variable before its declaration results in a ReferenceError.
 
+
+
+------------------------------------------------------------------------------------------------
+5. Difference between var and let keyword in javascript.
+
+
+- var Keyword:
+  - Function-scoped
+  - Hoisted
+  - Can be redeclared within the same scope
+  var x = 5;
+  var x = 10;
+  
+  console.log(x); // Outputs 10
+
+  
+- let Keyword:
+  - Block-scoped
+  - Not hoisted
+  - Cannot be redeclared within the same block scope
+
+let y = 5;
+let y = 10; // SyntaxError: Identifier 'y' has already been declared
+
+const z = 5;
+const z = 10; // SyntaxError: Identifier 'z' has already been declared
+
  
 //================================= Closure ========================
 ## Closure:-
