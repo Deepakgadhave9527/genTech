@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #divId{
+            background-color: aquamarine;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="divId" >
+    <button class="btnid">click me</button>
+</div>
+<script>
+var div=document.querySelector("#divId");
+var btn =document.querySelector(".btnid")
+div.addEventListener("click",function(){
+    console.log("div clicked");
+},true)
+btn.addEventListener("click",function(e){
+    console.log("btn clicked");
+},true)
+
+function greet(name) {
+    return "Hello, " + name + "!";
+}
+console.log(typeof greet); // "function"
+
+const greetExpression = function(name) {
+    return "Hello, " + name + "!";
+};
+console.log(typeof greetExpression); // "function"
+
+const greetArrow = (name) => {
+    return "Hello, " + name + "!";
+};
+console.log(typeof greetArrow); // "function"
+
+
+
+let animal = { eats: "mango" };
+let rabbit = { jumps: "jumps yes" };
+
+let rav ={
+    ak:"bk"
+}
+let rav3={
+    ck:"dk"
+}
+
+animal.__proto__ = rabbit;
+rabbit.__proto__ = rav;
+
+Object.setPrototypeOf(rav,rav3)
+const prototype = Object.getPrototypeOf(animal);
+
+
+function Person(name, age){
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
