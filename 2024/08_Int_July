@@ -1,37 +1,4 @@
 
-
-================================ Semantic elements ====================================
-
-
-
-Semantic elements are HTML elements that clearly describe their meaning in a way that both browsers and developers can understand. 
-
-Using semantic elements improves SEO, accessibility, and code clarity by making the structure of your webpage more meaningful.
-
-Common Semantic Elements:
-
-<article>
-<aside>
-<details>
-<figcaption>
-<figure>
-<footer>
-<header>
-<main>
-<mark>
-<nav>
-<section>
-<summary>
-<time>
-
-```javascript
-// A semantic element clearly describes its meaning to both the browser and the developer.
-// Semantic elements in HTßML provide meaning to the web content they enclose,
-// helping both browsers and developers understand the structure and purpose of the content.
-// They improve accessibility, SEO, and maintainability of web pages.
-// Meaningful Structure: Conveys the role of the content.
-// Improved Accessibility: Aids assistive technologies in navigating content.
-// SEO Benefits: Helps search engines better index and rank pages.
 ================================ memoization====================================================
 
  What is memoization in JavaScript?

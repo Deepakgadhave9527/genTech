@@ -291,62 +291,6 @@ In this example:
 - You can then perform actions based on the specific `<li>` element that was clicked.
 
 ========================================================
-classList
-
-with help of classList JavaScript allows us to add, remove, replace, toggle or check whether the specified CSS class,s is present or not
-
-
-add()	Adds one or more tokens to the list
-contains()	Returns true if the list contains a class,s
-remove()	Removes one or more tokens from the list
-toggle()	Toggles between tokens in the list
-replace()	Replaces a token in the list
-
-
-    <style>
-        .highlight {
-            color: red;
-        }
-        .bold {
-            font-weight: bold;
-        }
-    </style>
-<body>
-    <p id="text">Hello World</p>
-    
-    <button onclick="addClass()">Add Highlight</button>
-    <button onclick="checkClass()">Check Highlight</button>
-    <button onclick="removeClass()">Remove Highlight</button>
-    <button onclick="toggleClass()">Toggle Highlight</button>
-    <button onclick="replaceClass()">Replace Highlight with Bold</button>
-
-    <script>
-        function addClass() {
-            document.getElementById('text').classList.add('highlight');
-        }
-
-        function checkClass() {
-            const hasClass = document.getElementById('text').classList.contains('highlight');
-            alert(hasClass ? 'Element has the highlight class!' : 'Element does not have the highlight class.');
-        }
-
-        function removeClass() {
-            document.getElementById('text').classList.remove('highlight');
-        }
-
-        function toggleClass() {
-            document.getElementById('text').classList.toggle('highlight');
-        }
-
-        function replaceClass() {
-            document.getElementById('text').classList.replace('highlight', 'bold');
-        }
-    </script>
-</body>
-</html>
-
-
-========================================================
     flat()== method creates a new array with all sub-array elements concatenated into it recursively up to the specified
     depth.**
     arr = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]];
@@ -357,8 +301,6 @@ replace()	Replaces a token in the list
 A framework is a set of pre-written code that provides a structure for developing software applications. 
 
 A library, on the other hand, is a collection of pre-written code that can be used to perform specific tasks.
-
-
 
 
 ========================================================

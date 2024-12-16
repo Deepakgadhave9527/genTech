@@ -20,16 +20,6 @@ An event listener in JavaScript is a functions() that waits for a specific event
 Use addEventListener() to attach an event listener to an element.
 Use removeEventListener() to detach an event listener.
 
-==================================================================================
-
-
-
-Cross-browser compatibility ensures that web applications work consistently across different browsers and versions, providing a uniform user experience. 
-
-- **CSS Prefixes**: Use vendor prefixes (e.g., `-webkit-`, `-moz-`, `-ms-`, `-o-`) for CSS properties that require them to ensure compatibility with various browser engines.
-
-
-
 
 ========================== ES6 features ==================================
 

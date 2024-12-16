@@ -62,27 +62,6 @@ In strict equality (===), JavaScript compares both value and type. Since null an
 
 ------------------------------------------------------------------------------------------------
 
-### Cascading (in CSS)
-
-Cascading in CSS determines which styles are applied based on:
-
-1. Source Order: Later styles override earlier ones.
-2. Specificity: More specific selectors take precedence.
-3. Importance: `!important` rules override others.
-4. Inheritance: Some properties inherit values from parent elements.
-
-### Example
-
-css
-p { color: blue; }           /* General */
-.highlight p { color: red; } /* More specific */
-p { color: green !important; } /* Highest priority */
-
-
-### Summary
-- Cascading: The method of applying CSS rules based on order, specificity, importance, and inheritance.
-------------------------------------------------------------------------------------------------
-
 ### Conditional Rendering
 
 Conditional rendering is the displaying different UI elements based on specific conditions.
@@ -282,61 +261,6 @@ In summary,
 Object.seal() makes it so you can modify existing properties but not add or remove them,
 Object.preventExtensions() only prevents new properties from being added while allowing existing properties to be modified or removed.
 
-
-------------------------------------------------------------------------------------------------
-
-##Session Storage:
-- Data stored in session storage is scoped to the current browsing session.
-- It is only available within the same tab or window that created it.
-- Data is lost when the tab or window is closed or the session ends.
-- Each browsing session maintains its own separate session storage.
-- Data stored in one session will not be accessible in another session, even if it's on the same website.
-
-
-1. Storing Data:
-
-sessionStorage.setItem('key', 'value');
-
-2. Retrieving Data:
-
-var value = sessionStorage.getItem('key');
-
-3. Removing an Item:
-
-sessionStorage.removeItem('key');
-
-4. Clearing All Data:
-
-sessionStorage.clear();
-
-
-##Local Storage:
-
-- Data stored in local storage is scoped to the same origin (protocol, domain, and port).
-- It is accessible across multiple tabs and windows of the same origin.
-- Data available even after the browser is closed and reopened.
-- Each origin maintains its own separate local storage.
-- Data stored in local storage will be available across different sessions, allowing for continuity of user preferences and application state.
-
-Here's how you can use JavaScript to store, retrieve, and clear data from both Session Storage and Local Storage, along with methods for removing individual items and clearing all stored data:
-
-
-
-1. Storing Data:
-
-localStorage.setItem('key', 'value');
-
-2. Retrieving Data:
-
-var value = localStorage.getItem('key');
-
-3. Removing an Item:
-
-localStorage.removeItem('key');
-
-4. Clearing All Data:
-
-localStorage.clear();
 
 ------------------------------------------------------------------------------------------------
  

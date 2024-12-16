@@ -23,41 +23,6 @@ In summary, `map()` is used when you want to transform each element of an array 
 
 
 
-=============Closures===============================================
-Closures are a fundamental concept in JavaScript, providing the ability to access an outer function's scope from an inner function
-even after the outer function has finished executing
-
-
-
-- When a customer visits an online store, a new shopping cart is created.
-- This cart contains a private list of items, inaccessible directly from outside.
-- To manage the cart, specific functions are provided:
-  - One for adding items.
-  - One for removing items.
-  - One for viewing the cart's contents.
-- These functions can access the private list, even though it's hidden from the outside.
-- When a customer adds an item:
-  - The function modifies the private list to include the new item.
-- When a customer removes an item:
-  - Another function checks the list and updates it accordingly.
-- To view the cart:
-  - A function reads and displays the list without changing it.
-- This use of closures ensures that the cart’s internal list remains encapsulated and secure, only modifiable through the designated functions.
-- The private list retains its state throughout the customer’s session because the functions maintain a reference to it.
-- This encapsulation:
-  - Enhances security by preventing direct tampering.
-  - Ensures that each customer's cart operates independently and consistently throughout their shopping experience.
-
-<!-- 
-Certainly! Here's a concise explanation using a continuous format:
-
-When a customer visits an online store, a new shopping cart is created. This cart contains a private list of items, inaccessible directly from outside. To manage the cart, specific functions are provided: one for adding items, one for removing items, and one for viewing the cart's contents. These functions can access the private list, even though it's hidden from the outside. When a customer adds an item, the function modifies the private list to include the new item. When they remove an item, another function checks the list and updates it accordingly. To view the cart, a function reads and displays the list without changing it. 
-
-This use of closures ensures that the cart’s internal list remains encapsulated and secure, only modifiable through the designated functions. The private list retains its state throughout the customer’s session because the functions maintain a reference to it. This encapsulation enhances security by preventing direct tampering and ensures that each customer's cart operates independently and consistently throughout their shopping experience. -->
-
-
-
-
 ================================================================================================================================================================
 
 Event loop 
