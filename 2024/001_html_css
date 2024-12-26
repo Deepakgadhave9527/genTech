@@ -1,4 +1,131 @@
 
+==========================================================================
+
+CSS preprocessor
+
+ CSS preprocessor is a tool that converts code written in its scripting language into standard CSS. This conversion makes CSS more powerful by providing features like:
+
+- **Variables**
+- **Nesting**
+- **Mixins**
+- **Functions**"
+
+   These features help the development process, 
+      reduce repetition,
+     - Enhanced capabilities like **loops**, **functions**, and **conditionals**.
+     - **Cleaner**, more modular code.
+     - **Reusability** of code (via variables, mixins, etc.).
+    - Improved **maintainability** and **organization** of styles.
+    and make the CSS codebase easier to manage.
+
+
+
+  -Variables :to store values (like colors, fonts, etc.) and reuse them throughout your stylesheet.
+      - Example: `$primary-color: #3498db;`
+
+  - Nesting :Lets you nest CSS selectors in a hierarchical structure, making the code more readable and maintainable.
+
+  - Example:
+      ```scss
+      nav { ul { list-style-type: none; } }
+      ```
+  
+  - Mixins :Reusable chunks of code that you can insert wherever needed, often with the ability to pass arguments to customize them.
+
+    - Example:
+      ```scss
+      @mixin border-radius($radius) { border-radius: $radius; }
+      .box { @include border-radius(10px); }
+      ```
+
+  - Functions :Let you define reusable logic (like mathematical operations) within your stylesheets
+
+  - **Partials and Import**: Split CSS into smaller files and import them for better organization.
+  - **Inheritance (Extends)**: Share styles between selectors to reduce redundancy.
+    - Example: `.button { @extend .btn; }`
+
+ 
+  
+
+- **Popular CSS Preprocessors**:
+  - **Sass** (with `.scss` and `.sass` syntax)
+  - **LESS**
+  - **Stylus**
+
+
+
+
+================================================================================================================================================================
+### Media Queries in CSS
+
+A media query is a CSS technique used to apply styles to a web page based on specific characteristics of the device or browser viewing the page.
+With media queries, you can conditionally apply CSS rules based on factors like screen size, device orientation, resolution, and more.
+"With media queries, we can create responsive designs that for different devices and screen sizes."
+
+
+
+
+- A media query is a CSS technique used to apply styles to a web page based on specific characteristics of the device or browser viewing the page.
+
+- Media queries allow you to apply CSS rules conditionally based on factors like screen size, device orientation, resolution, and more.
+
+- With media queries, we can create responsive designs that adjust the layout and styling of a webpage for different devices, screen sizes, resolutions, and orientations.
+
+- Media queries ensure that websites are user-friendly and optimized across a wide range of devices, from mobile phones to large desktop monitors.
+
+- They are essential for building adaptive, flexible, and accessible web pages. 
+
+
+
+The `@media` rule is used in media queries to apply different styles for different media types/devices.
+
+#### Examples:
+
+- Extra small devices (phones, 600px and down):
+
+@media only screen and (max-width: 600px) {...}
+
+
+- Small devices (portrait tablets and large phones, 600px and up):
+
+@media only screen and (min-width: 600px) {...}
+
+
+- Medium devices (landscape tablets, 768px and up):
+
+@media only screen and (min-width: 768px) {...}
+
+
+- Large devices (laptops/desktops, 992px and up):
+
+@media only screen and (min-width: 992px) {...}
+
+
+- Extra large devices (large laptops and desktops, 1200px and up):
+
+@media only screen and (min-width: 1200px) {...}
+
+
+#### Breakpoints:
+
+- Mobile (extra small device) xs: size <= 575.98px
+- Tablet (small device) sm: size >= 576px && size <= 767.98px
+- Laptop (medium device) md: size >= 768px && size <= 991.98px
+- Desktop (large device) lg: size >= 991.98px && size <= 1199.98px
+- Big screen (extra large device) xl: size >= 1200px
+
+### Media Types:
+Media types specify the target device or output medium. Some common media types include:
+
+- all
+- braille
+- handheld
+- print
+- screen
+- speech
+- tty
+- TV
+
 
 ==================================================================================
 

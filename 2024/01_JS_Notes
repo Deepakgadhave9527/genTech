@@ -275,8 +275,6 @@ Used for dynamic prototype handling.
   - Simple but not suitable for modern applications.
 
 
----
-
 ### **By using `Object.setPrototypeOf()`**
 - Introduced in **ECMAScript 2015 (ES6)**.
 -  **`Object.setPrototypeOf()`**:
@@ -397,8 +395,6 @@ const name = "John";
 name = "Doe";  // Error: Cannot reassign a const variable
 ```
 
----
-
 ### **For Non-Primitives (Objects/Arrays):**
 
 `const` makes the **reference** **immutable**, but the **content** inside the object/array can still be changed.
@@ -437,8 +433,6 @@ console.log(numbers);  // [10, 2, 3, 4]
 // But you cannot reassign the reference (array):
 numbers = [5, 6, 7];  // Error: Cannot reassign a const variable
 ```
-
----
 
 ### **Summary:**
 
@@ -722,6 +716,14 @@ function greet(name) { // 'name' is a parameter
 greet('Alice'); // 'Alice' is an argument
 
 
+function sum(a, b) {  // 'a' and 'b' are parameters
+  return a + b;
+}
+
+console.log(sum(5, 10));  // '5' and '10' are arguments
+
+
+
 //============================ arguments object vs rest operator===================================
 
 ##= arguments object vs rest operator =##
@@ -913,11 +915,121 @@ It does not bind the existing function instead if create a new function to bind
 In summary:
 - `bind` creates a new function for later use, while `call` and `apply` execute the function immediately.
 - `call` takes arguments individually, whereas `apply` takes arguments as an array.
+==================
+ <!-- Primitive Types:
+These are basic data types like string, number, boolean, null, undefined, symbol, and bigint.
 
+-When you assign a primitive value to a variable, the value is stored directly in the variable's memory location. If you assign that variable to another variable, the value is copied, and each variable will have its own copy of that value.
+
+- both variable have differnt memory location
+-The value of a primitive is stored in a stack memory.
+
+let a = 42;  // `a` stores the value 42
+let b = a;   // `b` now stores the value 42 (copy of `a`)
+
+b = 100;     // Change `b`, but `a` remains 42
+
+console.log(a);  // 42
+console.log(b);  // 100
+ere, a holds the value 42. When a is assigned to b, a new copy of the value 42 is created for b. Therefore, changing b does not affect a.
+
+
+Reference Types (By Reference)
+-These include objects (including arrays, functions, and others).
+-when a non-primitive (reference) value is assigned to another variable, the reference (memory address) to the object is copied, not the actual object itself. This means both variables will point to the same object in memory, and changes made to the object via one variable will be reflected when accessed via the other variable.
+
+- both variable have same memory location
+
+
+-Reference types are typically stored in heap memory. 
+
+
+let obj1 = { name: "Alice", age: 30 };  // `obj1` is an object
+let obj2 = obj1;  // `obj2` gets the **reference** to the same object as `obj1`
+
+obj2.age = 31;    // Changing `age` via `obj2`
+
+console.log(obj1.age);  // 31 (since both `obj1` and `obj2` point to the same object)
+console.log(obj2.age);  // 31 (both variables reflect the same object)
+ -->
+
+Got it! Here's your document without the "Summary of Differences" section:
+
+### **Primitive Types:**
+
+These are the basic data types in JavaScript:
+- `string`
+- `number`
+- `boolean`
+- `null`
+- `undefined`
+- `symbol`
+- `bigint`
+
+**Key Characteristics:**
+- When you assign a primitive value to a variable, the value is stored **directly** in the variable's memory location. If you assign that variable to another, the **value is copied**—each variable has its own copy.
+- Both variables have **different memory locations**.
+- The value of a primitive is stored in **stack memory**.
+
+**Example:**
+```javascript
+let a = 42;  // `a` stores the value 42
+let b = a;   // `b` now stores a copy of the value 42
+
+b = 100;     // Changing `b` doesn't affect `a`
+
+console.log(a);  // 42
+console.log(b);  // 100
+```
+In this case, `a` holds 42, and when it's assigned to `b`, a copy of 42 is created for `b`. Changing `b` does not affect `a`.
+
+### **Reference Types:**
+
+These include objects (arrays, functions, and other objects).
+
+**Key Characteristics:**
+- When a reference type is assigned to a variable, the **reference (memory address)** to the object is copied, not the actual object itself. Both variables will point to the same object in memory.
+- Both variables have **the same memory location**.
+- Reference types are typically stored in **heap memory**.
+
+**Example:**
+```javascript
+let obj1 = { name: "Alice", age: 30 };  // `obj1` is an object
+let obj2 = obj1;  // `obj2` holds the reference to the same object
+
+obj2.age = 31;    // Changing `age` via `obj2`
+
+console.log(obj1.age);  // 31
+console.log(obj2.age);  // 31
+```
+In this example, both `obj1` and `obj2` point to the same object. Modifying the object through one reference affects the other, since they both refer to the same memory location.
+
+Let me know if you need anything else!
+
+when variable primative value  assignt to another varilble that time value will be copy/assigned 
+when variable not primative value assigned to anoter variable that time memory refrance will be assigne 
 
 ##============ Object cloning============
-
 -Crreating a duplicate object of an existing object is called object cloning
+There are 2 types of object cloning
+
+### **Shallow Cloning**  
+- Copies only the top-level properties of an object.  
+- Nested objects or arrays are **referenced**, not cloned.  
+- Changes in nested structures reflect in both original and cloned objects.  
+- Examples: `Object.assign()`, Spread operator (`...`).  
+
+### **Deep Cloning**  
+- Copies all levels of an object, including nested structures.  
+- Nested objects or arrays are **independent** from the original.  
+- Changes in the clone do not affect the original object.  
+- Examples: `JSON.parse(JSON.stringify())`, Lodash's `cloneDeep()`, Recursive cloning.  
+
+
+
+
+
+
 
 There are 2 types of object cloning
 
@@ -974,79 +1086,6 @@ console.log(deepClone === original); // false (different objects)
 console.log(deepClone.address === original.address); // false (different objects)
 
 
-
-
-var person = {
-name: "deepak",
-add: {
-road: "MRG",
-puc: 65
-}
-
-}
-//var person2 = person;
-//person2.name="wadikar"
-
-// shallow cloning
-let person2 = Object.assign({}, person)
-person2.name = "patil";
-person2.add.road = "pa";
-
-//deep cloning
-var p3 = JSON.parse(JSON.stringify(person));
-p3.add.road = "MGm3"
-
-console.log(person)
-console.log(person2)
-console.log(p3)
-
-
-const obj={
-name:"ABC",
-age:20,
-address:{
-city:'Beijing',
-country:'China'
-}
-}
-const obj2 ={...obj}
-obj2.name="PQR"
-
-const obj3 =Object.assign({},obj)
-obj3.age=21
-
-const obj4=JSON.parse(JSON.stringify(obj))
-obj4.address.city="Pune"
-console.log("obj",obj);
-console.log("obj2",obj2);
-console.log("obj3",obj3);
-console.log("obj4",obj4);
-
-
-
-
-
-
-// Original object with nested properties
-const original = {
-    name: 'John',
-    age: 30,
-    address: { city: 'New York', country: 'USA' }
-};
-
-// Shallow clone using Object.assign or spread syntax
-const shallowClone = Object.assign({}, original);
-
-// Modify the shallow clone
-shallowClone.name = 'Jane';
-shallowClone.address.city = 'San Francisco';
-
-// Log both original and shallow clone
-console.log(original);    // Output: { name: 'John', age: 30, address: { city: 'San Francisco', country: 'USA' } }
-console.log(shallowClone); // Output: { name: 'Jane', age: 30, address: { city: 'San Francisco', country: 'USA' } }
-
-
-
 //=========================================Set====================
 Set:-
 Set is like an array but it stores only unique elements.
@@ -1085,52 +1124,221 @@ console.log(mySet)
 
 
 //============================map ===============================
-Map:- The Map is used to store key value pairs .
+Map:- 
+A Map is a built-in JavaScript object that store key value pairs with unique keys.
+where the keys can be of any type, including objects, functions, and primitives.
 
-A key value pair is called an entry
-A key must be unique
-the values can be duplicate
-
-Creating Map
-
-1. creating empty map
-
-const m1 = new Map();
-
-set()
-delete()
-value()
-keys()
+keys in a JavaScript Map are unique. 
+If you set a key that already exists in the Map, 
+the value associated with that key is updated, not duplicated.
 
 
+```javascript
 
+const map = new Map();
+
+
+// Add key-value pairs
+map.set('name', 'Alice');
+map.set('age', 25);
+
+// Attempt to add a duplicate key
+map.set('name', 'Bob'); // Updates the value for the 'name' key
+
+console.log(map.get('name')); // "Bob"
+console.log(map.size); // 2 (not 3, as keys are unique)
+
+
+Creating // Create a new Map
+
+
+### **Core Methods**
+
+#### 1. **`set(key, value)`**  
+Adds or updates a key-value pair in the `Map`.
+
+const map = new Map();
+map.set('name', 'Alice');
+map.set(42, 'The answer');
+console.log(map); // Map(2) { 'name' => 'Alice', 42 => 'The answer' }
+```
+
+#### 2. **`get(key)`**  
+Retrieves the value associated with a given key.
+
+```javascript
+console.log(map.get('name')); // 'Alice'
+console.log(map.get(42));     // 'The answer'
+console.log(map.get('age'));  // undefined (key does not exist)
+```
+
+#### 3. **`has(key)`**  
+Checks if a key exists in the `Map`.
+
+```javascript
+console.log(map.has('name')); // true
+console.log(map.has('age'));  // false
+```
+
+#### 4. **`delete(key)`**  
+Removes a key-value pair by the key.
+
+```javascript
+map.delete(42); 
+console.log(map); // Map(1) { 'name' => 'Alice' }
+```
+
+#### 5. **`clear()`**  
+Removes all key-value pairs from the `Map`.
+
+```javascript
+map.clear();
+console.log(map); // Map(0) {}
+```
+
+#### 6. **`size` (Property)**  
+Returns the number of key-value pairs in the `Map`.
+
+```javascript
+map.set('a', 1).set('b', 2).set('c', 3);
+console.log(map.size); // 3
+```
+
+### **Iteration Methods**
+
+#### 7. **`keys()`**  
+Returns an iterator of all keys in the `Map`.
+
+```javascript
+for (const key of map.keys()) {
+  console.log(key); // 'a', 'b', 'c'
+}
+```
+
+#### 8. **`values()`**  
+Returns an iterator of all values in the `Map`.
+
+```javascript
+for (const value of map.values()) {
+  console.log(value); // 1, 2, 3
+}
+```
+
+#### 9. **`entries()`**  
+Returns an iterator of all key-value pairs in the `Map` as `[key, value]`.
+
+```javascript
+for (const [key, value] of map.entries()) {
+  console.log(key, value); // 'a' 1, 'b' 2, 'c' 3
+}
+```
+
+#### 10. **`forEach(callback)`**  
+Executes a callback function for each key-value pair.
+
+```javascript
+map.forEach((value, key) => {
+  console.log(`${key}: ${value}`);
+});
+// Output:
+// a: 1
+// b: 2
+// c: 3
+```
+
+### **Examples in Practice**
+
+#### **Adding and Updating Data**
+```javascript
+const userRoles = new Map();
+userRoles.set('Alice', 'Admin');
+userRoles.set('Bob', 'Editor');
+userRoles.set('Alice', 'Super Admin'); // Updates Alice's role
+
+console.log(userRoles.get('Alice')); // 'Super Admin'
+```
+
+#### **Using Objects as Keys**
+```javascript
+const obj = { id: 1 };
+const map = new Map();
+
+map.set(obj, 'Object Value');
+console.log(map.get(obj)); // 'Object Value'
+```
+
+#### **Iterating Over a Map**
+```javascript
+const items = new Map([
+  ['apple', 10],
+  ['banana', 5],
+  ['cherry', 7],
+]);
+
+for (const [key, value] of items) {
+  console.log(`${key}: ${value}`);
+}
+// Output:
+// apple: 10
+// banana: 5
+// cherry: 7
+```
+
+#### **Counting Occurrences**
+```javascript
+const words = ['hello', 'world', 'hello', 'map'];
+const wordCount = new Map();
+
+words.forEach(word => {
+  wordCount.set(word, (wordCount.get(word) || 0) + 1);
+});
+
+console.log(wordCount); // Map(3) { 'hello' => 2, 'world' => 1, 'map' => 1 }
+```
+
+Let me know if you need more examples or details!
+
+========================= ===============================================
+
+8. When to Use Map
+Use a Map when:
+
+You need non-string keys.
+You need to maintain the order of entries.
+You need efficient lookups and insertions.
+You want built-in iteration over entries.
+
+Use an object when:
+
+You need simple key-value pairs with string keys.
+You want inheritance or prototype-based features.
 ========================= ===============================================
 ### Set vs. Map
 #Map
 A Map is a built-in JavaScript object that stores key-value pairs.
+
+A key value pair is called an entry
+Keys in a Map must be unique, 
+while values can be duplicated.
+
+  - **Stores:** Key-value pairs.
+  - **Uniqueness:** Keys must be unique; values can be duplicated.
+  - **Methods:** `set(key, value)`, `get(key)`, `delete(key)`, `has(key)`, `size`.
+
 It allows you to associate each key with a specific value and provides efficient methods for adding, retrieving, and deleting key-value pairs.
-Keys in a Map must be unique, while values can be duplicated.
-
-#Set:
-
- A Set is a built-in JavaScript object that allows you to store a collection of unique values. 
- It ensures that no duplicate values are stored and provides methods for adding, checking, and removing values.
-Sets do not associate values with specific keys.
 
 - **Set:**
-  - **Definition:** A `Set` stores unique values, with no key-value pairs. It automatically removes duplicates.
-  - **Stores:** Unique values only.
+ - **Definition:** A `Set` stores unique values, with no key-value pairs. It automatically removes duplicates.
+
   - **Key-Value:** No key-value pairs.
   - **Uniqueness:** Ensures all values are unique.
   - **Methods:** `add(value)`, `delete(value)`, `has(value)`, `size`.
 
-- **Map:**
-  - **Definition:** A `Map` stores key-value pairs, where each key maps to a specific value. Keys must be unique, but values can be duplicated.
-  - **Stores:** Key-value pairs.
-  - **Key-Value:** Each key maps to a value.
-  - **Uniqueness:** Keys must be unique; values can be duplicated.
-  - **Methods:** `set(key, value)`, `get(key)`, `delete(key)`, `has(key)`, `size`.
-  
+ has(value): Check if a value exists in the Set.
+forEach(callback): Iterates through the Set.
+keys(), values(), entries(): Provides iterators for advanced use cases.
+clear(): Clears the entire Set.
+
 
 //=============================sync and asynch=================
 Note:- Javascript is a Synchronous programming language.
@@ -1169,12 +1377,21 @@ A callback is used to perform any future operation after an asynchronous operati
 
 //== ==============================Higher Order function :-==============================
 Higher Order function :-
+
+A higher order function is a function that takes one or more functions as arguments, or returns a function as its result.
+
 A function which accepts another function as an argument is called a higher
 order function.
 The higher order function is used to perform different operations.
 
 Example: addEventListener
 
+Other Common Higher-Order Functions:
+map()
+filter()
+reduce()
+forEach()
+setTimeout() and setInterval()
 
 
 //=================== promise =============================
@@ -1201,20 +1418,6 @@ managing tasks that may take variable amounts of time to complete without blocki
 Asynchronous operations can be handled using various techniques, including callbacks, Promises, async/await, and event listeners
 
 
-===================================================================
-
-### Why Use Promises Instead of Callbacks?
-
-1. **Readability**: Avoids "callback hell" with cleaner code.
-2. **Error Handling**: Centralized error handling with `.catch()`.
-3. **Control**: Maintains control over asynchronous flow.
-4. **Composability**: Easily run and manage multiple async operations.
-
-Promises can be composed using methods like Promise.all, Promise.race, Promise.allSettled, and Promise.any. This allows for running multiple asynchronous operations in parallel and handling their results collectively.
-
-5. **Standardization**: Native support in modern JavaScript (ES6).
-
-Promises are a part of the ES6 (ECMAScript 2015) standard, meaning they are natively supported in modern JavaScript engines and have a consistent behavior across different environments.
 
 
 ====================================================================================
@@ -1403,6 +1606,20 @@ A then() returns a promise
 
 
 
+===================================================================
+
+### Why Use Promises Instead of Callbacks?
+
+1. **Readability**: Avoids "callback hell" with cleaner code.
+2. **Error Handling**: Centralized error handling with `.catch()`.
+3. **Control**: Maintains control over asynchronous flow.
+4. **Composability**: Easily run and manage multiple async operations.
+
+Promises can be composed using methods like Promise.all, Promise.race, Promise.allSettled, and Promise.any. This allows for running multiple asynchronous operations in parallel and handling their results collectively.
+
+5. **Standardization**: Native support in modern JavaScript (ES6).
+
+Promises are a part of the ES6 (ECMAScript 2015) standard, meaning they are natively supported in modern JavaScript engines and have a consistent behavior across different environments.
 
 
 //===========================asynch await =========================
