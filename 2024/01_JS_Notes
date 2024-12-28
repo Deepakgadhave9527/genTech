@@ -1430,8 +1430,8 @@ https://www.wisdomgeek.com/development/web-development/javascript/javascript-pro
 
 Promises provide a more effective way to handle asynchronous code, avoiding callback hell and making the code easier to read and maintain.
 
-- Outcome: A promise will produce a single value sometime in the future. If the promise is successful, it will produce a resolved value. If something goes wrong, it will produce a reason for the failure.
-- States:
+
+- promise has four States:
 
   1. Fulfilled: Action related to the promise succeeded.
   2. Rejected: Action related to the promise failed.
@@ -1484,15 +1484,9 @@ Outputs:
 
 
 
-Promise:
-In JavaScript,
- a Promise is an object representing the eventual completion or failure of an asynchronous operation and its resulting value. 
- Promises provide a way to handle asynchronous code more effectively, avoiding callback hell and making code easier to read and maintain.
+- Outcome: A promise will produce a single value sometime in the future. If the promise is successful, it will produce a resolved value. If something goes wrong, it will produce a reason for the failure.
 
-In JavaScript, a Promise is an object that will produce a single value some time in the future.
- If the promise is successful, it will produce a resolved value
- ,but if something goes wrong then it will produce a reason why the promise failed. 
-The possible outcomes here are similar to that of promises in real life.
+
 
 
 ========================================================================
