@@ -3,10 +3,9 @@
 ---------------------------------------------------------------------------------
 Q21. What are fragments? Why are fragments better than container divs?
 
-react .fragment add group of multiple elements without adding an extra node in Dom
+react .fragment add group of multiple elements without adding an extra node in the Dom
 
 React fragment uses two syntaxes
-
 
 React fragments allow you to group multiple elements without adding an extra node to the DOM.
 
@@ -15,16 +14,15 @@ React fragments use two syntaxes:
 1. `<Fragment> ... </Fragment>`: Use this when you need to pass a key prop, typically in list rendering inside a `map()` method.
 2. `<> ... </>`: Use this shorthand syntax when you do not need to pass a key prop.
 
-<!-- 
 
-1. <Fragment> content </Fragment>
+Avoid Extra DOM Nodes:
 
-This syntax should be used only when you are using fragment inside the map() method
-in list rendering because you need pass key prop.
-<Fragment> accept only key prop
+When you return multiple elements in a component's render method, they need to be wrapped in a parent element. Using Fragments prevents adding unnecessary extra DOM nodes (like <div> or <span>).
 
-  2. <> content </>
-  Use this syntax whenever you do not have to pass key prop -->
+
+Improve Performance:
+
+Since Fragments don't create extra DOM elements, it helps improve the rendering performance, especially in large applications.
 
   ---------------------------------------------------------------------------------
 
