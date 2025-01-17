@@ -28,21 +28,19 @@ Since Fragments don't create extra DOM elements, it helps improve the rendering 
 
   Q22. What are error boundaries in React?
 
-  - Error boundaries in React catch JavaScript errors anywhere in their child component tree and log those errors.
+  - Error boundaries in React that catch JavaScript errors anywhere in their child component tree and log those errors.
+
 - Error boundaries display a fallback UI instead of the component tree that crashed, helping to prevent the entire application from crashing due to a single error.
-- Use `getDerivedStateFromError()` to update the state to indicate an error has occurred.
+
+- Use `getDerivedStateFromError()` is method to update the state to indicate an error has occurred.
 - Use `componentDidCatch()` to log error information.
 
-
-  - Error boundaries in React components catch JavaScript errors occurring anywhere in their child component tree.
-  log thosee errors
-  - Error boundaries display a fallback UI instead of the component tree that crashed, 
-  -helping to prevent the entire application from crashing due to a single error.
 
   static getDerivedStateFromError() is a static method in a React class component that is
    invoked after an error has been thrown during rendering.
 
    -Use componentDidCatch() to log error information.
+
 
 
   class ErrorBoundary extends React.Component {
@@ -64,6 +62,21 @@ Since Fragments don't create extra DOM elements, it helps improve the rendering 
       return this.props.children;
     }
   }
+
+
+
+### **Errors Caught by Error Boundaries**
+- **Render Phase**: Errors during component rendering.
+- **Lifecycle Methods**: Errors in methods like `componentDidMount`, `componentDidUpdate`.
+- **Constructors**: Errors in child component constructors.
+
+
+### **Errors NOT Caught by Error Boundaries**
+- **Event Handlers**: Use `try-catch` inside the handler.
+- **Asynchronous Code**: Use `try-catch` or `.catch()` for Promises.
+- **Server-Side Rendering (SSR)**: Handle SSR errors manually.
+- **Errors in Error Boundary Itself**: Nest another error boundary if needed.
+
   ---------------------------------------------------------------------------------
 
 
@@ -73,50 +86,17 @@ Since Fragments don't create extra DOM elements, it helps improve the rendering 
   If parent component needs state of child component then it can be passed to parent
   component using the concept called 'lifting state up'.
 
-  
-  ---------------------------------------------------------------------------------
-
-  
-  ### React State vs. Redux State
-
-  #### React State:
-  - Scope: Local to a component; each component manages its own state.
-  - Usage: Best for state specific to a single component or a small part of the component tree.
-  - Initialization: Use `useState` hook in functional components or `this.state` in class components.
-  - Updating State: Use `setState` method or function; updates are asynchronous and can be batched.
-  - Complexity: Ideal for simple, component-specific state; less boilerplate and easier setup.
-  
-  #### Redux State:
-  - Scope: Global, managed by a centralized store; shared across the entire application.
-  - Usage: Suitable for state that needs to be shared across multiple components or large parts of the app.
-  - Initialization: Set up in a Redux store using reducers and initial state values; typically use `createStore`.
-  - Updating State: State updated through actions and reducers; updates can be managed asynchronously with middleware like Redux Thunk or Redux Saga.
-  - Complexity: Involves more setup and boilerplate; provides a structured, predictable way to manage complex state interactions.
-  
-  ### Key Differences:
-  - React State:
-    - Local to components.
-    - Simple and less setup.
-    - Ideal for small, localized state.
-  
-  - Redux State:
-    - Global and centralized.
-    - More setup and boilerplate.
-    - Ideal for complex, shared state management.
-  
-  ### Choosing Between Them:
-  - React State: Suitable for small to medium-sized applications with localized state needs.
-  - Redux State: Best for large applications with complex state requirements and the need for sharing state across many components.
- 
-  ---------------------------------------------------------------------------------
--If a child component need the state of parent component then that state can be passed
-using props.
-
--If parent component needs state of child component then it can be passed to parent
-component using the concept called 'lifting state up'.
 
 
 ---------------------------------------------------------------------------------
+
+
+Q_18. What is the significance of keys in React?
+-A key is a unique identifies
+-Keys help React identify which items have changed, are added, or are removed.
+-Keys should be given to the elements inside the array to give the elements a stable identity.
+
+  ---------------------------------------------------------------------------------
 
 Q8. What is PureComponent?
 
@@ -482,190 +462,6 @@ Q10. What are controlled and uncontrolled components in React?
 
 
 
-
----------------------------------------------------------------------------------
-Q what is redux ?
-
-- Redux is a predictable state container for JavaScript applications.
-- Redux is a state management tool
-
--There is a central store that holds the entire state of the application.
--Each component can access the stored state without having to send down props from one component to another.
-
--There are three building parts: actions, store, and reducers.
-
-1]Action
--Action is static information about the event that initiates a state change.
--Actions are payloads of information that send data from our application to our store
-
-<!-- 
-Action is static information about the event that initiates a state change.
-When you update your state with Redux,
-you always start with an action.
-Actions are in the form of Javascript objects, containing a type and an optional payload.
-Actions are sent using the store.dispatch() method.
-Actions are created via an action creator. -->
-
-
-
-2] Reducers
-In Redux, a reducer is a pure function that takes an action and the previous state of the application and returns the
-new state
-
-The action describes what happened and it is the reducer's job to return the new state based on that action.
-
-3]Store
-
-- A Store is an object that holds the whole state tree of your application.
-- There is only be a single store in a Redux app,
-- Whenever a store is created in Redux, you need to specify the reducer.
-
-getState() returns the current state of the store
-
-dispatch() This dispatches an action. It is the only way to update the application state
-
-subscribe() This method subscribes a change listener to the state
-
-unsubscribe() It’s useful when you no longer want to call your listener method when the state changes
-
-<!-- Whenever the store is updated, it will update the React components subscribed to it -->
-
-npm i @reduxjs/toolkit
-npm i react-redux
-
-//slice
-
-import { createSlice } from "@reduxjs/toolkit";
-
-const createSliceName =createSlice({
-name:"",
-initaiState:[],
-reducers:{
-nameOfEvent :(state,action){
-return {...state}
-}
-}
-})
-
-
-export default createSlice.reducer
-export const selector =(state)=>state
-export const {nameOfEveent} =createSliceName.actions
-
-//store
-
-import { configureStore } from "@reduxjs/toolkit";
-
-const store =configureStore({
-reducer:{
-counter:nameOfSlice
-}
-})
-
-
-//app.js
-import {Provider} from "react-redux"
-import store from "./store"
-
-<Provider store={store}>
-  <App />
-</Provider>
-
-store acccess karna or store ko actions dispatch
-when need to pass the
-
-================================================================================
-
-Redux Overview:
-- It  state management tool for JavaScript applications.
-- Utilizes a central store to hold the entire application state.
-- Components can access stored state without prop drilling.
-
-Key Building Parts:
-1. Actions:
-   - Define events initiating state changes.
-   - Represented as JavaScript objects with a type and optional payload.
-   - Sent using store.dispatch() method.
-   - Created via action creators, which are functions returning action objects.
-
-
-// Example of an action creator
-const incrementCounter = (amount) => {
-  return {
-    type: 'INCREMENT_COUNTER',
-    payload: amount
-  };
-};
-
-// Dispatching the action
-store.dispatch(incrementCounter(5));
-
-2. Reducers:
-   - Pure functions taking current state and action to produce a new state.
-   - Based on the reduce function in JavaScript.
-   - Specify how application state changes in response to dispatched actions.
-
-
-// Example of a reducer
-const counterReducer = (state = 0, action) => {
-  switch (action.type) {
-    case 'INCREMENT_COUNTER':
-      return state + action.payload;
-    default:
-      return state;
-  }
-};
-
-3. Store:
-   - Object holding the entire state tree of the application.
-   - Responsible for storing, reading, and updating state.
-   - Updates trigger re-renders in React components subscribed to it.
-
-
-// Example of creating a Redux store
-import { createStore } from 'redux';
-
-const store = createStore(counterReducer);
-
-Redux Workflow:
-- Dispatch: Method triggering actions with type and payload to reducers.
-- Subscribe: Method used to subscribe to state updates from the store (store.subscribe()).
-- Provider: Component providing the store data to its wrapped components.
-- Connect: Function facilitating communication with the provider.
-- Middleware: Used to extend Redux with custom functionality, often for dispatching asynchronous functions.
-
-Benefits of Redux (Additional Points):
-- Predictable Data Flow:
-  - Redux enforces a unidirectional data flow, making it easier to understand how data changes in the application over time.
-- Developer Tools:
-  - Redux comes with a set of developer tools like Redux DevTools, which allow developers to inspect the state and actions, track changes, and debug the application efficiently.
-
-These additional points provide more insight into the benefits and usage of Redux in JavaScript applications, along with code examples to illustrate their implementation. Let me know if you need further explanation or assistance!
-
-
-
-================================================================================
-
-Redux vs Redux Toolkit
-
-### Redux:
-
-- Core library for state management.
-- Involves writing significant boilerplate.
-- Requires manual handling of immutability.
-- Asynchronous logic typically requires middleware.
-
-### Redux Toolkit:
-
-- Provides utility functions to simplify Redux usage.
-- Reduces boilerplate significantly.
-- Offers built-in immutability helpers.
-- Built-in support for handling asynchronous logic.
-
-- Seamless integration with Redux DevTools Extension.
-
-
-
 ---------------------------------------------------------------
 Q2. What is JSX and how JSX can help applications in React.js?
 
@@ -945,15 +741,6 @@ When dependent on any data that cannot be passed down as props
 
 
 
----------------------------------------------------------------------------------
-
-
-Q_18. What is the significance of keys in React?
--A key is a unique identifies
--Keys help React identify which items have changed, are added, or are removed.
--Keys should be given to the elements inside the array to give the elements a stable identity.
-
-
 
 ---------------------------------------------------------------------------------
 q19. What are React components?
@@ -964,6 +751,236 @@ q19. What are React components?
 -A React component can be either stateful or stateless.
 -Stateful components are of the class type,
 -while stateless components are of the function type.
+
+
+
+
+
+---------------------------------------------------------------------------------
+Q what is redux ?
+
+- Redux is a predictable state container for JavaScript applications.
+- Redux is a state management tool
+
+-There is a central store that holds the entire state of the application.
+-Each component can access the stored state without having to send down props from one component to another.
+
+-There are three building parts: actions, store, and reducers.
+
+1]Action
+-Action is static information about the event that initiates a state change.
+-Actions are payloads of information that send data from our application to our store
+
+<!-- 
+Action is static information about the event that initiates a state change.
+When you update your state with Redux,
+you always start with an action.
+Actions are in the form of Javascript objects, containing a type and an optional payload.
+Actions are sent using the store.dispatch() method.
+Actions are created via an action creator. -->
+
+
+
+2] Reducers
+In Redux, a reducer is a pure function that takes an action and the previous state of the application and returns the
+new state
+
+The action describes what happened and it is the reducer's job to return the new state based on that action.
+
+3]Store
+
+- A Store is an object that holds the whole state tree of your application.
+- There is only be a single store in a Redux app,
+- Whenever a store is created in Redux, you need to specify the reducer.
+
+getState() returns the current state of the store
+
+dispatch() This dispatches an action. It is the only way to update the application state
+
+subscribe() This method subscribes a change listener to the state
+
+unsubscribe() It’s useful when you no longer want to call your listener method when the state changes
+
+<!-- Whenever the store is updated, it will update the React components subscribed to it -->
+
+npm i @reduxjs/toolkit
+npm i react-redux
+
+//slice
+
+import { createSlice } from "@reduxjs/toolkit";
+
+const createSliceName =createSlice({
+name:"",
+initaiState:[],
+reducers:{
+nameOfEvent :(state,action){
+return {...state}
+}
+}
+})
+
+
+export default createSlice.reducer
+export const selector =(state)=>state
+export const {nameOfEveent} =createSliceName.actions
+
+//store
+
+import { configureStore } from "@reduxjs/toolkit";
+
+const store =configureStore({
+reducer:{
+counter:nameOfSlice
+}
+})
+
+
+//app.js
+import {Provider} from "react-redux"
+import store from "./store"
+
+<Provider store={store}>
+  <App />
+</Provider>
+
+store acccess karna or store ko actions dispatch
+when need to pass the
+
+================================================================================
+
+Redux Overview:
+- It  state management tool for JavaScript applications.
+- Utilizes a central store to hold the entire application state.
+- Components can access stored state without prop drilling.
+
+Key Building Parts:
+1. Actions:
+   - Define events initiating state changes.
+   - Represented as JavaScript objects with a type and optional payload.
+   - Sent using store.dispatch() method.
+   - Created via action creators, which are functions returning action objects.
+
+
+// Example of an action creator
+const incrementCounter = (amount) => {
+  return {
+    type: 'INCREMENT_COUNTER',
+    payload: amount
+  };
+};
+
+// Dispatching the action
+store.dispatch(incrementCounter(5));
+
+2. Reducers:
+   - Pure functions taking current state and action to produce a new state.
+   - Based on the reduce function in JavaScript.
+   - Specify how application state changes in response to dispatched actions.
+
+
+// Example of a reducer
+const counterReducer = (state = 0, action) => {
+  switch (action.type) {
+    case 'INCREMENT_COUNTER':
+      return state + action.payload;
+    default:
+      return state;
+  }
+};
+
+3. Store:
+   - Object holding the entire state tree of the application.
+   - Responsible for storing, reading, and updating state.
+   - Updates trigger re-renders in React components subscribed to it.
+
+
+// Example of creating a Redux store
+import { createStore } from 'redux';
+
+const store = createStore(counterReducer);
+
+Redux Workflow:
+- Dispatch: Method triggering actions with type and payload to reducers.
+- Subscribe: Method used to subscribe to state updates from the store (store.subscribe()).
+- Provider: Component providing the store data to its wrapped components.
+- Connect: Function facilitating communication with the provider.
+- Middleware: Used to extend Redux with custom functionality, often for dispatching asynchronous functions.
+
+Benefits of Redux (Additional Points):
+- Predictable Data Flow:
+  - Redux enforces a unidirectional data flow, making it easier to understand how data changes in the application over time.
+- Developer Tools:
+  - Redux comes with a set of developer tools like Redux DevTools, which allow developers to inspect the state and actions, track changes, and debug the application efficiently.
+
+These additional points provide more insight into the benefits and usage of Redux in JavaScript applications, along with code examples to illustrate their implementation. Let me know if you need further explanation or assistance!
+
+
+  ---------------------------------------------------------------------------------
+
+  
+  ### React State vs. Redux State
+
+  #### React State:
+  - Scope: Local to a component; each component manages its own state.
+  - Usage: Best for state specific to a single component or a small part of the component tree.
+  - Initialization: Use `useState` hook in functional components or `this.state` in class components.
+  - Updating State: Use `setState` method or function; updates are asynchronous and can be batched.
+  - Complexity: Ideal for simple, component-specific state; less boilerplate and easier setup.
+  
+  #### Redux State:
+  - Scope: Global, managed by a centralized store; shared across the entire application.
+  - Usage: Suitable for state that needs to be shared across multiple components or large parts of the app.
+  - Initialization: Set up in a Redux store using reducers and initial state values; typically use `createStore`.
+  - Updating State: State updated through actions and reducers; updates can be managed asynchronously with middleware like Redux Thunk or Redux Saga.
+  - Complexity: Involves more setup and boilerplate; provides a structured, predictable way to manage complex state interactions.
+  
+  ### Key Differences:
+  - React State:
+    - Local to components.
+    - Simple and less setup.
+    - Ideal for small, localized state.
+  
+  - Redux State:
+    - Global and centralized.
+    - More setup and boilerplate.
+    - Ideal for complex, shared state management.
+  
+  ### Choosing Between Them:
+  - React State: Suitable for small to medium-sized applications with localized state needs.
+  - Redux State: Best for large applications with complex state requirements and the need for sharing state across many components.
+ 
+  ---------------------------------------------------------------------------------
+-If a child component need the state of parent component then that state can be passed
+using props.
+
+-If parent component needs state of child component then it can be passed to parent
+component using the concept called 'lifting state up'.
+
+
+
+
+================================================================================
+
+Redux vs Redux Toolkit
+
+### Redux:
+
+- Core library for state management.
+- Involves writing significant boilerplate.
+- Requires manual handling of immutability.
+- Asynchronous logic typically requires middleware.
+
+### Redux Toolkit:
+
+- Provides utility functions to simplify Redux usage.
+- Reduces boilerplate significantly.
+- Offers built-in immutability helpers.
+- Built-in support for handling asynchronous logic.
+
+- Seamless integration with Redux DevTools Extension.
+
+
 
 
 
