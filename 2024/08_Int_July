@@ -157,18 +157,6 @@ export default App;
 
 This format highlights the specific reasons and scenarios where Axios or Fetch would be preferred based on their capabilities and characteristics.
 
-==============================================
-
-Q15 is the Shadow DOM the same as the Virtual DOM?
-
--No, they are different.
-
--The Shadow DOM is a browser technology designed primarily for scoping variables and CSS in
-web components.
-
-- This is a browser technology designed primarily for encapsulating and scoping variables, DOM, and CSS within web components.
-- It allows you to create self-contained components with their own DOM structure and styling, isolated from the rest of the document.
-
 
 ==============================================
 Patch vs Put
