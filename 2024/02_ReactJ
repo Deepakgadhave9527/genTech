@@ -276,35 +276,24 @@ that are present in a webpage or web-app.
 
 
 
-
-
----------------------------------------------------------------------------------
-
-Q13 What is Virtual DOM?
-
-
--ReactJS does not update the real DOM directly but it updates the Virtual DOM
--Virtual dom is compared to Real dom, virtual dom update only that part in dom which changed.
-
--Virtual DOM is about avoiding unnecessary update whole dom of rendering
-This approach is time-efficient, leading to faster application performance.
-
--it's not rendering the whole dom it's just changed the updated part of dom in virtual dom.
-
--Virtual DOM is an in-memory representation of real DOM.
--It is a lightweight JavaScript object which is a copy of Real DOM.
-
 ===============================================================================
 
 **Virtual DOM (VDOM)**:
 
 The Virtual DOM is a concept that used improve the efficiency of web page updates.
+
+-ReactJS does not update the real DOM directly but it updates the Virtual DOM
+Virtual DOM is compared to Real DOM; virtual dom  updates only the part in the DOM  has changed.
+
+
  It is a lightweight, in-memory representation of the actual DOM. 
- When a component's state changes, React creates a new Virtual DOM tree and compares it to the previous one. 
- The differences (or "diffs") are computed, and 
- The real DOM is then updated with only the parts that have changed.
- <!-- only the parts that have changed are updated in the real DOM. -->
  
+ When a component's state changes, React creates a new Virtual DOM tree and compares it to the previous one. The differences (or 'diffs') are computed, and only the changed parts are updated in the real DOM."
+
+
+-Virtual DOM is about avoiding unnecessary update whole dom of rendering
+This approach is time-efficient, leading to faster application performance.
+
 ===============================================================================
 
 **Reconciliation**:
