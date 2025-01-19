@@ -54,6 +54,20 @@ be serverd from web browser.
 
 ==========================================
 
+### What is React.js?
+
+- JavaScript library for building fast, interactive user interfaces for web and mobile apps.
+- Creates reusable UI components.
+- Enables large web applications to update data without reloading the page.
+- Supports creation of Single Page Applications (SPA).
+- Focuses on developing User Interfaces (UI) to improve app speed.
+- Utilizes a virtual DOM to enhance performance.
+- Virtual DOM is faster than the regular DOM.
+- Usable on both client and server-side, and with other frameworks.
+- Created by Jordan Walke, a software engineer at Facebook.
+
+
+
 ReactJS is an open-source JavaScript library used for building user interfaces, particularly single-page applications
 - Developed and maintained by Facebook,  
 - React allows developers to create large web applications that can update and render efficiently in response to changing data.

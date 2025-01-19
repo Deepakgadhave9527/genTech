@@ -288,7 +288,8 @@ Virtual DOM is compared to Real DOM; virtual dom  updates only that part has cha
 
  It is a lightweight, in-memory representation of the actual DOM. 
  
- When a components state changes, React creates a new Virtual DOM tree and compares it to the previous one. The differences (or 'diffs') are computed, and only the changed parts are updated in the real DOM."
+ When a components state changes, React creates a new Virtual DOM tree and compares it to the previous one. 
+ The differences (or 'diffs') are computed, and only the changed parts are updated in the real DOM.
 
 
 -Virtual DOM is about avoiding unnecessary update whole dom of rendering
@@ -297,12 +298,14 @@ This approach is time-efficient, leading to faster application performance.
 ===============================================================================
 
 **Reconciliation**:
-Reconciliation is the algorithm that React uses to update the UI. 
-It works by comparing the current Virtual DOM tree to the updated one
-and making the minimum number of changes necessary to bring the real DOM in line with the updated state.
+-Reconciliation is the algorithm that React uses to update the UI. 
 
-Reconciliation is the algorithm that React uses to update the UI. 
-It works by comparing the current Virtual DOM tree to the updated one and calculates the minimal changes required to synchronize the real DOM with the updated state."
+- It works by comparing the current Virtual DOM tree to the updated one
+  and making the minimum number of changes necessary to bring the real DOM in line with the updated state.
+
+-Reconciliation is the algorithm that React uses to update the UI. 
+-It works by comparing the current Virtual DOM tree to the updated one and 
+ calculates the minimal changes required to synchronize the real DOM with the updated state.
 
 **Optimization Techniques**:
 1. **Tree Diffing**: React compares the current and updated Virtual DOM trees, identifying the minimal changes required.
@@ -544,23 +547,6 @@ Q2. What is JSX and how JSX can help applications in React.js?
 -this will be done by the babel.
 
 - If you write JSX in a file then React package must be imported
-
-
-
-
-
-------------------------------------------------------------------  ------------------------------------------------------------------
-### What is React.js?
-
-- JavaScript library for building fast, interactive user interfaces for web and mobile apps.
-- Creates reusable UI components.
-- Enables large web applications to update data without reloading the page.
-- Supports creation of Single Page Applications (SPA).
-- Focuses on developing User Interfaces (UI) to improve app speed.
-- Utilizes a virtual DOM to enhance performance.
-- Virtual DOM is faster than the regular DOM.
-- Usable on both client and server-side, and with other frameworks.
-- Created by Jordan Walke, a software engineer at Facebook.
 
 
 
