@@ -1,0 +1,536 @@
+
+================================ memoization====================================================
+
+ What is memoization in JavaScript?
+
+
+- **Memoization in JavaScript optimization technique used to:
+  - Improve the performance of functions.
+  - by Cache/storing the results of expensive function calls.
+  - Return the cached result when the same inputs occur again.
+  
+- **Benefits:**
+  - Avoids redundant calculations.
+  - Speeds up the program.
+  
+- **Use case:**  
+  - Particularly useful for functions with repetitive or computationally expensive tasks.
+
+
+
+
+ '
+Memoization in JavaScript is an optimization technique used to improve the performance of functions by caching the results of expensive function calls and returning the cached result when the same inputs occur again. This avoids redundant calculations and speeds up the program. It is particularly useful for functions with repetitive or computationally expensive tasks.
+
+
+Memoization in JavaScript is an optimization technique used to improve the performance of functions by caching the results of expensive functions calls and returning the cached result when the same inputs occur again
+
+
+ Memoization in JavaScript is an optimization technique that stores the results of functions calls and reuses them when the same inputs occur again. This avoids redundant calculations, improving the performance of the program.
+
+
+
+Memoization is an optimization technique used primarily to speed up computer programs
+by storing the results of expensive functions calls
+and returning the cached result when the same inputs occur again.
+
+It is particularly useful for functions with expensive or repetitive computations.
+
+
+
+
+
+=================== Immediately Invoked Function Expression (IIFE)=======================
+
+Immediately Invoked Function Expression (IIFE)
+
+- An IIFE is a function that is executed immediately after it is defined.
+
+- It is often used to create a local scope to avoid polluting the global scope.
+
+- Runs code immediately after declaration, useful for initialization tasks, configuring settings, or starting applications at the desired moment.
+
+
+(function() {
+console.log("This function runs immediately!");
+})();
+
+(function(name) {
+console.log("Hello, " + name + "!");
+})("World");
+
+
+
+Encapsulation: Creates private scopes for variables and functions, preventing conflicts and unintended modifications in the global scope.
+
+Avoiding Global Pollution: Keeps the global namespace clean, minimizing naming clashes with other scripts or libraries and maintaining modular, self-contained code.
+
+
+Data Privacy: Utilizes closures to maintain data privacy, hiding internal variables and functions while exposing only necessary parts, fundamental to the Module Pattern.
+
+
+===========================================================================
+-A lexical scope in JavaScript means that a variable defined outside a function can be accessible inside another function
+
+### Function Scope:
+Each function in JavaScript creates a new scope. Variables defined within a function are not accessible outside of it.
+
+### Block Scope:
+Variables declared with let and const are block-scoped, meaning they are only accessible within the nearest set of curly braces {} in which they are defined.
+
+### Nested Scopes:
+Inner functions have access to variables and functions in their outer scopes. This nesting can continue indefinitely, allowing inner functions to access variables from all outer scopes up to the global scope.
+
+function outerFunction() {
+  var outerVar = 'I am outside!';
+
+  function innerFunction() {
+    var innerVar = 'I am inside!';
+    console.log(outerVar); // Accessible
+    console.log(innerVar); // Accessible
+  }
+
+  innerFunction();
+  console.log(outerVar); // Accessible
+  // console.log(innerVar); // Uncaught ReferenceError: innerVar is not defined
+}
+
+outerFunction();
+
+
+
+
+
+========================================================================
+
+
+## Scope Chain vs. Context in JavaScript
+
+### Scope Chain
+- **Definition**: The order in which the JavaScript engine looks for variables, starting from the innermost scope and moving outward until it finds the variable or reaches the global scope.
+- **Example**:
+  ```javascript
+  function outer() {
+      let outerVar = 'I am outer';
+      function inner() {
+          console.log(outerVar); // 'I am outer'
+      }
+      inner();
+  }
+  outer();
+  ```
+
+### Context
+- **Definition**: Refers to the value of `this` within a function and is determined by how the function is called.
+- **Example**:
+  ```javascript
+  const obj = {
+      value: 42,
+      getValue: function() {
+          return this.value;
+      }
+  };
+  console.log(obj.getValue()); // 42
+  ```
+
+
+
+- **`while` Loop**: Checks the condition before executing the code block. If the condition is false initially, the code block inside the loop will not execute at all.
+
+  **Syntax:**
+  ```javascript
+  while (condition) {
+    // Code to execute
+  }
+  ```
+
+  **Example:**
+  ```javascript
+  let count = 1;
+
+  while (count > 5) {
+    console.log(count);
+    count++;
+  }
+
+  - **`while` Loop**:
+  - Condition is checked before the loop executes.
+  - If the condition is false initially, the code block may not execute at all.
+  
+===========================================================================
+
+In JavaScript, a do...while loop is used to execute a block of code at least once before checking a condition, and then it repeatedly executes the block as long as the condition remains true.
+
+do {
+  // Block of code to be executed
+} while (condition);
+
+
+
+  **Syntax:**
+  ```javascript
+  do {
+    // Code to execute
+  } while (condition);
+  ```
+
+  **Example:**
+  ```javascript
+  let count = 1;
+
+  do {
+    console.log(count);
+    count++;
+  } while (count > 5);
+
+
+
+- **`do...while` Loop**:
+  - Code block is executed before the condition is checked.
+  - Guarantees at least one execution of the code block.
+
+  
+  ### ===========================================================================
+
+### 2. **When to Use**
+
+- **`while` Loop**: Use this when you want to run a block of code as long as a condition is true, and you don’t necessarily need to execute the code block if the condition is initially false.
+
+
+- **`do...while` Loop**: Use this when you need to execute the code block at least once regardless of the condition. This is useful when the code block needs to run before any condition is evaluated.
+
+
+### 3. **Execution Example**
+
+Here’s a practical example showing the difference:
+
+**while` Loop Example:**
+```javascript
+let num = 0;
+
+while (num > 0) {
+  console.log("This won't run because num is 0");
+  num--;
+}
+```
+
+**`do...while` Loop Example:**
+```javascript
+let num = 0;
+
+do {
+  console.log("This will run once, even though num is 0");
+  num--;
+} while (num > 0);
+```
+===========================================================================
+
+
+
+
+
+### parse
+
+- `JSON.parse()` takes a JSON string and transforms it into a JavaScript object.
+
+
+```javascript
+// Converting a JSON string to a JavaScript object
+const jsonString = '{"name":"John", "age":30, "city":"New York"}';
+const jsonObject = JSON.parse(jsonString);
+console.log(jsonObject);  // Output: {name: "John", age: 30, city: "New York"}
+
+### stringify
+
+- `JSON.stringify()` takes a JavaScript object and transforms it into a JSON string.
+
+// Converting a JavaScript object to a JSON string
+const jsObject = {name: "Jane", age: 25, city: "Chicago"};
+const jsonStr = JSON.stringify(jsObject);
+console.log(jsonStr);  // Output: '{"name":"Jane","age":25,"city":"Chicago"}'
+
+
+
+=========================================================================
+- `preventDefault()` is a JavaScript method used to stop the default action associated with an event from occurring.
+  - Example: Prevent a form from submitting.
+  - Example: Prevent a link from navigating to a new page.
+  - Example: Prevent a context menu from appearing.
+
+
+- `stopPropagation()` is a JavaScript method used to prevent an event from bubbling up the event chain.
+  - When an event is triggered, it normally propagates up from the target element to its ancestors in the DOM.
+  - By calling `stopPropagation()` on the event object, you stop this propagation.
+  - Ensures that the event doesn't trigger handlers on parent elements.
+  - Useful when you want to manage the event at the specific element level without affecting its ancestors.
+  - Prevents Bubbling: Stops the event from bubbling up to parent elements.
+
+
+ `stopImmediatePropagation()` 
+  stopImmediatePropagation prevents the event from triggering other event listeners on the same element and stops the event from bubbling up the DOM tree.
+
+  stopImmediatePropagation stops the current event from calling any more event listeners on the same element and stops it from moving up to parent elements.
+
+=========================================================================
+### Pure Functions
+- *Deterministic*: Always return the same output for the same input.
+- *No Side Effects*: Do not alter external state or rely on it.
+- *Benefits*: Easier to understand, test, compose, and optimize (e.g., memoization).
+
+*Example*:
+javascript
+function add(a, b) {
+    return a + b;
+}
+
+console.log(add(2, 3)); // Always returns 5
+
+
+### Impure Functions
+- *Non-deterministic*: Output can vary for the same input.
+- *Side Effects*: Modify external state, perform I/O operations, etc.
+- *Challenges*: Harder to reason about, test, and maintain.
+
+*Example*:
+javascript
+let count = 0;
+
+function increment() {
+    count += 1;
+    return count;
+}
+
+console.log(increment()); // Output depends on external `count` variable
+
+
+### Summary
+- *Pure functions*: Predictable, testable, and composable.
+- *Impure functions*: Necessary for state changes and I/O operations but harder to manage.
+
+
+
+=========================================================================
+
+Generators and iterators are closely related concepts in JavaScript that allow for efficient handling of sequences and collections of data. Here's an overview of both, including their definitions, usage, and how they interrelate.
+
+### Iterators
+
+**Iterators** are objects that allow for sequential access to elements in a collection, one at a time. An iterator must implement a `next()` method that returns an object with two properties:
+- `value`: The next value in the sequence.
+- `done`: A boolean indicating whether the iteration is complete.
+
+#### Example of an Iterator:
+
+const myArray = [1, 2, 3];
+const iterator = myArray[Symbol.iterator]();
+
+console.log(iterator.next()); // { value: 1, done: false }
+console.log(iterator.next()); // { value: 2, done: false }
+console.log(iterator.next()); // { value: 3, done: false }
+console.log(iterator.next()); // { value: undefined, done: true }
+
+
+====================================================================
+
+
+### Generators
+
+**Generators** are special functions that can pause their execution and resume it later. 
+allowing for control over the function's execution.
+
+<!-- It allow to control excuation of function 
+They return a generator object, which is both an iterator and an iterable. -->
+
+They are defined using the function* syntax and use the yield keyword to pause execution.
+
+The yield keyword in a generator function is used to pause the function's execution and return a value.
+
+The main method of a generator is next()
+
+The result of next() is always an object with two properties:
+value: the yielded value.
+done: true if the function code has finished, otherwise false.
+
+#### Example of a Generator:
+
+function* simpleGenerator() {
+    yield 1;
+    yield 2;
+    yield 3;
+}
+
+const gen = simpleGenerator();
+
+console.log(gen.next()); // { value: 1, done: false }
+console.log(gen.next()); // { value: 2, done: false }
+console.log(gen.next()); // { value: 3, done: false }
+console.log(gen.next()); // { value: undefined, done: true }
+
+
+-  simpleGenerator is a generator function.
+-  Calling simpleGenerator() returns a generator object gen.
+-  gen is an object that implements the iterator protocol, with a next() -  method that returns the next value in the sequence.
+-  Generators are objects in JavaScript.
+
+
+
+
+==============================================
+- **`for...in`**: Iterates over object keys (properties).
+- **`for...of`**: Iterates over iterable values (arrays, strings, etc.).
+
+Use `for...in` for objects, `for...of` for arrays and other iterables.
+
+
+const obj = { a: 1, b: 2, c: 3 };
+
+for (let key in obj) {
+  console.log(key); // Output: "a", "b", "c"
+  console.log(obj[key]); // Output: 1, 2, 3 (corresponding values)
+}
+
+
+
+const arr = [1, 2, 3];
+
+for (let value of arr) {
+  console.log(value); // Output: 1, 2, 3
+}
+
+======================================================
+
+
+
+- **`map()`**: Transforms each element of an array and returns a new array.
+- **`for...of`**: Iterates over values of an iterable (like arrays, strings) one by one.
+=======
+
+=========================================
+
+
+(var x = 1; x < 5; x++) {
+  setTimeout(() => {
+    console.log(x);
+  }, 1000);
+}
+
+ (let x = 1; x < 5; x++) {
+  setTimeout(() => {
+    console.log(x);
+  }, 1);
+}
+
+Since var does not create a new scope for each iteration, all callbacks reference the same x varibale.
+Since let creates a new scope for each iteration, each callback references its own unique x varibale.
+
+### First Loop (Using var):
+
+- *Scope*: var is function-scoped, meaning the variable x is shared across all iterations of the loop.
+- *Closure*: The setTimeout callback captures this shared x. Since var does not create a new scope for each iteration, all callbacks reference the same x varibale.
+- *Event Loop*: The setTimeout function schedules the callback to run after 1000 milliseconds (1 second). By the time the event loop processes these callbacks, the loop has already finished, and x is 5.
+
+*Output*: After 1000 milliseconds, all four callbacks run and log 5 four times.
+
+### Second Loop (Using let):
+
+- *Scope*: let is block-scoped, meaning each iteration of the loop has its own separate instance of x.
+- *Closure*: The setTimeout callback captures the x from its specific iteration. Since let creates a new scope for each iteration, each callback references its own unique x varibale.
+- *Event Loop*: The setTimeout function schedules the callback to run after 1 millisecond. By the time the event loop processes these callbacks, each one has its own captured value of x from the iteration in which it was created.
+
+*Output*: After 1 millisecond, the callbacks run and log 1, 2, 3, and 4 respectively.
+
+
+## JavaScript Scoping and Closures
+
+### Scoping with `var` vs. `let`
+
+#### Using `var`
+- **Scope**: `var` is function-scoped, meaning the variable `x` is shared across all iterations of the loop.
+- **Closure**: The `setTimeout` callback captures this shared `x`. Since `var` does not create a new scope for each iteration, all callbacks reference the same `x`.
+- **Event Loop**: The `setTimeout` function schedules the callback to run after 1000 milliseconds (1 second). By the time the event loop processes these callbacks, the loop has finished, and `x` is 5.
+- **Output**: After 1000 milliseconds, all four callbacks run and log `5` four times.
+- **Example**:
+  ```javascript
+  for (var x = 1; x < 5; x++) {
+      setTimeout(() => {
+          console.log(x);
+      }, 1000);
+  }
+  ```
+
+#### Using `let`
+- **Scope**: `let` is block-scoped, meaning each iteration of the loop has its own separate instance of `x`.
+- **Closure**: The `setTimeout` callback captures the `x` from its specific iteration. Since `let` creates a new scope for each iteration, each callback references its own unique `x`.
+- **Event Loop**: The `setTimeout` function schedules the callback to run after 1 millisecond. By the time the event loop processes these callbacks, each one has its own captured value of `x` from the iteration in which it was created.
+- **Output**: After 1 millisecond, the callbacks run and log `1`, `2`, `3`, and `4` respectively.
+- **Example**:
+  ```javascript
+  for (let x = 1; x < 5; x++) {
+      setTimeout(() => {
+          console.log(x);
+      }, 1);
+  }
+  ```
+
+
+### Closures
+- **Definition**: A closure is a function that "remembers" the variables from the place where it was created, even if it's executed in a different context.
+
+========================================================
+
+Event delegation
+
+Event delegation in JavaScript is a technique where you attach a single event listener to a parent element, rather than to multiple child elements individually.
+This approach leverages event bubbling in the DOM, where an event occurring on a nested element will bubble up through its ancestors.
+
+Here's how event delegation works:
+
+1. **Attach Listener to Parent Element**: Instead of attaching event listeners to each child element, you attach a single event listener to the parent element that contains all the child elements you are interested in.
+
+2. **Use Event Bubbling**: When an event happens (like a click) on a child element, the event bubbles up through its ancestors in the DOM hierarchy.
+
+3. **Check the Target Element**: In the event handler function attached to the parent element, you can check the `event.target` property to determine which specific child element triggered the event. This allows you to conditionally execute different actions based on which child element was clicked.
+
+### Example:
+
+Suppose you have a list of items in an unordered list (`<ul>`) and you want to handle click events on each list item (`<li>`).
+
+<ul id="parentList">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+</ul>
+
+In JavaScript, you can delegate the click event handling to the parent `<ul>` element:
+
+const parentList = document.getElementById('parentList');
+
+parentList.addEventListener('click', function(event) {
+    if (event.target.tagName === 'LI') {
+        console.log('Clicked on:', event.target.textContent);
+        // Perform actions based on the clicked list item
+    }
+});
+
+In this example:
+
+- The `click` event listener is added to the `parentList`.
+- When a `<li>` element is clicked, the event bubbles up to the `parentList`.
+- Inside the event handler, `event.target` refers to the actual element that triggered the event (in this case, the `<li>`).
+- You can then perform actions based on the specific `<li>` element that was clicked.
+
+========================================================
+    flat()== method creates a new array with all sub-array elements concatenated into it recursively up to the specified
+    depth.**
+    arr = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]];
+    arr.flat(Infinity);
+    // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+========================================================================
+Scope Chain 
+
+Scope Chain in JavaScript refers to the process by which JavaScript determines where to look for variables when they're accessed in different scopes. When a variable or function is referenced, JavaScript starts by searching in the current scope. If it doesn't find it there, it moves up to the next outer scope, and this continues until it either finds the variable or reaches the global scope. This process forms a "chain" of scopes, linking inner and outer scopes together.
+
+The scope chain stops when the required variable is found or when the global scope is reached and the variable is not found, leading to a ReferenceError. This mechanism allows inner functions to access variables from outer scopes but not vice versa.
+
+So, your explanation is close, but it’s important to emphasize that the scope chain is about the order in which JavaScript searches for variables, rather than variables or functions "using" each other. The search moves outward from the innermost scope to the global scope.
