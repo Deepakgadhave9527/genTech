@@ -58,50 +58,6 @@ Both null and undefined represent absence of a value or non-existence. Therefore
 Why === considers them different:
 In strict equality (===), JavaScript compares both value and type. Since null and undefined have different types (object and undefined), they are not equal.
 
-
-
-------------------------------------------------------------------------------------------------
-
-### Conditional Rendering
-
-Conditional rendering is the displaying different UI elements based on specific conditions.
-
-### Example
-
-In React:
-
-javascript
-function Greeting({ isLoggedIn }) {
-  return isLoggedIn ? <h1>Welcome back!</h1> : <h1>Please sign in.</h1>;
-}
-
-
-### Summary
-- Purpose: Show different content based on conditions.
-- How: Use conditional statements like `if` or the ternary operator within the render method.
-
-
-------------------------------------------------------------------------------------------------
-
-What are rule use hooks in react
-
-Hook Rules
-There are 3 rules for hooks: 
-Hooks can only be called inside React function components.
-Hooks can only be called at the top level of a component. 
-Hooks cannot be conditional.
-
-------------------------------------------------------------------------------------------------
-
-what is routing in react js
-
-In a single-page React Application,
-routing refers to the process of navigating between different pages without triggering a full page reload.
-
-React Router DOM is an npm package that enables you to implement dynamic routing in a web app.
-
-
-
 ---------------------------------------------------------------------------------------------------
 
 why arrow functions ?
@@ -135,20 +91,6 @@ StrictMode
 
 -Like Fragment, StrictMode does not render any visible UI. 
 
-
-
-
-
-------------------------------------------------------------------------------------------------
-
-**Synthetic Events in React**:  
-In React, **synthetic events** are a layer of abstraction over native browser events. They provide a **consistent interface** for handling events across different browsers and offer **additional features** to improve event handling.
-
-You can attach event handlers, like **`onClick`**, to React elements, and React passes a **synthetic event object** to your handler function. This object contains information about the event, such as the **target element**, and provides methods like **`stopPropagation()`** and **`preventDefault()`** for controlling event behavior. 
-
-These methods allow you to **prevent the event from propagating** through the DOM or **prevent the default browser action** (like following a link or submitting a form).
-
-- Synthetic events ensure consistent and efficient event handling in React components. -->
 
 
 
@@ -331,66 +273,6 @@ In the context of React.js, interceptors can be used to perform tasks such as ad
 
 
 
-------------------------------------------------------------------------------------------------
-Code optimization 
-
-Code optimization in React.js involves improving the efficiency, performance, 
-and overall quality of your codebase without changing its functionality. 
-
-It includes techniques such as minimizing unnecessary re-renders, 
-reducing bundle size, optimizing network requests, managing state efficiently, 
-enhancing code readability, and maintaining code maintainability.
-
-1. React.StrictMode:
-  - Use React.StrictMode to detect potential issues in your codebase during development.
-  -It helps identify unsafe lifecycles, deprecated APIs, and other potential problems.
-
-2. Memoization:
-  Memoization is a technique used to optimize expensive computations by caching the results.
-   React provides a useMemo hook for memoizing values.
-  
-  import React, { useMemo } from 'react';
- 
-  const Component = ({ data }) => {
-    const processedData = useMemo(() => {
-      // Expensive computation
-      return data.map(item => item * 2);
-    }, [data]);
-  
-    return (
-      <div>
-        {processedData.map((item, index) => (
-          <div key={index}>{item}</div>
-        ))}
-      </div>
-    );
-  };
-
-3. Code Splitting:
-  Splitting your code into smaller chunks allows lazy-loading components when needed, 
-  reducing the initial bundle size and speeding up the initial load time.
-  
-  import React, { lazy, Suspense } from 'react';
-
-  const LazyComponent = lazy(() => import('./LazyComponent'));
-  
-  const App = () => (
-    <Suspense fallback={<div>Loading...</div>}>
-      <LazyComponent />
-    </Suspense>
-  );
-
-4. Avoid Inline Styles:
-  - Inline styles can clutter your components and make maintenance difficult. 
-  -Prefer using CSS classes or styled-components for better separation of concerns and easier styling management.
-
-5. Debouncing and Throttling:
-  - Debouncing and throttling are code optimization techniques that help improve performance by
-   controlling the rate at which functions are executed in response to frequent events.
-  - Debouncing function is excuated after specif delay perdia passes since las time function invokde 
-    while throttling limits the number of times the function can be called over a certain period.
-
-  
 ------------------------------------------------------------------------------------------------
 
 

@@ -301,34 +301,3 @@ In this example:
 A framework is a set of pre-written code that provides a structure for developing software applications. 
 
 A library, on the other hand, is a collection of pre-written code that can be used to perform specific tasks.
-
-
-========================================================
-
-## React: Using `createRef()` vs. `useRef()`
-
-### createRef() in class components.
-- **Usage**: `createRef()` is primarily used in class components.
-- **Recommendation**: For functional components, it is recommended to use `useRef()` as it is designed specifically for functional components and provides the same functionality.
-
-### `useRef()` in Functional Components
-- **Purpose**: `useRef()` is designed for functional components to create mutable object references that persist across renders without causing re-renders.
-- **Syntax**:
-  ```javascript
-  const myRef = useRef(initialValue);
-  ```
-- **Example**:
-  ```javascript
-  function MyComponent() {
-      const myRef = useRef(null);
-
-      useEffect(() => {
-          console.log(myRef.current); // Access DOM node
-      }, []);
-
-      return <div ref={myRef}>Hello, World!</div>;
-  }
-  ```
-
-yes, you can use createRef() in a React functional component, but its not recommended. 
-Its better to use useRef() instead, ass it is designed specifically for functional components and provides the same functionality

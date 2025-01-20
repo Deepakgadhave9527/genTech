@@ -1,35 +1,4 @@
 
-========================================================================
-React Portals
-
-- React Portals render children into a DOM node outside the parent component’s DOM hierarchy.
-- Useful for modals, tooltips, and overlays that need to visually break out of their parent container.
-- Ensures that elements are part of the React component tree.
-- Allows elements to benefit from React’s event handling and lifecycle features.
-
-========================================================================
-
-React Fiber 
-
-React Fiber is the new reconciliation algorithm in React 16 and later versions. 
-It enhances the ability to update the user interface and manage component rendering more efficiently
-
-- React Fiber is the new reconciliation engine in React 16 and later.
-- It improves rendering performance and user experience.
-- Breaks rendering work into units and spreads it out over multiple frames.
-- Allows smoother animations and better handling of complex updates.
-- Introduces features like error boundaries and async rendering.
-- Enhances flexibility and robustness of React applications.
-
-
-========================================================================
-
-### Suspense
-
-- Suspense is a feature in React that allows you to handle loading states for     asynchronous operations, 
-- such as dynamically loading components or data. 
-- It helps manage the user experience by showing fallback content while the main content is being loaded.
-
 
 ========================================================================
 

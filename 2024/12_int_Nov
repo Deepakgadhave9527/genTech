@@ -1,17 +1,4 @@
 
-================================================================================
-
-Here's why we use return () => { ... }:
-
-Cleanup Function Definition: The return statement defines the cleanup function.
- This function will be called when the component unmounts or before the effect runs again if any dependencies change.
-
-
-================================================================================
-
-why typescript is used in react
-
-TypeScript provides a type system that allows developers to catch type-related errors at compile time rather than at runtime. This feature makes it easier to write and maintain high-quality code. For example, in a React component, TypeScript can help catch errors related to the props and state of the component
 
 ==================================================================================
 
