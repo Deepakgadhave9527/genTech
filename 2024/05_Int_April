@@ -74,24 +74,6 @@ they inherit this from the parent scope at the time they are defined.
 Arrow functions streamline JavaScript code, 
 making it shorter, clearer, and more expressive, particularly in modern development practices
 .
-------------------------------------------------------------------------------------------------
-StrictMode
-
--StrictMode is a tool for highlighting potential problems in an application.
--It helps identify unsafe lifecycles, deprecated APIs, and other potential problems.
-
-- Unsafe lifecycle methods
-- Legacy string refs
-- Unexpected side effects
-- Potential memory leaks
-- Deprecated or obsolete APIs
-
--React introduces additional checks and warnings for potential issues during development.
--It's not for production use
-
--Like Fragment, StrictMode does not render any visible UI. 
-
-
 
 
 ------------------------------------------------------------------------------------------------

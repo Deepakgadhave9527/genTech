@@ -69,60 +69,7 @@ Avoiding Global Pollution: Keeps the global namespace clean, minimizing naming c
 Data Privacy: Utilizes closures to maintain data privacy, hiding internal variables and functions while exposing only necessary parts, fundamental to the Module Pattern.
 
 
-==========================================
-
-### Axios
-
-- Popular Promise-based HTTP client for making AJAX requests in the browser and Node.js.
-- Interceptors for request and response handling.
-- Automatic transformation of JSON data.
-- Support for browser and Node.js environments.
-- Ability to cancel requests.
-- CSRF protection by default.
-- Error handling with meaningful error messages.
-- Interceptors provide global request/response handling.
-
-### Fetch
-
-- Modern API for making network requests in the browser, built into modern browsers (ES6 feature).
-- Promise-based API.
-- Streamlined API surface compared to XMLHttpRequest (XHR).
-- No third-party dependencies.
-- Support for streaming responses.
-
-### Use Axios If:
-
-- You need built-in support for interceptors, request cancellation, or automatic JSON parsing.
-- Cross-browser compatibility is important, including older browsers.
-- You prefer simplified error handling and configuration.
-
-### Use Fetch If:
-
-- You want to avoid additional dependencies and rely on native browser APIs.
-- Performance and bundle size are critical, especially in modern environments.
-- You are comfortable handling request/response interception and additional error handling manually.
-
-This format highlights the specific reasons and scenarios where Axios or Fetch would be preferred based on their capabilities and characteristics.
-
-
-==============================================
-Patch vs Put
-
-- **PUT**
-
-  - The PUT method is used to update an entire resource.
-  - If the resource exists, it will be completely replaced with the new data provided.
-  - PUT replaces the entire resource.
-  - If your form or component allows the user to update an entire resource (e.g., editing all fields of a user profile), you might use PUT.
-
-- **PATCH**
-  - The PATCH method is used to apply partial updates to a resource.
-  - This means you only send the fields you want to update, and the rest of the resource remains unchanged.
-  - PATCH updates only the specified fields.
-  - If your form or component allows the user to update only specific fields (e.g., changing the user's email address or password), you might use PATCH.
-
 ===========================================================================
-
 -A lexical scope in JavaScript means that a variable defined outside a function can be accessible inside another function
 
 ### Function Scope:

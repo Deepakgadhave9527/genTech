@@ -1,223 +1,62 @@
 
+==========================================
 
+### Axios
 
+- Popular Promise-based HTTP client for making AJAX requests in the browser and Node.js.
+- Interceptors for request and response handling.
+- Automatic transformation of JSON data.
+- Support for browser and Node.js environments.
+- Ability to cancel requests.
+- CSRF protection by default.
+- Error handling with meaningful error messages.
+- Interceptors provide global request/response handling.
 
+### Fetch
 
+- Modern API for making network requests in the browser, built into modern browsers (ES6 feature).
+- Promise-based API.
+- Streamlined API surface compared to XMLHttpRequest (XHR).
+- No third-party dependencies.
+- Support for streaming responses.
 
+### Use Axios If:
 
-=
+- You need built-in support for interceptors, request cancellation, or automatic JSON parsing.
+- Cross-browser compatibility is important, including older browsers.
+- You prefer simplified error handling and configuration.
 
-=========================================================================
+### Use Fetch If:
 
-### Differences between `map()` and `forEach()`
+- You want to avoid additional dependencies and rely on native browser APIs.
+- Performance and bundle size are critical, especially in modern environments.
+- You are comfortable handling request/response interception and additional error handling manually.
 
-- **Return Value:**
-  - **map()**:Transforms each element of an array and returns a new array.
-  
-  - **forEach()**: Returns `undefined`. It is used for its side effects, like modifying elements or performing actions on each element without producing a new array.
+This format highlights the specific reasons and scenarios where Axios or Fetch would be preferred based on their capabilities and characteristics.
 
-- **Immutability:**
-  - **map()**: Does not modify the original array; it creates a new array based on the transformation function.
-  - **forEach()**: Can modify the original array if the provided function changes its elements, but it does not create a new array.
 
-- **Chaining:**
-  - **map()**: Since it returns a new array, you can chain other array methods like `filter()`, `reduce()`, etc., after `map()`.
-  - **forEach()**: Returns `undefined`, so chaining other array methods after `forEach()` is not possible.
+==============================================
+Patch vs Put
 
-In summary, `map()` is used when you want to transform each element of an array and create a new array with the transformed elements, while `forEach()` is used when you want to iterate over elements and perform actions or modifications on them without creating a new array. Each method serves different purposes based on whether you need to produce a new array or just iterate over an existing array for side effects.
+- **PUT**
 
+  - The PUT method is used to update an entire resource.
+  - If the resource exists, it will be completely replaced with the new data provided.
+  - PUT replaces the entire resource.
+  - If your form or component allows the user to update an entire resource (e.g., editing all fields of a user profile), you might use PUT.
 
+- **PATCH**
+  - The PATCH method is used to apply partial updates to a resource.
+  - This means you only send the fields you want to update, and the rest of the resource remains unchanged.
+  - PATCH updates only the specified fields.
+  - If your form or component allows the user to update only specific fields (e.g., changing the user's email address or password), you might use PATCH.
 
+===========================================================================
 
-================================================================================================================================================================
 
-Event loop 
 
-The event loop is a mechanism that allows JavaScript to execute asynchronous code in a single-threaded environment.
+A framework is a set of pre-written code that provides a structure for developing software applications. 
 
-with help of  Event loop  we can know  the execution of code in Javascript and also 
- helps manage the execution of asynchronous code,
+A library, on the other hand, is a collection of pre-written code that can be used to perform specific tasks.
 
- 
- We have 3 main things here to consider 
-
- CallStack,
- Micro Task Queue(promise, callbacks, etc.,), 
- Macro Task Queue(setTimeout, setInterval, I/O operations, DOM events, etc.,)
-
-
-### Call Stack
-with help of  Call Stack e JavaScript engine keeps track of function calls.
-When a function is called, it is pushed onto the Call Stack.
-When the function completes, it is pop out out the stack. 
-
-The Call Stack operates in a last-in-first-out (LIFO) manner.
-
-
-### Micro Task Queue
-Microtas that are executed immediately right after the current script finishes but before the browser performs any rendering or handling of input/output operations.
-
-
-Microtasks are given higher priority than macrotasks.
-
-The Microtasks Task Queue is used to handle Microtasks, which include:
-
-- Promise callbacks (e.g., `.then`, `.catch`)
-- MutationObserver callbacks
-
-The event loop first completes all microtasks before moving on to macrotasks.
-
-
-
-### Macro Task Queue
-
-Macro tasks are executed after all microtasks have been completed.
-
-
-
-The Macro Task Queue is used to handle macrotasks, which include:
-
-- `setTimeout`
-- `setInterval`
-- I/O operations
-- DOM events (e.g., `click`, `load`)
-
-
-
- It works by constantly checking two queues: the microtask queue and the macrotask queue. 
- <!-- These queues store the callbacks of the asynchronous operations that are waiting to be executed. -->
-
- The main difference between microtask and macrotask queue is their priority. 
- The event loop always gives higher priority to the microtask queue, a
- and will process all the callbacks in the microtask queue before moving on to the macrotask queue. 
-
-
-
-
-
-### How the Event Loop Works
-1. **Execution Context:** JavaScript starts by executing the global context, which is the main code file.
-2. **Call Stack:** Functions are pushed onto the Call Stack and executed. If a function contains an asynchronous operation (e.g., `setTimeout`), the operation is offloaded to the browser or Node.js environment.
-3. **Task Queues:** 
-   - When an asynchronous operation completes, its callback is placed into the appropriate queue (Micro Task Queue or Macro Task Queue).
-4. **Event Loop:** 
-   - The event loop continuously checks the Call Stack. If the Call Stack is empty, it starts processing the Micro Task Queue.
-   - All microtasks are processed before moving on to the Macro Task Queue.
-   - Once the Micro Task Queue is empty, the event loop will process one task from the Macro Task Queue.
-
-### Example
-
-Consider the following code:
-
-```javascript
-console.log('Start');
-
-setTimeout(() => {
-  console.log('Timeout');
-}, 0);
-
-Promise.resolve().then(() => {
-  console.log('Promise');
-});
-
-console.log('End');
-```
-
-**Execution Flow:**
-
-1. `'Start'` is logged to the console.
-2. `setTimeout` is called, its callback is placed in the Macro Task Queue.
-3. `Promise.resolve().then` is called, its callback is placed in the Micro Task Queue.
-4. `'End'` is logged to the console.
-5. The Call Stack is now empty.
-6. The event loop checks the Micro Task Queue and executes the promise callback, logging `'Promise'` to the console.
-7. The event loop then checks the Macro Task Queue and executes the timeout callback, logging `'Timeout'` to the console.
-
-**Output:**
-```
-Start
-End
-Promise
-Timeout
-```
-
-By understanding the event loop and its components, you can better manage asynchronous operations in JavaScript and predict the order of execution for your code.
-
-<!-- Microtasks are operations scheduled to run right after the current script finishes but before the browser performs any rendering or handling of input/output operations. -->
-
-<!-- Microtasks are tasks that are executed immediately after the currently executing script and before any rendering or I/O operations. -->
-
-
-<!-- 
-The Event loop is a concept that helps us to know the execution of code in Javascript. 
-
-The event loop in JavaScript is a fundamental concept that helps manage the execution of asynchronous code, -->
-
- <!-- single-threaded environment of JavaScript to handle concurrent operations. 
- It works by constantly checking two queues: the microtask queue and the macrotask queue. These queues store the callbacks of the asynchronous operations that are waiting to be executed.
-
- The main difference between microtask and macrotask queue is their priority. 
- The event loop always gives higher priority to the microtask queue, and will process all the callbacks in the microtask queue before moving on to the macrotask queue. -->
-
-
-
-<!-- The Call Stack is where the JavaScript engine keeps track of function calls. -->
-
- -->
-<!-- Macrotasks are tasks that are scheduled to be executed after the current executing script and after all microtasks have been processed -->
-
-
-
-
-
-
-================================================================================================================================================================
-Single-Threaded Execution:
-
-JavaScript executes code in a single-threaded manner, meaning one operation is performed at a time.
-The event loop helps manage this single-threaded execution, especially for asynchronous tasks.
-
-
-
-
-
-================================================================================
-Callback hell
-
-
-
-Callback hell is a phenomenon where a Callback is called inside another Callback. 
-It is the nesting of multiple Callbacks inside a function. 
-
-where multiple asynchronous operations are nested within each other as callbacks.
-This can result in code that is difficult to read, understand, and maintain
-
- The two common ways of escaping the callback Hell heare are by using promises and async/await.
-
-// Nested callbacks
-doSomething(function(result1) {
-  doSomethingElse(result1, function(result2) {
-    doAnotherThing(result2, function(result3) {
-      console.log('Final Result:', result3);
-    });
-  });
-});
-
-// Using Promises
-doSomething()
-  .then(result1 => {
-    return doSomethingElse(result1);
-  })
-  .then(result2 => {
-    return doAnotherThing(result2);
-  })
-  .then(result3 => {
-    console.log('Final Result:', result3);
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-
-
-
-
+========================================================

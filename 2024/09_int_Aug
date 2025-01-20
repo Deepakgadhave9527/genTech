@@ -296,8 +296,4 @@ In this example:
     arr = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]];
     arr.flat(Infinity);
     // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-========================================================
 
-A framework is a set of pre-written code that provides a structure for developing software applications. 
-
-A library, on the other hand, is a collection of pre-written code that can be used to perform specific tasks.
