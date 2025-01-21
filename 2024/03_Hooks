@@ -305,7 +305,34 @@ const theme = useContext(context)
     useImperativeHandle()
 
     useImperativeHandle() customizes the instance value that is exposed to parent components when using ref. As always,
-    imperative code using refs should be avoided in most cases. useImperativeHandle should be used with forwardRef.
+    imperative code using refs should be avoided in most cases.
+    useImperativeHandle should be used with forwardRef.
+
+    ### **`useImperativeHandle` in React**
+
+#### **Definition**  
+`useImperativeHandle` is a React hook used with `forwardRef` to customize the values or methods exposed to a parent component when using a `ref`.
+
+#### **Purpose**  
+- It allows child components to control what functionality or values are accessible via the `ref` from the parent.  
+- Instead of exposing the entire DOM or component instance, it exposes specific methods or properties.
+
+#### **How It Works**  
+- By default, a `ref` attached to a child component gives access to the underlying DOM node or component instance.  
+- `useImperativeHandle` customizes this behavior by allowing you to expose selected methods or properties.
+
+#### **Use Cases**  
+- To expose specific actions like focus, scroll, or reset methods to a parent.  
+- When a child manages multiple elements and the parent needs access to specific functionality.
+
+#### **Key Points**  
+- Works **only with `forwardRef`** to pass the ref from parent to child.  
+- Prevents exposing unnecessary internal logic of the child.  
+- Useful for controlled interactions between components.
+
+#### **When Not to Use**  
+- Avoid if the same functionality can be achieved with props or state.  
+- Use it sparingly to keep components declarative and maintainable.
 
     ---------------------------------------------------------------------------------
 
