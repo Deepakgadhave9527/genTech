@@ -1,4 +1,22 @@
 
+
+========================================================================
+React Portals
+
+- React Portals render children into a DOM node outside the parent component’s DOM hierarchy.
+- Useful for modals, tooltips, and overlays that need to visually break out of their parent container.
+- Ensures that elements are part of the React component tree.
+- Allows elements to benefit from React’s event handling and lifecycle features.
+
+
+==========================================
+#### ref
+
+In React, a ref (short for reference) is an object that allows you to directly access and interact with a DOM element
+
+
+
+
 ==========================================
 
 whats forwardref react
@@ -90,12 +108,18 @@ export default App;
 
 #### ================== useImperativeHandle ======================================
 
+
+
+
 - **useImperativeHandle**: React hook that allows you to control what methods or properties a parent component can access when using a ref on a child component.
 - **React.forwardRef**: Passes a ref down to a child component, giving the parent more control over what functionality or properties it can interact with.
 - **Default behavior**: When you attach a ref to a child component, the ref points to the entire DOM element or component instance.
 - **useImperativeHandle**: Allows you to specify exactly which methods or properties the parent can access, making it possible to selectively expose certain child component behaviors while keeping the internal logic hidden.
 - **forwardRef**: Allows access to a single DOM element or child component instance.
 - **useImperativeHandle**: Can be used to expose multiple DOM elements or methods within the child component, giving the parent access to more than one part of the child’s functionality or state.
+
+
+
 
 ========================================================
 
@@ -152,6 +176,9 @@ There are 3 rules for hooks:
 Hooks can only be called inside React function components.
 Hooks can only be called at the top level of a component. 
 Hooks cannot be conditional.
+
+
+
 
 ========================================================
 
@@ -406,18 +433,8 @@ It allows you to specify the expected types for props that a component should re
 
 npm install prop-types
 
-==================== ref ======================
-
-In React, a ref (short for reference) is an object that allows you to directly access and interact with a DOM element
 
 
-========================================================================
-React Portals
-
-- React Portals render children into a DOM node outside the parent component’s DOM hierarchy.
-- Useful for modals, tooltips, and overlays that need to visually break out of their parent container.
-- Ensures that elements are part of the React component tree.
-- Allows elements to benefit from React’s event handling and lifecycle features.
 
 ========================================================================
 
