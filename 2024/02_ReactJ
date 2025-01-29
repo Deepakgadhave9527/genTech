@@ -161,33 +161,36 @@ function ChildComponent({ sendDataToParent }) {
 
 Q_18. What is the significance of keys in React?
 
--A key is a unique identifies
+- key is a unique identifier used by React to track and update elements in a list efficiently.
+
+- Keys help React identify which items have changed, been added, or removed in a list.
 
 -During the reconciliation process (when React compares the previous and current UI), keys help React determine which elements are added, removed, or changed.
 
--Keys help React identify which items have changed, are added, or are removed.
+- During React's reconciliation process, keys help determine if an element is new or updated.
+- React compares keys in two lists:
+  - If the keys are the same, React reuses the component, avoiding re-rendering.
+  - If the keys are different, React treats it as a new element and updates accordingly.
+- This helps React update the UI efficiently.
+
+
 -Keys should be given to the elements inside the array to give the elements a stable identity.
 
   ========================================================
 
 Q8. What is PureComponent?
 
--PureComponent which do not re-renders when the value of state and props has been updated with the same values.
+- `PureComponent` is a type of React class component that automatically implements the `shouldComponentUpdate()` lifecycle method with a shallow comparison of props and state.
 
--Pure Components restricts the re-rendering and give the higher performance of the Component
+- It prevents unnecessary re-renders by only re-rendering the component when the values of props or state change.
 
-- Definition: A React base class that prevents unnecessary re-renders.
-- Behavior: Does not re-render when state and props values are updated with the same values.
-- Performance: Enhances performance by restricting re-rendering.
+- If the new props or state are the same as the previous values, the component will not re-render, thus optimizing performance.
 
-#### Characteristics
-- Shallow Comparison: Uses shallow comparison of state and props in shouldComponentUpdate.
-- Optimized Rendering: Only re-renders if state or props change.
+- Pure Components restricts the re-rendering and give the higher performance of the Component
 
-#### React Re-Render Triggers
-- setState: Called within the component.
-- props Update: Props values are updated.
-- this.forceUpdate(): Explicitly called to force a re-render.
+-In function-based components, there is no direct equivalent to PureComponent. However, you can achieve similar performance optimization using React.memo. React.memo is a higher-order component that works with function components to prevent unnecessary re-renders
+
+
 
 ### Example
    
@@ -199,6 +202,16 @@ class MyComponent extends PureComponent {
   }
 }
 
+- Components which do not re-renders when the value of state and props has been updated with the same values.
+
+- **Shallow Comparison**: PureComponent performs a shallow comparison of the current and next props or state. If nothing has changed (i.e., the new props or state are the same as the previous ones), it prevents a re-render.
+
+
+- **Optimized Rendering**: Only re-renders if state or props change.
+- **React Re-Render Triggers**:
+  - `setState`: Called within the component.
+  - `props Update`: Props values are updated.
+  - `this.forceUpdate()`: Explicitly called to force a re-render.
 
 ### Summary
 - Use Case: Ideal for optimizing performance when updates depend only on state or props.
@@ -220,15 +233,13 @@ They are used to manage focus, text selection, media playback, animations, and i
 
 - attached to React elements via the ref attribute.
 
-
-
-Class-Based Components:
+**Class-Based Components**:
 
 Use React.createRef() in the constructor.
 Access the ref using this.myRef.
 Attach the ref to an element in the render method.
 
-Function-Based Components:
+**Function-Based Components**:
 
 Use the useRef hook to create a ref.
 Access the ref using myRef.current.
@@ -894,8 +905,6 @@ q19. What are React components?
 -A React component can be either stateful or stateless.
 -Stateful components are of the class type,
 -while stateless components are of the function type.
-
-
 
 
 
