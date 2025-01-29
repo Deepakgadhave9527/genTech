@@ -1,0 +1,376 @@
+
+==========================================
+
+Single Page Applications (SPAs), which build pages in our browser using JavaScript,
+ MPAs depend on the server to generate and refresh pages
+
+### Multi-Page Application (MPA)
+
+-If an application / website has multiple requestable web pages then that application
+ is called multi page application.
+
+-An MPA consists of multiple pages, each with its own URL. 
+
+-When a user navigates to a new page,the browser reloads and fetches the new HTML content from the server.
+
+-It recreates the DOM for each request
+
+
+-Multipage application is slow because each request will be send to the server then server
+ will return a web page as response.
+
+-It utilizes the server resources so high configuration server is required.
+
+-It utilizes more bandwidth
+
+-To fetch the different content you need to fetch different webpages from the server
+
+
+B] Single page application
+
+
+Single-Page Application
+A single-page application is an app that works inside a browser and does not require page reloading during use.
+An SPA loads a single HTML page and dynamically updates the content as the user interacts with the app, without refreshing the entire page.
+
+
+-If an application has single requestable web page then that application is called
+single page application.
+
+-In SPA all the content will get loaded in the web browser on first request, after that
+all the request will be served from web browser itself.
+
+-it does not utilizes the server resources for each request because the content will
+be serverd from web browser.
+
+-less bandwidth is required
+
+-it is slow for first request and fast from second request
+
+-It does not re create the DOM tree for content change
+
+
+
+==========================================
+
+ReactJS is an open-source JavaScript library used for building user interfaces, particularly single-page applications
+- Developed and maintained by Facebook,  
+- React allows developers to create large web applications that can update and render efficiently in response to changing data.
+
+
+1. **Component-Based Architecture:**
+   - React applications are built using components, which are reusable pieces of UI. 
+    -Each component has its own logic and rendering, making code modular and easier to manage.
+
+2. **Virtual DOM:**
+   - React uses a virtual DOM to improve performance. 
+   - When a component’s state changes, React updates the virtual DOM, compares it with the previous version, and only updates the actual DOM with the changes.
+
+3. **JSX Syntax:**
+   - JSX (JavaScript XML) is a syntax extension that allows writing HTML-like code within JavaScript. 
+   - This makes the code more readable and easier to write.
+
+4. **Unidirectional Data Flow:**
+   - data flows in one direction from parent to child components. 
+
+5. **State Management:**
+   - React has a built-in state management system for managing data within components.
+   - For more complex state management across the application, libraries like Redux or Context API are often used.
+
+6. **Lifecycle Methods:**
+   - React provides lifecycle methods that allow developers to hook into specific moments in a component’s life (e.g., mounting, updating, unmounting) to perform actions or manage state.
+
+<!-- 
+1. **Efficiency:**
+   - The virtual DOM and optimized rendering improve performance and efficiency.
+
+2. **Reusability:**
+   - Component-based architecture encourages code reuse, which can reduce development time and improve maintainability.
+
+3. **Community and Ecosystem:**
+   - React has a large and active community, providing a wealth of resources, libraries, and tools.
+
+4. **Flexibility:**
+   - React can be used for web, mobile (with React Native), and even desktop applications, making it a versatile choice for developers. -->
+
+==========================================
+
+What is JavaScript?
+
+- JavaScript is a single-threaded, prototype-based programming language primarily used for web development.
+- It can execute code on both the client-side (in web browsers) and server-side (with platforms like Node.js).
+- JavaScript allows you to update and change HTML and CSS.
+
+- It can calculate, manipulate, and validate data.
+- You can use it to add dynamic behavior, store information, and handle requests and responses on a website.
+- It allows asynchronous operations with promises and async/await.
+
+JavaScript allows you to update and change HTML and CSS through the Document Object Model (DOM).
+
+- JavaScript has a rich ecosystem of libraries and frameworks like React, Angular, and Vue.js.
+- JavaScript is used in many non-browser environments.
+- JavaScript supports event-driven programming.
+
+
+==========================================
+
+A semantic element clearly describes its meaning to both the browser and the developer.
+
+Semantic elements in HTßML provide meaning to the web content they enclose,
+helping both browsers and developers understand the structure and purpose of the content.
+They improve accessibility, SEO, and maintainability of web pages.
+
+```javascript
+
+Meaningful Structure: Conveys the role of the content.
+Improved Accessibility: Aids assistive technologies in navigating content.
+SEO Benefits: Helps search engines better index and rank pages.
+
+Common Semantic Elements:
+
+<article>
+<aside>
+<details>
+<figcaption>
+<figure>
+<footer>
+<header>
+<main>
+<mark>
+<nav>
+<section>
+<summary>
+<time>
+
+
+================================ memoization====================================================
+
+ What is memoization in JavaScript?
+
+Memoization is an optimization technique used primarily to speed up computer programs
+by storing the results of expensive function calls
+and returning the cached result when the same inputs occur again.
+
+It is particularly useful for functions with expensive or repetitive computations.
+
+
+
+
+=================== Immediately Invoked Function Expression (IIFE)=======================
+
+Immediately Invoked Function Expression (IIFE)
+
+- An IIFE is a function that is executed immediately after it is defined.
+
+- It is often used to create a local scope to avoid polluting the global scope.
+
+- Runs code immediately after declaration, useful for initialization tasks, configuring settings, or starting applications at the desired moment.
+
+
+(function() {
+console.log("This function runs immediately!");
+})();
+
+(function(name) {
+console.log("Hello, " + name + "!");
+})("World");
+
+
+
+Encapsulation: Creates private scopes for variables and functions, preventing conflicts and unintended modifications in the global scope.
+
+Avoiding Global Pollution: Keeps the global namespace clean, minimizing naming clashes with other scripts or libraries and maintaining modular, self-contained code.
+
+
+Data Privacy: Utilizes closures to maintain data privacy, hiding internal variables and functions while exposing only necessary parts, fundamental to the Module Pattern.
+
+
+================= PropTypes=========================
+
+What are PropTypes?
+PropTypes is a type-checking library included with React.
+It allows you to specify the expected types for props that a component should receive, providing runtime type validation.
+
+npm install prop-types
+
+
+
+==================== ref ======================
+
+In React, a ref (short for reference) is an object that allows you to directly access and interact with a DOM element
+
+
+
+
+
+
+==========================================
+
+whats forwardref react
+
+forwardRef in React is a utility that allows you to pass a ref from a parent component to a child component.
+This is useful when you want to access a DOM element
+
+When to Use Refs
+Accessing DOM Elements: When you need to directly interact with a DOM element.
+Managing Focus: To control focus on inputs or buttons.
+Animations: For triggering animations in response to user interactions.
+Third-Party Libraries: When integrating with libraries that manipulate the DOM directly.
+
+import React, { useRef, forwardRef } from 'react';
+
+// Child component using forwardRef
+const CustomInput = forwardRef((props, ref) => {
+return <input ref={ref} type="text" {...props} />;
+});
+
+// Parent component
+const App = () => {
+const inputRef = useRef(null);
+
+const focusInput = () => {
+if (inputRef.current) {
+inputRef.current.focus(); // Focus the input element
+}
+};
+
+return (
+<div>
+<CustomInput ref={inputRef} placeholder="Type something..." />
+<button onClick={focusInput}>Focus Input</button>
+</div>
+);
+};
+
+export default App;
+
+==========================================
+
+### Axios
+
+- Popular Promise-based HTTP client for making AJAX requests in the browser and Node.js.
+- Interceptors for request and response handling.
+- Automatic transformation of JSON data.
+- Support for browser and Node.js environments.
+- Ability to cancel requests.
+- CSRF protection by default.
+- Error handling with meaningful error messages.
+- Interceptors provide global request/response handling.
+
+### Fetch
+
+- Modern API for making network requests in the browser, built into modern browsers (ES6 feature).
+- Promise-based API.
+- Streamlined API surface compared to XMLHttpRequest (XHR).
+- No third-party dependencies.
+- Support for streaming responses.
+
+### Use Axios If:
+
+- You need built-in support for interceptors, request cancellation, or automatic JSON parsing.
+- Cross-browser compatibility is important, including older browsers.
+- You prefer simplified error handling and configuration.
+
+### Use Fetch If:
+
+- You want to avoid additional dependencies and rely on native browser APIs.
+- Performance and bundle size are critical, especially in modern environments.
+- You are comfortable handling request/response interception and additional error handling manually.
+
+This format highlights the specific reasons and scenarios where Axios or Fetch would be preferred based on their capabilities and characteristics.
+
+==============================================
+
+Q15 is the Shadow DOM the same as the Virtual DOM?
+-No, they are different.
+
+-The Shadow DOM is a browser technology designed primarily for scoping variables and CSS in
+web components.
+
+- This is a browser technology designed primarily for encapsulating and scoping variables, DOM, and CSS within web components.
+- It allows you to create self-contained components with their own DOM structure and styling, isolated from the rest of the document.
+
+==============================================
+
+### Elements
+
+- Elements are the simplest building blocks of React applications and
+ describe what you want to see on the screen.
+- A basic building block representing a DOM node.
+- Used to describe what the UI should look like.
+- A plain object representing a DOM node.
+
+### Components
+
+- Used to define the logic and structure of the UI, which can include multiple elements and other components.
+- A function or class that can manage its own state and lifecycle.
+- Components are more complex structures that define both the logic and structure of the UI, and they can include multiple elements and other components.
+- A reusable and encapsulated piece of the UI, which can manage its own logic and state.
+
+==============================================
+
+### Tags
+
+- Tags are the syntax used to create elements.
+- A tag is a part of HTML syntax used to create an element.
+- Tags can be opening, closing, or self-closing.
+
+<div> <!-- Opening tag -->
+</div> <!-- Closing tag -->
+
+### Elements
+
+- Elements are the structures that define the document's content and structure.
+- An element consists of an opening tag, content (optional), and a closing tag.
+
+<div> <!-- Opening tag -->
+  This is a div element. <!-- Content -->
+</div> <!-- Closing tag -->
+
+
+
+==============================================
+Patch vs Put
+
+- **PUT**
+
+  - The PUT method is used to update an entire resource.
+  - If the resource exists, it will be completely replaced with the new data provided.
+  - PUT replaces the entire resource.
+  - If your form or component allows the user to update an entire resource (e.g., editing all fields of a user profile), you might use PUT.
+
+- **PATCH**
+  - The PATCH method is used to apply partial updates to a resource.
+  - This means you only send the fields you want to update, and the rest of the resource remains unchanged.
+  - PATCH updates only the specified fields.
+  - If your form or component allows the user to update only specific fields (e.g., changing the user's email address or password), you might use PATCH.
+
+===========================================================================
+
+-A lexical scope in JavaScript means that a variable defined outside a function can be accessible inside another function
+
+### Function Scope:
+Each function in JavaScript creates a new scope. Variables defined within a function are not accessible outside of it.
+
+### Block Scope:
+Variables declared with let and const are block-scoped, meaning they are only accessible within the nearest set of curly braces {} in which they are defined.
+
+### Nested Scopes:
+Inner functions have access to variables and functions in their outer scopes. This nesting can continue indefinitely, allowing inner functions to access variables from all outer scopes up to the global scope.
+
+function outerFunction() {
+  var outerVar = 'I am outside!';
+
+  function innerFunction() {
+    var innerVar = 'I am inside!';
+    console.log(outerVar); // Accessible
+    console.log(innerVar); // Accessible
+  }
+
+  innerFunction();
+  console.log(outerVar); // Accessible
+  // console.log(innerVar); // Uncaught ReferenceError: innerVar is not defined
+}
+
+outerFunction();
+

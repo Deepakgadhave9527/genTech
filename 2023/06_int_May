@@ -1,0 +1,403 @@
+
+
+====================================================================================
+
+https://www.wisdomgeek.com/development/web-development/javascript/javascript-promises-combinators-race-all-allsettled-any/
+
+### Promises in JavaScript
+
+- Promise is an object that representing the eventual completion or failure of an asynchronous operation and its resulting value. 
+
+Promises provide a more effective way to handle asynchronous code, avoiding callback hell and making the code easier to read and maintain.
+
+- Outcome: A promise will produce a single value sometime in the future. If the promise is successful, it will produce a resolved value. If something goes wrong, it will produce a reason for the failure.
+- States:
+
+  1. Fulfilled: Action related to the promise succeeded.
+  2. Rejected: Action related to the promise failed.
+  3. Pending: Neither fulfilled nor rejected yet; the promise is still pending.
+  4. Settled: The promise has been either fulfilled or rejected.
+
+### Promise Methods
+
+- then(): 
+  - Invoked when a promise is resolved and a result is received.
+  - Allows chaining multiple asynchronous operations.
+- catch(): 
+  - Invoked when a promise is either rejected or some error has occurred during execution.
+  - Provides better error handling than callbacks and events.
+
+### Differences between Promise.all(), Promise.allSettled(), Promise.any(), and Promise.race()
+
+#### Promise.all()
+   - Executes multiple promises in parallel and waits for all of them to resolve.
+   - Rejects as soon as any one of the input promises rejects.
+    - Resolves when all input promises have resolved.
+
+   - Returns a single promise that resolves to an array of the results of the input promises.
+   [ 'Wisdom', 'Geek', 'Wisdom' ]
+
+
+#### Promise.allSettled()
+   - Executes multiple promises in parallel and waits for all of them to settle, meaning each promise either resolves or rejects.
+
+   - Resolves when all input promises have settled (either resolved or rejected).
+
+  - Returns a single promise that resolves to an array of objects describing the outcome of each promise (each object has a status of either "fulfilled" or "rejected" and the corresponding value or reason).
+
+Outputs:
+[
+  { status: 'fulfilled', value:  'Wisdom' },
+  { status: 'rejected',  reason: 'Geek' },
+]
+
+#### Promise.any()
+
+1. Purpose: 
+   - Executes multiple promises in parallel and waits for any one of them to resolve.
+   - Resolves as soon as any one of the input promises resolves.
+   - Rejects if all input promises reject.
+
+#### Promise.race()
+   - Executes multiple promises in parallel and waits for the first one to settle (either resolve or reject whether it was a success or failure.).
+   - Returns a single promise that settles with the result (or rejection reason) of the first settled promise.
+
+
+===============================================================================
+**Virtual DOM (VDOM)**:
+The Virtual DOM is a concept that used improve the efficiency of web page updates.
+ It is a lightweight, in-memory representation of the actual DOM. 
+ When a component's state changes, React creates a new Virtual DOM tree and compares it to the previous one. 
+ The differences (or "diffs") are computed, and 
+ The real DOM is then updated with only the parts that have changed.
+ <!-- only the parts that have changed are updated in the real DOM. -->
+ 
+===============================================================================
+
+**Reconciliation**:
+Reconciliation is the algorithm that React uses to update the UI. 
+It works by comparing the current Virtual DOM tree to the updated one
+and making the minimum number of changes necessary to bring the real DOM in line with the updated state.
+
+**Optimization Techniques**:
+1. **Tree Diffing**: React compares the current and updated Virtual DOM trees, identifying the minimal changes required.
+2. **Batching**: React batches multiple changes into a single update, reducing the number of updates to both the Virtual DOM and the real DOM.
+
+---
+
+This explanation highlights the key concepts of the Virtual DOM and reconciliation in React, along with the techniques used to optimize updates.
+
+
+
+
+===============================================================================
+
+
+
+1.  ##Pseudo-classes (:) ##:
+   - Primarily used to style elements under various states.
+   When referring to state, this includes the condition or user interaction,
+
+   - Common pseudo-classes include `:hover`, `:active`, `:focus`, and `:disabled`.
+   - Denoted by a single colon (:).
+   - States generally involve user interaction.
+
+   <style>
+  a:hover {
+    color: red;
+  }
+</style>
+
+<a href="#">Hover over me</a>
+
+
+2.  ##Pseudo-Elements (::) ##:
+   - Used to style specified parts of an element.
+   - Denoted by a double colon (::).
+   - Common pseudo-elements include
+    `::before`, `::after`, `::first-letter`, and `::first-line`.
+
+   - Can target the first letter or first line of text within an element, among other things.
+   - Can be used to insert content before or after the element.
+
+   <style>
+
+    p::before {
+      content: "Before "
+    }
+
+    p::after {
+      content: " After";
+      font-style: italic;
+    }
+  
+
+</style>
+  <p>This is a paragraph.</p>
+
+
+
+===============================================================================
+
+What is the box model in CSS?
+
+-The CSS box model is a fundamental concept 
+that describes the layout and design of elements on a web page.
+-The CSS box model is a way to understand how elements are structured on a web page.
+-It consists of four main components: content, padding, border, and margin. 
+- Content is what's inside the element,
+ -padding is space around the content, 
+ -border is a line around the padding, 
+ -and margin is space outside the border. 
+
+
+
+================================================================================
+
+
+Flexbox:
+
+One-dimensional layout model.
+Best for arranging items in a row or a column.
+Suited for smaller-scale layouts.
+Controls alignment and distribution along a single axis.
+Uses properties like display: flex, flex-direction, justify-content, and align-items.
+
+
+
+CSS Grid:
+
+Two-dimensional layout system.
+Organizes content in rows and columns.
+Ideal for larger-scale layouts.
+Provides precise control over layout and placement of items
+Utilizes properties like display: grid, grid-template-rows, and grid-template-columns.
+
+
+
+
+================================================================================
+
+
+Sure, let's compare Flexbox and CSS Grid across various aspects:
+
+1.  ##Layout Model ##:
+   - Flexbox: One-dimensional layout model.
+   - CSS Grid: Two-dimensional layout system.
+
+2.  ##Axis Control ##:
+   - Flexbox: Controls layout along a single axis (either horizontally or vertically).
+   - CSS Grid: Organizes content in rows and columns simultaneously.
+
+3.  ##Suitability ##:
+   - Flexbox: Best for smaller-scale layouts and components.
+   - CSS Grid: Ideal for larger-scale layouts that are not linear in design.
+
+
+7.  ##Usage ##:
+- Flexbox: Commonly used for navigation menus, card layouts, and aligning content within containers.
+- CSS Grid: Frequently used for complex page layouts, responsive grids, and magazine-style layouts.
+
+
+4.  ##Alignment and Distribution ##:
+   - Flexbox: Offers fine-tuning of alignment and space distribution between items.
+   - CSS Grid: Provides precise control over layout and placement of items.
+
+5.  ##Flexibility ##:
+   - Flexbox: Works well for layouts with dynamic content and varying screen sizes.
+   - CSS Grid: Offers flexibility with flexible widths and two-dimensional layout capabilities.
+
+6.  ##Item Management ##:
+   - Flexbox: Uses a parent-child relationship (Flex Container and Flex Item) to adjust item dimensions.
+   - CSS Grid: Supports both implicit and explicit content placement, with built-in automation for extending line items.
+
+In summary, Flexbox is well-suited for simpler layouts and alignment tasks, while CSS Grid excels in creating complex layouts with precise control over rows and columns. Both layout models have their strengths and are often used together to create highly customized and responsive web designs.
+
+
+
+
+
+
+
+
+
+
+================================================================================
+
+display none and visibility hidden
+
+- **`visibility: hidden;`:**
+           Hides the element while still occupying space in the layout.
+             It's not visible, but it still affects the document flow.
+- **`display: none;`:** 
+         Completely removes the element from the layout, including its space. 
+I         It's not rendered and doesn't affect the document flow.
+
+
+
+
+================================================================================
+
+
+
+
+position property is used to set the position of any element
+By default all the elements are positioned to left to right
+
+
+The position property has differnt values like
+static (default)
+relative
+absolute
+fixed
+sticky
+
+-  ##Static ##: 
+  - Default position for all elements.
+  - Not affected by the `top`, `right`, `bottom`, and `left` properties.
+  - Positioned according to the normal flow of the page.
+
+
+-  ##Relative ##: 
+     its default/static position
+   - Holds its space in the layout.
+  - measurement of the length (top, right, bottom, left) starts from default/static position.
+
+
+-  ##Absolute ##: 
+
+  - measurement of the length(top, right, bottom, left) starts
+  from relative positioned parent, but if there is no relative
+  parent then measurement will start from body
+  - It will not hold the initial space.
+    - Useful for creating overlays, dropdown menus, and tooltips.
+
+
+
+
+-  ##Fixed ##: 
+  - Positioned relative to the viewport.
+  - Does not hold space in the layout.
+  - Does not move with the page scroll.
+  - Remains fixed in its position regardless of scrolling.
+  - Commonly used for elements like navigation bars or headers that should remain visible at all times.
+
+  - measurement starts from body
+  - it does not hold the space
+  - it does not move on scroll
+
+
+-  ##Sticky ##: 
+  - Initially positioned relative to the viewport, but switches to fixed positioning when it reaches a specified scroll position.
+  - Holds space in the layout.
+  - Moves within the viewport until the specified scroll position is reached, then becomes fixed.
+  - Useful for creating elements like sticky headers or sidebars that stick to the top or side of the viewport when scrolling.
+
+
+  - measurement starts from body
+  - it holds the space
+  - it moves only within the viewport
+
+
+
+
+================================================================================
+
+
+##Block Elements:
+- Start on a new row.
+- Take up the full width .
+- Width and height can be set.
+- Examples: `<div>`, `<p>`, `<li>`, etc.
+
+ ##Inline Elements:
+- Don't start on a new line.
+- Display on the same line if there is enough space available.
+- Width and height cannot be set.
+- Margins and padding apply horizontally.
+- Examples: `<span>`, `<a>`, `<strong>`, `<img>`, `<input>`.
+
+ ##Inline-Block Elements:
+  Provide a hybrid behavior between block and inline elements.
+- Can start on a new line if forced.
+- Width, height, margins, and padding can be set.
+- Examples: `<div>`, `<p>`, `<li>`, `<img>` (when you want it to behave as a block).
+
+Inline-block elements behave like:
+
+- **Inline elements**: They sit next to each other horizontally.
+- **Block elements**: They respect width and height properties and can have margins and padding.
+
+
+
+
+
+
+
+================================================================================
+
+specificity
+
+
+CSS specificity is decides which style rules apply to an element 
+when there are conflicting styles.
+
+It determines which style wins out of multiple competing rules.
+
+
+
+Universal Selector: 0
+Element selectors and pseudo-elements: 1
+Class selectors, attribute selectors, and pseudo-classes: 10
+ID selectors: 100
+Inline styles: 1000\
+!import
+
+
+
+Specificity in CSS refers to the set of rules that determine 
+which style rule gets applied to an element 
+when multiple conflicting rules exist
+
+
+
+
+
+
+
+
+
+
+================================================================================
+
+CSS selector can contain more than one simple selector. Between the simple selectors, we can include a combinator.
+
+There are four different combinators in CSS:
+
+descendant selector (space)
+child selector (>)
+adjacent sibling selector (+)
+general sibling selector (~)
+
+
+
+
+
+
+================================================================================
+Webpack
+
+ Webpack is a popular open-source module bundler for JavaScript applications.
+
+ It's primarily used in web development to bundle JavaScript files for usage in a browser, 
+ It's  managing dependencies and bundling various assets like JavaScript files, images, 
+ and CSS into a single bundle, 
+ 
+ Webpack's behavior is configured through a webpack.config.js file.
+ Plugins  is used  Webpack's functionality for tasks like optimization, asset management,
+ It's widely used in modern web development, often alongside frameworks like React, Vue.js, or Angular.
+
+
+
+
+
