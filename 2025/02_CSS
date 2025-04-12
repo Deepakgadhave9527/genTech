@@ -1,0 +1,41 @@
+Does the order of media queries matter in CSS, and how should `max-width` and `min-width` be used?
+
+
+Yes, the order of media queries is important in CSS because it affects how styles are applied and overridden. Here's how to use them:
+
+
+
+### 🔸 `max-width` (Desktop-first approach)
+- Write **media queries from larger to smaller screen sizes**.
+- This is useful when designing for desktop first and then adapting to smaller devices.
+- Later (smaller) breakpoints **override** earlier (larger) ones.
+  
+```css
+@media (max-width: 768px) { ... }  
+@media (max-width: 576px) { ... }  
+```
+
+
+
+### 🔸 `min-width` (Mobile-first approach)
+- Write **media queries from smaller to larger screen sizes**.
+- This is ideal for mobile-first development.
+- Styles build up as the screen gets wider.
+
+```css
+@media (min-width: 576px) { ... }  
+@media (min-width: 768px) { ... }  
+```
+
+
+
+### 🔹 Why Order Matters:
+- CSS applies styles in order — **later rules override earlier ones** if both apply.
+- Writing in the wrong order can cause **unexpected overrides or bugs** in your layout.
+
+
+
+### 🔹 When to Use Which:
+- Use `max-width` if you're targeting **smaller devices first only for adjustments**.
+- Use `min-width` when following a **mobile-first** approach and building **progressively**.
+

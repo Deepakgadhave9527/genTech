@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <style>
+      :root {
+        --red-hfx: rgb(161, 97, 97);
+        --text-color: rgb(84, 81, 81);
+        --bg-box: rgb(171, 240, 171);
+        --full-width: 100;
+        --padding-10px: 10px;
+      }
+      .header {
+        width: 100%;
+        height: 150px;
+        background-color: var(--red-hfx);
+      }
+      .footer {
+        width: 100%;
+        height: 150px;
+        background-color: var(--red-hfx);
+      }
+      .box1 {
+        background-color: var(--bg-box);
+        color: var(--text-color);
+        width: var(--full-width);
+        padding: var(--padding-10px);
+        width: calc(var(--full-width)- (var(--padding-10px)));
+      }
+      .squre {
+        width: 150px;
+        height: 150px;
+        background-color: rgb(214, 207, 207);
+        border: 2px solid black;
+        /* position: ß; */
+        top: 100px;
+      }
+      .sqrMain{
+        width: 50%;
+        height: 100vh;
+        border: 2px solid black;
+
+        
+      }
+      .wrapper {
+  height: 1000px; /* height exceeds viewport to enable scrolling */
+  border: 1px solid #ccc;
+}
+/* ----------------- */
+.container {
+  height: 300px;
+  width: 200px;
+  overflow: auto; /* makes this a scrollable container */
+  border: 1px solid #ccc;
+}
+
+.sticky-element {
+  position: sticky;
+  top: 400px; /* sticks 10px from the top of the container */
+  background-color: yellow;
+  padding: 10px;
+  font-size: 18px;
+}
+
+.content {
+  height: 1000px;
+  padding: 20px;
+}
+
+span{
+  display: inline-block;
+  width: 4000px;
+}
+    </style>
+  </head>
+ 
+<bod>
+  <span style=" background: yellow;">Hello</span>
+  <span style=" background: yellow;">Hello</span>
+  <span style=" background: yellow;">Hello</span>
+  <span style=" background: yellow;">Hello</span>
+
+
+</bod>
+</html>
