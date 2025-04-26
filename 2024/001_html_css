@@ -376,7 +376,7 @@ Semantic elements are HTML tags that clearly describe their meaning to both the 
 
 ### Common Semantic Elements:
 
-```html
+
 <article>
 <aside>
 <details>
@@ -541,10 +541,10 @@ Use case: Modals, dropdown menus, tooltips, floating buttons.
 - **Scroll behavior matters** → `fixed` never moves, `sticky` switches to `fixed` after a point.
 - `absolute` and `fixed` overlap other content if not handled carefully.
 
-
+```
 static, relative, sticky  is hold space ✅  
 absolute, fixed is not hold space ❌  
-
+```
 
 
 
@@ -620,7 +620,7 @@ You can set vertical padding and margin.But they don't affect layout like they d
 15. <time>
 
 
-### inline-bloc
+### inline-block
 
 - inline-block elements can behave like inline elements, but you can also control their width, height, margins, and padding, like block elements
 - Flows inline with other elements, like `inline`.
@@ -696,35 +696,50 @@ Inline-block elements behave like:
 
 ================================================================================
 
-specificity
+#### specificity
 
+ - CSS Specificity is a system that decides which CSS style/rule is applied when multiple style/rules target the same element
+ - The higher the specificity, the more "power" the style/rule has.
 
-CSS specificity is decides which style rules apply to an element 
-when there are conflicting styles.
+- If two rules have the same specificity, the rule defined last wins.
+- `!important` will override inline styles in CSS.
 
-It determines which style wins out of multiple competing rules.
-
+- Universal selectors have the lowest priority.  
+- Slightly more priority is given to element selectors and pseudo-elements.  
+- A stronger priority is given to class selectors, attribute selectors, and pseudo-classes.  
+- Even higher priority is given to ID selectors.  
+- Inline styles written directly in the HTML have more power than any selector.  
+- The `!important` rule overrides all other rules, even inline styles, and gives the highest priority.
 
 
 Universal Selector: 0
 Element selectors and pseudo-elements: 1
 Class selectors, attribute selectors, and pseudo-classes: 10
 ID selectors: 100
-Inline styles: 1000\
-!import
+Inline styles: 1000
+!important: !important will override other rules with higher specificity.
 
 
+The !important flag overrides all other CSS rules, regardless of their specificity, giving it the highest priority in the cascade
 
+
+<!-- 
 Specificity in CSS refers to the set of rules that determine 
 which style rule gets applied to an element 
 when multiple conflicting rules exist
+It determines which style wins out of multiple competing rules.
+
+CSS specificity is decides which style rules apply to an element 
+when there are conflicting styles. -->
 
 
 
 
 ================================================================================
 
-CSS selector can contain more than one simple selector. Between the simple selectors, we can include a combinator.
+#### combinator
+
+A combinator is something that explains the relationship between the selectors.
 
 There are four different combinators in CSS:
 
@@ -732,6 +747,81 @@ descendant selector (space)
 child selector (>)
 adjacent sibling selector (+)
 general sibling selector (~)
+
+
+
+### ✅ Final Quick Points to Remember:
+- `space` → any level inside (grandchild, great-grandchild, etc.)  
+- `>` → only direct child  
+- `+` → immediate next sibling  
+- `~` → all next siblings
+
+
+
+
+### CSS Combinators (with ClassName Examples)
+
+🔹 **1 → Descendant Selector (`space`)**  
+- Selects **any child**, at any depth inside the parent.  
+- Selects all matching descendants inside a parent
+
+- Example:  
+  `.parent .child` → Selects all elements with class `child` inside an element with class `parent`, no matter how deeply nested.
+
+
+<div class="parent">
+  <div>
+    <span class="child">Selected</span> <!-- selected -->
+  </div>
+</div>
+```
+
+
+
+🔹 **2 → Child Selector (`>`)**  
+- Selects **only direct child**, not nested deeper. 
+- Selects only direct children of a parent. 
+- Example:  
+  `.parent > .child` → Selects only direct `.child` elements immediately inside `.parent`.
+
+
+<div class="parent">
+  <span class="child">Selected</span> <!-- selected -->
+  <div>
+    <span class="child">Not selected (nested deeper)</span>
+  </div>
+</div>
+```
+
+
+
+🔹 **3 → Adjacent Sibling Selector (`+`)**  
+- Selects the **immediate next sibling** element.  
+- It only selects the immediate next sibling — not the next-to-next.
+- Example:  
+  `.parent + .sibling` → Selects the `.sibling` element **immediately after** `.parent`.
+
+
+<div class="parent"></div>
+<p class="sibling">Selected</p> <!-- selected (immediate sibling) -->
+<p class="sibling">Not selected</p>
+```
+
+
+
+🔹 **4 → General Sibling Selector (`~`)**  
+- Selects **all next siblings** that match, not just immediate.  
+
+- Example:  
+  `.parent ~ .sibling` → Selects **all `.sibling` elements** after `.parent`.
+
+
+<div class="parent"></div>
+<p class="sibling">Selected</p> <!-- selected -->
+<p class="sibling">Selected</p> <!-- selected -->
+```
+
+
 
 
 
@@ -750,8 +840,6 @@ that describes the layout and design of elements on a web page.
 
 
 
-
-
 ================================================================================
 
 display none and visibility hidden
@@ -763,29 +851,6 @@ display none and visibility hidden
          Completely removes the element from the layout, including its space. 
 I         It's not rendered and doesn't affect the document flow.
 
-
-
-
----------------------------------------------------------------
-### Cascading (in CSS)
-
-Cascading in CSS determines which styles are applied based on:
-
-1. Source Order: Later styles override earlier ones.
-2. Specificity: More specific selectors take precedence.
-3. Importance: `!important` rules override others.
-4. Inheritance: Some properties inherit values from parent elements.
-
-### Example
-
-css
-p { color: blue; }           /* General */
-.highlight p { color: red; } /* More specific */
-p { color: green !important; } /* Highest priority */
-
-
-### Summary
-- Cascading: The method of applying CSS rules based on order, specificity, importance, and inheritance.
 
 
 ========================================================================
@@ -864,7 +929,7 @@ These features have helped make modern web applications more powerful, efficient
   - `required`: Specifies that an input field must be filled out.
   - `pattern`: Defines a regular expression for input validation.
 - **Example**:
-  ```html
+  
   <input type="email" placeholder="Enter your email" required>
   ```
 
@@ -874,7 +939,7 @@ These features have helped make modern web applications more powerful, efficient
   - `<video>`: Embeds video content.
 - **Attributes**: `controls`, `autoplay`, `loop`, `muted`.
 - **Example**:
-  ```html
+  
   <video width="320" height="240" controls>
       <source src="movie.mp4" type="video/mp4">
       Your browser does not support the video tag.
@@ -884,7 +949,7 @@ These features have helped make modern web applications more powerful, efficient
 ### Canvas Element
 - **Purpose**: Used for drawing graphics via JavaScript.
 - **Example**:
-  ```html
+  
   <canvas id="myCanvas" width="200" height="100"></canvas>
   <script>
       const canvas = document.getElementById('myCanvas');
@@ -937,7 +1002,6 @@ These features have helped make modern web applications more powerful, efficient
 
  };
   worker.postMessage('World');
-  ```
 
 ### WebSocket API
 - **Purpose**: Provides full-duplex communication channels over a single TCP connection.
@@ -968,7 +1032,6 @@ These features have helped make modern web applications more powerful, efficient
   ```
   
 
-
 ==================================================================================
 
 
@@ -990,7 +1053,7 @@ Cross-browser compatibility ensures that web applications work consistently acro
 2. **Internal CSS:**
    - Defined within the `<style>` tag inside the `<head>` section.
    - Example: 
-     ```html
+     
      <style>
        h1 { color: blue; }
      </style>
@@ -1060,11 +1123,6 @@ CSS preprocessor
   - **Sass** (with `.scss` and `.sass` syntax)
   - **LESS**
   - **Stylus**
-
-
-
-
-================================================================================================================================================================
 
 
 
@@ -1151,8 +1209,7 @@ Utilizes properties like display: grid, grid-template-rows, and grid-template-co
 
 ================================================================================
 
-
-Sure, let's compare Flexbox and CSS Grid across various aspects:
+ compare Flexbox and CSS Grid across various aspects:
 
 1.  ##Layout Model ##:
    - Flexbox: One-dimensional layout model.
@@ -1233,4 +1290,30 @@ In summary, Flexbox is well-suited for simpler layouts and alignment tasks, whil
   This is a div element. <!-- Content -->
 </div> <!-- Closing tag -->
 
+
+
+
+
+
+==============================================
+
+### Cascading (in CSS)
+
+Cascading in CSS determines which styles are applied based on:
+
+1. Source Order: Later styles override earlier ones.
+2. Specificity: More specific selectors take precedence.
+3. Importance: `!important` rules override others.
+4. Inheritance: Some properties inherit values from parent elements.
+
+### Example
+
+css
+p { color: blue; }           /* General */
+.highlight p { color: red; } /* More specific */
+p { color: green !important; } /* Highest priority */
+
+
+### Summary
+- Cascading: The method of applying CSS rules based on order, specificity, importance, and inheritance.
 
