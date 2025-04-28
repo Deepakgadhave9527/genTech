@@ -1075,9 +1075,8 @@ Cross-browser compatibility ensures that web applications work consistently acro
 CSS preprocessor
 
 
-- A CSS preprocessor is a scripting language that extends the capabilities of standard CSS. 
-- It allows you to write more dynamic and maintainable styles by introducing features 
- like variables, nesting, mixins, and functions. 
+- A CSS preprocessor tool is a scripting language that extends the capabilities of standard CSS. 
+- It allows you to write more dynamic and maintainable styles by introducing features like variables, nesting   mixins, and functions. 
 - After writing the code in the preprocessor's syntax, it is compiled into standard CSS, 
 - which can then be used in web development.
 - Using a preprocessor helps create cleaner, reusable, and more organized stylesheets.
