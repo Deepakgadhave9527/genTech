@@ -96,11 +96,12 @@ React fragments allow you to group multiple elements without adding an extra nod
  -Error boundaries display a fallback UI instead of the component tree that crashed, 
 
 - Use `getDerivedStateFromError()` is method to update the state to indicate an error has occurred.
-- Use `componentDidCatch()` to log error information.
+        
+- Error boundaries can only be created using **class base components** in React. 
+- That's because React uses special lifecycle methods (like componentDidCatch) that only work in class components—not in function components.
+- Function components don’t support those error-handling lifecycle methods directly, so React can’t use them as error boundaries.
 
-- Error boundaries can only be created using **class components** in React.
-
-- **Function components** cannot directly act as error boundaries.
+- **Function base components** cannot directly act as error boundaries.
 
 - You can wrap function components inside **class-based error boundaries** to catch errors during rendering.
 
@@ -127,29 +128,35 @@ React fragments allow you to group multiple elements without adding an extra nod
   -static getDerivedStateFromError() is a static method in a React class component that is
    invoked after an error has been thrown during rendering.
 
-
+````javascript
 
   class ErrorBoundary extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = { hasError: false };
-    }
-  
-    static getDerivedStateFromError(error) {
-      // Update state to indicate an error has occurred
-      return { hasError: true };
-    }
-  
-    render() {
-      if (this.state.hasError) {
-        // Fallback UI when an error occurs
-        return <h1>Something went wrong.</h1>;
-      }
-      return this.props.children;
-    }
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
   }
 
+  static getDerivedStateFromError(error) {
+          // Update state to indicate an error has occurred
+    return { hasError: true };
+  }
 
+  componentDidCatch(error, errorInfo) {
+    console.error("Error caught in Error Boundary:", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+              // Fallback UI when an error occurs
+      return <h1>Something went wrong.</h1>;
+    }
+
+    return this.props.children;
+  }
+}
+
+
+````
   ========================================================
 
 
@@ -222,9 +229,17 @@ function ChildComponent({ sendDataToParent }) {
 
 Q_18. What is the significance of keys in React?
 
-- key is a unique identifier used by React to track and update elements in a list efficiently.
 
-- Keys help React identify which items have changed, been added, or removed in a list.
+- key is a unique identifier used by React to efficiently track and update elements in a list.
+
+- Keys help React know which items have changed, been added, or removed, so it can update the UI with minimal changes and maximum performance.
+
+During the reconciliation process (when React compares the previous and current UI), keys help React determine which elements have been added, removed, or changed.
+
+
+<!-- 
+- Keys help React identify which items have changed, been added, or removed in a list. 
+-->
 
 -During the reconciliation process (when React compares the previous and current UI), keys help React determine which elements are added, removed, or changed.
 
@@ -241,15 +256,24 @@ Q_18. What is the significance of keys in React?
 
 Q8. What is PureComponent?
 
+
+- `PureComponent` is a built-in class component in React that automatically performs a shallow comparison of props and state to decide if the component needs to re-render.
+
+- This helps improve performance by preventing unnecessary re-renders when the props or state haven't actually changed **only re-rendering** the component when props or state change.
+
+- If the new props or state are the same as the previous values, the component will not re-render.
+
+- Pure Components restricts the re-rendering and give the higher performance of the Component
+
 - `PureComponent` is a type of React class component that automatically implements the `shouldComponentUpdate()` lifecycle method with a shallow comparison of props and state.
 
 - It prevents unnecessary re-renders by only re-rendering the component when the values of props or state change.
 
-- If the new props or state are the same as the previous values, the component will not re-render, thus optimizing performance.
 
-- Pure Components restricts the re-rendering and give the higher performance of the Component
+- In function-based components, there is no direct equivalent to PureComponent. However, you can achieve similar performance optimization using React.memo. 
+- React.memo is a higher-order component that works with function components to prevent unnecessary re-renders
 
--In function-based components, there is no direct equivalent to PureComponent. However, you can achieve similar performance optimization using React.memo. React.memo is a higher-order component that works with function components to prevent unnecessary re-renders
+React.memo: A higher-order component for function components that offers similar optimizations by preventing unnecessary re-renders through shallow comparison of props.
 
 
 
