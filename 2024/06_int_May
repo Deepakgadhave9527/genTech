@@ -1,7 +1,21 @@
 
+================================================================================
 
 
 
+
+Q12 what is dom ?
+
+-DOM: DOM stands for ‘Document Object Model’.
+-It is a structured representation of the HTML elements
+that are present in a webpage or web-app.
+- JavaScript interacts with the DOM using the document object.  
+
+- Includes element nodes, text nodes, and attribute nodes.  
+- Enables adding, removing, or modifying elements and attributes dynamically.  
+- Handles user interactions like clicks, key presses, and other events.  
+- Provides methods for navigation (parentNode, childNodes) and modification (setAttribute, appendChild).  
+- Allows real-time updates and interactivity in web pages.  
 
 
 
