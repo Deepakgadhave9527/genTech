@@ -1,3 +1,5 @@
+==============================================================
+
     What are hooks ?
 
     -Hooks are the new feature introduced in the React 16.8 version.
@@ -7,204 +9,404 @@
     -With help of the React Hook we can also use  react lifecycle features in function component
     -Hooks dont work inside class component
 
+==============================================================
 
-    --------------------------------------------------------------------
+### 01 useState()
 
-    
-   
-   `React.memo` is a utility that optimizes functional components by ensuring they only re-render when their props change.
-   
-    React.memo is a higher-order component in React that memoizes a component, meaning 
-    
-    it will only re-render if its props change.
-     This is particularly useful for functional components to optimize performance by preventing unnecessary re-renders.
+-useState() is a React Hook used to add state to functional components.
 
-     React.memo is not a hook. 
+-It returns an array with two elements:
 
-     It is a higher-order component (HOC) that memoizes functional components to prevent unnecessary re-renders when props haven't changed.
+1.The current state value.
+2.A function to update that state.
 
-     It is used to prevent unnecessary re-renders of functional components when their props have not changed.
+## const [state,setState]=React.useState(0)
+
+-state holds the current state value.
+-setState is the function used to update state value.
+-0 is the initial state value.
+
+- useState should be used only inside functional components.
+
+  ## const [state,setState]=React.useState()
+
+  -state can be maintained by using useState() hook.
+
+  The first parameter in the state is the current state value.
+  The second parameter is the function that will allow you to update the state value.
+
+  useState should be used only inside functional components.
+
+  useState state is hook maintained local state in the component
+
+================================================================
+
+### 02 `useReducer()`
+
+- `useReducer()` is a React Hook used to manage complex state logic inside functional components.
+
+- It is an alternative to `useState()` when:
+
+  - State updates depend on previous state.
+  - Multiple related state variables need to be updated together.
+  - The state logic is more complicated or requires multiple conditions.
+
+- Syntax:
+
+  ```javascript
+  const [state, dispatch] = useReducer(reducer, initialState);
+  ```
+
+- It takes two arguments:
+
+  1. `reducer`: a function that takes the current state and an action, and returns the new state.
+  2. `initialState`: the initial value of the state.
+
+- The `reducer` function handles state transitions based on the dispatched actions.
+- The `dispatch` function is used to send actions to the reducer.
+
+- `useReducer()` is useful for managing form states, complex calculations, and state machines.
+
+```javascript
+const INITIAL_STATE = {
+  title: "",
+  description: "",
+  price: 0,
+  category: "",
+  tags: [],
+  quantity: 0,
+  comments: "",
+};
+
+const reducerFunction = (state, action) => {
+  switch (action.type) {
+    case "Change_Input":
+      return {
+        ...state,
+        [action.payload.name]: action.payload.value,
+      };
+    case "Add_Tags":
+      return {
+        ...state,
+        tags: [...state.tags, ...action.payload],
+      };
+    case "Increment":
+      return {
+        ...state,
+        quantity: state.quantity + 1,
+      };
+    case "Decrement":
+      return {
+        ...state,
+        quantity: state.quantity - 1,
+      };
+    case "Remove_Tag":
+      return {
+        ...state,
+        tags: state.tags.filter((tag) => tag !== action.payload),
+      };
+    default:
+      return state;
+  }
+};
+
+const [state, dispatch] = useReducer(reducerFunction, INITIAL_STATE);
+
+const OnHandleChange = (e) => {
+  const { name, value } = e.target;
+  dispatch({
+    type: "Change_Input",
+    payload: { name, value },
+  });
+};
+```
 
 ========================================================================
-    01 useeffect()
 
+### 03 useeffect()
 
+    -useEffect() is a React Hook introduced in React 16.8 version.
+    -useEffect() is a React hook used to handle side effects in functional components
+    -It works like componentDidMount, componentDidUpdate, and componentWillUnmount combined.
+    -It replaces lifecycle methods from class components, keeping the logic cleaner and more reusable.
+    -It allows functional components to perform side effects, such as:
+             1)Fetching data from APIs
+             2)Setting up subscriptions or event listeners
+             3)Interacting with the DOM
+             4)Managing timers or intervals
 
-    The purpose of the useEffect hook is to allow you to perform side effects in a functional components.
-    React useEffect hook is a function that gets executed for 3 different React component lifecycles.
-    Those lifecycles are componentDidMount, componentDidUpdate, and componentWillUnmount lifecycles.
+## ✅ 1. `useEffect(() => { ... }, [])`
 
-    Examples of side effects you will typically perform in a React application
-    are: data fetching, and manually changing the DOM in React components.  setting up a subscription
-   
-    {/* 
-      useEffect(() => {
-    // Mounting
+**Equivalent to:** `componentDidMount`
+**Runs:** **Once** after the **initial render**
 
-    return () => {
-        // Cleanup function
-    }
-}, [Updating])
+- Fetching data when the component loads
+- Setting up a subscription
+- Initializing a timer
+
+```jsx
+useEffect(() => {
+  console.log("Component mounted");
+  fetchData();
+}, []);
+```
+
+Why only once?
+
+- Because the **dependency array is empty**, React knows this effect doesn’t depend on any state or props.
+- So it only runs **after the first render**, like `componentDidMount`.
+
+## ✅ 2. `useEffect(() => { ... }, [dep])`
+
+**Equivalent to:** `componentDidUpdate` (but for specific dependencies)
+
+- After **initial render**
+- Then **every time `dep` changes**
+
+- Responding to changes in props or state
+- Making API calls when a user selects something
+
+```jsx
+useEffect(() => {
+  console.log("User ID changed:", userId);
+  fetchUserDetails(userId);
+}, [userId]);
+```
+
+### 🔄 Why controlled?
+
+- React tracks `userId`, and only reruns the effect **when `userId` changes**.
+
+---
+
+## ✅ 3. `useEffect(() => { return () => { ... } }, [])`
+
+**Equivalent to:** `componentWillUnmount`
+**Runs:**
+
+- The **cleanup function** runs when the component is about to unmount.
+
+- Cleaning up event listeners
+- Stopping intervals/timers
+- Closing sockets or subscriptions
+
+```jsx
+useEffect(() => {
+  const id = setInterval(() => console.log("Tick"), 1000);
+
+  return () => {
+    clearInterval(id); // Cleanup when unmounting
+  };
+}, []);
+```
+
+---
+
+## ✅ 4. `useEffect(() => { ... })` (no dependency array)
+
+- The effect will run after every render of the component.
+- This includes the initial render as well as all subsequent re-renders caused by state or props changes.
+- React will call the effect function every time the component updates.
+- This behavior is similar to combining `componentDidMount` and `componentDidUpdate` from class components.
+- In other words, whenever the component renders for any reason — whether due to state updates, prop changes, or parent re-renders — the code inside the effect will execute.
+
+```jsx
+useEffect(() => {
+  console.log("Component rendered");
+});
+```
+
+- This can cause **performance issues** if heavy logic is inside.
+- Prefer using `[deps]` to control when it runs.
+
+      The purpose of the useEffect hook is to allow you to perform side effects in a functional components.
+      React useEffect hook is a function that gets executed for 3 different React component lifecycles.
+      Those lifecycles are componentDidMount, componentDidUpdate, and componentWillUnmount lifecycles.
+
+      Examples of side effects you will typically perform in a React application
+      are: data fetching, and manually changing the DOM in React components.  setting up a subscription
+
+      {/*
+        useEffect(() => {
+      // Mounting
+
+      return () => {
+          // Cleanup function
+      }
+
+  }, [Updating])
 
 }
 
-*/}
+================================================================
+
+### 04 React.memo
+
+- `React.memo` is a higher-order component.
+- It is used to optimize the performance of functional components by memoizing them.
+- It is used to prevent unnecessary re-renders of functional components when their props have not changed.
+
+- React compares the current props with the previous props.
+- If the component receives the same props as the previous render, React skips re-rendering that component.
+- If there’s no change, React reuses the previously rendered result.
+- If props change, the component re-renders normally.
+- This prevents unnecessary re-renders.
+
+**Useful when:**
+
+- Component is heavy (complex UI, large calculations).
+- Props rarely change.
+- Parent re-renders often, but child’s props remain the same.
+
+- If you add a child component inside a parent component, and you are not passing any props to the child, then:
+
+Without React.memo, the child will re-render whenever the parent re-renders.
+
+- With React.memo, since there are no props, React will skip the child’s re-render when the parent re-renders.
+
+What does memoizing mean?
+
+Memoization is a technique where the result of a function call is cached (stored), so if the same inputs occur again, the cached result is returned immediately instead of recalculating.
+
+========================================================================
+### **useMemo**
+
+- The **`useMemo`*- hook is used to **memoize the result of a calculation**.
+- It **avoids recalculating a value on every render** unless its dependencies change.
+- This helps **improve performance**, especially for expensive computations.
+
+
+- **useMemo is used to memoize the result of a function or a computation.**
+- It’s helpful when you have an **expensive calculation or data transformation*- that you want to avoid re-executing on every render if the inputs haven't changed.
+- You pass a function to `useMemo`, and it returns the value that the function returns.
+- If the dependencies in the dependency array change, the function is re-executed; otherwise, the cached value is returned.
+
+const memoizedCallback = useCallback(() => {
+  // Your callback logic here
+}, [dependencies]);
+
+
+### ✅ Common Use Cases:
+
+* **– Avoiding expensive calculations**
+  (e.g., math, parsing, or transformations that slow down rendering)
+
+* **– Filtering or sorting large lists**
+  (e.g., dynamic search or sorted product/user lists)
+
+* **– Memoizing derived values from state or props**
+  (e.g., booleans like `isActive`, totals, formatted text)
+
+* **– Passing stable props to `React.memo` components**
+  (to prevent unnecessary re-renders of children)
+
+* **– Memoizing values for context providers**
+  (to avoid re-renders when using `Context.Provider`)
+
+
+### **useCallback**
+
+* The **`useCallback`** hook is primarily used to **memoize functions**.
+* **useCallback hook ensures that a function is not recreated on every render unless its dependencies change.**
+* This can be beneficial when passing functions as props to child components, preventing unnecessary re-renders of those child components.
+
+You pass a function and a dependency array to useCallback. The hook returns a memoized version of the function. If the dependencies change, the function is recreated; otherwise, the cached function is returned
+
+Here are the **top use cases for `useCallback`** in simple dash format:
+
+---
+### ✅ **Common Use Cases of `useCallback`**
+
+* **Memoizing event handlers** (e.g., click, submit functions) to avoid recreating on every render
+* **Passing stable callback functions as props** to prevent unnecessary child component re-renders
+* **Using functions inside `useEffect` dependencies** to avoid unwanted effect runs
+* **Optimizing performance in large lists** where callbacks are passed to many items
+* **Preventing inline function recreation in deeply nested components**
+
+
+
+
+============================================================
+#### useImperativeHandle()
+
+    useImperativeHandle() customizes the instance value that is exposed to parent components when using ref. As always,
+    imperative code using refs should be avoided in most cases.
+    useImperativeHandle should be used with forwardRef.
+
+    ### **`useImperativeHandle` in React**
+
+#### **Definition**
+
+`useImperativeHandle` is a React hook used with `forwardRef` to customize the values or methods exposed to a parent component when using a `ref`.
+
+#### **Purpose**
+
+- It allows child components to control what functionality or values are accessible via the `ref` from the parent.
+- Instead of exposing the entire DOM or component instance, it exposes specific methods or properties.
+
+#### **How It Works**
+
+- By default, a `ref` attached to a child component gives access to the underlying DOM node or component instance.
+- `useImperativeHandle` customizes this behavior by allowing you to expose selected methods or properties.
+
+#### **Use Cases**
+
+- To expose specific actions like focus, scroll, or reset methods to a parent.
+- When a child manages multiple elements and the parent needs access to specific functionality.
+
+#### **Key Points**
+
+- Works **only with `forwardRef`** to pass the ref from parent to child.
+- Prevents exposing unnecessary internal logic of the child.
+- Useful for controlled interactions between components.
+
+#### **When Not to Use**
+
+- Avoid if the same functionality can be achieved with props or state.
+- Use it sparingly to keep components declarative and maintainable.
 
   
-    hook that helps us to perform mutations, subscriptions, timers, logging, and other side effects after all the components has been rendered.
-    The useEffect accepts a function that is imperative in nature and a list of dependencies.
-    When its dependencies change it executes the passed function.
 
-    ------------------------------##### Basic Hooks ########  
+  Custom Hooks:
+  Custom Hooks are a mechanism to reuse stateful logic
+  Custom hooks are nothing but these are javascript functions,
+  if we have something common logic that we want to share between components
+  then we use custom hooks.
+  These are logic that will be reused in many components.
+  We can create hooks using the name start with “use” keyword.
 
-    01 useState()
+  {/_
+  A custom Hook is basically a JavaScript function.
+  Its name begins with "use" that could invoke other Hooks.
+  The working of a custom Hook is identical to a regular function.
+  The "use" in the starting describes that this particular function conforms to the rules of Hooks.
+  Moreover, building custom Hooks enables you to extract component logic inside reusable functions.
+  We create a different function and write a shared logic here. _/}
 
+========================================================================
+  What is useRef in React?
+  The useRef is a hook that allows to directly create a reference to the DOM element in the functional component.
+  Syntax: const refContainer = useRef(initialValue);
+  The useRef returns a mutable ref object.
+  Use useRef if you need to manage focus, text selection, trigger imperative animations or integrating third-party libraries.
 
-    -state can be maintained by using useState() hook.
-
-    ##  const [state,setState]=React.useState()     ##
-
-    The first parameter in the state is the current state value.
-    The second parameter is the function that will allow you to update the state value.
-
-    useState should be used only inside functional components.
-
-    useState state is hook maintained local state in the component
-
-    -----------------------------------------------------------------------------
-
-    02 useReducer()
-    The useReducer hook in React is used for managing state in a component, especially when the state logic is complex and involves multiple sub-values or when the next state depends on the previous one.
-     It is an alternative to useState and is inspired by Redux. 
-
-    -useReducer is a React hook function that accepts a reducer function, and an initial state. ...
-    -This hook function returns an array with 2 values.
-
-    -He first one is the state value, and the second value is the dispatch function which is further
-    used to trigger an action with the help of array destructuring.
-       
-    const INITIAL_STATE = {
-          title: "",
-          description: "",
-          price: 0,
-          category: "",
-          tags: [],
-          quantity: 0,
-          comments: ""
-        };
-
-
-    const reducerFunction = (state, action) => {
-        switch (action.type) {
-          case "Change_Input":
-            return {
-              ...state,
-              [action.payload.name]: action.payload.value
-            };
-          case "Add_Tags":
-            return {
-              ...state,
-              tags: [...state.tags, ...action.payload]
-            };
-          case "Increment":
-            return {
-              ...state,
-              quantity: state.quantity + 1
-            };
-          case "Decrement":
-            return {
-              ...state,
-              quantity: state.quantity - 1
-            };
-          case "Remove_Tag":
-            return {
-              ...state,
-              tags: state.tags.filter(tag => tag !== action.payload)
-            };
-          default:
-            return state;
-        }
-      };
-
-      const [state, dispatch] = useReducer(reducerFunction, INITIAL_STATE)
-
-
-      const OnHandleChange = (e) => {
-        const { name, value } = e.target;
-        dispatch({
-          type: "Change_Input",
-          payload: { name, value }
-        });
-      };
-
-
-    useReducer is usually preferable to useState when you have complex state
-    logic that involves multiple sub-values or when
-    the next state depends on the previous one.
-
-
-    The useReducer is a hook I use sometimes to manage the state of the application.
-    It is very similar to the useState hook, just more complex.
-    It acts as an alternate hook to the useState hook to manage complex state in your application.
-    The useReducer hook uses the same concept as the reducers in Redux.
-    It is basically a pure function, with no side-effects.
-
-
-
-    It accepts a reducer function with the application initial state, returns the current application state, then dispatches
-    a function.
-
-    Although useState() is a Basic Hook and useReducer() is an Additional Hook, useState() is actually implemented with
-    useReducer(). This means useReducer() is primitive and we can use useReducer() for everything can do with useState().
-    Reducer is so powerful that it can apply for various use cases.
-
-    --------------------------------------------------------------------------------
+========================================================================
 
 
 
 
-    03 useContext()
-
-
-    -useContext hook is used to create common data that can be accessed throughout the
-    component hierarchy without passing the props down manually to each level.
-
-    -Context defined will be available to all the child components without involving “props”.
-    creatContex()
-
-    The React Context API allows to easily access data at different levels of the component tree, without having to pass
-    data down through props.
-    import { createContext } from 'react';
-
-const contex = createContex("DefaultValue")
-
-import contex from "./contex";
-
-const theme ="contex value to passed to componet "
-
-<contex.provider>
-
-    <Component value={theme} />
-</contex.provider>
-
-
-import contex from "./"
-
-<contex.consumer>
-    theme=>{
-    return <>{theme}</>
-    }
-</contex.consumer>
-
-<!-- by hook -->
-
-import {useContex} fromm "./"
-
-const theme = useContext(context)
 
 
 
-    -------------------------------------- ### Additional Hooks:  ##------------------------------
+
+
+
+
+
+
+
+
+    ---------------------- ### Additional Hooks:  ##------------------------------
 
     01 useHistory
 
@@ -244,447 +446,7 @@ const theme = useContext(context)
     If it is provided with no arguments, it returns the closest match in the component or its parents.
     A primary use case would be to construct nested paths.
 
-
-
-    ---------------------------------------------------------------------------------
-
-
-
-
-    useCallback()
-    -The useCallback hook used to Avoiding unnecessary rerendering when a function is recreated.
-    -The useCallback will return a memoized version of the callback that only changes if one of the
-    dependencies has changed.
-    -And making your application faster and more efficient.
-
-
-    const memoizedCallback = useCallback(() => {
-      // Your callback logic here
-  }, [dependencies]);
-
-  
-    useCallback: Returns a memoized callback.
-    The useCallback hook in React is used to memoize a callback function,
-     ensuring that it only changes if one of its dependencies changes.
-      This is particularly useful for preventing unnecessary re-renders when passing functions to child components.
-
-    ---------------------------------------------------------------------------------
-
-    useMemo()
-
-     -useMemo hook in React is used to optimize performance by memoizing expensive calculations.
-     -It ensures that a function doesn't unnecessarily recompute a value if its dependencies haven't changed
-
-     -It ensures that a value is recomputed only when its dependencies change.
-     -Without useMemo, the component would recompute the value on every render, even if the input parameters are the same.
-
-
-     Why Do We Need useMemo?
-Without useMemo, expensive calculations are recomputed on every render, which can cause performance issues in large or complex applications. By using useMemo, you can:
-
-Avoid recalculating expensive operations unless necessary.
-Prevent unnecessary rendering of child components by ensuring memoized values only change when their dependencies change.
-Make your app more efficient by reducing the workload during renders.
-
-
-Scenarios to Use useMemo
-
-Expensive Computations:
-When you perform costly operations (e.g., loops, filtering, sorting).
-
-Derived State:
-When the state depends on complex calculations or transformations.
-Another scenario is filtering a large list of items:
-The filtering computation is performed only when the search input or items array changes.
-Reduces redundant filtering on each keystroke or unrelated state change, improving app performance.
-
-
-
-When to Use useMemo?
-For expensive computations, derived state, or preventing unnecessary renders.
-
-
-
-
-In React, a child component re-renders whenever the parent component re-renders, even if the props passed to the child haven't changed. This happens because in JavaScript, even if two objects have the same properties, they are considered different if they occupy different memory spaces.
-
-When we pass computed values (e.g., objects or arrays) as props, React will treat them as new values on every render unless they are memoized. This can cause unnecessary rendering of child components.
-
-useMemo ensures that the computed values (e.g., objects, arrays) are only recalculated when their dependencies change, preventing React from seeing them as "new" props and thus stopping the unnecessary rendering of the child.
-
-
-
-
-
-
-Preventing Unnecessary Child Component Renders:
-If you pass a computed value as a prop to child components, useMemo ensures it’s only recalculated when dependencies change, thus preventing unnecessary renders.
-
-
-
-
-    If a function includes a complex calculation, you can avoid recomputing then you can using the useMemo() hook.
-    useMemo will  returns a memoized value that is not recomputed unless if one of the
-    dependencies has changed.
-
-    useMemo: Returns a memoized value.
-
-
-    {/*
-
-    React's useMemo() Hook can be used to optimize the computation costs of your React function components.
-    The useMemo()
-    is similar to useCallback() except it allows you to apply memoization to any value type (not just functions).
-
-    It does this by accepting a function which returns the value and then that function is only called when the value
-    needs to be retrieved (which typically will only happen once each time an element in the dependencies array changes
-    between renders).
-
-
-
-
-    The useMemo is similar to useCallback hook as it accepts a function and a list of dependencies
-    but it returns the memoized value returned by the passed function.
-    It recalculated the value only when one of its dependencies change.
-    It is useful to avoid expensive calculations on every render when the returned value is not going to change. */}
-    ---------------------------------------------------------------------------------
-    React.memo is a higher-order component in React that memoizes a component, meaning it will only re-render if its props change. This is particularly useful for functional components to optimize performance by preventing unnecessary re-renders.
-    
-
-
----------------------------------------------------------------------------------
-    Difference Between useMemo and useCallback
-Purpose:
-
-useMemo: Memoizes the result of a computation (i.e., a value like an object, array, or derived data).
-useCallback: Memoizes a function so that the same function reference is used across renders unless dependencies change.
-Return Value:
-
-useMemo returns the memoized value.
-useCallback returns the memoized function.
-When to Use:
-
-Use useMemo when you want to memoize data or the result of an expensive computation.
-Use useCallback when you want to memoize a function, especially if you're passing it as a prop to child components to prevent unnecessary renders.
-
-Key Difference in Usage
-useMemo Example:
-
-Memoizes an object like { value } to prevent unnecessary renders of a child component that depends on that object.
-useCallback Example:
-
-Memoizes a function like onClick to prevent unnecessary renders of a child component that depends on that function.
-
-
-When to Use Which?
-Use useMemo when:
-
-You have expensive computations or derived state (e.g., filtering a list, sorting data).
-You want to prevent passing "new" object/array references to child components.
-Use useCallback when:
-
-You are passing a function as a prop to a React.memo-wrapped child component.
-You want to ensure the function reference doesn’t change unnecessarily.
-
-
-    ---------------------------------------------------------------------------------
-
-### **`useMemo` Key Scenarios**
-
-#### **1. When Passing Values from Parent to Child**
-- The parent re-renders and creates new object/array references passed as props.
-- Even if the object/array content remains unchanged, React treats it as a new value because the reference is different.
-- **`useMemo` ensures**:
-  - The value passed to the child is only recomputed when dependencies change.
-  - Prevents unnecessary re-renders of the child component.
-
----
-
-#### **2. Within the Same Component**
-- You perform expensive calculations or create derived state in the component.
-- Without `useMemo`, these calculations run on **every render**, even if inputs haven’t changed.
-- **`useMemo` ensures**:
-  - Calculations are only recomputed when the dependencies change.
-  - Optimizes performance by skipping redundant computations.
-
----------------------------------------------------------------------------------
-### **Difference Between `useMemo` and `useCallback`**
-
-1. **Purpose**:
-   - `useMemo`: Memoizes the **result of a computation** (i.e., a value like an object, array, or derived data).
-   - `useCallback`: Memoizes a **function** so that the same function reference is used across renders unless dependencies change.
-
-2. **Return Value**:
-   - `useMemo` returns the **memoized value**.
-   - `useCallback` returns the **memoized function**.
-
-3. **When to Use**:
-   - Use `useMemo` when you want to memoize **data** or the **result of an expensive computation**.
-   - Use `useCallback` when you want to memoize **a function**, especially if you're passing it as a prop to child components to prevent unnecessary renders.
-
----
-
-### **How They Differ in the Same Scenario**
-
-#### Using `useMemo`
-
-```javascript
-import React, { useState, useMemo } from "react";
-
-const ChildComponent = React.memo(({ data }) => {
-  console.log("ChildComponent rendered!");
-  return <div>Data: {data.value}</div>;
-});
-
-const ParentComponent = () => {
-  const [count, setCount] = useState(0);
-  const [value, setValue] = useState("React");
-
-  // Memoizing the data object
-  const data = useMemo(() => ({ value }), [value]);
-
-  return (
-    <div>
-      <h1>Parent Component</h1>
-      <button onClick={() => setCount(count + 1)}>Increment Count: {count}</button>
-      <button onClick={() => setValue(value === "React" ? "Hooks" : "React")}>
-        Toggle Value
-      </button>
-      <ChildComponent data={data} />
-    </div>
-  );
-};
-
-export default ParentComponent;
-```
-
-Here, `useMemo` is used to memoize the `data` object. If `value` doesn’t change, the `data` reference stays the same, preventing unnecessary renders of `ChildComponent`.
-
----
-
-#### Using `useCallback`
-
-If we instead need to pass a **function** as a prop to the child component:
-
-```javascript
-import React, { useState, useCallback } from "react";
-
-const ChildComponent = React.memo(({ onClick }) => {
-  console.log("ChildComponent rendered!");
-  return <button onClick={onClick}>Click Me</button>;
-});
-
-const ParentComponent = () => {
-  const [count, setCount] = useState(0);
-  const [value, setValue] = useState("React");
-
-  // Memoizing the onClick function
-  const onClick = useCallback(() => {
-    console.log("Button clicked!", value);
-  }, [value]);
-
-  return (
-    <div>
-      <h1>Parent Component</h1>
-      <button onClick={() => setCount(count + 1)}>Increment Count: {count}</button>
-      <ChildComponent onClick={onClick} />
-    </div>
-  );
-};
-
-export default ParentComponent;
-```
-
-Here:
-- `useCallback` is used to memoize the `onClick` function. 
-- The `ChildComponent` will only re-render if the `onClick` function reference changes, which happens when `value` changes.
-
----
-
-### **Key Difference in Usage**
-
-1. **`useMemo` Example**:
-   - Memoizes an **object** like `{ value }` to prevent unnecessary renders of a child component that depends on that object.
-
-2. **`useCallback` Example**:
-   - Memoizes a **function** like `onClick` to prevent unnecessary renders of a child component that depends on that function.
-
----
-
-### **Comparison Table**
-
-| Feature                     | `useMemo`                            | `useCallback`                        |
-|-----------------------------|---------------------------------------|--------------------------------------|
-| **Purpose**                 | Memoizes a computed value.           | Memoizes a function.                |
-| **Returns**                 | The result of the computation.       | A memoized version of the function. |
-| **Primary Use Case**        | Expensive calculations or derived data. | Functions passed as props to child components. |
-| **When Dependencies Change**| Recomputes the value.                | Recreates the function.             |
-| **Prevents Unnecessary Renders?** | For derived values (e.g., objects, arrays). | For functions passed as props.      |
-
----
-
-### **When to Use Which?**
-
-1. **Use `useMemo` when:**
-   - You have expensive computations or derived state (e.g., filtering a list, sorting data).
-   - You want to prevent passing "new" object/array references to child components.
-
-2. **Use `useCallback` when:**
-   - You are passing a function as a prop to a `React.memo`-wrapped child component.
-   - You want to ensure the function reference doesn’t change unnecessarily.
-
----
-
-### **Conclusion**
-
-Both `useMemo` and `useCallback` are tools for optimizing performance in React, but they solve **different problems**. 
-
-- Use **`useMemo`** for **data values**.
-- Use **`useCallback`** for **functions**.
-
-If you want to optimize both data and function references in a component, you might end up using **both hooks together**! Let me know if you’d like an example for that. 😊
-
-
-=====================================================================
-### **Theoretical Explanation: `useMemo` vs `useCallback`**
-
-Both `useMemo` and `useCallback` are React hooks used for **performance optimization**, but they serve slightly different purposes:
-
----
-
-### **1. `useMemo`**
-- **Purpose**: Memoizes **values** (e.g., objects, arrays, or expensive calculations).
-- **Use Case**: When you want to prevent **unnecessary recalculations** or re-creation of a value.
-- **When to Use**: 
-  - Passing **derived values** (like objects or arrays) from **parent to child** to prevent the child from re-rendering unnecessarily.
-  - Avoiding recomputation of **expensive calculations** in the same component.
-
-#### **Key Point**:
-- `useMemo` returns a **memoized value** and ensures that the value is only recomputed when the **dependencies change**.
-
----
-
-### **2. `useCallback`**
-- **Purpose**: Memoizes **functions** so they maintain the same reference across renders.
-- **Use Case**: When you want to prevent **unnecessary re-creation of functions**.
-- **When to Use**:
-  - Passing **callback functions** from **parent to child** to prevent the child from re-rendering unnecessarily.
-  - Avoiding re-creation of event handlers, API calls, or other functions in the same component when their dependencies haven't changed.
-
-#### **Key Point**:
-- `useCallback` returns a **memoized function** and ensures the function reference remains the same unless the **dependencies change**.
-
----
-
-### **Key Differences**
-
-| Feature                  | `useMemo`                         | `useCallback`                    |
-|--------------------------|------------------------------------|-----------------------------------|
-| **Purpose**              | Memoizes a **value**              | Memoizes a **function**           |
-| **Output**               | Returns a memoized value          | Returns a memoized function       |
-| **Use Case**             | Optimizes expensive calculations or derived values | Optimizes event handlers or callback props |
-| **Prevents**             | Recomputing values unnecessarily  | Recreating functions unnecessarily |
-
----
-
-### **Example Scenarios**
-
-#### **Scenario 1: Passing from Parent to Child**
-- **`useMemo`**: Prevents passing a new object/array reference as props when the data hasn't changed.
-- **`useCallback`**: Prevents passing a new function reference as props when the logic hasn't changed.
-
-#### **Scenario 2: Within the Same Component**
-- **`useMemo`**: Avoids expensive calculations on every render.
-- **`useCallback`**: Prevents re-creation of event handlers or API call functions, which could impact performance.
-
----
-
-### **Summary**
-- **`useMemo`** is for memoizing **values**.
-- **`useCallback`** is for memoizing **functions**.
-- Both help in **optimizing performance** by preventing unnecessary re-renders or recalculations.
-
-============================================================
-
-
-
-
-
-
-
-
-  
- ####   useImperativeHandle()
-
-    useImperativeHandle() customizes the instance value that is exposed to parent components when using ref. As always,
-    imperative code using refs should be avoided in most cases.
-    useImperativeHandle should be used with forwardRef.
-
-    ### **`useImperativeHandle` in React**
-
-#### **Definition**  
-`useImperativeHandle` is a React hook used with `forwardRef` to customize the values or methods exposed to a parent component when using a `ref`.
-
-#### **Purpose**  
-- It allows child components to control what functionality or values are accessible via the `ref` from the parent.  
-- Instead of exposing the entire DOM or component instance, it exposes specific methods or properties.
-
-#### **How It Works**  
-- By default, a `ref` attached to a child component gives access to the underlying DOM node or component instance.  
-- `useImperativeHandle` customizes this behavior by allowing you to expose selected methods or properties.
-
-#### **Use Cases**  
-- To expose specific actions like focus, scroll, or reset methods to a parent.  
-- When a child manages multiple elements and the parent needs access to specific functionality.
-
-#### **Key Points**  
-- Works **only with `forwardRef`** to pass the ref from parent to child.  
-- Prevents exposing unnecessary internal logic of the child.  
-- Useful for controlled interactions between components.
-
-#### **When Not to Use**  
-- Avoid if the same functionality can be achieved with props or state.  
-- Use it sparingly to keep components declarative and maintainable.
-
-    ---------------------------------------------------------------------------------
-
-    Custom Hooks:
-    Custom Hooks are a mechanism to reuse stateful logic
-    Custom hooks are nothing but these are javascript functions,
-    if we have something common logic that we want to share between components
-    then we use custom hooks.
-    These are logic that will be reused in many components.
-    We can create hooks using the name start with “use” keyword.
-
-    {/*
-    A custom Hook is basically a JavaScript function.
-    Its name begins with "use" that could invoke other Hooks.
-    The working of a custom Hook is identical to a regular function.
-    The "use" in the starting describes that this particular function conforms to the rules of Hooks.
-    Moreover, building custom Hooks enables you to extract component logic inside reusable functions.
-    We create a different function and write a shared logic here. */}
-
-    ---------------------------------------------------------------------------------------------
-
-    What is useRef in React?
-    The useRef is a hook that allows to directly create a reference to the DOM element in the functional component.
-    Syntax: const refContainer = useRef(initialValue);
-    The useRef returns a mutable ref object.
-    Use useRef if you need to manage focus, text selection, trigger imperative animations or integrating third-party libraries.
-
-    -----------------------------------------------------------------------------------------------
-    While both useMemo and useCallback remember something between renders until the dependancies change, the difference is just what they remember.
-
-    useMemo will remember the returned value from your function.
-
-    useCallback will remember your actual function.
-
-    The main difference between the two is that ‘useCallback returns a memoized callback and ‘useMemo returns a memoized value that is the result of the function parameter.
-
-    --
-
-
------------------------------------------------------------------------------------------------
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@===================@@@@@@@@@@@@@@@@@@@@@@@@@
 
 ## **React Hooks Overview**
 
@@ -700,8 +462,9 @@ Hooks are a feature introduced in React 16.8 that allow you to use state and oth
      const [state, setState] = React.useState(initialState);
      ```
    - **Example:**
+
      ```javascript
-     import React, { useState } from 'react';
+     import React, { useState } from "react";
 
      function Counter() {
        const [count, setCount] = useState(0);
@@ -709,9 +472,7 @@ Hooks are a feature introduced in React 16.8 that allow you to use state and oth
        return (
          <div>
            <p>You clicked {count} times</p>
-           <button onClick={() => setCount(count + 1)}>
-             Click me
-           </button>
+           <button onClick={() => setCount(count + 1)}>Click me</button>
          </div>
        );
      }
@@ -725,16 +486,17 @@ Hooks are a feature introduced in React 16.8 that allow you to use state and oth
      const [state, dispatch] = useReducer(reducer, initialState);
      ```
    - **Example:**
+
      ```javascript
-     import React, { useReducer } from 'react';
+     import React, { useReducer } from "react";
 
      const INITIAL_STATE = { count: 0 };
 
      function reducer(state, action) {
        switch (action.type) {
-         case 'increment':
+         case "increment":
            return { count: state.count + 1 };
-         case 'decrement':
+         case "decrement":
            return { count: state.count - 1 };
          default:
            throw new Error();
@@ -747,8 +509,12 @@ Hooks are a feature introduced in React 16.8 that allow you to use state and oth
        return (
          <div>
            <p>Count: {state.count}</p>
-           <button onClick={() => dispatch({ type: 'increment' })}>Increment</button>
-           <button onClick={() => dispatch({ type: 'decrement' })}>Decrement</button>
+           <button onClick={() => dispatch({ type: "increment" })}>
+             Increment
+           </button>
+           <button onClick={() => dispatch({ type: "decrement" })}>
+             Decrement
+           </button>
          </div>
        );
      }
@@ -762,10 +528,11 @@ Hooks are a feature introduced in React 16.8 that allow you to use state and oth
      const Context = React.createContext(defaultValue);
      ```
    - **Example:**
-     ```javascript
-     import React, { createContext, useContext } from 'react';
 
-     const ThemeContext = createContext('light');
+     ```javascript
+     import React, { createContext, useContext } from "react";
+
+     const ThemeContext = createContext("light");
 
      function ThemedComponent() {
        const theme = useContext(ThemeContext);
@@ -794,8 +561,9 @@ Hooks are a feature introduced in React 16.8 that allow you to use state and oth
      }, [dependencies]);
      ```
    - **Example:**
+
      ```javascript
-     import React, { useState, useEffect } from 'react';
+     import React, { useState, useEffect } from "react";
 
      function Example() {
        const [count, setCount] = useState(0);
@@ -804,7 +572,7 @@ Hooks are a feature introduced in React 16.8 that allow you to use state and oth
          document.title = `You clicked ${count} times`;
 
          return () => {
-           document.title = 'React App';
+           document.title = "React App";
          };
        }, [count]);
 
@@ -829,8 +597,9 @@ Hooks are a feature introduced in React 16.8 that allow you to use state and oth
      }, [dependencies]);
      ```
    - **Example:**
+
      ```javascript
-     import React, { useCallback, useState } from 'react';
+     import React, { useCallback, useState } from "react";
 
      function ChildComponent({ onClick }) {
        return <button onClick={onClick}>Click me</button>;
@@ -860,8 +629,9 @@ Hooks are a feature introduced in React 16.8 that allow you to use state and oth
      const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
      ```
    - **Example:**
+
      ```javascript
-     import React, { useMemo, useState } from 'react';
+     import React, { useMemo, useState } from "react";
 
      function computeExpensiveValue(a, b) {
        // Expensive computation
@@ -892,8 +662,9 @@ Hooks are a feature introduced in React 16.8 that allow you to use state and oth
      const ref = useRef(initialValue);
      ```
    - **Example:**
+
      ```javascript
-     import React, { useRef } from 'react';
+     import React, { useRef } from "react";
 
      function FocusInput() {
        const inputRef = useRef(null);
@@ -921,8 +692,9 @@ Hooks are a feature introduced in React 16.8 that allow you to use state and oth
      }));
      ```
    - **Example:**
+
      ```javascript
-     import React, { useImperativeHandle, forwardRef, useRef } from 'react';
+     import React, { useImperativeHandle, forwardRef, useRef } from "react";
 
      const CustomInput = forwardRef((props, ref) => {
        const inputRef = useRef(null);
@@ -930,7 +702,7 @@ Hooks are a feature introduced in React 16.8 that allow you to use state and oth
        useImperativeHandle(ref, () => ({
          focus: () => {
            inputRef.current.focus();
-         }
+         },
        }));
 
        return <input ref={inputRef} />;
@@ -956,13 +728,15 @@ Hooks are a feature introduced in React 16.8 that allow you to use state and oth
 
 - **Purpose:** Memoizes a component to prevent unnecessary re-renders if its props haven’t changed.
 - **Syntax:**
+
   ```javascript
   const MemoizedComponent = React.memo(Component);
   ```
 
 - **Example:**
+
   ```javascript
-  import React from 'react';
+  import React from "react";
 
   function ExpensiveComponent({ data }) {
     // Expensive calculations
@@ -982,8 +756,9 @@ Hooks are a feature introduced in React 16.8 that allow you to use state and oth
   }
   ```
 - **Example:**
+
   ```javascript
-  import { useState, useEffect } from 'react';
+  import { useState, useEffect } from "react";
 
   function useWindowWidth() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -991,10 +766,10 @@ Hooks are a feature introduced in React 16.8 that allow you to use state and oth
     useEffect(() => {
       const handleResize = () => setWindowWidth(window.innerWidth);
 
-      window.addEventListener('resize', handleResize);
+      window.addEventListener("resize", handleResize);
 
       return () => {
-        window.removeEventListener('resize', handleResize);
+        window.removeEventListener("resize", handleResize);
       };
     }, []);
 

@@ -2,14 +2,18 @@
 
     -Hooks are the new feature introduced in the React 16.8 version.
     -With help of the React Hook we can use  state and other React features without writing a class.
+     -With help of the React Hook we can also use  react lifecycle features in function component
+    -Hooks dont work inside class component
+
     -usually hook start the use keyword
     -React Hooks features to handle the local component state.
-    -With help of the React Hook we can also use  react lifecycle features in function component
-    -Hooks dont work inside class component
+   
+    -They allow you to use state and other React features in functional components, which were previously only available in class components.
 
 
     --------------------------------------------------------------------
     01 useeffect()
+
 
 
 
@@ -34,9 +38,6 @@
 */}
 
   
-    hook that helps us to perform mutations, subscriptions, timers, logging, and other side effects after all the components has been rendered.
-    The useEffect accepts a function that is imperative in nature and a list of dependencies.
-    When its dependencies change it executes the passed function.
 
     ------------------------------##### Basic Hooks ########  --------------------------------------------
 

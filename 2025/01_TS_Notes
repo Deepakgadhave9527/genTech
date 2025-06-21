@@ -1,0 +1,701 @@
+### 🔹 `Omit<Type, Keys>` in TypeScript
+
+`Omit` is a **utility type** built into TypeScript.
+### ✅ What it does:
+
+It **creates a new type** by **removing one or more properties** from an existing type.
+
+### 📘 Syntax:
+
+Omit<Type, Keys>
+
+* `Type`: The original type (e.g., `Post`)
+* `Keys`: One or more keys to remove from the original type (e.g., `'id'`)
+
+### 📌 Example
+
+type Post = {
+  id: number;
+  title: string;
+  content: string;
+};
+
+type NewPost = Omit<Post, 'id'>;
+
+**Result:**
+
+type NewPost = {
+  title: string;
+  content: string;
+};
+
+So this allows us to define:
+
+const newPost: NewPost = {
+  title: "Hello",
+  content: "World",
+  // no id here
+};
+
+
+### ✅ When to use `Omit`
+
+* When you're **sending new data to a backend** (where `id` is auto-generated).
+* When you're **building a form** that doesn't require some fields (like `createdAt`, `updatedAt`, etc.).
+* When reusing a type **but hiding some fields** from a user.
+
+
+
+Would you like a visual or analogy-based explanation too?
+
+
+=============================================
+
+Sure! Here's a **simple answer** you can copy into your notes:
+
+---
+
+### 📒 **Is `React.FC` required in React with TypeScript?**
+
+**Answer:** ❌ **No**, `React.FC` is **not required**.
+You can create function components without using it.
+
+✅ It's better to define props with `type` or `interface` and use arrow functions.
+
+**Example without React.FC (recommended):**
+
+```tsx
+type Props = {
+  name: string;
+};
+
+const MyComponent = ({ name }: Props) => {
+  return <h1>Hello, {name}</h1>;
+};
+```
+=============================================
+
+Absolutely! Here's a clean note with **both examples** — one using `React.FC` and one **without** it (recommended):
+
+---
+
+### 📒 **Is `React.FC` required in React with TypeScript?**
+
+**Answer:** ❌ No, it's optional. You can write components **with or without** `React.FC`.
+✅ **Without `React.FC` is recommended** for better type control.
+
+---
+
+### ✅ Example **Without `React.FC`** (Recommended)
+
+```tsx
+type Props = {
+  name: string;
+};
+
+const MyComponent = ({ name }: Props) => {
+  return <h1>Hello, {name}</h1>;
+};
+```
+
+---
+
+### ✅ Example **With `React.FC`**
+
+```tsx
+type Props = {
+  name: string;
+};
+
+const MyComponent: React.FC<Props> = ({ name }) => {
+  return <h1>Hello, {name}</h1>;
+};
+```
+
+---
+
+### 📝 Summary:
+
+| Aspect               | Without `React.FC` | With `React.FC` |
+| -------------------- | ------------------ | --------------- |
+| Required?            | ❌ No               | ❌ No            |
+| Auto `children` prop | ❌ No               | ✅ Yes           |
+| Recommendation       | ✅ Preferred        | ⚠️ Optional     |
+
+---
+
+You can paste this into your notes directly. Let me know if you want a handwritten-style cheat sheet too!
+
+
+=============================================
+Sure! Here's a simple version for your notes:
+
+---
+
+### 📒 **How to use `useState` with primitive and non-primitive types in TypeScript?**
+
+#### ✅ Primitive Types:
+
+```tsx
+const [name, setName] = useState<string>('Deepak'); // string
+const [age, setAge] = useState<number>(25);         // number
+const [isOnline, setIsOnline] = useState<boolean>(true); // boolean
+```
+
+#### ✅ Non-Primitive Types:
+
+```tsx
+const [items, setItems] = useState<string[]>([]); // array of strings
+
+type User = {
+  name: string;
+  age: number;
+};
+
+const [user, setUser] = useState<User>({ name: 'Deepak', age: 25 }); // object
+
+const [userOrNull, setUserOrNull] = useState<User | null>(null); // nullable object
+```
+
+---
+
+✅ **Note:** TypeScript can infer types, but if initial value is `null`, you should specify the type.
+
+---
+
+Let me know if you want this as an image or PDF for print!
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+=============================================
+
+
+
+
+
+
+
+
+
+
