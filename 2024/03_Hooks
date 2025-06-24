@@ -435,6 +435,121 @@ This ref can then be forwarded to a DOM element inside the child, enabling the p
 - Avoid if the same functionality can be achieved with props or state.
 - Use it sparingly to keep components declarative and maintainable.
 
+================================================================
+
+### useLayoutEffect
+
+The useLayoutEffect hook in React functions similarly to useEffect but differs in its execution timing. While useEffect runs asynchronously after the browser has painted the screen, useLayoutEffect runs synchronously immediately after all DOM mutations have been applied, but before the browser paints the screen
+
+
+useLayoutEffect is a React Hook similar to useEffect, but it runs synchronously after the DOM updates and before the browser paints the screen. It is used when you need to read layout measurements or update the DOM immediately to prevent visual flickering or layout shifts.
+
+
+useEffect is a React Hook that lets you perform side effects in function components. It runs after the component renders and the DOM has been painted, making it suitable for tasks like data fetching, setting up event listeners, or updating state based on props.
+
+
+
+
+useLayoutEffect = runs before user sees the screen
+
+useEffect = runs after user sees the screen
+
+
+Use useLayoutEffect only when you need to read or change the DOM immediately after React makes changes, but before the browser paints the screen.
+
+useLayoutEffect(() => {
+  const height = ref.current.offsetHeight;
+  console.log("Height:", height);
+}, []);
+
+| Use `useLayoutEffect` when you need to: |
+| --------------------------------------- |
+| ✅ Read layout (position, size)          |
+| ✅ Avoid flickers/layout shift           |
+| ✅ Do animations instantly               |
+| ✅ Set scroll before paint               |
+| ✅ Use third-party libraries using DOM   |
+
+
+
+
+========================================================================
+
+
+
+
+
+
+ ###
+ difference between `useEffect` and `useLayoutEffect` in React:
+
+
+### 🔁 `useEffect`
+
+* **Runs**: *after the DOM has been painted (visible to user)*.
+* **Use for**: Side effects like data fetching, subscriptions, logging, timers, etc.
+* **Non-blocking**: It does **not block** the browser from painting the UI.
+* ✅ **Best for most cases.**
+
+```jsx
+useEffect(() => {
+  // Runs after screen updates
+  console.log('useEffect');
+}, []);
+```
+
+---
+
+### 🧱 `useLayoutEffect`
+
+* **Runs**: *after DOM mutations but before the browser paints the screen*.
+* **Use for**: Measuring layout, synchronously mutating the DOM, animations.
+* **Blocking**: It **blocks** the screen from being shown until it finishes.
+
+```jsx
+useLayoutEffect(() => {
+  // Runs before screen paint
+  console.log('useLayoutEffect');
+}, []);
+```
+
+
+
+
+The difference comes from
+- where useLayoutEffect will be called before the user can see the visual changes in that render 
+- whereas useEffect will be called after a user is able to see the visual changes in that render.
+
+---
+
+### 🧠 Example to Understand
+
+```jsx
+useEffect(() => {
+  divRef.current.style.color = 'red';
+}, []);
+
+useLayoutEffect(() => {
+  divRef.current.style.color = 'blue';
+}, []);
+```
+
+* The user will **see blue** text because `useLayoutEffect` runs **before paint**.
+* `useEffect` is too late to change what the user sees **initially**.
+
+---
+
+### ✅ When to Use Each
+
+| Case                                | Hook to Use       |
+| ----------------------------------- | ----------------- |
+| Fetch data from API                 | `useEffect`       |
+| DOM measurement (like width/height) | `useLayoutEffect` |
+| Set `document.title`                | `useEffect`       |
+| Smooth animation start              | `useLayoutEffect` |
+| Logging or analytics                | `useEffect`       |
+
+
  ================================================================ 
 
   Custom Hooks:
@@ -452,18 +567,6 @@ This ref can then be forwarded to a DOM element inside the child, enabling the p
   The "use" in the starting describes that this particular function conforms to the rules of Hooks.
   Moreover, building custom Hooks enables you to extract component logic inside reusable functions.
   We create a different function and write a shared logic here. _/}
-
-
-========================================================================
-
-
-
-
-
-
-
-
-
 
 
 

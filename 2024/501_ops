@@ -644,3 +644,75 @@ export default App;
 - **forwardRef**: Allows access to a single DOM element or child component instance.
 - **useImperativeHandle**: Can be used to expose multiple DOM elements or methods within the child component, giving the parent access to more than one part of the child’s functionality or state.
 
+=====================================
+
+
+
+
+React Portals
+
+-A React Portal provides a way to render children into a DOM node outside the main parent component hierarchy. 
+
+-It's created using ReactDOM.createPortal(child, container).
+
+
+ReactDOM.createPortal(child, container);
+
+
+child: The React element you want to render.
+
+container: The DOM node where you want the child to be rendered.
+
+
+ React components render inside their parent DOM node. However, there are cases—like modals, tooltips, or dropdowns—where rendering outside this hierarchy is necessary to avoid styling or z-index issues.
+
+-It solves z-index, positioning, and layout issues commonly faced in nested components.
+
+
+React Portals let you do exactly that.
+
+
+
+ReactDOM.createPortal(
+  <div className="modal">Modal Content</div>,
+  document.getElementById('modal-root')
+);
+
+
+
+- React Portals render children into a DOM node outside the parent component’s DOM hierarchy.
+- Useful for modals, tooltips, and overlays that need to visually break out of their parent container.
+- Ensures that elements are part of the React component tree.
+- Allows elements to benefit from React’s event handling and lifecycle features.
+
+
+
+ Q37. What is children prop?
+ 
+    There are several methods available in the React API to work with this prop. These include React.Children.map, React.Children.forEach, React.Children.count, React.Children.only, React.Children.toArray.
+    A simple usage of children prop looks as below,
+    
+      const MyDiv = React.createClass({
+        render: function () {
+          return <div>{this.props.children}</div>;
+        },
+      });
+      
+      ReactDOM.render(
+        <MyDiv>
+          <span>{"Hello"}</span>
+          <span>{"World"}</span>
+        </MyDiv>,
+        node
+      );
+
+
+
+
+
+
+
+================================================================================
+
+
+
