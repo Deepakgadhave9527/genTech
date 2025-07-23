@@ -715,4 +715,145 @@ ReactDOM.createPortal(
 ================================================================================
 
 
+- `useRef()` is designed for functional components to create mutable object references that persist across renders without causing re-renders.
+- For functional components, it is recommended to use `useRef()` as it is designed specifically for functional components and provides the same functionality.
+- you can use createRef() in a React functional component, but its not recommended. 
+- Its better to use useRef() instead, ass it is designed specifically for functional components and provides the same functionality
+ 
+createRef() is not recommended in functional components because it creates a new ref object on every render, causing the previous ref to be lost and leading to potential issues with persistence and state.
 
+createRef() returns a new ref object every time
+Functional components re-run from scratch on every render.
+
+If you use React.createRef() directly inside the component body, it creates a new ref on every render, so you lose the previous ref.
+
+useRef() is built to persist values across renders
+useRef() returns the same object on every render.
+
+Using createRef() inside a functional component will create a new ref object on every render, which means the ref value is reset with each render, causing you to lose the previous ref value.
+
+
+The key difference is that useRef() retains the same ref object across renders, whereas createRef() generates a new ref object on every render, which can lead to unnecessary re-renders and loss of the previous ref object. -->
+
+
+======================
+
+
+
+**Subject:** Request for Reimbursement – Food and Travel Expenses (29 June – 5 July 2025)
+
+Hi 
+
+I hope you're doing well.
+
+I am submitting a reimbursement request for official **food and travel expenses** incurred between **29 June and 5 July 2025**. Please find the detailed breakdown below:
+
+
+
+A] Food Expenses
+
+| Date      | Vendor Name                          | Amount (INR)  |
+| --------- | ------------------------------------ | ------------- |
+| 30-Jun-25 | Fomo - Fusion Of Masala Odyssey      | ₹288.00       |
+| 01-Jul-25 | Bikkgane Biryani                     | ₹259.00       |
+| 01-Jul-25 | Veer Da Chappar                      | ₹468.00       |
+| 02-Jul-25 | Thali Meals And More                 | ₹263.00       |
+| 03-Jul-25 | Pirates Of Grill                     | ₹530.00       |
+| 05-Jul-25 | KHELA ENTERPRISES (21510108\@SBIPAY) | ₹160.00       |
+|           |   Total (Food)                       |   ₹1,968.00   |
+
+
+B] Travel Expenses
+
+| Date      | Vendor / Payee Name | UPI ID / Provider  | Amount (INR)  |
+| --------- | ------------------- | ------------------ | ------------- |
+| 29-Jun-25 | Uber                | Uber App           | ₹976.00       |
+| 30-Jun-25 | Uber                | Uber App           | ₹115.66       |
+| 01-Jul-25 | Ola                 | Ola App            | ₹192.00       |
+| 01-Jul-25 | Arvind auto         | Q535622957\@ybl    | ₹200.00       |
+| 02-Jul-25 | Ola                 | Ola App            | ₹159.95       |
+| 02-Jul-25 | Nurul Mahalat       | XXXXXX8574\@kotak  | ₹150.00       |
+| 03-Jul-25 | Ola                 | Ola App            | ₹222.00       |
+| 03-Jul-25 | Arvind auto         | Q245541802\@ybl    | ₹150.00       |
+| 04-Jul-25 | Himanshu            | XXXXXX3122\@pthdfc | ₹200.00       |
+| 04-Jul-25 | Noaman              | XXXXXX3638\@axl    | ₹677.00       |
+| 05-Jul-25 | Sanket Soni         | XXXXXX7052\@ybl    | ₹614.00       |
+|           |   Total (Travel)    |                    |   ₹3,456.61   |
+
+
+
+Grand Total Reimbursement Requested: ₹5,424.61
+
+All supporting receipts and UPI confirmations are attached for reference. Please let me know if anything else is required to process this request.
+
+Best regards,
+Deepak Gadhave
+
+
+===================================================
+
+
+
+-In higher-order component function that takes a component and returns a new component.
+
+We want an abstraction that allows us to define this logic in a single place and share it across many components. This is where higher-order components 
+
+
+
+-it is a function which accepts another function as an argument.
+-higher-order component converts a component into another component.
+
+
+
+
+
+### Higher-Order Components (HOCs) in React
+
+- **Definition**: A Higher-Order Component (HOC) is an advanced React pattern used for reusing component logic. It is a function that takes a component as its argument and returns a new component with additional functionality.
+
+- 
+
+- **How HOCs Work**: 
+  - **Function Signature**: An HOC is a function that accepts a component (often called WrappedComponent) and returns a new component with enhanced behavior.
+  - **Return Value**: The new component usually includes additional props or logic and renders the original component.
+
+- **Example Usage**:
+  - **Code Reusability**: Share common logic such as authentication checks, data fetching, or logging across different components.
+  - **Props Manipulation**: Add, modify, or filter props before passing them to the wrapped component.
+  - **State Management**: Manage state or lifecycle methods in a centralized manner and pass relevant state or handlers as props.
+
+- **React API**: HOCs are not a formal part of the React API; rather, they are a pattern that emerges from Reacts compositional nature. They leverage the ability to compose components and add functionality in a reusable way.
+
+
+### Summary
+
+- **Definition**: HOCs are functions that take a component and return a new component with enhanced functionality.
+- **Use Cases**: Code reusability, props manipulation, and state handling.
+- **Pattern**: They are a pattern rather than a built-in part of Reacts API.
+
+Your understanding is correct, and you’ve captured the key concepts of HOCs effectively.
+
+
+
+
+
+Higher-order components (HOCs) are a powerful feature of the React library. They allow you to reuse component logic across multiple components.
+
+HOCs allow you to add additional functionality to a component without modifying the component's code.
+
+This is where HOCs come in. Higher-order components allow developers to reuse code logic in their projects. As a result, this means less repetition and more optimized, readable code.
+
+
+
+
+
+- **Conditional Rendering**: Show components based on logic, like user roles or permissions.  
+- **Authentication**: Protect routes or components, showing them only to logged-in users.  
+- **Data Fetching**: Fetch data and pass it as props, managing loading and error states.  
+- **Styling**: Apply dynamic styles or themes to components.  
+- **State Management**: Share and manage app-wide state across components.  
+- **Logging**: Track events or errors for analytics and debugging.  
+- **Caching**: Improve performance by reusing computed data.  
+- **Internationalization**: Pass translations and language settings to components.  
+
+HOCs make code reusable, modular, and easier to maintain.
