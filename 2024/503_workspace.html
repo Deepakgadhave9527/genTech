@@ -1,0 +1,23 @@
+<script>
+    function Construct(name) {
+        console.log(name)
+        this.username = name
+        console.log(this)
+
+    }
+    Construct.prototype.sayHello = function () {
+        console.log("this", this)
+        console.log("say hellow function", this.username)
+        return this.username
+    }
+    const construct = new Construct("abc")
+    const construct2 = new Construct("abc2")
+
+    console.log(
+        construct2.sayHello()
+
+    )
+
+
+
+</script>

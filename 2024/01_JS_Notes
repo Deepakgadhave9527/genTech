@@ -77,37 +77,6 @@ greetBob(); // Output: Hello, Bob
   });
 </script>
 
-
-//===========================Bubbling and Capturing =========================
-
-
-A) Bubbling
-
--The bubbling principle is simple.
--When an event happens on an element, it first runs the handlers on it,
-then on its parent, then all the way up on other ancestors.
-
--With bubbling, the event is first captured and handled by the innermost element and
-then propagated to outer elements.
-
-
-B] capturing
-
-- capturing principle is simple.
--when an event happen on element ,it first run the parent element of then lastly run handler
-
-
--With capturing, the event is first captured by the outermost element and
-propagated to the inner elements.
-
--Capturing is also called "trickling", which helps remember the propagation order:
-
-stopPropagation prevents further propagation of the current event in the capturing and bubbling phases.
-
-preventDefault prevents the default action the browser makes on that event.
-
-
-
 ========================== typeof ==================================
 
 Q1: What is typeof operator?
@@ -242,27 +211,27 @@ Prototype Chain
 
 
      
-========================================================================
-prototype vs  __proto__
+======================= Prototype vs __proto__ ==================================
+
+
+### prototype:
+
+- Defines properties and methods for constructor functions.
+- Exists only on functions (constructor functions).
+- Used for inheritance in object creation with new.
+
+### __proto__:
+
+- Accesses or sets the prototype of individual objects.
+- Exists on all objects.
+- Used for dynamic prototype handling.
+
 
 prototype is used to define properties and methods for constructor functions.
 prototype exists only on functions (specifically, constructor functions).
 
 __proto__ is used to access or set the prototype of an individual object.
 __proto__ exists on all objects.
-
-
-Prototype vs __proto__
-prototype:
-
-Defines properties and methods for constructor functions.
-Exists only on functions (constructor functions).
-Used for inheritance in object creation with new.
-__proto__:
-
-Accesses or sets the prototype of individual objects.
-Exists on all objects.
-Used for dynamic prototype handling.
 
 
 ========================================================================
@@ -312,8 +281,8 @@ In javascript to declare a variable you can use 'var' keyword, but since ES6 the
 introduced to declare the variables.
 
 
-
-var:-
+--------------------------------------------------------------------
+### var
 - it is hoisted
 - It is function scoped
 - It  rewritable
@@ -330,8 +299,23 @@ var x = 5;
 var x = 10;
 
 
+var declarations are hoisted to the top of their scope (global or function) Only the declaration is hoisted, not the initialization. 
 
-let:-
+
+
+### ✅ **30-Second Summary for `var`:**
+
+`var` is function-scoped and hoisted to the top of its function or global scope, but initialized as `undefined`. we can both reassign and redeclare `var` variables in the same scope, which can lead to bugs. It's not block-scoped, so variables declared inside `if` or `for` blocks are still accessible outside, which is one reason it's less preferred today.
+
+---
+
+
+
+
+--------------------------------------------------------------------
+
+### let:-
+
 - It is not hoisted
 - It is block scoped
 - It is rewritable
@@ -347,15 +331,24 @@ let y = 5;
 let y = 10; // SyntaxError: Identifier 'y' has already been declared
 
 
+### ✅ **30-Second Summary for `let`:**
+
+`let` is block-scoped and hoisted, but not initialized — so using it before declaration causes a ReferenceError due to the Temporal Dead Zone. It allows reassignment but not redeclaration in the same block. Because of its predictable scoping and safer behavior, `let` is generally preferred over `var`.
 
 
-const:-
+--------------------------------------------------------------------
+
+
+const is hoisted, but it's not initialized, which means it’s in the Temporal Dead Zone until its declaration is reached.
+
+### const:-
 - It is not hoisted
 - It is block scoped
 -const is not  rewritable
 - Cannot be redeclared within the same block scope
 
 
+const creates an immutable binding, meaning the variable identifier cannot be reassigned to a new value; however, if the value is an object or array, the contents of that object or array can still be modified.
 
 -const is not  rewritable
 const x = 10;
@@ -369,6 +362,15 @@ const z = 10; // SyntaxError: Identifier 'z' has already been declared
 hoisting error
 ReferenceError: Cannot access 'a' before initialization
 
+### ✅ **30-Second Summary for `const`:**
+
+`const` is block-scoped, like `let`, and it's hoisted but not initialized — so accessing it before declaration throws a ReferenceError due to the Temporal Dead Zone. You can't reassign or redeclare a `const` variable in the same scope. However, if it's assigned an object or array, the reference stays constant, but the internal contents can still be modified. So, `const` protects the reference, not the data inside non-primitives.
+
+
+
+
+-----------------------------------------------------------------
+
 For primitives, 
 const makes the value itself immutable and the reference unchangeable.
 
@@ -377,6 +379,27 @@ const makes the reference unchangeable, but the contents of the object or array 
 
 ===============================================================================================
 
+*Why can you modify the contents of an object or array declared with `const`?*
+
+When you declare a variable with `const`, it means the **reference** to the value is constant — you cannot reassign the variable to a new value.
+
+For **primitive values** like numbers or strings, `const` means the value itself cannot change. For example, if you declare `const x = 5`, you cannot assign `x = 10` later.
+
+However, for **objects or arrays**, `const` only makes the reference to that object or array constant — the variable always points to the same object in memory. But the **contents inside the object or array can still be changed** because the object itself is mutable. So you can add, remove, or modify properties or elements.
+
+For example:
+
+```js
+const arr = [1, 2, 3];
+arr.push(4); // This works because we are modifying the contents, not the reference.
+
+arr = [5, 6]; // This will throw an error because we are trying to change the reference.
+```
+
+So, `const` protects the reference but does **not** make the object or array immutable.
+
+
+==================================================================
 
 
 
