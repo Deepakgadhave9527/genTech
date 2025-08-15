@@ -307,7 +307,6 @@ var declarations are hoisted to the top of their scope (global or function) Only
 
 `var` is function-scoped and hoisted to the top of its function or global scope, but initialized as `undefined`. we can both reassign and redeclare `var` variables in the same scope, which can lead to bugs. It's not block-scoped, so variables declared inside `if` or `for` blocks are still accessible outside, which is one reason it's less preferred today.
 
----
 
 
 
@@ -379,91 +378,94 @@ const makes the reference unchangeable, but the contents of the object or array 
 
 ===============================================================================================
 
-*Why can you modify the contents of an object or array declared with `const`?*
 
-When you declare a variable with `const`, it means the **reference** to the value is constant — you cannot reassign the variable to a new value.
+# Understanding `const` vs Immutability in JavaScript
 
-For **primitive values** like numbers or strings, `const` means the value itself cannot change. For example, if you declare `const x = 5`, you cannot assign `x = 10` later.
+## What `const` Actually Does
 
-However, for **objects or arrays**, `const` only makes the reference to that object or array constant — the variable always points to the same object in memory. But the **contents inside the object or array can still be changed** because the object itself is mutable. So you can add, remove, or modify properties or elements.
+* **Prevents reassignment** of the variable identifier.
+* **Does NOT make the value immutable**.
 
-For example:
+---
+
+## Immutable vs Mutable Values
+
+### Immutable
+
+* Cannot be changed after creation.
+* Examples include **primitive types**:
+
+  * `String`
+  * `Number`
+  * `Boolean`
+  * `null`
+  * `undefined`
+  * `BigInt`
+  * `Symbol`
+
+### Mutable
+
+* Can be changed after creation.
+* Examples include:
+
+  * `Objects`
+  * `Arrays`
+  * `Functions`
+
+---
+
+## Examples to Illustrate the Difference
+
+### Example 1: `const` with a Primitive (Immutable) Value
 
 ```js
-const arr = [1, 2, 3];
-arr.push(4); // This works because we are modifying the contents, not the reference.
-
-arr = [5, 6]; // This will throw an error because we are trying to change the reference.
+const greeting = "Hello";
+greeting = "Hi"; // ❌ Error: Assignment to constant variable
 ```
 
-So, `const` protects the reference but does **not** make the object or array immutable.
+* `"Hello"` is a **string**, which is immutable.
+* `greeting` is declared with `const`, so reassignment is disallowed.
+* You **cannot** reassign `greeting` to a new string.
 
+---
 
-==================================================================
+### Example 2: `const` with an Object (Mutable Value)
 
+```js
+const person = { name: "Alice" };
+person.name = "Bob"; // ✅ Allowed
+console.log(person.name); // "Bob"
 
-
-### **For Primitives:**
-
-- **`const`** makes both the **reference** and the **value** **immutable**.
-- Once a primitive value (like a number or string) is assigned to a `const` variable, you **cannot change the value** or **reassign** it.
-
-
-```javascript
-
-const number = 10;
-number = 20;  // Error: Cannot reassign a const variable
-
-const name = "John";
-name = "Doe";  // Error: Cannot reassign a const variable
+person = { name: "Charlie" }; // ❌ Error: Assignment to constant variable
 ```
 
-### **For Non-Primitives (Objects/Arrays):**
+* `person` is a `const` variable, so **you cannot reassign the variable** to a new object.
+* However, the **object itself is mutable**, so you can change its properties.
+* Mutating the content is allowed, but reassigning the variable is not.
 
-`const` makes the **reference** **immutable**, but the **content** inside the object/array can still be changed.
+---
 
-- You **cannot reassign** the variable to a new object or array.
-- However, you **can still modify the contents** (like adding/removing properties for objects or modifying elements for arrays).
-- **`const`** makes the **reference** to the object or array **unchangeable**.
+### Example 3: `let` with an Array (Mutable Value)
 
+```js
+let nums = [1, 2, 3];
+nums.push(4); // ✅ Allowed - modifies the original array
+console.log(nums); // [1, 2, 3, 4]
 
-**Example with an Object:**
-
-```javascript
-const person = { name: "Alice", age: 25 };
-
-// You can modify the properties inside the object:
-person.name = "Bob";  // Allowed
-person.age = 30;      // Allowed
-
-console.log(person);   // { name: "Bob", age: 30 }
-
-// But you cannot reassign the reference (object):
-person = { name: "Charlie", age: 35 };  // Error: Cannot reassign a const variable
+nums = [5, 6]; // ✅ Allowed - reassignment is allowed with let
+console.log(nums); // [5, 6]
 ```
 
-**Example with an Array:**
+---
 
-```javascript
-const numbers = [1, 2, 3];
+## Summary
 
-// You can modify the elements inside the array:
-numbers.push(4);  // Allowed
-numbers[0] = 10;  // Allowed
-
-console.log(numbers);  // [10, 2, 3, 4]
-
-// But you cannot reassign the reference (array):
-numbers = [5, 6, 7];  // Error: Cannot reassign a const variable
-```
-
-### **Summary:**
-
-- **For Primitives** (`String`, `Number`, `Boolean`, etc.):  
-  `const` makes the **value** **immutable** and **cannot be changed** or **reassigned**.
-
-- **For Non-Primitives** (`Object`, `Array`, `Function`, etc.):  
-  `const` makes the **reference** **immutable**, but the **content** inside the object/array can still be changed.
+| Concept          | What `const` Does             | Mutability of Value                      |
+| ---------------- | ----------------------------- | ---------------------------------------- |
+| `const` variable | Prevents reassignment         | Value can be mutable or immutable        |
+| Immutable values | Primitives (strings, numbers) | Value itself cannot be changed           |
+| Mutable values   | Objects, arrays, functions    | Their contents/properties can be changed |
+===============================================================================================
 
 
 //========== primitive vs reference variable=================
@@ -488,7 +490,8 @@ numbers = [5, 6, 7];  // Error: Cannot reassign a const variable
 ## A] primitive variables:
 
 -primitive variables are used to store primitive values
--Primitive variables copies values from another variables
+
+- Copy behavior: When you assign a primitive value to another variable, a copy of the value is created.
 
 // primitive variables
 let a = 10;
@@ -500,7 +503,12 @@ console.log(b); //10
 
 
 ## B] reference variables:
--Reference varaibles are used to refer the objects and arrays
+- Stored as references
+ - The variable holds a reference (or pointer) to the location in memory where the object is stored.
+
+-When you assign a reference variable to another, both variables point to the same object. 
+
+When you assign a reference variable to another variable in JavaScript, both variables point to the same object in memory. So, if you change the object using the second variable, those changes will also be visible when accessing the object through the first variable.
 
 var x = { name: "abcd" };
 var y = x;
@@ -508,53 +516,130 @@ x.name = "pqr";
 console.log(x.name); //pqr
 
 
- 
+ ===============================================================================================
 
-//=================================  ========================
+* **`let` and `const` are hoisted**, but **not initialized** until their declaration is executed. Accessing them before that causes a **ReferenceError** due to the Temporal Dead Zone (TDZ).
 
- 
-let and const
-Not Hoisted , but with a Temporal Dead Zone (TDZ). The declaration is hoisted, 
-but the variable is not accessible until the code execution reaches the let declaration.
- Accessing the variable before its declaration results in a ReferenceError.
+* **`var` is hoisted and initialized with `undefined`** immediately, so you can access it before the declaration without an error (it will just be `undefined`).
+
+
+//============================ Temporal Dead Zone (TDZ)=============================
+
+Temporal Dead Zone (TDZ): 
+
+
+The **Temporal Dead Zone (TDZ)** is this **time period** (or “zone”) from the **start of a block scope** until the **variable declared with `let` or `const` is initialized**.
+
+During the TDZ:
+
+* The variable **exists** (it’s hoisted),
+* But **cannot be accessed**,
+* Attempting to access it throws a **ReferenceError**.
+
+
+### Visualizing TDZ with an example:
+
+```js
+{
+  // TDZ starts here for 'x'
+  console.log(x); // ReferenceError: Cannot access 'x' before initialization
+  
+  let x = 5; // TDZ ends here (x is initialized)
+  console.log(x); // 5 (now accessible)
+}
+```
+
+---
+
+### Key points:
+
+* TDZ applies **only** to variables declared with `let` and `const`.
+* `var` declarations do **not** have TDZ because they are initialized with `undefined` immediately.
+
+
+
+
+
+
+ The time period between the start of a block scope and the point where a variable declared with let or const is initialized. During this zone, the variable exists but cannot be accessed, and attempts to do so result in a ReferenceError.
+
+let and const Hoisting:
+Variables declared with let and const are hoisted to the top of their block scope but are not initialized during hoisting. Accessing them before the declaration results in a ReferenceError due to the TDZ..
+
+=============================================================================================================
+lexical scope
+
+When a function (Function B) is declared inside another function (Function A), JavaScript uses lexical scoping to determine what variables Function B has access to.
+// 🌍 Global scope
+let globalVar = "I am global";
+
+function Function_A_outer() {
+  // 🔹 Lexical Scope Level 1 (outer)
+  let outerVar = "I am outer";
+
+  function Function_b_inner() {
+    // 🔸 Lexical Scope Level 2 (inner)
+    let innerVar = "I am inner";
+
+    // ✅ Accessing variables through lexical scope
+    console.log(globalVar); // ← from Global Scope
+    console.log(outerVar);  // ← from outer()'s Lexical Scope
+    console.log(innerVar);  // ← from inner()'s own scope
+  }
+
+  Function_b_inner(); // Call the inner function
+}
+
+Function_A_outer(); // Call the outer function
 
 
 //================================= Closure ========================
-## Closure:-
-
-"Closures are a fundamental concept in JavaScript, providing the ability to access an outer function's scope from an inner function, even after the outer function has finished executing."
-
- closure is ablity to provide access outer function scope to inner function 
-
- access variables from that scope even after the outer function has finished executing
-
--A closure is a combination of a nested function and lexical scope
--By using closure a nested function can use the variable of outer function.
-
--A lexical scope in JavaScript means that a variable defined outside a function can
-be accessible inside another function
 
 
+## ✅ **JavaScript Closures & Lexical Scope – Interview Notes**
+
+### 🔹 **Definition of Closure:**
+> A closure in JavaScript is a function bundled together with its lexical environment
+
+> It allows an inner function to **access variables** from an outer function’s scope **even after** the outer function has finished executing.
+
+> A **closure** is the combination of a **function** and the **lexical environment** in which it was defined.
+
+
+### 🔹 **Key Points to Remember:**
+
+* Closures enable **data privacy** and **state persistence**.
+* Variables in the outer scope are **held by reference**, not by value.
+* The inner function **always accesses the latest value** of those variables.
+* **Lexical scope** means scope is determined by **where code is written**, not where it’s called.
 
 
 
-clousure inner function can be access of outer function
+### 🔹 **Simple Closure Example:**
 
-
+```javascript
 function outerFunction() {
-let outerVariable = 'I am outer';
+  let outerVariable = 'I am outer';
+let a=20
+  function innerFunction() {
+    console.log(outerVariable); // Accesses outerVariable via closure
+        console.log(a); // Accesses outerVariable via closure
 
-function innerFunction() {
-// innerFunction has access to outerVariable due to closure
-console.log(outerVariable);
-}
-
-return innerFunction;
+  }
+a=30;
+  return innerFunction;
 }
 
 const innerFunc = outerFunction();
-innerFunc(); // Output: I am outer
+innerFunc(); // Output: outerVariable = I am outer and a=30
+ 
+```
 
+---
+
+### 🔹 **Real-World Use Case – Counter:**
+
+```javascript
 function createCounter() {
   let count = 0;
   return function() {
@@ -566,8 +651,32 @@ function createCounter() {
 const counter = createCounter();
 console.log(counter()); // 1
 console.log(counter()); // 2
+```
+
+> `count` is private and persistent across function calls due to closure.
+
+When function_a_outer is executed, function_b_inner still retains access to its lexical scope. These variables are held by reference, not as the original values at definition time. As a result, the inner function always accesses the latest value of those variables
 
 
+
+When a customer visits an online store:
+
+A new shopping cart is created (via a function).
+
+The cart has a private list of items, not accessible directly from outside.
+
+The cart exposes functions to:
+
+✅ Add items
+
+❌ Remove items
+
+👁️ View cart contents
+
+These functions are closures — they retain access to the private list of items, even after the main cart function has executed.
+
+
+--------------------------------------------------------------------------
 
 - When a customer visits an online store, a new shopping cart is created.
 - This cart contains a private list of items, inaccessible directly from outside.
@@ -599,8 +708,11 @@ This use of closures ensures that the cart’s internal list remains encapsulate
 =============================================================================================================
 
 Object destructuring:-
-Object destructuring is used to declare and initialzize variables by extracting the values from
-object properties.
+
+> Object destructuring is used to declare and initialzize variables by extracting the values from object properties.
+
+> Object destructuring is a JavaScript syntax that allows you to extract values from an object and assign them to variables in a concise and readable way.
+
 
 const person = {
 name: "Topper Skills",
@@ -644,6 +756,47 @@ const {info:{bio:{age:age3}}}=car
 console.log(age3)//20
 
 
+Why use it?
+
+Avoid repetitive code like const name = person.name;
+
+Make your code cleaner and easier to understand
+
+Easily extract multiple properties in one statement
+
+
+
+### 🔧 **Common Use Cases of Object Destructuring:**
+
+1. **Accessing object properties quickly**
+   → Avoid repetitive `obj.prop` syntax.
+
+2. **Function parameters**
+   → Pass an object, extract only needed values:
+
+   ```js
+   function greet({ name }) { console.log(name); }
+   ```
+
+3. **API responses**
+   → Extract nested data directly from response objects.
+
+4. **Set default values**
+   → Provide fallback if a property is missing:
+
+   ```js
+   const { theme = 'light' } = settings;
+   ```
+
+5. **React components**
+   → Destructure props for cleaner JSX:
+
+   ```js
+   function Card({ title, content }) { ... }
+   ```
+
+
+
 ====================================================================================================
 
 // Array Destructuring:-
@@ -674,21 +827,45 @@ console.log(sixth); // 6
 //============================Object.keys, values, entries =============
 
 
-For plain objects, the following methods are available:
+### 📌 1. **`Object.keys(obj)`**
 
-Object.keys(obj) – returns an array of keys.
-Object.values(obj) – returns an array of values.
-Object.entries(obj) – returns an array of [key, value] pairs.
+🔹 Returns an **array of the property names (keys)** of the object.
 
-const object1 = { a: 10, b: 20, c: 30 };
+```javascript
+const user = { name: 'Alice', age: 25 };
 
-const keys = Object.keys(object1);
-const values = Object.values(object1);
-const entries = Object.entries(object1);
+console.log(Object.keys(user)); 
+// ➝ ['name', 'age']
+```
 
-console.log(keys); // ["a", "b", "c"]
-console.log(values); // [10, 20, 30]
-console.log(entries); // [["a", 10], ["b", 20], ["c", 30]]
+
+### 📌 2. **`Object.values(obj)`**
+
+🔹 Returns an **array of the property values**.
+
+```javascript
+console.log(Object.values(user)); 
+// ➝ ['Alice', 25]
+```
+
+
+### 📌 3. **`Object.entries(obj)`**
+
+🔹 Returns an **array of key-value pairs** as arrays.
+
+```javascript
+console.log(Object.entries(user)); 
+// ➝ [['name', 'Alice'], ['age', 25]]
+```
+
+You can use `.map()`, `.forEach()`, or a `for...of` loop on them too.
+
+
+### ✅ Use cases:
+
+* Looping through objects
+* Converting objects to arrays (for filtering, mapping, etc.)
+* Working with dynamic object data (e.g., from APIs)
 
 
 
@@ -696,7 +873,9 @@ console.log(entries); // [["a", 10], ["b", 20], ["c", 30]]
 //=================================Spread operator==========================
 
 Spread operator:-
-The spread operator (...) in JavaScript is used to extract elements from an iterable (such as an array or object) and spread them into individual elements or properties. It allows for easier cloning, merging, and destructuring of arrays and objects.
+The spread operator (...) in JavaScript is used to extract elements from an iterable (such as an array or object) and spread them into individual elements or properties. 
+
+It allows for easier cloning, merging, and destructuring of arrays and objects.
 
 It is used to extract elements of an array or to extract properties from an iterable object.
 
@@ -711,6 +890,16 @@ email: "topperskills@gmail.com",
 };
 const iterObj = Object.keys(per);
 console.log(...iterObj);\\name mobile email
+
+
+
+
+
+1 Copy arrays or objects
+2 Merge arrays or objects
+3 Add elements to arrays
+4 Pass array items as function arguments
+5 Convert iterables to arrays
 
 
 
@@ -747,7 +936,7 @@ console.log(sum(5, 10));  // '5' and '10' are arguments
 
 
 
-//============================ arguments object vs rest operator===================================
+//============================ arguments object vs rest perator===================================
 
 ##= arguments object vs rest operator =##
 
@@ -938,6 +1127,8 @@ It does not bind the existing function instead if create a new function to bind
 In summary:
 - `bind` creates a new function for later use, while `call` and `apply` execute the function immediately.
 - `call` takes arguments individually, whereas `apply` takes arguments as an array.
+
+
 ==================
  <!-- Primitive Types:
 These are basic data types like string, number, boolean, null, undefined, symbol, and bigint.
@@ -1032,7 +1223,15 @@ Let me know if you need anything else!
 when variable primative value  assignt to another varilble that time value will be copy/assigned 
 when variable not primative value assigned to anoter variable that time memory refrance will be assigne 
 
-##============ Object cloning============
+
+
+
+
+
+================================== Object cloning=============================================
+
+
+
 -Crreating a duplicate object of an existing object is called object cloning
 There are 2 types of object cloning
 
@@ -1047,10 +1246,6 @@ There are 2 types of object cloning
 - Nested objects or arrays are **independent** from the original.  
 - Changes in the clone do not affect the original object.  
 - Examples: `JSON.parse(JSON.stringify())`, Lodash's `cloneDeep()`, Recursive cloning.  
-
-
-
-
 
 
 
@@ -1108,259 +1303,6 @@ const deepClone = JSON.parse(JSON.stringify(original));
 console.log(deepClone === original); // false (different objects)
 console.log(deepClone.address === original.address); // false (different objects)
 
-
-//=========================================Set====================
-Set:-
-Set is like an array but it stores only unique elements.
-
-An array is used to store multiple elements of any type, an array can store duplicate
-elements.
-
-// Creating a set
-1. Creating empty set.
-const s1 = new Set();
-
-// add(value) - adds an element and returns the set after adding the element
-
-const mySet =new Set([1,2,4,,5,6,6,,33,2,4,5,6,6,4,4,4,1,1,11,"A","a"])
-console.log(mySet)
-
-mySet.add({
-    name:"Abc"
-});
-mySet.add({second:'This is second value'});
-mySet.add('third','This is third value')
-mySet.add('APlle')
-mySet.add("apple")
-console.log(mySet)
-mySet.delete(1)
-for(let val of mySet){
-    console.log("val --",val)
-}
-// mySet.clear()
-
-
-
-
-console.log(mySet)
-
-
-
-//============================map ===============================
-Map:- 
-A Map is a built-in JavaScript object that store key value pairs with unique keys.
-where the keys can be of any type, including objects, functions, and primitives.
-
-keys in a JavaScript Map are unique. 
-If you set a key that already exists in the Map, 
-the value associated with that key is updated, not duplicated.
-
-
-```javascript
-
-const map = new Map();
-
-
-// Add key-value pairs
-map.set('name', 'Alice');
-map.set('age', 25);
-
-// Attempt to add a duplicate key
-map.set('name', 'Bob'); // Updates the value for the 'name' key
-
-console.log(map.get('name')); // "Bob"
-console.log(map.size); // 2 (not 3, as keys are unique)
-
-
-Creating // Create a new Map
-
-
-### **Core Methods**
-
-#### 1. **`set(key, value)`**  
-Adds or updates a key-value pair in the `Map`.
-
-const map = new Map();
-map.set('name', 'Alice');
-map.set(42, 'The answer');
-console.log(map); // Map(2) { 'name' => 'Alice', 42 => 'The answer' }
-```
-
-#### 2. **`get(key)`**  
-Retrieves the value associated with a given key.
-
-```javascript
-console.log(map.get('name')); // 'Alice'
-console.log(map.get(42));     // 'The answer'
-console.log(map.get('age'));  // undefined (key does not exist)
-```
-
-#### 3. **`has(key)`**  
-Checks if a key exists in the `Map`.
-
-```javascript
-console.log(map.has('name')); // true
-console.log(map.has('age'));  // false
-```
-
-#### 4. **`delete(key)`**  
-Removes a key-value pair by the key.
-
-```javascript
-map.delete(42); 
-console.log(map); // Map(1) { 'name' => 'Alice' }
-```
-
-#### 5. **`clear()`**  
-Removes all key-value pairs from the `Map`.
-
-```javascript
-map.clear();
-console.log(map); // Map(0) {}
-```
-
-#### 6. **`size` (Property)**  
-Returns the number of key-value pairs in the `Map`.
-
-```javascript
-map.set('a', 1).set('b', 2).set('c', 3);
-console.log(map.size); // 3
-```
-
-### **Iteration Methods**
-
-#### 7. **`keys()`**  
-Returns an iterator of all keys in the `Map`.
-
-```javascript
-for (const key of map.keys()) {
-  console.log(key); // 'a', 'b', 'c'
-}
-```
-
-#### 8. **`values()`**  
-Returns an iterator of all values in the `Map`.
-
-```javascript
-for (const value of map.values()) {
-  console.log(value); // 1, 2, 3
-}
-```
-
-#### 9. **`entries()`**  
-Returns an iterator of all key-value pairs in the `Map` as `[key, value]`.
-
-```javascript
-for (const [key, value] of map.entries()) {
-  console.log(key, value); // 'a' 1, 'b' 2, 'c' 3
-}
-```
-
-#### 10. **`forEach(callback)`**  
-Executes a callback function for each key-value pair.
-
-```javascript
-map.forEach((value, key) => {
-  console.log(`${key}: ${value}`);
-});
-// Output:
-// a: 1
-// b: 2
-// c: 3
-```
-
-### **Examples in Practice**
-
-#### **Adding and Updating Data**
-```javascript
-const userRoles = new Map();
-userRoles.set('Alice', 'Admin');
-userRoles.set('Bob', 'Editor');
-userRoles.set('Alice', 'Super Admin'); // Updates Alice's role
-
-console.log(userRoles.get('Alice')); // 'Super Admin'
-```
-
-#### **Using Objects as Keys**
-```javascript
-const obj = { id: 1 };
-const map = new Map();
-
-map.set(obj, 'Object Value');
-console.log(map.get(obj)); // 'Object Value'
-```
-
-#### **Iterating Over a Map**
-```javascript
-const items = new Map([
-  ['apple', 10],
-  ['banana', 5],
-  ['cherry', 7],
-]);
-
-for (const [key, value] of items) {
-  console.log(`${key}: ${value}`);
-}
-// Output:
-// apple: 10
-// banana: 5
-// cherry: 7
-```
-
-#### **Counting Occurrences**
-```javascript
-const words = ['hello', 'world', 'hello', 'map'];
-const wordCount = new Map();
-
-words.forEach(word => {
-  wordCount.set(word, (wordCount.get(word) || 0) + 1);
-});
-
-console.log(wordCount); // Map(3) { 'hello' => 2, 'world' => 1, 'map' => 1 }
-```
-
-Let me know if you need more examples or details!
-
-========================= ===============================================
-
-8. When to Use Map
-Use a Map when:
-
-You need non-string keys.
-You need to maintain the order of entries.
-You need efficient lookups and insertions.
-You want built-in iteration over entries.
-
-Use an object when:
-
-You need simple key-value pairs with string keys.
-You want inheritance or prototype-based features.
-========================= ===============================================
-### Set vs. Map
-#Map
-A Map is a built-in JavaScript object that stores key-value pairs.
-
-A key value pair is called an entry
-Keys in a Map must be unique, 
-while values can be duplicated.
-
-  - **Stores:** Key-value pairs.
-  - **Uniqueness:** Keys must be unique; values can be duplicated.
-  - **Methods:** `set(key, value)`, `get(key)`, `delete(key)`, `has(key)`, `size`.
-
-It allows you to associate each key with a specific value and provides efficient methods for adding, retrieving, and deleting key-value pairs.
-
-- **Set:**
- - **Definition:** A `Set` stores unique values, with no key-value pairs. It automatically removes duplicates.
-
-  - **Key-Value:** No key-value pairs.
-  - **Uniqueness:** Ensures all values are unique.
-  - **Methods:** `add(value)`, `delete(value)`, `has(value)`, `size`.
-
- has(value): Check if a value exists in the Set.
-forEach(callback): Iterates through the Set.
-keys(), values(), entries(): Provides iterators for advanced use cases.
-clear(): Clears the entire Set.
 
 
 //=============================sync and asynch=================
@@ -1759,3 +1701,262 @@ document represents a web page in the web browser.
 document object is a part of window object.
 
 Using document object you can dynamically update the content on the viewport.
+
+
+=========================================Set====================
+
+
+Set:-
+Set is like an array but it stores only unique elements.
+
+An array is used to store multiple elements of any type, an array can store duplicate
+elements.
+
+// Creating a set
+1. Creating empty set.
+const s1 = new Set();
+
+// add(value) - adds an element and returns the set after adding the element
+
+const mySet =new Set([1,2,4,,5,6,6,,33,2,4,5,6,6,4,4,4,1,1,11,"A","a"])
+console.log(mySet)
+
+mySet.add({
+    name:"Abc"
+});
+mySet.add({second:'This is second value'});
+mySet.add('third','This is third value')
+mySet.add('APlle')
+mySet.add("apple")
+console.log(mySet)
+mySet.delete(1)
+for(let val of mySet){
+    console.log("val --",val)
+}
+// mySet.clear()
+
+
+
+
+console.log(mySet)
+
+
+
+//============================map ===============================
+
+
+Map:- 
+A Map is a built-in JavaScript object that store key value pairs with unique keys.
+where the keys can be of any type, including objects, functions, and primitives.
+
+keys in a JavaScript Map are unique. 
+If you set a key that already exists in the Map, 
+the value associated with that key is updated, not duplicated.
+
+
+```javascript
+
+const map = new Map();
+
+
+// Add key-value pairs
+map.set('name', 'Alice');
+map.set('age', 25);
+
+// Attempt to add a duplicate key
+map.set('name', 'Bob'); // Updates the value for the 'name' key
+
+console.log(map.get('name')); // "Bob"
+console.log(map.size); // 2 (not 3, as keys are unique)
+
+
+Creating // Create a new Map
+
+
+### **Core Methods**
+
+#### 1. **`set(key, value)`**  
+Adds or updates a key-value pair in the `Map`.
+
+const map = new Map();
+map.set('name', 'Alice');
+map.set(42, 'The answer');
+console.log(map); // Map(2) { 'name' => 'Alice', 42 => 'The answer' }
+```
+
+#### 2. **`get(key)`**  
+Retrieves the value associated with a given key.
+
+```javascript
+console.log(map.get('name')); // 'Alice'
+console.log(map.get(42));     // 'The answer'
+console.log(map.get('age'));  // undefined (key does not exist)
+```
+
+#### 3. **`has(key)`**  
+Checks if a key exists in the `Map`.
+
+```javascript
+console.log(map.has('name')); // true
+console.log(map.has('age'));  // false
+```
+
+#### 4. **`delete(key)`**  
+Removes a key-value pair by the key.
+
+```javascript
+map.delete(42); 
+console.log(map); // Map(1) { 'name' => 'Alice' }
+```
+
+#### 5. **`clear()`**  
+Removes all key-value pairs from the `Map`.
+
+```javascript
+map.clear();
+console.log(map); // Map(0) {}
+```
+
+#### 6. **`size` (Property)**  
+Returns the number of key-value pairs in the `Map`.
+
+```javascript
+map.set('a', 1).set('b', 2).set('c', 3);
+console.log(map.size); // 3
+```
+
+### **Iteration Methods**
+
+#### 7. **`keys()`**  
+Returns an iterator of all keys in the `Map`.
+
+```javascript
+for (const key of map.keys()) {
+  console.log(key); // 'a', 'b', 'c'
+}
+```
+
+#### 8. **`values()`**  
+Returns an iterator of all values in the `Map`.
+
+```javascript
+for (const value of map.values()) {
+  console.log(value); // 1, 2, 3
+}
+```
+
+#### 9. **`entries()`**  
+Returns an iterator of all key-value pairs in the `Map` as `[key, value]`.
+
+```javascript
+for (const [key, value] of map.entries()) {
+  console.log(key, value); // 'a' 1, 'b' 2, 'c' 3
+}
+```
+
+#### 10. **`forEach(callback)`**  
+Executes a callback function for each key-value pair.
+
+```javascript
+map.forEach((value, key) => {
+  console.log(`${key}: ${value}`);
+});
+// Output:
+// a: 1
+// b: 2
+// c: 3
+```
+
+### **Examples in Practice**
+
+#### **Adding and Updating Data**
+```javascript
+const userRoles = new Map();
+userRoles.set('Alice', 'Admin');
+userRoles.set('Bob', 'Editor');
+userRoles.set('Alice', 'Super Admin'); // Updates Alice's role
+
+console.log(userRoles.get('Alice')); // 'Super Admin'
+```
+
+#### **Using Objects as Keys**
+```javascript
+const obj = { id: 1 };
+const map = new Map();
+
+map.set(obj, 'Object Value');
+console.log(map.get(obj)); // 'Object Value'
+```
+
+#### **Iterating Over a Map**
+```javascript
+const items = new Map([
+  ['apple', 10],
+  ['banana', 5],
+  ['cherry', 7],
+]);
+
+for (const [key, value] of items) {
+  console.log(`${key}: ${value}`);
+}
+// Output:
+// apple: 10
+// banana: 5
+// cherry: 7
+```
+
+#### **Counting Occurrences**
+```javascript
+const words = ['hello', 'world', 'hello', 'map'];
+const wordCount = new Map();
+
+words.forEach(word => {
+  wordCount.set(word, (wordCount.get(word) || 0) + 1);
+});
+
+console.log(wordCount); // Map(3) { 'hello' => 2, 'world' => 1, 'map' => 1 }
+```
+
+Let me know if you need more examples or details!
+
+========================= ===============================================
+
+8. When to Use Map
+Use a Map when:
+
+You need non-string keys.
+You need to maintain the order of entries.
+You need efficient lookups and insertions.
+You want built-in iteration over entries.
+
+Use an object when:
+
+You need simple key-value pairs with string keys.
+You want inheritance or prototype-based features.
+========================= ===============================================
+### Set vs. Map
+#Map
+A Map is a built-in JavaScript object that stores key-value pairs.
+
+A key value pair is called an entry
+Keys in a Map must be unique, 
+while values can be duplicated.
+
+  - **Stores:** Key-value pairs.
+  - **Uniqueness:** Keys must be unique; values can be duplicated.
+  - **Methods:** `set(key, value)`, `get(key)`, `delete(key)`, `has(key)`, `size`.
+
+It allows you to associate each key with a specific value and provides efficient methods for adding, retrieving, and deleting key-value pairs.
+
+- **Set:**
+ - **Definition:** A `Set` stores unique values, with no key-value pairs. It automatically removes duplicates.
+
+  - **Key-Value:** No key-value pairs.
+  - **Uniqueness:** Ensures all values are unique.
+  - **Methods:** `add(value)`, `delete(value)`, `has(value)`, `size`.
+
+ has(value): Check if a value exists in the Set.
+forEach(callback): Iterates through the Set.
+keys(), values(), entries(): Provides iterators for advanced use cases.
+clear(): Clears the entire Set.
+
