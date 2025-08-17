@@ -515,6 +515,101 @@ var y = x;
 x.name = "pqr";
 console.log(x.name); //pqr
 
+ <!-- Primitive Types:
+These are basic data types like string, number, boolean, null, undefined, symbol, and bigint.
+
+-When you assign a primitive value to a variable, the value is stored directly in the variable's memory location. If you assign that variable to another variable, the value is copied, and each variable will have its own copy of that value.
+
+- both variable have differnt memory location
+-The value of a primitive is stored in a stack memory.
+
+let a = 42;  // `a` stores the value 42
+let b = a;   // `b` now stores the value 42 (copy of `a`)
+
+b = 100;     // Change `b`, but `a` remains 42
+
+console.log(a);  // 42
+console.log(b);  // 100
+ere, a holds the value 42. When a is assigned to b, a new copy of the value 42 is created for b. Therefore, changing b does not affect a.
+
+
+Reference Types (By Reference)
+-These include objects (including arrays, functions, and others).
+-when a non-primitive (reference) value is assigned to another variable, the reference (memory address) to the object is copied, not the actual object itself. This means both variables will point to the same object in memory, and changes made to the object via one variable will be reflected when accessed via the other variable.
+
+- both variable have same memory location
+
+
+-Reference types are typically stored in heap memory. 
+
+
+let obj1 = { name: "Alice", age: 30 };  // `obj1` is an object
+let obj2 = obj1;  // `obj2` gets the **reference*- to the same object as `obj1`
+
+obj2.age = 31;    // Changing `age` via `obj2`
+
+console.log(obj1.age);  // 31 (since both `obj1` and `obj2` point to the same object)
+console.log(obj2.age);  // 31 (both variables reflect the same object)
+ -->
+
+Got it! Here's your document without the "Summary of Differences" section:
+
+### **Primitive Types:**
+
+These are the basic data types in JavaScript:
+- `string`
+- `number`
+- `boolean`
+- `null`
+- `undefined`
+- `symbol`
+- `bigint`
+
+**Key Characteristics:**
+- When you assign a primitive value to a variable, the value is stored **directly** in the variable's memory location. If you assign that variable to another, the **value is copied**—each variable has its own copy.
+- Both variables have **different memory locations**.
+- The value of a primitive is stored in **stack memory**.
+
+**Example:**
+```javascript
+let a = 42;  // `a` stores the value 42
+let b = a;   // `b` now stores a copy of the value 42
+
+b = 100;     // Changing `b` doesn't affect `a`
+
+console.log(a);  // 42
+console.log(b);  // 100
+```
+In this case, `a` holds 42, and when it's assigned to `b`, a copy of 42 is created for `b`. Changing `b` does not affect `a`.
+
+### **Reference Types:**
+
+These include objects (arrays, functions, and other objects).
+
+**Key Characteristics:**
+- When a reference type is assigned to a variable, the **reference (memory address)** to the object is copied, not the actual object itself. Both variables will point to the same object in memory.
+- Both variables have **the same memory location**.
+- Reference types are typically stored in **heap memory**.
+
+**Example:**
+```javascript
+let obj1 = { name: "Alice", age: 30 };  // `obj1` is an object
+let obj2 = obj1;  // `obj2` holds the reference to the same object
+
+obj2.age = 31;    // Changing `age` via `obj2`
+
+console.log(obj1.age);  // 31
+console.log(obj2.age);  // 31
+```
+In this example, both `obj1` and `obj2` point to the same object. Modifying the object through one reference affects the other, since they both refer to the same memory location.
+
+Let me know if you need anything else!
+
+when variable primative value  assignt to another varilble that time value will be copy/assigned 
+when variable not primative value assigned to anoter variable that time memory refrance will be assigne 
+
+
+
 
  ===============================================================================================
 
@@ -957,28 +1052,41 @@ matching parameters
 
 //============================== Noraml function vs arrow function =========================
 
+
+### When to use which function (best practices)
+
+Use arrow functions for callbacks, array methods, or when you want to inherit this.
+Use normal functions for constructors, class/object methods, or when you need this, arguments, or super.
+
+-Arrow functions don’t have their own this. They inherit it from the parent scope. So inside an object, this won’t refer to the object.
+
+
+--------------------------------------------------
+
 A]Noraml function
 
--this value inside a regular function is dynamic and depends on the invocation.
--Noraml functions created using function declarations or expressions
+> this value inside a regular function is dynamic and depends on the invocation.
+> Noraml functions created using function declarations or expressions
 
--Noraml functions are constructible, invoked with the new keyword
--Noraml functions used have duplicate named parameters
--Noraml function is hoisted
+> Noraml functions are constructible, invoked with the new keyword
+> Noraml functions used have duplicate named parameters
 
--In normal function arguments object are available
--Arguments object gives the details of a function call including caller, callee, arguments.
+> Normal function declarations are hoisted, meaning they can be called before they are defined in the code.
+
+>  Normal functions have an arguments object that holds all passed arguments.
 
 
 B]Arrow function
+
 -Arrow functions do not have their own this context.
  Instead, they inherit this from the surrounding lexical scope (the context in which they are defined).
 
 -arrow function cannot be used as a constructor. NOT invoked with the new keyword
+
 -Arrow functions can never have duplicate named parameters, whether in strict or non-strict mode.
 -Arrow function is Not hoisted
--In Arrow function arguments object NOT available
 
+- Arrow functions don’t have their own arguments object. Use rest parameters (...args) to get all arguments.
 
 
 -Arrow function — also called fat arrow function
@@ -996,27 +1104,27 @@ Instead, they inherit the this value from the enclosing lexical scop
 //============================== call,apply,bind =========================
 
 
-To call a function of a specific object you can use below methods
-A] call():
--Call method is predefine method in JavaScript
--an object can use a method belonging to another object
--call method is invoke a function with given this value and argument provided by one by one
 
-- accepts arguments as seperate values
+**A] call():**
 
-///1
+- Call method is predefined method in JavaScript
+- An object can use a method belonging to another object
+- call method is Immediately invokes a function with a given `this` value and arguments provided individually
+
+- accepts arguments as separate values
+
+```js
 var employee1 = {firstName: 'John', lastName: 'Rodson'};
 var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
 
 function invite(greeting1, greeting2) {
-console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName+ ', '+ greeting2);
+  console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName+ ', ' + greeting2);
 }
 
 invite.call(employee1, 'Hello', 'How are you?'); // Hello John Rodson, How are you?
 invite.call(employee2, 'Hello', 'How are you?'); // Hello Jimmy Baily, How are you?
 
 
-//2
 var employee1 = {
   firstName: 'John',
   lastName: 'Rodson',
@@ -1030,56 +1138,61 @@ var employee2 = {
   lastName: 'Baily'
 };
 
-employee1.invite.call(employee2, "Hello", "World");
+employee1.invite.call(employee2, "Hello", "World"); // Hello Jimmy Baily, World
+```
 
 
 
+**B] apply():**
 
-B]apply():
+- apply() method is similar to call() method
+- call method argument takes separately
+- apply method argument takes as an array
+- invoke the function with a given this value and arguments provided by an array
+- accepts arguments as array elements
 
--apply() method is similar to call() method
--call method argument takes separately
--apply method argument takes as an array
--invoke the function with a given this value and argument provided by an array
-
--accepts arguments as an array elements
-
-
-ar employee1 = {firstName: 'John', lastName: 'Rodson'};
-var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
-
-function invite(greeting1, greeting2) {
-console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName+ ', '+ greeting2);
-}
-
-invite.apply(employee1, ['Hello', 'How are you?']); // Hello John Rodson, How are you?
-invite.apply(employee2, ['Hello', 'How are you?']); // Hello Jimmy Baily, How are you?
-
-
-
-
-
-C] bind()
-
-- bind() method we can bind an object to a common function ,so that the
-function gives different result when its need
--bind method takes an object as an first argument and create a new function
-
-
-
+```js
 var employee1 = {firstName: 'John', lastName: 'Rodson'};
 var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
 
 function invite(greeting1, greeting2) {
-console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName+ ', '+ greeting2);
+  console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName+ ', ' + greeting2);
+}
+
+invite.apply(employee1, ['Hello', 'How are you?']); // Hello John Rodson, How are you?
+invite.apply(employee2, ['Hello', 'How are you?']); // Hello Jimmy Baily, How are you?
+```
+
+
+
+**C] bind():**
+
+- bind() method we can bind an object to a common function so that the function gives different result when it needs
+
+- bind() returns a new function with a fixed this context and optional preset arguments, but doesn't invoke it immediately.
+
+- bind method takes an object as the first argument and creates a new function
+- bind **does not invoke the function immediately*- (unlike call or apply)  // added for clarity
+- return a new function, allow you to pass any number of arguments
+- it binds a function with an object and returns the bound function
+- it does not bind the existing function, instead it creates a new function to bind // added for clarity
+
+```js
+var employee1 = {firstName: 'John', lastName: 'Rodson'};
+var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
+
+function invite(greeting1, greeting2) {
+  console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName+ ', ' + greeting2);
 }
 
 var inviteEmployee1 = invite.bind(employee1);
 var inviteEmployee2 = invite.bind(employee2);
+
 inviteEmployee1('Hello', 'How are you?'); // Hello John Rodson, How are you?
 inviteEmployee2('Hello', 'How are you?'); // Hello Jimmy Baily, How are you?
+```
 
-
+```js
 const person = {
   firstName: 'John',
   lastName: 'Doe',
@@ -1090,138 +1203,115 @@ const person = {
 
 const printFullName = person.fullName;
 
-// console.log(printFullName()); // Output: "undefined undefined"
+// console.log(printFullName()); // Output: "undefined undefined" because `this` is lost
 
 const boundPrintFullName = printFullName.bind(person);
-console.log(boundPrintFullName()) // Output: "John Doe"
-
-
-
-- return a new function ,allow you to pass any number of argument
-- it binds a function with an object and return the binded function.
-It does not bind the existing function instead if create a new function to bind
-
-
-
+console.log(boundPrintFullName()); // Output: "John Doe"
+```
 ========================================================================
+
+
 - A common use case for the `bind` method in JavaScript is to maintain the correct context (`this`) when passing methods as callbacks or event handlers.
 - In JavaScript, the value of `this` can change depending on how a function is called.
 - For instance, when a method is used as an event handler, `this` usually refers to the element that triggered the event, not the object that owns the method.
 - By using `bind`, you can create a new function where `this` is explicitly set to the desired context, ensuring that the method behaves correctly regardless of how it's called.
+
 - This is particularly useful in scenarios such as object-oriented programming and event handling, where preserving the context is crucial for the method's functionality.
 - `bind` can also be used to preset initial arguments, allowing partial application of functions.
 
 
 
- comparison of `bind`, `call`, and `apply`:
+### 1. Plain JavaScript Event Handling with `bind`
 
-- **`bind`**: Creates a new function with a specified `this` context and optionally preset arguments. The new function can be called later with its own arguments.
-  - **Example**: `const boundFunc = func.bind(context, arg1, arg2);`
 
-- **`call`**: Immediately invokes a function with a specified `this` context and arguments provided individually.
-  - **Example**: `func.call(context, arg1, arg2);`
 
-- **`apply`**: Immediately invokes a function with a specified `this` context and arguments provided as an array or array-like object.
-  - **Example**: `func.apply(context, [arg1, arg2]);`
+**Interview Answer:**
+
+> In JavaScript, the value of `this` depends on how a function is called, which can lead to unexpected behavior when passing methods as callbacks or event handlers. The `bind` method fixes this by creating a new function with `this` explicitly set to the desired object. This ensures the method retains the correct context regardless of how or where it’s called, which is especially useful in event handling and object-oriented programming.
+
+```javascript
+
+const user = {
+  name: 'John',
+  sayHello: function(greeting) {
+    console.log(greeting + ', ' + this.name);
+  }
+};
+
+const button = document.getElementById('myBtn');
+
+// Without bind - `this` refers to button, not user
+button.addEventListener('click', user.sayHello); // this.name is undefined
+
+// With bind - `this` fixed to `user`
+button.addEventListener('click', user.sayHello.bind(user, 'Hello')); 
+// Output on click: "Hello, John"
+```
+
 
 In summary:
 - `bind` creates a new function for later use, while `call` and `apply` execute the function immediately.
 - `call` takes arguments individually, whereas `apply` takes arguments as an array.
 
+------------------------------------------------------------------------------
 
-==================
- <!-- Primitive Types:
-These are basic data types like string, number, boolean, null, undefined, symbol, and bigint.
-
--When you assign a primitive value to a variable, the value is stored directly in the variable's memory location. If you assign that variable to another variable, the value is copied, and each variable will have its own copy of that value.
-
-- both variable have differnt memory location
--The value of a primitive is stored in a stack memory.
-
-let a = 42;  // `a` stores the value 42
-let b = a;   // `b` now stores the value 42 (copy of `a`)
-
-b = 100;     // Change `b`, but `a` remains 42
-
-console.log(a);  // 42
-console.log(b);  // 100
-ere, a holds the value 42. When a is assigned to b, a new copy of the value 42 is created for b. Therefore, changing b does not affect a.
+### 2. React Class Component Event Handler with `bind`
 
 
-Reference Types (By Reference)
--These include objects (including arrays, functions, and others).
--when a non-primitive (reference) value is assigned to another variable, the reference (memory address) to the object is copied, not the actual object itself. This means both variables will point to the same object in memory, and changes made to the object via one variable will be reflected when accessed via the other variable.
 
-- both variable have same memory location
+**React.js Interview Answer:**
 
-
--Reference types are typically stored in heap memory. 
+> In React class components, event handler methods lose their class instance context (`this`) when passed as callbacks. Using `bind` in the constructor or inline fixes this by explicitly setting `this` to the component instance. This ensures methods can access component state and props correctly during events, preventing common bugs related to `this` being `undefined` or incorrect.
 
 
-let obj1 = { name: "Alice", age: 30 };  // `obj1` is an object
-let obj2 = obj1;  // `obj2` gets the **reference** to the same object as `obj1`
+```jsx
+import React from 'react';
 
-obj2.age = 31;    // Changing `age` via `obj2`
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { count: 0 };
 
-console.log(obj1.age);  // 31 (since both `obj1` and `obj2` point to the same object)
-console.log(obj2.age);  // 31 (both variables reflect the same object)
- -->
+    // Bind the event handler to fix 'this' context
+    this.handleClick = this.handleClick.bind(this);
+  }
 
-Got it! Here's your document without the "Summary of Differences" section:
+  handleClick() {
+    // Accessing this.state and this.setState works because of bind
+    this.setState({ count: this.state.count + 1 });
+    console.log('Count is:', this.state.count + 1);
+  }
 
-### **Primitive Types:**
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        Click me ({this.state.count})
+      </button>
+    );
+  }
+}
 
-These are the basic data types in JavaScript:
-- `string`
-- `number`
-- `boolean`
-- `null`
-- `undefined`
-- `symbol`
-- `bigint`
+export default MyComponent;
 
-**Key Characteristics:**
-- When you assign a primitive value to a variable, the value is stored **directly** in the variable's memory location. If you assign that variable to another, the **value is copied**—each variable has its own copy.
-- Both variables have **different memory locations**.
-- The value of a primitive is stored in **stack memory**.
-
-**Example:**
-```javascript
-let a = 42;  // `a` stores the value 42
-let b = a;   // `b` now stores a copy of the value 42
-
-b = 100;     // Changing `b` doesn't affect `a`
-
-console.log(a);  // 42
-console.log(b);  // 100
 ```
-In this case, `a` holds 42, and when it's assigned to `b`, a copy of 42 is created for `b`. Changing `b` does not affect `a`.
 
-### **Reference Types:**
 
-These include objects (arrays, functions, and other objects).
 
-**Key Characteristics:**
-- When a reference type is assigned to a variable, the **reference (memory address)** to the object is copied, not the actual object itself. Both variables will point to the same object in memory.
-- Both variables have **the same memory location**.
-- Reference types are typically stored in **heap memory**.
+In React class components, event handler methods don’t automatically bind `this` to the component instance. To fix that, we usually bind methods to `this` so they work correctly when called, especially as event handlers.
 
-**Example:**
-```javascript
-let obj1 = { name: "Alice", age: 30 };  // `obj1` is an object
-let obj2 = obj1;  // `obj2` holds the reference to the same object
+The most efficient way to bind is in the **constructor**, where the binding happens once when the component is created. This avoids creating new functions on every render, improving performance and preventing unnecessary re-renders.
 
-obj2.age = 31;    // Changing `age` via `obj2`
+Alternatively, using **arrow functions as class properties** automatically binds `this` and offers cleaner syntax, which is common in modern React code.
 
-console.log(obj1.age);  // 31
-console.log(obj2.age);  // 31
-```
-In this example, both `obj1` and `obj2` point to the same object. Modifying the object through one reference affects the other, since they both refer to the same memory location.
+Binding inside `render()` is discouraged because it creates a new function every time the component re-renders, which hurts performance.
 
-Let me know if you need anything else!
 
-when variable primative value  assignt to another varilble that time value will be copy/assigned 
-when variable not primative value assigned to anoter variable that time memory refrance will be assigne 
+
+
+
+
+
+
 
 
 
@@ -1236,61 +1326,65 @@ when variable not primative value assigned to anoter variable that time memory r
 There are 2 types of object cloning
 
 ### **Shallow Cloning**  
+
+Shallow cloning Only the top-level properties of an object are cloned it does not clone nested objects — it only copies their references. This means that if you change a nested object property in either the original or the clone, the change will affect both, because they both point to the same reference object.
+
+To avoid unexpected bugs, don’t modify nested data in a shallow clone if you want the original unchanged. For full independence, use **deep cloning**, which copies all nested structures as well.
+
+- Examples: `Object.assign()`, Spread operator (`...`).  
+
+
+```javascript
+
+const original = {
+  name: "Alice",
+  address: {
+    city: "New York"
+  }
+};
+
+
+const clone1 = Object.assign({}, original);//Using Object.assign()
+
+const clone2 = { ...original };// Using Spread operator
+
+clone1.address.city = "Los Angeles";
+
+console.log(original.address.city); // Outputs: "Los Angeles" — nested object is shared
+console.log(clone2.address.city);   // Outputs: "Los Angeles" — nested object is shared
+
+//This happens because original.address.city and clone.address.city point to the same object in memory.
+
+console.log(clone1 === original);        // false — different top-level objects
+console.log(clone1.address === original.address); // true — nested object shared (same reference)
+
+```
+
+**Shallow cloning copies only the top level; nested objects are shared.**
+
+
 - Copies only the top-level properties of an object.  
 - Nested objects or arrays are **referenced**, not cloned.  
 - Changes in nested structures reflect in both original and cloned objects.  
-- Examples: `Object.assign()`, Spread operator (`...`).  
 
-### **Deep Cloning**  
-- Copies all levels of an object, including nested structures.  
-- Nested objects or arrays are **independent** from the original.  
-- Changes in the clone do not affect the original object.  
-- Examples: `JSON.parse(JSON.stringify())`, Lodash's `cloneDeep()`, Recursive cloning.  
-
-
-
-There are 2 types of object cloning
-
-1. Shallow cloning
 -In shallow cloning only direct/main object gets cloned but not the object
 which are referred by the properties of main object.
 
 -changing value of cloned object will be refect into
 orginal object as well because both are point same refrance object
 
-const original = { a: 1, b: { c: 2 } };
-const clone = { ...original };
+-----------------------
+
+### **Deep Cloning**  
+-In deep cloning all the object direct/main and nested objects will be cloned. Menas all parts of the object are fully cloned.
+if you change a nested object property in either the original or the clone, the change will not affect both, because they both point to the different reference object.
+- Nested objects or arrays are **independent** from the original.  
 
 
-clone.b.c = 3;
-console.log(original.b.c); // Output: 3
-
-This happens because original.b and clone.b point to the same object in memory.
-
-const original = {
-  name: 'John',
-  age: 30,
-  address: { city: 'New York', country: 'USA' }
-};
-
-const shallowClone = Object.assign({}, original);
-
-console.log(shallowClone === original); // false (different objects)
-console.log(shallowClone.address === original.address); // true (same reference)
+- Examples: `JSON.parse(JSON.stringify())`, Better Alternative – structuredClone() (modern built-in method),  Lodash's `cloneDeep()`, Recursive cloning.  
 
 
-
-2. Deep cloning
--In deep cloning all the object direct/main and nested objects will be cloned.
-
--changing value of cloned object will be not refect into
-orginal object as well because both are point different refrance object
-
-const original = { a: 1, b: { c: 2 } };
-
-const clone = JSON.parse(JSON.stringify(original));
-clone.b.c = 3;
-console.log(original.b.c); // Output: 2
+```javascript
 
 const original = {
   name: 'John',
@@ -1299,13 +1393,133 @@ const original = {
 };
 
 const deepClone = JSON.parse(JSON.stringify(original));
+const structuredCloneDeep = structuredClone(original);
 
 console.log(deepClone === original); // false (different objects)
 console.log(deepClone.address === original.address); // false (different objects)
 
 
+```
+
+
+
+**Shallow cloning** copies only the top-level properties of an object. Nested objects or arrays are shared by reference between the original and the clone. This means if you change a nested object in the clone, it also changes the original. To avoid unexpected bugs, don’t modify nested data in a shallow clone if you want the original unchanged. For full independence, use **deep cloning**, which copies all nested structures as well.
+
+**Deep cloning** creates a complete, independent copy of an object, including all nested objects and arrays. Unlike shallow cloning, changes to nested structures in the clone do not affect the original. Common ways to deep clone in JavaScript include using JSON.parse(JSON.stringify(object)) for simple data or structuredClone(object) in modern environments. Deep cloning helps avoid bugs caused by shared references in nested objects.
+
+
+
+================================== Object cloning =============================================
+
+### ❌ **Limitations of `JSON.parse(JSON.stringify())`:**
+
+It **fails to clone**:
+
+* ✅ **Functions** → ❌ Removed
+* ✅ **`undefined`** → ❌ Removed
+* ✅ **`Date`** → ❌ Becomes string
+* ✅ **`Map`, `Set`** → ❌ Lost (converted to empty objects or discarded)
+* ✅ **Circular references** → ❌ **Throws error**
+
+---
+
+### ⚠️ Example:
+
+```js
+const obj = {
+  date: new Date(),
+  sayHi: () => console.log("Hi"),
+  nested: undefined,
+  today: new Date(),
+  map: new Map(),
+  set: new Set()
+};
+
+const clone = JSON.parse(JSON.stringify(obj));
+console.log(clone);
+
+
+### 🔍 Output:
+
+{
+  date: "2025-08-17T12:34:56.789Z",  // Date becomes string
+  today: "2025-08-17T12:34:56.789Z", // Another string
+  // sayHi is missing
+  // nested is missing
+  // map and set are missing
+}
+```
+
+
+### ✅ Use `structuredClone()` instead for deep cloning with full support.
+
+
+### ✅ **structuredClone Supports:**
+
+* Primitives: `null`, `undefined`, numbers, strings, etc.
+* Objects & Arrays
+* Dates, Maps, Sets
+* TypedArrays, ArrayBuffer
+* RegExp, Error objects
+* Blobs, Files, ImageData
+* **Circular references**
+
+### ❌ **Not Supported:**
+
+* **Functions**
+* **DOM elements**
+* **SharedArrayBuffer**
+
+---
+
+### ✅ Example:
+```js
+
+const obj = {
+  primitiveNull: null,
+  primitiveUndefined: undefined,
+  number: 42,
+  string: "hello",
+  boolean: true,
+  bigint: 12345678901234567890n,
+
+  object: { x: 10 },
+  array: [1, 2, 3],
+
+  date: new Date(),
+  map: new Map([["key1", "value1"]]),
+  set: new Set([1, 2, 3]),
+
+  typedArray: new Uint8Array([10, 20, 30]),
+  arrayBuffer: new ArrayBuffer(8),
+
+  regexp: /abc/i,
+  error: new Error("Something went wrong"),
+
+  blob: new Blob(["Hello"], { type: "text/plain" }),
+  file: new File(["Content"], "example.txt", { type: "text/plain" }),
+
+  // Circular reference
+  get circular() {
+    return this;
+  }
+};
+
+const cloned = structuredClone(obj);
+
+console.log(cloned);
+```
+
+- Copies all levels of an object, including nested structures.  
+- Changes in the clone do not affect the original object.  
+
+-changing value of cloned object will be not refect into
+orginal object as well because both are point different refrance object
+
 
 //=============================sync and asynch=================
+
+
 Note:- Javascript is a Synchronous programming language.
 
 Javascript is single threaded.

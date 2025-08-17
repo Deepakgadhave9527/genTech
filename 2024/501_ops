@@ -1120,6 +1120,147 @@ console.log(entries); // [["a", 10], ["b", 20], ["c", 30]]
 
 
 
+To call a function of a specific object you can use below methods
+A] call():
+-Call method is predefine method in JavaScript
+-an object can use a method belonging to another object
+-call method is invoke a function with given this value and argument provided by one by one
+
+- accepts arguments as seperate values
+
+///1
+var employee1 = {firstName: 'John', lastName: 'Rodson'};
+var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
+
+function invite(greeting1, greeting2) {
+console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName+ ', '+ greeting2);
+}
+
+invite.call(employee1, 'Hello', 'How are you?'); // Hello John Rodson, How are you?
+invite.call(employee2, 'Hello', 'How are you?'); // Hello Jimmy Baily, How are you?
+
+
+//2
+var employee1 = {
+  firstName: 'John',
+  lastName: 'Rodson',
+  invite: function(greeting1, greeting2) {
+      console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName + ', ' + greeting2);
+  }
+};
+
+var employee2 = {
+  firstName: 'Jimmy',
+  lastName: 'Baily'
+};
+
+employee1.invite.call(employee2, "Hello", "World");
+
+
+
+
+B]apply():
+
+-apply() method is similar to call() method
+-call method argument takes separately
+-apply method argument takes as an array
+-invoke the function with a given this value and argument provided by an array
+
+-accepts arguments as an array elements
+
+
+ar employee1 = {firstName: 'John', lastName: 'Rodson'};
+var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
+
+function invite(greeting1, greeting2) {
+console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName+ ', '+ greeting2);
+}
+
+invite.apply(employee1, ['Hello', 'How are you?']); // Hello John Rodson, How are you?
+invite.apply(employee2, ['Hello', 'How are you?']); // Hello Jimmy Baily, How are you?
+
+
+
+
+
+C] bind()
+
+- bind() method we can bind an object to a common function ,so that the
+function gives different result when its need
+-bind method takes an object as an first argument and create a new function
+
+
+
+var employee1 = {firstName: 'John', lastName: 'Rodson'};
+var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
+
+function invite(greeting1, greeting2) {
+console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName+ ', '+ greeting2);
+}
+
+var inviteEmployee1 = invite.bind(employee1);
+var inviteEmployee2 = invite.bind(employee2);
+inviteEmployee1('Hello', 'How are you?'); // Hello John Rodson, How are you?
+inviteEmployee2('Hello', 'How are you?'); // Hello Jimmy Baily, How are you?
+
+
+const person = {
+  firstName: 'John',
+  lastName: 'Doe',
+  fullName: function() {
+      return this.firstName + ' ' + this.lastName;
+  }
+};
+
+const printFullName = person.fullName;
+
+// console.log(printFullName()); // Output: "undefined undefined"
+
+const boundPrintFullName = printFullName.bind(person);
+console.log(boundPrintFullName()) // Output: "John Doe"
+
+
+
+- return a new function ,allow you to pass any number of argument
+- it binds a function with an object and return the binded function.
+It does not bind the existing function instead if create a new function to bind
+
+
+
+
+
+
+
+
+
+========================================================================
+
+
+
+
+
+ comparison of `bind`, `call`, and `apply`:
+
+- **`bind`**: Creates a new function with a specified `this` context and optionally preset arguments. The new function can be called later with its own arguments.
+  - **Example**: `const boundFunc = func.bind(context, arg1, arg2);`
+
+- **`call`**: Immediately invokes a function with a specified `this` context and arguments provided individually.
+  - **Example**: `func.call(context, arg1, arg2);`
+
+- **`apply`**: Immediately invokes a function with a specified `this` context and arguments provided as an array or array-like object.
+  - **Example**: `func.apply(context, [arg1, arg2]);`
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1134,22 +1275,70 @@ console.log(entries); // [["a", 10], ["b", 20], ["c", 30]]
 
 
 
+-Crreating a duplicate object of an existing object is called object cloning
+There are 2 types of object cloning
+
+### **Shallow Cloning**  
+- Copies only the top-level properties of an object.  
+- Nested objects or arrays are **referenced**, not cloned.  
+- Changes in nested structures reflect in both original and cloned objects.  
+- Examples: `Object.assign()`, Spread operator (`...`).  
+
+-In shallow cloning only direct/main object gets cloned but not the object
+which are referred by the properties of main object.
+
+-changing value of cloned object will be refect into
+orginal object as well because both are point same refrance object
+
+const original = { a: 1, b: { c: 2 } };
+const clone = { ...original };
 
 
+clone.b.c = 3;
+console.log(original.b.c); // Output: 3
+
+This happens because original.b and clone.b point to the same object in memory.
+
+const original = {
+  name: 'John',
+  age: 30,
+  address: { city: 'New York', country: 'USA' }
+};
+
+const shallowClone = Object.assign({}, original);
+
+console.log(shallowClone === original); // false (different objects)
+console.log(shallowClone.address === original.address); // true (same reference)
 
 
+### **Deep Cloning**  
+- Copies all levels of an object, including nested structures.  
+- Nested objects or arrays are **independent** from the original.  
+- Changes in the clone do not affect the original object.  
+- Examples: `JSON.parse(JSON.stringify())`, Lodash's `cloneDeep()`, Recursive cloning.  
 
 
+-In deep cloning all the object direct/main and nested objects will be cloned.
 
+-changing value of cloned object will be not refect into
+orginal object as well because both are point different refrance object
 
+const original = { a: 1, b: { c: 2 } };
 
+const clone = JSON.parse(JSON.stringify(original));
+clone.b.c = 3;
+console.log(original.b.c); // Output: 2
 
-==============================================
+const original = {
+  name: 'John',
+  age: 30,
+  address: { city: 'New York', country: 'USA' }
+};
 
+const deepClone = JSON.parse(JSON.stringify(original));
 
-
-
-
+console.log(deepClone === original); // false (different objects)
+console.log(deepClone.address === original.address); // false (different objects)
 
 
 
