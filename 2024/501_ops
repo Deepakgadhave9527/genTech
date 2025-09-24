@@ -1355,6 +1355,80 @@ console.log(deepClone.address === original.address); // false (different objects
 
 
 
+---
+
+Let me know if you'd like this formatted as a **PDF**, **cue card**, or **flashcards**!
+
+
+=====================
+**"Type coercion in JavaScript** means converting values from one type to another automatically or manually.
+**Implicit coercion** happens automatically — like `'5' + 1` becoming `'51'` because `+` prefers strings.
+Operators like `-`, `*`, `/` **prefer numbers**, so `'5' - 1` becomes `4`.
+**Explicit coercion** is done manually using `Number()`, `String()`, or `Boolean()`.
+To avoid bugs, it's best to use strict equality (`===`) and explicit conversion where possible."\*\*
+
+
+✅ Implicit Type Coercion in JavaScript
+
+Implicit type coercion happens when JavaScript automatically converts one data type to another during operations — 
+
+
+### ✅ **JavaScript Type Coercion Summary (Your Notes)**
+
+* **Except for `+`**, most operators convert operands to **numbers**.
+
+
+
+## ✅ JavaScript Type Coercion Summary (with Code)
+
+### 🔸 `+` prefers **strings** (if one operand is a string → string concatenation):
+
+```js
+'5' + 1           // "51"      → number 1 is coerced to string
+false + '1'       // "false1"  → false becomes "false"
+```
+
+
+### 🔸 `-`, `*`, `/` prefer **numbers** (convert operands to numbers):
+
+```js
+'5' - 1           // 4         → string '5' is coerced to number
+true + 1          // 2         → true becomes 1
+true + true       // 2         → both true → 1
+null + 1          // 1         → null becomes 0
+undefined + 1     // NaN       → undefined becomes NaN
+```
+
+
+
+### ⚖️ Loose Equality (`==`):
+
+```js
+null == 0              // false
+undefined == null      // true
+```
+
+### ✅ Operator Rules:
+
+* `+` **prefers strings** (if one operand is a string → string concatenation)
+* `-`, `*`, `/` **prefer numbers** (try to convert operands to numbers)
+
+
+
+Let me know if you want this turned into a flashcard or interview cue card!
+
+
+✅ Explicit Type Coercion
+
+➡️ we can manually convert the type using built-in functions or operators.
+
+Number('5')      // 5
+String(10)       // "10"
+Boolean(0)       // false
+parseInt('42')   // 42
+'' + 123         // "123" (also explicit)
+
+
 
 
 
@@ -1377,6 +1451,31 @@ console.log(deepClone.address === original.address); // false (different objects
 
 
 
+async await
+
+-The async await is used to pause the execution of a function until a promise gets settled
+
+A] - Async Keyword:
+
+-async keyword Put the before a function , tells the function to return a Promise
+- This allows the function to use the "await" keyword internally to handle asynchronous operations.
+
+
+B]- Await Keyword:
+
+
+- "await" keyword is used within an async function to pause its execution until a Promise is settled.
+- It waits for the Promise to resolve (either fulfilled or rejected) and then returns its result.
+- Note: The "await" keyword can only be used inside async functions, otherwise, it would result in a SyntaxError.
+
+
+
+-await should only be used inside the async function.
+
+-The await keyword simply makes JavaScript wait until that Promise settles and then returns its result
+-await keyword only works inside async functions, otherwise you would get a SyntaxError.
+
+
 
 
 
@@ -1393,6 +1492,25 @@ console.log(deepClone.address === original.address); // false (different objects
 
 
 
+
+Implicit type coercion
+
+Implicit type coercion in JavaScript is the automatic conversion of values from one type to another.
+
+let result = '5' + 1; // '51' (string)
+let result2 = '5' - 1; // 4 (number)
+
+
+Avoiding Implicit Coercion
+
+
+Explicitly convert types using functions like Number(), String(), Boolean(), or methods like .toString().
+
+Coercion
+
+Coercion in programming refers to the automatic or implicit conversion of values from one data type to another. 
+In JavaScript, t
+his process is often automatic, especially when using the loose equality operator (==).
 
 
 

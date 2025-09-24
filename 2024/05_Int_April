@@ -1,71 +1,145 @@
 
+====================================================================================
 
+### ✅ Coercion
+
+**Coercion** in programming refers to the **conversion of a value from one data type to another**.
+
+In **JavaScript**, coercion can be:
+
+* **Implicit (automatic)** — performed by JavaScript during operations like comparisons or arithmetic.
+* **Explicit (manual)** — done using functions like `Number()`, `String()`, or `Boolean()`.
+
+This process is especially common when using **loose equality (`==`)**, where JavaScript attempts to **coerce the operands to the same type** before comparing them.
+
+---
+
+### Example:
+
+```js
+'5' == 5        // true → '5' is coerced to number 5
+```
+
+
+
+====================================================================================
+
+# ✅ JavaScript Type Coercion 
+
+**Type coercion in JavaScript** means converting values from one type to another — automatically (implicit) or manually (explicit).
+
+* **Implicit coercion** happens automatically (e.g., `'5' + 1` becomes `'51'`).
+* **Explicit coercion** is done manually using functions like `Number()`, `String()`, or `Boolean()`.
+
+> ℹ️ To avoid bugs, prefer **strict equality (`===`)** and **explicit conversion**.
+
+
+
+## ✅ Implicit Type Coercion
+
+JavaScript automatically converts types during operations.
+
+### 🔸 `+` prefers **strings**
+
+If one operand is a string → string concatenation:
+
+```js
+'5' + 1           // "51"       → number 1 is coerced to string
+false + '1'       // "false1"   → false becomes "false"
+```
+
+### 🔸 `-`, `*`, `/` prefer **numbers**
+
+Operands are coerced to numbers:
+
+```js
+'5' - 1           // 4          → '5' becomes number
+true + 1          // 2          → true becomes 1
+true + true       // 2          → both true → 1
+null + 1          // 1          → null becomes 0
+undefined + 1     // NaN        → undefined becomes NaN
+```
+
+## ⚖️ Loose Equality (`==`)
+
+Examples of JavaScript’s loose equality behavior:
+
+```js
+null == 0              // false
+undefined == null      // true
+```
+
+
+
+## ✅ Operator Preferences Summary
+
+| Operator      | Coercion Preference |
+| ------------- | ------------------- |
+| `+`           | **Strings**         |
+| `-`, `*`, `/` | **Numbers**         |
+
+---
 
 ------------------------------------------------------------------------------------------------
 
+## ✅ Explicit Type Coercion
+
+Use built-in functions to manually convert values:
+
+```js
+Number('5')       // 5
+String(10)        // "10"
+Boolean(0)        // false
+parseInt('42')    // 42
+'' + 123          // "123"   → also explicit
+```
 
 
-temporal dead 
-
-The Temporal Dead Zone in JavaScript is the period during which variables declared with let, const  exist in their scope but are not yet initialized.
-
-Accessing such variables in the TDZ results in a ReferenceError
-
-
-console.log(a); // ReferenceError: Cannot access 'a' before initialization
-let a = 5;
-
-
-------------------------------------------------------------------------------------------------
-Implicit type coercion
-
-Implicit type coercion in JavaScript is the automatic conversion of values from one type to another.
-
-let result = '5' + 1; // '51' (string)
-let result2 = '5' - 1; // 4 (number)
-
-
-Avoiding Implicit Coercion
 
 Use the strict equality operator (===) which does not perform type coercion.
 
-Explicitly convert types using functions like Number(), String(), Boolean(), or methods like .toString().
-
-Coercion
-
-Coercion in programming refers to the automatic or implicit conversion of values from one data type to another. 
-In JavaScript, t
-his process is often automatic, especially when using the loose equality operator (==).
 
 
-------------------------------------------------------------------------------------------------
 
 
-(null == undefined) //true
-(null === undefined) //false
+====================================================================================
 
-null:
+
+```js
+(null == undefined) // true  
+(null === undefined) // false  
+```
+
+**null:**
 Type: object
-Represents "no value" intentionally set by the programmer.
+Represents an intentional "no value" set by the programmer.
 
-undefined:
+**undefined:**
 Type: undefined
-Typically means a variable is declared but has not been assigned any value yet.
+Typically means a variable has been declared but not assigned a value yet.
 
-Why == considers them equal:
-Both null and undefined represent absence of a value or non-existence. Therefore, when using loose equality (==), JavaScript treats them as equal.
+**Why `==` considers them equal:**
+Both `null` and `undefined` represent absence of a value or non-existence. Therefore, when using loose equality (`==`), JavaScript treats them as equal.
 
-Why === considers them different:
-In strict equality (===), JavaScript compares both value and type. Since null and undefined have different types (object and undefined), they are not equal.
+**Why `===` considers them different:**
+In strict equality (`===`), JavaScript compares both value and type. Since `null` and `undefined` have different types (`object` and `undefined`), they are not equal.
 
----------------------------------------------------------------------------------------------------
+
+
+
+====================================================================================---
 
 why arrow functions ?
 
-- Lexical this binding, avoiding this confusion.
 -Arrow functions do not have their own this context; instead, 
 they inherit this from the parent scope at the time they are defined. 
+This is especially useful in:
 
+Callbacks
+
+Event handlers
+
+ - Lexical this binding, avoiding this confusion.
 - Concise syntax for defining functions.
 - no need to return for single-expression functions.
 - No binding of arguments object.
@@ -79,8 +153,66 @@ making it shorter, clearer, and more expressive, particularly in modern developm
 
 
 
-------------------------------------------------------------------------------------------------
-splice and slice
+===================================== splice and slice ===============================================
+
+
+## 1. `splice()`
+
+* **Purpose:** Modify the original array by **adding**, **removing**, or **replacing** elements.
+* **Mutates:** Yes — it changes the original array.
+* **Returns:** An array of the removed elements (if any).
+* **Syntax:**
+
+  ```js
+  array.splice(startIndex, deleteCount, item1, item2, ...)
+  ```
+* **Parameters:**
+
+  * `startIndex` — position to start changing the array
+  * `deleteCount` — number of elements to remove from `startIndex`
+  * `item1, item2, ...` — elements to add starting at `startIndex`
+
+### Example:
+
+```js
+const arr = [1, 2, 3, 4, 5];
+
+// Remove 2 elements starting at index 1, and insert 'a', 'b'
+const removed = arr.splice(1, 2, 'a', 'b');
+
+console.log(arr);      // Output: [1, 'a', 'b', 4, 5]
+console.log(removed);  // Output: [2, 3]
+```
+
+---
+
+## 2. `slice()`
+
+* **Purpose:** Extract a portion of the array and return it as a **new array**.
+* **Mutates:** No — original array stays unchanged.
+* **Returns:** A new array with the selected elements.
+* **Syntax:**
+
+  ```js
+  array.slice(startIndex, endIndex)
+  ```
+* **Parameters:**
+
+  * `startIndex` — start extracting from this index (inclusive)
+  * `endIndex` — stop extracting before this index (exclusive)
+
+### Example:
+
+```js
+const arr = [1, 2, 3, 4, 5];
+
+// Extract elements from index 1 up to (but not including) index 4
+const newArr = arr.slice(1, 4);
+
+console.log(arr);     // Output: [1, 2, 3, 4, 5]
+console.log(newArr);  // Output: [2, 3, 4]
+```
+----------------------------------------------------------------------
 
 In React.js, splice and slice are both methods used to manipulate arrays,
  but they have different purposes:
@@ -99,7 +231,7 @@ In React.js, splice and slice are both methods used to manipulate arrays,
   
     
 
-- slice():
+- sli vce():
   - Returns a shallow copy of a portion of an array into a new array object selected from startIndex to endIndex (endIndex is not included).
   - Does not modify the original array.
   - Syntax: array.slice(startIndex, endIndex)
@@ -117,7 +249,17 @@ while slice returns a portion of the array as a new array without modifying the 
 
 
 
-------------------------------------------------------------------------------------------------
+====================================================================================
+
+
+
+arr.splice(0) removes all elements from the array and returns them, leaving the array empty.
+arr.splice(-n) removes the last n elements from the array and returns them.
+arr.splice(-n, 0, item1, item2, ...) inserts elements before the last n elements without removing any
+
+
+====================================================================================
+
 
 Object.freeze()
 Object.seal()
@@ -171,7 +313,7 @@ Object.seal() makes it so you can modify existing properties but not add or remo
 Object.preventExtensions() only prevents new properties from being added while allowing existing properties to be modified or removed.
 
 
-------------------------------------------------------------------------------------------------
+====================================================================================
  
 Explain Hoisting in javascript.
 Hoisting is the default behaviour of javascript where  the variable and function
@@ -180,13 +322,13 @@ declarations are moved on top during the compilation phase
 clousure inner function can be access of outer function
 
 
-------------------------------------------------------------------------------------------------
+====================================================================================
 4. Difference between “ == “ and “ === “ operators.
 Both are comparison operators.
 The difference between both the operators is that “==” is used to compare values whereas,
  “ === “ is used to compare both values and types.
 
-------------------------------------------------------------------------------------------------
+====================================================================================
 
 
 
@@ -195,7 +337,7 @@ web workers
 
 
 
-------------------------------------------------------------------------------------------------
+====================================================================================
 
 
 
