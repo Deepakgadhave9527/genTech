@@ -1565,6 +1565,22 @@ This process is especially common when using **loose equality (`==`)**, where Ja
 
 
 
+### Differences between `map()` and `forEach()`
+
+- **Return Value:**
+  - **map()**:Transforms each element of an array and returns a new array.
+  
+  - **forEach()**: Returns `undefined`. It is used for its side effects, like modifying elements or performing actions on each element without producing a new array.
+
+- **Immutability:**
+  - **map()**: Does not modify the original array; it creates a new array based on the transformation function.
+  - **forEach()**: Can modify the original array if the provided function changes its elements, but it does not create a new array.
+
+- **Chaining:**
+  - **map()**: Since it returns a new array, you can chain other array methods like `filter()`, `reduce()`, etc., after `map()`.
+  - **forEach()**: Returns `undefined`, so chaining other array methods after `forEach()` is not possible.
+
+In summary, `map()` is used when you want to transform each element of an array and create a new array with the transformed elements, while `forEach()` is used when you want to iterate over elements and perform actions or modifications on them without creating a new array. Each method serves different purposes based on whether you need to produce a new array or just iterate over an existing array for side effects.
 
 
 

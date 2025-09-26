@@ -10,6 +10,10 @@ Q12 what is dom ?
 -It is a structured representation of the HTML elements
 that are present in a webpage or web-app.
 - JavaScript interacts with the DOM using the document object.  
+- The DOM represents all elements, attributes, and content of a web page as objects that can be accessed and manipulated using JavaScript.
+
+
+
 
 - Includes element nodes, text nodes, and attribute nodes.  
 - Enables adding, removing, or modifying elements and attributes dynamically.  
@@ -92,17 +96,34 @@ How many way object will create
    const entries = [['name', 'John'], ['age', 30]];
    const obj = Object.fromEntries(entries);
 
+================================================================================
 
+**Why is `console.log(obj2)` empty?**
 
+Because `Object.create()` creates an object with the given object as its prototype, not its own properties.
 
+```js
+var obj2 = Object.create({ name: "av5" });
+console.log(obj2);          // 👉 Outputs: {}
+console.log(obj2.name);     // 👉 Outputs: "av5"
 
+obj2 = {
+  // No own properties
+  __proto__: {
+    name: "av5"
+  }
+}
+```
+
+`console.log(obj2)` shows `{}` because `obj2` has no own properties — it inherits `name` from its prototype.
+`Object.create()` sets the passed object as the prototype, not as direct properties.
 
 
 
 
 
    ================================================================================
-
+```js
    curried function
    
     curried function is a function that takes one argument at a time, returning a new function each time,
@@ -160,7 +181,6 @@ How many way object will create
     However, different customers may have different discounts based on their membership level. You want to create a flexible function that can calculate the total price for any customer,
      taking into account their membership discount.
    
-   <script>
    // Curried function to calculate total price with discount
    function calculateTotalPrice(discount) {
      return function(items) {
@@ -188,31 +208,44 @@ How many way object will create
    console.log("Total price for standard member:", totalPriceForStandardMember); // Output: 81 (10% discount applied)
    
    
-   
+   ```
    
    
 
 
-=
 
 =========================================================================
 
+
+
 ### Differences between `map()` and `forEach()`
 
-- **Return Value:**
-  - **map()**:Transforms each element of an array and returns a new array.
-  
-  - **forEach()**: Returns `undefined`. It is used for its side effects, like modifying elements or performing actions on each element without producing a new array.
+1. **Return Value**:
 
-- **Immutability:**
-  - **map()**: Does not modify the original array; it creates a new array based on the transformation function.
-  - **forEach()**: Can modify the original array if the provided function changes its elements, but it does not create a new array.
+   * `map()` returns a **new array** with transformed elements.
+   * `forEach()` returns **undefined**.
 
-- **Chaining:**
-  - **map()**: Since it returns a new array, you can chain other array methods like `filter()`, `reduce()`, etc., after `map()`.
-  - **forEach()**: Returns `undefined`, so chaining other array methods after `forEach()` is not possible.
+2. **Immutability**:
 
-In summary, `map()` is used when you want to transform each element of an array and create a new array with the transformed elements, while `forEach()` is used when you want to iterate over elements and perform actions or modifications on them without creating a new array. Each method serves different purposes based on whether you need to produce a new array or just iterate over an existing array for side effects.
+   * `map()` is **immutable** — it does not change the original array.
+   * `forEach()` is **mutable** — it can change the original array **if you modify elements inside the loop**.
+   * ➕ If you don't modify anything inside `forEach()`, the array remains unchanged — but it's **capable of mutating**.
+
+3. **Chaining**:
+
+   * `map()` supports **chaining** other array methods like `filter()`, `reduce()`, etc.
+   * `forEach()` does **not support chaining** since it returns `undefined`.
+
+4. **Purpose / Use Case**:
+
+   * Use `map()` when you want to **transform and return a new array**.
+   * Use `forEach()` when you just need to **loop through items** and perform **side effects** (like logging or DOM updates), without returning anything.
+
+---
+
+
+Use map() when you want to transform and return a new array.
+Use forEach() when you just need to loop through items and perform side effects (like logging or DOM updates), without returning anything.
 
 
 
