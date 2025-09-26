@@ -1528,6 +1528,26 @@ his process is often automatic, especially when using the loose equality operato
 
 
 
+====================================================================================
+
+### ✅ Coercion
+
+**Coercion** in programming refers to the **conversion of a value from one data type to another**.
+
+In **JavaScript**, coercion can be:
+
+* **Implicit (automatic)** — performed by JavaScript during operations like comparisons or arithmetic.
+* **Explicit (manual)** — done using functions like `Number()`, `String()`, or `Boolean()`.
+
+This process is especially common when using **loose equality (`==`)**, where JavaScript attempts to **coerce the operands to the same type** before comparing them.
+
+---
+
+### Example:
+
+```js
+'5' == 5        // true → '5' is coerced to number 5
+```
 
 
 
