@@ -1601,6 +1601,40 @@ In summary, `map()` is used when you want to transform each element of an array 
 
 
 
+ '
+Memoization in JavaScript is an optimization technique used to improve the performance of functions by caching the results of expensive function calls and returning the cached result when the same inputs occur again. This avoids redundant calculations and speeds up the program. It is particularly useful for functions with repetitive or computationally expensive tasks.
+
+
+Memoization in JavaScript is an optimization technique used to improve the performance of functions by caching the results of expensive functions calls and returning the cached result when the same inputs occur again
+
+
+ Memoization in JavaScript is an optimization technique that stores the results of functions calls and reuses them when the same inputs occur again. This avoids redundant calculations, improving the performance of the program.
+
+
+
+Memoization is an optimization technique used primarily to speed up computer programs
+by storing the results of expensive functions calls
+and returning the cached result when the same inputs occur again.
+
+It is particularly useful for functions with expensive or repetitive computations.
+
+
+
+
+- **Memoization in JavaScript optimization technique used to:
+  - Improve the performance of functions.
+  - by Cache/storing the results of expensive function calls.
+  - Return the cached result when the same inputs occur again.
+  
+- **Benefits:**
+  - Avoids redundant calculations.
+  - Speeds up the program.
+  
+- **Use case:**  
+  - Particularly useful for functions with repetitive or computationally expensive tasks.
+
+
+
 
 
 

@@ -75,10 +75,17 @@ accessibility
 
 
 Web accessibility  is the design and creation of websites that can be used by everyone.
+
+in reactjs we can develop application that are usable by people with disabilities.
+
 <!-- Accessibility support is necessary to allow assistive technology to interpret web pages. -->
+<!-- 
 Accessibility in ReactJS refers 
-to the web applications built with React are usable by people with disabilities. 
+to the web applications built with React are usable by people with disabilities.  -->
+
+
 <!-- This includes individuals who may have visual, auditory, motor, or cognitive impairments.  -->
+
 React provides various tools and techniques to make applications more accessible, such as:
 -
 1. Semantic HTML:
@@ -89,10 +96,7 @@ React provides various tools and techniques to make applications more accessible
 -Accessible Rich Internet Applications (ARIA) attributes can be added
  to HTML elements to provide additional information to assistive technologies. 
 React supports adding ARIA attributes to components to enhance accessibility.
-
-3. Keyboard navigation:
--Ensuring that all interactive elements can be accessed and operated using a keyboard alone,
- without relying on mouse or touch input.
+2wa C
 
 4. Focus management: Managing focus to ensure that users can navigate through the application in a logical order, 
 and that focus is not trapped within certain elements.

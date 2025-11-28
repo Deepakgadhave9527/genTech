@@ -220,6 +220,7 @@ obj2 = {
 
 ### Differences between `map()` and `forEach()`
 
+b
 1. **Return Value**:
 
    * `map()` returns a **new array** with transformed elements.
@@ -228,7 +229,7 @@ obj2 = {
 2. **Immutability**:
 
    * `map()` is **immutable** — it does not change the original array.
-   * `forEach()` is **mutable** — it can change the original array **if you modify elements inside the loop**.
+   * `forEach()` is **mutable** — it can change the n original array **if you modify elements inside the loop**.
    * ➕ If you don't modify anything inside `forEach()`, the array remains unchanged — but it's **capable of mutating**.
 
 3. **Chaining**:
@@ -267,12 +268,22 @@ with help of  Event loop  we can know  the execution of code in Javascript and a
  Macro Task Queue(setTimeout, setInterval, I/O operations, DOM events, etc.,)
 
 
+
+
 ### Call Stack
-with help of  Call Stack e JavaScript engine keeps track of function calls.
+<!-- with help of  Call Stack e JavaScript engine keeps track of function calls. -->
+
+
+The Call Stack keeps track of function execution.
+
 When a function is called, it is pushed onto the Call Stack.
 When the function completes, it is pop out out the stack. 
 
-The Call Stack operates in a last-in-first-out (LIFO) manner.
+
+
+It follows LIFO (Last In, First Out)
+
+JavaScript will execute code synchronously in the call stack until it becomes empty.
 
 
 ### Micro Task Queue
