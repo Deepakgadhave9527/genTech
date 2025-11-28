@@ -277,13 +277,13 @@ for (let value of arr) {
 =========================================
 
 
-(var x = 1; x < 5; x++) {
+for(var x = 1; x < 5; x++) {
   setTimeout(() => {
     console.log(x);
   }, 1000);
 }
 
- (let x = 1; x < 5; x++) {
+ for(let x = 1; x < 5; x++) {
   setTimeout(() => {
     console.log(x);
   }, 1);
