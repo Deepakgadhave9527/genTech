@@ -1,4 +1,14 @@
 
+what is asynchronous programming 
+synchronous: task execute one at a time order. next task wait for the current one to finsh
+ 
+asynchronous : task can start and finish independently without blocking other code
+
+common asynchronous opertions
+-api calls (fetch)
+-setTimeout / setInterval
+- file i/o 
+- Database queries
 
 
 

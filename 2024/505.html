@@ -1,0 +1,26 @@
+<script>
+    const prom = new Promise((res, rej) => {
+
+        fetch('https://jsonplaceholder.typicode.com/todo/1').then((res) => {
+
+            if (!res.ok) {
+                return rej('Error fetching data');
+            }
+            return res.json()
+
+        }).then((data) => {
+            res(data)
+        })
+
+
+    })
+    
+    prom.then((data) => {
+        console.log(data);
+    }
+    ).catch((err) => {
+        console.log(err);
+    })
+
+
+</script>
