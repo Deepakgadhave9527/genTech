@@ -162,8 +162,30 @@ map.forEach((value, key) => {
 ```
 
 ### **Examples in Practice**
-  
+
 ===========================================
+
+
+We need prototypes because they allow multiple objects to share the same methods instead of creating duplicate copies for each object. This improves memory efficiency and supports inheritance. When an object tries to access a method, JavaScript first searches the object itself. If the method isn't found, it automatically searches the object's prototype through the prototype chain.
+
+
+
+
+Instead of creating a copy of a method for every object, JavaScript stores shared methods in the prototype. 
+This saves memory and allows code reuse.
+
+
+
+-Prototypes are the mechanism by which JavaScript objects iinherit properties and method from one another.
+- Every object in JavaScript has a prototype,
+
+ which is another object that provides shared properties and methods.
+ -Javascript is a Prototype based language.
+
+When to Use Prototypes?
+Prototypes are used to share methods and properties across multiple instances efficiently.
+They avoid duplicating properties or methods for each instance, saving memory.
+
 ===========================================
 ===========================================
 ===========================================
