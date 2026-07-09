@@ -1,5 +1,28 @@
 
 ===========================================
+===========================================
+===========================================
+===========================================
+===========================================
+===========================================
+===========================================
+===========================================
+===========================================
+===========================================
+===========================================
+===========================================
+===========================================
+===========================================
+===========================================
+===========================================
+===========================================
+===========================================
+===========================================
+===========================================
+===========================================
+===========================================
+===========================================
+===========================================
 
 ---
 
@@ -187,31 +210,219 @@ Prototypes are used to share methods and properties across multiple instances ef
 They avoid duplicating properties or methods for each instance, saving memory.
 
 ===========================================
+
+
+
+========================
+
+
+
+
+Primitives are copied by value. Objects and arrays are not copied directly; instead, their references are copied.
+
+
+
+1. `const` does not make an object or array immutable.
+2. `const` only makes the variable's binding (reference) immutable, not the object's contents.
+3. Primitive variables store the actual value directly.
+4. With a primitive, `const` means the variable must always hold the same value.
+5. Changing a primitive value requires reassignment, so doing this with `const` throws: `TypeError: Assignment to constant variable.`
+6. Non-primitive values (objects and arrays) are stored in memory, and the variable stores only a reference (address) to them.
+7. `const` prevents changing that reference, but it does not prevent modifying the object's or array's contents.
+8. Since the reference stays the same, operations like adding, removing, or updating properties/elements are allowed.
+9. Primitives are copied by value, while objects and arrays are copied by reference.
+10. In simple terms:
+
+    * Primitive + `const` → value cannot be reassigned.
+    * Object/Array + `const` → reference cannot be reassigned, but contents can be modified.
+
+### Example
+
+```javascript
+// Primitive
+const num = 10;
+// num = 20; // ❌ TypeError: Assignment to constant variable.
+
+// Non-primitive
+const person = { name: "John" };
+
+person.name = "Jane"; // ✅ Allowed
+// person = {}; // ❌ TypeError: Assignment to constant variable.
+```
+
+Key takeaway: `const` protects the variable's binding (reference), not the contents of an object or array.
+
+
+const does not make an object or array immutable. 
+const makes the object constant. It doesn't. It only makes the reference constant(constant means immutable).
+const does not allow changing the reference, it throws an error.
+Objects are stored in reference memory, and the variable stores only the reference (address).=
+A primitive variable stores the actual value. const says
+"The variable must always point to the same value."A primitive variable stores the actual value. TypeError: Assignment to constant variable.
+non primitive  It stores a reference (address) to the object.
+Primitive variables hold the value directly, so changing the value requires reassignment. Objects and arrays are accessed through a reference, so their internal contents can change as long as the reference itself stays the same.
+Primitives are stored and copied by value in stack, so changing them replaces the value directly, while objects and arrays are stored in heap and accessed via reference, so modifying them changes internal data but not the reference.
+
+
+
+
+
+- Because primitives and  non primitives (objects and array) behave differently in memory
+- Primitive values (like number, string, boolean) are stored directly in the variable, not as references.
+- When you use const with a primitive, the actual value is fixed and cannot be changed or mutated. 
+   Any “change” creates a new value in memory and tries to reassign it, 
+    resignment is not possible in const its not allow they desgned.
+- non Primitive (Objects and arrays) are stored by reference in memory 
+ const prevents changing the reference but not the internal structure it points to.
+ For example, you can modify properties or elements because the memory they point to remains the same
+
+
+
+
+1. `const` does not make objects or arrays immutable.
+2. `const` only makes the variable’s binding (reference) immutable, not the value inside it.
+3. Primitive values (number, string, boolean, etc.) are stored directly in the variable.
+4. With primitives, `const` means the value cannot be reassigned at all.
+5. If you try to reassign a primitive declared with `const`, JavaScript throws: `TypeError: Assignment to constant variable.`
+6. Non-primitive values (objects and arrays) are stored in heap memory, and the variable holds only a reference (address).
+7. `const` prevents changing that reference, but does not prevent modifying the object or array itself.
+8. Since the reference stays the same, you can update, add, or remove properties/elements in objects and arrays.
+9. Primitives are copied by value, while objects and arrays are copied by reference.
+10. Final summary:
+
+
+const protects the variable's binding. If the value is an object or array, its contents can still be modified because the binding (reference) hasn't changed.
+
+
+
+-----------------------------------------------------------------
+
+For primitives, 
+const makes the value itself immutable and the reference unchangeable.
+
+For non-primitives, 
+const makes the reference unchangeable, but the contents of the object or array can still be modified.
+
+
+# Understanding `const` vs Immutability in JavaScript
+
+## What `const` Actually Does
+
+* Prevents reassignment of the variable identifier.
+* Does NOT make the value immutable.
+
+
 ===========================================
+
 ===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
+
+
+================================== Object cloning =============================================
+
+### ❌ Limitations of `JSON.parse(JSON.stringify())`:
+
+It fails to clone:
+
+- Functions → ❌ Removed
+- `undefined` → ❌ Removed
+- `Date` → ❌ Becomes string
+- `Map`, `Set` → ❌ Lost (converted to empty objects or discarded)
+- Circular references → ❌ Throws error
+
+---
+
+### ⚠️ Example:
+
+```js
+const obj = {
+  date: new Date(),
+  sayHi: () => console.log("Hi"),
+  nested: undefined,
+  today: new Date(),
+  map: new Map(),
+  set: new Set()
+};
+
+const clone = JSON.parse(JSON.stringify(obj));
+console.log(clone);
+
+
+### 🔍 Output:
+
+{
+  date: "2025-08-17T12:34:56.789Z",  // Date becomes string
+  today: "2025-08-17T12:34:56.789Z", // Another string
+  // sayHi is missing
+  // nested is missing
+  // map and set are missing
+}
+```
+
+
+###  Use `structuredClone()` instead for deep cloning with full support.
+
+
+###  structuredClone Supports:
+
+* Primitives: `null`, `undefined`, numbers, strings, etc.
+* Objects & Arrays
+* Dates, Maps, Sets
+* TypedArrays, ArrayBuffer
+* RegExp, Error objects
+* Blobs, Files, ImageData
+* Circular references
+
+### ❌ Not Supported:
+
+* Functions
+* DOM elements
+* SharedArrayBuffer
+
+---
+
+###  Example:
+```js
+
+const obj = {
+  primitiveNull: null,
+  primitiveUndefined: undefined,
+  number: 42,
+  string: "hello",
+  boolean: true,
+  bigint: 12345678901234567890n,
+
+  object: { x: 10 },
+  array: [1, 2, 3],
+
+  date: new Date(),
+  map: new Map([["key1", "value1"]]),
+  set: new Set([1, 2, 3]),
+
+  typedArray: new Uint8Array([10, 20, 30]),
+  arrayBuffer: new ArrayBuffer(8),
+
+  regexp: /abc/i,
+  error: new Error("Something went wrong"),
+
+  blob: new Blob(["Hello"], { type: "text/plain" }),
+  file: new File(["Content"], "example.txt", { type: "text/plain" }),
+
+  // Circular reference
+  get circular() {
+    return this;
+  }
+};
+
+const cloned = structuredClone(obj);
+
+console.log(cloned);
+```
+
+- Copies all levels of an object, including nested structures.  
+- Changes in the clone do not affect the original object.  
+
+-changing value of cloned object will be not refect into
+orginal object as well because both are point different refrance object
 ===========================================
 
 Set:-
@@ -2353,6 +2564,59 @@ It is particularly useful for functions with expensive or repetitive computation
 
 
 
+## Examples to Illustrate the Difference
+
+### Example 1: `const` with a Primitive (Immutable) Value
+
+```js
+const greeting = "Hello";
+greeting = "Hi"; // ❌ Error: Assignment to constant variable
+```
+
+* `"Hello"` is a string, which is immutable.
+* `greeting` is declared with `const`, so reassignment is disallowed.
+* You cannot reassign `greeting` to a new string.
+
+---
+
+### Example 2: `const` with an Object (Mutable Value)
+
+```js
+const person = { name: "Alice" };
+person.name = "Bob"; //  Allowed
+console.log(person.name); // "Bob"
+
+person = { name: "Charlie" }; // ❌ Error: Assignment to constant variable
+```
+
+* `person` is a `const` variable, so you cannot reassign the variable to a new object.
+* However, the object itself is mutable, so you can change its properties.
+* Mutating the content is allowed, but reassigning the variable is not.
+
+---
+
+### Example 3: `let` with an Array (Mutable Value)
+
+```js
+let nums = [1, 2, 3];
+nums.push(4); //  Allowed - modifies the original array
+console.log(nums); // [1, 2, 3, 4]
+
+nums = [5, 6]; //  Allowed - reassignment is allowed with let
+console.log(nums); // [5, 6]
+```
+
+---
+
+## Summary
+
+| Concept          | What `const` Does             | Mutability of Value                      |
+| ---------------- | ----------------------------- | ---------------------------------------- |
+| `const` variable | Prevents reassignment         | Value can be mutable or immutable        |
+| Immutable values | Primitives (strings, numbers) | Value itself cannot be changed           |
+| Mutable values   | Objects, arrays, functions    | Their contents/properties can be changed |
+
+
 
 
 
@@ -2366,6 +2630,63 @@ It is particularly useful for functions with expensive or repetitive computation
 ==============================================
 
 
+
+
+
+Temporal Dead Zone (TDZ): 
+
+👉 This period between hoisting and initialization is called TDZ.
+
+The Temporal Dead Zone (TDZ) is this time period (or “zone”) from the start of a block scope until the variable declared with `let` or `const` is initialized.
+
+During the TDZ:
+
+* The variable exists (it’s hoisted),
+* But cannot be accessed,
+* Attempting to access it throws a ReferenceError.
+
+
+### Visualizing TDZ with an example:
+
+```js
+{
+  // TDZ starts here for 'x'
+  console.log(x); // ReferenceError: Cannot access 'x' before initialization
+  
+  let x = 5; // TDZ ends here (x is initialized)
+  console.log(x); // 5 (now accessible)
+}
+```
+
+---
+
+### Key points:
+
+* TDZ applies only to variables declared with `let` and `const`.
+* `var` declarations do not have TDZ because they are initialized with `undefined` immediately.
+
+
+
+
+
+
+ The time period between the start of a block scope and the point where a variable declared with let or const is initialized. During this zone, the variable exists but cannot be accessed, and attempts to do so result in a ReferenceError.
+
+let and const Hoisting:
+Variables declared with let and const are hoisted to the top of their block scope but are not initialized during hoisting. Accessing them before the declaration results in a ReferenceError due to the TDZ..
+
+
+
+
+temporal dead 
+
+The Temporal Dead Zone in JavaScript is the period during which variables declared with let, const  exist in their scope but are not yet initialized.
+
+Accessing such variables in the TDZ results in a ReferenceError
+
+
+console.log(a); // ReferenceError: Cannot access 'a' before initialization
+let a = 5;
 
 
 

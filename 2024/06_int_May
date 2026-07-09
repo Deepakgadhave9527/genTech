@@ -177,7 +177,7 @@ obj2 = {
    
    
    
-   Suppose you're building an e-commerce platform, and you have a function that calculates the total price of items in a shopping cart.
+   Suppose youre building an e-commerce platform, and you have a function that calculates the total price of items in a shopping cart.
     However, different customers may have different discounts based on their membership level. You want to create a flexible function that can calculate the total price for any customer,
      taking into account their membership discount.
    
@@ -397,6 +397,52 @@ The event loop in JavaScript is a fundamental concept that helps manage the exec
 
  -->
 <!-- Macrotasks are tasks that are scheduled to be executed after the current executing script and after all microtasks have been processed -->
+
+
+
+=================== setTimeout()========================
+
+
+```text
+If the delay is not provided, it is treated as 0 milliseconds.
+```
+
+```javascript
+setTimeout(() => {
+  console.log("Hello");
+}, 0);
+```
+
+### Important Points
+
+* If the delay is omitted, JavaScript treats it as 0 milliseconds.
+* `0 ms` does not mean the callback executes immediately.
+* The callback is placed in the Task Queue (Macrotask Queue).
+* It executes only after the current call stack is empty.
+* All synchronous code finishes before the `setTimeout` callback runs.
+* `setTimeout(callback)` is equivalent to `setTimeout(callback, 0)`.
+* The callback is executed by the Event Loop when the call stack becomes empty.
+* Even with `0 ms`, the actual execution time may be slightly longer depending on the browser, system load, and other queued tasks.
+* `setTimeout()` is asynchronous and does not block the execution of the remaining code.
+
+```javascript
+console.log("Start");
+
+setTimeout(() => {
+  console.log("Timeout");
+});
+
+console.log("End");
+```
+
+Output:
+
+```text
+Start
+End
+Timeout
+```
+
 
 
 

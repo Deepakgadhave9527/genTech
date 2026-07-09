@@ -1,0 +1,329 @@
+
+//== ==============================Higher Order function==============================
+Higher Order function :-
+
+A higher order function is a function that takes one or more functions as arguments, or returns a function as its result.
+
+A function which accepts another function as an argument is called a higher
+order function.
+The higher order function is used to perform different operations.
+
+Example: addEventListener
+
+Other Common Higher-Order Functions:
+map()
+filter()
+reduce()
+forEach()
+setTimeout() and setInterval()
+
+
+
+For an interview, keep it short, accurate, and professional.
+
+### 1. What is synchronous execution in JavaScript?
+
+Answer:
+
+> Synchronous execution means JavaScript executes code line by line, one statement at a time. Each task must finish before the next task starts.
+
+Example:
+
+```javascript
+console.log("A");
+console.log("B");
+console.log("C");
+```
+
+Output:
+
+```
+A
+B
+C
+```
+
+---
+
+### 2. What is asynchronous execution in JavaScript?
+
+Answer:
+
+> Asynchronous execution allows JavaScript to start a task and continue executing other code without waiting for that task to complete. When the task finishes, its callback is executed later.
+
+Example:
+
+```javascript
+console.log("A");
+
+setTimeout(() => {
+    console.log("B");
+}, 1000);
+
+console.log("C");
+```
+
+Output:
+
+```
+A
+C
+B
+```
+
+---
+
+### 3. Is JavaScript synchronous or asynchronous?
+
+Answer:
+
+> JavaScript is single-threaded and synchronous by default. However, it can perform asynchronous operations with the help of the runtime environment (Browser APIs or Node.js APIs) and the Event Loop.
+
+---
+
+### 4. How can JavaScript perform asynchronous operations if it is single-threaded?
+
+Answer:
+
+> JavaScript has only one call stack, but asynchronous tasks such as timers, API calls, and file operations are handled by the browser or Node.js runtime. Once the task is completed, the Event Loop pushes the callback into the call stack for execution.
+
+---
+
+### 5. What is a callback?
+
+Answer:
+
+> A callback is a function passed as an argument to another function and executed later, usually after an asynchronous operation completes.
+
+Example:
+
+```javascript
+function greet(callback) {
+    callback();
+}
+
+greet(() => {
+    console.log("Hello");
+});
+```
+
+---
+
+### 6. What are the ways to handle asynchronous operations in JavaScript?
+
+Answer:
+There are three main ways:
+
+1. Callbacks
+2. Promises
+3. Async/Await
+
+Example:
+
+```javascript
+// Callback
+getData(callback);
+
+// Promise
+getData()
+    .then(result => console.log(result))
+    .catch(error => console.log(error));
+
+// Async/Await
+async function fetchData() {
+    try {
+        const result = await getData();
+        console.log(result);
+    } catch (error) {
+        console.log(error);
+    }
+}
+```
+
+### One-line interview answer
+
+> "JavaScript is a single-threaded language that executes code synchronously by default. Asynchronous operations are handled by the runtime environment, and the Event Loop ensures completed tasks are executed without blocking the main thread."
+
+
+
+=====================
+
+
+
+
+
+
+//=================== promise =============================
+
+
+
+callback
+callback is a function passed as an argument to another function,
+which gets invoked after the main function completes its execution.
+ 
+They are commonly used to handle asynchronous operations in JavaScript.
+
+Callbacks are commonly used in programming to handle asynchronous tasks, such as fetching data from a server, reading files, or handling user interactions.
+
+
+
+================================================================================
+
+how handle asynchronous operations 
+
+Handling asynchronous operations in programming involves
+managing tasks that may take variable amounts of time to complete without blocking the execution of other code.
+
+Asynchronous operations can be handled using various techniques, including callbacks, Promises, async/await, and event listeners
+
+
+=============================================================================================================
+lexical scope
+
+When a function (Function B) is declared inside another function (Function A), JavaScript uses lexical scoping to determine what variables Function B has access to.
+// 🌍 Global scope
+let globalVar = "I am global";
+
+function Function_A_outer() {
+  // 🔹 Lexical Scope Level 1 (outer)
+  let outerVar = "I am outer";
+
+  function Function_b_inner() {
+    // 🔸 Lexical Scope Level 2 (inner)
+    let innerVar = "I am inner";
+
+    //  Accessing variables through lexical scope
+    console.log(globalVar); // ← from Global Scope
+    console.log(outerVar);  // ← from outer()'s Lexical Scope
+    console.log(innerVar);  // ← from inner()'s own scope
+  }
+
+  Function_b_inner(); // Call the inner function
+}
+
+Function_A_outer(); // Call the outer function
+
+
+//================================= Closure ========================
+
+
+##  JavaScript Closures & Lexical Scope – Interview Notes
+
+### 🔹 Definition of Closure:
+> A closure in JavaScript is a function bundled together with its lexical environment
+
+> It allows an inner function to access variables from an outer function’s scope even after the outer function has finished executing.
+
+> A closure is the combination of a function and the lexical environment in which it was defined.
+
+
+### 🔹 Key Points to Remember:
+
+* Closures enable data privacy and state persistence.
+* Variables in the outer scope are held by reference, not by value.
+* The inner function always accesses the latest value of those variables.
+* Lexical scope means scope is determined by where code is written, not where it’s called.
+
+
+
+### 🔹 Simple Closure Example:
+
+```javascript
+function outerFunction() {
+  let outerVariable = 'I am outer';
+let a=20
+  function innerFunction() {
+    console.log(outerVariable); // Accesses outerVariable via closure
+        console.log(a); // Accesses outerVariable via closure
+
+  }
+a=30;
+  return innerFunction;
+}
+
+const innerFunc = outerFunction();
+innerFunc(); // Output: outerVariable = I am outer and a=30
+ 
+```
+
+---
+
+### 🔹 Real-World Use Case – Counter:
+
+```javascript
+function createCounter() {
+  let count = 0;
+  return function() {
+    count++;
+    return count;
+  };
+}
+
+const counter = createCounter();
+console.log(counter()); // 1
+console.log(counter()); // 2
+```
+
+> `count` is private and persistent across function calls due to closure.
+
+When function_a_outer is executed, function_b_inner still retains access to its lexical scope. These variables are held by reference, not as the original values at definition time. As a result, the inner function always accesses the latest value of those variables
+
+
+
+When a customer visits an online store:
+
+A new shopping cart is created (via a function).
+
+The cart has a private list of items, not accessible directly from outside.
+
+The cart exposes functions to:
+
+ Add items
+
+❌ Remove items
+
+👁️ View cart contents
+
+These functions are closures — they retain access to the private list of items, even after the main cart function has executed.
+
+
+--------------------------------------------------------------------------
+
+- When a customer visits an online store, a new shopping cart is created.
+- This cart contains a private list of items, inaccessible directly from outside.
+- To manage the cart, specific functions are provided:
+  - One for adding items.
+  - One for removing items.
+  - One for viewing the cart's contents.
+- These functions can access the private list, even though it's hidden from the outside.
+- When a customer adds an item:
+  - The function modifies the private list to include the new item
+- When a customer removes an item:
+  - Another function checks the list and updates it accordingly.
+- To view the cart:
+  - A function reads and displays the list without changing it.
+- This use of closures ensures that the cart’s internal list remains encapsulated and secure, only modifiable through the designated functions.
+- The private list retains its state throughout the customer’s session because the functions maintain a reference to it.
+- This encapsulation:
+  - Enhances security by preventing direct tampering.
+  - Ensures that each customer's cart operates independently and consistently throughout their shopping experience.
+
+<!-- 
+Certainly! Here's a concise explanation using a continuous format:
+
+When a customer visits an online store, a new shopping cart is created. This cart contains a private list of items, inaccessible directly from outside. To manage the cart, specific functions are provided: one for adding items, one for removing items, and one for viewing the cart's contents. These functions can access the private list, even though it's hidden from the outside. When a customer adds an item, the function modifies the private list to include the new item. When they remove an item, another function checks the list and updates it accordingly. To view the cart, a function reads and displays the list without changing it. 
+
+This use of closures ensures that the cart’s internal list remains encapsulated and secure, only modifiable through the designated functions. The private list retains its state throughout the customer’s session because the functions maintain a reference to it. This encapsulation enhances security by preventing direct tampering and ensures that each customer's cart operates independently and consistently throughout their shopping experience. -->
+
+
+
+
+
+
+
+
+
+
+
+
+

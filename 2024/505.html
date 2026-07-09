@@ -1,8 +1,31 @@
-<script>
+<body>
+  <button id="btn">click</button>
+  <script>
+    const btn = document.getElementById("btn");
 
-for (const i = 0; i < 5; i++) {
-    console.log(i);
-}
+    class Counter {
+      constructor() {
+        this.name = "aarav";
+        this.count = 0;
+      }
+      increment() {
+        this.count++;
+                  console.log(this.count);
+
+        setTimeout(() => {
+          console.log(this);
+
+          this.count++;
+          console.log(this.count);
+        }, 1000);
+      }
+    }
+    const c = new Counter();
+    btn.addEventListener("mouseover", 
+      c.increment());
+  </script>
+</body>
 
 
-</script>
+
+
