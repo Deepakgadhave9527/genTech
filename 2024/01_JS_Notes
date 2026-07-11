@@ -2134,3 +2134,12 @@ console.log(typeof greetArrow); // "function"
 
 ============================
 
+In JavaScript, objects and functions are reference types.
+ When a new object is created, it gets a new reference, 
+ so two objects with the same values are considered different 
+ if their references are different.
+
+When a function is assigned to another variable,
+ only the reference is copied. 
+ Both variables point to the same function object,
+  so the type remains "function" and the references are equal.

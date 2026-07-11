@@ -1,12 +1,12 @@
 
-# ✅ JavaScript Type Coercion
+#  JavaScript Type Coercion
 
 **Type coercion in JavaScript** means converting values from one type to another — either automatically (implicit) or manually (explicit).
 
 * **Implicit coercion** happens automatically (e.g., `'5' + 1` → `'51'`).
 * **Explicit coercion** is done deliberately using `Number()`, `String()`, `Boolean()`, etc.
 
-> ℹ️ To avoid bugs prefer **explicit conversion** and **strict equality (`===`)**.
+> \ To avoid bugs prefer **explicit conversion** and **strict equality (`===`)**.
 
 
 ## 🔹 Types of Coercion
@@ -35,7 +35,7 @@ console.log(Boolean("hi"));   // true
 
 ---
 
-## ✅ Implicit Coercion — Operator behaviors & examples
+##  Implicit Coercion — Operator behaviors & examples
 
 ### 🔸 `+` prefers **strings**
 
@@ -73,7 +73,7 @@ if ("hello") console.log("runs");  // runs ("hello" is truthy)
 
 ---
 
-## ✅ Truthy & Falsy Values
+##  Truthy & Falsy Values
 
 * **Falsy values:**
   `false, 0, -0, 0n, "", null, undefined, NaN`
@@ -83,7 +83,7 @@ if ("hello") console.log("runs");  // runs ("hello" is truthy)
 
 ---
 
-## ✅ Operator Preferences Summary
+##  Operator Preferences Summary
 
 | Operator      | Coercion Preference |
 | ------------- | ------------------- |
@@ -92,7 +92,7 @@ if ("hello") console.log("runs");  // runs ("hello" is truthy)
 
 ---
 
-## ✅ Explicit Type Coercion (manual conversions)
+##  Explicit Type Coercion (manual conversions)
 
 ```js
 Number('5')       // 5
@@ -104,7 +104,7 @@ parseInt('42')    // 42
 
 ---
 
-## ✅ Loose (`==`) vs Strict (`===`) equality — Best Practice
+##  Loose (`==`) vs Strict (`===`) equality — Best Practice
 
 ```js
 0 == false   // true   (coerced)
@@ -404,7 +404,7 @@ var sayHi = function() {
 
 ---
 
-✅ **Key points:**
+ **Key points:**
 
 * Hoisting moves **declarations**, not **initializations**.
 * `var` → undefined, `let/const` → temporal dead zone, function declarations → fully hoisted.
@@ -437,7 +437,7 @@ web workers
 ====================================================================================
 
 
-## ✅ Correct Explanation of Constructor Function Behavior in JavaScript
+##  Correct Explanation of Constructor Function Behavior in JavaScript
 
 ### 🔹1. Default Behavior of Constructor Functions
 
@@ -450,7 +450,7 @@ function Person(first, last) {
 }
 
 const person1 = new Person("John", "Doe");
-console.log(person1); // ✅ Person { firstName: 'John', lastName: 'Doe' }
+console.log(person1); //  Person { firstName: 'John', lastName: 'Doe' }
 ```
 
 ---
@@ -468,7 +468,7 @@ function Person(first, last) {
 }
 
 const person2 = new Person("Jane", "Doe");
-console.log(person2); // ✅ Person { firstName: 'Jane', lastName: 'Doe' }
+console.log(person2); //  Person { firstName: 'Jane', lastName: 'Doe' }
 ```
 
 > ✔️ `this` is still returned, not the string `"Hello"`.
@@ -484,11 +484,11 @@ function Person(first, last) {
   this.firstName = first;
   this.lastName = last;
 
-  return { custom: "object" }; // ✅ This replaces the created object
+  return { custom: "object" }; //  This replaces the created object
 }
 
 const person3 = new Person("Alice", "Smith");
-console.log(person3); // ✅ { custom: 'object' }
+console.log(person3); //  { custom: 'object' }
 ```
 
 ---
@@ -512,14 +512,14 @@ function Person(first, last, age, eye) {
 const myFather = new Person("John", "Doe", 50, "blue");
 console.log(myFather); 
 // ❌ You wrote: Outputs Person {...}
-// ✅ Actually: Still returns the object, NOT the string
+//  Actually: Still returns the object, NOT the string
 ```
 
 This example is labeled as **"returning a primitive"** but wrongly states that the object is replaced. It should clarify that **the primitive is ignored**, and the object is returned.
 
 ---
 
-## ✅ Summary
+##  Summary
 
 | Return Type       | What Happens                      |
 | ----------------- | --------------------------------- |
