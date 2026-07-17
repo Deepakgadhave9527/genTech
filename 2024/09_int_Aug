@@ -1,74 +1,193 @@
 =========================================================================
 
+# JavaScript Web Storage
 
-### Session Storage:
-- Data stored in session storage is scoped to the current browsing session.
-- It is only available within the same tab or window that created it.
-- Data is lost when the tab or window is closed or the session ends.
-- Each browsing session maintains its own separate session storage.
-- Data stored in one session will not be accessible in another session, even if it's on the same website.
+JavaScript provides two types of Web Storage:
 
+- **Session Storage (`sessionStorage`)**
+- **Local Storage (`localStorage`)**
 
-1. Storing Data:
+Both store data as **key-value pairs**, and **both can only store strings**. If you want to store objects or arrays, use `JSON.stringify()` while storing and `JSON.parse()` while retrieving.
 
-sessionStorage.setItem('key', 'value');
+---
 
-2. Retrieving Data:
+# Session Storage (`sessionStorage`)
 
-var value = sessionStorage.getItem('key');
+### Features
 
-3. Removing an Item:
+`sessionStorage` stores data only for the current browser session
+and is available only in the same browser tab that created it.
+Each tab has its own separate session storage, so the data is not shared across tabs.
+The stored data is automatically cleared when the tab or browser window is closed.
+It stores data as key-value pairs and typically provides up to **5 MB** of storage, depending on the browser.
 
-sessionStorage.removeItem('key');
+### Methods
 
-4. Clearing All Data:
-
-sessionStorage.clear();
-
-
-### Local Storage:
-
-- Data stored in local storage is scoped to the same origin (protocol, domain, and port).
-- It is accessible across multiple tabs and windows of the same origin.
-- Data available even after the browser is closed and reopened.
-- Each origin maintains its own separate local storage.
-- Data stored in local storage will be available across different sessions, allowing for continuity of user preferences and application state.
-
-Here's how you can use JavaScript to store, retrieve, and clear data from both Session Storage and Local Storage, along with methods for removing individual items and clearing all stored data:
-
-
-
-1. Storing Data:
-
-localStorage.setItem('key', 'value');
-
-2. Retrieving Data:
-
-var value = localStorage.getItem('key');
-
-3. Removing an Item:
-
-localStorage.removeItem('key');
-
-4. Clearing All Data:
-
-localStorage.clear();
-
-
-
-
-
-==============================================
-### parse
-
-- `JSON.parse()` takes a JSON string and transforms it into a JavaScript object.
-
+### 1. Store Data
 
 ```javascript
-// Converting a JSON string to a JavaScript object
-const jsonString = '{"name":"John", "age":30, "city":"New York"}';
-const jsonObject = JSON.parse(jsonString);
-console.log(jsonObject);  // Output: {name: "John", age: 30, city: "New York"}
+sessionStorage.setItem("username", "John");
+```
+
+### 2. Retrieve Data
+
+```javascript
+let username = sessionStorage.getItem("username");
+console.log(username);
+```
+
+### 3. Update Data
+
+```javascript
+sessionStorage.setItem("username", "David");
+```
+
+### 4. Remove One Item
+
+```javascript
+sessionStorage.removeItem("username");
+```
+
+### 5. Clear All Data
+
+```javascript
+sessionStorage.clear();
+```
+
+### 6. Check Number of Stored Items
+
+```javascript
+console.log(sessionStorage.length);
+```
+
+### 7. Get Key by Index
+
+```javascript
+console.log(sessionStorage.key(0));
+```
+
+### Store an Object
+
+```javascript
+const user = {
+  id: 1,
+  name: "John",
+  age: 25,
+};
+
+sessionStorage.setItem("user", JSON.stringify(user));
+```
+
+### Retrieve an Object
+
+```javascript
+const user = JSON.parse(sessionStorage.getItem("user"));
+console.log(user);
+```
+
+---
+
+# Local Storage (`localStorage`)
+
+### Features
+
+- Data is stored permanently until it is manually removed.
+- Data remains available even after the browser is closed and reopened.
+- Data is shared across all tabs and windows of the same origin (protocol, domain, and port).
+- Different websites cannot access each other's local storage.
+- Maximum storage is typically around **5–10 MB**, depending on the browser.
+- Stores data as **key-value pairs**.
+- Only strings can be stored directly.
+
+### Methods
+
+### 1. Store Data
+
+```javascript
+localStorage.setItem("username", "John");
+```
+
+### 2. Retrieve Data
+
+```javascript
+let username = localStorage.getItem("username");
+console.log(username);
+```
+
+### 3. Update Data
+
+```javascript
+localStorage.setItem("username", "David");
+```
+
+### 4. Remove One Item
+
+```javascript
+localStorage.removeItem("username");
+```
+
+### 5. Clear All Data
+
+```javascript
+localStorage.clear();
+```
+
+### 6. Check Number of Stored Items
+
+```javascript
+console.log(localStorage.length);
+```
+
+### 7. Get Key by Index
+
+```javascript
+console.log(localStorage.key(0));
+```
+
+### Store an Object
+
+```javascript
+const user = {
+  id: 1,
+  name: "John",
+  age: 25,
+};
+
+localStorage.setItem("user", JSON.stringify(user));
+```
+
+### Retrieve an Object
+
+```javascript
+const user = JSON.parse(localStorage.getItem("user"));
+console.log(user);
+```
+
+# Common Methods
+
+| Method                | Description                            |
+| --------------------- | -------------------------------------- |
+| `setItem(key, value)` | Adds or updates a value                |
+| `getItem(key)`        | Returns the stored value               |
+| `removeItem(key)`     | Removes a specific item                |
+| `clear()`             | Removes all stored items               |
+| `key(index)`          | Returns the key at the specified index |
+| `length`              | Returns the number of stored items     |
+
+---
+
+## Important Notes
+
+- Both `sessionStorage` and `localStorage` store **only strings**.
+- To store objects or arrays, use `JSON.stringify()`.
+- To retrieve objects or arrays, use `JSON.parse()`.
+- `getItem()` returns `null` if the key does not exist.
+- Avoid storing sensitive information (such as passwords or tokens) in Web Storage because it is accessible through JavaScript.
+- Storage is limited (typically 5–10 MB depending on the browser).
+
+This version is accurate, complete, and suitable for JavaScript interview notes or learning material.
+
+==============================================
 
 ### stringify
 
@@ -77,13 +196,27 @@ console.log(jsonObject);  // Output: {name: "John", age: 30, city: "New York"}
 // Converting a JavaScript object to a JSON string
 const jsObject = {name: "Jane", age: 25, city: "Chicago"};
 const jsonStr = JSON.stringify(jsObject);
-console.log(jsonStr);  // Output: '{"name":"Jane","age":25,"city":"Chicago"}'
+console.log(jsonStr); // Output: '{"name":"Jane","age":25,"city":"Chicago"}'
 
-=========================================================================
+### parse
+
+- `JSON.parse()` takes a JSON string and transforms it into a JavaScript object.
+
+```javascript
+// Converting a JSON string to a JavaScript object
+const jsonString = '{"name":"John", "age":30, "city":"New York"}';
+const jsonObject = JSON.parse(jsonString);
+console.log(jsonObject);  // Output: {name: "John", age: 30, city: "New York"}
+
+
+
 //===========================Bubbling and Capturing =========================
 
 
 A) Bubbling
+
+Event Bubbling is the default event propagation method in JavaScript.
+ When an event occurs on a child element, it first runs on the target element and then propagates upward through its parent elements to the root (document).
 
 -The bubbling principle is simple.
 -When an event happens on an element, it first runs the handlers on it,
@@ -95,7 +228,8 @@ then propagated to outer elements.
 
 B] capturing
 
-- capturing principle is simple.
+Event Capturing (also called the capture phase) is the opposite of bubbling. The event starts from the outermost parent and travels down to the target element.
+
 -when an event happen on element ,it first run the parent element of then lastly run handler
 
 
@@ -119,26 +253,6 @@ preventDefault prevents the default action the browser makes on that event.
 
 
 
-
-=========================================================================
-- `preventDefault()` is a JavaScript method used to stop the default action associated with an event from occurring.
-  - Example: Prevent a form from submitting.
-  - Example: Prevent a link from navigating to a new page.
-  - Example: Prevent a context menu from appearing.
-
-
-- `stopPropagation()` is a JavaScript method used to prevent an event from bubbling up the event chain.
-  - When an event is triggered, it normally propagates up from the target element to its ancestors in the DOM.
-  - By calling `stopPropagation()` on the event object, you stop this propagation.
-  - Ensures that the event doesn't trigger handlers on parent elements.
-  - Useful when you want to manage the event at the specific element level without affecting its ancestors.
-  - Prevents Bubbling: Stops the event from bubbling up to parent elements.
-
-
- `stopImmediatePropagation()` 
-  stopImmediatePropagation prevents the event from triggering other event listeners on the same element and stops the event from bubbling up the DOM tree.
-
-  stopImmediatePropagation stops the current event from calling any more event listeners on the same element and stops it from moving up to parent elements.
 
 =========================================================================
 ### Pure Functions
@@ -204,10 +318,10 @@ console.log(iterator.next()); // { value: undefined, done: true }
 
 ### Generators
 
-**Generators** are special functions that can pause their execution and resume it later. 
+**Generators** are special functions that can pause their execution and resume it later.
 allowing for control over the function's execution.
 
-<!-- It allow to control excuation of function 
+<!-- It allow to control excuation of function
 They return a generator object, which is both an iterator and an iterable. -->
 
 They are defined using the function* syntax and use the yield keyword to pause execution.
@@ -274,7 +388,7 @@ for (let value of arr) {
 - **`for...of`**: Iterates over values of an iterable (like arrays, strings) one by one.
 
 
-================================================
+
 
 ========================================================
 
@@ -327,7 +441,7 @@ In this example:
     // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 ========================================================================
-Scope Chain 
+Scope Chain
 
 Scope Chain in JavaScript refers to the process by which JavaScript determines where to look for variables when they're accessed in different scopes. When a variable or function is referenced, JavaScript starts by searching in the current scope. If it doesn't find it there, it moves up to the next outer scope, and this continues until it either finds the variable or reaches the global scope. This process forms a "chain" of scopes, linking inner and outer scopes together.
 
@@ -339,57 +453,4 @@ So, your explanation is close, but it’s important to emphasize that the scope 
 
 
 
-
-
-
-
-========================
-
-
-
-
-Primitives are copied by value. Objects and arrays are not copied directly; instead, their references are copied.
-
-
-
-1. `const` does not make an object or array immutable.
-2. `const` only makes the variable's binding (reference) immutable, not the object's contents.
-3. Primitive variables store the actual value directly.
-4. With a primitive, `const` means the variable must always hold the same value.
-5. Changing a primitive value requires reassignment, so doing this with `const` throws: `TypeError: Assignment to constant variable.`
-6. Non-primitive values (objects and arrays) are stored in memory, and the variable stores only a reference (address) to them.
-7. `const` prevents changing that reference, but it does not prevent modifying the object's or array's contents.
-8. Since the reference stays the same, operations like adding, removing, or updating properties/elements are allowed.
-9. Primitives are copied by value, while objects and arrays are copied by reference.
-10. In simple terms:
-
-    * Primitive + `const` → value cannot be reassigned.
-    * Object/Array + `const` → reference cannot be reassigned, but contents can be modified.
-
-### Example
-
-```javascript
-// Primitive
-const num = 10;
-// num = 20; // ❌ TypeError: Assignment to constant variable.
-
-// Non-primitive
-const person = { name: "John" };
-
-person.name = "Jane"; // ✅ Allowed
-// person = {}; // ❌ TypeError: Assignment to constant variable.
 ```
-
-Key takeaway: `const` protects the variable's binding (reference), not the contents of an object or array.
-
-
-const does not make an object or array immutable. 
-const makes the object constant. It doesn't. It only makes the reference constant(constant means immutable).
-const does not allow changing the reference, it throws an error.
-Objects are stored in reference memory, and the variable stores only the reference (address).=
-A primitive variable stores the actual value. const says
-"The variable must always point to the same value."A primitive variable stores the actual value. TypeError: Assignment to constant variable.
-non primitive  It stores a reference (address) to the object.
-Primitive variables hold the value directly, so changing the value requires reassignment. Objects and arrays are accessed through a reference, so their internal contents can change as long as the reference itself stays the same.
-Primitives are stored and copied by value in stack, so changing them replaces the value directly, while objects and arrays are stored in heap and accessed via reference, so modifying them changes internal data but not the reference.
-

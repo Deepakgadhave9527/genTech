@@ -1,3 +1,22 @@
+=========================================================================
+
+- `preventDefault()` is a JavaScript method used to stop the default action associated with an event from occurring.
+  - Example: Prevent a form from submitting.
+  - Example: Prevent a link from navigating to a new page.
+  - Example: Prevent a context menu from appearing.
+
+- `stopPropagation()` is a JavaScript method used to prevent an event from bubbling up the event chain.
+  - When an event is triggered, it normally propagates up from the target element to its ancestors in the DOM.
+  - By calling `stopPropagation()` on the event object, you stop this propagation.
+  - Ensures that the event doesn't trigger handlers on parent elements.
+  - Useful when you want to manage the event at the specific element level without affecting its ancestors.
+  - Prevents Bubbling: Stops the event from bubbling up to parent elements.
+
+`stopImmediatePropagation()`
+stopImmediatePropagation prevents the event from triggering other event listeners on the same element and stops the event from bubbling up the DOM tree.
+
+stopImmediatePropagation stops the current event from calling any more event listeners on the same element and stops it from moving up to parent elements.
+
 ===================================================
 
 Event loop

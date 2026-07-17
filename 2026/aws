@@ -1,0 +1,103 @@
+================================================================
+
+**CIDR** stands for **Classless Inter-Domain Routing**.
+
+It is the **`/number`** at the end of an IP address (called the **prefix length**) that tells you how many bits are used for the network portion of the address.
+
+### Examples
+
+- `10.0.0.0/16`
+  - CIDR = **16**
+  - Network bits = 16
+  - Host bits = 32 − 16 = **16**
+  - Total IPs = **2¹⁶ = 65,536**
+
+- `192.168.1.0/24`
+  - CIDR = **24**
+  - Host bits = 32 − 24 = **8**
+  - Total IPs = **2⁸ = 256**
+
+- `172.31.0.0/28`
+  - CIDR = **28**
+  - Host bits = 32 − 28 = **4**
+  - Total IPs = **2⁴ = 16**
+
+### Easy Formula
+
+```
+Host bits = 32 − CIDR
+Total IPs = 2^(Host bits)
+```
+
+### Quick CIDR Table
+
+| CIDR | Host Bits | Total IPs |
+| ---- | --------: | --------: |
+| /16  |        16 |    65,536 |
+| /20  |        12 |     4,096 |
+| /24  |         8 |       256 |
+| /25  |         7 |       128 |
+| /26  |         6 |        64 |
+| /27  |         5 |        32 |
+| /28  |         4 |        16 |
+
+**Simple way to remember:** The number after the slash (`/`) is the **CIDR**. For example, in `10.0.0.0/24`, the CIDR is **24**.
+
+================================================================
+One-line formula to memorize:
+
+32 − CIDR = Host Bits
+2^(Host Bits) = Total IPs
+Total IPs − 5 = AWS Usable IPs
+
+| CIDR  | Calculation        | Total IPs | AWS Usable IPs |
+| ----- | ------------------ | --------: | -------------: |
+| `/28` | 32 − 28 = 4 → 2⁴   |        16 |             11 |
+| `/27` | 32 − 27 = 5 → 2⁵   |        32 |             27 |
+| `/26` | 32 − 26 = 6 → 2⁶   |        64 |             59 |
+| `/25` | 32 − 25 = 7 → 2⁷   |       128 |            123 |
+| `/24` | 32 − 24 = 8 → 2⁸   |       256 |            251 |
+| `/23` | 32 − 23 = 9 → 2⁹   |       512 |            507 |
+| `/22` | 32 − 22 = 10 → 2¹⁰ |      1024 |           1019 |
+| `/21` | 32 − 21 = 11 → 2¹¹ |      2048 |           2043 |
+| `/20` | 32 − 20 = 12 → 2¹² |      4096 |           4091 |
+| `/19` | 32 − 19 = 13 → 2¹³ |      8192 |           8187 |
+| `/18` | 32 − 18 = 14 → 2¹⁴ |     16384 |          16379 |
+| `/17` | 32 − 17 = 15 → 2¹⁵ |     32768 |          32763 |
+| `/16` | 32 − 16 = 16 → 2¹⁶ |     65536 |          65531 |
+
+======================
+
+## AWS Reserved IPs (Short Notes)
+
+**AWS reserves 5 IP addresses in every subnet.**
+
+1. **1st IP** → Network address
+2. **2nd IP** → VPC Router (Gateway)
+3. **3rd IP** → AWS DNS
+4. **4th IP** → Future use
+5. **Last IP** → Reserved (Broadcast address)
+
+### Easy Memory Trick
+
+**N R D F B**
+
+- **N** = Network
+- **R** = Router
+- **D** = DNS
+- **F** = Future
+- **B** = Broadcast (last IP)
+
+### Example (`10.0.1.0/24`)
+
+- `10.0.1.0` → Network
+- `10.0.1.1` → Router
+- `10.0.1.2` → DNS
+- `10.0.1.3` → Future
+- `10.0.1.255` → Reserved
+
+**Usable IPs = Total IPs − 5**
+
+**Exam Tip:** **Every AWS subnet reserves 5 IPv4 addresses.**
+
+================================================================

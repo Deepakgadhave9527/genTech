@@ -1,38 +1,85 @@
+# ===========================================
 
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
-===========================================
+# ===========================================
 
+# ===========================================
 
+# ===========================================
 
-1. Internationalization (i18n):- 
-Making software for different languages, regions, and cultures by designing it flexibly. 
-This includes separating text from code, using language-neutral formats for dates and numbers,
- and ensuring UI layouts can handle various text lengths and directions.
+# ===========================================
 
-2. Localization (l10n): 
+# ===========================================
 
-Customizing software for specific languages, regions, or cultures by translating text, 
+# ===========================================
+
+# ===========================================
+
+# ===========================================
+
+# ===========================================
+
+# ===========================================
+
+=========================================================================
+
+### Session Storage:
+
+- Data stored in session storage is scoped to the current browsing session.
+- It is only available within the same tab or window that created it.
+- Data is lost when the tab or window is closed or the session ends.
+- Each browsing session maintains its own separate session storage.
+- Data stored in one session will not be accessible in another session, even if it's on the same website.
+
+1. Storing Data:
+
+sessionStorage.setItem('key', 'value');
+
+2. Retrieving Data:
+
+var value = sessionStorage.getItem('key');
+
+3. Removing an Item:
+
+sessionStorage.removeItem('key');
+
+4. Clearing All Data:
+
+sessionStorage.clear();
+
+### Local Storage:
+
+- Data stored in local storage is scoped to the same origin (protocol, domain, and port).
+- It is accessible across multiple tabs and windows of the same origin.
+- Data available even after the browser is closed and reopened.
+- Each origin maintains its own separate local storage.
+- Data stored in local storage will be available across different sessions, allowing for continuity of user preferences and application state.
+
+Here's how you can use JavaScript to store, retrieve, and clear data from both Session Storage and Local Storage, along with methods for removing individual items and clearing all stored data:
+
+1. Storing Data:
+
+localStorage.setItem('key', 'value');
+
+2. Retrieving Data:
+
+var value = localStorage.getItem('key');
+
+3. Removing an Item:
+
+localStorage.removeItem('key');
+
+4. Clearing All Data:
+
+# localStorage.clear();
+
+1. Internationalization (i18n):-
+   Making software for different languages, regions, and cultures by designing it flexibly.
+   This includes separating text from code, using language-neutral formats for dates and numbers,
+   and ensuring UI layouts can handle various text lengths and directions.
+
+2. Localization (l10n):
+
+Customizing software for specific languages, regions, or cultures by translating text,
 formatting dates and numbers, and adapting the UI to match local expectations.
 It involves creating language-specific versions of the software and tailoring the user experience accordingly.
 ===========================================
@@ -49,15 +96,15 @@ map1.set(1, "One");
 map1.set(true, "Yes");
 
 console.log(map1.get("name")); // Deepak
-console.log(map1.size);        // 3
+console.log(map1.size); // 3
 ```
 
 ### Constructor Example:
 
 ```javascript
 const map2 = new Map([
-    ["name", "Deepak"],
-    ["age", 25]
+  ["name", "Deepak"],
+  ["age", 25],
 ]);
 
 console.log(map2);
@@ -68,21 +115,15 @@ console.log(map2);
 ```javascript
 const map1 = new Map();
 
-console.log(typeof map1);         // "object"
+console.log(typeof map1); // "object"
 console.log(map1 instanceof Map); // true
 ```
 
 ### Interview Definition:
 
-
-
-
-Map:- 
+Map:-
 A Map is a built-in JavaScript object that store key value pairs with unique keys.
 where the keys can be of any type, including objects, functions, and primitives.
-
-
-
 
 ```javascript
 
@@ -105,7 +146,7 @@ Creating // Create a new Map
 
 ### **Core Methods**
 
-#### 1. **`set(key, value)`**  
+#### 1. **`set(key, value)`**
 Adds or updates a key-value pair in the `Map`.
 
 const map = new Map();
@@ -114,32 +155,36 @@ map.set(42, 'The answer');
 console.log(map); // Map(2) { 'name' => 'Alice', 42 => 'The answer' }
 ```
 
-#### 2. **`get(key)`**  
+#### 2. **`get(key)`**
+
 Retrieves the value associated with a given key.
 
 ```javascript
-console.log(map.get('name')); // 'Alice'
-console.log(map.get(42));     // 'The answer'
-console.log(map.get('age'));  // undefined (key does not exist)
+console.log(map.get("name")); // 'Alice'
+console.log(map.get(42)); // 'The answer'
+console.log(map.get("age")); // undefined (key does not exist)
 ```
 
-#### 3. **`has(key)`**  
+#### 3. **`has(key)`**
+
 Checks if a key exists in the `Map`.
 
 ```javascript
-console.log(map.has('name')); // true
-console.log(map.has('age'));  // false
+console.log(map.has("name")); // true
+console.log(map.has("age")); // false
 ```
 
-#### 4. **`delete(key)`**  
+#### 4. **`delete(key)`**
+
 Removes a key-value pair by the key.
 
 ```javascript
-map.delete(42); 
+map.delete(42);
 console.log(map); // Map(1) { 'name' => 'Alice' }
 ```
 
-#### 5. **`clear()`**  
+#### 5. **`clear()`**
+
 Removes all key-value pairs from the `Map`.
 
 ```javascript
@@ -147,17 +192,19 @@ map.clear();
 console.log(map); // Map(0) {}
 ```
 
-#### 6. **`size` (Property)**  
+#### 6. **`size` (Property)**
+
 Returns the number of key-value pairs in the `Map`.
 
 ```javascript
-map.set('a', 1).set('b', 2).set('c', 3);
+map.set("a", 1).set("b", 2).set("c", 3);
 console.log(map.size); // 3
 ```
 
 ### **Iteration Methods**
 
-#### 7. **`keys()`**  
+#### 7. **`keys()`**
+
 Returns an iterator of all keys in the `Map`.
 
 ```javascript
@@ -166,7 +213,8 @@ for (const key of map.keys()) {
 }
 ```
 
-#### 8. **`values()`**  
+#### 8. **`values()`**
+
 Returns an iterator of all values in the `Map`.
 
 ```javascript
@@ -175,7 +223,8 @@ for (const value of map.values()) {
 }
 ```
 
-#### 9. **`entries()`**  
+#### 9. **`entries()`**
+
 Returns an iterator of all key-value pairs in the `Map` as `[key, value]`.
 
 ```javascript
@@ -184,7 +233,8 @@ for (const [key, value] of map.entries()) {
 }
 ```
 
-#### 10. **`forEach(callback)`**  
+#### 10. **`forEach(callback)`**
+
 Executes a callback function for each key-value pair.
 
 ```javascript
@@ -201,22 +251,17 @@ map.forEach((value, key) => {
 
 ===========================================
 
-
 We need prototypes because they allow multiple objects to share the same methods instead of creating duplicate copies for each object. This improves memory efficiency and supports inheritance. When an object tries to access a method, JavaScript first searches the object itself. If the method isn't found, it automatically searches the object's prototype through the prototype chain.
 
-
-
-
-Instead of creating a copy of a method for every object, JavaScript stores shared methods in the prototype. 
+Instead of creating a copy of a method for every object, JavaScript stores shared methods in the prototype.
 This saves memory and allows code reuse.
 
-
-
 -Prototypes are the mechanism by which JavaScript objects iinherit properties and method from one another.
+
 - Every object in JavaScript has a prototype,
 
- which is another object that provides shared properties and methods.
- -Javascript is a Prototype based language.
+which is another object that provides shared properties and methods.
+-Javascript is a Prototype based language.
 
 When to Use Prototypes?
 Prototypes are used to share methods and properties across multiple instances efficiently.
@@ -224,16 +269,9 @@ They avoid duplicating properties or methods for each instance, saving memory.
 
 ===========================================
 
-
-
 ========================
 
-
-
-
 Primitives are copied by value. Objects and arrays are not copied directly; instead, their references are copied.
-
-
 
 1. `const` does not make an object or array immutable.
 2. `const` only makes the variable's binding (reference) immutable, not the object's contents.
@@ -245,9 +283,8 @@ Primitives are copied by value. Objects and arrays are not copied directly; inst
 8. Since the reference stays the same, operations like adding, removing, or updating properties/elements are allowed.
 9. Primitives are copied by value, while objects and arrays are copied by reference.
 10. In simple terms:
-
-    * Primitive + `const` → value cannot be reassigned.
-    * Object/Array + `const` → reference cannot be reassigned, but contents can be modified.
+    - Primitive + `const` → value cannot be reassigned.
+    - Object/Array + `const` → reference cannot be reassigned, but contents can be modified.
 
 ### Example
 
@@ -265,32 +302,24 @@ person.name = "Jane"; // ✅ Allowed
 
 Key takeaway: `const` protects the variable's binding (reference), not the contents of an object or array.
 
-
-const does not make an object or array immutable. 
+const does not make an object or array immutable.
 const makes the object constant. It doesn't. It only makes the reference constant(constant means immutable).
 const does not allow changing the reference, it throws an error.
 Objects are stored in reference memory, and the variable stores only the reference (address).=
 A primitive variable stores the actual value. const says
 "The variable must always point to the same value."A primitive variable stores the actual value. TypeError: Assignment to constant variable.
-non primitive  It stores a reference (address) to the object.
+non primitive It stores a reference (address) to the object.
 Primitive variables hold the value directly, so changing the value requires reassignment. Objects and arrays are accessed through a reference, so their internal contents can change as long as the reference itself stays the same.
 Primitives are stored and copied by value in stack, so changing them replaces the value directly, while objects and arrays are stored in heap and accessed via reference, so modifying them changes internal data but not the reference.
 
-
-
-
-
-- Because primitives and  non primitives (objects and array) behave differently in memory
+- Because primitives and non primitives (objects and array) behave differently in memory
 - Primitive values (like number, string, boolean) are stored directly in the variable, not as references.
-- When you use const with a primitive, the actual value is fixed and cannot be changed or mutated. 
-   Any “change” creates a new value in memory and tries to reassign it, 
-    resignment is not possible in const its not allow they desgned.
-- non Primitive (Objects and arrays) are stored by reference in memory 
- const prevents changing the reference but not the internal structure it points to.
- For example, you can modify properties or elements because the memory they point to remains the same
-
-
-
+- When you use const with a primitive, the actual value is fixed and cannot be changed or mutated.
+  Any “change” creates a new value in memory and tries to reassign it,
+  resignment is not possible in const its not allow they desgned.
+- non Primitive (Objects and arrays) are stored by reference in memory
+  const prevents changing the reference but not the internal structure it points to.
+  For example, you can modify properties or elements because the memory they point to remains the same
 
 1. `const` does not make objects or arrays immutable.
 2. `const` only makes the variable’s binding (reference) immutable, not the value inside it.
@@ -303,32 +332,26 @@ Primitives are stored and copied by value in stack, so changing them replaces th
 9. Primitives are copied by value, while objects and arrays are copied by reference.
 10. Final summary:
 
-
 const protects the variable's binding. If the value is an object or array, its contents can still be modified because the binding (reference) hasn't changed.
 
+---
 
-
------------------------------------------------------------------
-
-For primitives, 
+For primitives,
 const makes the value itself immutable and the reference unchangeable.
 
-For non-primitives, 
+For non-primitives,
 const makes the reference unchangeable, but the contents of the object or array can still be modified.
-
 
 # Understanding `const` vs Immutability in JavaScript
 
 ## What `const` Actually Does
 
-* Prevents reassignment of the variable identifier.
-* Does NOT make the value immutable.
-
-
-===========================================
+- Prevents reassignment of the variable identifier.
+- Does NOT make the value immutable.
 
 ===========================================
 
+===========================================
 
 ================================== Object cloning =============================================
 
@@ -371,31 +394,29 @@ console.log(clone);
 }
 ```
 
+### Use `structuredClone()` instead for deep cloning with full support.
 
-###  Use `structuredClone()` instead for deep cloning with full support.
+### structuredClone Supports:
 
-
-###  structuredClone Supports:
-
-* Primitives: `null`, `undefined`, numbers, strings, etc.
-* Objects & Arrays
-* Dates, Maps, Sets
-* TypedArrays, ArrayBuffer
-* RegExp, Error objects
-* Blobs, Files, ImageData
-* Circular references
+- Primitives: `null`, `undefined`, numbers, strings, etc.
+- Objects & Arrays
+- Dates, Maps, Sets
+- TypedArrays, ArrayBuffer
+- RegExp, Error objects
+- Blobs, Files, ImageData
+- Circular references
 
 ### ❌ Not Supported:
 
-* Functions
-* DOM elements
-* SharedArrayBuffer
+- Functions
+- DOM elements
+- SharedArrayBuffer
 
 ---
 
-###  Example:
-```js
+### Example:
 
+```js
 const obj = {
   primitiveNull: null,
   primitiveUndefined: undefined,
@@ -423,7 +444,7 @@ const obj = {
   // Circular reference
   get circular() {
     return this;
-  }
+  },
 };
 
 const cloned = structuredClone(obj);
@@ -431,8 +452,8 @@ const cloned = structuredClone(obj);
 console.log(cloned);
 ```
 
-- Copies all levels of an object, including nested structures.  
-- Changes in the clone do not affect the original object.  
+- Copies all levels of an object, including nested structures.
+- Changes in the clone do not affect the original object.
 
 -changing value of cloned object will be not refect into
 orginal object as well because both are point different refrance object
@@ -445,8 +466,9 @@ An array is used to store multiple elements of any type, an array can store dupl
 elements.
 
 // Creating a set
+
 1. Creating empty set.
-const s1 = new Set();
+   const s1 = new Set();
 
 // add(value) - adds an element and returns the set after adding the element
 
@@ -454,7 +476,7 @@ const mySet =new Set([1,2,4,,5,6,6,,33,2,4,5,6,6,4,4,4,1,1,11,"A","a"])
 console.log(mySet)
 
 mySet.add({
-    name:"Abc"
+name:"Abc"
 });
 mySet.add({second:'This is second value'});
 mySet.add('third','This is third value')
@@ -463,57 +485,45 @@ mySet.add("apple")
 console.log(mySet)
 mySet.delete(1)
 for(let val of mySet){
-    console.log("val --",val)
+console.log("val --",val)
 }
 // mySet.clear()
 
-
-
-
 console.log(mySet)
-
 
 ===================================
 
-
-
 -The async await is used to pause the execution of a function until a promise gets settled
-
 
 -async keyword Put the before a function , tells the function to return a Promise
 -await keyword is used within an async function to pause its execution until a Promise is settled.
+
 - It waits for the Promise to resolve (either fulfilled or rejected) and then returns its result.
--await should only be used inside the async function.
-
-
-
+  -await should only be used inside the async function.
 
 //===========================asynch await =========================
 
-
 **`async/await`** is modern JavaScript syntax for handling asynchronous operations. It’s built on top of **Promises**, but makes the code look synchronous and easier to read.
 
-* An `async` function always returns a **Promise**.
-* Inside it, `await` pauses execution until the Promise resolves or rejects.
-* This helps avoid deeply nested `.then()` chains, making async code cleaner.
-* You handle errors using `try...catch`, just like synchronous code.
-* For multiple async tasks, you can run them in **parallel** using `Promise.all()` to improve performance.
+- An `async` function always returns a **Promise**.
+- Inside it, `await` pauses execution until the Promise resolves or rejects.
+- This helps avoid deeply nested `.then()` chains, making async code cleaner.
+- You handle errors using `try...catch`, just like synchronous code.
+- For multiple async tasks, you can run them in **parallel** using `Promise.all()` to improve performance.
 
 It works with the **event loop**—`await` yields control until the task finishes, but doesn’t block the main thread.
 
 Overall, `async/await` improves readability, maintainability, and is widely used in real-world apps for things like API calls, file reads, or database queries.
 
-
 `async`/`await` in JavaScript is a modern syntax used to work with **asynchronous** operations—like fetching data from an API—in a way that looks and behaves more like synchronous code. It helps make asynchronous code more readable and easier to manage, especially compared to using traditional `.then()` chains with Promises.
-
 
 ## 🔁 Basic Concepts
 
 ### 1. **`async` Function**
 
-* Declares a function that will always return a **Promise**.
-* If the function returns a value, it is automatically wrapped in a resolved Promise.
-* If the function throws an error, it is wrapped in a rejected Promise.
+- Declares a function that will always return a **Promise**.
+- If the function returns a value, it is automatically wrapped in a resolved Promise.
+- If the function throws an error, it is wrapped in a rejected Promise.
 
 ```js
 async function greet() {
@@ -527,13 +537,13 @@ greet().then(console.log); // "Hello!"
 
 ### 2. **`await` Expression**
 
-* Can **only** be used inside an `async` function.
-* Pauses the execution of the `async` function until the Promise is resolved or rejected.
-* The result of the resolved Promise is returned.
+- Can **only** be used inside an `async` function.
+- Pauses the execution of the `async` function until the Promise is resolved or rejected.
+- The result of the resolved Promise is returned.
 
 ```js
 async function getData() {
-  const response = await fetch('https://api.example.com/data');
+  const response = await fetch("https://api.example.com/data");
   const data = await response.json();
   console.log(data);
 }
@@ -552,12 +562,12 @@ Use `try...catch` blocks to handle errors in `async` functions:
 ```js
 async function fetchUser() {
   try {
-    const res = await fetch('https://api.example.com/user');
-    if (!res.ok) throw new Error('Network response was not ok');
+    const res = await fetch("https://api.example.com/user");
+    if (!res.ok) throw new Error("Network response was not ok");
     const user = await res.json();
     console.log(user);
   } catch (error) {
-    console.error('Fetch error:', error);
+    console.error("Fetch error:", error);
   }
 }
 ```
@@ -578,13 +588,7 @@ getMessage().then(console.log); // "Done!"
 
 -
 
-
-
-
-
-
 ================================================================================
-
 
 **Promises** and **async/await** are both tools in JavaScript for handling asynchronous operations, but they differ in syntax and usage:
 
@@ -595,14 +599,15 @@ getMessage().then(console.log); // "Done!"
 - **Chaining**: Promises can be chained for sequential asynchronous operations.
 - **Error Handling**: Errors are caught using `.catch()` or within a `.then()` callback with a second argument.
 - **Example**:
+
   ```javascript
   const promise = new Promise((resolve, reject) => {
-    setTimeout(() => resolve('Done!'), 1000);
+    setTimeout(() => resolve("Done!"), 1000);
   });
 
   promise
-    .then(result => console.log(result)) // Logs 'Done!' after 1 second
-    .catch(error => console.error(error));
+    .then((result) => console.log(result)) // Logs 'Done!' after 1 second
+    .catch((error) => console.error(error));
   ```
 
 ### Async/Await
@@ -612,11 +617,12 @@ getMessage().then(console.log); // "Done!"
 - **Chaining**: Async functions implicitly return a Promise and can use `await` for asynchronous operations.
 - **Error Handling**: Errors are handled using `try/catch` blocks.
 - **Example**:
+
   ```javascript
   async function fetchData() {
     try {
       const result = await new Promise((resolve, reject) => {
-        setTimeout(() => resolve('Done!'), 1000);
+        setTimeout(() => resolve("Done!"), 1000);
       });
       console.log(result); // Logs 'Done!' after 1 second
     } catch (error) {
@@ -635,12 +641,9 @@ getMessage().then(console.log); // "Done!"
 
 In summary, **Promises** are suited for straightforward asynchronous tasks and integrating with existing codebases, while **async/await** simplifies code readability and error handling, making it ideal for more complex or sequential asynchronous operations.
 
-
 ========================================================================
 
 when to use **Promises** vs **`async/await`**:
-
-
 
 ### ✅ **Use `async/await` when:**
 
@@ -668,7 +671,7 @@ when to use **Promises** vs **`async/await`**:
 
 > 🔁 Use `async/await` for readability, but combine it with `Promise.all()` for parallelism when needed.
 
-```js
+````js
 const [user, posts] = await Promise.all([
   fetchUser(),
   fetchPosts()
@@ -736,27 +739,29 @@ fetchData()
     .then(processedData => saveData(processedData)) // Pass the processed data to saveData
     .then(finalMessage => console.log(finalMessage)) // Log the final success message
     .catch(error => console.error('An error occurred:', error)); // Handle any errors
-```
+````
 
 "In this example, `fetchData`, `processData`, and `saveData` are three asynchronous operations. Each of these operations returns a promise, and they are chained together using `.then()`. If any of these operations fail, the error will be caught by the `.catch()` at the end."
 
 ### 5. **Error Handling in Promise Chaining**
+
 Discuss how errors are handled:
 
 "One of the key advantages of promise chaining is centralized error handling. If any promise in the chain fails, the `.catch()` method will handle the error, preventing the need to handle errors at each individual step."
 
 ### 6. **Common Pitfalls and Best Practices**
+
 Mention any pitfalls and best practices:
 
 "While promise chaining is powerful, it's important to ensure that each promise in the chain is returning a new promise. Otherwise, the chain can break, leading to unexpected behavior. Additionally, using arrow functions helps to keep the syntax concise."
 
 ### 7. **Conclusion**
+
 Wrap it up by reiterating the importance of promise chaining:
 
 "Promise chaining is an essential technique in modern JavaScript development. It allows for clear, sequential execution of asynchronous tasks, improves readability, and simplifies error handling."
 
 By explaining promise chaining in this way, you'll demonstrate a strong understanding of the concept and its practical applications in real-world scenarios.
-
 
 -Promise are thr ideal choice for handling asynchronous operation in simplest manner
 -they can handle multiple asynchronous operation easily and provide better error handling then Callback and event
@@ -776,10 +781,6 @@ Applications
 Promises are used for asynchronous handling of events.
 Promises are used to handle asynchronous http requests.
 
-
-
-
-
 A promise is an object which is used to perform asynchronous operations.
 
 A promise gets settled(either resolved or rejected) in future.
@@ -793,7 +794,6 @@ Writing multiple thens one after another for a promise is called then chaining
 
 A then() returns a promise
 
-
 =====================================================
 useEffect
 
@@ -804,8 +804,8 @@ In functional components, I use `useEffect` to manage side effects like fetching
     When its dependencies change it executes the passed function.
 
 
-    
-  
+
+
     hook that helps us to perform mutations, subscriptions, timers, logging, and other side effects after all the components has been rendered.
     The useEffect accepts a function that is imperative in nature and a list of dependencies.
     When its dependencies change it executes the passed function.
@@ -814,7 +814,7 @@ In functional components, I use `useEffect` to manage side effects like fetching
     ======================================================
 
 
-    
+
     useReducer is usually preferable to useState when you have complex state
     logic that involves multiple sub-values or when
     the next state depends on the previous one.
@@ -838,22 +838,23 @@ In functional components, I use `useEffect` to manage side effects like fetching
 
 
     ========================
-    
-   `React.memo` is a utility that optimizes functional components by ensuring they only re-render when their props change.
-   
-    React.memo is a higher-order component in React that memoizes a component, meaning 
-    
+
+`React.memo` is a utility that optimizes functional components by ensuring they only re-render when their props change.
+
+    React.memo is a higher-order component in React that memoizes a component, meaning
+
     it will only re-render if its props change.
      This is particularly useful for functional components to optimize performance by preventing unnecessary re-renders.
 
-     React.memo is not a hook. 
+     React.memo is not a hook.
 
      It is a higher-order component (HOC) that memoizes functional components to prevent unnecessary re-renders when props haven't changed.
 
 
      React.memo is a higher-order component in React that memoizes a component, meaning it will only re-render if its props change. This is particularly useful for functional components to optimize performance by preventing unnecessary re-renders.
-!-- 
-   What is React.memo?
+
+!--
+What is React.memo?
 
 React.memo is a higher-order component.
 
@@ -879,26 +880,18 @@ Component is heavy (complex UI, large calculations).
 Props rarely change.
 
 Parent re-renders often but child’s props remain same
- -->
+-->
 
+---
 
- ---------------------------------------------------------------------------------
 In React, a child component re-renders whenever the parent component re-renders, even if the props passed to the child haven't changed. This happens because in JavaScript, even if two objects have the same properties, they are considered different if they occupy different memory spaces.
 
 When we pass computed values (e.g., objects or arrays) as props, React will treat them as new values on every render unless they are memoized. This can cause unnecessary rendering of child components.
 
 useMemo ensures that the computed values (e.g., objects, arrays) are only recalculated when their dependencies change, preventing React from seeing them as "new" props and thus stopping the unnecessary rendering of the child.
 
-
-
-
-
-
 Preventing Unnecessary Child Component Renders:
 If you pass a computed value as a prop to child components, useMemo ensures it’s only recalculated when dependencies change, thus preventing unnecessary renders.
-
-
-
 
     If a function includes a complex calculation, you can avoid recomputing then you can using the useMemo() hook.
     useMemo will  returns a memoized value that is not recomputed unless if one of the
@@ -926,9 +919,8 @@ If you pass a computed value as a prop to child components, useMemo ensures it�
     It is useful to avoid expensive calculations on every render when the returned value is not going to change. */}
     ---------------------------------------------------------------------------------
 
-
-
 =====================================================================
+
 ### **Theoretical Explanation: `useMemo` vs `useCallback`**
 
 Both `useMemo` and `useCallback` are React hooks used for **performance optimization**, but they serve slightly different purposes:
@@ -936,18 +928,21 @@ Both `useMemo` and `useCallback` are React hooks used for **performance optimiza
 ---
 
 ### **1. `useMemo`**
+
 - **Purpose**: Memoizes **values** (e.g., objects, arrays, or expensive calculations).
 - **Use Case**: When you want to prevent **unnecessary recalculations** or re-creation of a value.
-- **When to Use**: 
+- **When to Use**:
   - Passing **derived values** (like objects or arrays) from **parent to child** to prevent the child from re-rendering unnecessarily.
   - Avoiding recomputation of **expensive calculations** in the same component.
 
 #### **Key Point**:
+
 - `useMemo` returns a **memoized value** and ensures that the value is only recomputed when the **dependencies change**.
 
 ---
 
 ### **2. `useCallback`**
+
 - **Purpose**: Memoizes **functions** so they maintain the same reference across renders.
 - **Use Case**: When you want to prevent **unnecessary re-creation of functions**.
 - **When to Use**:
@@ -955,54 +950,53 @@ Both `useMemo` and `useCallback` are React hooks used for **performance optimiza
   - Avoiding re-creation of event handlers, API calls, or other functions in the same component when their dependencies haven't changed.
 
 #### **Key Point**:
+
 - `useCallback` returns a **memoized function** and ensures the function reference remains the same unless the **dependencies change**.
 
 ---
 
 ### **Key Differences**
 
-| Feature                  | `useMemo`                         | `useCallback`                    |
-|--------------------------|------------------------------------|-----------------------------------|
-| **Purpose**              | Memoizes a **value**              | Memoizes a **function**           |
-| **Output**               | Returns a memoized value          | Returns a memoized function       |
-| **Use Case**             | Optimizes expensive calculations or derived values | Optimizes event handlers or callback props |
-| **Prevents**             | Recomputing values unnecessarily  | Recreating functions unnecessarily |
+| Feature      | `useMemo`                                          | `useCallback`                              |
+| ------------ | -------------------------------------------------- | ------------------------------------------ |
+| **Purpose**  | Memoizes a **value**                               | Memoizes a **function**                    |
+| **Output**   | Returns a memoized value                           | Returns a memoized function                |
+| **Use Case** | Optimizes expensive calculations or derived values | Optimizes event handlers or callback props |
+| **Prevents** | Recomputing values unnecessarily                   | Recreating functions unnecessarily         |
 
 ---
 
 ### **Example Scenarios**
 
 #### **Scenario 1: Passing from Parent to Child**
+
 - **`useMemo`**: Prevents passing a new object/array reference as props when the data hasn't changed.
 - **`useCallback`**: Prevents passing a new function reference as props when the logic hasn't changed.
 
 #### **Scenario 2: Within the Same Component**
+
 - **`useMemo`**: Avoids expensive calculations on every render.
 - **`useCallback`**: Prevents re-creation of event handlers or API call functions, which could impact performance.
 
 ---
 
 ### **Summary**
+
 - **`useMemo`** is for memoizing **values**.
 - **`useCallback`** is for memoizing **functions**.
 - Both help in **optimizing performance** by preventing unnecessary re-renders or recalculations.
 
+  ***
 
-    ---------------------------------------------------------------------------------
+  useCallback()
+  -The useCallback hook used to Avoiding unnecessary rerendering when a function is recreated.
+  -The useCallback will return a memoized version of the callback that only changes if one of the
 
+  dependencies has changed.
+  -And making your application faster and more efficient.
 
-
-
-    useCallback()
-    -The useCallback hook used to Avoiding unnecessary rerendering when a function is recreated.
-    -The useCallback will return a memoized version of the callback that only changes if one of the
-
-    dependencies has changed.
-    -And making your application faster and more efficient.
-
-
-    const memoizedCallback = useCallback(() => {
-      // Your callback logic here
+  const memoizedCallback = useCallback(() => {
+  // Your callback logic here
 
 }, [dependencies]);
 
@@ -1106,12 +1100,10 @@ You want to ensure the function reference doesn’t change unnecessarily.
 ### **Difference Between `useMemo` and `useCallback`**
 
 1. **Purpose**:
-
    - `useMemo`: Memoizes the **result of a computation** (i.e., a value like an object, array, or derived data).
    - `useCallback`: Memoizes a **function** so that the same function reference is used across renders unless dependencies change.
 
 2. **Return Value**:
-
    - `useMemo` returns the **memoized value**.
    - `useCallback` returns the **memoized function**.
 
@@ -1206,7 +1198,6 @@ Here:
 ### **Key Difference in Usage**
 
 1. **`useMemo` Example**:
-
    - Memoizes an **object** like `{ value }` to prevent unnecessary renders of a child component that depends on that object.
 
 2. **`useCallback` Example**:
@@ -1229,7 +1220,6 @@ Here:
 ### **When to Use Which?**
 
 1. **Use `useMemo` when:**
-
    - You have expensive computations or derived state (e.g., filtering a list, sorting data).
    - You want to prevent passing "new" object/array references to child components.
 
@@ -1247,7 +1237,6 @@ Both `useMemo` and `useCallback` are tools for optimizing performance in React, 
 - Use **`useCallback`** for **functions**.
 
 If you want to optimize both data and function references in a component, you might end up using **both hooks together**! Let me know if you’d like an example for that. 😊
-
 
 ========================================================================
 
@@ -1290,23 +1279,17 @@ import {useContex} fromm "./"
 
 const theme = useContext(context)
 
-
-
-
 ============================================================
 
-  While both useMemo and useCallback remember something between renders until the dependancies change, the difference is just what they remember.
+While both useMemo and useCallback remember something between renders until the dependancies change, the difference is just what they remember.
 
-  useMemo will remember the returned value from your function.
+useMemo will remember the returned value from your function.
 
-  useCallback will remember your actual function.
+useCallback will remember your actual function.
 
-  The main difference between the two is that ‘useCallback returns a memoized callback and ‘useMemo returns a memoized value that is the result of the function parameter.
-
-  
+The main difference between the two is that ‘useCallback returns a memoized callback and ‘useMemo returns a memoized value that is the result of the function parameter.
 
 ========================================================================
-
 
 ==========================================
 
@@ -1343,6 +1326,7 @@ inputRef.current.focus(); // Focus the input element
 };
 
 return (
+
 <div>
 <CustomInput ref={inputRef} placeholder="Type something..." />
 <button onClick={focusInput}>Focus Input</button>
@@ -1350,17 +1334,18 @@ return (
 );
 };
 
-export default App;
-========================================================================
+# export default App;
 
 ### **Functional Components**
 
 #### **Without `forwardRef`**
+
 - Functional components cannot expose themselves via refs because they do not have instances.
 - `useRef` can only be used internally to manage DOM elements or other mutable values.
 - A parent cannot pass a ref to a functional component to access its DOM or other elements without `forwardRef`.
 
 #### **With `forwardRef`**
+
 - `forwardRef` allows a parent to pass a ref to a functional component.
 - The ref can be forwarded to a specific DOM element or component within the functional component.
 - Essential when the parent needs direct access to a child component's DOM node or specific functionality.
@@ -1370,21 +1355,25 @@ export default App;
 ### **Class Components**
 
 #### **Without `forwardRef`**
+
 - Class components have instances, so a ref created with `React.createRef()` automatically points to the entire instance.
 - A parent can use the ref to call public methods or access properties of the class instance.
 
 #### **With `forwardRef`**
+
 - Rarely needed for class components, as refs already point to the class instance.
-- `forwardRef` can be used to forward a ref to something other than the instance, such as a specific DOM element or child within the class component. 
+- `forwardRef` can be used to forward a ref to something other than the instance, such as a specific DOM element or child within the class component.
 
 ========================================================================
 
 ### **Functional Components**
 
 #### **Without `forwardRef`**
+
 - Functional components cannot expose instances, and refs cannot be passed to them from a parent.
 
 #### **With `forwardRef`**
+
 - `forwardRef` allows functional components to accept refs from parent components, enabling interaction with DOM elements or internal logic.
 
 ---
@@ -1392,15 +1381,14 @@ export default App;
 ### **Class Components**
 
 #### **Without `forwardRef`**
+
 - Class components automatically expose their instance to refs, allowing parents to interact with the class instance directly.
 
 #### **With `forwardRef`**
+
 - `forwardRef` can forward a ref to a specific DOM element or child inside the class component, allowing more control over what the ref points to.
 
-
 =======================================
-
-
 
     useImperativeHandle() customizes the instance value that is exposed to parent components when using ref. As always,
     imperative code using refs should be avoided in most cases.
@@ -1427,11 +1415,7 @@ export default App;
 - To expose specific actions like focus, scroll, or reset methods to a parent.
 - When a child manages multiple elements and the parent needs access to specific functionality.
 
-
 #### ================== useImperativeHandle ======================================
-
-
-
 
 - **useImperativeHandle**: React hook that allows you to control what methods or properties a parent component can access when using a ref on a child component.
 - **React.forwardRef**: Passes a ref down to a child component, giving the parent more control over what functionality or properties it can interact with.
@@ -1442,58 +1426,46 @@ export default App;
 
 =====================================
 
-
-
-
 React Portals
 
--A React Portal provides a way to render children into a DOM node outside the main parent component hierarchy. 
+-A React Portal provides a way to render children into a DOM node outside the main parent component hierarchy.
 
 -It's created using ReactDOM.createPortal(child, container).
 
-
 ReactDOM.createPortal(child, container);
-
 
 child: The React element you want to render.
 
 container: The DOM node where you want the child to be rendered.
 
-
- React components render inside their parent DOM node. However, there are cases—like modals, tooltips, or dropdowns—where rendering outside this hierarchy is necessary to avoid styling or z-index issues.
+React components render inside their parent DOM node. However, there are cases—like modals, tooltips, or dropdowns—where rendering outside this hierarchy is necessary to avoid styling or z-index issues.
 
 -It solves z-index, positioning, and layout issues commonly faced in nested components.
 
-
 React Portals let you do exactly that.
 
-
-
 ReactDOM.createPortal(
+
   <div className="modal">Modal Content</div>,
   document.getElementById('modal-root')
 );
-
-
 
 - React Portals render children into a DOM node outside the parent component’s DOM hierarchy.
 - Useful for modals, tooltips, and overlays that need to visually break out of their parent container.
 - Ensures that elements are part of the React component tree.
 - Allows elements to benefit from React’s event handling and lifecycle features.
 
+Q37. What is children prop?
 
-
- Q37. What is children prop?
- 
     There are several methods available in the React API to work with this prop. These include React.Children.map, React.Children.forEach, React.Children.count, React.Children.only, React.Children.toArray.
     A simple usage of children prop looks as below,
-    
+
       const MyDiv = React.createClass({
         render: function () {
           return <div>{this.props.children}</div>;
         },
       });
-      
+
       ReactDOM.render(
         <MyDiv>
           <span>{"Hello"}</span>
@@ -1502,20 +1474,13 @@ ReactDOM.createPortal(
         node
       );
 
-
-
-
-
-
-
 ================================================================================
-
 
 - `useRef()` is designed for functional components to create mutable object references that persist across renders without causing re-renders.
 - For functional components, it is recommended to use `useRef()` as it is designed specifically for functional components and provides the same functionality.
-- you can use createRef() in a React functional component, but its not recommended. 
+- you can use createRef() in a React functional component, but its not recommended.
 - Its better to use useRef() instead, ass it is designed specifically for functional components and provides the same functionality
- 
+
 createRef() is not recommended in functional components because it creates a new ref object on every render, causing the previous ref to be lost and leading to potential issues with persistence and state.
 
 createRef() returns a new ref object every time
@@ -1528,55 +1493,46 @@ useRef() returns the same object on every render.
 
 Using createRef() inside a functional component will create a new ref object on every render, which means the ref value is reset with each render, causing you to lose the previous ref value.
 
-
 The key difference is that useRef() retains the same ref object across renders, whereas createRef() generates a new ref object on every render, which can lead to unnecessary re-renders and loss of the previous ref object. -->
-
 
 ======================
 
-
-
 **Subject:** Request for Reimbursement – Food and Travel Expenses (29 June – 5 July 2025)
 
-Hi 
+Hi
 
 I hope you're doing well.
 
 I am submitting a reimbursement request for official **food and travel expenses** incurred between **29 June and 5 July 2025**. Please find the detailed breakdown below:
 
-
-
 A] Food Expenses
 
-| Date      | Vendor Name                          | Amount (INR)  |
-| --------- | ------------------------------------ | ------------- |
-| 30-Jun-25 | Fomo - Fusion Of Masala Odyssey      | ₹288.00       |
-| 01-Jul-25 | Bikkgane Biryani                     | ₹259.00       |
-| 01-Jul-25 | Veer Da Chappar                      | ₹468.00       |
-| 02-Jul-25 | Thali Meals And More                 | ₹263.00       |
-| 03-Jul-25 | Pirates Of Grill                     | ₹530.00       |
-| 05-Jul-25 | KHELA ENTERPRISES (21510108\@SBIPAY) | ₹160.00       |
-|           |   Total (Food)                       |   ₹1,968.00   |
-
+| Date      | Vendor Name                          | Amount (INR) |
+| --------- | ------------------------------------ | ------------ |
+| 30-Jun-25 | Fomo - Fusion Of Masala Odyssey      | ₹288.00      |
+| 01-Jul-25 | Bikkgane Biryani                     | ₹259.00      |
+| 01-Jul-25 | Veer Da Chappar                      | ₹468.00      |
+| 02-Jul-25 | Thali Meals And More                 | ₹263.00      |
+| 03-Jul-25 | Pirates Of Grill                     | ₹530.00      |
+| 05-Jul-25 | KHELA ENTERPRISES (21510108\@SBIPAY) | ₹160.00      |
+|           | Total (Food)                         | ₹1,968.00    |
 
 B] Travel Expenses
 
-| Date      | Vendor / Payee Name | UPI ID / Provider  | Amount (INR)  |
-| --------- | ------------------- | ------------------ | ------------- |
-| 29-Jun-25 | Uber                | Uber App           | ₹976.00       |
-| 30-Jun-25 | Uber                | Uber App           | ₹115.66       |
-| 01-Jul-25 | Ola                 | Ola App            | ₹192.00       |
-| 01-Jul-25 | Arvind auto         | Q535622957\@ybl    | ₹200.00       |
-| 02-Jul-25 | Ola                 | Ola App            | ₹159.95       |
-| 02-Jul-25 | Nurul Mahalat       | XXXXXX8574\@kotak  | ₹150.00       |
-| 03-Jul-25 | Ola                 | Ola App            | ₹222.00       |
-| 03-Jul-25 | Arvind auto         | Q245541802\@ybl    | ₹150.00       |
-| 04-Jul-25 | Himanshu            | XXXXXX3122\@pthdfc | ₹200.00       |
-| 04-Jul-25 | Noaman              | XXXXXX3638\@axl    | ₹677.00       |
-| 05-Jul-25 | Sanket Soni         | XXXXXX7052\@ybl    | ₹614.00       |
-|           |   Total (Travel)    |                    |   ₹3,456.61   |
-
-
+| Date      | Vendor / Payee Name | UPI ID / Provider  | Amount (INR) |
+| --------- | ------------------- | ------------------ | ------------ |
+| 29-Jun-25 | Uber                | Uber App           | ₹976.00      |
+| 30-Jun-25 | Uber                | Uber App           | ₹115.66      |
+| 01-Jul-25 | Ola                 | Ola App            | ₹192.00      |
+| 01-Jul-25 | Arvind auto         | Q535622957\@ybl    | ₹200.00      |
+| 02-Jul-25 | Ola                 | Ola App            | ₹159.95      |
+| 02-Jul-25 | Nurul Mahalat       | XXXXXX8574\@kotak  | ₹150.00      |
+| 03-Jul-25 | Ola                 | Ola App            | ₹222.00      |
+| 03-Jul-25 | Arvind auto         | Q245541802\@ybl    | ₹150.00      |
+| 04-Jul-25 | Himanshu            | XXXXXX3122\@pthdfc | ₹200.00      |
+| 04-Jul-25 | Noaman              | XXXXXX3638\@axl    | ₹677.00      |
+| 05-Jul-25 | Sanket Soni         | XXXXXX7052\@ybl    | ₹614.00      |
+|           | Total (Travel)      |                    | ₹3,456.61    |
 
 Grand Total Reimbursement Requested: ₹5,424.61
 
@@ -1585,31 +1541,22 @@ All supporting receipts and UPI confirmations are attached for reference. Please
 Best regards,
 Deepak Gadhave
 
-
 ===================================================
-
-
 
 -In higher-order component function that takes a component and returns a new component.
 
-We want an abstraction that allows us to define this logic in a single place and share it across many components. This is where higher-order components 
-
-
+We want an abstraction that allows us to define this logic in a single place and share it across many components. This is where higher-order components
 
 -it is a function which accepts another function as an argument.
 -higher-order component converts a component into another component.
-
-
-
-
 
 ### Higher-Order Components (HOCs) in React
 
 - **Definition**: A Higher-Order Component (HOC) is an advanced React pattern used for reusing component logic. It is a function that takes a component as its argument and returns a new component with additional functionality.
 
-- 
+-
 
-- **How HOCs Work**: 
+- **How HOCs Work**:
   - **Function Signature**: An HOC is a function that accepts a component (often called WrappedComponent) and returns a new component with enhanced behavior.
   - **Return Value**: The new component usually includes additional props or logic and renders the original component.
 
@@ -1620,7 +1567,6 @@ We want an abstraction that allows us to define this logic in a single place and
 
 - **React API**: HOCs are not a formal part of the React API; rather, they are a pattern that emerges from Reacts compositional nature. They leverage the ability to compose components and add functionality in a reusable way.
 
-
 ### Summary
 
 - **Definition**: HOCs are functions that take a component and return a new component with enhanced functionality.
@@ -1629,41 +1575,33 @@ We want an abstraction that allows us to define this logic in a single place and
 
 Your understanding is correct, and you’ve captured the key concepts of HOCs effectively.
 
-
-
-
-
 Higher-order components (HOCs) are a powerful feature of the React library. They allow you to reuse component logic across multiple components.
 
 HOCs allow you to add additional functionality to a component without modifying the component's code.
 
 This is where HOCs come in. Higher-order components allow developers to reuse code logic in their projects. As a result, this means less repetition and more optimized, readable code.
 
-
-
-
-
-- **Conditional Rendering**: Show components based on logic, like user roles or permissions.  
-- **Authentication**: Protect routes or components, showing them only to logged-in users.  
-- **Data Fetching**: Fetch data and pass it as props, managing loading and error states.  
-- **Styling**: Apply dynamic styles or themes to components.  
-- **State Management**: Share and manage app-wide state across components.  
-- **Logging**: Track events or errors for analytics and debugging.  
-- **Caching**: Improve performance by reusing computed data.  
-- **Internationalization**: Pass translations and language settings to components.  
+- **Conditional Rendering**: Show components based on logic, like user roles or permissions.
+- **Authentication**: Protect routes or components, showing them only to logged-in users.
+- **Data Fetching**: Fetch data and pass it as props, managing loading and error states.
+- **Styling**: Apply dynamic styles or themes to components.
+- **State Management**: Share and manage app-wide state across components.
+- **Logging**: Track events or errors for analytics and debugging.
+- **Caching**: Improve performance by reusing computed data.
+- **Internationalization**: Pass translations and language settings to components.
 
 HOCs make code reusable, modular, and easier to maintain.
 
-
 =======================
-## **Inline-Block Elements Behave Like:**
 
+## **Inline-Block Elements Behave Like:**
 
 - inline-block elements can behave like inline elements, but you can also control their width, height, margins, and padding, like block elements
 
- -Flow inline with other elements (like inline)
- - Accept width, height, padding, and margin values (like block)
- -Provide a hybrid behavior between block and inline elements.
+  -Flow inline with other elements (like inline)
+
+- Accept width, height, padding, and margin values (like block)
+  -Provide a hybrid behavior between block and inline elements.
 
 - **Inline elements:**
   - Sit next to each other horizontally.
@@ -1678,8 +1616,6 @@ HOCs make code reusable, modular, and easier to maintain.
   - Can start on a new line if forced (for example, using `<br>` or if there’s no space left in the container).
   - Behave like a box — you decide its size and spacing.
 
-
-
 ### **Key Features of `inline-block`**
 
 - ßinline-block elements can behave like inline elements, but you can also control their width, height, margins, and padding, like block elements
@@ -1689,18 +1625,14 @@ HOCs make code reusable, modular, and easier to maintain.
 - Can wrap to the next line if there’s no space left on the current line.
 - Can be aligned using the `vertical-align` property (like `top`, `middle`, `bottom`).
 
-
-
 ### **Common Examples**
 
 - `<img>` elements (they’re `inline` by default, but behave like `inline-block` since they respect dimensions).
 - `<button>` elements.
 - Custom elements like `<div>`, `<li>`, or `<span>` when you set `display: inline-block` through CSS.
 
+##Inline-Block Elements:
 
-
-
- ##Inline-Block Elements:
 - Can start on a new line if forced.
 - Width, height, margins, and padding can be set.
 - Examples: `<div>`, `<p>`, `<li>`, `<img>` (when you want it to behave as a block).
@@ -1709,12 +1641,6 @@ Inline-block elements behave like:
 
 - **Inline elements**: They sit next to each other horizontally.
 - **Block elements**: They respect width and height properties and can have margins and padding.
-
-
-
-
-
-
 
 ================================================================================
 
@@ -1726,8 +1652,6 @@ The stronger, more specific selector will be applied to that element
 The more specific the selector, the higher its priority.
 !important overrides everything, even inline styles.
 
-
-
 Universal Selector: 0
 Element selectors and pseudo-elements: 1
 Class selectors, attribute selectors, and pseudo-classes: 10
@@ -1735,24 +1659,24 @@ ID selectors: 100
 Inline styles: 1000\
 !import
 
-<!-- 
+<!--
 
-Specificity in CSS refers to the set of rules that determine 
-which style rule gets applied to an element 
+Specificity in CSS refers to the set of rules that determine
+which style rule gets applied to an element
 when multiple conflicting rules exist
 
-CSS specificity is decides which style rules apply to an element 
+CSS specificity is decides which style rules apply to an element
 when there are conflicting styles.
 
 It determines which style wins out of multiple competing rules.
 
  -->
+
 ==================================================================
 
 Would you like me to help you create some examples or a quick cheat sheet you can keep handy?
 
-
-*Why can you modify the contents of an object or array declared with `const`?*
+_Why can you modify the contents of an object or array declared with `const`?_
 
 When you declare a variable with `const`, it means the **reference** to the value is constant — you cannot reassign the variable to a new value.
 
@@ -1771,24 +1695,19 @@ arr = [5, 6]; // This will throw an error because we are trying to change the re
 
 So, `const` protects the reference but does **not** make the object or array immutable.
 
-
 ==================================================================
-
-
 
 ### **For Primitives:**
 
 - **`const`** makes both the **reference** and the **value** **immutable**.
 - Once a primitive value (like a number or string) is assigned to a `const` variable, you **cannot change the value** or **reassign** it.
 
-
 ```javascript
-
 const number = 10;
-number = 20;  // Error: Cannot reassign a const variable
+number = 20; // Error: Cannot reassign a const variable
 
 const name = "John";
-name = "Doe";  // Error: Cannot reassign a const variable
+name = "Doe"; // Error: Cannot reassign a const variable
 ```
 
 ### **For Non-Primitives (Objects/Arrays):**
@@ -1799,20 +1718,19 @@ name = "Doe";  // Error: Cannot reassign a const variable
 - However, you **can still modify the contents** (like adding/removing properties for objects or modifying elements for arrays).
 - **`const`** makes the **reference** to the object or array **unchangeable**.
 
-
 **Example with an Object:**
 
 ```javascript
 const person = { name: "Alice", age: 25 };
 
 // You can modify the properties inside the object:
-person.name = "Bob";  // Allowed
-person.age = 30;      // Allowed
+person.name = "Bob"; // Allowed
+person.age = 30; // Allowed
 
-console.log(person);   // { name: "Bob", age: 30 }
+console.log(person); // { name: "Bob", age: 30 }
 
 // But you cannot reassign the reference (object):
-person = { name: "Charlie", age: 35 };  // Error: Cannot reassign a const variable
+person = { name: "Charlie", age: 35 }; // Error: Cannot reassign a const variable
 ```
 
 **Example with an Array:**
@@ -1821,13 +1739,13 @@ person = { name: "Charlie", age: 35 };  // Error: Cannot reassign a const variab
 const numbers = [1, 2, 3];
 
 // You can modify the elements inside the array:
-numbers.push(4);  // Allowed
-numbers[0] = 10;  // Allowed
+numbers.push(4); // Allowed
+numbers[0] = 10; // Allowed
 
-console.log(numbers);  // [10, 2, 3, 4]
+console.log(numbers); // [10, 2, 3, 4]
 
 // But you cannot reassign the reference (array):
-numbers = [5, 6, 7];  // Error: Cannot reassign a const variable
+numbers = [5, 6, 7]; // Error: Cannot reassign a const variable
 ```
 
 ### **Summary:**
@@ -1836,8 +1754,8 @@ numbers = [5, 6, 7];  // Error: Cannot reassign a const variable
   `const` makes the **value** **immutable** and **cannot be changed** or **reassigned**.
 
 - **For Non-Primitives** (`Object`, `Array`, `Function`, etc.):  
-  `const` makes the **reference** **immutable**, but the **content** inside the object/array can still be changed.
-//================================= Closure ========================
+   `const` makes the **reference** **immutable**, but the **content** inside the object/array can still be changed.
+  //================================= Closure ========================
 
 ## Closure:-
 
@@ -1845,12 +1763,9 @@ When function_a_outer is executed, function_b_inner still retains access to its 
 
 "Closures are a fundamental concept in JavaScript, providing the ability to access an outer function's scope from an inner function, even after the outer function has finished executing."
 
+closure is ablity to provide access outer function scope to inner function
 
-
-
- closure is ablity to provide access outer function scope to inner function 
-
- access variables from that scope even after the outer function has finished executing
+access variables from that scope even after the outer function has finished executing
 
 -A closure is a combination of a nested function and lexical scope
 -By using closure a nested function can use the variable of outer function.
@@ -1859,7 +1774,6 @@ When function_a_outer is executed, function_b_inner still retains access to its 
 be accessible inside another function
 
 clousure inner function can be access of outer function
-
 
 function outerFunction() {
 let outerVariable = 'I am outer';
@@ -1876,24 +1790,20 @@ const innerFunc = outerFunction();
 innerFunc(); // Output: I am outer
 
 function createCounter() {
-  let count = 0;
-  return function() {
-    count++;
-    return count;
-  };
+let count = 0;
+return function() {
+count++;
+return count;
+};
 }
 
 const counter = createCounter();
 console.log(counter()); // 1
 console.log(counter()); // 2
 
-
 ==============================================
 
-
 Want a short example showing how to loop through `entries()`?
-
-
 
 For plain objects, the following methods are available:
 
@@ -1912,9 +1822,6 @@ console.log(values); // [10, 20, 30]
 console.log(entries); // [["a", 10], ["b", 20], ["c", 30]]
 
 ==============================================
-
-
-
 
 To call a function of a specific object you can use below methods
 A] call():
@@ -1935,25 +1842,21 @@ console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName+ ', '+ greeti
 invite.call(employee1, 'Hello', 'How are you?'); // Hello John Rodson, How are you?
 invite.call(employee2, 'Hello', 'How are you?'); // Hello Jimmy Baily, How are you?
 
-
 //2
 var employee1 = {
-  firstName: 'John',
-  lastName: 'Rodson',
-  invite: function(greeting1, greeting2) {
-      console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName + ', ' + greeting2);
-  }
+firstName: 'John',
+lastName: 'Rodson',
+invite: function(greeting1, greeting2) {
+console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName + ', ' + greeting2);
+}
 };
 
 var employee2 = {
-  firstName: 'Jimmy',
-  lastName: 'Baily'
+firstName: 'Jimmy',
+lastName: 'Baily'
 };
 
 employee1.invite.call(employee2, "Hello", "World");
-
-
-
 
 B]apply():
 
@@ -1963,7 +1866,6 @@ B]apply():
 -invoke the function with a given this value and argument provided by an array
 
 -accepts arguments as an array elements
-
 
 ar employee1 = {firstName: 'John', lastName: 'Rodson'};
 var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
@@ -1975,17 +1877,11 @@ console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName+ ', '+ greeti
 invite.apply(employee1, ['Hello', 'How are you?']); // Hello John Rodson, How are you?
 invite.apply(employee2, ['Hello', 'How are you?']); // Hello Jimmy Baily, How are you?
 
-
-
-
-
 C] bind()
 
 - bind() method we can bind an object to a common function ,so that the
-function gives different result when its need
--bind method takes an object as an first argument and create a new function
-
-
+  function gives different result when its need
+  -bind method takes an object as an first argument and create a new function
 
 var employee1 = {firstName: 'John', lastName: 'Rodson'};
 var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
@@ -1999,13 +1895,12 @@ var inviteEmployee2 = invite.bind(employee2);
 inviteEmployee1('Hello', 'How are you?'); // Hello John Rodson, How are you?
 inviteEmployee2('Hello', 'How are you?'); // Hello Jimmy Baily, How are you?
 
-
 const person = {
-  firstName: 'John',
-  lastName: 'Doe',
-  fullName: function() {
-      return this.firstName + ' ' + this.lastName;
-  }
+firstName: 'John',
+lastName: 'Doe',
+fullName: function() {
+return this.firstName + ' ' + this.lastName;
+}
 };
 
 const printFullName = person.fullName;
@@ -2015,27 +1910,13 @@ const printFullName = person.fullName;
 const boundPrintFullName = printFullName.bind(person);
 console.log(boundPrintFullName()) // Output: "John Doe"
 
-
-
 - return a new function ,allow you to pass any number of argument
 - it binds a function with an object and return the binded function.
-It does not bind the existing function instead if create a new function to bind
-
-
-
-
-
-
-
-
+  It does not bind the existing function instead if create a new function to bind
 
 ========================================================================
 
-
-
-
-
- comparison of `bind`, `call`, and `apply`:
+comparison of `bind`, `call`, and `apply`:
 
 - **`bind`**: Creates a new function with a specified `this` context and optionally preset arguments. The new function can be called later with its own arguments.
   - **Example**: `const boundFunc = func.bind(context, arg1, arg2);`
@@ -2046,39 +1927,17 @@ It does not bind the existing function instead if create a new function to bind
 - **`apply`**: Immediately invokes a function with a specified `this` context and arguments provided as an array or array-like object.
   - **Example**: `func.apply(context, [arg1, arg2]);`
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ==============================================
-
-
-
-
-
-
 
 -Crreating a duplicate object of an existing object is called object cloning
 There are 2 types of object cloning
 
-### **Shallow Cloning**  
-- Copies only the top-level properties of an object.  
-- Nested objects or arrays are **referenced**, not cloned.  
-- Changes in nested structures reflect in both original and cloned objects.  
-- Examples: `Object.assign()`, Spread operator (`...`).  
+### **Shallow Cloning**
+
+- Copies only the top-level properties of an object.
+- Nested objects or arrays are **referenced**, not cloned.
+- Changes in nested structures reflect in both original and cloned objects.
+- Examples: `Object.assign()`, Spread operator (`...`).
 
 -In shallow cloning only direct/main object gets cloned but not the object
 which are referred by the properties of main object.
@@ -2089,16 +1948,15 @@ orginal object as well because both are point same refrance object
 const original = { a: 1, b: { c: 2 } };
 const clone = { ...original };
 
-
 clone.b.c = 3;
 console.log(original.b.c); // Output: 3
 
 This happens because original.b and clone.b point to the same object in memory.
 
 const original = {
-  name: 'John',
-  age: 30,
-  address: { city: 'New York', country: 'USA' }
+name: 'John',
+age: 30,
+address: { city: 'New York', country: 'USA' }
 };
 
 const shallowClone = Object.assign({}, original);
@@ -2106,13 +1964,12 @@ const shallowClone = Object.assign({}, original);
 console.log(shallowClone === original); // false (different objects)
 console.log(shallowClone.address === original.address); // true (same reference)
 
+### **Deep Cloning**
 
-### **Deep Cloning**  
-- Copies all levels of an object, including nested structures.  
-- Nested objects or arrays are **independent** from the original.  
-- Changes in the clone do not affect the original object.  
-- Examples: `JSON.parse(JSON.stringify())`, Lodash's `cloneDeep()`, Recursive cloning.  
-
+- Copies all levels of an object, including nested structures.
+- Nested objects or arrays are **independent** from the original.
+- Changes in the clone do not affect the original object.
+- Examples: `JSON.parse(JSON.stringify())`, Lodash's `cloneDeep()`, Recursive cloning.
 
 -In deep cloning all the object direct/main and nested objects will be cloned.
 
@@ -2126,9 +1983,9 @@ clone.b.c = 3;
 console.log(original.b.c); // Output: 2
 
 const original = {
-  name: 'John',
-  age: 30,
-  address: { city: 'New York', country: 'USA' }
+name: 'John',
+age: 30,
+address: { city: 'New York', country: 'USA' }
 };
 
 const deepClone = JSON.parse(JSON.stringify(original));
@@ -2136,25 +1993,11 @@ const deepClone = JSON.parse(JSON.stringify(original));
 console.log(deepClone === original); // false (different objects)
 console.log(deepClone.address === original.address); // false (different objects)
 
-
-
-
-
-
-
-
-
-
-
-
 ==============================================
-
-
 
 ---
 
 Let me know if you'd like this formatted as a **PDF**, **cue card**, or **flashcards**!
-
 
 =====================
 **"Type coercion in JavaScript** means converting values from one type to another automatically or manually.
@@ -2163,89 +2006,58 @@ Operators like `-`, `*`, `/` **prefer numbers**, so `'5' - 1` becomes `4`.
 **Explicit coercion** is done manually using `Number()`, `String()`, or `Boolean()`.
 To avoid bugs, it's best to use strict equality (`===`) and explicit conversion where possible."\*\*
 
-
 ✅ Implicit Type Coercion in JavaScript
 
-Implicit type coercion happens when JavaScript automatically converts one data type to another during operations — 
-
+Implicit type coercion happens when JavaScript automatically converts one data type to another during operations —
 
 ### ✅ **JavaScript Type Coercion Summary (Your Notes)**
 
-* **Except for `+`**, most operators convert operands to **numbers**.
-
-
+- **Except for `+`**, most operators convert operands to **numbers**.
 
 ## ✅ JavaScript Type Coercion Summary (with Code)
 
 ### 🔸 `+` prefers **strings** (if one operand is a string → string concatenation):
 
 ```js
-'5' + 1           // "51"      → number 1 is coerced to string
-false + '1'       // "false1"  → false becomes "false"
+"5" + 1; // "51"      → number 1 is coerced to string
+false + "1"; // "false1"  → false becomes "false"
 ```
-
 
 ### 🔸 `-`, `*`, `/` prefer **numbers** (convert operands to numbers):
 
 ```js
-'5' - 1           // 4         → string '5' is coerced to number
-true + 1          // 2         → true becomes 1
-true + true       // 2         → both true → 1
-null + 1          // 1         → null becomes 0
-undefined + 1     // NaN       → undefined becomes NaN
+"5" - 1; // 4         → string '5' is coerced to number
+true + 1; // 2         → true becomes 1
+true + true; // 2         → both true → 1
+null + 1; // 1         → null becomes 0
+undefined + 1; // NaN       → undefined becomes NaN
 ```
-
-
 
 ### ⚖️ Loose Equality (`==`):
 
 ```js
-null == 0              // false
-undefined == null      // true
+null == 0; // false
+undefined == null; // true
 ```
 
 ### ✅ Operator Rules:
 
-* `+` **prefers strings** (if one operand is a string → string concatenation)
-* `-`, `*`, `/` **prefer numbers** (try to convert operands to numbers)
-
-
+- `+` **prefers strings** (if one operand is a string → string concatenation)
+- `-`, `*`, `/` **prefer numbers** (try to convert operands to numbers)
 
 Let me know if you want this turned into a flashcard or interview cue card!
-
 
 ✅ Explicit Type Coercion
 
 ➡️ we can manually convert the type using built-in functions or operators.
 
-Number('5')      // 5
-String(10)       // "10"
-Boolean(0)       // false
-parseInt('42')   // 42
-'' + 123         // "123" (also explicit)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Number('5') // 5
+String(10) // "10"
+Boolean(0) // false
+parseInt('42') // 42
+'' + 123 // "123" (also explicit)
 
 ==============================================
-
-
-
-
-
-
 
 async await
 
@@ -2254,40 +2066,21 @@ async await
 A] - Async Keyword:
 
 -async keyword Put the before a function , tells the function to return a Promise
+
 - This allows the function to use the "await" keyword internally to handle asynchronous operations.
 
-
 B]- Await Keyword:
-
 
 - "await" keyword is used within an async function to pause its execution until a Promise is settled.
 - It waits for the Promise to resolve (either fulfilled or rejected) and then returns its result.
 - Note: The "await" keyword can only be used inside async functions, otherwise, it would result in a SyntaxError.
-
-
 
 -await should only be used inside the async function.
 
 -The await keyword simply makes JavaScript wait until that Promise settles and then returns its result
 -await keyword only works inside async functions, otherwise you would get a SyntaxError.
 
-
-
-
-
-
-
-
-
-
-
-
 ==============================================
-
-
-
-
-
 
 Implicit type coercion
 
@@ -2296,33 +2089,17 @@ Implicit type coercion in JavaScript is the automatic conversion of values from 
 let result = '5' + 1; // '51' (string)
 let result2 = '5' - 1; // 4 (number)
 
-
 Avoiding Implicit Coercion
-
 
 Explicitly convert types using functions like Number(), String(), Boolean(), or methods like .toString().
 
 Coercion
 
-Coercion in programming refers to the automatic or implicit conversion of values from one data type to another. 
+Coercion in programming refers to the automatic or implicit conversion of values from one data type to another.
 In JavaScript, t
 his process is often automatic, especially when using the loose equality operator (==).
 
-
-
-
-
-
-
-
-
-
-
-
 ==============================================
-
-
-
 
 ====================================================================================
 
@@ -2332,8 +2109,8 @@ his process is often automatic, especially when using the loose equality operato
 
 In **JavaScript**, coercion can be:
 
-* **Implicit (automatic)** — performed by JavaScript during operations like comparisons or arithmetic.
-* **Explicit (manual)** — done using functions like `Number()`, `String()`, or `Boolean()`.
+- **Implicit (automatic)** — performed by JavaScript during operations like comparisons or arithmetic.
+- **Explicit (manual)** — done using functions like `Number()`, `String()`, or `Boolean()`.
 
 This process is especially common when using **loose equality (`==`)**, where JavaScript attempts to **coerce the operands to the same type** before comparing them.
 
@@ -2342,30 +2119,15 @@ This process is especially common when using **loose equality (`==`)**, where Ja
 ### Example:
 
 ```js
-'5' == 5        // true → '5' is coerced to number 5
+"5" == 5; // true → '5' is coerced to number 5
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
 ==============================================
-
-
 
 ### Differences between `map()` and `forEach()`
 
 - **Return Value:**
   - **map()**:Transforms each element of an array and returns a new array.
-  
   - **forEach()**: Returns `undefined`. It is used for its side effects, like modifying elements or performing actions on each element without producing a new array.
 
 - **Immutability:**
@@ -2378,35 +2140,14 @@ This process is especially common when using **loose equality (`==`)**, where Ja
 
 In summary, `map()` is used when you want to transform each element of an array and create a new array with the transformed elements, while `forEach()` is used when you want to iterate over elements and perform actions or modifications on them without creating a new array. Each method serves different purposes based on whether you need to produce a new array or just iterate over an existing array for side effects.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ==============================================
 
-
-
-
-
- '
+'
 Memoization in JavaScript is an optimization technique used to improve the performance of functions by caching the results of expensive function calls and returning the cached result when the same inputs occur again. This avoids redundant calculations and speeds up the program. It is particularly useful for functions with repetitive or computationally expensive tasks.
-
 
 Memoization in JavaScript is an optimization technique used to improve the performance of functions by caching the results of expensive functions calls and returning the cached result when the same inputs occur again
 
-
- Memoization in JavaScript is an optimization technique that stores the results of functions calls and reuses them when the same inputs occur again. This avoids redundant calculations, improving the performance of the program.
-
-
+Memoization in JavaScript is an optimization technique that stores the results of functions calls and reuses them when the same inputs occur again. This avoids redundant calculations, improving the performance of the program.
 
 Memoization is an optimization technique used primarily to speed up computer programs
 by storing the results of expensive functions calls
@@ -2414,168 +2155,31 @@ and returning the cached result when the same inputs occur again.
 
 It is particularly useful for functions with expensive or repetitive computations.
 
-
-
-
-- **Memoization in JavaScript optimization technique used to:
+- \*\*Memoization in JavaScript optimization technique used to:
   - Improve the performance of functions.
   - by Cache/storing the results of expensive function calls.
   - Return the cached result when the same inputs occur again.
-  
 - **Benefits:**
   - Avoids redundant calculations.
   - Speeds up the program.
-  
-- **Use case:**  
+- **Use case:**
   - Particularly useful for functions with repetitive or computationally expensive tasks.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+==============================================
 
 ==============================================
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+==============================================
 
 ==============================================
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+==============================================
 
 ==============================================
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ==============================================
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ==============================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-==============================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-==============================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-==============================================
-
-
-
-
-
-
 
 ## Examples to Illustrate the Difference
 
@@ -2586,9 +2190,9 @@ const greeting = "Hello";
 greeting = "Hi"; // ❌ Error: Assignment to constant variable
 ```
 
-* `"Hello"` is a string, which is immutable.
-* `greeting` is declared with `const`, so reassignment is disallowed.
-* You cannot reassign `greeting` to a new string.
+- `"Hello"` is a string, which is immutable.
+- `greeting` is declared with `const`, so reassignment is disallowed.
+- You cannot reassign `greeting` to a new string.
 
 ---
 
@@ -2602,9 +2206,9 @@ console.log(person.name); // "Bob"
 person = { name: "Charlie" }; // ❌ Error: Assignment to constant variable
 ```
 
-* `person` is a `const` variable, so you cannot reassign the variable to a new object.
-* However, the object itself is mutable, so you can change its properties.
-* Mutating the content is allowed, but reassigning the variable is not.
+- `person` is a `const` variable, so you cannot reassign the variable to a new object.
+- However, the object itself is mutable, so you can change its properties.
+- Mutating the content is allowed, but reassigning the variable is not.
 
 ---
 
@@ -2629,24 +2233,9 @@ console.log(nums); // [5, 6]
 | Immutable values | Primitives (strings, numbers) | Value itself cannot be changed           |
 | Mutable values   | Objects, arrays, functions    | Their contents/properties can be changed |
 
-
-
-
-
-
-
-
-
-
-
-
 ==============================================
 
-
-
-
-
-Temporal Dead Zone (TDZ): 
+Temporal Dead Zone (TDZ):
 
 👉 This period between hoisting and initialization is called TDZ.
 
@@ -2654,10 +2243,9 @@ The Temporal Dead Zone (TDZ) is this time period (or “zone”) from the start 
 
 During the TDZ:
 
-* The variable exists (it’s hoisted),
-* But cannot be accessed,
-* Attempting to access it throws a ReferenceError.
-
+- The variable exists (it’s hoisted),
+- But cannot be accessed,
+- Attempting to access it throws a ReferenceError.
 
 ### Visualizing TDZ with an example:
 
@@ -2665,7 +2253,7 @@ During the TDZ:
 {
   // TDZ starts here for 'x'
   console.log(x); // ReferenceError: Cannot access 'x' before initialization
-  
+
   let x = 5; // TDZ ends here (x is initialized)
   console.log(x); // 5 (now accessible)
 }
@@ -2675,37 +2263,19 @@ During the TDZ:
 
 ### Key points:
 
-* TDZ applies only to variables declared with `let` and `const`.
-* `var` declarations do not have TDZ because they are initialized with `undefined` immediately.
+- TDZ applies only to variables declared with `let` and `const`.
+- `var` declarations do not have TDZ because they are initialized with `undefined` immediately.
 
-
-
-
-
-
- The time period between the start of a block scope and the point where a variable declared with let or const is initialized. During this zone, the variable exists but cannot be accessed, and attempts to do so result in a ReferenceError.
+The time period between the start of a block scope and the point where a variable declared with let or const is initialized. During this zone, the variable exists but cannot be accessed, and attempts to do so result in a ReferenceError.
 
 let and const Hoisting:
 Variables declared with let and const are hoisted to the top of their block scope but are not initialized during hoisting. Accessing them before the declaration results in a ReferenceError due to the TDZ..
 
+temporal dead
 
-
-
-temporal dead 
-
-The Temporal Dead Zone in JavaScript is the period during which variables declared with let, const  exist in their scope but are not yet initialized.
+The Temporal Dead Zone in JavaScript is the period during which variables declared with let, const exist in their scope but are not yet initialized.
 
 Accessing such variables in the TDZ results in a ReferenceError
 
-
 console.log(a); // ReferenceError: Cannot access 'a' before initialization
 let a = 5;
-
-
-
-
-
-
-
-
-

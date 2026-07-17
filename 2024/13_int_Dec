@@ -1,24 +1,21 @@
-
-
 ==========================================
 
 Single Page Applications (SPAs), which build pages in our browser using JavaScript,
- MPAs depend on the server to generate and refresh pages
+MPAs depend on the server to generate and refresh pages
 
 ### Multi-Page Application (MPA)
 
 -If an application / website has multiple requestable web pages then that application
- is called multi page application.
+is called multi page application.
 
--An MPA consists of multiple pages, each with its own URL. 
+-An MPA consists of multiple pages, each with its own URL.
 
 -When a user navigates to a new page,the browser reloads and fetches the new HTML content from the server.
 
 -It recreates the DOM for each request
 
-
 -Multipage application is slow because each request will be send to the server then server
- will return a web page as response.
+will return a web page as response.
 
 -It utilizes the server resources so high configuration server is required.
 
@@ -26,14 +23,11 @@ Single Page Applications (SPAs), which build pages in our browser using JavaScri
 
 -To fetch the different content you need to fetch different webpages from the server
 
-
 B] Single page application
-
 
 Single-Page Application
 A single-page application is an app that works inside a browser and does not require page reloading during use.
 An SPA loads a single HTML page and dynamically updates the content as the user interacts with the app, without refreshing the entire page.
-
 
 -If an application has single requestable web page then that application is called
 single page application.
@@ -50,8 +44,6 @@ be serverd from web browser.
 
 -It does not re create the DOM tree for content change
 
-
-
 ==========================================
 
 ### What is React.js?
@@ -66,27 +58,25 @@ be serverd from web browser.
 - Usable on both client and server-side, and with other frameworks.
 - Created by Jordan Walke, a software engineer at Facebook.
 
-
-
 ReactJS is an open-source JavaScript library used for building user interfaces, particularly single-page applications
-- Developed and maintained by Facebook,  
+
+- Developed and maintained by Facebook,
 - React allows developers to create large web applications that can update and render efficiently in response to changing data.
 
-
 1. **Component-Based Architecture:**
-   - React applications are built using components, which are reusable pieces of UI. 
-    -Each component has its own logic and rendering, making code modular and easier to manage.
+   - React applications are built using components, which are reusable pieces of UI.
+     -Each component has its own logic and rendering, making code modular and easier to manage.
 
 2. **Virtual DOM:**
-   - React uses a virtual DOM to improve performance. 
+   - React uses a virtual DOM to improve performance.
    - When a component’s state changes, React updates the virtual DOM, compares it with the previous version, and only updates the actual DOM with the changes.
 
 3. **JSX Syntax:**
-   - JSX (JavaScript XML) is a syntax extension that allows writing HTML-like code within JavaScript. 
+   - JSX (JavaScript XML) is a syntax extension that allows writing HTML-like code within JavaScript.
    - This makes the code more readable and easier to write.
 
 4. **Unidirectional Data Flow:**
-   - data flows in one direction from parent to child components. 
+   - data flows in one direction from parent to child components.
 
 5. **State Management:**
    - React has a built-in state management system for managing data within components.
@@ -95,7 +85,7 @@ ReactJS is an open-source JavaScript library used for building user interfaces, 
 6. **Lifecycle Methods:**
    - React provides lifecycle methods that allow developers to hook into specific moments in a component’s life (e.g., mounting, updating, unmounting) to perform actions or manage state.
 
-<!-- 
+<!--
 1. **Efficiency:**
    - The virtual DOM and optimized rendering improve performance and efficiency.
 
@@ -126,73 +116,62 @@ JavaScript allows you to update and change HTML and CSS through the Document Obj
 - JavaScript is used in many non-browser environments.
 - JavaScript supports event-driven programming.
 
+## ==========================================
 
-==========================================
-------------------------------------------------------------------------------------------------
 server side rendering (SSR) and client side rendering (CSR).
 
-
-
-In the world of web development, 
+In the world of web development,
 there are two main methods for rendering web pages:
 server side rendering (SSR) and client side rendering (CSR).
 
 What is Server Side Rendering (SSR)?
 
 -Server Side Rendering is the traditional way of rendering web pages.
--When a user requests a page from the server, the server processes the 
-request and generates the complete HTML file, 
+-When a user requests a page from the server, the server processes the
+request and generates the complete HTML file,
 which is send to browser
 -The browser receives the complete HTML file and displays it to the user.
 SSR: Better performance, Faster initial load, better SEO, and security.
 
-
 What is Client Side Rendering (CSR)?
 Client Side Rendering is a more modern approach to rendering web pages.
-In this method, the server sends only the necessary data and JavaScript files to the browser. 
+In this method, the server sends only the necessary data and JavaScript files to the browser.
 Browser generates HTML with JavaScript.
 Allows dynamic content and improved user experience.
-
 
 Differences:
 
 SSR: Better performance, Faster initial load, better SEO, and security.
 CSR: More dynamic, better user experience, and reduces server load.
 
+---
 
-
-
-
-------------------------------------------------------------------------------------------------
-Authentication and authorization are two essential concepts in web development, 
- used together to manage access control and secure resources.
- Heres a brief overview of each:
+Authentication and authorization are two essential concepts in web development,
+used together to manage access control and secure resources.
+Heres a brief overview of each:
 
 1. Authentication:
-   - Authentication is the process of verifying the identity of a user, 
-   typically through credentials such as username and password.
+   - Authentication is the process of verifying the identity of a user,
+     typically through credentials such as username and password.
    - Common authentication mechanisms include:
      - Form-based authentication: Users provide credentials via a login form.
      - Token-based authentication: Users receive a token after successful login, which is then used to authenticate subsequent requests.
      - OAuth/OpenID Connect: Third-party authentication protocols used for single sign-on (SSO) and social login.
-    where user credentials are verified against a database or external identity provider.
+       where user credentials are verified against a database or external identity provider.
    - The goal of authentication is to ensure that users are who they claim to be before granting access to protected resources or features.
    - Authentication is often implemented at the application level,
 
 2. Authorization:
-   - Authorization is the process of determining whether a user 
-   has the necessary permissions to access a resource or perform a specific action.
+   - Authorization is the process of determining whether a user
+     has the necessary permissions to access a resource or perform a specific action.
    - Once a user is authenticated, authorization rules are applied to determine what they can and cannot do within the application.
    - Authorization can be based on various factors, including user roles, groups, attributes, or custom policies.
    - Common authorization mechanisms include:
      - Role-based access control (RBAC): Users are assigned roles (e.g., admin, editor, viewer) with corresponding permissions.
      - Attribute-based access control (ABAC): Access decisions are based on user attributes, resource properties, and environmental conditions.
    - Authorization is typically enforced at the application level, with access control rules defined and enforced within the application logic or middleware.
-   
 
 In summary, authentication verifies user identity, while authorization controls user access to resources based on their identity and permissions. Together, these concepts form the foundation of access control and security in web applications.
-
-
 
 ================================================================================
 Debounce vs Throttling
@@ -201,33 +180,32 @@ Debounce vs Throttling
 - These techniques are particularly useful when dealing with events that can trigger multiple times in quick succession, such as user inputs or page scrolling.
 - By implementing debouncing and throttling, we can limit the number of times a function is called and prevent overwhelming the server with requests.
 
-
-Debounce function is only executed after a specified delay period has passed since the last time the function was invoked. 
+Debounce function is only executed after a specified delay period has passed since the last time the function was invoked.
 
 while throttling limits the number of times the function can be called over a certain period.
 
 - This results in a better user experience and improved website performance.
 
-
 Debounicng real world example
-When you search for something on Flipkart's website, the search results appear as you type. But if every keystroke triggers a request, 
+When you search for something on Flipkart's website, the search results appear as you type. But if every keystroke triggers a request,
 it could slow down the website. That's where debouncing comes in. It delays the request until you stop typing for a short period of time, ensuring that only the final keystroke triggers the request. This prevents the server from being overloaded with requests and delivers search results quickly.
-
-
 
 ### Debounce
 
-function is only executed after a specified delay period has passed since the last time the function was invoked. 
+function is only executed after a specified delay period has passed since the last time the function was invoked.
 
 debounce is useful for restricting the frequency of function execution, particularly for events that occur rapidly, such as typing or window resizing
 
 #### Key Points:
+
 - Delays execution of a function until after a specified wait time.
 - Useful for scenarios like search input fields, window resizing, etc.
 - Prevents a function from being called too frequently.
 
 #### Example:
+
 html
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -254,27 +232,28 @@ html
 
         document.getElementById('search').addEventListener('input', debouncedSearch);
     </script>
+
 </body>
 </html>
-
 
 ### Throttling
 
 Throttling ensures that a function is only executed at most once in a specified time period. It limits the rate at which a function can be executed, regardless of how many times an event fires in that period.
 
 #### Key Points:
+
 - Limits the frequency of function execution to at most once per specified time period.
 - Useful for scenarios like scroll events, mouse movement, etc.
 - Ensures a function is not called more often than the specified time interval.
-
-
 
 A real-world example of throttling is scrolling on a website. When you scroll down a page, the browser fires a scroll event for every pixel you move. If you have a lot of content on the page, this can cause performance issues as the browser tries to handle all the events.
 
 To fix this, we can use throttling to limit the number of scroll events that the browser handles. For example, we might set a limit of one scroll event per 100 milliseconds. This means that the browser will handle only one scroll event during that time, no matter how many times the event is fired.
 
 #### Example:
+
 html
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -313,37 +292,30 @@ html
 
         window.addEventListener('scroll', throttledScroll);
     </script>
+
 </body>
 </html>
 
-
 ### Summary
+
 - **Debounce** delays the execution of a function until after a specified wait time has passed since the last invocation.
-
-
 
 - **Throttling** ensures that a function is called at most once in a specified time period.
 
 Both techniques help in optimizing performance and improving user experience by controlling the rate of function execution in response to frequent events.
 
-
-
-
-
 ================================================================================
 Webpack
 
- Webpack is a popular open-source module bundler for JavaScript applications.
+Webpack is a popular open-source module bundler for JavaScript applications.
 
- It's primarily used in web development to bundle JavaScript files for usage in a browser, 
- It's  managing dependencies and bundling various assets like JavaScript files, images, 
- and CSS into a single bundle, 
- 
- Webpack's behavior is configured through a webpack.config.js file.
- Plugins  is used  Webpack's functionality for tasks like optimization, asset management,
- It's widely used in modern web development, often alongside frameworks like React, Vue.js, or Angular.
+It's primarily used in web development to bundle JavaScript files for usage in a browser,
+It's managing dependencies and bundling various assets like JavaScript files, images,
+and CSS into a single bundle,
 
-
+Webpack's behavior is configured through a webpack.config.js file.
+Plugins is used Webpack's functionality for tasks like optimization, asset management,
+It's widely used in modern web development, often alongside frameworks like React, Vue.js, or Angular.
 
 Here's a more refined version of your explanation with a bit more clarity and flow:
 
@@ -351,7 +323,7 @@ Here's a more refined version of your explanation with a bit more clarity and fl
 
 ### **Webpack**:
 
-**Webpack** is a popular **open-source module bundler** primarily used for **JavaScript applications** in modern web development. 
+**Webpack** is a popular **open-source module bundler** primarily used for **JavaScript applications** in modern web development.
 
 - **Purpose**:  
   Webpack is used to **bundle JavaScript files** and other assets like **CSS**, **images**, and **fonts** into one or more output files that are optimized for use in a browser. This helps reduce the number of requests the browser needs to make, improving performance.
@@ -376,18 +348,14 @@ Here's a more refined version of your explanation with a bit more clarity and fl
   Webpack is widely used alongside modern front-end frameworks like **React**, **Vue.js**, and **Angular**. It is an essential part of the development setup for many JavaScript applications.
 
 ### In Summary:
+
 Webpack bundles your application’s assets and optimizes them for the browser, while **loaders** and **plugins** provide flexibility to handle various file types and enhance functionality. It is an essential tool in modern web development, particularly for single-page applications (SPAs) built with frameworks like React.
 
 ---
 
 This version organizes the points more clearly and offers a bit more explanation about Webpack's core features and how it's used in real-world projects.
 
-
-
-
-
-
-------------------------------------------------------------------------------------------------
+---
 
 '**Webpack**:  
 A **module bundler** for JavaScript applications, used to bundle JavaScript, CSS, images, and other assets into optimized files that are more efficient for browsers to load. It is commonly used in **React** and other modern JavaScript frameworks to improve performance and streamline development.
@@ -409,7 +377,6 @@ A **module bundler** for JavaScript applications, used to bundle JavaScript, CSS
   - **`HtmlWebpackPlugin`**: Generates an `index.html` file with injected script tags for the bundled JavaScript.
   - **`DefinePlugin`**: Replaces variables with specific values (e.g., setting environment variables).
   - **`MiniCssExtractPlugin`**: Extracts CSS into separate files for better caching.
-  
 - **Code Splitting**:  
   Webpack allows you to split your code into smaller chunks, improving the loading time of your application. This means the browser only loads the necessary code for the current page, instead of loading the entire application upfront.
 
@@ -460,42 +427,42 @@ While configuring Webpack from scratch can be complex, **Create React App (CRA)*
 However, if you need more control over the build process, you can **eject** from CRA or manually configure Webpack. A typical custom Webpack configuration for React might look like this:
 
 ```js
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: './src/index.js',  // Main entry point for the app
+  entry: "./src/index.js", // Main entry point for the app
   output: {
-    filename: 'bundle.js',  // Output filename for the JavaScript bundle
-    path: path.resolve(__dirname, 'dist'),  // Output directory
+    filename: "bundle.js", // Output filename for the JavaScript bundle
+    path: path.resolve(__dirname, "dist"), // Output directory
   },
   module: {
     rules: [
       {
-        test: /\.js$/,  // Process JavaScript files with Babel
+        test: /\.js$/, // Process JavaScript files with Babel
         exclude: /node_modules/,
-        use: 'babel-loader',
+        use: "babel-loader",
       },
       {
-        test: /\.css$/,  // Process CSS files
-        use: ['style-loader', 'css-loader'],
+        test: /\.css$/, // Process CSS files
+        use: ["style-loader", "css-loader"],
       },
       {
-        test: /\.(png|jpg|gif)$/i,  // Handle image assets
-        use: ['file-loader'],
+        test: /\.(png|jpg|gif)$/i, // Handle image assets
+        use: ["file-loader"],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html',  // Generate HTML with injected scripts
+      template: "./public/index.html", // Generate HTML with injected scripts
     }),
   ],
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    port: 9000,  // Development server on port 9000
+    contentBase: path.join(__dirname, "dist"),
+    port: 9000, // Development server on port 9000
   },
-  mode: 'development',  // Development mode (production optimizations are automatic in prod mode)
+  mode: "development", // Development mode (production optimizations are automatic in prod mode)
 };
 ```
 
@@ -507,22 +474,20 @@ module.exports = {
 
 This should give you a deeper, more thorough understanding of Webpack in the context of React development, while remaining interview-friendly!
 
-
-
-
 ### React Lifecycle Methods
 
 Each React component has a lifecycle consisting of **three main phases**: **Mounting**, **Updating**, and **Unmounting**.
 
 ---
 
-#### **A) Mounting**  
-This phase involves adding elements to the DOM. React calls the following lifecycle methods in this order:  
+#### **A) Mounting**
 
-1. **constructor()**  
-   - Used to initialize the component’s state and bind methods.  
-   - Avoid side-effects like API calls here.  
-   - Example:  
+This phase involves adding elements to the DOM. React calls the following lifecycle methods in this order:
+
+1. **constructor()**
+   - Used to initialize the component’s state and bind methods.
+   - Avoid side-effects like API calls here.
+   - Example:
      ```javascript
      constructor(props) {
        super(props);
@@ -530,11 +495,11 @@ This phase involves adding elements to the DOM. React calls the following lifecy
      }
      ```
 
-2. **getDerivedStateFromProps(nextProps, prevState)**  
-   - Updates the state based on changes in props before rendering.  
-   - Static method; doesn’t have access to `this`.  
-   - Should return an updated state object or `null` if no changes are needed.  
-   - Example:  
+2. **getDerivedStateFromProps(nextProps, prevState)**
+   - Updates the state based on changes in props before rendering.
+   - Static method; doesn’t have access to `this`.
+   - Should return an updated state object or `null` if no changes are needed.
+   - Example:
      ```javascript
      static getDerivedStateFromProps(nextProps, prevState) {
        if (nextProps.value !== prevState.value) {
@@ -544,14 +509,14 @@ This phase involves adding elements to the DOM. React calls the following lifecy
      }
      ```
 
-3. **render()**  
-   - Renders the component’s UI to the DOM.  
-   - Pure function: should not contain state changes or side-effects.  
+3. **render()**
+   - Renders the component’s UI to the DOM.
+   - Pure function: should not contain state changes or side-effects.
 
-4. **componentDidMount()**  
-   - Executes after the component is added to the DOM.  
-   - Used for operations like API calls, setting timers, or DOM manipulation.  
-   - Example:  
+4. **componentDidMount()**
+   - Executes after the component is added to the DOM.
+   - Used for operations like API calls, setting timers, or DOM manipulation.
+   - Example:
      ```javascript
      componentDidMount() {
        fetch('https://api.example.com/data')
@@ -562,41 +527,42 @@ This phase involves adding elements to the DOM. React calls the following lifecy
 
 ---
 
-#### **B) Updating**  
-This phase occurs when a component’s state or props change, triggering a re-render. The following methods are called:  
+#### **B) Updating**
 
-1. **getDerivedStateFromProps(nextProps, prevState)**  
-   - Same as in Mounting.  
+This phase occurs when a component’s state or props change, triggering a re-render. The following methods are called:
 
-2. **shouldComponentUpdate(nextProps, nextState)**  
-   - Controls whether the component should re-render.  
-   - Returns `true` (default) or `false`.  
-   - Used for performance optimizations.  
-   - Example:  
+1. **getDerivedStateFromProps(nextProps, prevState)**
+   - Same as in Mounting.
+
+2. **shouldComponentUpdate(nextProps, nextState)**
+   - Controls whether the component should re-render.
+   - Returns `true` (default) or `false`.
+   - Used for performance optimizations.
+   - Example:
      ```javascript
      shouldComponentUpdate(nextProps, nextState) {
        return nextProps.value !== this.props.value;
      }
      ```
 
-3. **render()**  
-   - Same as in Mounting.  
+3. **render()**
+   - Same as in Mounting.
 
-4. **getSnapshotBeforeUpdate(prevProps, prevState)**  
-   - Executes right before the DOM is updated.  
-   - Captures some state (e.g., scroll position) before the update.  
-   - Returns a value passed as the third parameter to `componentDidUpdate`.  
-   - Example:  
+4. **getSnapshotBeforeUpdate(prevProps, prevState)**
+   - Executes right before the DOM is updated.
+   - Captures some state (e.g., scroll position) before the update.
+   - Returns a value passed as the third parameter to `componentDidUpdate`.
+   - Example:
      ```javascript
      getSnapshotBeforeUpdate(prevProps, prevState) {
        return document.getElementById('scroll-container').scrollTop;
      }
      ```
 
-5. **componentDidUpdate(prevProps, prevState, snapshot)**  
-   - Executes after the DOM update.  
-   - Suitable for side-effects like API calls based on updated state/props.  
-   - Example:  
+5. **componentDidUpdate(prevProps, prevState, snapshot)**
+   - Executes after the DOM update.
+   - Suitable for side-effects like API calls based on updated state/props.
+   - Example:
      ```javascript
      componentDidUpdate(prevProps, prevState, snapshot) {
        if (this.props.id !== prevProps.id) {
@@ -607,13 +573,14 @@ This phase occurs when a component’s state or props change, triggering a re-re
 
 ---
 
-#### **C) Unmounting**  
-This phase occurs when a component is removed from the DOM.  
+#### **C) Unmounting**
 
-1. **componentWillUnmount()**  
-   - Executes just before the component is destroyed.  
-   - Used for cleanup tasks like clearing timers or canceling network requests.  
-   - Example:  
+This phase occurs when a component is removed from the DOM.
+
+1. **componentWillUnmount()**
+   - Executes just before the component is destroyed.
+   - Used for cleanup tasks like clearing timers or canceling network requests.
+   - Example:
      ```javascript
      componentWillUnmount() {
        clearInterval(this.timer);
@@ -623,12 +590,14 @@ This phase occurs when a component is removed from the DOM.
 ---
 
 ### Additional Notes:
-1. **React 16+ Lifecycle Changes**:  
-   - Methods like `componentWillMount`, `componentWillReceiveProps`, and `componentWillUpdate` are deprecated. Use `getDerivedStateFromProps` or `getSnapshotBeforeUpdate` instead.  
 
-2. **Modern React with Hooks**:  
-   - With React Hooks, lifecycle methods are often replaced by `useEffect`.  
-   - Example:  
+1. **React 16+ Lifecycle Changes**:
+   - Methods like `componentWillMount`, `componentWillReceiveProps`, and `componentWillUpdate` are deprecated. Use `getDerivedStateFromProps` or `getSnapshotBeforeUpdate` instead.
+
+2. **Modern React with Hooks**:
+   - With React Hooks, lifecycle methods are often replaced by `useEffect`.
+   - Example:
+
      ```javascript
      useEffect(() => {
        // ComponentDidMount equivalent
@@ -643,21 +612,92 @@ This phase occurs when a component is removed from the DOM.
 
 ---
 
-### Is This Sufficient?  
-Yes, your explanation is now sufficient for most interview scenarios. If asked, you can enhance it by:  
-- Demonstrating practical examples.  
-- Explaining the differences between class components and functional components with hooks.  
-- Discussing common use cases for each lifecycle method.  
+### Is This Sufficient?
+
+Yes, your explanation is now sufficient for most interview scenarios. If asked, you can enhance it by:
+
+- Demonstrating practical examples.
+- Explaining the differences between class components and functional components with hooks.
+- Discussing common use cases for each lifecycle method.
 
 This shows a well-rounded understanding and prepares you for follow-up questions.
 
+========================
 
+The warning means: **don't store secrets (passwords, access tokens, API keys, JWTs, refresh tokens) in `localStorage` or `sessionStorage`**, because any JavaScript running on your page (including malicious scripts from an XSS attack) can read them.
 
+### Where should you store sensitive data in a real application?
 
+| Data                               | Recommended Storage           | Why                                                              |
+| ---------------------------------- | ----------------------------- | ---------------------------------------------------------------- |
+| Password                           | **Never store it in browser** | Send it over HTTPS to the server, then discard it.               |
+| Access Token (JWT)                 | **HttpOnly Secure Cookie**    | JavaScript cannot access it. This is the safest common approach. |
+| Refresh Token                      | **HttpOnly Secure Cookie**    | Prevents JavaScript from stealing it.                            |
+| User preferences (theme, language) | `localStorage`                | Safe because it's not sensitive.                                 |
+| Temporary UI state                 | `sessionStorage`              | Fine for non-sensitive temporary data.                           |
 
+### Real-world authentication flow
 
+1. User logs in.
+2. Username/password are sent to the backend over HTTPS.
+3. Backend verifies credentials.
+4. Backend sends a session cookie or JWT in an **HttpOnly, Secure cookie**.
+5. Browser stores the cookie automatically.
+6. On future requests, the browser sends the cookie automatically.
+7. JavaScript **cannot read** the cookie if it's marked `HttpOnly`.
 
+Example:
 
+```text
+Browser
+   │
+   │ Login (email + password)
+   ▼
+Server
+   │
+   │ Set-Cookie:
+   │ HttpOnly
+   │ Secure
+   │ SameSite=Lax
+   ▼
+Browser stores cookie automatically
+```
 
+### What about localStorage?
 
+Good for storing things like:
 
+```javascript
+localStorage.setItem("theme", "dark");
+localStorage.setItem("language", "en");
+```
+
+Not good for:
+
+```javascript
+// ❌ Avoid
+localStorage.setItem("token", jwt);
+localStorage.setItem("password", password);
+localStorage.setItem("apiKey", apiKey);
+```
+
+### What if I'm using React, Angular, or Vue?
+
+The recommended approach is still:
+
+- **Backend:** Store authentication in an **HttpOnly Secure Cookie**.
+- **Frontend:** Keep user information (name, email, role) in application state (React Context, Redux, Zustand, etc.) if needed, but don't store sensitive credentials in Web Storage.
+
+### Summary
+
+- ✅ Password → Never store in the browser.
+- ✅ JWT/Access Token → Prefer **HttpOnly Secure Cookie**.
+- ✅ Refresh Token → **HttpOnly Secure Cookie**.
+- ✅ Theme, language, UI settings → `localStorage`.
+- ✅ Temporary, non-sensitive data → `sessionStorage`.
+
+This is the approach commonly used in production applications because it reduces the risk of sensitive data being exposed through JavaScript or XSS attacks.
+
+```
+
+```

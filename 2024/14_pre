@@ -213,3 +213,55 @@ Function_A_outer(); // Call the outer function
 
 
 
+
+
+
+
+=======================================================================
+
+
+
+
+Primitives are copied by value. Objects and arrays are not copied directly; instead, their references are copied.
+
+
+
+1. `const` does not make an object or array immutable.
+2. `const` only makes the variable's binding (reference) immutable, not the object's contents.
+3. Primitive variables store the actual value directly.
+4. With a primitive, `const` means the variable must always hold the same value.
+5. Changing a primitive value requires reassignment, so doing this with `const` throws: `TypeError: Assignment to constant variable.`
+6. Non-primitive values (objects and arrays) are stored in memory, and the variable stores only a reference (address) to them.
+7. `const` prevents changing that reference, but it does not prevent modifying the object's or array's contents.
+8. Since the reference stays the same, operations like adding, removing, or updating properties/elements are allowed.
+9. Primitives are copied by value, while objects and arrays are copied by reference.
+10. In simple terms:
+
+    * Primitive + `const` → value cannot be reassigned.
+    * Object/Array + `const` → reference cannot be reassigned, but contents can be modified.
+
+### Example
+
+```javascript
+// Primitive
+const num = 10;
+// num = 20; // ❌ TypeError: Assignment to constant variable.
+
+// Non-primitive
+const person = { name: "John" };
+
+person.name = "Jane"; // ✅ Allowed
+// person = {}; // ❌ TypeError: Assignment to constant variable.
+````
+
+Key takeaway: `const` protects the variable's binding (reference), not the contents of an object or array.
+
+const does not make an object or array immutable.
+const makes the object constant. It doesn't. It only makes the reference constant(constant means immutable).
+const does not allow changing the reference, it throws an error.
+Objects are stored in reference memory, and the variable stores only the reference (address).=
+A primitive variable stores the actual value. const says
+"The variable must always point to the same value."A primitive variable stores the actual value. TypeError: Assignment to constant variable.
+non primitive It stores a reference (address) to the object.
+Primitive variables hold the value directly, so changing the value requires reassignment. Objects and arrays are accessed through a reference, so their internal contents can change as long as the reference itself stays the same.
+Primitives are stored and copied by value in stack, so changing them replaces the value directly, while objects and arrays are stored in heap and accessed via reference, so modifying them changes internal data but not the reference.
