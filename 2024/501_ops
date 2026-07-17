@@ -22,6 +22,19 @@
 ===========================================
 ===========================================
 ===========================================
+
+
+
+1. Internationalization (i18n):- 
+Making software for different languages, regions, and cultures by designing it flexibly. 
+This includes separating text from code, using language-neutral formats for dates and numbers,
+ and ensuring UI layouts can handle various text lengths and directions.
+
+2. Localization (l10n): 
+
+Customizing software for specific languages, regions, or cultures by translating text, 
+formatting dates and numbers, and adapting the UI to match local expectations.
+It involves creating language-specific versions of the software and tailoring the user experience accordingly.
 ===========================================
 
 ---

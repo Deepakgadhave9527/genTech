@@ -3,29 +3,43 @@
 
 ## Memoization
 
-- Memoization is an optimization technique that improves the performance of functions by caching the results of expensive function calls.
-When the same inputs occur again, the function returns the stored (cached) result instead of recomputing it.
 
-- It is especially useful for functions with heavy calculations, recursive algorithms, or repeated inputs.
+Memoization is an optimization technique that stores (caches) the result of an 
+expensive function so that if the function is called again with the same inputs, 
+it returns the cached result instead of recalculating it.
 
+This improves performance by avoiding repeated computations.
+
+
+
+- It is especially useful for functions with heavy calculations,
+ recursive algorithms, or repeated inputs.
 
 
 
 - memoization only provides a benefit when the same inputs occur again.
 
-- If the input is different, there's no cache entry for it, so the function must compute the result normally and then store it.
+- If the input is different, there's no cache entry for it, 
+so the function must compute the result normally and then store it.
 
+- Memoization is an optimization technique that improves the performance of functions 
+by caching the results of expensive function calls.
+When the same inputs occur again, 
+the function returns the stored (cached) result instead of recomputing it.
 
 
 ======== Immediately Invoked Function Expression (IIFE =======================
 
 Immediately Invoked Function Expression (IIFE)
 
-- An IIFE is a function that is executed immediately after it is defined.
+
+IIFE is a JavaScript function that runs immediately after it is created / defined.
+
 
 - It is often used to create a local scope to avoid polluting the global scope.
 
-- Runs code immediately after declaration, useful for initialization tasks, configuring settings, or starting applications at the desired moment.
+- Runs code immediately after declaration, useful for initialization tasks, c
+onfiguring settings, or starting applications at the desired moment.
 
 
 (function() {
@@ -35,6 +49,19 @@ console.log("This function runs immediately!");
 (function(name) {
 console.log("Hello, " + name + "!");
 })("World");
+
+
+
+
+| Feature                    | Purpose                                                    |
+| -------------------------- | ---------------------------------------------------------- |
+| Encapsulation          | Creates private scope for variables/functions              |
+| Avoid Global Pollution | Prevents global variable name conflicts                    |
+| Data Privacy           | Hides internal data using closures                         |
+| Module Pattern         | Exposes only required functions and keeps the rest private |
+
+
+
 
 
 
@@ -49,6 +76,10 @@ Data Privacy: Utilizes closures to maintain data privacy, hiding internal variab
 ===========================================================================
 
 ## lexical scope
+
+in JavaScript, lexical scope determines variable accessibility based on where variables and functions are declared in the code.
+
+
 -A lexical scope in JavaScript means that a variable defined outside a function can be accessible inside another function
 
 ### Function Scope:
@@ -173,10 +204,12 @@ do {
 
 ### 2. **When to Use**
 
-- **`while` Loop**: Use this when you want to run a block of code as long as a condition is true, and you don’t necessarily need to execute the code block if the condition is initially false.
+- **`while` Loop**: Use this when you want to run a block of code as long as a condition is true, 
+and you don’t necessarily need to execute the code block if the condition is initially false.
 
 
-- **`do...while` Loop**: Use this when you need to execute the code block at least once regardless of the condition. This is useful when the code block needs to run before any condition is evaluated.
+- **`do...while` Loop**: Use this when you need to execute the code block at least once regardless of the condition. 
+This is useful when the code block needs to run before any condition is evaluated.
 
 
 ### 3. **Execution Example**

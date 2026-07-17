@@ -73,18 +73,20 @@ A library, on the other hand, is a collection of pre-written code that can be us
 
 accessibility
 
-
 Web accessibility  is the design and creation of websites that can be used by everyone.
 
-in reactjs we can develop application that are usable by people with disabilities.
-
-<!-- Accessibility support is necessary to allow assistive technology to interpret web pages. -->
-<!-- 
-Accessibility in ReactJS refers 
-to the web applications built with React are usable by people with disabilities.  -->
+Accessibility (a11y) means making web applications usable for everyone,
 
 
-<!-- This includes individuals who may have visual, auditory, motor, or cognitive impairments.  -->
+ including people with disabilities. It ensures users can navigate and interact using keyboards, screen readers, and other assistive technologies.
+
+  accessibility is achieved using 
+  semantic HTML, 
+  proper ARIA attributes, 
+  keyboard support, and focus management. Good accessibility improves usability and follows web standards like WCAG.
+
+
+
 
 React provides various tools and techniques to make applications more accessible, such as:
 -
@@ -110,6 +112,15 @@ and that focus is not trapped within certain elements.
 
 
 
+in reactjs we can develop application that are usable by people with disabilities.
+
+<!-- Accessibility support is necessary to allow assistive technology to interpret web pages. -->
+<!-- 
+Accessibility in ReactJS refers 
+to the web applications built with React are usable by people with disabilities.  -->
+
+
+<!-- This includes individuals who may have visual, auditory, motor, or cognitive impairments.  -->
 
 ==============================================
 What is assistive technology in websites?
@@ -121,16 +132,21 @@ Screen readers, voice recognition software, reading assistants, and switch devic
 
 Internationalization vs Localization
 
-1. Internationalization (i18n):- 
-Making software for different languages, regions, and cultures by designing it flexibly. 
-This includes separating text from code, using language-neutral formats for dates and numbers,
- and ensuring UI layouts can handle various text lengths and directions.
 
-2. Localization (l10n): 
 
-Customizing software for specific languages, regions, or cultures by translating text, 
-formatting dates and numbers, and adapting the UI to match local expectations.
-It involves creating language-specific versions of the software and tailoring the user experience accordingly.
+Internationalization (i18n)
+
+
+Internationalization (i18n) is the process of designing and developing an application so  that it can support multiple languages and regions without changing the source code.
+
+Instead of hardcoding text in the application, all user-facing text is stored in separate language resource files, such as en.json, mr.json, and hi.json. 
+ 
+ This approach makes it easy to add new languages or update existing translations without changing the application code.
+
+Localization (l10n)
+
+
+Localization (l10n) is the process of translating and customizing an application for a specific language, country, or region. Based on the user's selected language, the application loads the corresponding language file, such as mr.json for Marathi or en.json for English, and displays all content in that language. Localization may also include adapting date, time, number, and currency formats to match the selected locale, ensuring users have a familiar and localized experience.
 
 
 
@@ -141,6 +157,11 @@ It involves creating language-specific versions of the software and tailoring th
 
 ==================================================================================
 ### **What is an Event Listener?**
+
+An Event Listener is a JavaScript function that waits for a specific event to occur on an HTML element. When the event occurs, it executes a callback function. It is added using the addEventListener() method. Common events include click, keydown, submit, and mouseover.
+
+
+An event listener is a function or piece of code that waits for a specific event (such as a mouse click, key press, or form submission) to occur on an element. When the event happens, the event listener automatically executes the associated function.
 
 An **event listener** in JavaScript is a function that waits for a specific event to occur on a particular element and then executes a predefined action when the event is triggered. Events can be things like:
 
