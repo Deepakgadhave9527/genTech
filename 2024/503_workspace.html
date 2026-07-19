@@ -1,336 +1,102 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>this in Event Listener Example</title>
-</head>
-<body>
+<!doctype html>
+<html>
+  <head>
+    <title>Event Delegation Example</title>
+    <style>
+      .box {
+        border: 2px solid black;
+        padding: 20px;
+        margin: 20px;
+      }
 
-<button id="myBtn">Click me</button>
-<script>
-const p1 = promise.resolver
+      button {
+        margin: 5px;
+        padding: 10px;
+      }
+    </style>
+  </head>
 
+  <body>
+    <h1>Event Delegation Example</h1>
 
-</script>
+    <!-- WITHOUT EVENT DELEGATION -->
+    <div class="box">
+      <h2>Without Event Delegation</h2>
 
-<script>
-  const obj = {
-    name: 'My Object',
-    handleClick: function() {
-      console.log(this.name);
-            console.log(this);
+      <button class="btn1">Button 1</button>
+      <button class="btn1">Button 2</button>
+      <button class="btn1">Button 3</button>
 
-    }
-  };
+      <br /><br />
 
-  const button = document.getElementById('myBtn');
+      <button id="addBtn1">Add New Button</button>
+    </div>
 
-  // Problem: this inside handleClick refers to the button element, so this.name is undefined
-//   button.addEventListener('click', obj.handleClick.bind(obj));
+    <!-- WITH EVENT DELEGATION -->
+    <div class="box">
+      <h2>With Event Delegation</h2>
 
-  // Fix 1: Use bind to set the correct this
-//   button.addEventListener('click', obj.handleClick.bind(obj));
+      <div id="buttonContainer">
+        <button class="btn2">Button A</button>
+        <button class="btn2">Button B</button>
+        <button class="btn2">Button C</button>
+      </div>
 
-  // Fix 2: Use an arrow function wrapper
-  button.addEventListener('click', () => obj.handleClick());
+      <br />
 
+      <button id="addBtn2">Add New Button</button>
+    </div>
 
-  const original = { a: 1, b: { c: 2 } };
-const clone = { ...original };
+    <script>
+      // =====================================
+      // WITHOUT EVENT DELEGATION
+      // =====================================
 
+      const buttons = document.querySelectorAll(".btn1");
 
-clone.b.c = 3;
-console.log(original.b.c); // Output:
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          console.log("Without delegation:", button.textContent);
+          alert("Clicked: " + button.textContent);
+        });
+      });
 
-async function getData(){
-    fetch('https://jsonplaceholder.typicde.com/todos/1').then((res)=>res.json()).then((data)=>console.log(data)).catch((err)=>console.log(err))
-}
-getData()
+      // Adding a new button dynamically
+      document.getElementById("addBtn1").addEventListener("click", () => {
+        const newButton = document.createElement("button");
 
-</script>
+        newButton.textContent = "New Button";
+        newButton.className = "btn1";
 
-</body>
+        document.querySelector(".box").appendChild(newButton);
+
+        console.log("New button added without listener");
+      });
+
+      // =====================================
+      // WITH EVENT DELEGATION
+      // =====================================
+
+      const container = document.getElementById("buttonContainer");
+
+      // One event listener on parent
+      container.addEventListener("click", (event) => {
+        if (event.target.classList.contains("btn2")) {
+          console.log("With delegation:", event.target.textContent);
+
+          alert("Clicked: " + event.target.textContent);
+        }
+      });
+
+      // Adding new button dynamically
+      document.getElementById("addBtn2").addEventListener("click", () => {
+        const newButton = document.createElement("button");
+
+        newButton.textContent = "New Dynamic Button";
+        newButton.className = "btn2";
+
+        container.appendChild(newButton);
+      });
+    </script>
+  </body>
 </html>
-# Complete AI & Agentic AI Syllabus
-
-## 1. Introduction & Foundations
-
-* Introduction – What We Will Learn in This Course
-* What is Generative AI?
-* What is Agentic AI?
-* Generative AI vs Agentic AI
-
----
-
-## 2. Fundamentals of Generative AI & LLMs
-
-* Basics of Generative AI
-* What are LLMs?
-* Key Concepts
-
-  * Tokenization
-  * Embeddings
-  * Vocabulary
-  * Attention
-* Transformer Architecture
-
-  * Self-Attention Mechanism
-  * Multi-Head Attention
-  * Cross Attention
-  * Encoder–Decoder
-
----
-
-## 3. Working with LLMs
-
-* Open Source vs Closed Source LLMs
-* Hugging Face Ecosystem
-
-  * Model Loading
-  * Model Parameters
-  * Model Weight Formats (.pth, safetensors, ONNX)
-  * Model Size Calculation and Licensing
-* Multi-modal LLMs
-
-  * Text
-  * Audio (ASR, TTS)
-  * Image
-  * Video
-
----
-
-## 4. Prompt Engineering & Control
-
-* Prompts and Context
-
-  * Max Sequence Length vs Max Output Tokens
-  * Task-Specific Prompts
-* Sampling Parameters
-
-  * Temperature
-  * Top-k
-  * Top-p
-  * Others
-* Prompting Techniques
-
-  * Zero-Shot Learning
-  * Chain of Thought (CoT)
-  * ReAct
-* Guardrails
-* Using Chat Completion APIs
-
-  * OpenAI (ChatGPT)
-  * Google Gemini
-  * Anthropic Claude
-
----
-
-## 5. Retrieval-Augmented Generation (RAG)
-
-* What is RAG?
-* LLM Hallucination: Causes and Mitigation
-* When to Use RAG
-* Components of RAG
-
-  * Embeddings
-  * Vector Databases
-
-    * Chroma
-    * Pinecone
-    * FAISS
-    * Milvus
-  * Chunking Strategies
-  * Conversational RAG
-  * Embedding Spaces
-
-    * Semantic Similarity
-    * Cosine Distance
-  * Answer Grading / Response Evaluation
-
-    * BLEU
-    * ROUGE
-    * GPT-based Evaluation
-
----
-
-## 6. Advanced RAG Patterns
-
-* Corrective RAG (CRAG)
-* Self-RAG with Reflection
-* Graph RAG
-* Hybrid RAG (Semantic + Keyword Search)
-
----
-
-## 7. Graph-based Knowledge & Retrieval
-
-* Graph Fundamentals
-
-  * Nodes
-  * Edges
-* Ontology Design
-* Graph Databases
-
-  * Advantages of Graph Databases
-  * Neo4j
-
-    * Community Edition
-    * Enterprise Edition
-    * Cloud
-
----
-
-## 8. LangChain Framework
-
-* Introduction to LangChain
-* Chains, Prompts, and Templates
-* Memory Systems and Conversation Flow
-
-  * Memory Types
-
-    * Short-term Memory
-    * Long-term Memory
-    * Episodic Memory
-  * Persistence Strategies
-* Basic Document Loaders and Text Splitters
-* Tool Calling and Structured Output
-* Output Parsers
-* Building RAG Pipelines with LangChain
-
----
-
-## 9. Agentic AI Principles
-
-* What is Agentic AI?
-* AI Agents vs Agentic AI
-* Agentic AI Frameworks Overview
-
-  * No-Code vs Code-First
-  * n8n vs LangGraph vs Airflow
-* Design Principles
-
-  * Goal
-  * Planner
-  * Orchestrator
-  * Copilot vs Autopilot
-  * Human-in-the-Loop
-* Agentic AI Frameworks
-
-  * CrewAI
-  * LangGraph
-  * AutoGen
-
----
-
-## 10. LangGraph – Building Agent Workflows
-
-* Agentic AI Using LangGraph
-* LangChain vs LangGraph
-* LangGraph Components
-* Workflow Types
-
-  * Sequential
-  * Parallel
-  * Iterative
-  * Conditional
-* Memory & State Management
-
-  * Persistence Strategies
-  * Time Travel in LangGraph
-* Observability with LangSmith
-
-  * What is Observability?
-
----
-
-## 11. Model Context Protocol (MCP)
-
-* MCP Fundamentals and Architecture
-* MCP Server and Client Implementation
-* Tool Integration Through MCP
-* MCP vs Traditional Integration Patterns
-
----
-
-## 12. Agent-to-Agent Communication (A2A)
-
-* A2A Communication Fundamentals
-* Orchestration Patterns
-
-  * Manager–Worker
-  * Peer-to-Peer
-
----
-
-## 13. Fine-Tuning and Quantization
-
-* When to Use Fine-Tuning vs Prompt Engineering
-* Parameter-Efficient Fine-Tuning (PEFT)
-
-  * LoRA
-  * QLoRA
-* Quantization Techniques
-
-  * Introduction to Quantization
-  * Asymmetric vs Symmetric Quantization
-  * Post-Training Quantization (PTQ)
-  * Quantization-Aware Training (QAT)
-
----
-
-## 14. Model Serving & Deployment
-
-* Model Serving Frameworks
-
-  * vLLM
-  * TensorRT-LLM
-
----
-
-# Capstone Projects
-
-### 1. Domain-Aware LLM Chatbot
-
-* Open-source models
-* API-based models
-* Domain-specific knowledge integration
-
-### 2. Customer Support Assistant with RAG
-
-* Document ingestion
-* Vector database
-* Retrieval pipeline
-* Conversational interface
-
-### 3. Agentic AI Advisor
-
-* Healthcare or domain-specific advisory system
-* Multi-agent workflows
-* Human-in-the-loop validation
-
-### 4. Stock Market Insight Generation
-
-* Agentic AI workflow
-* Web search integration
-* Research and report generation
-
----
-
-## Learning Path Summary
-
-**Foundation**
-→ Generative AI → LLMs → Transformers → Prompt Engineering
-
-**Knowledge Systems**
-→ RAG → Advanced RAG → Graph RAG → Knowledge Graphs
-
-**Frameworks**
-→ LangChain → LangGraph → MCP → A2A
-
-**Advanced Topics**
-→ Fine-Tuning → Quantization → Model Serving
-
-**Projects**
-→ Chatbot → RAG Assistant → Agentic AI Advisor → Stock Analysis Agent
-
-This syllabus covers the progression from **LLM fundamentals** to **production-grade Agentic AI systems using LangChain, LangGraph, MCP, A2A communication, RAG, Graph RAG, and deployment**.
