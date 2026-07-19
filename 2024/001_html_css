@@ -281,12 +281,13 @@ pseudo-classes vs Pseudo-Elements
 
 1.  ##Pseudo-classes (:) ##:
 
-- Primarily used to style elements under various states.
-  When referring to state, this includes the condition or user interaction,
+-Pseudo-classes are CSS selectors used to apply styles to an element based on its state or position.
+When referring to state, this includes the condition or States generally involve user interaction.
 
 - Common pseudo-classes include `:hover`, `:active`, `:focus`, and `:disabled`.
 - Denoted by a single colon (:).
-- States generally involve user interaction.
+
+- Primarily used to style elements under various states.
 
    <style>
   a:hover {
@@ -336,7 +337,7 @@ The possible values are:
 
 ### Static
 
-- The default position for all elements.
+- By default the all elements postions are the static
 - Elements are positioned according to the normal document flow (block elements stack vertically, inline elements flow left to right).
 - Not affected positioning properties the `top`, `right`, `bottom`, or `left`
 - It occupies space in the layout as normal (Holds space in the layout).
@@ -608,6 +609,9 @@ general sibling selector (~)
 
 🔹 **1 → Descendant Selector (`space`)**
 
+Represented by a space ( ) between selectors.
+Selects all descendant elements (children, grandchildren, and deeper descendants) of a specified ancestor
+
 - Selects **any child**, at any depth inside the parent.
 - Selects all matching descendants inside a parent
 
@@ -623,6 +627,10 @@ general sibling selector (~)
 
 🔹 **2 → Child Selector (`>`)**
 
+Represented by the greater-than symbol (>).
+Selects only the direct children of an element.
+The child combinator selects all elements that are direct children of a specified element.
+
 - Selects **only direct child**, not nested deeper.
 - Selects only direct children of a parent.
 - Example:  
@@ -637,9 +645,12 @@ general sibling selector (~)
 ```
 
 🔹 **3 → Adjacent Sibling Selector (`+`)**
+Represented by the plus sign (+).
+Adjacent Sibling Combinator (+) – Selects only the immediately following sibling element that shares the same parent.
+
+- It only selects the immediate next sibling — not the next-to-next.
 
 - Selects the **immediate next sibling** element.
-- It only selects the immediate next sibling — not the next-to-next.
 
 It selects only ONE element — the immediate next sibling after the first element.
 It does NOT select multiple siblings, only the first matching sibling directly after.
@@ -670,6 +681,10 @@ It does NOT select multiple siblings, only the first matching sibling directly a
 
 What is the box model in CSS?
 
+CSS Box Model is a layout model that describes how every HTML element is represented as a rectangular box.
+Every element is treated as a box, and its size is determined by its content, padding, border, and margin.
+These four components determine the element's total size, spacing, and layout on a web page.
+
 The CSS box model describes how elements are structured and how they take up space on a webpage
 
 It consists of four parts: content, padding, border, and margin.
@@ -679,7 +694,9 @@ It consists of four parts: content, padding, border, and margin.
   -border is a line around the padding,
   -and margin is space outside the border.
 
--The CSS box model is a fundamental concept that describes the layout and design of elements on a web page.
+-The CSS box model is a fundamental concept
+
+The CSS box model is basiccaly describes the layout and design of elements on a web page.
 
 <!--
 
@@ -694,6 +711,19 @@ The box model in CSS is a way of understanding how elements are structured and h
 
 ================================================================================
 
+### Difference between `display: none;` and `visibility: hidden;`
+
+- **`visibility: hidden;`**
+  - Hides the element from the user.
+  - The element is not visible, but it **still occupies space in the layout**.
+  - It **remains in the document flow** and affects the positioning of other elements.
+
+- **`display: none;`**
+  - Completely removes the element from the page layout.
+  - The element is **not visible and does not occupy any space**.
+  - It **does not affect the document flow**, and other elements move to fill its space.
+
+<!--
 display none and visibility hidden
 
 - **`visibility: hidden;`:**
@@ -701,7 +731,7 @@ display none and visibility hidden
   It's not visible, but it still affects the document flow.
 - **`display: none;`:**
   Completely removes the element from the layout, including its space.
-  I It's not rendered and doesn't affect the document flow.
+  I It's not rendered and doesn't affect the document flow. -->
 
 ========================================================================
 
@@ -910,13 +940,14 @@ Cross-browser compatibility ensures that web applications work consistently acro
 
 ==========================================================================
 
-CSS preprocessor
+### CSS Preprocessor
 
-- A CSS preprocessor tool is a scripting language that extends the capabilities of standard CSS.
-- It allows you to write more dynamic and maintainable styles by introducing features like variables, nesting mixins, and functions.
-- After writing the code in the preprocessor's syntax, it is compiled into standard CSS,
-- which can then be used in web development.
-- Using a preprocessor helps create cleaner, reusable, and more organized stylesheets.
+A CSS preprocessor is a tool that extends the functionality of standard CSS by
+allowing developers to write CSS with additional features such as variables, nesting, functions, mixins, and reusable code.
+
+After writing code using the preprocessor's syntax, it is compiled into standard CSS, which can then be used in web development.
+
+CSS preprocessors help make stylesheets more organized, maintainable, reusable, and easier to manage, especially in large projects.
 
 These features improve the development process:
 
@@ -971,6 +1002,17 @@ This conversion makes CSS more powerful by providing features like:
 - **Nesting**
 - **Mixins**
 - **Functions**"
+
+
+
+-------------------------/
+
+- A CSS preprocessor tool is a scripting language that extends the capabilities of standard CSS.
+- It allows you to write more dynamic and maintainable styles by introducing features like variables, nesting mixins, and functions.
+- After writing the code in the preprocessor's syntax, it is compiled into standard CSS,
+- which can then be used in web development.
+- Using a preprocessor helps create cleaner, reusable, and more organized stylesheets.
+
 
 ========================================================
 classList
