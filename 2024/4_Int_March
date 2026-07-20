@@ -1,87 +1,70 @@
-
-
 ========================================================================
 
 ### 🔹 What is a React Portal?
 
-* A React Portal provides a way to render children into a **DOM node outside the main parent component hierarchy**.
+- A React Portal provides a way to render children into a **DOM node outside the main parent component hierarchy**.
 
-
-* It’s created using:
+- It’s created using:
 
 ```jsx
 ReactDOM.createPortal(child, container);
 ```
 
-* **child**: The React element you want to render.
-* **container**: The DOM node where you want the child to be rendered.
-
+- **child**: The React element you want to render.
+- **container**: The DOM node where you want the child to be rendered.
 
 ### 📌 Why Use Portals?
 
-* React components render inside their parent DOM node.
-* However, there are cases—like **modals, tooltips, or dropdowns**—where rendering **outside this hierarchy** is necessary to avoid **styling or z-index issues**.
-
+- React components render inside their parent DOM node.
+- However, there are cases—like **modals, tooltips, or dropdowns**—where rendering **outside this hierarchy** is necessary to avoid **styling or z-index issues**.
 
 ### 💡 What Problem Does It Solve?
 
-* It solves **z-index**, **positioning**, and **layout** issues commonly faced in nested components.
-
+- It solves **z-index**, **positioning**, and **layout** issues commonly faced in nested components.
 
 ### ✅ Portals Let You Do Exactly That
 
 ```jsx
 ReactDOM.createPortal(
   <div className="modal">Modal Content</div>,
-  document.getElementById('modal-root')
+  document.getElementById("modal-root"),
 );
 ```
 
-
 ### 🔍 Summary
 
-* React Portals render children into a DOM node **outside the parent component’s DOM hierarchy**.
-* Useful for **modals, tooltips, and overlays** that need to visually break out of their parent container.
-* Ensures that elements are **part of the React component tree**.
-* Allows elements to **benefit from React’s event handling and lifecycle features**.
-
+- React Portals render children into a DOM node **outside the parent component’s DOM hierarchy**.
+- Useful for **modals, tooltips, and overlays** that need to visually break out of their parent container.
+- Ensures that elements are **part of the React component tree**.
+- Allows elements to **benefit from React’s event handling and lifecycle features**.
 
 ==========================================
+
 #### ref
 
 In React, a ref (short for reference) is an object that allows you to directly access and interact with a DOM element
 
-
-
-
 ========================================================
 
-Automatic Batching 
+Automatic Batching
 
 -Batching react 18 features
 -Batching in React adding group of multiple state thats update sinto a single re-render for better performance.
+
 - Before: only React events were batched.
-- After: updates inside of timeouts, promises batched, 
+- After: updates inside of timeouts, promises batched,
 
-
-
-    
-    
 setTimeout(() => {
-  setCount(c => c + 1);
-  setFlag(f => !f);
-  // React will render twice, once for each state update (no batching)
+setCount(c => c + 1);
+setFlag(f => !f);
+// React will render twice, once for each state update (no batching)
 }, 1000);
 
 setTimeout(() => {
-  setCount(c => c + 1);
-  setFlag(f => !f);
-  // React will only re-render once at the end (that's batching!)
-}, 1000); 
-
-
-
-
+setCount(c => c + 1);
+setFlag(f => !f);
+// React will only re-render once at the end (that's batching!)
+}, 1000);
 
 - Before React 18, batching of state updates only occurred inside React event handlers, such as `onClick`.
 
@@ -95,9 +78,8 @@ setTimeout(() => {
 
 - As a result, multiple state updates in these contexts are combined into a single re-render, improving app performance.
 
-
-
 ========================================================
+
 ### Conditional Rendering
 
 Conditional rendering is the displaying different UI elements based on specific conditions.
@@ -108,28 +90,23 @@ In React:
 
 javascript
 function Greeting({ isLoggedIn }) {
-  return isLoggedIn ? <h1>Welcome back!</h1> : <h1>Please sign in.</h1>;
+return isLoggedIn ? <h1>Welcome back!</h1> : <h1>Please sign in.</h1>;
 }
 
-
 ### Summary
+
 - Purpose: Show different content based on conditions.
 - How: Use conditional statements like `if` or the ternary operator within the render method.
 
-
 ========================================================
-
 
 What are rule use hooks in react
 
 Hook Rules
-There are 3 rules for hooks: 
+There are 3 rules for hooks:
 Hooks can only be called inside React function components.
-Hooks can only be called at the top level of a component. 
+Hooks can only be called at the top level of a component.
 Hooks cannot be conditional.
-
-
-
 
 ========================================================
 
@@ -147,48 +124,46 @@ StrictMode
 -React introduces additional checks and warnings for potential issues during development.
 -It's not for production use
 
--Like Fragment, StrictMode does not render any visible UI. 
+-Like Fragment, StrictMode does not render any visible UI.
 
 ========================================================
-**Synthetic Events in React**:  
-
+**Synthetic Events in React**:
 
 In React, **synthetic events** are a layer of abstraction over native browser events. They provide a **consistent interface** for handling events across different browsers and offer **additional features** to improve event handling.
 
-You can attach event handlers, like **`onClick`**, to React elements, and React passes a **synthetic event object** to your handler function. This object contains information about the event, such as the **target element**, and provides methods like **`stopPropagation()`** and **`preventDefault()`** for controlling event behavior. 
+You can attach event handlers, like **`onClick`**, to React elements, and React passes a **synthetic event object** to your handler function. This object contains information about the event, such as the **target element**, and provides methods like **`stopPropagation()`** and **`preventDefault()`** for controlling event behavior.
 
 These methods allow you to **prevent the event from propagating** through the DOM or **prevent the default browser action** (like following a link or submitting a form).
 
 - Synthetic events ensure consistent and efficient event handling in React components. -->
 
-
-
 ========================================================
-Code optimization 
+Code optimization
 
-Code optimization in React.js involves improving the efficiency, performance, 
-and overall quality of your codebase without changing its functionality. 
+Code optimization in React.js involves improving the efficiency, performance,
+and overall quality of your codebase without changing its functionality.
 
-It includes techniques such as minimizing unnecessary re-renders, 
-reducing bundle size, optimizing network requests, managing state efficiently, 
+It includes techniques such as minimizing unnecessary re-renders,
+reducing bundle size, optimizing network requests, managing state efficiently,
 enhancing code readability, and maintaining code maintainability.
 
 1. React.StrictMode:
-  - Use React.StrictMode to detect potential issues in your codebase during development.
+
+- Use React.StrictMode to detect potential issues in your codebase during development.
   -It helps identify unsafe lifecycles, deprecated APIs, and other potential problems.
 
 2. Memoization:
-  Memoization is a technique used to optimize expensive computations by caching the results.
+   Memoization is a technique used to optimize expensive computations by caching the results.
    React provides a useMemo hook for memoizing values.
-  
-  import React, { useMemo } from 'react';
- 
-  const Component = ({ data }) => {
-    const processedData = useMemo(() => {
-      // Expensive computation
-      return data.map(item => item * 2);
-    }, [data]);
-  
+
+import React, { useMemo } from 'react';
+
+const Component = ({ data }) => {
+const processedData = useMemo(() => {
+// Expensive computation
+return data.map(item => item \* 2);
+}, [data]);
+
     return (
       <div>
         {processedData.map((item, index) => (
@@ -196,60 +171,59 @@ enhancing code readability, and maintaining code maintainability.
         ))}
       </div>
     );
-  };
+
+};
 
 3. Code Splitting:
-  Splitting your code into smaller chunks allows lazy-loading components when needed, 
-  reducing the initial bundle size and speeding up the initial load time.
-  
-  import React, { lazy, Suspense } from 'react';
+   Splitting your code into smaller chunks allows lazy-loading components when needed,
+   reducing the initial bundle size and speeding up the initial load time.
 
-  const LazyComponent = lazy(() => import('./LazyComponent'));
-  
-  const App = () => (
-    <Suspense fallback={<div>Loading...</div>}>
-      <LazyComponent />
-    </Suspense>
-  );
+import React, { lazy, Suspense } from 'react';
+
+const LazyComponent = lazy(() => import('./LazyComponent'));
+
+const App = () => (
+<Suspense fallback={<div>Loading...</div>}>
+<LazyComponent />
+</Suspense>
+);
 
 4. Avoid Inline Styles:
-  - Inline styles can clutter your components and make maintenance difficult. 
+
+- Inline styles can clutter your components and make maintenance difficult.
   -Prefer using CSS classes or styled-components for better separation of concerns and easier styling management.
 
 5. Debouncing and Throttling:
-  - Debouncing and throttling are code optimization techniques that help improve performance by
-   controlling the rate at which functions are executed in response to frequent events.
-  - Debouncing function is excuated after specif delay perdia passes since las time function invokde 
-    while throttling limits the number of times the function can be called over a certain period.
 
-  
+- Debouncing and throttling are code optimization techniques that help improve performance by
+  controlling the rate at which functions are executed in response to frequent events.
+- Debouncing function is excuated after specif delay perdia passes since las time function invokde
+  while throttling limits the number of times the function can be called over a certain period.
 
 ================================== props.children ==============================================
 
-- A parent component can easily pass any necessary content, including dynamically generated layout features or other components, 
-  to its child component 
+- A parent component can easily pass any necessary content, including dynamically generated layout features or other components,
+  to its child component
 
 - child component can then access this content through props.children and render it accordingly.
- 
+
 - Children is a prop (this.props.children) that allows you to pass components as data to other components, just like any other prop you use. Component tree put between component's opening and closing tag will be passed to that component as children prop.
 
-
 const Layout = (props) => {
-    return (
-      <div className="layout">
-        <header>Header Section</header>
-        <main>{props.children}</main>
-        <footer>Footer Section</footer>
-      </div>
-    );
-  };
+return (
+<div className="layout">
+<header>Header Section</header>
+<main>{props.children}</main>
+<footer>Footer Section</footer>
+</div>
+);
+};
 
+const App = () => {
+const generateContent = () => {
+return <p>This is dynamically generated content!</p>;
+};
 
-  const App = () => {
-    const generateContent = () => {
-      return <p>This is dynamically generated content!</p>;
-    };
-  
     return (
       <Layout>
         <h1>Main Title</h1>
@@ -257,10 +231,10 @@ const Layout = (props) => {
         <p>Some additional content.</p>
       </Layout>
     );
-  };
-  
 
-<!-- 
+};
+
+<!--
 using props.children.
 
 parent component can easily pass whatever is necessary to its child, even generated layout features or other component
@@ -270,19 +244,17 @@ props.children its access the that content  and  to render whatever content is p
 
 Babel
 
- -Babel is a JavaScript compiler that allows developers to utilize modern JavaScript features
-   while ensuring compatibility with older environments and browsers.
+-Babel is a JavaScript compiler that allows developers to utilize modern JavaScript features
+while ensuring compatibility with older environments and browsers.
 
-- Babel can also convert JavaScript code from one version to another, 
+- Babel can also convert JavaScript code from one version to another,
   making it compatible with all browsers, even those that don't support the latest JavaScript features.
-
   - Browsers cannot understand JSX code
-  - Use Babel with React to transpile JSX code into plain JavaScript functions and syntax 
-  that browsers can understand, ensuring React code works in any browser.
-  
+  - Use Babel with React to transpile JSX code into plain JavaScript functions and syntax
+    that browsers can understand, ensuring React code works in any browser.
+
 - Using Babel, we can ensure that our JSX code can work in almost any browser, making it more universally compatible.
 - Using Babel allows developers to use the latest language features (like ES6+ syntax) while maintaining compatibility with older environments and legacy browsers.
-
 
 <!--
 - Babel is a JavaScript compiler.
@@ -298,8 +270,6 @@ Babel
 
 Babel is capable of converting JavaScript code from one version (such as ES6) to another version (such as ES5), allowing developers to use the latest language features while ensuring compatibility with older environments. -->
 
-
-
 ========================================================
 
 **Babel**
@@ -310,36 +280,27 @@ Babel is capable of converting JavaScript code from one version (such as ES6) to
 - Using Babel with React, JSX is transpiled into plain JavaScript functions and syntax that browsers can understand, ensuring that JSX code can work in almost any browser.
 - Babel enables developers to use the latest language features while maintaining compatibility with older environments.
 
-
-
 ========================================================
 
-In React applications, asynchronous operations like making API calls or handling side effects can be managed effectively using middleware. 
-Middleware allows developers to intercept certain actions, perform asynchronous tasks, 
+In React applications, asynchronous operations like making API calls or handling side effects can be managed effectively using middleware.
+Middleware allows developers to intercept certain actions, perform asynchronous tasks,
 and then dispatch new actions with the results once the tasks are complete.
 
 Middleware, in the context of web development,
+
 - acts as a bridge between different components of an application, providing a layer of processing and functionality.
 - It intercepts incoming requests, performs specific actions, and then passes the modified request to the next middleware or the final destination
-
-
-
-
-
 
 ================================================================================
 
 ### Why middleware is required in React?
 
-
 - Middleware is commonly used in React applications to:
   - Manage side effects, handle asynchronous actions,
-   and facilitate communication between components and the application’s state management system (like Redux).
-  
-- Middleware allows you to manage these side effects without cluttering your components with complex logic. 
+    and facilitate communication between components and the application’s state management system (like Redux).
+- Middleware allows you to manage these side effects without cluttering your components with complex logic.
   - It helps separate business logic from UI logic, making the code more maintainable.
   - Improves code reusability by handling common tasks in middleware, reducing the need for repeating logic.
-
 
 - For example, in Redux, middleware like redux-thunk or redux-saga is used to handle asynchronous actions (like API calls) in a more structured manner:
   - It organizes side effects outside of components, improving readability and maintainability.
@@ -347,10 +308,10 @@ Middleware, in the context of web development,
 - Middleware is required in React applications, particularly when using state management libraries like Redux, to handle asynchronous operations and side effects effectively.
 
 ### Middleware allows developers to:
-  - Intercept Actions: Middleware can intercept actions dispatched to the store before they reach the reducers.
-  - Perform Asynchronous Tasks: Middleware can handle asynchronous operations, such as making API calls, within the action dispatching process.
-  - Dispatch New Actions: After completing the asynchronous tasks, middleware can dispatch new actions** with the results of these tasks to update the store.
 
+- Intercept Actions: Middleware can intercept actions dispatched to the store before they reach the reducers.
+- Perform Asynchronous Tasks: Middleware can handle asynchronous operations, such as making API calls, within the action dispatching process.
+- Dispatch New Actions: After completing the asynchronous tasks, middleware can dispatch new actions\*\* with the results of these tasks to update the store.
 
 ================= PropTypes=========================
 
@@ -360,14 +321,11 @@ It allows you to specify the expected types for props that a component should re
 
 npm install prop-types
 
-
-
-
 ========================================================================
 
-React Fiber 
+React Fiber
 
-React Fiber is the new reconciliation algorithm in React 16 and later versions. 
+React Fiber is the new reconciliation algorithm in React 16 and later versions.
 It enhances the ability to update the user interface and manage component rendering more efficiently
 
 - React Fiber is the new reconciliation engine in React 16 and later.
@@ -377,23 +335,20 @@ It enhances the ability to update the user interface and manage component render
 - Introduces features like error boundaries and async rendering.
 - Enhances flexibility and robustness of React applications.
 
-
 ========================================================================
 
 ### Suspense
 
-- Suspense is a feature in React that allows you to handle loading states for     asynchronous operations, 
-- such as dynamically loading components or data. 
+- Suspense is a feature in React that allows you to handle loading states for asynchronous operations,
+- such as dynamically loading components or data.
 - It helps manage the user experience by showing fallback content while the main content is being loaded.
-
 
 ================================================================================
 
 Here's why we use return () => { ... }:
 
 Cleanup Function Definition: The return statement defines the cleanup function.
- This function will be called when the component unmounts or before the effect runs again if any dependencies change.
-
+This function will be called when the component unmounts or before the effect runs again if any dependencies change.
 
 ================================================================================
 
@@ -401,31 +356,27 @@ why typescript is used in react
 
 TypeScript provides a type system that allows developers to catch type-related errors at compile time rather than at runtime. This feature makes it easier to write and maintain high-quality code. For example, in a React component, TypeScript can help catch errors related to the props and state of the component
 
-
 ================================================================================
 
 - **`package.json`**:
   - **Project Metadata**: Includes essential information such as the project’s name, version, description, author, and license.
 
   - **Dependencies**: Lists the libraries and packages that the project depends on, with version ranges (e.g., `"^18.0.0"` allows for minor updates).
-  
   - **Scripts**: Defines command-line scripts for various tasks like starting the app, building it, or running tests (e.g., `npm run start`).
 
   - **Configurations**: Can include settings for tools and libraries used in the project, such as Babel or ESLint.
 
 - **`package-lock.json`**:
-
   - **Exact Versions**: Records the precise versions of all dependencies and sub-dependencies installed, ensuring consistency.
 
   - **Dependency Tree**: Captures the complete hierarchy of dependencies, including nested dependencies, to match the exact installed versions.
 
-  - **Consistent Installations**: Ensures that the same versions are installed 
-  
+  - **Consistent Installations**: Ensures that the same versions are installed
+
 ========================================================================
 
-
-
 ### Dependencies
+
 - Essential packages for running the application in production.
 - The `dependencies` property lists the packages required for the project to operate in a production or deployment environment.
 - When you run `npm install`, the packages listed in the `dependencies` section are installed.
@@ -435,6 +386,7 @@ TypeScript provides a type system that allows developers to catch type-related e
 - Example packages: Express, React, lodash.
 
 ### DevDependencies
+
 - Packages needed only during development and testing, not required for production deployment.
 
 - The `devDependencies` property lists packages used during development, such as testing frameworks, build tools, and development utilities.
@@ -445,18 +397,16 @@ TypeScript provides a type system that allows developers to catch type-related e
 
 - Example packages: Mocha, Webpack, Babel.
 
-dependencies` includes packages needed for the application to run in a production environment, 
+dependencies` includes packages needed for the application to run in a production environment,
 
 while `devDependencies` includes packages required during development and testing but are not necessary for the production deployment.
 
-
-
 ========================================================================
-
 
 ## State Management with `useState`
 
 ### Declaration and Behavior
+
 - **Declaration**: State variables in functional components are declared using `const`:
   ```javascript
   const [count, setCount] = useState(0);
@@ -465,32 +415,22 @@ while `devDependencies` includes packages required during development and testin
 - **State Updates**: When `setCount` is called, React schedules an update. The state is maintained internally by React and persists across re-renders, meaning that the state variable is not recreated from scratch but retrieved from React's internal state management system.
 
 ### Explanation
-- **Re-renders**: During a re-render, the functional component is executed again, creating a new scope. However, React maintains the state between renders by associating state values with the component instance, ensuring that the same state variable is accessed and updated consistently.
 
+- **Re-renders**: During a re-render, the functional component is executed again, creating a new scope. However, React maintains the state between renders by associating state values with the component instance, ensuring that the same state variable is accessed and updated consistently.
 
 ================================================================================
 
-
-
-
 ### Why the UI Doesn't Reflect Changes Without useState
+
 :
 
 - **Without `useState`**: React doesn’t track changes to regular variables, so it doesn’t know to re-render the component. As a result, the UI remains static and doesn’t reflect changes to those variables.
 - **With `useState`**: The hook is essential for managing state in functional components. It triggers a re-render whenever the state changes, ensuring the UI updates accordingly. React’s reconciliation algorithm then updates the DOM based on these state changes.
 
-
-
-
-
 ================================================================================
 How does useState change even when it's a const?
 
-
-
-The `const` keyword ensures that the references to the state variable and the state updater function  do not change, but the state value itself can change.
-
-
+The `const` keyword ensures that the references to the state variable and the state updater function do not change, but the state value itself can change.
 
 - The `useState` hook allows state management in functional components by returning an array with the current state value and a function to update it.
 - Although these values are typically destructured into constants (`const`), the state value is internally managed by React.
@@ -513,23 +453,17 @@ routing refers to the process of navigating between different pages without trig
 
 React Router DOM is an npm package that enables you to implement dynamic routing in a web app.
 
-
-
-
-
-
 ===========================================================================
 
 use multiple <Routes> components and include both routing components (RootRouter and RootRouter2) in your App component, is not the recommended approach.
 
 Multiple <Routes> Components: Using multiple <Routes> components can lead to routing conflicts and unpredictable behavior. React Router is designed to handle routing with a single <Routes> component.
 
-
 ### Absolute Paths
+
 Absolute paths are full paths starting from the root of the application
 
 Absolute paths start from the root of the application and are prefixed with a leading slash (/). They are used to navigate to routes from anywhere within the application.
-
 
 <Router>
       <Routes>
@@ -544,28 +478,25 @@ Use a leading slash (/) with the <Link> component when you want to navigate to a
 <Link to="/about">About</Link>
 
 ### Relative Paths
+
 Relative paths are used within nested routes.
 
-Relative paths are used within nested routes. 
+Relative paths are used within nested routes.
 They do not use a leading slash and are relative to the current route's parent.
 <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />}>
-          <Route path="profile" element={<UserProfile />} />
-          <Route path="settings" element={<Settings />} />
-        </Route>
-      </Routes>
-    </Router>
+<Routes>
+<Route path="/" element={<Home />} />
+<Route path="/dashboard" element={<Dashboard />}>
+<Route path="profile" element={<UserProfile />} />
+<Route path="settings" element={<Settings />} />
+</Route>
+</Routes>
+</Router>
 
 Do not use a leading slash when you want to navigate to a path relative to the current route.
 
 <Link to="profile">Profile</Link>
 
-
-
 When you see the error about absolute paths in nested routes, it usually means that you’ve defined a child route path as an absolute path, which is not allowed. Nested routes must use relative paths.
-
-
 
 ===========================================================================
