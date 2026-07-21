@@ -1,0 +1,27 @@
+Apache Spark is an open-source distributed data processing engine 
+used to process large amounts of data very quickly.
+
+
+With Apache Spark:
+
+The data is split into smaller pieces.
+Those pieces are processed simultaneously by many computers.
+The same job might finish in 10–15 minutes (depending on the cluster).
+
+This is called parallel processing.
+
+
+
+========================
+
+
+
+what is Databricks?
+
+Databricks is a cloud-based data analytics and AI platform built on Apache Spark. It helps organizations store, process, analyze, and build machine learning and AI solutions using large amounts of data.
+
+
+
+======================
+
+A Catalog is a top-level container that organizes and stores schemas (databases) in Databricks.
