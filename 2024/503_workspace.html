@@ -1,102 +1,70 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Event Delegation Example</title>
-    <style>
-      .box {
-        border: 2px solid black;
-        padding: 20px;
-        margin: 20px;
-      }
+<head>
+  <title>stopPropagation Example</title>
+  <style>
+    #parent {
+      background-color: lightblue;
+      padding: 30px;
+    }
 
-      button {
-        margin: 5px;
-        padding: 10px;
-      }
-    </style>
-  </head>
+    .child {
+      background-color: lightgreen;
+      padding: 20px;
+      margin: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
 
-  <body>
-    <h1>Event Delegation Example</h1>
+<body>
 
-    <!-- WITHOUT EVENT DELEGATION -->
-    <div class="box">
-      <h2>Without Event Delegation</h2>
+  <div id="parent">
+    Parent Div
 
-      <button class="btn1">Button 1</button>
-      <button class="btn1">Button 2</button>
-      <button class="btn1">Button 3</button>
-
-      <br /><br />
-
-      <button id="addBtn1">Add New Button</button>
+    <div id="child1" class="child">
+      Child 1
     </div>
 
-    <!-- WITH EVENT DELEGATION -->
-    <div class="box">
-      <h2>With Event Delegation</h2>
-
-      <div id="buttonContainer">
-        <button class="btn2">Button A</button>
-        <button class="btn2">Button B</button>
-        <button class="btn2">Button C</button>
-      </div>
-
-      <br />
-
-      <button id="addBtn2">Add New Button</button>
+    <div id="child2" class="child">
+      Child 2 (stopPropagation applied)
     </div>
 
-    <script>
-      // =====================================
-      // WITHOUT EVENT DELEGATION
-      // =====================================
+    <div id="child3" class="child">
+      Child 3
+    </div>
 
-      const buttons = document.querySelectorAll(".btn1");
+  </div>
 
-      buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-          console.log("Without delegation:", button.textContent);
-          alert("Clicked: " + button.textContent);
-        });
-      });
 
-      // Adding a new button dynamically
-      document.getElementById("addBtn1").addEventListener("click", () => {
-        const newButton = document.createElement("button");
+  <script>
+    const parent = document.getElementById("parent");
+    const child1 = document.getElementById("child1");
+    const child2 = document.getElementById("child2");
+    const child3 = document.getElementById("child3");
 
-        newButton.textContent = "New Button";
-        newButton.className = "btn1";
 
-        document.querySelector(".box").appendChild(newButton);
+    parent.addEventListener("click", () => {
+      console.log("Parent clicked");
+    });
 
-        console.log("New button added without listener");
-      });
 
-      // =====================================
-      // WITH EVENT DELEGATION
-      // =====================================
+    child1.addEventListener("click", () => {
+      console.log("Child 1 clicked");
+    });
 
-      const container = document.getElementById("buttonContainer");
 
-      // One event listener on parent
-      container.addEventListener("click", (event) => {
-        if (event.target.classList.contains("btn2")) {
-          console.log("With delegation:", event.target.textContent);
+    child2.addEventListener("click", (event) => {
+      event.stopPropagation(); // stops bubbling to parent
+      console.log("Child 2 clicked");
+    });
 
-          alert("Clicked: " + event.target.textContent);
-        }
-      });
 
-      // Adding new button dynamically
-      document.getElementById("addBtn2").addEventListener("click", () => {
-        const newButton = document.createElement("button");
+    child3.addEventListener("click", () => {
+      console.log("Child 3 clicked");
+    });
 
-        newButton.textContent = "New Dynamic Button";
-        newButton.className = "btn2";
+  </script>
 
-        container.appendChild(newButton);
-      });
-    </script>
-  </body>
+</body>
 </html>

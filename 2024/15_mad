@@ -1,81 +1,209 @@
 =========================================================================
+####
+-preventDefault() is a JavaScript method that prevents the browsers default action for an event.
 
-- `preventDefault()` is a JavaScript method used to stop the default action associated with an event from occurring.
+- used to stop the default action associated with an event from occurring.
+
   - Example: Prevent a form from submitting.
   - Example: Prevent a link from navigating to a new page.
   - Example: Prevent a context menu from appearing.
 
-- `stopPropagation()` is a JavaScript method used to prevent an event from bubbling up the event chain.
-  - When an event is triggered, it normally propagates up from the target element to its ancestors in the DOM.
-  - By calling `stopPropagation()` on the event object, you stop this propagation.
-  - Ensures that the event doesn't trigger handlers on parent elements.
-  - Useful when you want to manage the event at the specific element level without affecting its ancestors.
-  - Prevents Bubbling: Stops the event from bubbling up to parent elements.
 
-`stopImmediatePropagation()`
-stopImmediatePropagation prevents the event from triggering other event listeners on the same element and stops the event from bubbling up the DOM tree.
+---------------------------------------------------------------------------
+- `stopPropagation()`
+event.stopPropagation() is a JavaScript method used to stop event propagation in the DOM.
 
-stopImmediatePropagation stops the current event from calling any more event listeners on the same element and stops it from moving up to parent elements.
+(stop event bubbling or capturing.)
 
-===================================================
+When an event occurs on a nested child element, it normally bubbles from the child element to its parent elements.
+By calling event.stopPropagation() inside the child element's event handler,
+- we stop the event from reaching parent elements.
+It allows the current element's event handler to execute, 
+but parent elements handlers will not be triggered.
+It does not affect sibling elements because siblings are not part of the event propagation path.
 
-Event loop
 
-The event loop is a mechanism that allows JavaScript to execute asynchronous code in a single-threaded environment.
+-------------------------------------------------------------------------
 
-with help of Event loop we can know the execution of code in Javascript and also
-helps manage the execution of asynchronous code,
 
-We have 3 main things here to consider
+### `stopImmediatePropagation()`
 
-CallStack,
-Micro Task Queue(promise, callbacks, etc.,),
-Macro Task Queue(setTimeout, setInterval, I/O operations, DOM events, etc.,)
+event.stopImmediatePropagation() is a JavaScript method that stops the event from propagating to parent elements
+and also prevents any other event listeners attached to the same element from executing.
+
+
+
+
+
+
+
+### ======================== Event loop =========================================
+
+
+ Event loop
+
+- The event loop is a mechanism that allows JavaScript to execute asynchronous code in a single-threaded environment.
+
+- With the help of the Event Loop, JavaScript manages the execution order  of synchronous and asynchronous code.
+
+## Main Components of the Event Loop
+
+- Call Stack
+- Web APIs (Browser APIs / Node.js APIs)
+- Microtask Queue (promise, callbacks, etc.,),
+- Macrotask Queue (setTimeout, setInterval, I/O operations, DOM events, etc.,)
+- Event Loop
+
 
 ### Call Stack
 
-<!-- with help of  Call Stack e JavaScript engine keeps track of function calls. -->
 
-The Call Stack keeps track of function execution.
+1. with help of  Call Stack e JavaScriptengine to keep track of function execution.
+2. Whenever a function is called, it is pushed onto the Call Stack, and when the function completes,
+ it is removed from the stack.
+3. JavaScript follows the LIFO principle, 
+meaning the last function added to the stack will be executed and removed first.
 
-When a function is called, it is pushed onto the Call Stack.
-When the function completes, it is pop out out the stack.
 
-It follows LIFO (Last In, First Out)
+"The Call Stack follows the LIFO (Last In, First Out) principle. 
+This means the most recently added function is at the top of the stack, 
+so JavaScript executes it first. Once its execution is completed, 
+it is removed (popped) from the stack, and execution continues with the function below it."
 
-JavaScript will execute code synchronously in the call stack until it becomes empty.
+4. JavaScript executes all synchronous code in the Call Stack until it becomes empty.
 
-### Micro Task Queue
+5. then Event Loop starts processing asynchronous callbacks only when the Call Stack becomes empty.
 
-Microtas that are executed immediately right after the current script finishes but before the browser performs any rendering or handling of input/output operations.
 
-Microtasks are given higher priority than macrotasks.
+# Web APIs
 
-The Microtasks Task Queue is used to handle Microtasks, which include:
+**Web APIs** are provided by the browser (or Node.js APIs in Node.js) to handle asynchronous operations.
 
-- Promise callbacks (e.g., `.then`, `.catch`)
-- MutationObserver callbacks
-
-The event loop first completes all microtasks before moving on to macrotasks.
-
-### Macro Task Queue
-
-Macro tasks are executed after all microtasks have been completed.
-
-The Macro Task Queue is used to handle macrotasks, which include:
+Examples include:
 
 - `setTimeout`
 - `setInterval`
-- I/O operations
-- DOM events (e.g., `click`, `load`)
+- `fetch`
+- DOM Events
+- I/O Operations
 
-It works by constantly checking two queues: the microtask queue and the macrotask queue.
+Once an asynchronous operation is completed, 
+its callback is placed into either the **Microtask Queue** or the **Macrotask Queue**, 
+depending on the type of operation.
 
- <!-- These queues store the callbacks of the asynchronous operations that are waiting to be executed. -->
+
+
+### Micro Task Queue
+
+
+The Microtask Queue is a queue that stores high-priority asynchronous tasks.
+ These tasks are executed after the current synchronous code finishes a
+ nd the Call Stack becomes empty, but before the Event Loop processes the next macrotask.
+
+Microtasks are given higher priority than macrotasks.
+
+Examples of microtasks:
+
+- Promise callbacks (`.then()`, `.catch()`, `.finally()`)
+- `queueMicrotask()`
+- `MutationObserver` callbacks
+
+The Event Loop executes **all pending microtasks** before moving to the Macrotask Queue.
+
+
+### Macro Task Queue
+
+The Macrotask Queue (also called the Task Queue or Callback Queue) is a queue that stores asynchronous tasks with normal priority. These tasks are executed only after all pending microtasks have been completed.
+
+Common macrotasks include:
+
+setTimeout()
+setInterval()
+DOM events (e.g., click, load)
+I/O operations (in Node.js)
+
+### Event Loop:
+
+Event Loop: The Event Loop is the mechanism that continuously checks whether the Call Stack is empty. 
+If it is, it first executes all pending microtasks and then executes the next macrotask. 
+This process repeats continuously
+
+
+
 
 The main difference between microtask and macrotask queue is their priority.
 The event loop always gives higher priority to the microtask queue, a
 and will process all the callbacks in the microtask queue before moving on to the macrotask queue.
+
+
+=================================================================
+
+
+### Web APIs - Definition
+
+> **"Web APIs are browser-provided (or Node.js runtime-provided) features that allow JavaScript to perform asynchronous operations outside the JavaScript engine, such as timers, network requests, and DOM events. Once the operation is completed, the callback is sent to the appropriate queue for execution."**
+
+**Examples:**
+
+* `setTimeout()`
+* `setInterval()`
+* `fetch()`
+* DOM Events (`click`, `load`)
+* I/O operations
+
+---
+
+### Macrotask Queue - Definition
+
+> **"The Macrotask Queue is a queue that stores callbacks of completed asynchronous operations such as `setTimeout`, `setInterval`, DOM events, and I/O operations. The Event Loop moves these callbacks to the Call Stack for execution only after the Call Stack is empty and all Microtasks have been completed."**
+
+**Examples:**
+
+* `setTimeout()` callback
+* `setInterval()` callback
+* DOM event callbacks
+* I/O callbacks
+
+---
+
+### Simple difference for interview:
+
+> **"Web APIs perform the asynchronous work, while the Macrotask Queue stores the callbacks after the work is completed and waits for the Event Loop to execute them."** ✅
+
+Example:
+
+```javascript
+setTimeout(() => {
+    console.log("Hello");
+}, 1000);
+```
+
+Flow:
+
+```text
+setTimeout()
+     ↓
+Web API
+(timer waits 1 second)
+     ↓
+Macrotask Queue
+(callback waits)
+     ↓
+Event Loop
+     ↓
+Call Stack
+(callback executes)
+```
+
+This distinction is important in interviews because many people incorrectly say that Web APIs and Macrotask Queue are the same.
+
+
+
+
+
+
+
+==========================================
 
 ### How the Event Loop Works
 
@@ -147,7 +275,96 @@ The event loop in JavaScript is a fundamental concept that helps manage the exec
 -->
 
 <!-- Macrotasks are tasks that are scheduled to be executed after the current executing script and after all microtasks have been processed -->
+=============================
 
+
+# Event Loop
+
+The **Event Loop** is a mechanism t JavaScript to handle asynchronous operations in a single-threaded environment.
+
+It manages the execution order of synchronous and asynchronous code by coordinating the **Call Stack**, **Web APIs (or Node.js APIs)**, **Microtask Queue**, and **Macrotask Queue**.
+
+## Main Components of the Event Loop
+
+- Call Stack
+- Web APIs (Browser APIs / Node.js APIs)
+- Microtask Queue
+- Macrotask Queue
+- Event Loop
+
+---
+
+# Call Stack
+
+The **Call Stack** keeps track of function execution.
+
+- When a function is called, it is pushed onto the Call Stack.
+- When the function completes, it is popped off the Call Stack.
+- It follows the **LIFO (Last In, First Out)** principle.
+- JavaScript executes synchronous code in the Call Stack until it becomes empty.
+
+---
+
+---
+
+# Microtask Queue
+
+The **Microtask Queue** stores and executes **microtasks**.
+
+Microtasks are executed immediately after the currently executing synchronous code finishes and **before the Event Loop processes the next macrotask**.
+
+Microtasks have **higher priority** than macrotasks.
+
+---
+
+# Macrotask Queue
+
+The **Macrotask Queue** stores asynchronous tasks that are executed after the Microtask Queue has been completely processed.
+
+Examples of macrotasks:
+
+- `setTimeout()`
+- `setInterval()`
+- I/O operations
+- DOM events (e.g., `click`, `load`)
+
+---
+
+# How the Event Loop Works
+
+The Event Loop continuously checks whether the **Call Stack** is empty.
+
+If the Call Stack is empty, it performs the following steps:
+
+1. Execute all pending **Microtasks**.
+2. Execute the next **Macrotask**.
+3. Repeat the process continuously.
+
+---
+
+# Microtask Queue vs Macrotask Queue
+
+The main difference between the **Microtask Queue** and the **Macrotask Queue** is their execution priority.
+
+- The Event Loop always gives higher priority to the **Microtask Queue**.
+- It executes **all pending microtasks** before processing the next macrotask.
+- Only after the Microtask Queue becomes empty does it execute a task from the Macrotask Queue.
+
+---
+
+# Execution Flow
+
+```
+Synchronous Code
+        ↓
+Call Stack becomes empty
+        ↓
+Execute ALL Microtasks
+        ↓
+Execute ONE Macrotask
+        ↓
+Repeat
+```
 =================== setTimeout()========================
 
 ```text
@@ -363,3 +580,34 @@ _Output_: After 1 millisecond, the callbacks run and log 1, 2, 3, and 4 respecti
 ### Closures
 
 - **Definition**: A closure is a function that "remembers" the variables from the place where it was created, even if it's executed in a different context.
+
+
+
+
+
+=============================================================================================================
+lexical scope
+
+When a function (Function B) is declared inside another function (Function A), JavaScript uses lexical scoping to determine what variables Function B has access to.
+// 🌍 Global scope
+let globalVar = "I am global";
+
+function Function_A_outer() {
+  // 🔹 Lexical Scope Level 1 (outer)
+  let outerVar = "I am outer";
+
+  function Function_b_inner() {
+    // 🔸 Lexical Scope Level 2 (inner)
+    let innerVar = "I am inner";
+
+    //  Accessing variables through lexical scope
+    console.log(globalVar); // ← from Global Scope
+    console.log(outerVar);  // ← from outer()'s Lexical Scope
+    console.log(innerVar);  // ← from inner()'s own scope
+  }
+
+  Function_b_inner(); // Call the inner function
+}
+
+Function_A_outer(); // Call the outer function
+

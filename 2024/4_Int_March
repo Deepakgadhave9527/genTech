@@ -554,7 +554,7 @@ Do not use a leading slash when you want to navigate to a path relative to the c
 
 When you see the error about absolute paths in nested routes, it usually means that you’ve defined a child route path as an absolute path, which is not allowed. Nested routes must use relative paths.
 
-===========================================================================
+
 
 ========================================================
 
