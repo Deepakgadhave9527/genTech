@@ -360,6 +360,14 @@ with function components to prevent unnecessary re-renders.
 - `React.memo` performs a shallow comparison of props. 
 If the props remain unchanged, the component will not re-render.
 
+=====================================
+
+
+
+#### ref
+
+In React, a ref (short for reference) is an object that allows 
+ to directly access and interact with a DOM element
 
 
 ========================================================
@@ -578,7 +586,7 @@ const m = React.lazy(()=>import('./module'));
 
 
 
-========================================================
+
 
 
 
