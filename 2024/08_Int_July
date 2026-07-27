@@ -77,10 +77,12 @@ Data Privacy: Utilizes closures to maintain data privacy, hiding internal variab
 
 ## lexical scope
 
-in JavaScript, lexical scope determines variable accessibility based on where variables and functions are declared in the code.
+in JavaScript, lexical scope determines variable accessibility based on where variables
+ and functions are declared in the code.
 
 
--A lexical scope in JavaScript means that a variable defined outside a function can be accessible inside another function
+-A lexical scope in JavaScript means that a variable defined outside a function 
+can be accessible inside another function
 
 ### Function Scope:
 Each function in JavaScript creates a new scope. Variables defined within a function are not accessible outside of it.

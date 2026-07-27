@@ -97,8 +97,8 @@ depending on the type of operation.
 
 
 The Microtask Queue is a queue that stores high-priority asynchronous tasks.
- These tasks are executed after the current synchronous code finishes a
- nd the Call Stack becomes empty, but before the Event Loop processes the next macrotask.
+ These tasks are executed after the current synchronous code finishes 
+ and the Call Stack becomes empty, but before the Event Loop processes the next macrotask.
 
 Microtasks are given higher priority than macrotasks.
 
@@ -275,156 +275,27 @@ The event loop in JavaScript is a fundamental concept that helps manage the exec
 -->
 
 <!-- Macrotasks are tasks that are scheduled to be executed after the current executing script and after all microtasks have been processed -->
-=============================
 
-
-# Event Loop
-
-The **Event Loop** is a mechanism t JavaScript to handle asynchronous operations in a single-threaded environment.
-
-It manages the execution order of synchronous and asynchronous code by coordinating the **Call Stack**, **Web APIs (or Node.js APIs)**, **Microtask Queue**, and **Macrotask Queue**.
-
-## Main Components of the Event Loop
-
-- Call Stack
-- Web APIs (Browser APIs / Node.js APIs)
-- Microtask Queue
-- Macrotask Queue
-- Event Loop
-
----
-
-# Call Stack
-
-The **Call Stack** keeps track of function execution.
-
-- When a function is called, it is pushed onto the Call Stack.
-- When the function completes, it is popped off the Call Stack.
-- It follows the **LIFO (Last In, First Out)** principle.
-- JavaScript executes synchronous code in the Call Stack until it becomes empty.
-
----
-
----
-
-# Microtask Queue
-
-The **Microtask Queue** stores and executes **microtasks**.
-
-Microtasks are executed immediately after the currently executing synchronous code finishes and **before the Event Loop processes the next macrotask**.
-
-Microtasks have **higher priority** than macrotasks.
-
----
-
-# Macrotask Queue
-
-The **Macrotask Queue** stores asynchronous tasks that are executed after the Microtask Queue has been completely processed.
-
-Examples of macrotasks:
-
-- `setTimeout()`
-- `setInterval()`
-- I/O operations
-- DOM events (e.g., `click`, `load`)
-
----
-
-# How the Event Loop Works
-
-The Event Loop continuously checks whether the **Call Stack** is empty.
-
-If the Call Stack is empty, it performs the following steps:
-
-1. Execute all pending **Microtasks**.
-2. Execute the next **Macrotask**.
-3. Repeat the process continuously.
-
----
-
-# Microtask Queue vs Macrotask Queue
-
-The main difference between the **Microtask Queue** and the **Macrotask Queue** is their execution priority.
-
-- The Event Loop always gives higher priority to the **Microtask Queue**.
-- It executes **all pending microtasks** before processing the next macrotask.
-- Only after the Microtask Queue becomes empty does it execute a task from the Macrotask Queue.
-
----
-
-# Execution Flow
-
-```
-Synchronous Code
-        ↓
-Call Stack becomes empty
-        ↓
-Execute ALL Microtasks
-        ↓
-Execute ONE Macrotask
-        ↓
-Repeat
-```
-=================== setTimeout()========================
-
-```text
-If the delay is not provided, it is treated as 0 milliseconds.
-```
-
-```javascript
-setTimeout(() => {
-  console.log("Hello");
-}, 0);
-```
-
-### Important Points
-
-- If the delay is omitted, JavaScript treats it as 0 milliseconds.
-- `0 ms` does not mean the callback executes immediately.
-- The callback is placed in the Task Queue (Macrotask Queue).
-- It executes only after the current call stack is empty.
-- All synchronous code finishes before the `setTimeout` callback runs.
-- `setTimeout(callback)` is equivalent to `setTimeout(callback, 0)`.
-- The callback is executed by the Event Loop when the call stack becomes empty.
-- Even with `0 ms`, the actual execution time may be slightly longer depending on the browser, system load, and other queued tasks.
-- `setTimeout()` is asynchronous and does not block the execution of the remaining code.
-
-```javascript
-console.log("Start");
-
-setTimeout(() => {
-  console.log("Timeout");
-});
-
-console.log("End");
-```
-
-Output:
-
-```text
-Start
-End
-Timeout
 ```
 
 //================================= Closure ========================
 
-## JavaScript Closures & Lexical Scope – Interview Notes
 
-### 🔹 Definition of Closure:
 
-> A closure in JavaScript is a function bundled together with its lexical environment
+1. A closure is the combination of a function and the lexical environment in which it was created.
 
-> It allows an inner function to access variables from an outer function’s scope even after the outer function has finished executing.
+2 closure in JavaScript function to remember and access variables from its outer (lexical) scope even after the outer function has finished executing.
 
-> A closure is the combination of a function and the lexical environment in which it was defined.
+3. This works because the function maintains a reference to those variables rather than copying their values.
 
-### 🔹 Key Points to Remember:
+4. Closures are commonly used to maintain state, create private variables, implement callbacks, event handlers, function factories, and memoization.
 
-- Closures enable data privacy and state persistence.
-- Variables in the outer scope are held by reference, not by value.
-- The inner function always accesses the latest value of those variables.
-- Lexical scope means scope is determined by where code is written, not where it’s called.
+
+
+
+
+A closure in JavaScript is a function that remembers and can access variables from its outer (lexical) scope even after the outer function has finished executing. This happens because the function maintains a reference to those variables. Closures are commonly used to maintain state, create private variables, implement callbacks, and build function factories.
+
 
 ### 🔹 Simple Closure Example:
 
@@ -527,66 +398,61 @@ console.log(x);
 Since var does not create a new scope for each iteration, all callbacks reference the same x varibale.
 Since let creates a new scope for each iteration, each callback references its own unique x varibale.
 
-### First Loop (Using var):
 
-- _Scope_: var is function-scoped, meaning the variable x is shared across all iterations of the loop.
-- _Closure_: The setTimeout callback captures this shared x. Since var does not create a new scope for each iteration, all callbacks reference the same x varibale.
-- _Event Loop_: The setTimeout function schedules the callback to run after 1000 milliseconds (1 second). By the time the event loop processes these callbacks, the loop has already finished, and x is 5.
+```
+### `var` with Closure and Event Loop Explanation
 
-_Output_: After 1000 milliseconds, all four callbacks run and log 5 four times.
+In the case of **`var`**, only one variable is created because `var` is **function-scoped**.  
+The `for` loop does not create a new variable for each iteration.
 
-### Second Loop (Using let):
+Each `setTimeout` callback creates a **closure** that references the same variable. The closure remembers the variable reference, not the value at the time the callback was created.
 
-- _Scope_: let is block-scoped, meaning each iteration of the loop has its own separate instance of x.
-- _Closure_: The setTimeout callback captures the x from its specific iteration. Since let creates a new scope for each iteration, each callback references its own unique x varibale.
-- _Event Loop_: The setTimeout function schedules the callback to run after 1 millisecond. By the time the event loop processes these callbacks, each one has its own captured value of x from the iteration in which it was created.
+The callbacks do not execute immediately; they are moved to the **Macrotask Queue** after the timer completes.
 
-_Output_: After 1 millisecond, the callbacks run and log 1, 2, 3, and 4 respectively.
+When the **Event Loop** executes them, the loop has already finished and the variable value has become **5**. Since all callbacks reference the same variable, all callbacks print the same value:
 
-## JavaScript Scoping and Closures
+Output:
 
-### Scoping with `var` vs. `let`
+5
+5
+5
+5
 
-#### Using `var`
 
-- **Scope**: `var` is function-scoped, meaning the variable `x` is shared across all iterations of the loop.
-- **Closure**: The `setTimeout` callback captures this shared `x`. Since `var` does not create a new scope for each iteration, all callbacks reference the same `x`.
-- **Event Loop**: The `setTimeout` function schedules the callback to run after 1000 milliseconds (1 second). By the time the event loop processes these callbacks, the loop has finished, and `x` is 5.
-- **Output**: After 1000 milliseconds, all four callbacks run and log `5` four times.
-- **Example**:
-  ```javascript
-  for (var x = 1; x < 5; x++) {
-    setTimeout(() => {
-      console.log(x);
-    }, 1000);
-  }
-  ```
+---
 
-#### Using `let`
+### `let` with Closure and Event Loop Explanation
 
-- **Scope**: `let` is block-scoped, meaning each iteration of the loop has its own separate instance of `x`.
-- **Closure**: The `setTimeout` callback captures the `x` from its specific iteration. Since `let` creates a new scope for each iteration, each callback references its own unique `x`.
-- **Event Loop**: The `setTimeout` function schedules the callback to run after 1 millisecond. By the time the event loop processes these callbacks, each one has its own captured value of `x` from the iteration in which it was created.
-- **Output**: After 1 millisecond, the callbacks run and log `1`, `2`, `3`, and `4` respectively.
-- **Example**:
-  ```javascript
-  for (let x = 1; x < 5; x++) {
-    setTimeout(() => {
-      console.log(x);
-    }, 1);
-  }
-  ```
+In the case of **`let`**, a new variable is created for each iteration because `let` is **block-scoped**. The `for` loop creates a separate variable binding for every iteration.
 
-### Closures
+Each `setTimeout` callback creates a **closure** that references its own iteration-specific variable. The closure remembers the value of `x` for that particular iteration.
 
-- **Definition**: A closure is a function that "remembers" the variables from the place where it was created, even if it's executed in a different context.
+The callbacks do not execute immediately; they are moved to the **Macrotask Queue** after the timer completes.
+
+When the **Event Loop** executes them, the loop has already finished, but each callback has its own separate `x` variable with the value from its respective iteration.
+
+Therefore, each callback prints its own stored value:
+
+Output:
+
+1
+2
+3
+4
+```
 
 
 
+================================================================================================
+## lexical scope
+
+in JavaScript, lexical scope determines variable accessibility based on where variables
+ and functions are declared in the code.
 
 
-=============================================================================================================
-lexical scope
+-A lexical scope in JavaScript means that a variable defined outside a function 
+can be accessible inside another function
+
 
 When a function (Function B) is declared inside another function (Function A), JavaScript uses lexical scoping to determine what variables Function B has access to.
 // 🌍 Global scope
