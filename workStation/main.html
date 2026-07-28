@@ -1,0 +1,12 @@
+<script>
+    const worker = new Worker('worker.js');
+
+worker.postMessage("sending data from worker file from main js");
+
+worker.onmessage=((e)=>{
+    console.log("geeting data from worker file : - "+ e.data)
+})
+
+
+
+</script>

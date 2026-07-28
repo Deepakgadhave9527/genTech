@@ -1,0 +1,144 @@
+Absolutely! Here’s a **comprehensive list of 100 core Java interview questions** covering **OOP concepts, data types, collections, exception handling, multithreading, Java 8 features, and more**. I’ll keep them grouped by topic so it’s easy to study.
+
+---
+
+## **1️⃣ Core Java Basics (1–15)**
+
+1. What is Java and its main features?
+2. What is the difference between JDK, JRE, and JVM?
+3. What are the different data types in Java?
+4. What is the difference between primitive and non-primitive types?
+5. What is the difference between `==` and `.equals()`?
+6. What is the difference between `String`, `StringBuilder`, and `StringBuffer`?
+7. What is the difference between `final`, `finally`, and `finalize()`?
+8. What are wrapper classes in Java?
+9. What is autoboxing and unboxing?
+10. What is the difference between `==` and `equals()` in objects?
+11. What is the default value of instance variables?
+12. Can you create multiple main methods in Java?
+13. What is the difference between static and instance variables/methods?
+14. Can a class be static?
+15. What are Java literals?
+
+---
+
+## **2️⃣ Object-Oriented Programming (16–35)**
+
+16. What are the main OOP principles in Java?
+17. What is inheritance and its types?
+18. What is method overloading?
+19. What is method overriding?
+20. What is polymorphism?
+21. What is encapsulation and how to achieve it?
+22. What is abstraction and how to achieve it?
+23. Difference between abstract class and interface?
+24. Can an interface have default methods?
+25. Can an interface have static methods?
+26. Can a class implement multiple interfaces?
+27. What is the difference between `extends` and `implements`?
+28. What is the use of `super` keyword?
+29. What is the use of `this` keyword?
+30. What is the difference between aggregation, composition, and association?
+31. What is the difference between overloading and overriding?
+32. Can private methods be overridden?
+33. Can constructors be overridden?
+34. What is a nested class?
+35. What is an enum and how is it used?
+
+---
+
+## **3️⃣ Exception Handling (36–50)**
+
+36. What is an exception in Java?
+37. What is the difference between checked and unchecked exceptions?
+38. What is the difference between `throw` and `throws`?
+39. Can you catch multiple exceptions in a single catch block?
+40. What is finally block and when it executes?
+41. What is try-with-resources in Java?
+42. What is custom exception? How to create it?
+43. Can we throw multiple exceptions?
+44. What is the difference between Error and Exception?
+45. What is the difference between RuntimeException and Exception?
+46. What happens if an exception is not caught?
+47. What is stack trace?
+48. How to propagate exceptions in Java?
+49. Can we use finally without catch block?
+50. Can we have a return statement inside finally?
+
+---
+
+## **4️⃣ Java Collections Framework (51–70)**
+
+51. What is the difference between `Array` and `ArrayList`?
+52. What is the difference between `ArrayList` and `LinkedList`?
+53. What is the difference between `HashMap`, `HashTable`, and `TreeMap`?
+54. What is the difference between `HashSet` and `TreeSet`?
+55. Difference between `Set` and `List`.
+56. Difference between `Map` and `Set`.
+57. What is the difference between `Comparable` and `Comparator`?
+58. What is iterator and listIterator?
+59. Difference between fail-fast and fail-safe iterators.
+60. How to sort a collection in Java?
+61. Difference between synchronized and concurrent collections.
+62. Difference between `Vector` and `ArrayList`.
+63. What is weak hash map?
+64. What is priority queue?
+65. Difference between stack and queue in Java.
+66. What is Deque?
+67. What are properties of `HashMap`?
+68. Can we use null as key in HashMap?
+69. Difference between `LinkedHashMap` and `HashMap`.
+70. Difference between `TreeSet` and `HashSet`.
+
+---
+
+## **5️⃣ Multithreading (71–85)**
+
+71. What is multithreading?
+72. Difference between process and thread.
+73. What are the ways to create a thread in Java?
+74. Difference between `Runnable` and `Thread` class.
+75. What is thread lifecycle?
+76. Difference between `start()` and `run()` method.
+77. What is thread priority?
+78. What is thread synchronization?
+79. Difference between `synchronized` method and synchronized block.
+80. What is deadlock? How to prevent it?
+81. Difference between `wait()` and `sleep()`.
+82. Difference between `notify()` and `notifyAll()`.
+83. What is `ThreadLocal`?
+84. Difference between `ExecutorService` and ThreadPool.
+85. What are daemon threads?
+
+---
+
+## **6️⃣ Java 8 and Above Features (86–95)**
+
+86. What is a lambda expression?
+87. What are functional interfaces?
+88. Difference between `Predicate`, `Function`, and `Consumer`.
+89. What is Stream API in Java?
+90. Difference between `map()` and `flatMap()`.
+91. Difference between `filter()` and `collect()`.
+92. What is Optional in Java?
+93. Difference between `forEach()` and `map()` in streams.
+94. Difference between `Stream` and `ParallelStream`.
+95. What is default and static methods in interfaces?
+
+---
+
+## **7️⃣ Miscellaneous / Advanced (96–100)**
+
+96. What is serialization and deserialization?
+97. Difference between `==` and `equals()` for Strings.
+98. Difference between `final`, `finally`, and `finalize()`.
+99. Difference between `abstract class` and `interface`.
+100. How memory management works in Java? (Heap, Stack, Method Area, Garbage Collection)
+
+---
+
+💡 These **100 questions** cover almost every **core Java topic** asked in interviews — from **basic to advanced**.
+
+If you want, I can **also provide the answers** to all 100 questions **in a single detailed document** — so you can **study and revise quickly for interviews**.
+
+Do you want me to do that next?

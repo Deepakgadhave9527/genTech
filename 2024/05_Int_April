@@ -428,8 +428,64 @@ The difference between both the operators is that “==” is used to compare va
 ====================================================================================
 
 
+**Q1. What is a Web Worker?**
 
-web workers
+* A Web Worker is a JavaScript feature that allows you to run scripts in the background, separate from the main thread, so heavy tasks don’t block the user interface.
+
+---
+
+**Q2. Why do we use Web Workers?**
+
+* We use Web Workers to improve performance and keep the web page responsive by offloading time-consuming or CPU-intensive tasks to a background thread.
+
+---
+
+**Q3. What are the types of Web Workers?**
+
+* There are three types:
+
+  * **Dedicated Worker** – used by a single web page or script.
+  * **Shared Worker** – shared between multiple browser tabs or windows from the same origin.
+  * **Service Worker** – runs even when the page is closed, used for caching, offline support, and background sync.
+
+---
+
+**Q4. When should we use each type of Web Worker?**
+
+* **Dedicated Worker:** when you need background processing for a single page.
+* **Shared Worker:** when multiple tabs or windows need to share data.
+* **Service Worker:** when you want offline capabilities, background updates, or push notifications.
+
+---
+
+**Q5. What are the advantages of Web Workers?**
+
+* They improve performance and responsiveness.
+* Prevent UI freezing or lagging.
+* Handle heavy computation tasks efficiently in the background.
+
+---
+
+**Q6. What are the disadvantages of Web Workers?**
+
+* They can’t directly access the DOM.
+* Communication with the main thread requires message passing.
+* Too many workers can increase memory and CPU usage.
+* Debugging can be slightly more complex.
+
+---
+
+**Q7. Why are Web Workers important in web development?**
+
+* They help build smoother, more efficient, and user-friendly web applications by handling background operations without affecting user interaction.
+
+---
+
+**Q8. Give a real-time example of Web Worker use in e-commerce.**
+
+* In an e-commerce site, when filtering thousands of products based on price, rating, or category, a Web Worker can handle all the filtering logic in the background so the UI doesn’t freeze.
+* Another example is real-time currency conversion or background price comparison while the user continues browsing products.
+
 
 
 
@@ -437,7 +493,7 @@ web workers
 ====================================================================================
 
 
-## ✅ Correct Explanation of Constructor Function Behavior in JavaScript
+## ✅ Constructor Function Behavior in JavaScript
 
 ### 🔹1. Default Behavior of Constructor Functions
 
