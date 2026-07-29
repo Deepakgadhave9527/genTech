@@ -1,70 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>stopPropagation Example</title>
-  <style>
-    #parent {
-      background-color: lightblue;
-      padding: 30px;
-    }
-
-    .child {
-      background-color: lightgreen;
-      padding: 20px;
-      margin: 10px;
-      cursor: pointer;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
-
 <body>
-
-  <div id="parent">
-    Parent Div
-
-    <div id="child1" class="child">
-      Child 1
-    </div>
-
-    <div id="child2" class="child">
-      Child 2 (stopPropagation applied)
-    </div>
-
-    <div id="child3" class="child">
-      Child 3
-    </div>
-
-  </div>
-
-
-  <script>
-    const parent = document.getElementById("parent");
-    const child1 = document.getElementById("child1");
-    const child2 = document.getElementById("child2");
-    const child3 = document.getElementById("child3");
-
-
-    parent.addEventListener("click", () => {
-      console.log("Parent clicked");
-    });
-
-
-    child1.addEventListener("click", () => {
-      console.log("Child 1 clicked");
-    });
-
-
-    child2.addEventListener("click", (event) => {
-      event.stopPropagation(); // stops bubbling to parent
-      console.log("Child 2 clicked");
-    });
-
-
-    child3.addEventListener("click", () => {
-      console.log("Child 3 clicked");
-    });
-
-  </script>
-
+  
 </body>
 </html>
