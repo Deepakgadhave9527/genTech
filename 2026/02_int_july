@@ -1,0 +1,31 @@
+
+====================================
+
+- Difference between nullish coalescing (??) and logical OR (||).
+
+?? and || both provide a fallback value, but they check different conditions.
+
+Logical OR (||) returns the right-hand value when the left-hand value is falsy.
+
+Falsy values affected by ||:
+false
+0
+""
+null
+undefined
+NaN
+
+
+const name = "" || "Guest";
+console.log(name); // Guest
+
+
+----
+
+Nullish coalescing (??) returns the right-hand value only when the left-hand value is `"null or undefined.`"
+
+const name = null ?? "Guest";
+console.log(name); // Guest
+
+
+======================================
