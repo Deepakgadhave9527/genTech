@@ -971,12 +971,275 @@ SSH encrypts the communication between your computer and the server, so commands
 **A:** It's the private key file used to authenticate to an EC2 instance over SSH. AWS generates or lets you import a key pair, and you use the private key to prove your identity when connecting.
 
 =========================================================================
+There are a few typos in your commands. The correct commands are:
+
+```bash
+# Install Nginx
+sudo yum install nginx -y
+
+# Start Nginx
+sudo systemctl start nginx
+
+# Stop Nginx
+sudo systemctl stop nginx
+
+# Check Nginx status
+sudo systemctl status nginx
+
+# Restart Nginx
+sudo systemctl restart nginx
+
+# Reload Nginx (apply config changes without downtime)
+sudo systemctl reload nginx
+
+# Enable Nginx to start automatically on boot
+sudo systemctl enable nginx
+
+# Disable auto-start
+sudo systemctl disable nginx
+```
+
+### Explanation
+
+* `yum install nginx -y` → Installs the Nginx package. `-y` automatically answers "yes" to prompts.
+* `systemctl start nginx` → Starts the Nginx service.
+* `systemctl stop nginx` → Stops the service.
+* `systemctl status nginx` → Displays whether Nginx is running and shows logs.
+* `systemctl restart nginx` → Stops and starts the service again.
+* `systemctl reload nginx` → Reloads the configuration without interrupting existing connections.
+* `systemctl enable nginx` → Starts Nginx automatically whenever the server boots.
+
+For AWS EC2 interview preparation, these are the `systemctl` commands you should know:
+
+* `start`
+* `stop`
+* `restart`
+* `reload`
+* `status`
+* `enable`
+* `disable`
 
 =========================================================================
-=========================================================================
+Yes.
+
+* **HTTP** is a **protocol** (not a method).
+* By default, **HTTP runs on port 80**.
+* **HTTPS** (secure HTTP) runs on **port 443**.
+
+### HTTP methods
+
+HTTP supports different methods (verbs):
+
+* **GET** → Retrieve data.
+* **POST** → Create/send data.
+* **PUT** → Update an entire resource.
+* **PATCH** → Partially update a resource.
+* **DELETE** → Delete a resource.
+* **HEAD** → Get only the headers.
+* **OPTIONS** → Check which methods are supported.
+
+### Ports
+
+| Protocol | Default Port | Secure          |
+| -------- | ------------ | --------------- |
+| HTTP     | **80**       | ❌ No            |
+| HTTPS    | **443**      | ✅ Yes (SSL/TLS) |
+
+**Interview answer:**
+
+> HTTP is a protocol used to transfer web pages and API data over the internet. By default, it uses **port 80**. HTTPS is the secure version of HTTP, encrypts communication using SSL/TLS, and uses **port 443**.
 
 =========================================================================
+For AWS interviews, you should explain **Inbound and Outbound Rules** in the context of an **AWS Security Group**.
+
+---
+
+## What are Inbound and Outbound Rules?
+
+A **Security Group** acts as a **virtual firewall** for an EC2 instance. It controls what traffic is allowed **into** and **out of** the instance.
+
+### 1. Inbound Rules (Incoming Traffic)
+
+**What?**
+
+* Control who can connect **to** your EC2 instance.
+
+**Why?**
+
+* To allow only authorized users or applications to access your server.
+
+**Example:**
+
+* Allow **HTTP (Port 80)** from anywhere (`0.0.0.0/0`) so users can access your website.
+* Allow **HTTPS (Port 443)** from anywhere for secure web traffic.
+* Allow **SSH (Port 22)** only from your office IP so only administrators can log in.
+
+```
+Internet
+    |
+    | HTTP (80)
+    v
+EC2 Instance
+```
+
+---
+
+### 2. Outbound Rules (Outgoing Traffic)
+
+**What?**
+
+* Control what traffic your EC2 instance can send outside.
+
+**Why?**
+
+* To restrict or allow communication with external services.
+
+**Example:**
+
+* Allow the EC2 instance to:
+
+  * Download software updates.
+  * Connect to a database.
+  * Call external APIs.
+  * Access AWS services.
+
+By default, AWS allows **all outbound traffic**.
+
+---
+
+## Common Interview Example
+
+Suppose you host a React application on an EC2 instance.
+
+**Inbound Rules**
+
+* Port **80 (HTTP)** → Allow everyone to access the website.
+* Port **443 (HTTPS)** → Allow secure access.
+* Port **22 (SSH)** → Allow only your IP for server management.
+
+**Outbound Rules**
+
+* Allow the EC2 instance to:
+
+  * Download updates.
+  * Call backend APIs.
+  * Access databases or other AWS services if needed.
+
+---
+
+## When do we use them?
+
+* **Inbound:** Whenever you want someone or something to access your EC2 instance.
+* **Outbound:** Whenever your EC2 instance needs to communicate with other servers or services.
+
+---
+
+## Easy Interview Answer (30 seconds)
+
+> "A Security Group in AWS acts as a virtual firewall for an EC2 instance. Inbound rules control incoming traffic, such as allowing HTTP on port 80, HTTPS on port 443, or SSH on port 22. Outbound rules control the traffic leaving the instance, such as accessing the internet, calling APIs, or downloading updates. By default, AWS allows all outbound traffic, while inbound access must be explicitly allowed."
+
+This explanation is concise and is the level of detail expected in most AWS EC2 interviews.
+
 =========================================================================
+You're referring to the **types (ranges) of TCP/UDP port numbers**. There are **3 categories**:
+
+| Port Range        | Type                                    | Used For                                    |
+| ----------------- | --------------------------------------- | ------------------------------------------- |
+| **0 – 1023**      | **Well-Known (System) Ports**           | Standard services like HTTP, HTTPS, SSH     |
+| **1024 – 49151**  | **Registered Ports**                    | Applications registered with IANA           |
+| **49152 – 65535** | **Dynamic / Private / Ephemeral Ports** | Temporary ports used by client applications |
+
+### 1. Well-Known (System) Ports (0–1023)
+
+Reserved for common internet services.
+
+Examples:
+
+* **20/21** – FTP
+* **22** – SSH
+* **23** – Telnet
+* **25** – SMTP
+* **53** – DNS
+* **80** – HTTP
+* **110** – POP3
+* **143** – IMAP
+* **443** – HTTPS
+
+---
+
+### 2. Registered Ports (1024–49151)
+
+Used by applications and services registered with IANA.
+
+Examples:
+
+* **1433** – Microsoft SQL Server
+* **1521** – Oracle Database
+* **3306** – MySQL
+* **3389** – Remote Desktop (RDP)
+* **5432** – PostgreSQL
+* **8080** – Alternative HTTP port
+
+---
+
+### 3. Dynamic / Private / Ephemeral Ports (49152–65535)
+
+Used temporarily by client operating systems when connecting to servers.
+
+Example:
+
+* Your browser may use port **55000** to connect to a web server on **port 443**.
+
+---
+
+### Interview Answer
+
+> "Port numbers are divided into three categories: Well-Known (System) ports from 0–1023 for standard services like HTTP and SSH, Registered ports from 1024–49151 for specific applications like MySQL and PostgreSQL, and Dynamic/Private (Ephemeral) ports from 49152–65535, which are temporary ports assigned by the operating system for client connections."
+
+=========================================================================
+Yes, on most **Amazon Linux, RHEL, and CentOS** systems, the default web root for Nginx is:
+
+```bash
+/usr/share/nginx/html
+```
+
+This is where you place your `index.html` or other static website files.
+
+### Example
+
+```bash
+cd /usr/share/nginx/html
+
+# Create a simple webpage
+echo "<h1>Hello Nginx</h1>" > index.html
+```
+
+Then start Nginx:
+
+```bash
+sudo systemctl start nginx
+```
+
+Visit:
+
+```text
+http://<EC2-Public-IP>
+```
+
+---
+
+### Important Nginx Paths
+
+| Purpose                  | Default Path            |
+| ------------------------ | ----------------------- |
+| Web root (website files) | `/usr/share/nginx/html` |
+| Main configuration       | `/etc/nginx/nginx.conf` |
+| Server block configs     | `/etc/nginx/conf.d/`    |
+| Log files                | `/var/log/nginx/`       |
+
+### Interview Answer
+
+> "On Amazon Linux, the default Nginx website directory is `/usr/share/nginx/html`. We place our HTML, CSS, JavaScript, or other static files there. Nginx serves these files to users when they access the server on port 80 or 443."
 
 =========================================================================
 =========================================================================
