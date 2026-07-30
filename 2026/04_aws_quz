@@ -1,0 +1,901 @@
+
+
+
+
+AWS BEGINNER INTERVIEW QUESTIONS
+
+1. What is AWS?
+2. What is Cloud Computing?
+3. What are the benefits of AWS?
+4. What is an AWS Region?
+5. What is an Availability Zone (AZ)?
+6. How many Availability Zones are available in Mumbai Region?
+7. Why does AWS use multiple Availability Zones?
+8. Can we use AZs from different Regions?
+9. What is an AWS Edge Location?
+10. What is an EC2 instance?
+11. What are different types of EC2 instances?
+12. What is an AMI?
+13. What is an EBS volume?
+14. Difference between EBS and Instance Store?
+15. What happens when we stop an EC2 instance?
+16. What happens when we terminate an EC2 instance?
+17. What is an Elastic IP?
+18. What is a Key Pair in AWS?
+19. How do you connect to a Linux EC2 instance?
+20. What is Auto Scaling?
+21. What is Elastic Load Balancer (ELB)?
+22. What is Amazon S3?
+23. What are S3 storage classes?
+24. What is S3 bucket?
+25. What is IAM?
+26. What is an IAM User?
+27. What is an IAM Role?
+28. Difference between IAM User and IAM Role?
+29. What is CloudWatch?
+30. What is CloudTrail?
+
+
+VPC NETWORKING QUESTIONS
+
+31. What is a VPC?
+32. What is a Subnet?
+33. Difference between Public Subnet and Private Subnet?
+34. What is a Route Table?
+35. What is an Internet Gateway?
+36. What is a NAT Gateway?
+37. Why do we use NAT Gateway?
+38. Where do we place NAT Gateway?
+39. Can a private subnet access the internet?
+40. What is a Security Group?
+41. What is a Network ACL?
+42. Difference between Security Group and NACL?
+43. What is a Public IP?
+44. What is a Private IP?
+45. Difference between Public IP and Private IP?
+46. What are ports 22, 80, and 443?
+
+
+LINUX BEGINNER INTERVIEW QUESTIONS
+
+47. What is Linux?
+48. What is an Operating System?
+49. What is the root user in Linux?
+50. What is a normal user in Linux?
+51. Difference between root user and normal user?
+52. What is sudo?
+53. How to switch to root user?
+54. How to create a user in Linux?
+55. How to delete a user in Linux?
+56. How to check current user?
+57. How to check Linux version?
+58. How to check CPU usage?
+59. How to check memory usage?
+60. How to check disk usage?
+
+
+LINUX COMMAND QUESTIONS
+
+61. What is pwd command?
+62. What is ls command?
+63. What is cd command?
+64. What is mkdir command?
+65. What is touch command?
+66. What is rm command?
+67. What is cp command?
+68. What is mv command?
+69. What is cat command?
+70. What is grep command?
+71. What is find command?
+72. What is chmod command?
+73. What is chown command?
+74. What is df -h command?
+75. What is free -m command?
+76. What is top command?
+77. What is ps command?
+
+
+WEB SERVER QUESTIONS
+
+78. What is a Web Server?
+79. How does a web server work?
+80. What is Apache?
+81. What is Nginx?
+82. Difference between Apache and Nginx?
+83. What is HTTP?
+84. What is HTTPS?
+85. Difference between HTTP and HTTPS?
+86. What ports are used by HTTP and HTTPS?
+87. How to install Apache on Linux?
+
+
+SCENARIO BASED QUESTIONS
+
+88. EC2 instance is not reachable. What will you check?
+89. Website is not opening. What will you check?
+90. SSH connection is failing. What could be the reason?
+91. Application is down in one AZ. How will you handle it?
+92. How do you make an application highly available?
+93. Why do we use multiple AZs?
+94. How do you secure an EC2 instance?
+95. How do you troubleshoot a slow server?
+
+
+HR QUESTIONS
+
+96. Tell me about yourself.
+97. Explain your AWS project.
+98. Why do you want to work in Cloud/DevOps?
+99. What are your strengths?
+100. Why should we hire you?
+
+
+
+
+
+=====================
+Here are concise interview-friendly answers to your AWS basics questions:
+
+### 1. What is AWS?
+
+**Amazon Web Services (AWS)** is a cloud computing platform that provides on-demand services like computing, storage, networking, databases, AI, and security on a pay-as-you-go basis.
+
+---
+
+### 2. What is a Region?
+
+An **AWS Region** is a geographical location where AWS has one or more data centers. Each Region is independent and isolated from others.
+
+* Example: Mumbai (`ap-south-1`), Virginia (`us-east-1`).
+
+---
+
+### 3. What is an Availability Zone (AZ)?
+
+An **Availability Zone (AZ)** is one or more physically separate data centers within an AWS Region. Each AZ has independent power, cooling, and networking but is connected to other AZs with low-latency links.
+
+---
+
+### 4. Why does AWS have multiple AZs?
+
+AWS has multiple AZs to provide:
+
+* High availability
+* Fault tolerance
+* Disaster recovery
+* Load balancing
+* Business continuity
+
+If one AZ fails, applications can continue running in another AZ.
+
+---
+
+### 5. How many AZs are in the Mumbai Region?
+
+The **Mumbai Region (`ap-south-1`)** currently has **3 Availability Zones**.
+
+---
+
+### 6. Can you use AZs from different Regions together?
+
+**No.** Availability Zones belong to a single Region and cannot span different Regions. However, AWS services can communicate across Regions using networking features like VPC peering, Transit Gateway, or other cross-region services.
+
+---
+
+### 7. What is an EC2 instance?
+
+An **Amazon EC2 (Elastic Compute Cloud) instance** is a virtual server in AWS used to run applications. You can choose different CPU, memory, storage, and operating system configurations.
+
+---
+
+### 8. What is Amazon S3?
+
+**Amazon Simple Storage Service (S3)** is an object storage service used to store files, backups, images, videos, logs, and other data. It offers high durability, scalability, and availability.
+
+---
+
+### 9. What is Amazon VPC?
+
+A **Virtual Private Cloud (VPC)** is a logically isolated virtual network where you launch AWS resources. You control IP ranges, subnets, route tables, gateways, and security.
+
+---
+
+### 10. What is an Internet Gateway?
+
+An **Internet Gateway (IGW)** allows communication between resources in a VPC and the internet. It is attached to a VPC and is required for public internet access.
+
+---
+
+### 11. What is a NAT Gateway?
+
+A **NAT Gateway** allows instances in a **private subnet** to access the internet (for updates, downloads, etc.) without allowing inbound internet connections.
+
+---
+
+### 12. What is a Security Group?
+
+A **Security Group** is a virtual firewall attached to an EC2 instance.
+
+* Controls inbound and outbound traffic.
+* It is **stateful** (return traffic is automatically allowed).
+
+---
+
+### 13. What is a Network ACL?
+
+A **Network Access Control List (NACL)** is a firewall that controls traffic at the subnet level.
+
+* Controls inbound and outbound traffic.
+* It is **stateless** (rules must be defined separately for inbound and outbound).
+
+---
+
+### 14. What is an Elastic IP?
+
+An **Elastic IP (EIP)** is a static public IPv4 address that you can allocate to an EC2 instance. It remains yours until you release it.
+
+---
+
+### 15. What is an AMI?
+
+An **Amazon Machine Image (AMI)** is a template used to launch EC2 instances. It contains:
+
+* Operating system
+* Application software
+* Configuration settings
+
+---
+
+### 16. What is an EBS volume?
+
+An **Elastic Block Store (EBS) volume** is a block storage device attached to an EC2 instance. It provides persistent storage even if the instance is stopped.
+
+---
+
+### 17. What is Auto Scaling?
+
+**Auto Scaling** automatically increases or decreases the number of EC2 instances based on demand, helping maintain performance and reduce costs.
+
+---
+
+### 18. What is an Elastic Load Balancer (ELB)?
+
+An **Elastic Load Balancer (ELB)** automatically distributes incoming application traffic across multiple EC2 instances to improve availability and fault tolerance.
+
+Types include:
+
+* Application Load Balancer (ALB)
+* Network Load Balancer (NLB)
+* Gateway Load Balancer (GWLB)
+* Classic Load Balancer (legacy)
+
+---
+
+### 19. What is IAM?
+
+**Identity and Access Management (IAM)** is AWS's service for securely managing users, groups, roles, and permissions. It controls who can access AWS resources and what actions they can perform.
+
+---
+
+### 20. What is CloudWatch?
+
+**Amazon CloudWatch** is a monitoring and observability service that collects metrics, logs, and events from AWS resources. It helps monitor performance, set alarms, and automate actions.
+
+---
+
+## Quick Interview Summary
+
+| Service              | Purpose                               |
+| -------------------- | ------------------------------------- |
+| **EC2**              | Virtual server                        |
+| **S3**               | Object storage                        |
+| **EBS**              | Block storage for EC2                 |
+| **VPC**              | Private virtual network               |
+| **Internet Gateway** | Internet access for public subnets    |
+| **NAT Gateway**      | Internet access for private subnets   |
+| **Security Group**   | Stateful firewall (instance level)    |
+| **Network ACL**      | Stateless firewall (subnet level)     |
+| **Elastic IP**       | Static public IP                      |
+| **AMI**              | Template for EC2 instances            |
+| **Auto Scaling**     | Automatically adjusts EC2 capacity    |
+| **ELB**              | Distributes traffic across instances  |
+| **IAM**              | User authentication and authorization |
+| **CloudWatch**       | Monitoring and logging                |
+
+These answers are suitable for AWS beginner and interview preparation.
+==================================
+
+
+Here are concise, interview-friendly answers to common **AWS EC2** questions:
+
+---
+
+# AWS EC2 Interview Questions & Answers
+
+## 1. What is EC2?
+
+**Amazon EC2 (Elastic Compute Cloud)** is a service that provides virtual servers (instances) in the cloud. It allows users to run applications without purchasing physical hardware.
+
+**Uses:**
+
+* Hosting websites
+* Running applications
+* Databases
+* Development and testing environments
+
+---
+
+## 2. How do you launch an EC2 instance?
+
+Steps:
+
+1. Sign in to the AWS Management Console.
+2. Go to **EC2 Dashboard**.
+3. Click **Launch Instance**.
+4. Enter an instance name.
+5. Select an **Amazon Machine Image (AMI)**.
+6. Choose an **instance type** (e.g., `t2.micro`).
+7. Create or select a **key pair**.
+8. Configure **network settings** (VPC, subnet, security group).
+9. Configure storage (EBS).
+10. Review the settings and click **Launch Instance**.
+
+---
+
+## 3. Which operating systems does EC2 support?
+
+EC2 supports many operating systems, including:
+
+* **Amazon Linux**
+* **Ubuntu**
+* **Red Hat Enterprise Linux (RHEL)**
+* **CentOS**
+* **Debian**
+* **SUSE Linux Enterprise**
+* **Microsoft Windows Server**
+
+You choose the OS by selecting the appropriate **AMI**.
+
+---
+
+## 4. What is a key pair?
+
+A **key pair** is used to securely access an EC2 instance.
+
+It consists of:
+
+* **Public Key** – Stored on the EC2 instance.
+* **Private Key (.pem or .ppk)** – Stored by the user.
+
+The private key is required to connect to the instance securely.
+
+---
+
+## 5. How do you connect to a Linux EC2 instance?
+
+Using **SSH (Secure Shell)**.
+
+Example command:
+
+```bash
+ssh -i mykey.pem ec2-user@<Public-IP>
+```
+
+For Ubuntu:
+
+```bash
+ssh -i mykey.pem ubuntu@<Public-IP>
+```
+
+Common usernames:
+
+* Amazon Linux → `ec2-user`
+* Ubuntu → `ubuntu`
+* CentOS → `centos`
+* Debian → `admin`
+
+Ensure:
+
+* Port **22** is open in the Security Group.
+* The `.pem` file has the correct permissions (`chmod 400 mykey.pem` on Linux/macOS).
+
+---
+
+## 6. What happens if you stop an EC2 instance?
+
+When you **stop** an instance:
+
+* The instance shuts down.
+* **EBS volumes remain attached.**
+* The **private IP** usually remains the same.
+* The **public IP changes** unless you use an Elastic IP.
+* You are **not charged for compute time**, but you **are charged for EBS storage**.
+* You can start the instance again later.
+
+---
+
+## 7. What happens if you terminate an EC2 instance?
+
+When you **terminate** an instance:
+
+* The instance is permanently deleted.
+* The root EBS volume is deleted by default (unless configured otherwise).
+* Instance data is lost.
+* You cannot restart the instance.
+* Billing for the instance stops.
+
+---
+
+## 8. Difference between stopping and terminating an instance?
+
+| Feature              | Stop                        | Terminate                          |
+| -------------------- | --------------------------- | ---------------------------------- |
+| Instance can restart | ✅ Yes                       | ❌ No                               |
+| Data on EBS          | ✅ Preserved                 | ❌ Deleted by default (root volume) |
+| Instance deleted     | ❌ No                        | ✅ Yes                              |
+| Compute charges      | ❌ No                        | ❌ No                               |
+| Storage charges      | ✅ Yes (EBS)                 | Depends on remaining volumes       |
+| Public IP            | Changes (unless Elastic IP) | Released                           |
+| Use case             | Temporary shutdown          | Permanent deletion                 |
+
+---
+
+# Quick Interview Summary
+
+* **EC2** = Virtual machine in AWS.
+* **AMI** = Template used to launch EC2.
+* **Key Pair** = Secure login credentials (public/private keys).
+* **SSH** = Used to connect to Linux EC2 instances.
+* **Stop** = Temporary shutdown; instance can be restarted.
+* **Terminate** = Permanent deletion; instance cannot be recovered.
+===============
+Here are concise, interview-friendly answers to common **AWS VPC & Networking** questions:
+
+---
+
+# AWS VPC & Networking Interview Questions & Answers
+
+## 1. What is a VPC?
+
+A **Virtual Private Cloud (VPC)** is a logically isolated virtual network in AWS where you can launch and manage AWS resources such as EC2 instances, databases, and load balancers.
+
+With a VPC, you can control:
+
+* IP address ranges (CIDR block)
+* Subnets
+* Route tables
+* Internet access
+* Security settings
+
+---
+
+## 2. Difference between a Public Subnet and a Private Subnet?
+
+| Public Subnet                       | Private Subnet                                      |
+| ----------------------------------- | --------------------------------------------------- |
+| Has a route to an Internet Gateway  | Does not have a direct route to an Internet Gateway |
+| Resources can have public IPs       | Resources usually have only private IPs             |
+| Accessible from the internet        | Not directly accessible from the internet           |
+| Used for web servers, bastion hosts | Used for databases, application servers             |
+
+**Example:**
+
+* Public Subnet → Web Server
+* Private Subnet → Database Server
+
+---
+
+## 3. What is a Route Table?
+
+A **Route Table** contains a set of rules (routes) that determine where network traffic is directed.
+
+Each route includes:
+
+* Destination CIDR
+* Target (Internet Gateway, NAT Gateway, local route, etc.)
+
+**Example:**
+
+| Destination | Target           |
+| ----------- | ---------------- |
+| 10.0.0.0/16 | Local            |
+| 0.0.0.0/0   | Internet Gateway |
+
+---
+
+## 4. Why do we need an Internet Gateway?
+
+An **Internet Gateway (IGW)** allows communication between a VPC and the internet.
+
+It enables:
+
+* Outbound internet access
+* Inbound internet access (if allowed by route tables and security rules)
+
+Without an IGW, instances in a public subnet cannot communicate with the internet.
+
+---
+
+## 5. Why do we need a NAT Gateway?
+
+A **NAT Gateway** allows instances in a **private subnet** to access the internet without allowing inbound connections from the internet.
+
+Common uses:
+
+* Download software updates
+* Install packages
+* Access AWS services or external APIs
+
+The NAT Gateway is deployed in a **public subnet** and uses an Elastic IP.
+
+---
+
+## 6. Can a private subnet access the internet?
+
+**Yes, but only for outbound traffic.**
+
+A private subnet can access the internet if:
+
+* It has a route to a **NAT Gateway**.
+* The NAT Gateway is in a public subnet with an Internet Gateway attached.
+
+The internet **cannot initiate connections** to resources in the private subnet.
+
+---
+
+## 7. Difference between Security Groups and NACLs?
+
+| Security Group                          | Network ACL (NACL)                        |
+| --------------------------------------- | ----------------------------------------- |
+| Works at the instance level             | Works at the subnet level                 |
+| Stateful                                | Stateless                                 |
+| Allows only allow rules                 | Supports both allow and deny rules        |
+| Applied to EC2 instances                | Applied to subnets                        |
+| Return traffic is automatically allowed | Return traffic must be explicitly allowed |
+
+**Example:**
+
+* **Security Group** → Controls access to a specific EC2 instance.
+* **NACL** → Controls traffic entering or leaving an entire subnet.
+
+---
+
+## 8. What are ports 22, 80, and 443 used for?
+
+| Port    | Protocol | Purpose                                    |
+| ------- | -------- | ------------------------------------------ |
+| **22**  | SSH      | Secure remote login to Linux servers       |
+| **80**  | HTTP     | Unencrypted web traffic                    |
+| **443** | HTTPS    | Encrypted and secure web traffic (SSL/TLS) |
+
+**Interview Tip:**
+
+* **Port 22** → SSH (Linux administration)
+* **Port 80** → HTTP (websites without encryption)
+* **Port 443** → HTTPS (secure websites)
+
+---
+
+# Quick Interview Summary
+
+| Component            | Purpose                                       |
+| -------------------- | --------------------------------------------- |
+| **VPC**              | Private virtual network in AWS                |
+| **Public Subnet**    | Internet-accessible resources                 |
+| **Private Subnet**   | Internal resources, no direct internet access |
+| **Route Table**      | Directs network traffic                       |
+| **Internet Gateway** | Connects a VPC to the internet                |
+| **NAT Gateway**      | Outbound internet access for private subnets  |
+| **Security Group**   | Stateful firewall at the instance level       |
+| **Network ACL**      | Stateless firewall at the subnet level        |
+| **Port 22**          | SSH                                           |
+| **Port 80**          | HTTP                                          |
+| **Port 443**         | HTTPS                                         |
+==============
+Here are concise, interview-friendly answers to common **AWS Interview Scenario Questions**.
+
+---
+
+# AWS Interview Scenario Questions & Answers
+
+## 1. Your website is not opening. What will you check first?
+
+I would troubleshoot in this order:
+
+1. Check if the **EC2 instance is running**.
+2. Verify the **Security Group** allows HTTP (port 80) or HTTPS (port 443).
+3. Check if the **web server** (Apache/Nginx) is running.
+4. Verify the **Route Table** and **Internet Gateway** configuration.
+5. Check whether the instance has a **public IP** or is behind a **Load Balancer**.
+6. Review application and web server logs.
+7. Check **DNS** settings if using a domain name.
+
+**Interview Answer:**
+
+> First, I would verify that the EC2 instance is running, then check the Security Group rules for ports 80/443, confirm the web server is running, and verify the networking configuration (Internet Gateway, Route Table, and public IP).
+
+---
+
+## 2. You cannot SSH into an EC2 instance. What could be the reasons?
+
+Possible reasons include:
+
+* Port **22** is not open in the Security Group.
+* The wrong **key pair (.pem)** is being used.
+* Incorrect username (`ec2-user`, `ubuntu`, etc.).
+* The EC2 instance is stopped or terminated.
+* No public IP or Elastic IP is assigned.
+* Network ACL is blocking SSH traffic.
+* Route Table or Internet Gateway is misconfigured.
+* SSH service on the instance is not running.
+* Local firewall or network restrictions are blocking SSH.
+
+**Interview Answer:**
+
+> I would first check whether the instance is running, verify port 22 is allowed in the Security Group, ensure I'm using the correct key pair and username, and confirm the instance has a reachable public IP and proper network configuration.
+
+---
+
+## 3. Why is a Security Group important?
+
+A **Security Group** acts as a virtual firewall for EC2 instances.
+
+It:
+
+* Controls inbound and outbound traffic.
+* Allows only authorized access.
+* Protects instances from unauthorized connections.
+* Is **stateful**, so return traffic is automatically allowed.
+
+**Example:**
+
+* Allow SSH (22) only from the administrator's IP.
+* Allow HTTP (80) and HTTPS (443) from anywhere for a public website.
+
+**Interview Answer:**
+
+> Security Groups are important because they protect AWS resources by allowing only authorized network traffic.
+
+---
+
+## 4. Why do we use multiple AZs?
+
+Multiple **Availability Zones (AZs)** provide:
+
+* High availability
+* Fault tolerance
+* Disaster recovery
+* Improved uptime
+* Load balancing across data centers
+
+If one AZ experiences an outage, applications can continue running in another AZ.
+
+**Interview Answer:**
+
+> We use multiple AZs to ensure high availability and fault tolerance so applications remain accessible even if one Availability Zone fails.
+
+---
+
+## 5. What is the difference between a public IP and a private IP?
+
+| Public IP                                                           | Private IP                                         |
+| ------------------------------------------------------------------- | -------------------------------------------------- |
+| Accessible from the internet                                        | Accessible only within the private network (VPC)   |
+| Used for internet-facing resources                                  | Used for internal communication                    |
+| Globally unique                                                     | Unique only within the private network             |
+| Can change when an instance is stopped (unless using an Elastic IP) | Usually remains the same while the instance exists |
+
+**Example:**
+
+* Public IP → Web server
+* Private IP → Database server
+
+---
+
+## 6. What is DNS?
+
+**DNS (Domain Name System)** translates human-readable domain names into IP addresses.
+
+**Example:**
+
+```
+www.example.com
+        ↓
+93.184.216.34
+```
+
+Without DNS, users would need to remember IP addresses instead of domain names.
+
+In AWS, DNS is commonly managed using **Amazon Route 53**.
+
+---
+
+## 7. What is the difference between HTTP and HTTPS?
+
+| HTTP                               | HTTPS                                          |
+| ---------------------------------- | ---------------------------------------------- |
+| HyperText Transfer Protocol        | HyperText Transfer Protocol Secure             |
+| Data is not encrypted              | Data is encrypted using SSL/TLS                |
+| Default port: **80**               | Default port: **443**                          |
+| Less secure                        | More secure                                    |
+| Suitable for non-sensitive content | Used for secure websites, logins, and payments |
+
+**Interview Answer:**
+
+> HTTPS is the secure version of HTTP. It encrypts data using SSL/TLS, protecting information exchanged between the client and the server.
+
+---
+
+# Quick Interview Summary
+
+| Question            | Short Answer                                                    |
+| ------------------- | --------------------------------------------------------------- |
+| Website not opening | Check EC2 status, Security Group, web server, networking, DNS   |
+| Cannot SSH          | Check port 22, key pair, username, public IP, Security Group    |
+| Security Group      | Stateful firewall for EC2 instances                             |
+| Multiple AZs        | High availability and fault tolerance                           |
+| Public IP           | Internet accessible                                             |
+| Private IP          | Internal VPC communication                                      |
+| DNS                 | Converts domain names to IP addresses                           |
+| HTTP vs HTTPS       | HTTP is unencrypted (80); HTTPS is encrypted with SSL/TLS (443) |
+
+These are the kinds of answers expected in AWS Cloud Support, DevOps, and Solutions Architect interviews.
+
+==========
+Here are concise, interview-friendly answers to common **Web Server** questions.
+
+---
+
+# Web Server Interview Questions & Answers
+
+## 1. What is a Web Server?
+
+A **web server** is software (or the machine running it) that receives HTTP/HTTPS requests from clients (such as web browsers) and delivers web pages or other web content.
+
+**Examples of web servers:**
+
+* Apache HTTP Server
+* Nginx
+* Microsoft IIS
+
+**Interview Answer:**
+
+> A web server is software that hosts websites and serves web pages to users over HTTP or HTTPS.
+
+---
+
+## 2. What is Apache?
+
+**Apache HTTP Server (Apache)** is a free, open-source web server developed by the Apache Software Foundation.
+
+**Features:**
+
+* Open source
+* Cross-platform (Linux, Windows, macOS)
+* Supports PHP, Python, Perl, and other languages
+* Uses modules to extend functionality
+* Widely used for hosting websites
+
+**Interview Answer:**
+
+> Apache is an open-source web server that hosts websites and delivers web content over HTTP and HTTPS.
+
+---
+
+## 3. What is Nginx?
+
+**Nginx** (pronounced "Engine-X") is a high-performance web server that also works as a reverse proxy, load balancer, and HTTP cache.
+
+**Features:**
+
+* High performance
+* Efficient handling of many concurrent connections
+* Reverse proxy
+* Load balancing
+* Static content delivery
+
+**Interview Answer:**
+
+> Nginx is a high-performance web server commonly used as a reverse proxy, load balancer, and for serving static content.
+
+---
+
+## 4. Difference between Apache and Nginx?
+
+| Apache                             | Nginx                                   |
+| ---------------------------------- | --------------------------------------- |
+| Process/thread-based architecture  | Event-driven architecture               |
+| Better for dynamic content         | Better for static content               |
+| Supports `.htaccess`               | Does not support `.htaccess`            |
+| Uses more memory under heavy load  | Uses less memory and scales efficiently |
+| Easier per-directory configuration | Faster with high concurrent traffic     |
+
+**Interview Answer:**
+
+> Apache is process/thread-based and flexible, while Nginx is event-driven, lightweight, and better suited for handling large numbers of concurrent connections.
+
+---
+
+## 5. How do you install Apache on Linux?
+
+### Ubuntu/Debian
+
+```bash
+sudo apt update
+sudo apt install apache2 -y
+sudo systemctl start apache2
+sudo systemctl enable apache2
+```
+
+### Amazon Linux / RHEL / CentOS
+
+```bash
+sudo yum update -y
+sudo yum install httpd -y
+sudo systemctl start httpd
+sudo systemctl enable httpd
+```
+
+### Verify Apache is running
+
+```bash
+systemctl status apache2
+```
+
+or (Amazon Linux/RHEL/CentOS)
+
+```bash
+systemctl status httpd
+```
+
+You can also open a browser and visit:
+
+```
+http://<EC2-Public-IP>
+```
+
+If Apache is running and port **80** is open, you'll see the default Apache welcome page.
+
+---
+
+## 6. Which port does HTTP use?
+
+**HTTP uses port 80.**
+
+* Protocol: HTTP
+* Default Port: **80**
+* Data is **not encrypted**
+
+**Interview Answer:**
+
+> HTTP uses TCP port 80 for unencrypted web communication.
+
+---
+
+## 7. Which port does HTTPS use?
+
+**HTTPS uses port 443.**
+
+* Protocol: HTTPS
+* Default Port: **443**
+* Data is encrypted using **SSL/TLS**
+
+**Interview Answer:**
+
+> HTTPS uses TCP port 443 to provide secure, encrypted communication between clients and web servers.
+
+---
+
+# Quick Interview Summary
+
+| Question              | Answer                                                                                         |
+| --------------------- | ---------------------------------------------------------------------------------------------- |
+| What is a Web Server? | Software that serves web pages over HTTP/HTTPS                                                 |
+| Apache                | Open-source web server                                                                         |
+| Nginx                 | High-performance web server, reverse proxy, and load balancer                                  |
+| Apache vs Nginx       | Apache is process/thread-based; Nginx is event-driven and handles high concurrency efficiently |
+| Install Apache        | `apt install apache2` (Ubuntu) or `yum install httpd` (Amazon Linux/RHEL/CentOS)               |
+| HTTP Port             | **80**                                                                                         |
+| HTTPS Port            | **443**                                                                                        |
+
+These are standard beginner-to-intermediate interview answers for AWS, Linux, and DevOps roles.
