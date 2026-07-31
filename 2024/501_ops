@@ -16,6 +16,14 @@
 # ===========================================
 # ===========================================
 # ===========================================
+<!--
+Specificity in CSS refers to the set of rules that determine
+which style rule gets applied to an element
+when multiple conflicting rules exist
+It determines which style wins out of multiple competing rules.
+
+CSS specificity is decides which style rules apply to an element
+when there are conflicting styles. -->
 # ===========================================
 
 <!--

@@ -295,7 +295,8 @@ Media Queries are a CSS feature used to create responsive web pages by applying 
 </html>
 ```
 
-# What happens if you don't include `<!DOCTYPE html>`?
+
+# What happens if you dont include `<!DOCTYPE html>`?
 
 If the DOCTYPE is missing or incorrect, the browser switches to **Quirks Mode**.
 
@@ -750,14 +751,17 @@ absolute, fixed is not hold space ❌
 26. <table>
 27. <tfoot>
 28. <ul>
+
 29. <video>
+### Inline Elements
 
-### Inline Elements:
+- Do not start on a new line.
+- Display on the same line if there is enough space.
+- `width` and `height` properties do not work (both horizontally and vertically).
+- Left and right margins and padding work normally.
+- Top and bottom padding is visible but does not affect the layout of surrounding elements.
+- Top and bottom margins generally do not affect the layout of surrounding elements.
 
-- Don't start on a new line
-- Display on the same line if there is enough space available.
-- Width and height cannot be set.
-- Margins and padding apply horizontally (left and right); vertical margins/padding apply visually but don't affect layout. (don’t move other elements).
 
 - Examples: `<span>`, `<a>`, `<strong>`, `<img>`, `<input>`.
 
@@ -782,11 +786,19 @@ You can set vertical padding and margin.But they don't affect layout like they d
 ### inline-block
 
 - inline-block elements can behave like inline elements, but you can also control their width, height, margins, and padding, like block elements
+ - Does not start on a new line.
 - Flows inline with other elements, like `inline`.
 - Accepts `width`, `height`, `padding`, `margin`, and `border` values, like `block`.
+
 - Provides a hybrid behavior between `block` and `inline` elements.
+
 - Can wrap to the next line if there’s no space left on the current line.
 - Can be aligned using the `vertical-align` property (like `top`, `middle`, `bottom`).
+
+
+--------------------------------------------------------------------------
+
+
 
 ### **When Block or Inline Elements are Set as `inline-block`:**
 
@@ -810,7 +822,7 @@ You can set vertical padding and margin.But they don't affect layout like they d
 - CSS Specificity is a system that decides which CSS style/rule is applied when multiple style/rules target the same element
 - The higher the specificity, the more "power" the style/rule has.
 
-- If two rules have the same specificity, the rule defined last wins.
+- If two rules have the same specificity, the rule defined last wins and applied.
 - `!important` will override inline styles in CSS.
 
 - Universal selectors have the lowest priority.
@@ -829,26 +841,19 @@ Inline styles: 1000
 
 The !important flag overrides all other CSS rules, regardless of their specificity, giving it the highest priority in the cascade
 
-<!--
-Specificity in CSS refers to the set of rules that determine
-which style rule gets applied to an element
-when multiple conflicting rules exist
-It determines which style wins out of multiple competing rules.
 
-CSS specificity is decides which style rules apply to an element
-when there are conflicting styles. -->
 
 ================================================================================
 
 #### combinator
 
-- A combinator defines the relationship between two selectors in CSS
-- it tells how one element is connected to another in the HTML structure. -
+- A combinator defines the relationship between two selectors in CSS  and  apply the styles more specific without needing extra classes or IDs.
+
 
 There are four different combinators in CSS:
 
 descendant selector (space)
-child selector (>)
+child selector (>) greater-than
 adjacent sibling selector (+)
 general sibling selector (~)
 
