@@ -1,114 +1,338 @@
+==========================================================================
+
+### CSS Preprocessor
+
+A CSS preprocessor is a tool that extends the functionality of standard CSS by
+allowing developers to write CSS with additional features such as variables, nesting, functions, mixins, and reusable code.
+
+After writing code using the preprocessor's syntax, it is compiled into standard CSS, which can then be used in web development.
+
+CSS preprocessors help make stylesheets more organized, maintainable, reusable, and easier to manage, especially in large projects.
+
+These features improve the development process:
+
+- Reduce repetition.
+- Provide capabilities like **loops**, **functions**, and **conditionals**.
+- Encourage **cleaner**, modular code.
+- Enable **reusability** (via variables, mixins, etc.).
+- Enhance **maintainability** and **organization** of styles.
+
+.
+-Variables :to store values (like colors, fonts, etc.) and reuse them throughout your stylesheet. - Example: `$primary-color: #3498db;`
+
+- Nesting :Lets you nest CSS selectors in a hierarchical structure, making the code more readable and maintainable.
+
+- Example:
+
+```javascript
+nav {
+    ul {
+         list-style-type: none;
+       }
+    }
+javascript
+
+- Mixins :Reusable chunks of code that you can insert wherever needed, often with the ability to pass arguments to customize them.
+
+  - Example:
+    @mixin border-radius($radius) { border-radius: $radius; }
+    .box { @include border-radius(10px); }
+
+- Functions :Let you define reusable logic (like mathematical operations) within your stylesheets
+
+- **Partials and Import**: Split CSS into smaller files and import them for better organization.
+- **Inheritance (Extends)**: Share styles between selectors to reduce redundancy.
+  - Example: `.button { @extend .btn; }`
+
+
+
+
+- **Popular CSS Preprocessors**:
+- **Sass** (with `.scss` and `.sass` syntax)
+- **LESS**
+- **Stylus**
+
+
+
+
+CSS preprocessor is a tool that converts code written in its scripting language into standard CSS.
+This conversion makes CSS more powerful by providing features like:
+
+- **Variables**
+- **Nesting**
+- **Mixins**
+- **Functions**"
+
+
+
+-------------------------/
+
+- A CSS preprocessor tool is a scripting language that extends the capabilities of standard CSS.
+- It allows you to write more dynamic and maintainable styles by introducing features like variables, nesting mixins, and functions.
+- After writing the code in the preprocessor's syntax, it is compiled into standard CSS,
+- which can then be used in web development.
+- Using a preprocessor helps create cleaner, reusable, and more organized stylesheets.
+
+
+========================================================
+classList
+
+with help of classList JavaScript allows us to add, remove, replace, toggle or check whether the specified CSS class,s is present or not
+
+
+add()	Adds one or more tokens to the list
+contains()	Returns true if the list contains a class,s
+remove()	Removes one or more tokens from the list
+toggle()	Toggles between tokens in the list
+replace()	Replaces a token in the list
+
+
+  <style>
+      .highlight {
+          color: red;
+      }
+      .bold {
+          font-weight: bold;
+      }
+  </style>
+<body>
+  <p id="text">Hello World</p>
+
+  <button onclick="addClass()">Add Highlight</button>
+  <button onclick="checkClass()">Check Highlight</button>
+  <button onclick="removeClass()">Remove Highlight</button>
+  <button onclick="toggleClass()">Toggle Highlight</button>
+  <button onclick="replaceClass()">Replace Highlight with Bold</button>
+
+  <script>
+      function addClass() {
+          document.getElementById('text').classList.add('highlight');
+      }
+
+      function checkClass() {
+          const hasClass = document.getElementById('text').classList.contains('highlight');
+          alert(hasClass ? 'Element has the highlight class!' : 'Element does not have the highlight class.');
+      }
+
+      function removeClass() {
+          document.getElementById('text').classList.remove('highlight');
+      }
+
+      function toggleClass() {
+          document.getElementById('text').classList.toggle('highlight');
+      }
+
+      function replaceClass() {
+          document.getElementById('text').classList.replace('highlight', 'bold');
+      }
+  </script>
+</body>
+</html>
+
+
+
 ========================================================================
+# Media Queries in CSS
 
-### Media Queries in CSS
+- Media Queries are a CSS feature that allows us to apply different styles based on device characteristics such as screen width, height, resolution, orientation, and media type.
 
-- Media Queries are a CSS technique/feature that allows us to apply different styles based on device characteristics like screen width, height, resolution, or orientation,
+- With the help of media queries, we can create responsive web pages that automatically adjust their layout and styling for different screen sizes and devices.
 
-- with help media queries we can create responsive designs that adjust the layout and styling of a webpage
+- The @media rule is used in media queries to apply different styles for different media types/devices.
 
-The `@media` rule is used in media queries to apply different styles for different media types/devices.
+- The `@media` rule was introduced in CSS2 and enhanced in CSS3 with features like `min-width`, `max-width`, `orientation`, and `resolution`.
 
-#### Examples:
+## Syntax
+
+```css
+@media media-type and (condition) {
+  /* CSS rules */
+}
+```
+## Common Breakpoints
+
+- Mobile (Extra Small - XS): `<= 575.98px`
+- Tablet (Small - SM): `576px - 767.98px`
+- Laptop (Medium - MD): `768px - 991.98px`
+- Desktop (Large - LG): `992px - 1199.98px`
+- Large Screen (Extra Large - XL): `>= 1200px`
+
+## Media Types
+
+- `all` – Default, applies to all devices.
+- `screen` – Computer screens, tablets, and mobile devices.
+- `print` – Printed documents or print preview.
+- `speech` – Screen readers and speech synthesizers.
+
+
+Example:
+
+```css
+@media screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+}
+```
+
+
+## Why do we use Media Queries?
+
+- To create responsive web pages.
+- To adjust layouts for different screen sizes.
+- To improve user experience on mobiles, tablets, laptops, and desktops.
+- To avoid creating separate websites for different devices.
+- To make websites adaptive, flexible, and accessible.
+
+
+
+## Common Media Queries
 
 - Extra small devices (phones, 600px and down):
-  @media only screen and (max-width: 600px) {...}
+
+```css
+@media only screen and (max-width: 600px) { }
+```
 
 - Small devices (portrait tablets and large phones, 600px and up):
-  @media only screen and (min-width: 600px) {...}
+
+```css
+@media only screen and (min-width: 600px) { }
+```
 
 - Medium devices (landscape tablets, 768px and up):
-  @media only screen and (min-width: 768px) {...}
+
+```css
+@media only screen and (min-width: 768px) { }
+```
 
 - Large devices (laptops/desktops, 992px and up):
-  @media only screen and (min-width: 992px) {...}
+
+```css
+@media only screen and (min-width: 992px) { }
+```
 
 - Extra large devices (large laptops and desktops, 1200px and up):
-  @media only screen and (min-width: 1200px) {...}
 
-#### Breakpoints:
+```css
+@media only screen and (min-width: 1200px) { }
+```
 
-- Mobile (extra small device) xs: size <= 575.98px
-- Tablet (small device) sm: size >= 576px && size <= 767.98px
-- Laptop (medium device) md: size >= 768px && size <= 991.98px
-- Desktop (large device) lg: size >= 991.98px && size <= 1199.98px
-- Big screen (extra large device) xl: size >= 1200px
 
-### Media Types:
 
-Media types specify the target device or output medium. Some common media types include:
+## Logical Operators
 
-- all
-- braille
-- handheld
-- print
-- screen
-- speech
-- tty
-- TV
+### AND (`and`)
+Combines multiple conditions. All conditions must be true.
 
-### Logical Operators
+```css
+@media screen and (min-width: 768px) { }
+```
 
-AND (and) – Combines multiple conditions.
-OR (,) – Applies if any condition is met.
-NOT (not) – Reverses the condition.
+### OR (`,`)
+Applies styles if any media query matches.
 
-- A media query is a CSS technique used to apply styles to a web page based on specific
-  characteristics of the device or browser viewing the page.
+```css
+@media (max-width: 600px), (orientation: portrait) { }
+```
 
-- Media queries allow you to apply CSS rules conditionally based on factors like screen size, device orientation, resolution, and more.
+### NOT (`not`)
+Reverses the condition.
 
-- With media queries, we can create responsive designs that adjust the layout and styling of a webpage for different devices, screen sizes, resolutions, and orientations.
+```css
+@media not screen { }
+```
 
-- Media queries ensure that websites are user-friendly and optimized across a wide range of devices, from mobile phones to large desktop monitors.
+### ONLY (`only`)
+Prevents older browsers from applying the styles.
 
-- The @media rule, introduced in CSS2, made it possible to define different style rules for different media types.
+```css
+@media only screen and (max-width: 600px) { }
+```
 
-- They are essential for building adaptive, flexible, and accessible web pages.
+## Mobile-First Approach
 
-========================================================================
+In the Mobile-First approach, we first write CSS for mobile devices and then use `min-width` media queries for larger screens.
 
-### What is <!DOCTYPE html>?
+```css
+/* Mobile */
+.container {
+  width: 100%;
+}
 
--<!DOCTYPE html> is a declaration that tells the browser the document is written/using in HTML5.
+/* Tablet and above */
+@media (min-width: 768px) {
+  .container {
+    width: 80%;
+  }
+}
+```
 
-- It ensures that the browser renders the page in **standards mode**.
-- which follows HTML5 standards, which are the latest and most widely used version of HTML.
+## Interview Definition
 
-It is not an HTML tag; it is an instruction placed at the very top of the HTML document.
-
-### What happens if you don’t include `<!DOCTYPE html>`?
-
-- The browser switches to **Quirks Mode**.
-
-This can cause CSS and layout issues, browser Compatibility Issues
-like:
-
-- **Box model issues** (width/height calculations)
-- **Layout inconsistencies** across browsers
-- **Inconsistent styling** (fonts, margins, padding)
-- **Unexpected behavior** of CSS properties
-
-- Box model behaving incorrectly
-- Inconsistent spacing and alignment
-- Fonts, margins, and widths rendering differently across browsers
-- Some modern CSS and JavaScript features may not work properly  
-  – Media queries and modern layout techniques (Flexbox/Grid) may not work properly  
-  – Some DOM methods or ES6+ features may not behave properly
-
-### What is Quirks Mode?
-
-- **Quirks Mode** is a browser rendering mode used for backward compatibility with very old web pages.
-- It is triggered when a web page lacks a proper `<!DOCTYPE>` declaration or has an incorrect one.
-
-- To avoid **quirks mode**, always include `<!DOCTYPE html>` at the beginning of your HTML document.
-
-- # `<!DOCTYPE html>` is a declaration that tells the browser which version of HTML the document is using``.
+Media Queries are a CSS feature used to create responsive web pages by applying different CSS styles based on device characteristics such as screen width, height, orientation, resolution, or media type. They ensure that websites look and work properly across mobiles, tablets, laptops, and desktops.
 
 ========================================================================
+# What is <!DOCTYPE html>?
+
+- `<!DOCTYPE html>` is a declaration that tells the browser to render the document using the HTML5 standard.
+
+- It ensures that the browser renders the page in **Standards Mode**, following modern HTML and CSS specifications.
+
+- It is **not an HTML tag**. It is a declaration placed at the very top of an HTML document.
+
+## Example
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Website</title>
+</head>
+<body>
+    <h1>Hello World</h1>
+</body>
+</html>
+```
+
+# What happens if you don't include `<!DOCTYPE html>`?
+
+If the DOCTYPE is missing or incorrect, the browser switches to **Quirks Mode**.
+
+This can cause:
+
+- Box model issues (incorrect width/height calculations)
+- Layout inconsistencies across browsers
+- Inconsistent spacing, margins, and padding
+- Different rendering of fonts and elements
+- CSS behaving differently than expected
+- Poor cross-browser compatibility
+
+# What is Quirks Mode?
+
+- **Quirks Mode** is a browser rendering mode designed for backward compatibility with very old websites.
+
+- It is triggered when an HTML document has no DOCTYPE or an incorrect DOCTYPE.
+
+- In Quirks Mode, browsers imitate the behavior of older browsers, which can lead to inconsistent rendering.
+
+# Why do we use `<!DOCTYPE html>`?
+
+- Enables Standards Mode.
+- Ensures consistent rendering across browsers.
+- Improves cross-browser compatibility.
+- Prevents layout and CSS issues.
+- Follows the HTML5 standard.
+
+# Interview Definition
+
+`<!DOCTYPE html>` is a declaration placed at the top of an HTML document that tells the browser to render the page using the HTML5 standard. It enables Standards Mode, ensuring consistent rendering and proper HTML and CSS behavior across modern browsers.
+========================================================================
+
 
 ### calc()
 
-The calc() is CSS function is used to perform mathematical calculations to determine CSS property values. It can be used to combine different units (e.g., percentages, pixels, ems) in a single property.
+The calc() is CSS function is used to perform mathematical calculations to determine CSS property values. It can be used to combine different units (e.g., percentages, pixels, ems) in a single  expression/property.
 
 - It is especially Useful for creating **responsive layouts** and **precise spacing**
 - It allows combining different units (e.g., `%`, `px`, `em`) in a single expression.
@@ -123,29 +347,36 @@ The calc() is CSS function is used to perform mathematical calculations to deter
   padding: calc(1em + 10px);
 }
 ```
+---------------------------------------------------------------
+
+
 
 ### Why Use calc() in CSS?
 
 - To combine different units (e.g., % and px) in one property.
 - When a container needs to be a percentage of the parent but also needs to subtract some fixed space (like sidebars or padding).
 
+
+
 ========================================================================
 
-### var()
+# var() in CSS
 
 1. `var()` is a CSS function used to retrieve the value of a CSS custom property (CSS variable).
 
-2. It helps make styles reusable, easier to maintain, and consistent across a website.
+2. The `var()` function helps make styles reusable, easier to maintain, and consistent across a website.
 
 3. CSS custom properties (variables) are defined using the `--` syntax.
 
-4. These variables can be reused throughout the stylesheet using the `var()` function.
+4. CSS custom properties are accessed using the var() function.
 
--The var() function is used to insert the value of a CSS variable.
+5. CSS custom properties can be defined inside the `:root` pseudo-class to make them globally available.
 
-In CSS, `var()` is used to reference **custom properties** (commonly called CSS variables). These are defined using the `--` syntax and can be reused throughout your stylesheet.
+6. `:root` is a pseudo-class that targets the top-level `<html>` element.
 
-### 📌 Basic Syntax
+7. CSS variables can also be defined inside any selector (such as a class or element). In that case, they are only available within that selector and its child elements because CSS variables follow normal CSS inheritance rules.
+
+## Basic Syntax
 
 ```css
 :root {
@@ -158,6 +389,20 @@ body {
   font-size: var(--font-size);
 }
 ```
+
+## var() with Fallback Value
+
+If the variable is not defined, a fallback value can be used.
+
+```css
+color: var(--primary-color, blue);
+```
+
+If `--primary-color` does not exist, the text color will be `blue`.
+
+
+---------------------------------------------------------------
+
 
 ### 🔍 Breakdown:
 
@@ -229,11 +474,51 @@ But in some cases, declaring variables **locally** (in a `.class` or `#id`) is u
 - **Flexibility:** Easily adjust values for different themes or designs by changing variable values.
 - **Scoped Variables:** Variables can be defined at different levels (global or local) for fine-grained control over styling.
 
+
+-The var() function is used to insert the value of a CSS variable.
+
+In CSS, `var()` is used to reference **custom properties** (commonly called CSS variables). These are defined using the `--` syntax and can be reused throughout your stylesheet.
+
+
+
+
 ================================ Semantic elements ====================================
 
 **Semantic Elements in HTML**
 
-Semantic elements are HTML tags that clearly describe their meaning to both the browser and developers.
+
+
+- Semantic elements are HTML elements that clearly describe their meaning to both the browser and developers.
+
+- They make the HTML code easier to read, understand, and maintain.
+
+- They improve accessibility by helping screen readers and other assistive technologies understand the structure of the page.
+
+- They also improve SEO because search engines can better understand the content and structure of a webpage.
+
+- They make the code more organized and easier to debug.
+
+
+
+### Common Semantic Elements:
+
+<article>
+<aside>
+<details>
+<figcaption>
+<figure>
+<footer>
+<header>
+<main>
+<mark>
+<nav>
+<section>
+<summary>
+<time>
+
+
+----------------------------------------------------------------------------
+
 
 ### Benefits of Semantic Elements:
 
@@ -259,35 +544,17 @@ Semantic elements are HTML tags that clearly describe their meaning to both the 
 - Tags like `<article>` signal independent, readable content — improving organization.
 - `<footer>` indicates the end of content, reducing confusion for assistive technologies.
 
-### Common Semantic Elements:
 
-<article>
-<aside>
-<details>
-<figcaption>
-<figure>
-<footer>
-<header>
-<main>
-<mark>
-<nav>
-<section>
-<summary>
-<time>
-```
 
 ===============================================================================
 pseudo-classes vs Pseudo-Elements
 
-1.  ##Pseudo-classes (:) ##:
+1.  ### Pseudo-classes (:) 
 
--Pseudo-classes are CSS selectors used to apply styles to an element based on its state or position.
-When referring to state, this includes the condition or States generally involve user interaction.
-
-- Common pseudo-classes include `:hover`, `:active`, `:focus`, and `:disabled`.
+-Pseudo-classes are CSS selectors used to apply styles to an element based on its **state**, **user interaction**, or **position** in the document.
 - Denoted by a single colon (:).
+- It allows you to apply styles without adding extra classes or JavaScript.
 
-- Primarily used to style elements under various states.
 
    <style>
   a:hover {
@@ -297,7 +564,22 @@ When referring to state, this includes the condition or States generally involve
 
 <a href="#">Hover over me</a>
 
-2.  ##Pseudo-Elements (::) ##:
+
+### Common Pseudo-Classes
+
+- `:hover` – Applies when the user hovers over an element.
+- `:active` – Applies while an element is being clicked.
+- `:focus` – Applies when an element receives keyboard or mouse focus.
+- `:visited` – Styles visited links.
+- `:link` – Styles unvisited links.
+- `:checked` – Styles checked checkboxes or radio buttons.
+- `:disabled` – Styles disabled form elements.
+- `:enabled` – Styles enabled form elements.
+- `:first-child` – Selects the first child element.
+- `:last-child` – Selects the last child element.
+- `:nth-child()` – Selects elements based on their position
+
+2.  ### Pseudo-Elements (::) 
 
 - Used to style specified parts of an element.
 - Denoted by a double colon (::).
@@ -306,6 +588,17 @@ When referring to state, this includes the condition or States generally involve
 
 - Can target the first letter or first line of text within an element, among other things.
 - Can be used to insert content before or after the element.
+
+
+### Common Pseudo-Elements
+
+- `::before` – Inserts content before an element.
+- `::after` – Inserts content after an element.
+- `::first-letter` – Styles the first letter.
+- `::first-line` – Styles the first line.
+- `::selection` – Styles selected text.
+- `::placeholder` – Styles placeholder text in input fields.
+- `::marker` – Styles list item markers (bullets or numbers).
 
    <style>
   
@@ -321,11 +614,22 @@ When referring to state, this includes the condition or States generally involve
 </style>
   <p>This is a paragraph.</p>
 
+
+----------------------------------------------------------------------------
+
+When referring to state, this includes the condition or States generally involve user interaction.
+
+- Common pseudo-classes include `:hover`, `:active`, `:focus`, and `:disabled`.
+
+- Primarily used to style elements under various states.
+
 ================================================================================
+
 
 # 📌 CSS `position` Property
 
-The **`position` property** in CSS specifies how an element is positioned in the document, and how it interacts with the document’s normal flow.
+The **`position` property** in CSS specifies how an element is positioned in the document, 
+and how it interacts with the document’s normal flow.
 
 The possible values are:
 
@@ -344,7 +648,7 @@ The possible values are:
 
 ### Relative
 
-- its default/static position
+- its default/static position of the elwmwnt 
 
 -the measurement of positioning properties top, right, bottom, left starts from the element’s by default (static) position in the normal flow.
 
@@ -355,55 +659,52 @@ The possible values are:
 -The element starts in the normal document flow (static positioning) by default.
 
 ### Absolute
+- An absolutely positioned element is positioned relative to its nearest positioned ancestor (an ancestor with position: relative, absolute, fixed, or sticky). 
 
-- Measurement of length (top, right, bottom, left) starts from the nearest relatively positioned parent. If no relative parent exists, measurement will start from the body.
-  The element does not occupy space in the layout.
-- Positioned relative to the nearest positioned ancestor (an ancestor with `position: relative`, `absolute`, `fixed`, or `sticky`).
-- If no positioned ancestor exists, it’s positioned relative to the `<html>` (viewport’s initial containing block).
-- Removed from the normal flow — it does not hold space in the layout.
-- Can be moved using `top`, `right`, `bottom`, `left`.
-- Often overlaps other content.
+- Measurement of length (top, right, bottom, left) starts from the nearest relatively positioned parent element. (an ancestor with `position: relative`, `absolute`, `fixed`, or `sticky`).
+
+- If no relative parent exists, measurement will start from the body/viewport.
+
+- if we set postion absolute then The element is removed from the normal document flow, so it does not occupy space in the layout.
+
+- Can overlap other content because it is removed from the normal document flow.
+
+
+- With the help of the top, right, bottom, and left position properties, we can set the element's position as required.
+
 
 Use case: Modals, dropdown menus, tooltips, floating buttons.
 
+### Fixed ##:
+
+- Positioned relative to the viewport.
+- element is fixed to viewport doest not move on scroll
+- Removed from the normal flow — does not hold space in the layout.
+- the measurement of postion propertied (top, right, bottom, left,) start from the viewport or body, not from any parent element.
+
+
 ### Fixed
 
-- Positioned relative to the viewport.
-- Does not hold space in the layout.
-- Does not move when the page is scrolled — it stays fixed in its position on the screen.
-  -Setting the location of an element on the screen or view port , we can use top, right, bottom, left position properties.
-- Always relative to the viewport, never to any container.
+- Positioned relative to the **viewport** (browser window).
+- The element stays fixed in the same position and does not move when the page is scrolled.
+- Removed from the **normal document flow**, so it does not occupy space in the layout.
+- The measurement of position properties (`top`, `right`, `bottom`, `left`) starts from the **edges of the viewport**, not from any parent element.
 
-- ## Fixed ##:
-- Positioned relative to the viewport.
-- property in CSS will stay fixed in place even when the page is scrolled.
-- It will remain in the same position, positioning an element relative to the browser window.
-- Removed from the normal flow — does not hold space in the layout.
-- Can be positioned using top, right, bottom, left, specifying distances from the viewport's edges
-- Measurement starts from body.
-- the measurement does start from the viewport or body, not from any parent element.
+**Use cases:** Fixed navbar, floating buttons, chat buttons, back-to-top buttons, cookie banners.
 
-**Use case:** Fixed navigation bars, sticky sidebars, floating action buttons.
 
 ### Sticky
 
-- Initially Sticky properties Behaves like `relative`.
-- When it reaches a specified scroll threshold (e.g., `top: 0`), it switches to `fixed` positioning.
+- The element is positioned based on the user's scroll position.
+- It behaves like `position: relative` initially and stays in the normal document flow.
+- When the element reaches the specified offset (`top`, `right`, `bottom`, `left`) during scrolling, it behaves like `position: fixed` within its scrolling container.
+- The element does occupy space in the layout because it is not removed from the normal document flow.
+- The `top`, `right`, `bottom`, and `left` properties define the point at which the element becomes sticky.
+- A sticky element is limited to the boundaries of its parent/container and will stop moving when the parent container ends.
 
-- Sticks within its nearest scrollable ancestor’s boundaries — once those are exceeded, it stops being sticky.
-  -Does not remove space from the layout- **Holds space** in the layout.
+**Use cases:** Sticky navigation bars, table headers, sidebars, filter menus.
 
--Setting the location of an element on the screen or view port , we can use top, right, bottom, left position properties.
 
-- Measurement for position: sticky; starts from the nearest scrollable ancestor, not from the viewport or body.
-  - it moves only within the viewport
-
-### Key Points to Remember
-
-- **Removed from normal flow** → element no longer affects the layout around it (`absolute`, `fixed`).
-- **Holds space** → layout space is still reserved (`static`, `relative`, `sticky`).
-- **Scroll behavior matters** → `fixed` never moves, `sticky` switches to `fixed` after a point.
-- `absolute` and `fixed` overlap other content if not handled carefully.
 
 ```
 static, relative, sticky  is hold space ✅
@@ -501,53 +802,6 @@ You can set vertical padding and margin.But they don't affect layout like they d
   - They **respect width and height properties**, and you can also add **padding and margin**.
   - They do **not take up full width** unless specified (like `block` elements do).
   - **Display on the same line if there’s enough space**.
-
-<!--
-- **Inline elements:**
-  - Sit next to each other horizontally.
-  - Do not automatically start on a new line.
-  - Wrap to the next line if there’s no space, like words in a sentence.
-  - Can be aligned with other inline or inline-block elements.
-
-- **Block elements:**
-  - Accept `width` and `height` values.
-  - Allow `padding`, `margin`, and `border` on all sides.
-  - You can fully control their box model properties.
-  - Can start on a new line if forced (for example, using `<br>` or if there’s no space left in the container).
-  - Behave like a box — you decide its size and spacing.
-
-### **Inline-Block Elements Behave Like:**
-
- -Flow inline with other elements (like inline)
- - Accept width, height, padding, and margin values (like block)
- -Provide a hybrid behavior between block and inline elements.
-
-### Key Points:
-- **Inline-block** elements can **combine characteristics** of both `inline` and `block` elements:
-  - They behave like `inline` in that they **sit next to each other horizontally**.
-  - They behave like `block` in that you can set **width**, **height**, **padding**, and **margin**.
-
-### Final Clarification:
-- If you set **inline elements** as `inline-block`, they will still behave **inline** (next to each other), but you can now control their **size** and **spacing**.
-- If you set **block elements** as `inline-block`, they will now sit **next to each other** (horizontally), but will still respect their **size**, **width**, **height**, and **margins/padding**.
-
-Inline-block elements behave like:
-
-- **Inline elements** : They sit next to each other horizontally , full control of box model we can set vertically and horizoantlay padding and margin , width ,height , not started on new line , not take full widht Display on the same line if there is enough space available.
-- **Block elements**: They sit next to each other horizontally ,,They respect width and height properties and can have margins and padding take full widht Display on the same line if there is enough space available.
-
-
-### **Common Examples**
-
-- `<img>` elements (they’re `inline` by default, but behave like `inline-block` since they respect dimensions).
-- `<button>` elements.
-- Custom elements like `<div>`, `<li>`, or `<span>` when you set `display: inline-block` through CSS.
-
- ##Inline-Block Elements:
-- Can start on a new line if forced.
-- Width, height, margins, and padding can be set.
-- Examples: `<div>`, `<p>`, `<li>`, `<img>` (when you want it to behave as a block).
-   -->
 
 ================================================================================
 
@@ -937,137 +1191,6 @@ Cross-browser compatibility ensures that web applications work consistently acro
    - **Use for**: Large projects with reusable styles.
 
    - **rel and href are mandatory**. -**type is optional (modern browsers default to text/css)**
-
-==========================================================================
-
-### CSS Preprocessor
-
-A CSS preprocessor is a tool that extends the functionality of standard CSS by
-allowing developers to write CSS with additional features such as variables, nesting, functions, mixins, and reusable code.
-
-After writing code using the preprocessor's syntax, it is compiled into standard CSS, which can then be used in web development.
-
-CSS preprocessors help make stylesheets more organized, maintainable, reusable, and easier to manage, especially in large projects.
-
-These features improve the development process:
-
-- Reduce repetition.
-- Provide capabilities like **loops**, **functions**, and **conditionals**.
-- Encourage **cleaner**, modular code.
-- Enable **reusability** (via variables, mixins, etc.).
-- Enhance **maintainability** and **organization** of styles.
-
-.
--Variables :to store values (like colors, fonts, etc.) and reuse them throughout your stylesheet. - Example: `$primary-color: #3498db;`
-
-- Nesting :Lets you nest CSS selectors in a hierarchical structure, making the code more readable and maintainable.
-
-- Example:
-
-```javascript
-nav {
-    ul {
-         list-style-type: none;
-       }
-    }
-javascript
-
-- Mixins :Reusable chunks of code that you can insert wherever needed, often with the ability to pass arguments to customize them.
-
-  - Example:
-    @mixin border-radius($radius) { border-radius: $radius; }
-    .box { @include border-radius(10px); }
-
-- Functions :Let you define reusable logic (like mathematical operations) within your stylesheets
-
-- **Partials and Import**: Split CSS into smaller files and import them for better organization.
-- **Inheritance (Extends)**: Share styles between selectors to reduce redundancy.
-  - Example: `.button { @extend .btn; }`
-
-
-
-
-- **Popular CSS Preprocessors**:
-- **Sass** (with `.scss` and `.sass` syntax)
-- **LESS**
-- **Stylus**
-
-
-
-
-CSS preprocessor is a tool that converts code written in its scripting language into standard CSS.
-This conversion makes CSS more powerful by providing features like:
-
-- **Variables**
-- **Nesting**
-- **Mixins**
-- **Functions**"
-
-
-
--------------------------/
-
-- A CSS preprocessor tool is a scripting language that extends the capabilities of standard CSS.
-- It allows you to write more dynamic and maintainable styles by introducing features like variables, nesting mixins, and functions.
-- After writing the code in the preprocessor's syntax, it is compiled into standard CSS,
-- which can then be used in web development.
-- Using a preprocessor helps create cleaner, reusable, and more organized stylesheets.
-
-
-========================================================
-classList
-
-with help of classList JavaScript allows us to add, remove, replace, toggle or check whether the specified CSS class,s is present or not
-
-
-add()	Adds one or more tokens to the list
-contains()	Returns true if the list contains a class,s
-remove()	Removes one or more tokens from the list
-toggle()	Toggles between tokens in the list
-replace()	Replaces a token in the list
-
-
-  <style>
-      .highlight {
-          color: red;
-      }
-      .bold {
-          font-weight: bold;
-      }
-  </style>
-<body>
-  <p id="text">Hello World</p>
-
-  <button onclick="addClass()">Add Highlight</button>
-  <button onclick="checkClass()">Check Highlight</button>
-  <button onclick="removeClass()">Remove Highlight</button>
-  <button onclick="toggleClass()">Toggle Highlight</button>
-  <button onclick="replaceClass()">Replace Highlight with Bold</button>
-
-  <script>
-      function addClass() {
-          document.getElementById('text').classList.add('highlight');
-      }
-
-      function checkClass() {
-          const hasClass = document.getElementById('text').classList.contains('highlight');
-          alert(hasClass ? 'Element has the highlight class!' : 'Element does not have the highlight class.');
-      }
-
-      function removeClass() {
-          document.getElementById('text').classList.remove('highlight');
-      }
-
-      function toggleClass() {
-          document.getElementById('text').classList.toggle('highlight');
-      }
-
-      function replaceClass() {
-          document.getElementById('text').classList.replace('highlight', 'bold');
-      }
-  </script>
-</body>
-</html>
 
 
 

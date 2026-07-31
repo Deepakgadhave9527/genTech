@@ -29,3 +29,11 @@ console.log(name); // Guest
 
 
 ======================================
+
+WeakMap is a stores of key-value pairs where keys must be objects. 
+It keeps weak references to those objects, so when an object is no longer used, 
+its entry is automatically removed by the garbage collector. 
+It's useful for storing private data or object metadata without causing memory leaks.
+
+WeakSet is similar, but it stores only objects instead of key-value pairs. 
+Like WeakMap, objects are automatically removed when they are no longer referenced elsewhere.

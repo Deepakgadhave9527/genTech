@@ -3,7 +3,6 @@
 - Deep copy vs Shallow copy in JavaScript objects/arrays.
 
 
-- Explain WeakMap and WeakSet with use cases.
 
 - Scenario Based: You're building a real-time chat application where multiple messages arrive simultaneously. How would you ensure the DOM updates efficiently without blocking the main thread?
 

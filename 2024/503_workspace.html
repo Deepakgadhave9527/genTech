@@ -1,11 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSS Fixed Position Example</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      height: 2000px; /* To demonstrate scrolling */
+      background: #f4f4f4;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      line-height: 1.6;
+    }
+
+    /* Fixed element */
+    .fixed-box {
+      position: fixed;
+
+      /* Position properties */
+      top: 20px;
+      right: 20px;
+
+      width: 150px;
+      height: 80px;
+
+      background: crimson;
+      color: white;
+      font-weight: bold;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border-radius: 10px;
+    }
+
+    .info {
+      margin-top: 30px;
+      padding: 20px;
+      background: lightblue;
+    }
+  </style>
 </head>
+
 <body>
-  
+
+  <h1>CSS position: fixed Example</h1>
+
+  <div class="fixed-box">
+    Fixed Box
+  </div>
+
+  <div class="content">
+    <h2>Main Content</h2>
+    <p>
+      Scroll the page and notice that the red box stays fixed in the same
+      position on the screen.
+    </p>
+
+    <div class="info">
+      <p>
+        A fixed positioned element is removed from the normal document flow
+        and positioned relative to the viewport.
+      </p>
+      <p>
+        It does not move when the page is scrolled.
+      </p>
+    </div>
+
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+      Repeat scrolling content to see the fixed behavior.
+    </p>
+  </div>
+
 </body>
 </html>
