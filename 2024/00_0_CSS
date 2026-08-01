@@ -1,0 +1,648 @@
+
+===============================================================================
+
+
+What is the box model in CSS?
+
+- **The CSS Box Model** is a fundamental concept that describes how HTML elements are sized , postioned and displayed on a web page. 
+
+Every HTML element is treated as a rectangular box. 
+
+The total size of an element is determined by four parts: **content, padding, border, and margin**.
+
+
+- Content is what's inside the element,
+- padding is space around the content,
+- border is a line around the padding,
+- and margin is space outside the border.
+
+
+- Together, these four components determine an element's total size, spacing, and layout on a web page.
+
+
+
+
+- * **Content:** The actual text, image, or other content inside the element.
+- * **Padding:** The space between the content and the border.
+- * **Border:** A line that surrounds the padding and content.
+- * **Margin:** The space outside the border that separates the element from other elements.rder.
+
+
+
+
+
+
+==========================================================================
+
+### CSS Preprocessor
+
+A CSS preprocessor is a tool that extends the functionality of standard CSS by
+allowing developers to write CSS with additional features such as variables, nesting, functions, mixins, and reusable code.
+
+After writing code using the preprocessor's syntax, it is compiled into standard CSS, which can then be used in web development.
+
+CSS preprocessors help make stylesheets more organized, maintainable, reusable, and easier to manage, especially in large projects.
+
+These features improve the development process:
+
+- Reduce repetition.
+- Provide capabilities like **loops**, **functions**, and **conditionals**.
+- Encourage **cleaner**, modular code.
+- Enable **reusability** (via variables, mixins, etc.).
+- Enhance **maintainability** and **organization** of styles.
+
+.
+-Variables :to store values (like colors, fonts, etc.) and reuse them throughout your stylesheet. - Example: `$primary-color: #3498db;`
+
+- Nesting :Lets you nest CSS selectors in a hierarchical structure, making the code more readable and maintainable.
+
+- Example:
+
+```javascript
+nav {
+    ul {
+         list-style-type: none;
+       }
+    }
+javascript
+
+- Mixins :Reusable chunks of code that you can insert wherever needed, often with the ability to pass arguments to customize them.
+
+  - Example:
+    @mixin border-radius($radius) { border-radius: $radius; }
+    .box { @include border-radius(10px); }
+
+- Functions :Let you define reusable logic (like mathematical operations) within your stylesheets
+
+- **Partials and Import**: Split CSS into smaller files and import them for better organization.
+- **Inheritance (Extends)**: Share styles between selectors to reduce redundancy.
+  - Example: `.button { @extend .btn; }`
+
+
+
+
+- **Popular CSS Preprocessors**:
+- **Sass** (with `.scss` and `.sass` syntax)
+- **LESS**
+- **Stylus**
+
+
+
+
+CSS preprocessor is a tool that converts code written in its scripting language into standard CSS.
+This conversion makes CSS more powerful by providing features like:
+
+- **Variables**
+- **Nesting**
+- **Mixins**
+- **Functions**"
+
+
+
+-------------------------/
+
+- A CSS preprocessor tool is a scripting language that extends the capabilities of standard CSS.
+- It allows you to write more dynamic and maintainable styles by introducing features like variables, nesting mixins, and functions.
+- After writing the code in the preprocessor's syntax, it is compiled into standard CSS,
+- which can then be used in web development.
+- Using a preprocessor helps create cleaner, reusable, and more organized stylesheets.
+
+
+========================================================
+classList
+
+with help of classList JavaScript allows us to add, remove, replace, toggle or check whether the specified CSS class,s is present or not
+
+
+add()	Adds one or more tokens to the list
+contains()	Returns true if the list contains a class,s
+remove()	Removes one or more tokens from the list
+toggle()	Toggles between tokens in the list
+replace()	Replaces a token in the list
+
+
+  <style>
+      .highlight {
+          color: red;
+      }
+      .bold {
+          font-weight: bold;
+      }
+  </style>
+<body>
+  <p id="text">Hello World</p>
+
+  <button onclick="addClass()">Add Highlight</button>
+  <button onclick="checkClass()">Check Highlight</button>
+  <button onclick="removeClass()">Remove Highlight</button>
+  <button onclick="toggleClass()">Toggle Highlight</button>
+  <button onclick="replaceClass()">Replace Highlight with Bold</button>
+
+  <script>
+      function addClass() {
+          document.getElementById('text').classList.add('highlight');
+      }
+
+      function checkClass() {
+          const hasClass = document.getElementById('text').classList.contains('highlight');
+          alert(hasClass ? 'Element has the highlight class!' : 'Element does not have the highlight class.');
+      }
+
+      function removeClass() {
+          document.getElementById('text').classList.remove('highlight');
+      }
+
+      function toggleClass() {
+          document.getElementById('text').classList.toggle('highlight');
+      }
+
+      function replaceClass() {
+          document.getElementById('text').classList.replace('highlight', 'bold');
+      }
+  </script>
+</body>
+</html>
+
+
+
+========================================================================
+# Media Queries in CSS
+
+- Media Queries are a CSS feature that allows us to apply different styles based on device characteristics such as screen width, height, resolution, orientation, and media type.
+
+- With the help of media queries, we can create responsive web pages that automatically adjust their layout and styling for different screen sizes and devices.
+
+- The @media rule is used in media queries to apply different styles for different media types/devices.
+
+- The `@media` rule was introduced in CSS2 and enhanced in CSS3 with features like `min-width`, `max-width`, `orientation`, and `resolution`.
+
+## Syntax
+
+```css
+@media media-type and (condition) {
+  /* CSS rules */
+}
+```
+## Common Breakpoints
+
+- Mobile (Extra Small - XS): `<= 575.98px`
+- Tablet (Small - SM): `576px - 767.98px`
+- Laptop (Medium - MD): `768px - 991.98px`
+- Desktop (Large - LG): `992px - 1199.98px`
+- Large Screen (Extra Large - XL): `>= 1200px`
+
+## Media Types
+
+- `all` – Default, applies to all devices.
+- `screen` – Computer screens, tablets, and mobile devices.
+- `print` – Printed documents or print preview.
+- `speech` – Screen readers and speech synthesizers.
+
+
+Example:
+
+```css
+@media screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+}
+```
+
+
+## Why do we use Media Queries?
+
+- To create responsive web pages.
+- To adjust layouts for different screen sizes.
+- To improve user experience on mobiles, tablets, laptops, and desktops.
+- To avoid creating separate websites for different devices.
+- To make websites adaptive, flexible, and accessible.
+
+
+
+## Common Media Queries
+
+- Extra small devices (phones, 600px and down):
+
+```css
+@media only screen and (max-width: 600px) { }
+```
+
+- Small devices (portrait tablets and large phones, 600px and up):
+
+```css
+@media only screen and (min-width: 600px) { }
+```
+
+- Medium devices (landscape tablets, 768px and up):
+
+```css
+@media only screen and (min-width: 768px) { }
+```
+
+- Large devices (laptops/desktops, 992px and up):
+
+```css
+@media only screen and (min-width: 992px) { }
+```
+
+- Extra large devices (large laptops and desktops, 1200px and up):
+
+```css
+@media only screen and (min-width: 1200px) { }
+```
+
+
+
+## Logical Operators
+
+### AND (`and`)
+Combines multiple conditions. All conditions must be true.
+
+```css
+@media screen and (min-width: 768px) { }
+```
+
+### OR (`,`)
+Applies styles if any media query matches.
+
+```css
+@media (max-width: 600px), (orientation: portrait) { }
+```
+
+### NOT (`not`)
+Reverses the condition.
+
+```css
+@media not screen { }
+```
+
+### ONLY (`only`)
+Prevents older browsers from applying the styles.
+
+```css
+@media only screen and (max-width: 600px) { }
+```
+
+## Mobile-First Approach
+
+In the Mobile-First approach, we first write CSS for mobile devices and then use `min-width` media queries for larger screens.
+
+```css
+/* Mobile */
+.container {
+  width: 100%;
+}
+
+/* Tablet and above */
+@media (min-width: 768px) {
+  .container {
+    width: 80%;
+  }
+}
+```
+
+## Interview Definition
+
+Media Queries are a CSS feature used to create responsive web pages by applying different CSS styles based on device characteristics such as screen width, height, orientation, resolution, or media type. They ensure that websites look and work properly across mobiles, tablets, laptops, and desktops.
+
+
+
+
+
+
+
+
+
+
+==============================================
+
+### Cascading (in CSS)
+
+Cascading in CSS determines which styles are applied based on:
+
+1. Source Order: Later styles override earlier ones.
+2. Specificity: More specific selectors take precedence.
+3. Importance: `!important` rules override others.
+4. Inheritance: Some properties inherit values from parent elements.
+
+### Example
+
+css
+p { color: blue; }           /* General */
+.highlight p { color: red; } /* More specific */
+p { color: green !important; } /* Highest priority */
+
+
+### Summary
+- Cascading: The method of applying CSS rules based on order, specificity, importance, and inheritance.
+
+```
+
+==================================================================================
+
+### Ways to Apply CSS in HTML:
+
+1. **Inline CSS:**
+   - Applied directly within an HTML element using the `style` attribute.
+   - Example: `<h1 style="color: blue;">Heading</h1>`
+   - **Use for**: Quick, single-element styling.
+
+2. **Internal CSS:**
+   - Defined within the `<style>` tag inside the `<head>` section.
+   - Example:
+
+     <style>
+       h1 { color: blue; }
+     </style>
+
+     ```
+
+     ```
+
+   - **Use for**: Styling a single page.
+
+3. **External CSS:**
+   - external css by link tag add this tag in head section
+   - Linked via a separate `.css` file using `<link>` in the `<head>` section.
+   - Example: <link rel="stylesheet" type="text/css" href="styles.css">
+   - **Use for**: Large projects with reusable styles.
+
+   - **rel and href are mandatory**. -**type is optional (modern browsers default to text/css)**
+
+========================================================================
+
+
+### calc()
+
+The calc() is CSS function is used to perform mathematical calculations to determine CSS property values. It can be used to combine different units (e.g., percentages, pixels, ems) in a single  expression/property.
+
+- It is especially Useful for creating **responsive layouts** and **precise spacing**
+- It allows combining different units (e.g., `%`, `px`, `em`) in a single expression.
+- Works in most CSS properties like `width`, `height`, `margin`, `padding`, `font-size`, etc.
+- Must have **spaces** around operators (`+`, `-`, `*`, `/`).
+
+### **Example:**
+
+```css
+.container {
+  width: calc(100% - 200px);
+  padding: calc(1em + 10px);
+}
+```
+---------------------------------------------------------------
+
+
+
+### Why Use calc() in CSS?
+
+- To combine different units (e.g., % and px) in one property.
+- When a container needs to be a percentage of the parent but also needs to subtract some fixed space (like sidebars or padding).
+
+
+
+
+========================================================================
+
+# var() in CSS
+
+1. `var()` is a CSS function used to retrieve the value of a CSS custom property (CSS variable).
+
+2. The `var()` function helps make styles reusable, easier to maintain, and consistent across a website.
+
+3. CSS custom properties (variables) are defined using the `--` syntax.
+
+4. CSS custom properties are accessed using the var() function.
+
+5. CSS custom properties can be defined inside the `:root` pseudo-class to make them globally available.
+
+6. `:root` is a pseudo-class that targets the top-level `<html>` element.
+
+7. CSS variables can also be defined inside any selector (such as a class or element). In that case, they are only available within that selector and its child elements because CSS variables follow normal CSS inheritance rules.
+
+## Basic Syntax
+
+```css
+:root {
+  --primary-color: #0076ad;
+  --font-size: 16px;
+}
+
+body {
+  color: var(--primary-color);
+  font-size: var(--font-size);
+}
+```
+
+## var() with Fallback Value
+
+If the variable is not defined, a fallback value can be used.
+
+```css
+color: var(--primary-color, blue);
+```
+
+If `--primary-color` does not exist, the text color will be `blue`.
+
+
+---------------------------------------------------------------
+
+
+### 🔍 Breakdown:
+
+- `:root` is a pseudo-class that targets the top-level element (`<html>`), so variables are globally available.
+- `--primary-color` and `--font-size` are custom properties.
+- `var(--primary-color)` retrieves the value defined earlier.
+
+### 🔹 Q1: Is `:root` only a pseudo-class?
+
+Yes, `:root` **is a pseudo-class selector** in CSS.
+
+- It targets the **top-level element** in the DOM (usually the `<html>` element).
+- It’s just like using `html`, but has **higher specificity**, which is useful when overriding styles.
+
+```css
+:root {
+  --main-color: blue;
+}
+```
+
+So yes, `:root` is a **CSS pseudo-class** used primarily for defining global CSS variables.
+
+### 🔹 Q2: Are variables declared only globally?
+
+Not necessarily — CSS variables can be declared **anywhere**, not just globally.
+
+- **Global Scope**: Use `:root` to define variables available everywhere.
+
+```css
+:root {
+  --text-color: black;
+}
+```
+
+- **Local Scope**: You can define them inside any selector, and they’ll only work inside that scope.
+
+```css
+.card {
+  --text-color: red;
+  color: var(--text-color);
+}
+```
+
+🔄 So:
+
+- Variables are **not only global**.
+- Scope depends on **where you declare them**.
+
+### 🔹 Q3: Why use only `:root` to declare variables, not other ways?
+
+You **don’t have to** use only `:root`, but we **prefer it** for **global reuse**:
+
+- Declaring in `:root` makes them **available everywhere** in your stylesheet.
+- It's a clean way to manage **global theming**, like colors, fonts, spacing, etc.
+
+```css
+/* Reusable theme settings */
+:root {
+  --font-family: "Segoe UI", sans-serif;
+  --border-radius: 4px;
+}
+```
+
+But in some cases, declaring variables **locally** (in a `.class` or `#id`) is useful when you want **component-level control**.
+
+- **Reusability:** Define a value once and use it throughout your stylesheet.
+- **Maintainability:** Update a value in one place, and the change is reflected everywhere it's used.
+- **Consistency:** Ensure consistent styling by using the same variables for similar properties.
+- **Flexibility:** Easily adjust values for different themes or designs by changing variable values.
+- **Scoped Variables:** Variables can be defined at different levels (global or local) for fine-grained control over styling.
+
+
+-The var() function is used to insert the value of a CSS variable.
+
+In CSS, `var()` is used to reference **custom properties** (commonly called CSS variables). These are defined using the `--` syntax and can be reused throughout your stylesheet.
+
+
+
+================================================================================
+
+#### specificity
+
+- CSS Specificity is a system that decides which CSS style/rule is applied when multiple style/rules target the same element
+- The higher the specificity, the more "power" the style/rule has.
+
+- If two rules have the same specificity, the rule defined last wins and applied.
+- `!important` will override inline styles in CSS.
+
+- Universal selectors have the lowest priority.
+- Slightly more priority is given to element selectors and pseudo-elements.
+- A stronger priority is given to class selectors, attribute selectors, and pseudo-classes.
+- Even higher priority is given to ID selectors.
+- Inline styles written directly in the HTML have more power than any selector.
+- The `!important` rule overrides all other rules, even inline styles, and gives the highest priority.
+
+Universal Selector: 0
+Element selectors and pseudo-elements: 1
+Class selectors, attribute selectors, and pseudo-classes: 10
+ID selectors: 100
+Inline styles: 1000
+!important: !important will override other rules with higher specificity.
+
+The !important flag overrides all other CSS rules, regardless of their specificity, giving it the highest priority in the cascade
+
+
+
+================================================================================
+
+#### combinator
+
+- A combinator defines the relationship between two selectors in CSS  and  apply the styles more specific without needing extra classes or IDs.
+
+
+There are four different combinators in CSS:
+
+descendant selector (space)
+child selector (>) greater-than
+adjacent sibling selector (+)
+general sibling selector (~)
+
+### ✅ Final Quick Points to Remember:
+
+- `space` → any level inside (grandchild, great-grandchild, etc.)
+- `>` → only direct child
+- `+` → immediate next sibling
+- `~` → all next siblings
+
+### CSS Combinators (with ClassName Examples)
+
+🔹 **1 → Descendant Selector (`space`)**
+
+Represented by a space ( ) between selectors.
+Selects all descendant elements (children, grandchildren, and deeper descendants) of a specified ancestor
+
+- Selects **any child**, at any depth inside the parent.
+- Selects all matching descendants inside a parent
+
+- Example:  
+  `.parent .child` → Selects all elements with class `child` inside an element with class `parent`, no matter how deeply nested.
+
+<div class="parent">
+  <div>
+    <span class="child">Selected</span> <!-- selected -->
+  </div>
+</div>
+```
+
+🔹 **2 → Child Selector (`>`)**
+
+Represented by the greater-than symbol (>).
+Selects only the direct children of an element.
+The child combinator selects all elements that are direct children of a specified element.
+
+- Selects **only direct child**, not nested deeper.
+- Selects only direct children of a parent.
+- Example:  
+  `.parent > .child` → Selects only direct `.child` elements immediately inside `.parent`.
+
+<div class="parent">
+  <span class="child">Selected</span> <!-- selected -->
+  <div>
+    <span class="child">Not selected (nested deeper)</span>
+  </div>
+</div>
+```
+
+🔹 **3 → Adjacent Sibling Selector (`+`)**
+Represented by the plus sign (+).
+Adjacent Sibling Combinator (+) – Selects only the immediately following sibling element that shares the same parent.
+
+- It only selects the immediate next sibling — not the next-to-next.
+
+- Selects the **immediate next sibling** element.
+
+It selects only ONE element — the immediate next sibling after the first element.
+It does NOT select multiple siblings, only the first matching sibling directly after.
+
+- Example:  
+  `.parent + .sibling` → Selects the `.sibling` element **immediately after** `.parent`.
+
+<div class="parent"></div>
+<p class="sibling">Selected</p> <!-- selected (immediate sibling) -->
+<p class="sibling">Not selected</p>
+```
+
+🔹 **4 → General Sibling Selector (`~`)**
+
+- The General Sibling Selector (~) selects multiple elements that are siblings with the same parent and appear after the specified element.
+
+- Selects **all next siblings** that match, not just immediate.
+
+- Example:  
+  `.parent ~ .sibling` → Selects **all `.sibling` elements** after `.parent`.
+
+<div class="parent"></div>
+<p class="sibling">Selected</p> <!-- selected -->
+<p class="sibling">Selected</p> <!-- selected -->
+```
+
