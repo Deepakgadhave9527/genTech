@@ -1,0 +1,307 @@
+
+====================================================
+
+Here are short interview-friendly explanations:
+
+```bash
+sudo yum install nginx -y
+```
+
+> **Installs the Nginx web server package.**
+> `-y` automatically answers **Yes** to prompts.
+
+```bash
+sudo systemctl start nginx
+```
+
+> **Starts the Nginx service.**
+
+```bash
+sudo systemctl stop nginx
+```
+
+> **Stops the Nginx service.**
+
+```bash
+sudo systemctl status nginx
+```
+
+> **Checks whether the Nginx service is running or stopped.**
+
+**Note:** The correct command is `systemctl` (with the letter **l**), not `systemct|`.
+
+
+
+====================================================
+
+
+
+Yes, that's correct. Here's the interview-friendly explanation:
+
+* **Default Nginx Port:** `80` (HTTP)
+* **Default Website Directory:** `/usr/share/nginx/html`
+* **Default Web Page:** `index.html`
+
+**Interview answer:**
+
+> **By default, Nginx serves web content on port 80. The website files are stored in `/usr/share/nginx/html`, and the default page is `index.html`. To host a website, we place our `index.html` (or other website files) in this directory, and Nginx serves them to users.**
+
+Yes, that's correct. Here's the interview-friendly explanation:
+
+* **Default Nginx Port:** `80` (HTTP)
+* **Default Website Directory:** `/usr/share/nginx/html`
+* **Default Web Page:** `index.html`
+
+**Interview answer:**
+
+> **By default, Nginx serves web content on port 80. The website files are stored in `/usr/share/nginx/html`, and the default page is `index.html`. To host a website, we place our `index.html` (or other website files) in this directory, and Nginx serves them to users.**
+
+
+
+
+=========================================================================
+**SSH (Secure Shell)** is a **secure network protocol** used to **remotely connect to and manage a server**, such as an AWS EC2 instance.
+
+In simple terms:
+
+> **SSH lets you log in to a remote Linux server from your own computer using the command line.**
+
+### Example
+
+Suppose you have an EC2 instance running Linux.
+
+From your laptop, you can connect to it using SSH:
+
+```bash
+ssh -i my-key.pem ec2-user@3.90.100.50
+```
+
+Where:
+
+* `ssh` → the SSH command.
+* `my-key.pem` → your private key used for authentication.
+* `ec2-user` → the username (varies by Linux distribution).
+* `3.90.100.50` → the EC2 instance's public or Elastic IP address.
+
+Once connected, you can:
+
+* Install software
+* Create or edit files
+* Start or stop applications
+* Check logs
+* Manage the server
+
+### How SSH works
+
+```text
+Your Laptop  --SSH (Port 22)-->  EC2 Linux Server
+```
+
+* Your laptop sends a secure connection request.
+* The EC2 instance accepts it if:
+
+  * Port **22** is allowed in the Security Group.
+  * You provide the correct private key (or other valid credentials).
+
+### Why is SSH secure?
+
+SSH encrypts the communication between your computer and the server, so commands, passwords (if used), and data cannot be easily intercepted.
+
+### Interview answer
+
+> **SSH (Secure Shell) is a secure protocol used to remotely access and manage Linux servers over a network. In AWS, it is commonly used to connect to EC2 instances. SSH typically uses TCP port 22 and encrypts all communication between the client and the server.**
+
+### Common interview questions
+
+**Q: Which port does SSH use?**
+**A:** Port **22**.
+
+**Q: Why do we use SSH with EC2?**
+**A:** To securely log in to and manage a Linux EC2 instance remotely.
+
+**Q: What is a `.pem` file?**
+**A:** It's the private key file used to authenticate to an EC2 instance over SSH. AWS generates or lets you import a key pair, and you use the private key to prove your identity when connecting.
+
+=========================================================================
+There are a few typos in your commands. The correct commands are:
+
+```bash
+# Install Nginx
+sudo yum install nginx -y
+
+# Start Nginx
+sudo systemctl start nginx
+
+# Stop Nginx
+sudo systemctl stop nginx
+
+# Check Nginx status
+sudo systemctl status nginx
+
+# Restart Nginx
+sudo systemctl restart nginx
+
+# Reload Nginx (apply config changes without downtime)
+sudo systemctl reload nginx
+
+# Enable Nginx to start automatically on boot
+sudo systemctl enable nginx
+
+# Disable auto-start
+sudo systemctl disable nginx
+```
+
+### Explanation
+
+* `yum install nginx -y` → Installs the Nginx package. `-y` automatically answers "yes" to prompts.
+* `systemctl start nginx` → Starts the Nginx service.
+* `systemctl stop nginx` → Stops the service.
+* `systemctl status nginx` → Displays whether Nginx is running and shows logs.
+* `systemctl restart nginx` → Stops and starts the service again.
+* `systemctl reload nginx` → Reloads the configuration without interrupting existing connections.
+* `systemctl enable nginx` → Starts Nginx automatically whenever the server boots.
+
+For AWS EC2 interview preparation, these are the `systemctl` commands you should know:
+
+* `start`
+* `stop`
+* `restart`
+* `reload`
+* `status`
+* `enable`
+* `disable`
+
+
+=================================================================
+Yes, on most **Amazon Linux, RHEL, and CentOS** systems, the default web root for Nginx is:
+
+```bash
+/usr/share/nginx/html
+```
+
+This is where you place your `index.html` or other static website files.
+
+### Example
+
+```bash
+cd /usr/share/nginx/html
+
+# Create a simple webpage
+echo "<h1>Hello Nginx</h1>" > index.html
+```
+
+Then start Nginx:
+
+```bash
+sudo systemctl start nginx
+```
+
+Visit:
+
+```text
+http://<EC2-Public-IP>
+```
+
+---
+
+### Important Nginx Paths
+
+| Purpose                  | Default Path            |
+| ------------------------ | ----------------------- |
+| Web root (website files) | `/usr/share/nginx/html` |
+| Main configuration       | `/etc/nginx/nginx.conf` |
+| Server block configs     | `/etc/nginx/conf.d/`    |
+| Log files                | `/var/log/nginx/`       |
+
+### Interview Answer
+
+> "On Amazon Linux, the default Nginx website directory is `/usr/share/nginx/html`. We place our HTML, CSS, JavaScript, or other static files there. Nginx serves these files to users when they access the server on port 80 or 443."
+
+
+
+
+=========================================================================
+## `curl http://private-ip` – Interview Explanation
+
+### What is `curl`?
+
+`curl` is a **Linux command-line tool** used to send HTTP/HTTPS requests to a server and view the response.
+
+---
+
+### Example
+
+```bash
+curl http://10.0.2.15
+```
+
+Here:
+
+* `curl` → Sends an HTTP request.
+* `10.0.2.15` → Private IP of an EC2 instance.
+
+If a web server (Nginx/Apache) is running on that EC2, you'll get a response such as:
+
+```text
+Welcome to Nginx!
+```
+
+---
+
+## Why do we use `curl`?
+
+We use `curl` to:
+
+* Test whether a server is reachable.
+* Verify that a web application is running.
+* Check API responses.
+* Troubleshoot connectivity issues.
+
+---
+
+## When do we use it?
+
+Suppose you have:
+
+```text
+Public EC2
+      |
+      |
+Private EC2 (10.0.2.15)
+```
+
+SSH into the public EC2 (or Bastion Host) and run:
+
+```bash
+curl http://10.0.2.15
+```
+
+If you get:
+
+```text
+Welcome to Nginx!
+```
+
+It means:
+
+* ✅ Private EC2 is reachable.
+* ✅ Nginx is running.
+* ✅ Security Groups and Route Tables are configured correctly.
+
+---
+
+## Real Interview Scenario
+
+After deploying your application on a **private EC2**, you SSH into the **Bastion Host** and run:
+
+```bash
+curl http://10.0.2.15
+```
+
+If you receive the application's response, it confirms the application is working.
+
+---
+
+## Interview Answer
+
+> **"`curl` is a command-line tool used to send HTTP or HTTPS requests to a server. We use `curl http://private-ip` to test connectivity and verify that a web server or API running on a private EC2 instance is reachable from another server inside the VPC. It is commonly used for troubleshooting and health checks."**

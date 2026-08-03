@@ -65,9 +65,8 @@ Promises are used to handle asynchronous operations more effectively by avoiding
 ### Differences between Promise.all(), Promise.allSettled(), Promise.any(), and Promise.race()
 
 #### Promise.all()
-promise.all() is a static method that takes an array of promises
-thay Executes multiple promises in parallel 
-waits for all promises to fulfill and returns their results as an array. If any promise rejects, it rejects immediately.
+promise.all() is a static method that takes an array of promises thay Executes multiple promises in parallel waits for all promises to resolve and returns their results as an array. 
+If any promise rejects, it rejects immediately.
 
 
 
@@ -88,7 +87,9 @@ p and returns a single promise that resolves with an array of results when all p
 #### Promise.allSettled()
 
 
-Promise.allSettled() takes an array of promises and returns a single promise that resolves with an array of objects describing the outcome of each promise. 
+Promise.allSettled() takes an array of promises  and Executes multiple promises in parallel and waits for all of them to settle, meaning each promise either resolves or rejects.
+and returns a single promise with an array of objects describing the outcome of each promise. 
+
 Each object contains a status (fulfilled or rejected) and a value or reason. It never rejects.
 
 
@@ -108,9 +109,13 @@ Outputs:
 #### Promise.any()
 
 
-Promise.any() is a static method that takes an array of promises and returns a single promise that resolves as soon as the first promise is fulfilled. It ignores rejected promises unless all of them fail.
+Promise.any() is a static method that takes an array of promises a
+- Executes multiple promises in parallel and waits for any one of them to resolve.
+- Resolves as soon as any one of the input promises resolves. 
+- returns a single promise that resolves as soon as the first promise is fulfilled.
+- Rejects if all input promises reject. means It ignores rejected promises unless all of them fail.
 
-<!-- 
+
 
 1. Purpose: 
    - Executes multiple promises in parallel and waits for any one of them to resolve.
@@ -135,7 +140,9 @@ Promise.any() is a static method that takes an array of promises and returns a s
 Q: Why don't we start with the `new` keyword in `Promise.resolve()`?
 
 Answer:
-`Promise.resolve()` and `Promise.reject()` are static methods of the Promise class. Since they are static methods, they are called directly on the `Promise` class and do not require the `new` keyword.
+`Promise.resolve()` and `Promise.reject()` are static methods of the Promise class.
+
+ static methods, they are called directly on the `Promise` class and do not require the `new` keyword.
 
 ```javascript
 const p2 = Promise.reject("Error");  
