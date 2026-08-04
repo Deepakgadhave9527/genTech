@@ -1,6 +1,497 @@
+
+====================================================
+
+#### Interval → 
+
+The Interval is how often the Load Balancer checks whether your application is healthy.
+Default: `30 seconds`
+
+
+#### Timeout → 
+Timeout is how long ALB waits for a response from your application.
+
+Default: 5 seconds
+
+
+#### Healthy Threshold → 
+How many consecutive successful health checks are required before considering the server healthy?"
+
+(Default 5)
+
+#### Unhealthy Threshold → *> 
+
+"How many consecutive failed health checks before marking the server unhealthy?"
+
+Default: 2
+
+
+* Health Check Path → *Which URL to check?* (Default `/`)
+
+
+
+------------------------------------------------------------------------------------------
+
+# 1. Health Check Interval
+
+What is it?
+The Interval is how often the Load Balancer checks whether your application is healthy.
+
+Default: `30 seconds`
+
+Example:
+
+9:00:00  → Health Check
+9:00:30  → Health Check
+9:01:00  → Health Check
+9:01:30  → Health Check
+
+Every 30 seconds, the ALB sends an HTTP request to the health check path.
+
+You can change it from:
+
+* Minimum: 5 seconds
+* Maximum: 300 seconds (5 minutes)
+
+
+
+------------------------------------------------------------------------------------------
+
+# 2. Health Check Timeout
+
+Timeout is how long ALB waits for a response from your application.
+
+Default: 5 seconds
+
+Example:
+
+ALB -----> GET /
+          Waiting...
+
+Response comes in 2 sec
+✔ Healthy check passed
+
+Another example:
+
+ALB -----> GET /
+
+Waiting...
+
+1 sec
+2 sec
+3 sec
+4 sec
+5 sec
+
+No response
+❌ Health check failed
+
+
+------------------------------------------------------------------------------------------
+
+# 3. Healthy Threshold
+
+"How many consecutive successful health checks are required before considering the server healthy?"
+
+Default: 5
+
+Suppose a server has just started.
+
+Health checks:
+
+1st → Success
+2nd → Success
+3rd → Success
+4th → Success
+5th → Success
+
+After the 5th consecutive success, ALB marks it:
+
+Healthy ✅
+
+Then ALB starts sending client traffic.
+
+---
+
+If the sequence is:
+
+Success
+Success
+Success
+Fail
+Success
+
+The count resets because they are not consecutive.
+
+It must be:
+
+✔
+✔
+✔
+✔
+✔
+
+without interruption.
+
+---
+
+# 4. Unhealthy Threshold
+
+What is it?
+
+It tells ALB:
+
+> "How many consecutive failed health checks before marking the server unhealthy?"
+
+Default:
+
+2
+
+Example:
+
+1st check → Fail
+
+ALB says:
+
+> Maybe it's temporary.
+
+Next interval:
+
+2nd check → Fail
+
+Now ALB marks the target:
+
+Unhealthy ❌
+
+It stops sending client requests to that server.
+
+---
+
+If checks are:
+
+Fail
+Success
+Fail
+
+The server is not marked unhealthy because the failures are not consecutive.
+
+---
+
+# 5. Why Consecutive?
+
+Imagine a temporary network issue.
+
+Without consecutive checks:
+
+One timeout
+
+↓
+
+Immediately unhealthy
+
+That would be incorrect.
+
+So ALB verifies multiple times before changing the server's status.
+
+---
+
+# 6. Does ALB Stop Health Checks After Unhealthy?
+
+No.
+
+ALB keeps checking forever.
+
+Example:
+
+Server becomes unhealthy
+
+↓
+
+30 sec later
+Health Check
+
+↓
+
+30 sec later
+Health Check
+
+↓
+
+30 sec later
+Health Check
+
+Even though no user traffic is sent, ALB continues health checks.
+
+If the server recovers:
+
+Success
+Success
+Success
+Success
+Success
+
+After reaching the healthy threshold, ALB marks it healthy again and resumes sending traffic.
+
+---
+
+# 7. Complete Timeline Example
+
+Suppose:
+
+Interval = 30 sec
+Timeout = 5 sec
+Healthy Threshold = 5
+Unhealthy Threshold = 2
+
+Server crashes.
+
+9:00:00
+Health Check
+Wait 5 sec
+No response
+Fail (1)
+
+↓
+
+9:00:30
+Health Check
+Wait 5 sec
+No response
+Fail (2)
+
+↓
+
+Marked UNHEALTHY ❌
+
+Later, the server is fixed.
+
+9:01:00
+Success (1)
+
+9:01:30
+Success (2)
+
+9:02:00
+Success (3)
+
+9:02:30
+Success (4)
+
+9:03:00
+Success (5)
+
+↓
+
+Marked HEALTHY ✅
+
+---
+
+# 8. Health Check Path
+
+Suppose your application has:
+
+/
+
+and
+
+/dev
+
+Target Group configuration:
+
+Health Check Path = /
+
+ALB health checks:
+
+GET /
+
+every 30 seconds.
+
+It does not check:
+
+GET /dev
+
+because `/dev` is not configured as the health check path.
+
+---
+
+# 9. Can Users Still Access `/dev`?
+
+Yes.
+
+Suppose a user requests:
+
+http://ALB-DNS/dev
+
+Request flow:
+
+Client
+   │
+   ▼
+Application Load Balancer
+   │
+   ▼
+EC2 Instance
+   │
+   ▼
+/dev
+
+The ALB forwards the request to `/dev`.
+
+The only difference is:
+
+* Health checks use the configured health check path (e.g., `/`).
+* User requests are forwarded to whatever path the user requests (`/`, `/login`, `/dev`, `/api`, etc.).
+
+---
+
+# Summary Table
+
+| Setting                 | Default | Meaning                                                          |
+| ----------------------- | ------- | ---------------------------------------------------------------- |
+| Health Check Path   | `/`     | URL that ALB checks for health.                                  |
+| Interval            | 30 sec  | Time between health checks.                                      |
+| Timeout             | 5 sec   | Maximum wait time for a response.                                |
+| Healthy Threshold   | 5       | Consecutive successful checks required to mark a target healthy. |
+| Unhealthy Threshold | 2       | Consecutive failed checks required to mark a target unhealthy.   |
+
+Easy way to remember:
+
+* Interval → *When to check?* (Every 30 seconds)
+* Timeout → *How long to wait?* (5 seconds)
+* Healthy Threshold → *How many consecutive successes?* (Default 5)
+* Unhealthy Threshold → *How many consecutive failures?* (Default 2)
+* Health Check Path → *Which URL to check?* (Default `/`)
+
+
+
+====================================================
+====================================================
+Yes, exactly. The timeout happens within the 30-second interval, not after it.
+
+For example:
+
+* Interval = 30 seconds
+* Timeout = 5 seconds
+
+Timeline:
+
+```text
+9:00:00  ALB sends Health Check
+          │
+          ├── Waits up to 5 seconds for a response
+          │
+9:00:05  If no response → Timeout (this health check fails)
+          │
+          └── ALB does nothing until the next interval
+
+9:00:30  ALB sends the next Health Check
+
+So, during each 30-second interval:
+
+* The first 5 seconds are the maximum waiting time for the server's response (timeout).
+* The remaining 25 seconds are simply waiting until it's time for the next scheduled health check.
+
+If the server responds quickly, say in 1 second:
+
+```text
+9:00:00  Health Check sent
+9:00:01  200 OK ✅
+9:00:30  Next Health Check
+
+The ALB does not wait another 5 seconds if it already received the response. The timeout is only the maximum wait time.
+
+### Easy way to remember
+
+* Interval (30 sec) = "When should I start the next health check?"
+* Timeout (5 sec) = "How long should I wait for a response during this health check?"
+
+====================================================
+
+
+
+ In AWS (especially with an Application Load Balancer (ALB) and a Target Group), a server's Healthy or Unhealthy status depends on whether the load balancer's health checks succeed.
+
+
+AWS determines whether a target is Healthy or Unhealthy using health checks. If a server is running and responds successfully to the configured health check (such as HTTP 200), it is marked Healthy. If the server is stopped, the application is down, or the health check fails repeatedly, it is marked Unhealthy. For example, if 20 servers are registered and 5 are stopped or fail health checks, AWS marks 15 as Healthy and 5 as Unhealthy, and the Load Balancer sends traffic only to the 15 healthy servers.
+
+
+uppose you have 20 EC2 servers registered in a Target Group.
+
+Total servers: 20
+Running and responding correctly: 15
+Stopped/Down/Failed health check: 5
+
+Result:
+
+✅ Healthy Targets = 15
+❌ Unhealthy Targets = 5
+
+The ALB sends traffic only to the 15 healthy servers. It does not send traffic to the 5 unhealthy servers.
+====================================================
+
+who will determine checup loadnalner or target group
+
+The Target Group defines the health check configuration, but the Application Load Balancer actually performs the health checks on the registered targets. Based on the health check results, the ALB marks each target as Healthy or Unhealthy and routes traffic only to the healthy targets.
+
+
+
+The correct answer is:
+
+> The Load Balancer performs the health checks, but the health check configuration is defined in the Target Group.
+
+### How it works
+
+1. Target Group
+
+   * Stores the health check settings:
+
+     * Health Check Path (`/`)
+     * Protocol (HTTP/HTTPS)
+     * Port
+     * Interval (e.g., 30 sec)
+     * Timeout (e.g., 5 sec)
+     * Healthy Threshold
+     * Unhealthy Threshold
+
+2. Application Load Balancer (ALB)
+
+   * Reads the health check settings from the Target Group.
+   * Sends health check requests to each registered EC2 instance.
+   * Determines whether each target is Healthy or Unhealthy based on the configured rules.
+
+### Example
+
+Target Group
+-------------
+Path: /
+Interval: 30 sec
+Timeout: 5 sec
+Healthy Threshold: 5
+Unhealthy Threshold: 2
+
+          ↓ (Configuration)
+
+Application Load Balancer (ALB)
+          ↓
+Sends health checks to:
+
+EC2-1  → HTTP 200 → ✅ Healthy
+EC2-2  → Timeout  → ❌ Unhealthy
+EC2-3  → HTTP 200 → ✅ Healthy
+
+### Interview Answer
+
+> The Target Group defines the health check configuration, but the Application Load Balancer actually performs the health checks on the registered targets. Based on the health check results, the ALB marks each target as Healthy or Unhealthy and routes traffic only to the healthy targets.
+
+
+========
+
+"Not accessible from the internet" means users or clients outside the VPC cannot directly connect to the resource because it has only a private IP address.
+
+
+
 what is a VPC?
 
-A **Virtual Private Cloud (VPC)** is a logically isolated virtual network in AWS where you can launch and manage AWS resources such as EC2 instances, databases, and load balancers.
+A Virtual Private Cloud (VPC) is a logically isolated virtual network in AWS where you can launch and manage AWS resources such as EC2 instances, databases, and load balancers.
 
 With a VPC, you can control:
 
@@ -13,19 +504,19 @@ With a VPC, you can control:
 ====================================================
 
 
-* **VPC** → Region level ✅
-* **Subnet** → AZ level ✅
+* VPC → Region level ✅
+* Subnet → AZ level ✅
 
 =======================================================================
 
 ## AWS VPC CIDR Limits – Interview Explanation
 
-When creating a VPC in AWS, the **CIDR block size** has limits.
+When creating a VPC in AWS, the CIDR block size has limits.
 
 ### VPC CIDR Limits
 
-* **Minimum:** `/28`
-* **Maximum:** `/16`
+* Minimum: `/28`
+* Maximum: `/16`
 
 This means you can create a VPC with CIDRs like:
 
@@ -34,7 +525,7 @@ This means you can create a VPC with CIDRs like:
 * ✅ `10.0.0.0/24`
 * ✅ `10.0.0.0/28`
 
-But you **cannot** create:
+But you cannot create:
 
 * ❌ `10.0.0.0/15`
 * ❌ `10.0.0.0/29`
@@ -59,32 +550,32 @@ But you **cannot** create:
 | /27  | 32        |
 | /28  | 16        |
 
-> **AWS reserves 5 IP addresses in every subnet**, so usable IPs are slightly fewer than the total.
+> AWS reserves 5 IP addresses in every subnet, so usable IPs are slightly fewer than the total.
 
 ### Interview Answer
 
-> **"In AWS, the primary IPv4 CIDR block for a VPC must be between `/16` and `/28`. A `/16` VPC provides the largest address space, while a `/28` provides the smallest."**
+> "In AWS, the primary IPv4 CIDR block for a VPC must be between `/16` and `/28`. A `/16` VPC provides the largest address space, while a `/28` provides the smallest."
 
-**Note:** These limits apply to the **VPC's primary IPv4 CIDR block**. Subnets are created from that VPC CIDR and also have size constraints.
+Note: These limits apply to the VPC's primary IPv4 CIDR block. Subnets are created from that VPC CIDR and also have size constraints.
 
 
 ====================================================
 
 
 
-### **What is a Subnet? (Interview Answer)**
+### What is a Subnet? (Interview Answer)
 
-> **A subnet is a smaller network created from a VPC or a larger network by dividing its IP address range. It helps organize resources, improve security, and manage network traffic efficiently.**
+> A subnet is a smaller network created from a VPC or a larger network by dividing its IP address range. It helps organize resources, improve security, and manage network traffic efficiently.
 
-**Example:**
+Example:
 
 * VPC: `10.0.0.0/16`
 * Public Subnet: `10.0.1.0/24`
 * Private Subnet: `10.0.2.0/24`
 
-### **One-line answer (Best for interviews)**
+### One-line answer (Best for interviews)
 
-> **A subnet is a logical division of a VPC's IP address range used to group resources and control network access.**
+> A subnet is a logical division of a VPC's IP address range used to group resources and control network access.
 
 
 
@@ -105,34 +596,34 @@ A private subnet is a subnet that has no route to an Internet Gateway, so resour
 ====================================================
 
 
-## **Public Subnet (Technical Interview Notes)**
+## Public Subnet (Technical Interview Notes)
 
-1. Has a **Route Table entry (`0.0.0.0/0`) pointing to an Internet Gateway (IGW)**.
-2. Supports **inbound and outbound internet communication**.
-3. Used for **Web Servers, Bastion Hosts, Public Application Load Balancers (ALB), and NAT Gateways**.
-4. EC2 instances require a **Public IP or Elastic IP (EIP)** to communicate with the internet.
-5. **Security Groups and Network ACLs (NACLs)** control inbound and outbound traffic.
-6. Commonly hosts **internet-facing applications** that serve external users.
-7. **Less secure** because resources are exposed to the public internet and require strict security configurations.
-8. Traffic Flow: **Internet → IGW → Route Table → Public Subnet → EC2**
+1. Has a Route Table entry (`0.0.0.0/0`) pointing to an Internet Gateway (IGW).
+2. Supports inbound and outbound internet communication.
+3. Used for Web Servers, Bastion Hosts, Public Application Load Balancers (ALB), and NAT Gateways.
+4. EC2 instances require a Public IP or Elastic IP (EIP) to communicate with the internet.
+5. Security Groups and Network ACLs (NACLs) control inbound and outbound traffic.
+6. Commonly hosts internet-facing applications that serve external users.
+7. Less secure because resources are exposed to the public internet and require strict security configurations.
+8. Traffic Flow: Internet → IGW → Route Table → Public Subnet → EC2
 
 ---
 
-## **Private Subnet (Technical Interview Notes)**
+## Private Subnet (Technical Interview Notes)
 
-1. **Does not have a Route Table entry (`0.0.0.0/0`) pointing to an Internet Gateway (IGW)**.
-2. **No direct inbound internet access** is allowed.
-3. Used for **Application Servers, Databases (RDS), Cache (Redis), Internal APIs, and Microservices**.
-4. EC2 instances have **only Private IP addresses**.
-5. Outbound internet access (for updates, package installation, API calls) is provided through a **NAT Gateway** located in a public subnet.
-6. **Security Groups and NACLs** restrict access to trusted internal resources only.
-7. Provides **network isolation**, **reduced attack surface**, and **enhanced security** for backend workloads.
-8. Traffic Flow: **Private EC2 → NAT Gateway → IGW → Internet** (Outbound only)
+1. Does not have a Route Table entry (`0.0.0.0/0`) pointing to an Internet Gateway (IGW).
+2. No direct inbound internet access is allowed.
+3. Used for Application Servers, Databases (RDS), Cache (Redis), Internal APIs, and Microservices.
+4. EC2 instances have only Private IP addresses.
+5. Outbound internet access (for updates, package installation, API calls) is provided through a NAT Gateway located in a public subnet.
+6. Security Groups and NACLs restrict access to trusted internal resources only.
+7. Provides network isolation, reduced attack surface, and enhanced security for backend workloads.
+8. Traffic Flow: Private EC2 → NAT Gateway → IGW → Internet (Outbound only)
 
-### **Interview One-Liner**
+### Interview One-Liner
 
-* **Public Subnet:** Internet-facing subnet with a route to an **Internet Gateway (IGW)**.
-* **Private Subnet:** Internal subnet without a route to an **Internet Gateway**, using a **NAT Gateway** only for outbound internet access.
+* Public Subnet: Internet-facing subnet with a route to an Internet Gateway (IGW).
+* Private Subnet: Internal subnet without a route to an Internet Gateway, using a NAT Gateway only for outbound internet access.
 
 
 
@@ -140,19 +631,19 @@ A private subnet is a subnet that has no route to an Internet Gateway, so resour
 ====================================================
 ## Route Table (RT)
 
-A **Route Table (RT)** is a set of **rules (routes)** that determines **where network traffic should go** from a subnet.
+A Route Table (RT) is a set of rules (routes) that determines where network traffic should go from a subnet.
 
 ### Simple Definition (Interview)
 
-> **A Route Table contains routing rules that decide where traffic from a subnet is directed, such as to an Internet Gateway, NAT Gateway, or another network.**
+> A Route Table contains routing rules that decide where traffic from a subnet is directed, such as to an Internet Gateway, NAT Gateway, or another network.
 
 ### Why do we use a Route Table?
 
 It tells AWS:
 
 * If traffic is for the same VPC → send it locally.
-* If traffic is for the Internet → send it to the **Internet Gateway (IGW)**.
-* If traffic is from a private subnet to the Internet → send it to the **NAT Gateway**.
+* If traffic is for the Internet → send it to the Internet Gateway (IGW).
+* If traffic is from a private subnet to the Internet → send it to the NAT Gateway.
 * If traffic is for another network → send it to the appropriate target (such as a VPN or VPC peering connection).
 
 ### Example
@@ -181,29 +672,28 @@ Subnet
 Route Table
  ├── 10.0.0.0/16 → Local
  └── 0.0.0.0/0 → Internet Gateway
-```
 
 ### Interview Follow-up Questions
 
-**Q1. Is a Route Table attached to a VPC or a Subnet?**
+Q1. Is a Route Table attached to a VPC or a Subnet?
 
-* A Route Table is **created in a VPC**.
-* It is **associated with one or more subnets**.
+* A Route Table is created in a VPC.
+* It is associated with one or more subnets.
 
-**Q2. Can multiple subnets use the same Route Table?**
+Q2. Can multiple subnets use the same Route Table?
 ✅ Yes.
 
-**Q3. What is the default route in a Route Table?**
+Q3. What is the default route in a Route Table?
 
 * `10.0.0.0/16 → Local` (or whatever your VPC CIDR is). This route is added automatically.
 
 ### Easy Way to Remember
 
-* **Route Table = GPS / Map**
-* **Route = Direction**
-* **IGW = Internet Door**
+* Route Table = GPS / Map
+* Route = Direction
+* IGW = Internet Door
 
-The Route Table decides **where traffic goes**, and the Internet Gateway provides the **path to the Internet**.
+The Route Table decides where traffic goes, and the Internet Gateway provides the path to the Internet.
 
 
 
@@ -213,27 +703,27 @@ The Route Table decides **where traffic goes**, and the Internet Gateway provide
 
 ## Why do we need a Route Table?
 
-A **Route Table** is used to **tell traffic where to go**. It contains rules (routes) that determine how network traffic is forwarded.
+A Route Table is used to tell traffic where to go. It contains rules (routes) that determine how network traffic is forwarded.
 
 ### Simple interview answer
 
-> **A Route Table is used to control the path of network traffic from a subnet to its destination, such as the internet, another subnet, or another network.**
+> A Route Table is used to control the path of network traffic from a subnet to its destination, such as the internet, another subnet, or another network.
 
 ### Why do we need a Route Table?
 
-1. **Route traffic to the Internet**
+1. Route traffic to the Internet
 
-   * Send internet-bound traffic (`0.0.0.0/0`) to the **Internet Gateway (IGW)**.
+   * Send internet-bound traffic (`0.0.0.0/0`) to the Internet Gateway (IGW).
 
-2. **Enable private internet access**
+2. Enable private internet access
 
-   * Send internet-bound traffic from a private subnet to a **NAT Gateway**.
+   * Send internet-bound traffic from a private subnet to a NAT Gateway.
 
-3. **Communicate within the VPC**
+3. Communicate within the VPC
 
    * Allow resources in different subnets of the same VPC to communicate.
 
-4. **Connect to other networks**
+4. Connect to other networks
 
    * Route traffic to:
 
@@ -250,41 +740,40 @@ Public Route Table
 Destination      Target
 10.0.0.0/16      Local
 0.0.0.0/0        Internet Gateway (IGW)
-```
 
 * `10.0.0.0/16 → Local` means traffic inside the VPC stays within the VPC.
 * `0.0.0.0/0 → IGW` means all internet traffic goes to the Internet Gateway.
 
 ### Real-life analogy
 
-* **VPC** = A city.
-* **Subnet** = A neighborhood.
-* **Route Table** = A road map with directions.
-* **Internet Gateway** = The highway exit to the outside world.
+* VPC = A city.
+* Subnet = A neighborhood.
+* Route Table = A road map with directions.
+* Internet Gateway = The highway exit to the outside world.
 
 Without the road map (Route Table), vehicles (network packets) don't know which road to take.
 
 ### One-line interview answer
 
-> **We need a Route Table to define how traffic from a subnet reaches its destination, such as the internet, another subnet, or another network.**
+> We need a Route Table to define how traffic from a subnet reaches its destination, such as the internet, another subnet, or another network.
 
 
 ====================================================
 
-## **Internet Gateway (IGW) – Technical Interview Notes**
+## Internet Gateway (IGW) – Technical Interview Notes
 
-1. An **Internet Gateway (IGW)** is a **VPC-level** resource that enables communication between a **VPC and the public internet**.
-2. It is **attached to a VPC** (not to a subnet or EC2 instance).
-3. It allows **inbound and outbound internet traffic** for resources in **public subnets**.
-4. A **Route Table** must contain **`0.0.0.0/0 → Internet Gateway (IGW)`** for internet access.
-5. EC2 instances must have a **Public IP or Elastic IP (EIP)** to communicate with the internet through the IGW.
-6. The IGW performs **1:1 NAT (Network Address Translation)** by mapping the EC2's private IP to its public IP for internet communication.
-7. An IGW **does not provide security**. Security is enforced by **Security Groups** and **Network ACLs (NACLs)**.
-8. One **Internet Gateway can be attached to only one VPC at a time**, but it can serve **multiple public subnets** within that VPC.
+1. An Internet Gateway (IGW) is a VPC-level resource that enables communication between a VPC and the public internet.
+2. It is attached to a VPC (not to a subnet or EC2 instance).
+3. It allows inbound and outbound internet traffic for resources in public subnets.
+4. A Route Table must contain `0.0.0.0/0 → Internet Gateway (IGW)` for internet access.
+5. EC2 instances must have a Public IP or Elastic IP (EIP) to communicate with the internet through the IGW.
+6. The IGW performs 1:1 NAT (Network Address Translation) by mapping the EC2's private IP to its public IP for internet communication.
+7. An IGW does not provide security. Security is enforced by Security Groups and Network ACLs (NACLs).
+8. One Internet Gateway can be attached to only one VPC at a time, but it can serve multiple public subnets within that VPC.
 
 ---
 
-### **Traffic Flow**
+### Traffic Flow
 
 ```text
 Internet
@@ -296,13 +785,12 @@ Route Table (0.0.0.0/0 → IGW)
 Public Subnet
     │
 EC2 (Public IP)
-```
 
 ---
 
-### **Interview One-Liner**
+### Interview One-Liner
 
-> **An Internet Gateway (IGW) is a VPC-level component that enables communication between a VPC and the internet. It is attached to a VPC and is used by public subnets through Route Table entries.**
+> An Internet Gateway (IGW) is a VPC-level component that enables communication between a VPC and the internet. It is attached to a VPC and is used by public subnets through Route Table entries.
 
 What does an IGW do?
 
@@ -322,44 +810,48 @@ Works with route tables to direct traffic.
 
 
 ====================================================
-Here's a short interview-friendly explanation:
 
 ### 1. Public → Public
 
-* Both EC2 instances are in **public subnets**.
-* They can communicate using **public or private IP** (private IP is preferred within the same VPC).
+* Both EC2 instances are in public subnets.
+* They can communicate using public or private IP (private IP is preferred within the same VPC).
 
 ### 2. Private → Private
 
-* Both EC2 instances are in **private subnets**.
-* They communicate using **private IP addresses only**.
+* Both EC2 instances are in private subnets.
+* They communicate using private IP addresses only.
 * Traffic stays inside the VPC.
 
 ### 3. Public → Private
 
-* A **public EC2 (Bastion Host)** connects to a **private EC2** using its **private IP**.
-* This is used because a private EC2 **cannot be accessed directly from the internet**.
+* A public EC2 (Bastion Host) connects to a private EC2 using its private IP.
+* This is used because a private EC2 cannot be accessed directly from the internet.
 
 ### 4. Private → Internet
 
-* A private EC2 accesses the internet through a **NAT Gateway**.
-* The internet **cannot initiate** a connection to the private EC2.
+* A private EC2 accesses the internet through a NAT Gateway.
+* The internet cannot initiate a connection to the private EC2.
 
-**One-line interview answer:**
+One-line interview answer:
 
-> **Public-to-public** uses public/private IPs, **private-to-private** uses private IPs, **public-to-private** is done through a Bastion Host using the private IP, and **private-to-internet** uses a NAT Gateway.
+> Public-to-public uses public/private IPs, private-to-private uses private IPs, public-to-private is done through a Bastion Host using the private IP, and private-to-internet uses a NAT Gateway.
 
 
 ====================================================
 
+### 11. What is a NAT Gateway?
+provide secure internt to you privte server is nat gateway
 
-> **A NAT Gateway translates a private IP address to a public IP address and also translates the source port number (Port Address Translation - PAT), allowing multiple private instances to share a single public IP.**
+A NAT Gateway allows instances in a private subnet to access the internet (for updates, downloads, etc.) without allowing inbound internet connections.
+
+
+> A NAT Gateway translates a private IP address to a public IP address and also translates the source port number (Port Address Translation - PAT), allowing multiple private instances to share a single public IP.
 
 Or, in a shorter interview-friendly version:
 
-> **A NAT Gateway translates private IP addresses to a public IP address and performs Port Address Translation (PAT) so multiple private instances can access the internet using one public IP.**
+> A NAT Gateway translates private IP addresses to a public IP address and performs Port Address Translation (PAT) so multiple private instances can access the internet using one public IP.
 
-**Correction to your sentence:**
+Correction to your sentence:
 
 > ❌ "NAT translates private IP address and also enable the ephemeral port number."
 >
@@ -368,21 +860,21 @@ Or, in a shorter interview-friendly version:
 
 
 ====================================================
-**Interview answer (short):**
+Interview answer (short):
 
-> **A Load Balancer is a service that receives client requests and distributes them across multiple healthy servers to improve availability, scalability, and fault tolerance.**
+> A Load Balancer is a service that receives client requests and distributes them across multiple healthy servers to improve availability, scalability, and fault tolerance.
 
-**One-line answer:**
+One-line answer:
 
-> **A Load Balancer receives client requests and forwards them to healthy backend servers.**
+> A Load Balancer receives client requests and forwards them to healthy backend servers.
 
 
 
-> **A Load Balancer receives client requests and distributes them to healthy backend servers (targets) based on the configured routing algorithm and health checks.**
+> A Load Balancer receives client requests and distributes them to healthy backend servers (targets) based on the configured routing algorithm and health checks.
 
 Or, in a simpler version:
 
-> **A Load Balancer takes requests from clients and forwards them to healthy servers.** ✅
+> A Load Balancer takes requests from clients and forwards them to healthy servers. ✅
 
 The second version is perfectly fine for most interviews.
 
@@ -392,13 +884,13 @@ The second version is perfectly fine for most interviews.
 
 
 
-**Interview answer (short):**
+Interview answer (short):
 
-> **Auto Scaling automatically adds or removes EC2 instances based on traffic, CPU utilization, or other metrics to maintain performance and optimize cost.**
+> Auto Scaling automatically adds or removes EC2 instances based on traffic, CPU utilization, or other metrics to maintain performance and optimize cost.
 
-**One-line answer:**
+One-line answer:
 
-> **Auto Scaling automatically increases or decreases the number of EC2 instances based on demand.**
+> Auto Scaling automatically increases or decreases the number of EC2 instances based on demand.
 
 
 ====================================================
@@ -406,25 +898,25 @@ The second version is perfectly fine for most interviews.
 
 
 
-> **A Load Balancer distributes incoming traffic to healthy EC2 instances in an Auto Scaling Group. The Auto Scaling Group automatically increases or decreases the number of EC2 instances based on demand.**
+> A Load Balancer distributes incoming traffic to healthy EC2 instances in an Auto Scaling Group. The Auto Scaling Group automatically increases or decreases the number of EC2 instances based on demand.
 
 Or, if you want to explain both separately:
 
-* **Load Balancer:** Receives client requests and distributes them to healthy EC2 instances.
-* **Auto Scaling Group:** Automatically adds or removes EC2 instances based on traffic or demand.
+* Load Balancer: Receives client requests and distributes them to healthy EC2 instances.
+* Auto Scaling Group: Automatically adds or removes EC2 instances based on traffic or demand.
 
 This is a good interview answer.
 
 
 ====================================================
 
-**Interview answer (short):**
+Interview answer (short):
 
-> **A Target Group is a logical group of backend resources (such as EC2 instances) that receives traffic from a Load Balancer. The Load Balancer performs health checks and forwards requests only to healthy targets.**
+> A Target Group is a logical group of backend resources (such as EC2 instances) that receives traffic from a Load Balancer. The Load Balancer performs health checks and forwards requests only to healthy targets.
 
-**One-line answer:**
+One-line answer:
 
-> **A Target Group is a group of backend servers that a Load Balancer routes traffic to based on health checks.**
+> A Target Group is a group of backend servers that a Load Balancer routes traffic to based on health checks.
 
 
 A Target Group is a logical group of backend servers (EC2 instances) within a VPC. A Load Balancer sends client requests only to the servers registered in the Target Group, not to all servers in the VPC.
@@ -443,23 +935,22 @@ Client → Load Balancer → Target Group → Private EC2 instances
 
 ====================================================
 
-Yes. **Jump Host** and **Bastion Host** mean the same thing in most AWS interview contexts.
+Yes. Jump Host and Bastion Host mean the same thing in most AWS interview contexts.
 
 ### Interview answer:
 
-> **A Jump Host (Bastion Host) is a public EC2 instance used to securely access EC2 instances in private subnets via SSH or RDP.**
+> A Jump Host (Bastion Host) is a public EC2 instance used to securely access EC2 instances in private subnets via SSH or RDP.
 
 ### Why is it called a "Jump Host"?
 
-Because you **jump** from:
+Because you jump from:
 
 ```text
 Laptop → Jump Host (Public EC2) → Private EC2
-```
 
 ### Can you use multiple Jump Hosts?
 
-**Yes.** In production environments, you can have multiple Jump Hosts for:
+Yes. In production environments, you can have multiple Jump Hosts for:
 
 * High availability (if one fails, another is available)
 * Different Availability Zones
@@ -467,7 +958,7 @@ Laptop → Jump Host (Public EC2) → Private EC2
 
 So the short interview answer is:
 
-> **Yes. A Jump Host and Bastion Host are the same. You can deploy multiple Jump Hosts for high availability and better reliability.**
+> Yes. A Jump Host and Bastion Host are the same. You can deploy multiple Jump Hosts for high availability and better reliability.
 
 
 
@@ -477,14 +968,14 @@ A Bastion Host is a public EC2 instance used to securely access private EC2 inst
 
 
 ====================================================
-**Short answer: Yes, but it depends on how you're connecting.**
+Short answer: Yes, but it depends on how you're connecting.
 
 ### Using a Bastion Host (most common)
 
-1. SSH from your laptop to the **Bastion Host** using the `.pem` key.
-2. Then SSH from the Bastion Host to the **private EC2**.
+1. SSH from your laptop to the Bastion Host using the `.pem` key.
+2. Then SSH from the Bastion Host to the private EC2.
 
-The private EC2 must have your **public SSH key** (or the same EC2 key pair configured at launch). You **do not upload the `.pem` file to the private server**.
+The private EC2 must have your public SSH key (or the same EC2 key pair configured at launch). You do not upload the `.pem` file to the private server.
 
 Example:
 
@@ -494,11 +985,10 @@ ssh -i dev-key.pem ec2-user@<bastion-public-ip>
 
 # Bastion → Private EC2
 ssh ec2-user@<private-ip>
-```
 
 ### Interview answer:
 
-> **To connect to a private EC2 instance, we first connect to a Bastion Host using the SSH key. Then we SSH to the private EC2 using its private IP. We do not upload the `.pem` file to the private server.**
+> To connect to a private EC2 instance, we first connect to a Bastion Host using the SSH key. Then we SSH to the private EC2 using its private IP. We do not upload the `.pem` file to the private server.
 
 
 
@@ -520,7 +1010,7 @@ Yes, that's correct.
 
 The important interview point is:
 
-> **A Security Group is created inside a specific VPC and is permanently associated with that VPC. After creation, its VPC cannot be changed.**
+> A Security Group is created inside a specific VPC and is permanently associated with that VPC. After creation, its VPC cannot be changed.
 
 ### Example
 
@@ -532,62 +1022,62 @@ The important interview point is:
 
   * `db-sg` ✅
 
-You **cannot** move `web-sg` from **VPC-1** to **VPC-2**.
+You cannot move `web-sg` from VPC-1 to VPC-2.
 
 ### If you created it in the wrong VPC
 
 You must:
 
-1. Create a **new Security Group** in the correct VPC.
+1. Create a new Security Group in the correct VPC.
 2. Add the required inbound/outbound rules.
 3. Attach the new Security Group to your EC2 instance.
 
 ### One-line interview answer
 
-> **A Security Group is VPC-specific. Once it is created, its VPC cannot be changed. If it is created in the wrong VPC, we must create a new Security Group in the correct VPC.**
+> A Security Group is VPC-specific. Once it is created, its VPC cannot be changed. If it is created in the wrong VPC, we must create a new Security Group in the correct VPC.
 
 
 ====================================================
 
 
-**Why do we create a VPC (Virtual Private Cloud)?**
+Why do we create a VPC (Virtual Private Cloud)?
 
-A **VPC** is created to build your **own private network in the AWS Cloud**. It gives you complete control over how your resources communicate.
+A VPC is created to build your own private network in the AWS Cloud. It gives you complete control over how your resources communicate.
 
 ### Simple answer (Interview)
 
-> **A VPC is created to securely isolate and manage AWS resources by controlling IP addresses, subnets, routing, and internet access.**
+> A VPC is created to securely isolate and manage AWS resources by controlling IP addresses, subnets, routing, and internet access.
 
 ### Why do we need a VPC?
 
-1. **Network Isolation**
+1. Network Isolation
 
    * Your resources are separated from other AWS customers.
    * Like having your own private office in a large building.
 
-2. **Control IP Address Range**
+2. Control IP Address Range
 
    * You choose the CIDR block.
    * Example: `10.0.0.0/16`
 
-3. **Create Subnets**
+3. Create Subnets
 
-   * Divide the VPC into **public** and **private** subnets.
+   * Divide the VPC into public and private subnets.
    * Example:
 
      * Public subnet → Web Server
      * Private subnet → Database
 
-4. **Control Internet Access**
+4. Control Internet Access
 
-   * Use an **Internet Gateway (IGW)** for public resources.
-   * Use a **NAT Gateway** so private resources can access the internet without being directly exposed.
+   * Use an Internet Gateway (IGW) for public resources.
+   * Use a NAT Gateway so private resources can access the internet without being directly exposed.
 
-5. **Secure Communication**
+5. Secure Communication
 
-   * Use **Security Groups** and **Network ACLs** to control traffic.
+   * Use Security Groups and Network ACLs to control traffic.
 
-6. **Connect to Other Networks**
+6. Connect to Other Networks
 
    * Connect your office (on-premises) using VPN or Direct Connect.
    * Connect multiple VPCs using VPC Peering or Transit Gateway.
@@ -596,7 +1086,6 @@ A **VPC** is created to build your **own private network in the AWS Cloud**. It 
 
 Imagine you're building an e-commerce application.
 
-```
 AWS Cloud
 ┌─────────────────────────────┐
 │ VPC (10.0.0.0/16)           │
@@ -609,16 +1098,15 @@ AWS Cloud
 │  - Application Server       │
 │  - Database                 │
 └─────────────────────────────┘
-```
 
 Here:
 
-* Users access the **Web Server** through the internet.
-* The **Application Server** and **Database** stay private and secure.
+* Users access the Web Server through the internet.
+* The Application Server and Database stay private and secure.
 
 ### One-line interview answer
 
-> **We create a VPC to build a secure, isolated, and customizable virtual network in AWS where we can launch and manage cloud resources with full control over networking, security, and internet access.**
+> We create a VPC to build a secure, isolated, and customizable virtual network in AWS where we can launch and manage cloud resources with full control over networking, security, and internet access.
 
 
 
@@ -629,9 +1117,9 @@ Here:
 ====================================================
 ## What is a Proxy?
 
-A **Proxy Server** is an **intermediary (middleman)** between a client and a destination server.
+A Proxy Server is an intermediary (middleman) between a client and a destination server.
 
-Instead of connecting directly to a website or server, your request first goes to the **proxy server**, which then forwards it to the destination and returns the response.
+Instead of connecting directly to a website or server, your request first goes to the proxy server, which then forwards it to the destination and returns the response.
 
 ### Simple Diagram
 
@@ -639,7 +1127,6 @@ Instead of connecting directly to a website or server, your request first goes t
 Without Proxy
 
 Your Computer ─────────► Website
-```
 
 ```text
 With Proxy
@@ -648,7 +1135,6 @@ Your Computer ─► Proxy Server ─► Website
                     ▲
                     │
                Middleman
-```
 
 ### Why do we use a Proxy Server?
 
@@ -660,7 +1146,7 @@ Your Computer ─► Proxy Server ─► Website
 
 ### What is a Proxy Server IP?
 
-A **Proxy Server IP** is simply the **IP address of the proxy server**.
+A Proxy Server IP is simply the IP address of the proxy server.
 
 Example:
 
@@ -668,19 +1154,18 @@ Example:
 Your IP        : 192.168.1.10
 Proxy Server IP: 203.0.113.25
 Website sees   : 203.0.113.25
-```
 
-The destination website sees the **proxy's IP**, not your computer's IP.
+The destination website sees the proxy's IP, not your computer's IP.
 
 ### Types of Proxy
 
-1. **Forward Proxy**
+1. Forward Proxy
 
    * Used by clients.
    * Hides the client's IP.
    * Example: Company employees access the Internet through a corporate proxy.
 
-2. **Reverse Proxy**
+2. Reverse Proxy
 
    * Used by servers.
    * Hides backend servers from clients.
@@ -690,27 +1175,26 @@ The destination website sees the **proxy's IP**, not your computer's IP.
 
 | Component                  | Purpose                                                                                           |
 | -------------------------- | ------------------------------------------------------------------------------------------------- |
-| **Proxy Server**           | Middleman at the application layer; can hide client identity, filter, cache, and inspect traffic. |
-| **NAT Gateway**            | Allows private instances to access the Internet without exposing their private IPs.               |
-| **Internet Gateway (IGW)** | Connects a VPC to the Internet.                                                                   |
+| Proxy Server           | Middleman at the application layer; can hide client identity, filter, cache, and inspect traffic. |
+| NAT Gateway            | Allows private instances to access the Internet without exposing their private IPs.               |
+| Internet Gateway (IGW) | Connects a VPC to the Internet.                                                                   |
 
 ### Interview Answer (30 seconds)
 
-> **A proxy server is an intermediary between a client and a destination server. The client sends requests to the proxy, which forwards them to the destination and returns the response. A proxy is commonly used for security, caching, monitoring, filtering, and hiding the client's IP address. The proxy server IP is the IP address that external servers see instead of the client's IP.**
+> A proxy server is an intermediary between a client and a destination server. The client sends requests to the proxy, which forwards them to the destination and returns the response. A proxy is commonly used for security, caching, monitoring, filtering, and hiding the client's IP address. The proxy server IP is the IP address that external servers see instead of the client's IP.
 
 
 
-he main reason is **security and control**.
+he main reason is security and control.
 
 ### 1. Security (Most Common)
 
-Suppose your company has **1000 employees**.
+Suppose your company has 1000 employees.
 
 Without a proxy:
 
 ```text
 Employee → Internet
-```
 
 Every employee connects directly to the Internet.
 
@@ -718,7 +1202,6 @@ With a proxy:
 
 ```text
 Employee → Proxy → Internet
-```
 
 Now the company can:
 
@@ -735,15 +1218,13 @@ Your laptop might have:
 
 ```text
 192.168.1.10
-```
 
-This is a **private IP**. Companies usually don't want to expose details about their internal network.
+This is a private IP. Companies usually don't want to expose details about their internal network.
 
 Instead, the outside world only sees:
 
 ```text
 Proxy IP: 203.0.113.25
-```
 
 ---
 
@@ -762,7 +1243,6 @@ Employee → Proxy
               │
         Allowed? ── Yes → Internet
                  └─ No  → Block
-```
 
 ---
 
@@ -774,14 +1254,12 @@ Without proxy:
 
 ```text
 100 requests → Internet
-```
 
 With proxy:
 
 ```text
 1 request → Internet
 99 requests → Proxy Cache
-```
 
 This saves bandwidth and makes browsing faster.
 
@@ -789,15 +1267,15 @@ This saves bandwidth and makes browsing faster.
 
 ## AWS / Interview Perspective
 
-When someone asks **"Why do we use a proxy?"**
+When someone asks "Why do we use a proxy?"
 
 Answer:
 
-> **A proxy acts as a middleman between the client and the destination server. It is used to improve security, monitor and filter traffic, cache content for better performance, and present the proxy server's IP address to the destination instead of the client's IP.**
+> A proxy acts as a middleman between the client and the destination server. It is used to improve security, monitor and filter traffic, cache content for better performance, and present the proxy server's IP address to the destination instead of the client's IP.
 
 ### Easy one-line answer
 
-> **We use a proxy to provide security, control Internet access, and manage traffic before it reaches the Internet.**
+> We use a proxy to provide security, control Internet access, and manage traffic before it reaches the Internet.
 
 
 ====================================================
@@ -808,35 +1286,33 @@ Answer:
 
 ### HTTP (HyperText Transfer Protocol)
 
-* Used to transfer data between the **client (browser)** and the **server**.
-* Data is sent in **plain text**.
-* **Not secure** because attackers can intercept the data.
-* Uses **Port 80**.
+* Used to transfer data between the client (browser) and the server.
+* Data is sent in plain text.
+* Not secure because attackers can intercept the data.
+* Uses Port 80.
 
 Example:
 
 ```text
 Browser  ------HTTP------>  Server
-```
 
 ---
 
 ### HTTPS (HyperText Transfer Protocol Secure)
 
-* HTTPS is **HTTP + SSL/TLS encryption**.
-* Data is **encrypted** before being sent.
+* HTTPS is HTTP + SSL/TLS encryption.
+* Data is encrypted before being sent.
 * Protects sensitive information like:
 
   * Passwords
   * Credit card details
   * Banking information
-* Uses **Port 443**.
+* Uses Port 443.
 
 Example:
 
 ```text
 Browser  ====Encrypted====>  Server
-```
 
 ---
 
@@ -887,16 +1363,15 @@ Application Load Balancer
 HTTP (80) or HTTPS (443)
    |
 EC2
-```
 
-* The **Application Load Balancer (ALB)** usually terminates HTTPS using an **SSL/TLS certificate** (from AWS Certificate Manager).
-* Communication from the ALB to EC2 can be **HTTP** (inside a trusted private VPC) or **HTTPS** (for end-to-end encryption), depending on your security requirements.
+* The Application Load Balancer (ALB) usually terminates HTTPS using an SSL/TLS certificate (from AWS Certificate Manager).
+* Communication from the ALB to EC2 can be HTTP (inside a trusted private VPC) or HTTPS (for end-to-end encryption), depending on your security requirements.
 
 ---
 
 ## Interview Answer
 
-> **HTTP** is a protocol used to transfer data between a client and a server, but the data is sent in plain text over **port 80**. **HTTPS** is the secure version of HTTP that encrypts data using **SSL/TLS** and communicates over **port 443**. HTTPS is used in production applications, especially for login pages, banking, e-commerce, and any application that handles sensitive data.
+> HTTP is a protocol used to transfer data between a client and a server, but the data is sent in plain text over port 80. HTTPS is the secure version of HTTP that encrypts data using SSL/TLS and communicates over port 443. HTTPS is used in production applications, especially for login pages, banking, e-commerce, and any application that handles sensitive data.
 
 
 
@@ -909,23 +1384,23 @@ EC2
 Bastion Host is NOT used to create a public server.
 It is used to connect/access private servers from a public network securely.
 
-**Bastion Host** is a special EC2 instance used to securely access servers located in **private subnets** from the internet.
+Bastion Host is a special EC2 instance used to securely access servers located in private subnets from the internet.
 
 ### Key Points:
 
-1. **Secure Access**
+1. Secure Access
 
    * Private EC2 instances do not have public IP addresses.
    * We cannot directly SSH into private servers.
    * Bastion acts as a gateway/jump server.
 
-2. **Location**
+2. Location
 
-   * Bastion Host is placed in a **Public Subnet**.
-   * It has a **Public IP / Elastic IP**.
-   * Private servers remain in **Private Subnets**.
+   * Bastion Host is placed in a Public Subnet.
+   * It has a Public IP / Elastic IP.
+   * Private servers remain in Private Subnets.
 
-3. **Connection Flow**
+3. Connection Flow
 
 ```text
 Developer
@@ -938,9 +1413,8 @@ Bastion Host
     |
 Private EC2
 (Private Subnet)
-```
 
-4. **Security**
+4. Security
 
    * Security Group of Bastion:
 
@@ -954,20 +1428,20 @@ Private EC2
 > "A Bastion Host is a secure jump server used to access EC2 instances in private subnets. It is deployed in a public subnet with a public IP, and administrators connect to the Bastion first, then access private servers through it. This improves security by preventing direct internet access to private instances."
 
 =========================================================================
-An **Elastic IP (EIP)** in AWS is a **static public IPv4 address** that you can allocate to your AWS account and associate with resources such as an Amazon EC2 instance.
+An Elastic IP (EIP) in AWS is a static public IPv4 address that you can allocate to your AWS account and associate with resources such as an Amazon EC2 instance.
 
-Unlike the default public IP assigned to an EC2 instance, an Elastic IP **does not change** when you stop and start the instance (provided the EIP remains associated with it).
+Unlike the default public IP assigned to an EC2 instance, an Elastic IP does not change when you stop and start the instance (provided the EIP remains associated with it).
 
 ### Why use an Elastic IP?
 
-You use an Elastic IP when you need a **fixed, publicly reachable IP address**.
+You use an Elastic IP when you need a fixed, publicly reachable IP address.
 
 Common use cases include:
 
-* **Hosting websites or APIs** where clients, DNS records, or integrations expect a consistent IP address.
-* **Allowlisting (whitelisting)** your server's IP in firewalls, partner systems, or databases.
-* **Quick failover** by moving the Elastic IP from one EC2 instance to another if the original instance fails.
-* **Running VPNs or bastion hosts** that users connect to using a fixed IP address.
+* Hosting websites or APIs where clients, DNS records, or integrations expect a consistent IP address.
+* Allowlisting (whitelisting) your server's IP in firewalls, partner systems, or databases.
+* Quick failover by moving the Elastic IP from one EC2 instance to another if the original instance fails.
+* Running VPNs or bastion hosts that users connect to using a fixed IP address.
 
 ### Example
 
@@ -996,21 +1470,21 @@ With an Elastic IP:
 
 ### Things to keep in mind
 
-* Elastic IPs are **public IPv4 addresses**.
+* Elastic IPs are public IPv4 addresses.
 * AWS encourages using as few Elastic IPs as necessary because public IPv4 addresses are limited.
 * AWS may charge for Elastic IP usage depending on how it is allocated and used, so it's worth reviewing the current pricing before relying on them.
 
-In short, an **Elastic IP gives your AWS resource a permanent, movable public IP address**, making it useful whenever external systems need a stable address or when you want rapid recovery during instance failures.
+In short, an Elastic IP gives your AWS resource a permanent, movable public IP address, making it useful whenever external systems need a stable address or when you want rapid recovery during instance failures.
 
 =========================================================================
 Yes, that's correct.
 
-An **Elastic IP is not "created" just for you**. It is **allocated from AWS's pool of public IPv4 addresses**.
+An Elastic IP is not "created" just for you. It is allocated from AWS's pool of public IPv4 addresses.
 
 The process is:
 
 1. AWS owns a large pool of public IPv4 addresses.
-2. When you **allocate an Elastic IP**, AWS reserves one of those addresses and assigns it to your AWS account.
+2. When you allocate an Elastic IP, AWS reserves one of those addresses and assigns it to your AWS account.
 3. You can then associate that Elastic IP with an EC2 instance (or certain other supported resources).
 4. If you disassociate it, the IP remains reserved for your account until you release it back to AWS.
 
@@ -1018,38 +1492,36 @@ For example:
 
 * AWS public IP pool:
 
-  ```
-  3.10.1.1
+    3.10.1.1
   3.10.1.2
   3.10.1.3
   ...
-  ```
-* You allocate an Elastic IP.
+  * You allocate an Elastic IP.
 * AWS reserves `3.10.1.2` for your account.
 * You attach it to your EC2 instance.
 * Even if you stop and start the instance, `3.10.1.2` remains yours until you explicitly release it.
 
-This is different from the **default public IP** assigned to an EC2 instance. That address also comes from AWS's public IP pool, but it is **temporary**. If you stop and start the instance, AWS may return that IP to the pool and assign you a different one.
+This is different from the default public IP assigned to an EC2 instance. That address also comes from AWS's public IP pool, but it is temporary. If you stop and start the instance, AWS may return that IP to the pool and assign you a different one.
 
 So, a simple way to remember it is:
 
-* **Public IP** = temporarily assigned from AWS's pool.
-* **Elastic IP** = reserved from AWS's pool specifically for your AWS account until you release it.
+* Public IP = temporarily assigned from AWS's pool.
+* Elastic IP = reserved from AWS's pool specifically for your AWS account until you release it.
 
 =========================================================================
 For an interview, keep it simple and clear.
 
 ### What is Inbound Traffic?
 
-**Inbound traffic** is the traffic that **comes into an EC2 instance**.
+Inbound traffic is the traffic that comes into an EC2 instance.
 
-**Example:**
+Example:
 
 * A user opens your website.
 * Your laptop connects to the EC2 instance using SSH.
 * An application sends an API request to your server.
 
-**Interview answer:**
+Interview answer:
 
 > "Inbound traffic is incoming network traffic to an EC2 instance. It is controlled by inbound rules in the Security Group. For example, allowing HTTP (port 80) lets users access a website, and allowing SSH (port 22) lets administrators log in."
 
@@ -1057,15 +1529,15 @@ For an interview, keep it simple and clear.
 
 ### What is Outbound Traffic?
 
-**Outbound traffic** is the traffic that **leaves an EC2 instance**.
+Outbound traffic is the traffic that leaves an EC2 instance.
 
-**Example:**
+Example:
 
 * The EC2 instance downloads software updates.
 * The server calls an external API.
 * The server sends data back to a user's browser.
 
-**Interview answer:**
+Interview answer:
 
 > "Outbound traffic is network traffic leaving an EC2 instance. It is controlled by outbound rules in the Security Group. For example, an EC2 instance accessing the internet to download updates or call an external API."
 
@@ -1073,24 +1545,22 @@ For an interview, keep it simple and clear.
 
 ### Simple Interview Diagram
 
-```
                 Internet
                     |
         Inbound --->|----> EC2 Instance
                     |
         Outbound <--|<----
-```
 
-* **Internet → EC2** = **Inbound**
-* **EC2 → Internet** = **Outbound**
+* Internet → EC2 = Inbound
+* EC2 → Internet = Outbound
 
 ---
 
 ### Common Interview Question
 
-**Q: What are Security Groups?**
+Q: What are Security Groups?
 
-**Answer:**
+Answer:
 
 > "A Security Group is a virtual firewall for an EC2 instance. It controls inbound and outbound traffic by allowing specific ports, protocols, and IP addresses. Security Groups are stateful, meaning if inbound traffic is allowed, the response traffic is automatically allowed."
 
@@ -1098,9 +1568,9 @@ For an interview, keep it simple and clear.
 
 ### One-line definition to remember
 
-* **Inbound:** Traffic **coming into** the EC2 instance.
-* **Outbound:** Traffic **going out from** the EC2 instance.
-* **Security Group:** A **stateful firewall** that controls inbound and outbound traffic for an EC2 instance.
+* Inbound: Traffic coming into the EC2 instance.
+* Outbound: Traffic going out from the EC2 instance.
+* Security Group: A stateful firewall that controls inbound and outbound traffic for an EC2 instance.
 
 These concise definitions are commonly expected in AWS interviews.
 
@@ -1110,13 +1580,13 @@ These concise definitions are commonly expected in AWS interviews.
 
 
 =========================================================================
-You're referring to the **types (ranges) of TCP/UDP port numbers**. There are **3 categories**:
+You're referring to the types (ranges) of TCP/UDP port numbers. There are 3 categories:
 
 | Port Range        | Type                                    | Used For                                    |
 | ----------------- | --------------------------------------- | ------------------------------------------- |
-| **0 – 1023**      | **Well-Known (System) Ports**           | Standard services like HTTP, HTTPS, SSH     |
-| **1024 – 49151**  | **Registered Ports**                    | Applications registered with IANA           |
-| **49152 – 65535** | **Dynamic / Private / Ephemeral Ports** | Temporary ports used by client applications |
+| 0 – 1023      | Well-Known (System) Ports           | Standard services like HTTP, HTTPS, SSH     |
+| 1024 – 49151  | Registered Ports                    | Applications registered with IANA           |
+| 49152 – 65535 | Dynamic / Private / Ephemeral Ports | Temporary ports used by client applications |
 
 ### 1. Well-Known (System) Ports (0–1023)
 
@@ -1124,15 +1594,15 @@ Reserved for common internet services.
 
 Examples:
 
-* **20/21** – FTP
-* **22** – SSH
-* **23** – Telnet
-* **25** – SMTP
-* **53** – DNS
-* **80** – HTTP
-* **110** – POP3
-* **143** – IMAP
-* **443** – HTTPS
+* 20/21 – FTP
+* 22 – SSH
+* 23 – Telnet
+* 25 – SMTP
+* 53 – DNS
+* 80 – HTTP
+* 110 – POP3
+* 143 – IMAP
+* 443 – HTTPS
 
 ---
 
@@ -1142,12 +1612,12 @@ Used by applications and services registered with IANA.
 
 Examples:
 
-* **1433** – Microsoft SQL Server
-* **1521** – Oracle Database
-* **3306** – MySQL
-* **3389** – Remote Desktop (RDP)
-* **5432** – PostgreSQL
-* **8080** – Alternative HTTP port
+* 1433 – Microsoft SQL Server
+* 1521 – Oracle Database
+* 3306 – MySQL
+* 3389 – Remote Desktop (RDP)
+* 5432 – PostgreSQL
+* 8080 – Alternative HTTP port
 
 ---
 
@@ -1157,7 +1627,7 @@ Used temporarily by client operating systems when connecting to servers.
 
 Example:
 
-* Your browser may use port **55000** to connect to a web server on **port 443**.
+* Your browser may use port 55000 to connect to a web server on port 443.
 
 ---
 

@@ -1,6 +1,301 @@
 
 ====================================================
 
+# 1. Set secure permission for the private key
+chmod 400 <key-pair.pem>
+
+# 2. Connect to the remote server
+ssh -i <key-pair.pem> <username>@<server-private-ip>
+
+# Type "yes" if prompted for the first connection.
+
+# 3. Update installed packages (optional but recommended)
+sudo yum update -y
+
+# 4. Install the required package
+sudo yum install <package-name> -y
+
+# 5. Verify the installed package version
+<package-name> -v
+
+# 6. Start the service
+sudo systemctl start <service-name>
+
+# 7. Enable the service to start automatically after reboot
+sudo systemctl enable <service-name>
+
+# 8. Check the service status
+sudo systemctl status <service-name>
+
+# Press q to exit.
+
+# 9. Verify the service is listening on the expected port
+sudo ss -tlnp | grep :<port-number>
+
+# 10. Test the service locally
+curl http://localhost
+
+# OR test using the server's IP address
+curl http://<server-ip>
+
+# 11. Navigate to the application's working directory
+cd <directory-path>
+
+# 12. List files and directories
+ls -l
+
+# 13. Create or edit a file
+sudo vi <file-name>
+
+# Press i to enter Insert mode.
+# Add or modify the content.
+# Press Esc
+# Type :wq and press Enter to save and exit.
+
+# 14. Verify the file contents
+cat <file-name>
+
+# 15. Test the updated application or webpage
+curl http://localhost
+
+# OR
+curl http://<server-ip>
+
+# 16. Create a new directory
+sudo mkdir <directory-name>
+
+# 17. Navigate into the directory
+cd <directory-name>
+
+# 18. Create or edit another file
+sudo vi <file-name>
+
+# Press i
+# Add content.
+# Press Esc
+# Type :wq and press Enter.
+
+# 19. Verify the file
+cat <file-name>
+
+# 20. Test the new resource
+curl http://localhost/<resource-name>/
+
+# OR
+curl http://<server-ip>/<resource-name>/
+
+# 21. Return to the home directory
+cd ~
+
+# OR return to the previous directory
+cd ..
+
+# 22. Disconnect from the remote server
+exit
+
+
+### Meaning of placeholders
+
+* `<key-pair.pem>` → Your SSH private key file.
+* `<username>` → Login user (e.g., `ec2-user`, `ubuntu`, `admin`).
+* `<server-private-ip>` → Private IP of the remote server.
+* `<server-ip>` → Private or public IP used for testing.
+* `<package-name>` → Software to install (e.g., `nginx`, `httpd`, `git`).
+* `<service-name>` → Service to manage (e.g., `nginx`, `httpd`, `sshd`).
+* `<port-number>` → Port used by the service (e.g., `80`, `443`, `22`).
+* `<directory-path>` → Path where your application or files are stored.
+* `<directory-name>` → Name of a new folder.
+* `<file-name>` → Name of the file to create or edit.
+* `<resource-name>` → URL path or folder name (e.g., `dev`, `test`, `app`).
+
+These notes are generic and can be reused for **any Linux server**, not just Nginx or AWS.
+
+
+====================================================
+Here are the corrected commands in the proper order with the correct syntax.
+
+### 1. Go to your public EC2 instance
+
+```bash
+chmod 400 keypairconnect.pem
+```
+
+### 2. SSH into the private EC2 instance
+
+```bash
+ssh -i keypairconnect.pem ec2-user@10.0.128.237
+```
+
+Type:
+
+```text
+yes
+```
+
+when prompted.
+
+---
+
+## 3. Install Nginx
+
+```bash
+sudo yum install nginx -y
+```
+
+---
+
+## 4. Start Nginx
+
+```bash
+sudo systemctl start nginx
+```
+
+---
+
+## 5. Check Nginx status
+
+```bash
+sudo systemctl status nginx
+```
+
+Press **Q** to exit the status screen.
+
+---
+
+## 6. Test Nginx locally
+
+```bash
+curl http://localhost
+```
+
+or
+
+```bash
+curl http://<Private-IP>
+```
+
+Example:
+
+```bash
+curl http://10.0.128.237
+```
+
+---
+
+## 7. Go to the default web page directory
+
+```bash
+cd /usr/share/nginx/html
+```
+
+---
+
+## 8. Edit the default index page
+
+```bash
+sudo vi index.html
+```
+
+Press:
+
+```text
+i
+```
+
+to enter **Insert Mode**.
+
+Add your content, for example:
+
+```html
+<h1>Welcome to Private EC2</h1>
+```
+
+Press:
+
+```text
+Esc
+```
+
+Save and exit:
+
+```text
+:wq
+```
+
+---
+
+## 9. Create a new directory
+
+```bash
+sudo mkdir dev
+```
+
+---
+
+## 10. Go inside the directory
+
+```bash
+cd dev
+```
+
+---
+
+## 11. Create a new HTML file
+
+```bash
+sudo vi index.html
+```
+
+Press:
+
+```text
+i
+```
+
+Add content:
+
+```html
+<h1>Welcome to Dev Folder</h1>
+```
+
+Press:
+
+```text
+Esc
+```
+
+Save and exit:
+
+```text
+:wq
+```
+
+---
+
+## 12. Verify the file
+
+```bash
+cat index.html
+```
+
+---
+
+## 13. Go back to the home directory
+
+```bash
+cd ~
+```
+
+or
+
+```bash
+cd
+```
+
+This is the complete sequence of commands to connect to the private EC2 instance, install Nginx, start the service, edit the default webpage, create a new directory, and create another `index.html` file.
+
+====================================================
+
 Here are short interview-friendly explanations:
 
 ```bash
@@ -305,3 +600,333 @@ If you receive the application's response, it confirms the application is workin
 ## Interview Answer
 
 > **"`curl` is a command-line tool used to send HTTP or HTTPS requests to a server. We use `curl http://private-ip` to test connectivity and verify that a web server or API running on a private EC2 instance is reachable from another server inside the VPC. It is commonly used for troubleshooting and health checks."**
+
+
+========
+
+If you mean the **`vi` editor** in Linux/Unix, here are the most commonly used commands:
+
+### Open a file
+
+```bash
+vi filename
+```
+
+### Modes in `vi`
+
+* **Command mode** (default): Navigate and execute commands.
+* **Insert mode**: Type and edit text.
+* Press **`Esc`** to return to Command mode.
+
+### Enter Insert Mode
+
+```text
+i   Insert before cursor
+I   Insert at beginning of line
+a   Append after cursor
+A   Append at end of line
+o   Open a new line below
+O   Open a new line above
+```
+
+### Save and Exit
+
+```text
+:w      Save
+:q      Quit
+:wq     Save and quit
+:x      Save and quit
+ZZ      Save and quit
+:q!     Quit without saving
+```
+
+### Delete
+
+```text
+dd      Delete current line
+x       Delete one character
+D       Delete from cursor to end of line
+```
+
+### Copy and Paste
+
+```text
+yy      Copy (yank) current line
+5yy     Copy 5 lines
+p       Paste below
+P       Paste above
+```
+
+### Undo and Redo
+
+```text
+u       Undo
+Ctrl + r   Redo
+```
+
+### Search
+
+```text
+/text   Search forward for "text"
+?text   Search backward
+n       Next match
+N       Previous match
+```
+
+### Navigation
+
+```text
+gg      Go to first line
+G       Go to last line
+10G     Go to line 10
+0       Beginning of line
+$       End of line
+```
+
+### Interview Tip
+
+The most commonly asked `vi` commands are:
+
+* `i` → Insert mode
+* `Esc` → Command mode
+* `:w` → Save
+* `:q` → Quit
+* `:wq` → Save and quit
+* `:q!` → Quit without saving
+* `dd` → Delete line
+* `yy` → Copy line
+* `p` → Paste
+* `u` → Undo
+* `/text` → Search
+* `gg` → First line
+* `G` → Last line
+======
+
+`chmod` stands for **Change Mode**. It is a Linux command used to **change the permissions** of a file or directory.
+
+### Syntax
+
+```bash
+chmod permissions filename
+```
+
+### File permissions
+
+There are three types of permissions:
+
+* **r** = Read
+* **w** = Write
+* **x** = Execute
+
+And three types of users:
+
+* **u** = User (owner)
+* **g** = Group
+* **o** = Others
+
+---
+
+### Examples
+
+#### Give execute permission to the owner
+
+```bash
+chmod u+x script.sh
+```
+
+#### Remove write permission from others
+
+```bash
+chmod o-w file.txt
+```
+
+#### Give everyone read permission
+
+```bash
+chmod a+r file.txt
+```
+
+(`a` means **all**: user, group, and others.)
+
+---
+
+### Numeric permissions
+
+| Number | Permission                 |
+| ------ | -------------------------- |
+| 7      | rwx (Read, Write, Execute) |
+| 6      | rw- (Read, Write)          |
+| 5      | r-x (Read, Execute)        |
+| 4      | r-- (Read only)            |
+| 0      | --- (No permissions)       |
+
+Example:
+
+```bash
+chmod 755 script.sh
+```
+
+This means:
+
+* Owner = **7** = `rwx`
+* Group = **5** = `r-x`
+* Others = **5** = `r-x`
+
+```text
+Owner   Group   Others
+ rwx      r-x      r-x
+```
+
+Another example:
+
+```bash
+chmod 644 file.txt
+```
+
+Permissions become:
+
+* Owner = `rw-`
+* Group = `r--`
+* Others = `r--`
+
+---
+
+### Interview definition
+
+> **`chmod` is a Linux command used to change the read, write, and execute permissions of files and directories.**
+========
+
+
+
+> **`ssh -i key-pair.pem ec2-user@private_ip_address` is used to securely log in to a private EC2 instance using SSH and a private key. It is typically run from another machine that already has access to the VPC, such as a bastion host or a VPN-connected computer.**
+
+
+
+
+The command:
+
+```bash
+chmod 400 file-name.pem
+```
+
+is commonly used in AWS to secure an SSH private key (`.pem` file).
+
+### What does `400` mean?
+
+`400` sets the permissions as:
+
+```text
+Owner   Group   Others
+ r--      ---      ---
+```
+
+* **Owner**: Read only (`4`)
+* **Group**: No permissions (`0`)
+* **Others**: No permissions (`0`)
+
+### Why is this used?
+
+When you connect to an EC2 instance using SSH:
+
+```bash
+ssh -i file-name.pem ec2-user@<public-ip>
+```
+
+SSH requires that your private key is **not accessible by other users**. If the key is too permissive, you'll see an error like:
+
+```text
+WARNING: UNPROTECTED PRIVATE KEY FILE!
+Permissions 0644 for 'file-name.pem' are too open.
+```
+
+Running:
+
+```bash
+chmod 400 file-name.pem
+```
+
+fixes this by making the private key readable **only by you**.
+
+### Interview answer
+
+> **`chmod 400 file-name.pem` changes the permissions of the private key so that only the file owner can read it. This secures the key and satisfies SSH's security requirement for connecting to an EC2 instance.**
+=========
+
+The command:
+
+```bash
+ssh -i key-pair.pem ec2-user@private_ip_address
+```
+
+is used to **securely connect to an EC2 instance that has a private IP address**.
+
+### Breaking down the command
+
+```bash
+ssh
+```
+
+* **SSH (Secure Shell)** is a protocol used to securely log in to a remote Linux server.
+
+```bash
+-i key-pair.pem
+```
+
+* `-i` tells SSH to use the specified **private key** (`.pem` file) for authentication.
+* This key pair was created when you launched the EC2 instance.
+
+```bash
+ec2-user
+```
+
+* This is the **username** for the EC2 instance.
+* For **Amazon Linux**, the default user is `ec2-user`.
+* Other AMIs use different usernames, for example:
+
+  * Ubuntu → `ubuntu`
+  * Debian → `admin` or `debian`
+  * CentOS → `centos`
+
+```bash
+@private_ip_address
+```
+
+* This is the **private IP address** of the EC2 instance (for example, `10.0.1.15`).
+* A private IP is only reachable from **inside the VPC** or through a **VPN**, **AWS Direct Connect**, or a **bastion host**.
+
+### Why is it used in AWS?
+
+Private EC2 instances are often used for:
+
+* Databases
+* Application servers
+* Backend services
+
+These instances **do not have public IP addresses** for security reasons.
+
+Instead of exposing them to the internet, you connect from:
+
+* Another EC2 instance in the same VPC (such as a bastion host), or
+* A VPN or AWS Direct Connect connection into the VPC.
+
+Example:
+
+```text
+Your Laptop
+     |
+     | SSH
+     v
+Bastion Host (Public Subnet)
+     |
+     | SSH
+     v
+Private EC2 (Private IP)
+```
+
+The second SSH command is:
+
+```bash
+ssh -i key-pair.pem ec2-user@10.0.1.15
+```
+
+### Interview answer

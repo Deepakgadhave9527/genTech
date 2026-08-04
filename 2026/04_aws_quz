@@ -207,6 +207,7 @@ An **Internet Gateway (IGW)** allows communication between resources in a VPC an
 ---
 
 ### 11. What is a NAT Gateway?
+provide secure internt to you privte server is nat gateway
 
 A **NAT Gateway** allows instances in a **private subnet** to access the internet (for updates, downloads, etc.) without allowing inbound internet connections.
 
