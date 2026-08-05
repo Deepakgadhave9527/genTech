@@ -15,6 +15,30 @@
 # ===========================================
 # ===========================================
 # ===========================================
+
+
+```
+
+Shallow cloning copies only the top level; nested objects are shared.
+
+
+- Copies only the top-level properties of an object.  
+- Nested objects or arrays are referenced, not cloned.  
+- Changes in nested structures reflect in both original and cloned objects.  
+
+-In shallow cloning only direct/main object gets cloned but not the object
+which are referred by the properties of main object.
+
+-changing value of cloned object will be refect into
+orginal object as well because both are point same refrance object
+
+
+
+Shallow cloning Only the top-level properties of an object are cloned it does not clone nested objects
+ — it only copies their references. 
+ This means that if you change a nested object property in either the original or the clone,
+the change will affect both, because they both point to the same reference object.
+
 ===============================================================================
 
 What is the box model in CSS?

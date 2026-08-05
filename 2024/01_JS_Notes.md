@@ -1,3 +1,71 @@
+====================== functions====================================
+
+
+function greet(name) { // 'name' is a parameter
+    console.log('Hello, ' + name);
+}
+
+greet('Alice'); // 'Alice' is an argument
+
+
+function sum(a, b) {  // 'a' and 'b' are parameters
+  return a + b;
+}
+
+console.log(sum(5, 10));  // '5' and '10' are arguments
+
+
+
+```javascript
+// Parameters (in function definition)
+// Arguments (when calling function)
+```
+
+### 🔹 Meaning:
+
+* Parameters → written inside function definition
+* Arguments → passed when calling the function
+
+Remember this simple rule:
+
+Outside an object → Function
+Inside an object → Method
+
+
+
+======================================Rest operator:-========================
+
+
+Rest operator:-
+
+
+The rest operator (...) is used in function parameters to collect all remaining arguments into a single array. 
+It allows a function to accept a variable number of arguments.
+
+The rest parameter (...args) must always be the last parameter
+You cannot place anything after it (d after ...args is not allowed)
+it will throw error SyntaxError: Rest parameter must be last formal parameter
+
+
+
+Example:
+
+function add(a, b, ...args) {
+console.log(a, b);
+console.log(args);
+}
+
+add(10, 20);
+add(10, 20, 30, 40, 50);
+
+
+
+
+
+-The rest operator is used to store all the arguments which do not have matching parameters.
+-The rest is an array.
+-Rest operator basic help to pass infinite number of argument in a function
+
 
 ======================================================================
 ### ⏱️ Short Answer:
@@ -795,10 +863,10 @@ let and const var keywords
 
 ### var
 
-`var` is **function-scoped** and **hoisted**, meaning its declaration is moved to the top of its scope and initialized with `undefined`. Only the declaration is hoisted, not the value assignment. 
-A `var` variable can be **reassigned** and **redeclared** in the same scope. 
+`var` is function-scoped and hoisted, meaning its declaration is moved to the top of its scope and initialized with `undefined`. Only the declaration is hoisted, not the value assignment. 
+A `var` variable can be reassigned and redeclared in the same scope. 
 
-Since it is **not block-scoped**, variables declared inside `if` or `for` blocks are still accessible outside those blocks. Because of these behaviors, `let` and `const` are preferred in modern JavaScript.
+Since it is not block-scoped, variables declared inside `if` or `for` blocks are still accessible outside those blocks. Because of these behaviors, `let` and `const` are preferred in modern JavaScript.
 
 
 ### `let`:
@@ -1064,16 +1132,23 @@ but we cannot change primitive values?
 - primitives and non-primitives (objects and arrays) behave differently in memory.
   
  - Primitive values (like `number`, `string`, `boolean`) are stored directly in the variable, not as references.
- - Primitive values are immutable by nature. When you use `const` with a primitive, you cannot change its value.
- - Any "change" creates a new primitive value and tries to reassign the variable.
+ 
+ - When we use `const` with a primitive, we cannot change its value because of any "change" creates a new primitive value and tries to reassign the variable.
+
  - Reassignment is not allowed with `const` because `const` is designed to prevent reassignment.
 
- Non-primitive values (objects and arrays) are stored by reference in memory.
- `const` prevents changing the reference, but not the internal structure it points to.
- For example, you can modify properties or array elements because the variable still points to the same object in memory.
+- Primitive values are immutable by nature. 
 
 
-```javascript
+
+ Non-primitive values (objects and arrays) are stored/accessed through reference in memory.
+ 
+const prevents changing the reference, but contents can be changed
+
+For example, we  can modify object properties or array elements because the variable still points to the same  reference in the  memory.
+
+\const prevents reassignment of the variable, but it does not make the object immutable. We can still modify the properties or elements inside the object.
+
 // Primitive
 const num = 10;
 // num = 20; // ❌ TypeError: Assignment to constant variable.
@@ -1233,54 +1308,55 @@ Explanation:
 * Both variables point to the same object.
 * Any change made through one variable is visible through the other.
 
+=========================================
+
+Because primitive values are copied by value, not by reference so varible value be same 
+Objects are reference types. When a property contains an object, the reference (memory address) is copied, not the object itself. variable will change value
+
+You're very close. Here's the interview-friendly explanation:
+
+### Primitive Values
+
+> Primitive values are copied by value, not by reference.
+> Both variables initially have the same value, but they are stored independently, so changing one does not affect the other.
+
+Example:
+
+```javascript
+let a = 10;
+let b = a;
+
+b = 20;
+
+console.log(a); // 10
+console.log(b); // 20
+```
+
+---
+
+### Objects (Non-Primitive Values)
+
+> Objects are copied by reference, not by value.
+> Both variables point to the same object in memory, so changing the object's properties through one variable is reflected in the other.
+
+Example:
+
+```javascript
+const obj1 = { name: "John" };
+const obj2 = obj1;
+
+obj2.name = "Alice";
+
+console.log(obj1.name); // Alice
+console.log(obj2.name); // Alice
+```
+
+One-line interview rule:
+
+* Primitive → copied by value → changes don't affect the original.
+* Non-primitive (Object/Array) → copied by reference → changes affect the original.
 
 
-
-//============================== Noraml function vs arrow function =========================
-
-
-### When to use which function (best practices)
-
-Use arrow functions for callbacks, array methods, or when you want to inherit this.
-Use normal functions for constructors, class/object methods, or when you need this, arguments, or super.
-
--Arrow functions don’t have their own this. They inherit it from the parent scope. So inside an object, this won’t refer to the object.
-
-
---------------------------------------------------
-
-A]Noraml function
-
-- This inside a normal function is dynamic and depends on how the function is called (call-site).>
-- Normal functions are created using function declarations or function expressions.
-- Noraml functions are constructible, invoked with the new keyword
-- Noraml functions used have duplicate named parameters
-- Normal function declarations are hoisted, meaning they can be called before they are defined in the code.
-- Normal functions have an arguments object that holds all passed arguments.
-- In non-strict mode, duplicate parameters are allowed
-- In strict mode, they are not allowed
-
-
-B]Arrow function
-
--Arrow functions do not have their own this context.
--They inherit this from the lexical scope (the context in which they are defined).
--Arrow functions are not hoisted because they are expressions assigned to variables
--arrow function cannot be used as a constructor. NOT invoked with the new keyword
--Arrow functions can never have duplicate named parameters, whether in strict or non-strict mode.
-- Arrow functions don’t have their own arguments object. Use rest parameters (...args) to get all arguments.
-
-
--Arrow function — also called fat arrow function
-
--Curly brackets arent required if only one expression is present.
-let add = (x, y) => x + y;
-
--If theres only one argument, then the parentheses are not required either:
-let squareNum = x => x * x;
-
-arrow functions do not have their own this value.
-Instead, they inherit the this value from the enclosing lexical scop
 
 
 //============================== call,apply,bind =========================
@@ -1290,8 +1366,7 @@ Instead, they inherit the this value from the enclosing lexical scop
 A] call():
 
 - Call method is predefined method in JavaScript
-
--call() is used to execute a function with a specified object as this.
+- call() method is used to execute a function with a specified object as this.
  It invokes the function immediately and accepts arguments individually.
 
  - An object can use a method belonging to another object
@@ -1329,7 +1404,7 @@ var employee2 = {
 employee1.invite.call(employee2, "Hello", "World"); // Hello Jimmy Baily, World
 ```
 
-
+------------------------------------------------------------
 
 B] apply():
 
@@ -1351,22 +1426,41 @@ invite.apply(employee1, ['Hello', 'How are you?']); // Hello John Rodson, How ar
 invite.apply(employee2, ['Hello', 'How are you?']); // Hello Jimmy Baily, How are you?
 ```
 
+------------------------------------------------------------
 
 
 C] bind():
+bind() is a method that creates and returns a new function with a specified object as this value. 
+Unlike call() and apply(), it does not execute the function immediately. 
+Instead, it returns a new function that can be invoked later.
 
-
-bind() is a method used to create a creates and returns a new function with a specified this value. 
-Unlike call() and apply(), it does not execute the function immediately.
-
-bind() is a method used to create a new function with a specified object as this.
 
 The main reason we use bind() in projects is to prevent losing the correct this value.
 
+```js
+const person = {
+  name: "John",
+};
+
+function greet(city) {
+  console.log(`Hi, I'm ${this.name} from ${city}`);
+}
+
+// bind() creates and returns a new function
+const boundGreet = greet.bind(person);
+
+// Function is executed later
+boundGreet("Mumbai");
+
+bind() is commonly used when passing object methods as callbacks, such as in event listeners, timers (setTimeout), or promises, to ensure that this continues to refer to the intended object."
 
 
 
+--------------------------------------------------------------------------------------------------------
 
+
+
+bind() is a method used to create a new function with a specified object as this.
 - bind() method we can bind an object to a common function so that the 
   function gives different result when it needs
 
@@ -1524,55 +1618,6 @@ Binding inside `render()` is discouraged because it creates a new function every
 
 
 
-=========================================
-
-Because primitive values are copied by value, not by reference so varible value be same 
-Objects are reference types. When a property contains an object, the reference (memory address) is copied, not the object itself. variable will change value
-
-You're very close. Here's the interview-friendly explanation:
-
-### Primitive Values
-
-> **Primitive values are copied by value, not by reference.**
-> Both variables initially have the same value, but they are stored independently, so changing one does not affect the other.
-
-Example:
-
-```javascript
-let a = 10;
-let b = a;
-
-b = 20;
-
-console.log(a); // 10
-console.log(b); // 20
-```
-
----
-
-### Objects (Non-Primitive Values)
-
-> **Objects are copied by reference, not by value.**
-> Both variables point to the same object in memory, so changing the object's properties through one variable is reflected in the other.
-
-Example:
-
-```javascript
-const obj1 = { name: "John" };
-const obj2 = obj1;
-
-obj2.name = "Alice";
-
-console.log(obj1.name); // Alice
-console.log(obj2.name); // Alice
-```
-
-**One-line interview rule:**
-
-* **Primitive → copied by value → changes don't affect the original.**
-* **Non-primitive (Object/Array) → copied by reference → changes affect the original.**
-
-
 
 
 ================================== Object cloning=============================================
@@ -1585,19 +1630,11 @@ There are 2 types of object cloning
 
 ### Shallow Cloning  
 
-A shallow clone creates a new object, but any nested objects or arrays are copied by reference,
- so they are still shared with the original object.
+1] A shallow clone creates a new object by cloning only the top-level properties. Any nested objects or arrays are not cloned; instead their references are copied .
 
-If you change a nested object or array in the shallow copy, 
- the change will also be reflected in the original object because both objects share the same reference.
+2] As a result, the original object and the cloned object share the same nested objects. If you change a nested object or array in the shallow copy, the change will also be reflected in the original object.  because they both point to the same reference object.
 
-
-Shallow cloning Only the top-level properties of an object are cloned it does not clone nested objects
- — it only copies their references. 
- This means that if you change a nested object property in either the original or the clone,
-the change will affect both, because they both point to the same reference object.
-
-To avoid unexpected bugs, 
+3] To avoid unexpected bugs, 
 don’t modify nested data in a shallow clone if you want the original unchanged. 
 For full independence, use deep cloning, which copies all nested structures as well.
 
@@ -1614,8 +1651,9 @@ const original = {
 };
 
 
-const clone1 = Object.assign({}, original);//Using Object.assign()
-
+// 1]
+ const clone1 = Object.assign({}, original);//Using Object.assign()
+// 2]
 const clone2 = { ...original };// Using Spread operator
 
 clone1.address.city = "Los Angeles";
@@ -1628,40 +1666,22 @@ console.log(clone2.address.city);   // Outputs: "Los Angeles" — nested object 
 console.log(clone1 === original);        // false — different top-level objects
 console.log(clone1.address === original.address); // true — nested object shared (same reference)
 
-```
-
-Shallow cloning copies only the top level; nested objects are shared.
-
-
-- Copies only the top-level properties of an object.  
-- Nested objects or arrays are referenced, not cloned.  
-- Changes in nested structures reflect in both original and cloned objects.  
-
--In shallow cloning only direct/main object gets cloned but not the object
-which are referred by the properties of main object.
-
--changing value of cloned object will be refect into
-orginal object as well because both are point same refrance object
 
 -----------------------
 
 ### Deep Cloning  
 
-Deep cloning in JavaScript means creating a completely independent copy of an object,
- including all nested objects and arrays.
-  Changes to the clone do not affect the original object.
-  means all the properties are cloned 
+-In deep cloning all the object direct/main and nested objects will be cloned. Menas all parts of the object are fully cloned. completely independent object
 
-
--In deep cloning all the object direct/main and nested objects will be cloned. Menas all parts of the object are fully cloned.
 if you change a nested object property in either the original or the clone, the change will not affect both, because they both point to the different reference object.
 - Nested objects or arrays are independent from the original.  
 
 
-- Examples: `JSON.parse(JSON.stringify())`, 
-Better Alternative 
-– structuredClone() (modern built-in method), 
- Lodashs cloneDeep()`, 
+- Examples: `
+1] JSON.parse(JSON.stringify())`, Better Alternative 
+2] structuredClone() (modern built-in method), 
+3] Lodashs cloneDeep()`, 
+
  Recursive cloning.  
 
 
@@ -1679,7 +1699,7 @@ const structuredCloneDeep = structuredClone(original);
 console.log(deepClone === original); // false (different objects)
 console.log(deepClone.address === original.address); // false (different objects)
 
---------------------------------------------------------------------
+
 
 JavaScript objects are reference types. 
 When two objects are compared using == or ===, 
@@ -1692,6 +1712,15 @@ If two objects have the same properties
 
 So, although the objects have identical contents, 
 they are not the same object because their references are different.
+
+--------------------------------------------------------------------
+
+Deep cloning in JavaScript means creating a completely independent copy of an object,
+ including all nested objects and arrays.
+  Changes to the clone do not affect the original object.
+  means all the properties are cloned 
+
+
 
 
 
@@ -1918,72 +1947,6 @@ console.log(...iterObj);\\name mobile email
 4 Pass array items as function arguments
 5 Convert iterables to arrays
 
-====================== functions====================================
-
-
-function greet(name) { // 'name' is a parameter
-    console.log('Hello, ' + name);
-}
-
-greet('Alice'); // 'Alice' is an argument
-
-
-function sum(a, b) {  // 'a' and 'b' are parameters
-  return a + b;
-}
-
-console.log(sum(5, 10));  // '5' and '10' are arguments
-
-
-
-```javascript
-// Parameters (in function definition)
-// Arguments (when calling function)
-```
-
-### 🔹 Meaning:
-
-* **Parameters** → written inside function definition
-* **Arguments** → passed when calling the function
-
-Remember this simple rule:
-
-Outside an object → Function
-Inside an object → Method
-
-
-======================================Rest operator:-========================
-
-
-Rest operator:-
-
-
-The rest operator (...) is used in function parameters to collect all remaining arguments into a single array. 
-It allows a function to accept a variable number of arguments.
-
-The rest parameter (...args) must always be the last parameter
-You cannot place anything after it (d after ...args is not allowed)
-it will throw error SyntaxError: Rest parameter must be last formal parameter
-
-
-
-Example:
-
-function add(a, b, ...args) {
-console.log(a, b);
-console.log(args);
-}
-
-add(10, 20);
-add(10, 20, 30, 40, 50);
-
-
-
-
-
--The rest operator is used to store all the arguments which do not have matching parameters.
--The rest is an array.
--Rest operator basic help to pass infinite number of argument in a function
 
 
 //============================ arguments object vs rest perator===================================
@@ -2002,6 +1965,58 @@ matching parameters
 
 -The arguments object is built-in
 -The rest operation is not built, you need to declare it after all the parameters of a function
+
+
+
+
+
+//============================== Noraml function vs arrow function =========================
+
+
+### When to use which function (best practices)
+
+Use arrow functions for callbacks, array methods, or when you want to inherit this.
+Use normal functions for constructors, class/object methods, or when you need this, arguments, or super.
+
+-Arrow functions don’t have their own this. They inherit it from the parent scope. So inside an object, this won’t refer to the object.
+
+
+--------------------------------------------------
+
+A]Noraml function
+
+- This inside a normal function is dynamic and depends on how the function is called (call-site).>
+- Normal functions are created using function declarations or function expressions.
+- Noraml functions are constructible, invoked with the new keyword
+- Noraml functions used have duplicate named parameters
+- Normal function declarations are hoisted, meaning they can be called before they are defined in the code.
+- Normal functions have an arguments object that holds all passed arguments.
+- In non-strict mode, duplicate parameters are allowed
+- In strict mode, they are not allowed
+
+
+B]Arrow function
+
+-Arrow functions do not have their own this context.
+-They inherit this from the lexical scope (the context in which they are defined).
+-Arrow functions are not hoisted because they are expressions assigned to variables
+-arrow function cannot be used as a constructor. NOT invoked with the new keyword
+-Arrow functions can never have duplicate named parameters, whether in strict or non-strict mode.
+- Arrow functions don’t have their own arguments object. Use rest parameters (...args) to get all arguments.
+
+
+-Arrow function — also called fat arrow function
+
+-Curly brackets arent required if only one expression is present.
+let add = (x, y) => x + y;
+
+-If theres only one argument, then the parentheses are not required either:
+let squareNum = x => x * x;
+
+arrow functions do not have their own this value.
+Instead, they inherit the this value from the enclosing lexical scop
+
+
 
 ========================== typeof ==================================
 
@@ -2069,37 +2084,22 @@ Let's understand these three terms with JavaScript examples.
 
 ### 1. Declaration
 
-**Declaration means creating a variable (creating a binding/name) without giving it a value.**
+Declaration means creating a variable (creating a binding/name) without giving it a value.
 
-Example:
 
 ```javascript
 let name;
-```
 
-Here:
-
-* Variable `name` is created.
-* No value is assigned yet.
-* The value is `undefined`.
-
-Memory:
-
-```
-name → undefined
-```
 
 ---
 
 ### 2. Initialization
 
-**Initialization means giving a variable its first value at the time it is created.**
+Initialization means giving a variable its first value at the time it is created.
 
 Example:
 
-```javascript
 let name = "John";
-```
 
 Here:
 
@@ -2107,21 +2107,13 @@ Here:
 * `"John"` is the first value given to it.
 * This is called initialization.
 
-Memory:
-
-```
-name → "John"
-```
-
----
 
 ### 3. Assignment
 
-**Assignment means changing or updating the value of an already declared variable.**
+Assignment means changing or updating the value of an already declared variable.
 
 Example:
 
-```javascript
 let name = "John"; // initialization
 
 name = "David"; // assignment
@@ -2139,63 +2131,9 @@ After assignment:
 name → "David"
 ```
 
----
+====
 
-### Combined example:
 
-```javascript
-let age;       // Declaration
+  =====
 
-age = 25;      // Assignment
-
-let score = 90; // Declaration + Initialization
-
-score = 100;   // Assignment
-```
-
-### Relation with TDZ:
-
-```javascript
-{
-    // TDZ starts
-
-    let age; // Initialization happens here, TDZ ends
-
-    age = 25; // Assignment
-}
-```
-
-Flow:
-
-```
-Variable created
-       |
-       ↓
-Declaration (binding created)
-       |
-       ↓
-TDZ (not initialized yet)
-       |
-       ↓
-Initialization (first value)
-       |
-       ↓
-Assignment (change value later)
-```
-
-**Short interview definition:**
-
-* **Declaration:** Creating a variable.
-* **Initialization:** Giving the variable its first value.
-* **Assignment:** Updating/changing the value after initialization.
-========
-
-In JavaScript, objects and functions are reference types.
- When a new object is created, it gets a new reference, 
- so two objects with the same values are considered different 
- if their references are different.
-
-When a function is assigned to another variable,
- only the reference is copied. 
- Both variables point to the same function object,
-  so the type remains "function" and the references are equal.
+  

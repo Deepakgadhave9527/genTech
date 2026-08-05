@@ -190,6 +190,8 @@ which are available only in class components.
 
 ````
   ========================================================
+
+  
 Function components cannot directly implement React Error Boundaries because they don't support
  lifecycle methods like getDerivedStateFromError() and componentDidCatch(). 
  However, function components can be wrapped inside class-based Error Boundaries to catch rendering errors

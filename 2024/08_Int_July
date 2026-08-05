@@ -1,4 +1,110 @@
 
+### `Object.assign({}, obj1, obj2)` vs `Object.assign(obj1, obj2)` (Theoretical Answer)
+
+`Object.assign()` is used to **copy properties from one or more source objects into a target object**.
+
+Syntax:
+
+```javascript
+Object.assign(target, source1, source2, ...)
+```
+
+The **first parameter is always the target object**. All remaining parameters are source objects.
+
+---
+
+### 1. `Object.assign({}, obj1, obj2)`
+
+Here, `{}` is the target object.
+
+* A new empty object is created.
+* Properties from `obj1` and `obj2` are copied into this new object.
+* The original `obj1` and `obj2` objects are not modified.
+* It is commonly used to create a shallow copy of objects.
+
+Example:
+
+```javascript
+Object.assign({}, obj1, obj2);
+```
+
+Result:
+
+```javascript
+{
+  name: "Rahul",
+  age: 25
+}
+```
+
+But `obj1` remains:
+
+```javascript
+{
+  name: "Rahul"
+}
+```
+
+---
+
+### 2. `Object.assign(obj1, obj2)`
+
+Here, `obj1` is the target object.
+
+* Properties from `obj2` are copied directly into `obj1`.
+* The original `obj1` object is modified.
+* This is called **object mutation**.
+
+Example:
+
+```javascript
+Object.assign(obj1, obj2);
+```
+
+After execution:
+
+```javascript
+obj1 = {
+  name: "Rahul",
+  age: 25
+}
+```
+
+---
+
+### Main Difference
+
+| `Object.assign({}, obj1, obj2)` | `Object.assign(obj1, obj2)`              |
+| ------------------------------- | ---------------------------------------- |
+| Creates a new object            | Modifies existing object                 |
+| Does not mutate original object | Mutates `obj1`                           |
+| Used for immutability           | Used for updating an object directly     |
+| Returns a new object reference  | Returns the same target object reference |
+
+---
+
+### React Interview Perspective
+
+In React, immutability is preferred because React detects changes using object references.
+
+Therefore, developers usually use:
+
+```javascript
+Object.assign({}, oldObject, updatedValues)
+```
+
+or the spread operator:
+
+```javascript
+{
+  ...oldObject,
+  ...updatedValues
+}
+```
+
+instead of directly modifying the existing state object.
+
+
 =============== memoization ===================================
 
 ## Memoization
