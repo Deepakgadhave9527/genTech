@@ -776,200 +776,63 @@ greetBob(); // Output: Hello, Bob
 
 
 
-//========== Constructor function =========================================
 
 
--A constructor function in JavaScript is a regular function used to create and initialize multiple objects with the same structure
-- By convention, constructor function names start with a capital letter and 
 
--are called using the new keyword.
 
-- when creating many objects with the same properties
-- this is simply a reference to the newly created object when the constructor is called with new.
 
-```js
- function Person(name, age) {
-     this.name = name;
-     this.age = age;
- }
 
 
- const p1= new Person("Alice", 30);
- const p2 = new Person("haery",20);
-// add property city to p1
- p1.city=`nanande`;
 
- //adding method to p1
- p1.address = function(){
-    return `${this.name} lives in ${this.city}.`;
 
- }
+======================================================================================
 
-// add method in Person prototype
- Person.prototype.biodate= function(){
-    console.log(this);
-     return `${this.name} is ${this.age} years old and lives in ${this.city}.`;
- }
-  
-
- console.log(p1)
-  console.log(p2)
-
-```
- Methods added to the prototype are shared by all objects created from the constructor. JavaScript stores only one copy of the method in the prototype, and every object accesses that same method through the prototype chain. This saves memory because a new copy of the method is not created for each object.
-
-
-Objects created from a different constructor cannot access those methods unless inheritance or a shared prototype is used.
-
-
-
-
-
-
-
-
-
-
-========================== Prototype ==================================
-### Prototype:-
-```java
-- Prototypes in javaScript objects iinherit properties and method from one another.
-- Every object in JavaScript has a prototype,
- -Every JavaScript object has an internal link to another object called its prototype.
-
-#### Why do we need prototypes?
-
-We need prototypes because JavaScript creates a shared method only once and stores it in the constructors prototype. Every object created from that constructor uses this single shared method instead of creating duplicate copies for each object. This improves memory efficiency because only one function exists in memory, even though many objects can call it. When an object tries to access a method, JavaScript first searches the object itself. If the method isn't found, it automatically searches the object's prototype. This lookup process is called the prototype chain.
-
-
-
-
-
-
-
-
-There are two main ways to set the prototype of an object:
-
-1. By using `__proto__`
-   - The `__proto__` property can be used to directly set the prototype of an object.
-   let animal = { eats: true };
-   let rabbit = { jumps: true };
-   rabbit.__proto__ = animal; // Setting the prototype
-   console.log(rabbit.eats); // Output: true
-   
-
-2. By using `Object.setPrototypeOf()`
-   - The `Object.setPrototypeOf(obj, prototype)` method sets the prototype of `obj` to `prototype`.
-   let animal = { eats: true };
-   let rabbit = { jumps: true };
-   Object.setPrototypeOf(rabbit, animal); // Setting the prototype
-   console.log(rabbit.eats); // Output: true
-
-
-
---------------------------------------------------------
-
-
-
-
-
-### Types of Prototypes in JavaScript
-
-
-Object Prototype
-Function Prototype
-Prototype Chain
-
-1. Object Prototype
-
--Every JavaScript object has an internal link to another object called its prototype.
-                     
-  -This prototype object can also have its own prototype, creating a prototype chain.
-   - Every object has a prototype, from which it inherits properties and methods.
-   - Access via `Object.getPrototypeOf(obj)` or `obj.__proto__`.
-
-   let obj = {};
-   console.log(obj.__proto__); // Output: {}
-   
-
-2. Function Prototype
-   - Functions have a `prototype` property used when creating objects with `new`.
-   - Example:
-       function Person(name) {
-         this.name = name;
-     }
-     Person.prototype.greet = function() {
-         console.log('Hello, ' + this.name);
-     };
-     let alice = new Person('Alice');
-     alice.greet(); // Output: Hello, Alice
-     
-
-3. Prototype Chain
-   If a property or method is not found on an object, JavaScript looks for it up the prototype chain until it either finds it or reaches the end (null).
-
-   - Objects inherit properties and methods from their prototype, forming a chain.
-   - Example:
-       let animal = { eats: true };
-     let rabbit = { jumps: true };
-     rabbit.__proto__ = animal;
-     console.log(rabbit.eats); // Output: true
-
-
-     
-======================= Prototype vs __proto__ ==================================
-
-
-### prototype:
-
--To define methods and properties that should be shared by all objects created from a constructor function.
-When creating objects using the new keyword.
-
-- Defines properties and methods for constructor functions.
-- Exists only on functions (constructor functions).
-- Used for inheritance in object creation with new.
-
-### __proto__:
-
-- Accesses or sets the prototype of individual objects.
-- Exists on all objects.
--Used to access or set the prototype of an individual object.
-
-prototype is used to define properties and methods for constructor functions.
-prototype exists only on functions (specifically, constructor functions).
-
-__proto__ is used to access or set the prototype of an individual object.
-__proto__ exists on all objects.
-
-
-========================================================================
- difference between `__proto__` and `Object.setPrototypeOf()` 
-
-### By using `__proto__`
-- Introduced in early JavaScript implementations (pre-ES3).
- - Legacy, deprecated, and slower.
-  - Still supported for backward compatibility.
-  - Simple but not suitable for modern applications.
-
-
-### By using `Object.setPrototypeOf()`
-- Introduced in ECMAScript 2015 (ES6).
--  `Object.setPrototypeOf()`:
-  - Modern, standardized, and better optimized.
-  - Recommended for modern JavaScript and production environments. 
-
-
-
-
-=================================================================================================================
 let and const var keywords
 
 -In javascript to declare a variable you can use 'var' keyword, 
 -since ES6 there are 2 more keywords introduced to declare the variables let and const.
 
 
---------------------------------------------------------------------
 ### var
+
+`var` is **function-scoped** and **hoisted**, meaning its declaration is moved to the top of its scope and initialized with `undefined`. Only the declaration is hoisted, not the value assignment. 
+A `var` variable can be **reassigned** and **redeclared** in the same scope. 
+
+Since it is **not block-scoped**, variables declared inside `if` or `for` blocks are still accessible outside those blocks. Because of these behaviors, `let` and `const` are preferred in modern JavaScript.
+
+
+### `let`:
+
+let is block-scoped 
+and hoisted but not initialized, 
+so accessing it before declaration causes a ReferenceError due to the Temporal Dead Zone. 
+It allows reassignment but not redeclaration in the same scope. 
+
+It does not attach to the global object and provides safer, predictable scoping compared to var, especially in loops and block structures.
+
+
+
+
+###  `const`:
+
+`const` is block-scoped, like `let`, and 
+it's hoisted but not initialized — so accessing it before declaration
+ throws a ReferenceError due to the Temporal Dead Zone. 
+You can't reassign or redeclare a `const` variable in the same scope. 
+
+
+However, if it's assigned an object or array, 
+the reference stays constant, but the internal contents can still be modified. 
+So, `const` protects the reference, not the data inside non-primitives.
+
+
+
+======================================================================================
+
+### var
+
+
+
 - It is function scoped
 - it is hoisted
 
@@ -1059,6 +922,7 @@ let is block-scoped
 and hoisted but not initialized, 
 so accessing it before declaration causes a ReferenceError due to the Temporal Dead Zone. 
 It allows reassignment but not redeclaration in the same scope. 
+
 It does not attach to the global object and provides safer, predictable scoping compared to var, especially in loops and block structures.
 
 --------------------------------------------------------------------
@@ -1093,8 +957,10 @@ const z = 10; // SyntaxError: Identifier 'z' has already been declared
 it's hoisted but not initialized — so accessing it before declaration
  throws a ReferenceError due to the Temporal Dead Zone. 
 You can't reassign or redeclare a `const` variable in the same scope. 
-However, if it's assigned an object or array, t
-he reference stays constant, but the internal contents can still be modified. 
+
+
+However, if it's assigned an object or array, 
+the reference stays constant, but the internal contents can still be modified. 
 So, `const` protects the reference, not the data inside non-primitives.
 
 
@@ -1125,8 +991,10 @@ Accessing them before that causes a ReferenceError due to the Temporal Dead Zone
 ================================================
 
 
-var declared in global scope becomes a property of window, so it is accessible via window.y. 
-Output value of declared variable:
+var declared in global scope becomes a property of window,
+ so it is accessible via window.y. 
+ 
+ Output value of declared variable:
 
 ```js
 var y = 10;
@@ -1135,16 +1003,16 @@ console.log(y);        // 10
 console.log(window.y); // 10
 ```
 
-let/const does NOT create a property on the global object (window in browser).
- It exists only in the scope environment, not on window,
-  so its output is undefined because it is not attached to the global object:
+- let/const does NOT create a property on the global object (window in browser).
+- It exists only in the scope environment, not on window,
+- so its output is undefined because it is not attached to the global object:
 
 ```js
 let x = 20;
 
 console.log(x);        // 20
 console.log(window.x); // undefined
-```
+
 
 ####
 var → becomes property of window
@@ -1154,14 +1022,9 @@ let → does NOT become property of window, but still exists in scope
 
 //============================ Temporal Dead Zone (TDZ)=============================
 
+Temporal Dead Zone (TDZ):  
 
-
-
-Temporal Dead Zone (TDZ): 
-
-
-The Temporal Dead Zone (TDZ) is the phase between the creation/start of a block scope
- and the point where a let or const variable is initialized.
+"TDZ is the phase between the start of the block scope and the point where the let or const variable is initialized. This phase is called the Temporal Dead Zone."
 
   During this period, the variable is hoisted but remains uninitialized, 
   and accessing it results in a ReferenceError.
@@ -1175,7 +1038,7 @@ During the TDZ:
 
 ### Visualizing TDZ with an example:
 
-```js
+
 {
   // TDZ starts here for 'x'
   console.log(x); // ReferenceError: Cannot access 'x' before initialization
@@ -1183,8 +1046,13 @@ During the TDZ:
   let x = 5; // TDZ ends here (x is initialized)
   console.log(x); // 5 (now accessible)
 }
-```
 
+
+TDZ is phase between where block scope start and at the point where we decleare the const/let varaible that phase called as tdz
+
+
+The Temporal Dead Zone (TDZ) is the phase between the creation/start of a block scope
+ and the point where a let or const variable is initialized.
 
 
 ======================================================
@@ -1192,13 +1060,13 @@ During the TDZ:
 Why can we change the content of non-primitive values when a variable is declared with const, 
 but we cannot change primitive values?
 
-
-
- Because primitives and non-primitives (objects and arrays) behave differently in memory.
- Primitive values (like `number`, `string`, `boolean`) are stored directly in the variable, not as references.
- Primitive values are immutable by nature. When you use `const` with a primitive, you cannot change its value.
- Any "change" creates a new primitive value and tries to reassign the variable.
- Reassignment is not allowed with `const` because `const` is designed to prevent reassignment.
+- const creates an immutable binding, meaning the variable cannot be reassigned.
+- primitives and non-primitives (objects and arrays) behave differently in memory.
+  
+ - Primitive values (like `number`, `string`, `boolean`) are stored directly in the variable, not as references.
+ - Primitive values are immutable by nature. When you use `const` with a primitive, you cannot change its value.
+ - Any "change" creates a new primitive value and tries to reassign the variable.
+ - Reassignment is not allowed with `const` because `const` is designed to prevent reassignment.
 
  Non-primitive values (objects and arrays) are stored by reference in memory.
  `const` prevents changing the reference, but not the internal structure it points to.
@@ -1365,313 +1233,6 @@ Explanation:
 * Both variables point to the same object.
 * Any change made through one variable is visible through the other.
 
-=============================================================================================================
-
-Object destructuring:-
-
--Object destructuring is a JavaScript feature that extract properties from an object 
-and assign them to variables in a concise way.
--Property name and variable name must be same
-
-
-> Object destructuring is used to declare and initialzize variables by extracting the values from object properties.
-
-> Object destructuring is a JavaScript syntax that allows you to extract values from an object and assign them to variables in a concise and readable way.
-
-
-const person = {
-name: "Topper Skills",
-mobile: "7875580668",
-email: "topperskills@gmail.com",
-city: "Pune",
-};
-
-### without Object destructuring
-
-const phone = person.mobile;
-const email = person.email;
-const city = person.city;
-
-### with Object destructuring
-
-const { mobile: phone, email, city } = person;
-console.log(phone, email, city);
-
-
-### Destructuring Nested Properties
-
-const car = {
-brand: "Hyundai",
-model: "Verna",
-info: {
-price: 1200000,
-color: "white",
-bio:{
-age:20
-}
-}
-}
-
-
-const {info:{bio:{age}}}=car
-console.log(age)//20
-
-const {info:{bio:{age:age3}}}=car
-console.log(age3)//20
-
-
-Why use it? Common Use Cases of Object Destructuring:
-
-
-Avoid repetitive code like const name = person.name;
-
-Make your code cleaner and easier to understand
-
-Easily extract multiple properties in one statement
-
-
-1. Accessing object properties quickly
-   → Avoid repetitive `obj.prop` syntax.
-
-2. Function parameters
-   → Pass an object, extract only needed values:
-
-   function greet({ name }) { console.log(name); }
-
-3. API responses
-   → Extract nested data directly from response objects.
-
-4. Set default values
-   → Provide fallback if a property is missing:
-
-   ```js
-   const { theme = 'light' } = settings;
-   ```
-
-5. React components
-   → Destructure props for cleaner JSX:
-
-   ```js
-   function Card({ title, content }) { ... }
-   ```
-
-
-
-====================================================================================================
-
-// Array Destructuring:-
-
-const nums = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
-
-const a = nums[0];
-const b = nums[1];
-const c = nums[2];
-const d = nums[4];
-with destructuring
-
-const [a, b, c, d] = nums;
-
-console.log(a, b, c, d);
-
-const nestedArray = [1, [2, 3, 7], [4, [5, 6]]];
-
-const [first, [, third], [fourth, [fifth, sixth]]] = nestedArray;
-
-console.log(first); // 1
-console.log(third); // 3
-console.log(fourth); // 4
-console.log(fifth); // 5
-console.log(sixth); // 6
-
-Commas in array destructuring are used to skip positions (values by index)
-
-1. Commas in array destructuring are used to skip values by position (index), not by logic or condition.
-
-2. You must use a comma for every element you want to skip, even if multiple values are skipped in a row.
-
-3. Skipping depends on array structure, not on where a “middle value” appears, so position always matters.
-
-
-//============================  Object.keys, values, entries =============
-
-`Object.keys()`, `Object.values()`, and `Object.entries()` are JavaScript methods
- that return arrays by converting object data into array representations, 
- but they do not modify or convert the original object. Instead, they create 
- and return new arrays based on the object’s properties.
-
-1. `Object.keys()` → returns an array of all the keys of an object
-2. `Object.values()` → returns an array of all the values of an object
-3. `Object.entries()` → returns an array of key–value pair arrays of an object
-
-
-
-### 1. Looping through objects
-
-const user = { name: "Rahul", age: 25 };
-
-for (let key of Object.keys(user)) {
-  console.log(key, user[key]);
-}
-
-Output:
-
-name Rahul
-age 25
-
-### 2. Converting object to array (for map/filter)
-
-const prices = { apple: 100, banana: 50, mango: 80 };
-
-const updated = Object.entries(prices).map(([fruit, price]) => {
-  return [fruit, price + 10];
-});
-
-console.log(updated);
-
-Output:
-
-[["apple", 110], ["banana", 60], ["mango", 90]]
-
-
-
-### 3. Working with dynamic API data
-
-const apiData = {
-  id: 1,
-  title: "Post",
-  status: "active"
-};
-
-Object.entries(apiData).forEach(([key, value]) => {
-  console.log(`${key} => ${value}`);
-});
-
-
-Output:
-
-id => 1
-title => Post
-status => active
-
-
-
-
-
-//=================================Spread operator==========================
-
-Spread operator:-
-The spread operator (...) in JavaScript is used to extract elements from an iterable (such as an array or object) and spread them into individual elements or properties. 
-
-It allows for easier cloning, merging, and destructuring of arrays and objects.
-
-It is used to extract elements of an array or to extract properties from an iterable object.
-
-const arr = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
-
-console.log(...arr);
-
-const per = {
-name: "TOpper Skills",
-mobile: "7875580668",
-email: "topperskills@gmail.com",
-};
-const iterObj = Object.keys(per);
-console.log(...iterObj);\\name mobile email
-
-
-
-
-
-1 Copy arrays or objects
-2 Merge arrays or objects
-3 Add elements to arrays
-4 Pass array items as function arguments
-5 Convert iterables to arrays
-
-====================== functions====================================
-
-
-function greet(name) { // 'name' is a parameter
-    console.log('Hello, ' + name);
-}
-
-greet('Alice'); // 'Alice' is an argument
-
-
-function sum(a, b) {  // 'a' and 'b' are parameters
-  return a + b;
-}
-
-console.log(sum(5, 10));  // '5' and '10' are arguments
-
-
-
-```javascript
-// Parameters (in function definition)
-// Arguments (when calling function)
-```
-
-### 🔹 Meaning:
-
-* **Parameters** → written inside function definition
-* **Arguments** → passed when calling the function
-
-Remember this simple rule:
-
-Outside an object → Function
-Inside an object → Method
-
-
-======================================Rest operator:-========================
-
-
-Rest operator:-
-
-
-The rest operator (...) is used in function parameters to collect all remaining arguments into a single array. 
-It allows a function to accept a variable number of arguments.
-
-The rest parameter (...args) must always be the last parameter
-You cannot place anything after it (d after ...args is not allowed)
-it will throw error SyntaxError: Rest parameter must be last formal parameter
-
-
-
-Example:
-
-function add(a, b, ...args) {
-console.log(a, b);
-console.log(args);
-}
-
-add(10, 20);
-add(10, 20, 30, 40, 50);
-
-
-
-
-
--The rest operator is used to store all the arguments which do not have matching parameters.
--The rest is an array.
--Rest operator basic help to pass infinite number of argument in a function
-
-
-//============================ arguments object vs rest perator===================================
-
-##= arguments object vs rest operator =##
-
--Arguments is an object.
--rest is an array
-
--Arguments gives the details of a function call including caller, callee, arguments.
--Rest operator does not give details about the function call, it gives only the arguments which do not have
-matching parameters
-
--Arguments object gives all the arguments despite those arguments have matching parameters or not
--Rest oeprator does not give the arguments which have matching parameters
-
--The arguments object is built-in
--The rest operation is not built, you need to declare it after all the parameters of a function
 
 
 
@@ -2133,6 +1694,315 @@ So, although the objects have identical contents,
 they are not the same object because their references are different.
 
 
+
+=============================================================================================================
+
+Object destructuring:-
+
+-Object destructuring is a JavaScript feature that extract properties from an object 
+and assign them to variables in a concise way.
+-Property name and variable name must be same
+
+
+> Object destructuring is used to declare and initialzize variables by extracting the values from object properties.
+
+> Object destructuring is a JavaScript syntax that allows you to extract values from an object and assign them to variables in a concise and readable way.
+
+
+const person = {
+name: "Topper Skills",
+mobile: "7875580668",
+email: "topperskills@gmail.com",
+city: "Pune",
+};
+
+### without Object destructuring
+
+const phone = person.mobile;
+const email = person.email;
+const city = person.city;
+
+### with Object destructuring
+
+const { mobile: phone, email, city } = person;
+console.log(phone, email, city);
+
+
+### Destructuring Nested Properties
+
+const car = {
+brand: "Hyundai",
+model: "Verna",
+info: {
+price: 1200000,
+color: "white",
+bio:{
+age:20
+}
+}
+}
+
+
+const {info:{bio:{age}}}=car
+console.log(age)//20
+
+const {info:{bio:{age:age3}}}=car
+console.log(age3)//20
+
+
+Why use it? Common Use Cases of Object Destructuring:
+
+
+Avoid repetitive code like const name = person.name;
+
+Make your code cleaner and easier to understand
+
+Easily extract multiple properties in one statement
+
+
+1. Accessing object properties quickly
+   → Avoid repetitive `obj.prop` syntax.
+
+2. Function parameters
+   → Pass an object, extract only needed values:
+
+   function greet({ name }) { console.log(name); }
+
+3. API responses
+   → Extract nested data directly from response objects.
+
+4. Set default values
+   → Provide fallback if a property is missing:
+
+   ```js
+   const { theme = 'light' } = settings;
+   ```
+
+5. React components
+   → Destructure props for cleaner JSX:
+
+   ```js
+   function Card({ title, content }) { ... }
+   ```
+
+
+
+====================================================================================================
+
+// Array Destructuring:-
+
+const nums = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+const a = nums[0];
+const b = nums[1];
+const c = nums[2];
+const d = nums[4];
+with destructuring
+
+const [a, b, c, d] = nums;
+
+console.log(a, b, c, d);
+
+const nestedArray = [1, [2, 3, 7], [4, [5, 6]]];
+
+const [first, [, third], [fourth, [fifth, sixth]]] = nestedArray;
+
+console.log(first); // 1
+console.log(third); // 3
+console.log(fourth); // 4
+console.log(fifth); // 5
+console.log(sixth); // 6
+
+Commas in array destructuring are used to skip positions (values by index)
+
+1. Commas in array destructuring are used to skip values by position (index), not by logic or condition.
+
+2. You must use a comma for every element you want to skip, even if multiple values are skipped in a row.
+
+3. Skipping depends on array structure, not on where a “middle value” appears, so position always matters.
+
+
+//============================  Object.keys, values, entries =============
+
+`Object.keys()`, `Object.values()`, and `Object.entries()` are JavaScript methods
+ that return arrays by converting object data into array representations, 
+ but they do not modify or convert the original object. Instead, they create 
+ and return new arrays based on the object’s properties.
+
+1. `Object.keys()` → returns an array of all the keys of an object
+2. `Object.values()` → returns an array of all the values of an object
+3. `Object.entries()` → returns an array of key–value pair arrays of an object
+
+
+
+### 1. Looping through objects
+
+const user = { name: "Rahul", age: 25 };
+
+for (let key of Object.keys(user)) {
+  console.log(key, user[key]);
+}
+
+Output:
+
+name Rahul
+age 25
+
+### 2. Converting object to array (for map/filter)
+
+const prices = { apple: 100, banana: 50, mango: 80 };
+
+const updated = Object.entries(prices).map(([fruit, price]) => {
+  return [fruit, price + 10];
+});
+
+console.log(updated);
+
+Output:
+
+[["apple", 110], ["banana", 60], ["mango", 90]]
+
+
+
+### 3. Working with dynamic API data
+
+const apiData = {
+  id: 1,
+  title: "Post",
+  status: "active"
+};
+
+Object.entries(apiData).forEach(([key, value]) => {
+  console.log(`${key} => ${value}`);
+});
+
+
+Output:
+
+id => 1
+title => Post
+status => active
+
+
+
+
+
+//=================================Spread operator==========================
+
+Spread operator:-
+The spread operator (...) in JavaScript is used to extract elements from an iterable (such as an array or object) and spread them into individual elements or properties. 
+
+It allows for easier cloning, merging, and destructuring of arrays and objects.
+
+It is used to extract elements of an array or to extract properties from an iterable object.
+
+const arr = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+console.log(...arr);
+
+const per = {
+name: "TOpper Skills",
+mobile: "7875580668",
+email: "topperskills@gmail.com",
+};
+const iterObj = Object.keys(per);
+console.log(...iterObj);\\name mobile email
+
+
+
+
+
+1 Copy arrays or objects
+2 Merge arrays or objects
+3 Add elements to arrays
+4 Pass array items as function arguments
+5 Convert iterables to arrays
+
+====================== functions====================================
+
+
+function greet(name) { // 'name' is a parameter
+    console.log('Hello, ' + name);
+}
+
+greet('Alice'); // 'Alice' is an argument
+
+
+function sum(a, b) {  // 'a' and 'b' are parameters
+  return a + b;
+}
+
+console.log(sum(5, 10));  // '5' and '10' are arguments
+
+
+
+```javascript
+// Parameters (in function definition)
+// Arguments (when calling function)
+```
+
+### 🔹 Meaning:
+
+* **Parameters** → written inside function definition
+* **Arguments** → passed when calling the function
+
+Remember this simple rule:
+
+Outside an object → Function
+Inside an object → Method
+
+
+======================================Rest operator:-========================
+
+
+Rest operator:-
+
+
+The rest operator (...) is used in function parameters to collect all remaining arguments into a single array. 
+It allows a function to accept a variable number of arguments.
+
+The rest parameter (...args) must always be the last parameter
+You cannot place anything after it (d after ...args is not allowed)
+it will throw error SyntaxError: Rest parameter must be last formal parameter
+
+
+
+Example:
+
+function add(a, b, ...args) {
+console.log(a, b);
+console.log(args);
+}
+
+add(10, 20);
+add(10, 20, 30, 40, 50);
+
+
+
+
+
+-The rest operator is used to store all the arguments which do not have matching parameters.
+-The rest is an array.
+-Rest operator basic help to pass infinite number of argument in a function
+
+
+//============================ arguments object vs rest perator===================================
+
+##= arguments object vs rest operator =##
+
+-Arguments is an object.
+-rest is an array
+
+-Arguments gives the details of a function call including caller, callee, arguments.
+-Rest operator does not give details about the function call, it gives only the arguments which do not have
+matching parameters
+
+-Arguments object gives all the arguments despite those arguments have matching parameters or not
+-Rest oeprator does not give the arguments which have matching parameters
+
+-The arguments object is built-in
+-The rest operation is not built, you need to declare it after all the parameters of a function
+
 ========================== typeof ==================================
 
 Q1: What is typeof operator?
@@ -2193,6 +2063,132 @@ console.log(typeof greetArrow); // "function"
 
 
 ============================
+
+
+Let's understand these three terms with JavaScript examples.
+
+### 1. Declaration
+
+**Declaration means creating a variable (creating a binding/name) without giving it a value.**
+
+Example:
+
+```javascript
+let name;
+```
+
+Here:
+
+* Variable `name` is created.
+* No value is assigned yet.
+* The value is `undefined`.
+
+Memory:
+
+```
+name → undefined
+```
+
+---
+
+### 2. Initialization
+
+**Initialization means giving a variable its first value at the time it is created.**
+
+Example:
+
+```javascript
+let name = "John";
+```
+
+Here:
+
+* `name` is declared.
+* `"John"` is the first value given to it.
+* This is called initialization.
+
+Memory:
+
+```
+name → "John"
+```
+
+---
+
+### 3. Assignment
+
+**Assignment means changing or updating the value of an already declared variable.**
+
+Example:
+
+```javascript
+let name = "John"; // initialization
+
+name = "David"; // assignment
+```
+
+First:
+
+```
+name → "John"
+```
+
+After assignment:
+
+```
+name → "David"
+```
+
+---
+
+### Combined example:
+
+```javascript
+let age;       // Declaration
+
+age = 25;      // Assignment
+
+let score = 90; // Declaration + Initialization
+
+score = 100;   // Assignment
+```
+
+### Relation with TDZ:
+
+```javascript
+{
+    // TDZ starts
+
+    let age; // Initialization happens here, TDZ ends
+
+    age = 25; // Assignment
+}
+```
+
+Flow:
+
+```
+Variable created
+       |
+       ↓
+Declaration (binding created)
+       |
+       ↓
+TDZ (not initialized yet)
+       |
+       ↓
+Initialization (first value)
+       |
+       ↓
+Assignment (change value later)
+```
+
+**Short interview definition:**
+
+* **Declaration:** Creating a variable.
+* **Initialization:** Giving the variable its first value.
+* **Assignment:** Updating/changing the value after initialization.
+========
 
 In JavaScript, objects and functions are reference types.
  When a new object is created, it gets a new reference, 
