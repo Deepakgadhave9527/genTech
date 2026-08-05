@@ -84,7 +84,34 @@ p and returns a single promise that resolves with an array of results when all p
    [ 'Wisdom', 'Geek', 'Wisdom' ]  -->
 
 
+ If all promises resolve, Promise.all() resolves and returns an array of their resolved values in the same order.
+
+If any one promise rejects, Promise.all() immediately rejects with that error. It does not return an array of the successfully resolved values.
+
+```javascript
+const p1 = Promise.resolve("A");
+const p2 = Promise.resolve("B");
+const p3 = Promise.resolve("C");
+
+Promise.all([p1, p2, p3]);
+// Resolves with: ["A", "B", "C"]
+```
+
+```javascript
+const p1 = Promise.resolve("A");
+const p2 = Promise.reject("Error");
+const p3 = Promise.resolve("C");
+
+Promise.all([p1, p2, p3]);
+// Rejects with: "Error"
+```
+
+
+
+
 #### Promise.allSettled()
+
+Promise.allSettled() is similar to Promise.all(), but it waits for every promise to finish, regardless of whether they resolve or reject.
 
 
 Promise.allSettled() takes an array of promises  and Executes multiple promises in parallel and waits for all of them to settle, meaning each promise either resolves or rejects.
@@ -107,7 +134,7 @@ Outputs:
 ]
 
 #### Promise.any()
-
+Promise.any() returns the first fulfilled (successful) promise. It ignores rejected promises unless all of the promises reject.
 
 Promise.any() is a static method that takes an array of promises a
 - Executes multiple promises in parallel and waits for any one of them to resolve.
@@ -219,7 +246,8 @@ getUser()
 ### Why Use Promises Instead of Callbacks?
 
 
-Promises are preferred over callbacks because they avoid callback hell, improve readability, support chaining, and provide better error handling using catch . They also support composition of asynchronous operations using methods like Promise.all and Promise.race.
+Promises are preferred over callbacks because they avoid callback hell, improve readability, support chaining, and provide better error handling using catch . 
+They also support composition of asynchronous operations using methods like Promise.all and Promise.race.
 
 Promises can be composed using methods like Promise.all, Promise.race, Promise.allSettled, and Promise.any. This allows for running multiple asynchronous operations in parallel and handling their results collectively.
 
@@ -232,18 +260,18 @@ Promises can be composed using methods like Promise.all, Promise.race, Promise.a
 
 - `async` and `await` are features introduced in ES8 (ES2017) that simplify working with Promises.
 - The `async` keyword is used to declare an asynchronous function, which always returns a Promise.
-- The `await` keyword pauses the execution of an async function until the Promise is resolved or rejected.
+- The `await` keyword pauses the execution of an async function until the Promise is 
+   resolved or rejected.
 
 
-- This helps avoid deeply nested `.then()` chains, making async code cleaner.
+- This helps avoid deeply nested `.then()` chains, making async code cleaner and  improving readability and maintainability .
+
+- Error handling can be done easily using `try...catch` blocks.
+- await should only be used inside the async function.
 
 - They make asynchronous code look synchronous, improving readability and maintainability.
-- Error handling can be done easily using `try...catch` blocks.
--await should only be used inside the async function.
 
 
-
-```js
 
 
 ### Using Promises:
@@ -410,6 +438,8 @@ Using document object you can dynamically update the content on the viewport.
 
 =========================================Set====================
 
+### Set
+
 - Set is a built-in object that stores unique values of any type.
 - meaning duplicate values are not allowed. It can store any type of value, such as numbers, strings, objects, or even functions
 
@@ -418,6 +448,9 @@ Using document object you can dynamically update the content on the viewport.
 
 > A `Set` is a built-in object, so `typeof new Set()` returns `"object"`.
 
+A JavaScript Set stores unique values and does not use indexes for accessing elements. 
+
+Values are accessed by checking their existence using .has() or by iterating through the Set.
 
 ### Example
 
@@ -440,6 +473,24 @@ console.log(set.size);    // 2
 * `has(value)` – Checks if a value exists.
 * `clear()` – Removes all values.
 * `size` – Returns the number of elements.
+
+
+```js
+
+const mySet = new Set([
+    "Hello",          // String
+    100,              // Number
+    true,             // Boolean
+    null,             // Null
+    undefined,        // Undefined
+    Symbol("id"),     // Symbol
+    10n,              // BigInt
+    { name: "Deepak" }, // Object
+    [1, 2, 3],        // Array
+    function test() {} // Function
+]);
+```
+console.log(mySet);
 
 ### Real-world Use Case
 
@@ -526,8 +577,10 @@ Here's a corrected and more complete version for interview notes:
 
 # `Map` 
 
-1. `Map` is a built-in JavaScript object that stores key-value pairs. It allows keys of any data type, maintains insertion order,
- and provides methods for efficient data management. `Map` is a built-in JavaScript object introduced in ES6.
+1. `Map` is a built-in JavaScript object that stores key-value pairs. 
+   It allows keys of any data type, maintains insertion order,
+ and provides methods for efficient data management.
+  `Map` is a built-in JavaScript object introduced in ES6.
 2. It stores data in key-value pairs.
 3. Keys can be of any data type (string, number, object, function, etc.).
 4. A `Map` maintains the insertion order of elements.
