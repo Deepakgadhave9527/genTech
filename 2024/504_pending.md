@@ -2,6 +2,32 @@ webworker
 webpack
 flex-gird
 
+
+
+
+========================================================
+
+ ### Higher Order Components (HOCs)
+
+-In React, Higher Order Component is an advanced technique for reusing component logic.
+
+An HOC is a function_that accepts a component as its argument and returns a new component with some added functionality
+
+**Purpose**: HOCs are used to abstract and reuse logic in a single place, which can then be applied to multiple components. 
+They allow for code reusability, manipulation of props, and handling state in a consistent manner.
+
+
+With help of HoC You can do many tasks
+Code Reusability
+Props manipulation
+State manipulation
+
+
+
+-According to the official website,
+-Higher-Order Components are not part of the React API.
+-but They are pattern that emerges from Reacts compositional nature.
+
 ==========================================
 
 ### Axios
@@ -451,6 +477,8 @@ The most efficient way to bind is in the constructor, where the binding happens 
 Alternatively, using arrow functions as class properties automatically binds `this` and offers cleaner syntax, which is common in modern React code.
 
 Binding inside `render()` is discouraged because it creates a new function every time the component re-renders, which hurts performance.
+
+
 
 
 

@@ -765,7 +765,7 @@ Note: Lifecycle methods are available only in classs components. In function com
 
 What is JSX and how JSX can help applications in React.js?
 
-JSX (JavaScript XML) is a syntax extension for JavaScript 
+JSX (JavaScript XML) is a syntax extension for JavaScript  xml
 that allows developers to write HTML-like code inside JavaScript.
 
 React converts JSX into regular JavaScript using tools like Babel 
@@ -780,10 +780,7 @@ and markup in a single file.
 
 
 
-
-
 ========================================================
-
 
 
 ## Q4. What are the differences between Functional Components and Class Components?
@@ -894,44 +891,6 @@ React _class component is called as a state-full component.
 
 
 
- ========================================================
-
-Differentiate between stateful and stateless components?
-
-
-Functional Component or Stateless component
-
-Functional component is like pure function_in JavaScript.
-Functional component is also called as a stateless component.
-The functional component only receives props from parent component and return you JSX elements.
-The functional component does n’t play with any lifecycle methods of React and doesn’t play with the component state...
-
-
-_Class component or state-full component
-
-React _class component is called as a state-full component.
-Stateful component plays with all life cycle methods of React.
-This component will modify state.
-
-------
-
-When would you use a stateless component
-When you just need to present the props
-When you do not need a state, or any internal variables
-When creating element does not need to be interactive
-When you want reusable code
-
-When would you use a stateful component?
-
-When building element that accepts user input or element that is interactive on page
-When dependent on state for rendering, such as, fetching data before rendering
-When dependent on any data that cannot be passed down as props
-
-
-
-
-
-
 
 ========================================================
 ## **Q5. What is the difference between State and Props in React?**
@@ -979,45 +938,28 @@ When dependent on any data that cannot be passed down as props
 
 
 
-========================================================
-q19. What are React components?
-
-
--Components are the building blocks of any React app and a typical React app will have many of these.
-
--A React component can be either stateful or stateless.
--Stateful components are of the _class type,
--while stateless components are of the function_type.
-
-
 
 ========================================================
 
- ### Higher Order Components (HOCs)
+Q15 is the Shadow DOM the same as the Virtual DOM?
 
--In React, Higher Order Component is an advanced technique for reusing component logic.
+-No, they are different.
 
-An HOC is a function that accepts a component as its argument and returns a new component with some added functionality
+-The Shadow DOM is a browser technology designed primarily for scoping variables and  encapsulating HTML, CSS, and JavaScript in Web Components.
 
-**Purpose**: HOCs are used to abstract and reuse logic in a single place, which can then be applied to multiple components. 
-They allow for code reusability, manipulation of props, and handling state in a consistent manner.
-
-
-With help of HoC You can do many tasks
-Code Reusability
-Props manipulation
-State manipulation
+-Virtual DOM optimizes UI updates -used by JavaScript libraries like React to efficiently update the UI.
 
 
 
--According to the official website,
--Higher-Order Components are not part of the React API.
--but They are pattern that emerges from Reacts compositional nature.
+
+
+
 ==========================================
+
 
 # React Reconciliation
 
--Reconciliation is the algorithm that React uses to update the UI. 
+React uses the reconciliation algorithm to update the UI.
 
 
 React does not directly update the Real DOM every time a change happens. Instead, it:
@@ -1030,6 +972,31 @@ React does not directly update the Real DOM every time a change happens. Instead
 This comparison process between the previous Virtual DOM and the new Virtual DOM is called **Reconciliation**.
 
 Reconciliation helps React improve performance by avoiding unnecessary DOM updates.
+
+
+ React uses a diffing algorithm to identify the differences between the two Virtual DOM trees and updates only the changed parts of the real DOM.
+
+ 
+# React Reconciliation
+
+React uses the reconciliation algorithm to update the UI.
+
+
+React does not directly update the Real DOM every time a change happens. Instead, it:
+
+1. Creates a new Virtual DOM when the component re-renders.
+2. Compares it with the previous Virtual DOM.
+3. Finds the differences (changes).
+4. Updates only the required parts of the Real DOM.
+
+This comparison process between the previous Virtual DOM and the new Virtual DOM is called **Reconciliation**.
+
+Reconciliation helps React improve performance by avoiding unnecessary DOM updates.
+
+React uses a Diffing Algorithm during reconciliation to identify the differences between the two Virtual DOM trees and update only the required parts of the Real DOM.
+
+
+-------------
 
 React uses a **diffing algorithm** to identify what has changed between two Virtual DOM trees.
 
@@ -1054,34 +1021,9 @@ Fiber allows React to pause and resume work, break work into smaller units, and 
 This enables **concurrent rendering**, allowing React to prepare updates without blocking the main thread.
 
 
-========================================================
+-Reconciliation is the algorithm that React uses to update the UI. 
 
 
-Q15 is the Shadow DOM the same as the Virtual DOM?
-
--No, they are different.
-
--The Shadow DOM is a browser technology designed primarily for scoping variables and CSS in
-web components.
--Virtual DOM optimizes UI updates
--used by JavaScript libraries like React to efficiently update the UI.
-
-- This is a browser technology designed primarily for encapsulating and scoping variables, DOM, and CSS within web components.
-- It allows you to create self-contained components with their own DOM structure and styling, isolated from the rest of the document.
--The virtual DOM is a concept implemented by libraries in JavaScript on top of browser APIs.
-
-
-
-========================================================
-Q What is ReactDOM?
-
-- Package: ReactDOM is a package that provides DOM-specific methods.
-- Usage: Used at the top level of a web app to manage DOM elements efficiently.
-
- ReactDOM.render() Function
-- Purpose: Renders a single React Component or multiple components wrapped in a parent component or a div element.
-- Efficiency: Utilizes Reacts efficient methods for updating the DOM, such as changing only a subtree and using efficient diff algorithms.
-- Return Value: Returns a reference to the component or null if a stateless component was rendered.
 
 
 ========================================================
@@ -1099,7 +1041,72 @@ You can update HTML directly. -------------------- You Can’t directly update H
 It causes too much of memory wastage -------------------- There is no memory wastage
 Creates a new DOM if element updates -------------------- It updates the JSX if element update
 
-======================================
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+========================================================
+Q What is ReactDOM?
+
+- Package: ReactDOM is a package that provides DOM-specific methods.
+- Usage: Used at the top level of a web app to manage DOM elements efficiently.
+
+ ReactDOM.render() Function
+- Purpose: Renders a single React Component or multiple components wrapped in a parent component or a div element.
+- Efficiency: Utilizes Reacts efficient methods for updating the DOM, such as changing only a subtree and using efficient diff algorithms.
+- Return Value: Returns a reference to the component or null if a stateless component was rendered.
+
+
+======================================================
 
   
 
@@ -1220,3 +1227,53 @@ Virtual DOM (VDOM):
 - Because React updates only the required parts, it reduces unnecessary DOM operations.
 
 - This improves the rendering performance of the application.
+
+
+
+
+ ========================================================
+
+Differentiate between stateful and stateless components?
+
+
+Functional Component or Stateless component
+
+Functional component is like pure function_in JavaScript.
+Functional component is also called as a stateless component.
+The functional component only receives props from parent component and return you JSX elements.
+The functional component does n’t play with any lifecycle methods of React and doesn’t play with the component state...
+
+
+_Class component or state-full component
+
+React _class component is called as a state-full component.
+Stateful component plays with all life cycle methods of React.
+This component will modify state.
+
+------
+
+When would you use a stateless component
+When you just need to present the props
+When you do not need a state, or any internal variables
+When creating element does not need to be interactive
+When you want reusable code
+
+When would you use a stateful component?
+
+When building element that accepts user input or element that is interactive on page
+When dependent on state for rendering, such as, fetching data before rendering
+When dependent on any data that cannot be passed down as props
+
+
+
+
+
+========================================================
+q19. What are React components?
+
+
+-Components are the building blocks of any React app and a typical React app will have many of these.
+
+-A React component can be either stateful or stateless.
+-Stateful components are of the _class type,
+-while stateless components are of the function_type.
