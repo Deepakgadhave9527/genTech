@@ -10,10 +10,261 @@
 # ===========================================
 # ===========================================
 # ===========================================
+
+
+# `Map` 
+  `Map` is a built-in JavaScript object introduced in ES6.
+
+1. `Map` is a built-in JavaScript object that `stores key-value pairs`
+
+3. Keys can be of any data type (string, number, object, function, etc.).
+4. A `Map` maintains the insertion order of elements.
+
+5. Duplicate keys are not allowed; the latest value overwrites the previous value.
+7. `typeof new Map()` returns `"object"`.
+
+If you set a key that already exists in the Map,  the value associated with that key is updated, not duplicated.
+
+
+
+1. `set()` – Add or update a key-value pair
+2. `get()` – Get the value by key
+3. `has()` – Check if a key exists
+4. `delete()` – Remove a key-value pair
+5. `clear()` – Remove all entries
+6. `keys()` – Get all keys
+7. `values()` – Get all values
+8. `entries()` – Get all key-value pairs
+9. `forEach()` – Iterate over the Map
+10. `size` – Get the number of entries
+
+
+#### 1. `set(key, value)`  
+Adds or updates a key-value pair in the `Map`.
+
+const map = new Map();
+map.set('name', 'Alice');
+map.set(42, 'The answer');
+console.log(map); // Map(2) { 'name' => 'Alice', 42 => 'The answer' }
+
+
+   It allows keys of any data type, maintains insertion order,
+ and provides methods for efficient data management.
+2. It stores data in key-value pairs.
+6. The `Map` constructor accepts an iterable of key-value pairs.
+8. The size of a Map can be obtained using the `.size` property.
+9. A `Map` provides methods such as `.set()`, `.get()`, `.has()`, `.delete()`, and `.clear()`.
+10. Unlike objects, `Map` keys are not limited to strings or symbols.
+
+
+
+
+#### Adding and Updating Data
+```javascript
+const userRoles = new Map();
+userRoles.set('Alice', 'Admin');
+userRoles.set('Bob', 'Editor');
+userRoles.set('Alice', 'Super Admin'); // Updates Alice's role
+
+console.log(userRoles.get('Alice')); // 'Super Admin'
+```
+
+#### Using Objects as Keys
+```javascript
+const obj = { id: 1 };
+const map = new Map();
+
+map.set(obj, 'Object Value');
+console.log(map.get(obj)); // 'Object Value'
+```
+
+#### Iterating Over a Map
+```javascript
+const items = new Map([
+  ['apple', 10],
+  ['banana', 5],
+  ['cherry', 7],
+]);
+
+for (const [key, value] of items) {
+  console.log(`${key}: ${value}`);
+}
+// Output:
+// apple: 10
+// banana: 5
+// cherry: 7
+```
+
+#### Counting Occurrences
+```javascript
+const words = ['hello', 'world', 'hello', 'map'];
+const wordCount = new Map();
+
+words.forEach(word => {
+  wordCount.set(word, (wordCount.get(word) || 0) + 1);
+});
+
+console.log(wordCount); // Map(3) { 'hello' => 2, 'world' => 1, 'map' => 1 }
+```
+
 # ===========================================
+
+ A `Set` also preserves the insertion order of elements.
+> A `Set` is a built-in object, so `typeof new Set()` returns `"object"`.
+
+A JavaScript Set stores unique values and does not use indexes for accessing elements. 
+
+Values are accessed by checking their existence using .has() or by iterating through the Set.
+
+Insertion order means the Set adds elements line by line, in the same order the code is executed. Whatever value we add first will come first, and the next value will come after it. It does not change the order or sort the values. It just stores them in the same sequence as we write and run the code. A Set is not index-based like an array.
+
+ insertion order It only stores  new values are always added at the end.
+
+So this is NOT possible:
+
+insert in middle ❌
+insert at index ❌
+sort automatically ❌
+make some  dash point
+
+Set can store different types of values like numbers, strings, objects, and functions together. It does not restrict data type, but it ensures all values are unique.
+
+
+
+Here's a corrected and more complete version for interview notes:
+
+### `Set` Constructor (Interview Points)
+
+1. The `Set` constructor accepts only one optional argument, which must be an iterable object.
+2. Examples of valid iterables:
+
+   * Array `[]`
+   * String `""`
+   * Another `Set`
+   * `Map` (its entries are iterable)
+3. A plain object `{}` is not iterable, so the following throws a TypeError:
+
+   ```javascript
+   new Set({});
+   // TypeError: object is not iterable
+   ```
+4. To store an object in a `Set`, wrap it inside an iterable (such as an array):
+
+   ```javascript
+   const set = new Set([{ name: "Deepak" }]);
+   console.log(set);
+   ```
+5. You can also create an empty `Set` by calling the constructor without any arguments:
+
+   ```javascript
+   const set = new Set();
+   ```
+6. Since a `Set` stores unique values, duplicate elements are automatically removed:
+
+   ```javascript
+   const set = new Set([1, 2, 2, 3, 3]);
+   console.log(set); // Set(3) {1, 2, 3}
+   ```
 # ===========================================
+
+ ### What is the `window` Object? (Interview Answer)
+
+ The `window` object is the global object in browsers. 
+
+ It represents the browser window (or tab) and provides access to browser-related features. 
+
+ such as `alert()`, `setTimeout()`, `localStorage`, and `location`.
+
+It includes:
+
+* `document`
+* `location`
+* `history`
+* `navigator`
+* `setTimeout`, `alert`, etc.
+
+
+
+### Example:
+
+```javascript
+window.alert("Hello");
+console.log(window.innerWidth);
+```
+
+
+
+
+### What is the `document` object?
+
+The `document` object represents the HTML page loaded inside the browser window. It is a property of the `window` object.
+
+It is used to:
+
+* Access HTML elements
+* Modify content dynamically
+* Handle DOM manipulation
+
+
+
+### Relationship
+
+```javascript
+window.document === document; // true
+document.getElementById("demo");
+document.querySelector(".btn");
+```
+
+
+## One-line Interview Answers
+
+* Global Object: The top-level object that provides globally accessible variables and functions.
+* Window Object: The global object in browsers that represents the browser window.
+* Document Object: An object that represents the HTML document and allows DOM manipulation.
+Your content is mostly correct, just needs a bit of polishing for accuracy + interview clarity.
+
 # ===========================================
+### what is global object in javascript?
+
+
+
+-The global object in JavaScript is an always defined object that provides
+variables and functions, and is available anywhere.
+A global object is the top-level object that exists in the global scope and
+
+
+
+window is a global object of javascript it is used to load / display a web page
+content in the web browser.
+
+The window object represents a tab of a web browser, it includes navigation model, histoy,
+location, document, etc.
+
+document represents a web page in the web browser.
+
+document object is a part of window object.
+
+Using document object you can dynamically update the content on the viewport.
+
 # ===========================================
+
+### Fixed ##:
+
+- Positioned relative to the viewport.
+- element is fixed to viewport doest not move on scroll
+- Removed from the normal flow — does not hold space in the layout.
+- the measurement of postion propertied (top, right, bottom, left,) start from the viewport or body, not from any parent element.
+
+
+### Fixed
+
+- Positioned relative to the **viewport** (browser window).
+- The element stays fixed in the same position and does not move when the page is scrolled.
+
+- The measurement of position properties (`top`, `right`, `bottom`, `left`) starts from the **edges of the viewport**, not from any parent element.
+
+
+
 # ===========================================
 
 

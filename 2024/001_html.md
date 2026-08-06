@@ -254,17 +254,12 @@ Use case: Modals, dropdown menus, tooltips, floating buttons.
 ### Fixed ##:
 
 - Positioned relative to the viewport.
-- element is fixed to viewport doest not move on scroll
-- Removed from the normal flow — does not hold space in the layout.
-- the measurement of postion propertied (top, right, bottom, left,) start from the viewport or body, not from any parent element.
+- element is fixed to viewport  and does not move when the page is scrolled.
 
+- The element does occupy space in the layout because it is not removed 
+from the normal document flow.
 
-### Fixed
-
-- Positioned relative to the **viewport** (browser window).
-- The element stays fixed in the same position and does not move when the page is scrolled.
-- Removed from the **normal document flow**, so it does not occupy space in the layout.
-- The measurement of position properties (`top`, `right`, `bottom`, `left`) starts from the **edges of the viewport**, not from any parent element.
+- the measurement of position properties (top, right, bottom, left,) start from the viewport or body, not from any parent element.
 
 **Use cases:** Fixed navbar, floating buttons, chat buttons, back-to-top buttons, cookie banners.
 
@@ -276,6 +271,8 @@ Use case: Modals, dropdown menus, tooltips, floating buttons.
 - When the element reaches the specified offset (`top`, `right`, `bottom`, `left`) during scrolling, it behaves like `position: fixed` within its scrolling container.
 - The element does occupy space in the layout because it is not removed from the normal document flow.
 - The `top`, `right`, `bottom`, and `left` properties define the point at which the element becomes sticky.
+
+
 - A sticky element is limited to the boundaries of its parent/container and will stop moving when the parent container ends.
 
 **Use cases:** Sticky navigation bars, table headers, sidebars, filter menus.
