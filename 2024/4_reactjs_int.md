@@ -57,7 +57,7 @@ ReactDOM.createPortal(
   <div className="modal">Modal Content</div>,
   document.getElementById("modal-root"),
 );
-```
+
 
 ### 🔍 Summary
 
@@ -137,7 +137,7 @@ Hooks can only be called at the top level of a component.
 Hooks cannot be conditional.
 
 ========================================================
-
+```
 StrictMode
 
 - React StrictMode is a tool for identifying/highlighting potential problems in an application.

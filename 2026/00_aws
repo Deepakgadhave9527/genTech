@@ -1,5 +1,34 @@
 
 ====================================================
+while asg creating time why pvt subnet is select why ?
+
+
+We select private subnets while creating an Auto Scaling Group (ASG) because the EC2 instances should not be directly accessible from the internet. This improves security by preventing direct public access. Instead, users send requests to the Application Load Balancer (ALB), which forwards traffic to healthy EC2 instances through the Target Group. If the instances need internet access for software updates or package downloads, they use a NAT Gateway. This is the standard and recommended AWS production architecture.
+
+
+
+We select private subnets while creating an Auto Scaling Group because the EC2 instances should remain secure and not be directly accessible from the internet. The public Application Load Balancer receives user requests and forwards them to healthy EC2 instances in the private subnets through the Target Group. This is the recommended AWS production architecture.
+====================================================
+====================================================
+====================================================
+====================================================
+====================================================
+====================================================
+====================================================
+====================================================
+====================================================
+====================================================
+====================================================
+====================================================
+====================================================
+====================================================
+====================================================
+====================================================
+====================================================
+====================================================
+====================================================
+====================================================
+====================================================
 
 #### Interval → 
 
