@@ -10,7 +10,21 @@
 ====================================================
 ====================================================
 ====================================================
+## Latency
+
+Latency means the time taken for a request to travel from the user to an AWS service and for the response to come back.
+
+Low Latency: Low latency means there is very little delay between sending a request and receiving the response, so the application responds quickly. For example, 20 ms response time.
+
+High Latency: High latency means there is a larger delay between sending a request and receiving the response, so the application responds slowly. For example, 500 ms response time.
+
 ====================================================
+### ALB (Application Load Balancer)
+ALB (Application Load Balancer): ALB works at Layer 7 (Application Layer) and is mainly used for HTTP/HTTPS traffic. It understands application-level requests, so it can route traffic based on URL paths, hostnames, HTTP headers, etc. For example, `/users` can go to the User Service and `/orders` can go to the Order Service. ALB distributes traffic across healthy EC2 instances, containers, or IP targets and performs health checks. It is commonly used for web applications, REST APIs, and microservices where intelligent HTTP/HTTPS routing is required.
+------------------------------------------
+### NLB (Network Load Balancer)
+NLB (Network Load Balancer): NLB works at Layer 4 (Transport Layer) and is mainly used for TCP, UDP, and TLS traffic. It focuses on network connections rather than understanding HTTP requests, so it does not provide ALB-style path-based or host-based routing. NLB is designed for very high throughput, large numbers of connections, low network-level latency, and static IP requirements. It is commonly used for TCP/UDP applications, custom network protocols, and high-performance network workloads.
+
 ====================================================
 ### Why do we select Private EC2 instances as the Target Group instead of Public EC2 instances behind an Application Load Balancer (ALB)?
 
@@ -133,16 +147,16 @@ If the Launch Template already contains Subnet A, the ASG cannot freely choose S
 
 ### Question:
 
-**When creating an EC2 instance, why do we choose either a public subnet or a private subnet? What happens if we choose each one?**
+When creating an EC2 instance, why do we choose either a public subnet or a private subnet? What happens if we choose each one?
 
 ### Answer:
 
-We choose the subnet based on whether the EC2 instance should be **accessible from the internet** or **kept secure inside the VPC**.
+We choose the subnet based on whether the EC2 instance should be accessible from the internet or kept secure inside the VPC.
 
-#### If we choose a **Public Subnet**:
+#### If we choose a Public Subnet:
 
-* The EC2 instance can get a **public IP** (if enabled).
-* It can communicate directly with the internet through the **Internet Gateway (IGW)**.
+* The EC2 instance can get a public IP (if enabled).
+* It can communicate directly with the internet through the Internet Gateway (IGW).
 * We can connect using SSH/RDP from the internet (if Security Group allows).
 * Suitable for:
 
@@ -151,11 +165,11 @@ We choose the subnet based on whether the EC2 instance should be **accessible fr
   * Public-facing Application
   * Load Balancer (ALB)
 
-#### If we choose a **Private Subnet**:
+#### If we choose a Private Subnet:
 
-* The EC2 instance does **not** get a public IP.
-* It **cannot receive direct internet traffic**.
-* Outbound internet access is possible only through a **NAT Gateway** (if configured).
+* The EC2 instance does not get a public IP.
+* It cannot receive direct internet traffic.
+* Outbound internet access is possible only through a NAT Gateway (if configured).
 * Suitable for:
 
   * Application Server
@@ -164,7 +178,7 @@ We choose the subnet based on whether the EC2 instance should be **accessible fr
 
 ### Why do we choose only one subnet?
 
-An EC2 instance is launched into **one subnet only**, and each subnet belongs to **one Availability Zone (AZ)**. Therefore, at the time of launch, you select the subnet where you want the EC2 instance to reside.
+An EC2 instance is launched into one subnet only, and each subnet belongs to one Availability Zone (AZ). Therefore, at the time of launch, you select the subnet where you want the EC2 instance to reside.
 
 ### Interview Answer:
 
@@ -184,13 +198,13 @@ We select only one subnet while launching an EC2 instance because an EC2 instanc
 
 This is an excellent interview question.
 
-## **Question**
+## Question
 
-**Why do we create multiple subnets if one EC2 instance can be launched into only one subnet?**
+Why do we create multiple subnets if one EC2 instance can be launched into only one subnet?
 
-## **Answer (Interview)**
+## Answer (Interview)
 
-> "We create multiple subnets to improve **high availability, fault tolerance, security, and scalability**. Although one EC2 instance is launched into only one subnet, we can launch multiple EC2 instances across different subnets and Availability Zones. If one Availability Zone fails, the instances in the other Availability Zones continue serving traffic."
+> "We create multiple subnets to improve high availability, fault tolerance, security, and scalability. Although one EC2 instance is launched into only one subnet, we can launch multiple EC2 instances across different subnets and Availability Zones. If one Availability Zone fails, the instances in the other Availability Zones continue serving traffic."
 
 ### Example
 
@@ -212,26 +226,26 @@ AZ-2
 
 ### Why multiple subnets?
 
-1. **High Availability**
+1. High Availability
 
-   * If **AZ-1** goes down, **AZ-2** continues running.
+   * If AZ-1 goes down, AZ-2 continues running.
 
-2. **Security**
+2. Security
 
-   * Put web servers in **public subnets**.
-   * Put application servers and databases in **private subnets**.
+   * Put web servers in public subnets.
+   * Put application servers and databases in private subnets.
 
-3. **Auto Scaling**
+3. Auto Scaling
 
    * The Auto Scaling Group can launch EC2 instances in different subnets across multiple AZs.
 
-4. **Load Balancing**
+4. Load Balancing
 
    * An Application Load Balancer can distribute traffic to EC2 instances in multiple subnets.
 
 ### One-line interview answer
 
-> **"We create multiple subnets so that we can place different resources in different Availability Zones and separate public and private resources. This improves high availability, fault tolerance, security, and scalability."**
+> "We create multiple subnets so that we can place different resources in different Availability Zones and separate public and private resources. This improves high availability, fault tolerance, security, and scalability."
 
 ====================================================
 
@@ -245,20 +259,20 @@ Why do we choose a public or private subnet while creating an EC2 instance?
 
 ### Question:
 
-**If the Application Load Balancer (ALB) is enabled only in Availability Zones 1a and 1b, but the Auto Scaling Group (ASG) launches an EC2 instance in the private subnet of AZ-1c, what will happen?**
+If the Application Load Balancer (ALB) is enabled only in Availability Zones 1a and 1b, but the Auto Scaling Group (ASG) launches an EC2 instance in the private subnet of AZ-1c, what will happen?
 
 ### Answer:
 
-The EC2 instance in AZ-1c will launch successfully, but it **will not receive any traffic** from the ALB.
+The EC2 instance in AZ-1c will launch successfully, but it will not receive any traffic from the ALB.
 
-**Reason:**
+Reason:
 
-* The ALB is enabled only in **AZ-1a** and **AZ-1b**.
+* The ALB is enabled only in AZ-1a and AZ-1b.
 * ALB sends traffic only to the Availability Zones that are enabled on it.
-* Since **AZ-1c is not enabled** on the ALB, it cannot forward requests to the EC2 instance in AZ-1c.
-* As a result, the EC2 instance remains **unused** because no user requests reach it.
+* Since AZ-1c is not enabled on the ALB, it cannot forward requests to the EC2 instance in AZ-1c.
+* As a result, the EC2 instance remains unused because no user requests reach it.
 
-**Interview Answer (Short):**
+Interview Answer (Short):
 
 > If the ALB is enabled only in AZ-1a and AZ-1b, the ASG should launch EC2 instances only in those Availability Zones. If an instance is launched in AZ-1c, the ALB cannot send traffic to it because AZ-1c is not enabled on the load balancer. Therefore, the EC2 instance will be running but will not receive any application traffic.
 
@@ -266,23 +280,23 @@ The EC2 instance in AZ-1c will launch successfully, but it **will not receive an
 
 ### Question:
 
-**What do the Load Balancer (ALB) and Target Group (TG) do?**
+What do the Load Balancer (ALB) and Target Group (TG) do?
 
 ### Answer:
 
-**Load Balancer (ALB):**
+Load Balancer (ALB):
 
 * Receives requests from users.
-* Distributes traffic only to **healthy EC2 instances**.
-* Sends traffic only to the **Availability Zones (AZs) that are enabled on the ALB**.
-* It does **not** send traffic directly to EC2. It sends traffic through the **Target Group**.
+* Distributes traffic only to healthy EC2 instances.
+* Sends traffic only to the Availability Zones (AZs) that are enabled on the ALB.
+* It does not send traffic directly to EC2. It sends traffic through the Target Group.
 
-**Target Group (TG):**
+Target Group (TG):
 
 * Contains the registered EC2 instances (targets).
-* Performs **health checks** on the EC2 instances.
-* Reports which instances are **Healthy** or **Unhealthy** to the ALB.
-* The ALB forwards requests only to the **healthy targets** in the Target Group.
+* Performs health checks on the EC2 instances.
+* Reports which instances are Healthy or Unhealthy to the ALB.
+* The ALB forwards requests only to the healthy targets in the Target Group.
 
 ### Interview Answer:
 
@@ -292,17 +306,17 @@ The EC2 instance in AZ-1c will launch successfully, but it **will not receive an
 
 ### Question:
 
-**What is an AMI?**
+What is an AMI?
 
 ### Answer:
 
-**AMI (Amazon Machine Image)** is a pre-configured template used to launch EC2 instances. It contains everything required to create a new server.
+AMI (Amazon Machine Image) is a pre-configured template used to launch EC2 instances. It contains everything required to create a new server.
 
 ---
 
 ### Question:
 
-**What does an AMI contain?**
+What does an AMI contain?
 
 ### Answer:
 
@@ -318,23 +332,23 @@ An AMI contains:
 
 ### Question:
 
-**What is the use of an AMI?**
+What is the use of an AMI?
 
 ### Answer:
 
-AMI is used to launch new EC2 instances with the **same configuration** as an existing server. This ensures every new server created by an Auto Scaling Group is identical.
+AMI is used to launch new EC2 instances with the same configuration as an existing server. This ensures every new server created by an Auto Scaling Group is identical.
 
 ---
 
 ### Question:
 
-**Does AMI take a backup?**
+Does AMI take a backup?
 
 ### Answer:
 
-**Yes.** When you create an AMI from an EC2 instance:
+Yes. When you create an AMI from an EC2 instance:
 
-* AWS creates **snapshots of the attached EBS volumes**.
+* AWS creates snapshots of the attached EBS volumes.
 * These snapshots store the data on the EBS volumes.
 * Later, you can launch a new EC2 instance from the AMI, and AWS restores the data from those snapshots.
 
@@ -348,11 +362,11 @@ AMI is used to launch new EC2 instances with the **same configuration** as an ex
 
 ### Question:
 
-**What does an AMI NOT contain?**
+What does an AMI NOT contain?
 
 ### Answer:
 
-An AMI does **not** contain:
+An AMI does not contain:
 
 * Running state of the EC2 instance (running processes, RAM contents)
 * Public IP address (unless using an Elastic IP)
@@ -367,14 +381,14 @@ An AMI does **not** contain:
 
 ### Question:
 
-**When should we create an AMI (backup)?**
+When should we create an AMI (backup)?
 
 ### Answer:
 
 Usually, an AMI is created:
 
-* **Before a production release** (so you can roll back if the deployment fails)
-* **After a successful production release** (to save a stable version of the application)
+* Before a production release (so you can roll back if the deployment fails)
+* After a successful production release (to save a stable version of the application)
 * Before major OS or application updates
 * Before patching or maintenance
 * Before making significant configuration changes
@@ -387,13 +401,13 @@ Usually, an AMI is created:
 
 ### Question:
 
-**What does `systemctl enable nginx` do?**
+What does `systemctl enable nginx` do?
 
 ### Answer:
 
-`systemctl enable nginx` configures the Nginx service to **start automatically whenever the EC2 instance boots or reboots**.
+`systemctl enable nginx` configures the Nginx service to start automatically whenever the EC2 instance boots or reboots.
 
-It **does not start Nginx immediately**. It only enables auto-start.
+It does not start Nginx immediately. It only enables auto-start.
 
 ---
 
@@ -403,19 +417,19 @@ It **does not start Nginx immediately**. It only enables auto-start.
 sudo systemctl start nginx
 ```
 
-* Starts the Nginx service **immediately**.
+* Starts the Nginx service immediately.
 
 ```bash
 sudo systemctl enable nginx
 ```
 
-* Configures Nginx to **start automatically after every reboot**.
+* Configures Nginx to start automatically after every reboot.
 
 ```bash
 sudo systemctl enable --now nginx
 ```
 
-* Starts Nginx immediately **and** enables it to start automatically on future reboots.
+* Starts Nginx immediately and enables it to start automatically on future reboots.
 
 ---
 
@@ -429,13 +443,13 @@ Yes, exactly.
 
 ### Question:
 
-**Why do we use `systemctl enable nginx`?**
+Why do we use `systemctl enable nginx`?
 
 ### Answer:
 
-`systemctl enable nginx` ensures that **Nginx starts automatically whenever the EC2 instance boots**.
+`systemctl enable nginx` ensures that Nginx starts automatically whenever the EC2 instance boots.
 
-This means you **do not need to start Nginx manually** every time the instance is:
+This means you do not need to start Nginx manually every time the instance is:
 
 * ✅ Rebooted
 * ✅ Stopped and then started again
@@ -457,16 +471,16 @@ With `systemctl enable nginx`, the service starts automatically during boot.
 
 ### Question:
 
-**When creating an EC2 instance, why do we choose either a public subnet or a private subnet? What happens if we choose each one?**
+When creating an EC2 instance, why do we choose either a public subnet or a private subnet? What happens if we choose each one?
 
 ### Answer:
 
-We choose the subnet based on whether the EC2 instance should be **accessible from the internet** or **kept secure inside the VPC**.
+We choose the subnet based on whether the EC2 instance should be accessible from the internet or kept secure inside the VPC.
 
-#### If we choose a **Public Subnet**:
+#### If we choose a Public Subnet:
 
-* The EC2 instance can get a **public IP** (if enabled).
-* It can communicate directly with the internet through the **Internet Gateway (IGW)**.
+* The EC2 instance can get a public IP (if enabled).
+* It can communicate directly with the internet through the Internet Gateway (IGW).
 * We can connect using SSH/RDP from the internet (if Security Group allows).
 * Suitable for:
 
@@ -475,11 +489,11 @@ We choose the subnet based on whether the EC2 instance should be **accessible fr
   * Public-facing Application
   * Load Balancer (ALB)
 
-#### If we choose a **Private Subnet**:
+#### If we choose a Private Subnet:
 
-* The EC2 instance does **not** get a public IP.
-* It **cannot receive direct internet traffic**.
-* Outbound internet access is possible only through a **NAT Gateway** (if configured).
+* The EC2 instance does not get a public IP.
+* It cannot receive direct internet traffic.
+* Outbound internet access is possible only through a NAT Gateway (if configured).
 * Suitable for:
 
   * Application Server
@@ -488,7 +502,7 @@ We choose the subnet based on whether the EC2 instance should be **accessible fr
 
 ### Why do we choose only one subnet?
 
-An EC2 instance is launched into **one subnet only**, and each subnet belongs to **one Availability Zone (AZ)**. Therefore, at the time of launch, you select the subnet where you want the EC2 instance to reside.
+An EC2 instance is launched into one subnet only, and each subnet belongs to one Availability Zone (AZ). Therefore, at the time of launch, you select the subnet where you want the EC2 instance to reside.
 
 ### Interview Answer:
 
