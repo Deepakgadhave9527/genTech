@@ -247,11 +247,11 @@ It is used when you need to read layout measurements or update the DOM immediate
 
 ============================================================
 
-The useLayoutEffect hook and  useEffect is similarly  but differs in its execution timing. 
+- The useLayoutEffect hook and  useEffect is similarly  but differs in its execution timing. 
 
-While useEffect runs asynchronously after the browser has painted the screen, 
+- While useEffect runs asynchronously after the browser has painted the screen, 
 
-useEffect it suitable for tasks like data fetching, setting up event listeners, or updating state based on props
+- useEffect it suitable for tasks like data fetching, setting up event listeners, or updating state based on props
 
 
 useLayoutEffect = runs before user sees the screen
@@ -286,188 +286,78 @@ Without React.memo, the child will re-render whenever the parent re-renders.
 - With React.memo, since there are no props, React will skip the child’s re-render when the parent re-renders.
 
 ========================================================================
-
-
-What does memoizing mean?
+### What does memoizing mean?
 
 Memoization is a technique where the result of a function call is cached (stored), so if the same inputs occur again, the cached result is returned immediately instead of recalculating.
 
+
+
 ========================================================================
-- The **`useMemo`*- hook is used to **memoize the result of a calculation**.
 
+
+### useMemo
+
+- The useMemo hook is used to memoize the result of a calculation
+
+- useMemo is used to avoid re-running an expensive calculation when a component re-renders. 
+
+- When the parent sends new props or the component's state changes, the component may re-render.
+- Without useMemo, the expensive calculation runs again.
+
+- With useMemo, the cached result is returned until its dependencies change.
+
+- It can improve performance by avoiding unnecessary expensive calculations during component re-renders.
+
+
+“By calculation, I mean any expensive operation such as filtering, sorting, searching, parsing,
+
+### Common Use Cases of `useMemo`
+
+* **Expensive calculations**
+* **Filtering large lists**
+* **Sorting large lists**
+* **Complex data transformations**
+* **Maintaining stable object/array references**
+* **Memoizing Context Provider values**
+
+```js
+const memoziationOfResult = useMemo(()=>{},[])
+```
+
+`useMemo` does not prevent a component from re-rendering. 
+`React.memo` can prevent a component from re-rendering when its props have not changed.
+`useMemo` only prevents an expensive calculation from running again unnecessarily.
+
+
+========================================================================
+- The useMemo hook is used to memoize the result of a calculation
 - It recalculates the value only when its dependencies change; otherwise, it returns the cached value
-- It improves performance by avoiding unnecessary computations during component re-renders
 
-- It is mainly used for expensive operations such as filtering, sorting, searching, or complex calculations
-
-### useMemo**
-
-- It **avoids recalculating a value on every render** unless its dependencies change.
-- This helps **improve performance**, especially for expensive computations.
+It is mainly useful for expensive calculations or data transformations, such as filtering, sorting, searching, parsing, or complex calculations.
 
 
-- **useMemo is used to memoize the result of a function or a computation.**
-- It’s helpful when you have an **expensive calculation or data transformation*- that you want to avoid re-executing on every render if the inputs haven't changed.
-- You pass a function to `useMemo`, and it returns the value that the function returns.
-- If the dependencies in the dependency array change, the function is re-executed; otherwise, the cached value is returned.
 
-const memoizedCallback = useCallback(() => {
-  // Your callback logic here
-}, [dependencies]);
-
-
-### ✅ Common Use Cases:
-
-* **– Avoiding expensive calculations**
-  (e.g., math, parsing, or transformations that slow down rendering)
-
-* **– Filtering or sorting large lists**
-  (e.g., dynamic search or sorted product/user lists)
-
-* **– Memoizing derived values from state or props**
-  (e.g., booleans like `isActive`, totals, formatted text)
-
-* **– Passing stable props to `React.memo` components**
-  (to prevent unnecessary re-renders of children)
-
-* **– Memoizing values for context providers**
-  (to avoid re-renders when using `Context.Provider`)
 -------------------------------------------------------------
 
 ### **useCallback**
 
+useCallback hooke memoizes a function and returns the same function reference until its dependencies change.
+
+useCallback can prevent unnecessary child component re-renders when a function is passed as a prop to a child wrapped with React.memo, which can improve application performance.
+
+Mainly to prevent unnecessary re-renders when passing functions to memoized child components or when a function is a dependency of useEffect.
 
 
-
-* The **`useCallback`** hook is primarily used to **memoize functions**.
-* **useCallback hook ensures that a function is not recreated on every render unless its dependencies change.**
-* This can be beneficial when passing functions as props to child components, preventing unnecessary re-renders of those child components.
-
-You pass a function and a dependency array to useCallback. The hook returns a memoized version of the function. If the dependencies change, the function is recreated; otherwise, the cached function is returned
-
----------------------------------------------------------
-What is useCallback?
-
-- The useCallback Hook is used to memoize (cache) a function.
-- It returns the same function instance between renders unless its dependencies change.
-- This helps prevent unnecessary function recreation and can improve performance.
-- It is commonly used when passing functions as props to child components wrapped with React.memo, preventing unnecessary re-renders.
-- You pass a function and a dependency array to useCallback. If the dependencies change, React creates a new function; otherwise, it returns the previously memoized function.
-
-
-
----
-### ✅ **Common Use Cases of `useCallback`**
-
-* **Memoizing event handlers** (e.g., click, submit functions) to avoid recreating on every render
-* **Passing stable callback functions as props** to prevent unnecessary child component re-renders
-* **Using functions inside `useEffect` dependencies** to avoid unwanted effect runs
-* **Optimizing performance in large lists** where callbacks are passed to many items
-* **Preventing inline function recreation in deeply nested components**
-
-
-
-
-Yes. **Passing functions as props to child components is the most common use case**, but it's **not the only one**.
-
-Here are the main scenarios where `useCallback` is useful:
 
 ### 1. Passing a function to a child component (Most Common) ✅
 
-```jsx
-<Child onClick={handleClick} />
-```
-
-Use `useCallback` to keep the same function reference and avoid unnecessary child re-renders.
-
----
-
 ### 2. When a function is a dependency of `useEffect`
-
-Without `useCallback`:
-
-```jsx
-const fetchData = () => {
-  console.log("Fetching...");
-};
-
-useEffect(() => {
-  fetchData();
-}, [fetchData]);
-```
-
-`fetchData` is recreated on every render, so the `useEffect` runs every time.
-
-With `useCallback`:
-
-```jsx
-const fetchData = useCallback(() => {
-  console.log("Fetching...");
-}, []);
-
-useEffect(() => {
-  fetchData();
-}, [fetchData]);
-```
-
-Now, `fetchData` has the same reference, so the effect runs only when its dependencies change.
-
----
 
 ### 3. When a function is a dependency of another Hook
 
-```jsx
-const calculate = useCallback(() => {
-  return count * 2;
-}, [count]);
-
-const value = useMemo(() => {
-  return calculate();
-}, [calculate]);
-```
-
-Using `useCallback` prevents `calculate` from being recreated unnecessarily.
-
----
-
 ### 4. Expensive event handlers
 
-If creating a function is expensive or it is passed to libraries that compare function references, `useCallback` can help.
-
-```jsx
-const handleScroll = useCallback(() => {
-  // expensive logic
-}, []);
-```
-
----
-
 ## When NOT to use `useCallback`
-
-```jsx
-function App() {
-  const handleClick = () => {
-    console.log("Hello");
-  };
-
-  return <button onClick={handleClick}>Click</button>;
-}
-```
-
-Here, `useCallback` is unnecessary because the function is **not passed to a memoized child**, **not used as a Hook dependency**, and **not expensive to recreate**.
-
----
-
-## Interview Answer
-
-**`useCallback` is mainly used in these scenarios:**
-
-1. **Passing functions as props to `React.memo` child components.**
-2. **When a function is a dependency of `useEffect`.**
-3. **When a function is a dependency of other Hooks like `useMemo` or another `useCallback`.**
-4. **When recreating a function is expensive or a library relies on stable function references.**
-
-The primary purpose of `useCallback` is to **keep the same function reference between renders unless its dependencies change.**
 
 
 
