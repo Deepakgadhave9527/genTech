@@ -1,4 +1,151 @@
 
+=============== memoization ===================================
+
+## Memoization
+
+
+Memoization is an optimization technique that stores (caches) the result of an 
+expensive function so that if the function is called again with the same inputs, 
+it returns the cached result instead of recalculating it.
+
+This improves performance by avoiding repeated computations.
+
+
+
+- It is especially useful for functions with heavy calculations,
+ recursive algorithms, or repeated inputs.
+
+
+
+- memoization only provides a benefit when the same inputs occur again.
+
+- If the input is different, there's no cache entry for it, 
+so the function must compute the result normally and then store it.
+
+- Memoization is an optimization technique that improves the performance of functions 
+by caching the results of expensive function calls.
+When the same inputs occur again, 
+the function returns the stored (cached) result instead of recomputing it.
+
+
+======== Immediately Invoked Function Expression (IIFE =======================
+
+Immediately Invoked Function Expression (IIFE)
+
+
+IIFE is a JavaScript function that runs immediately after it is created / defined.
+
+
+- It is often used to create a local scope to avoid polluting the global scope.
+
+- Runs code immediately after declaration, useful for initialization tasks, c
+onfiguring settings, or starting applications at the desired moment.
+
+
+(function() {
+console.log("This function runs immediately!");
+})();
+
+(function(name) {
+console.log("Hello, " + name + "!");
+})("World");
+
+
+
+
+| Feature                    | Purpose                                                    |
+| -------------------------- | ---------------------------------------------------------- |
+| Encapsulation          | Creates private scope for variables/functions              |
+| Avoid Global Pollution | Prevents global variable name conflicts                    |
+| Data Privacy           | Hides internal data using closures                         |
+| Module Pattern         | Exposes only required functions and keeps the rest private |
+
+
+
+
+
+
+Encapsulation: Creates private scopes for variables and functions, preventing conflicts and unintended modifications in the global scope.
+
+Avoiding Global Pollution: Keeps the global namespace clean, minimizing naming clashes with other scripts or libraries and maintaining modular, self-contained code.
+
+
+Data Privacy: Utilizes closures to maintain data privacy, hiding internal variables and functions while exposing only necessary parts, fundamental to the Module Pattern.
+
+
+===========================================================================
+
+## lexical scope
+
+in JavaScript, lexical scope determines variable accessibility based on where variables
+ and functions are declared in the code.
+
+
+-A lexical scope in JavaScript means that a variable defined outside a function 
+can be accessible inside another function
+
+### Function Scope:
+Each function in JavaScript creates a new scope. Variables defined within a function are not accessible outside of it.
+
+### Block Scope:
+Variables declared with let and const are block-scoped, meaning they are only accessible within the nearest set of curly braces {} in which they are defined.
+
+### Nested Scopes:
+Inner functions have access to variables and functions in their outer scopes. This nesting can continue indefinitely, allowing inner functions to access variables from all outer scopes up to the global scope.
+
+function outerFunction() {
+  var outerVar = 'I am outside!';
+
+  function innerFunction() {
+    var innerVar = 'I am inside!';
+    console.log(outerVar); // Accessible
+    console.log(innerVar); // Accessible
+  }
+
+  innerFunction();
+  console.log(outerVar); // Accessible
+  // console.log(innerVar); // Uncaught ReferenceError: innerVar is not defined
+}
+
+outerFunction();
+
+
+
+
+
+========================================================================
+
+
+## Scope Chain vs. Context in JavaScript
+
+### Scope Chain
+- **Definition**: The order in which the JavaScript engine looks for variables, starting from the innermost scope and moving outward until it finds the variable or reaches the global scope.
+- **Example**:
+  ```javascript
+  function outer() {
+      let outerVar = 'I am outer';
+      function inner() {
+          console.log(outerVar); // 'I am outer'
+      }
+      inner();
+  }
+  outer();
+  ```
+
+### Context
+- **Definition**: Refers to the value of `this` within a function and is determined by how the function is called.
+- **Example**:
+  ```javascript
+  const obj = {
+      value: 42,
+      getValue: function() {
+          return this.value;
+      }
+  };
+  console.log(obj.getValue()); // 42
+  ```
+
+
 ==============================================================
 
 

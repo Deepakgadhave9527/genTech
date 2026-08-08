@@ -274,3 +274,484 @@ Use forEach() when you just need to loop through items and perform side effects 
 
 
 
+=========================================================================
+####
+-preventDefault() is a JavaScript method that prevents the browsers default action for an event.
+
+- used to stop the default action associated with an event from occurring.
+
+  - Example: Prevent a form from submitting.
+  - Example: Prevent a link from navigating to a new page.
+  - Example: Prevent a context menu from appearing.
+
+
+---------------------------------------------------------------------------
+- `stopPropagation()`
+event.stopPropagation() is a JavaScript method used to stop event propagation in the DOM.
+
+(stop event bubbling or capturing.)
+
+When an event occurs on a nested child element, it normally bubbles from the child element to its parent elements.
+By calling event.stopPropagation() inside the child element's event handler,
+- we stop the event from reaching parent elements.
+It allows the current element's event handler to execute, 
+but parent elements handlers will not be triggered.
+It does not affect sibling elements because siblings are not part of the event propagation path.
+
+
+-------------------------------------------------------------------------
+
+
+### `stopImmediatePropagation()`
+
+event.stopImmediatePropagation() is a JavaScript method that stops the event from propagating to parent elements
+and also prevents any other event listeners attached to the same element from executing.
+
+
+
+
+
+
+
+### ======================== Event loop =========================================
+
+
+ Event loop
+
+- The event loop is a mechanism that allows JavaScript to execute asynchronous code in a single-threaded environment.
+
+- With the help of the Event Loop, JavaScript manages the execution order  of synchronous and asynchronous code.
+
+## Main Components of the Event Loop
+
+- Call Stack
+- Web APIs (Browser APIs / Node.js APIs)
+- Microtask Queue (promise, callbacks, etc.,),
+- Macrotask Queue (setTimeout, setInterval, I/O operations, DOM events, etc.,)
+- Event Loop
+
+
+### Call Stack
+
+
+1. with help of  Call Stack e JavaScriptengine to keep track of function execution.
+2. Whenever a function is called, it is pushed onto the Call Stack, and when the function completes,
+ it is removed from the stack.
+3. JavaScript follows the LIFO principle, 
+meaning the last function added to the stack will be executed and removed first.
+
+
+"The Call Stack follows the LIFO (Last In, First Out) principle. 
+This means the most recently added function is at the top of the stack, 
+so JavaScript executes it first. Once its execution is completed, 
+it is removed (popped) from the stack, and execution continues with the function below it."
+
+4. JavaScript executes all synchronous code in the Call Stack until it becomes empty.
+
+5. then Event Loop starts processing asynchronous callbacks only when the Call Stack becomes empty.
+
+
+# Web APIs
+
+**Web APIs** are provided by the browser (or Node.js APIs in Node.js) to handle asynchronous operations.
+
+Examples include:
+
+- `setTimeout`
+- `setInterval`
+- `fetch`
+- DOM Events
+- I/O Operations
+
+Once an asynchronous operation is completed, 
+its callback is placed into either the **Microtask Queue** or the **Macrotask Queue**, 
+depending on the type of operation.
+
+
+
+### Micro Task Queue
+
+
+The Microtask Queue is a queue that stores high-priority asynchronous tasks.
+ These tasks are executed after the current synchronous code finishes 
+ and the Call Stack becomes empty, but before the Event Loop processes the next macrotask.
+
+Microtasks are given higher priority than macrotasks.
+
+Examples of microtasks:
+
+- Promise callbacks (`.then()`, `.catch()`, `.finally()`)
+- `queueMicrotask()`
+- `MutationObserver` callbacks
+
+The Event Loop executes **all pending microtasks** before moving to the Macrotask Queue.
+
+
+### Macro Task Queue
+
+The Macrotask Queue (also called the Task Queue or Callback Queue) is a queue that stores asynchronous tasks with normal priority. These tasks are executed only after all pending microtasks have been completed.
+
+Common macrotasks include:
+
+setTimeout()
+setInterval()
+DOM events (e.g., click, load)
+I/O operations (in Node.js)
+
+### Event Loop:
+
+Event Loop: The Event Loop is the mechanism that continuously checks whether the Call Stack is empty. 
+If it is, it first executes all pending microtasks and then executes the next macrotask. 
+This process repeats continuously
+
+
+
+
+The main difference between microtask and macrotask queue is their priority.
+The event loop always gives higher priority to the microtask queue, a
+and will process all the callbacks in the microtask queue before moving on to the macrotask queue.
+
+
+=================================================================
+
+
+### Web APIs - Definition
+
+> **"Web APIs are browser-provided (or Node.js runtime-provided) features that allow JavaScript to perform asynchronous operations outside the JavaScript engine, such as timers, network requests, and DOM events. Once the operation is completed, the callback is sent to the appropriate queue for execution."**
+
+**Examples:**
+
+* `setTimeout()`
+* `setInterval()`
+* `fetch()`
+* DOM Events (`click`, `load`)
+* I/O operations
+
+---
+
+### Macrotask Queue - Definition
+
+> **"The Macrotask Queue is a queue that stores callbacks of completed asynchronous operations such as `setTimeout`, `setInterval`, DOM events, and I/O operations. The Event Loop moves these callbacks to the Call Stack for execution only after the Call Stack is empty and all Microtasks have been completed."**
+
+**Examples:**
+
+* `setTimeout()` callback
+* `setInterval()` callback
+* DOM event callbacks
+* I/O callbacks
+
+---
+
+### Simple difference for interview:
+
+> **"Web APIs perform the asynchronous work, while the Macrotask Queue stores the callbacks after the work is completed and waits for the Event Loop to execute them."** ✅
+
+Example:
+
+```javascript
+setTimeout(() => {
+    console.log("Hello");
+}, 1000);
+```
+
+Flow:
+
+```text
+setTimeout()
+     ↓
+Web API
+(timer waits 1 second)
+     ↓
+Macrotask Queue
+(callback waits)
+     ↓
+Event Loop
+     ↓
+Call Stack
+(callback executes)
+```
+
+This distinction is important in interviews because many people incorrectly say that Web APIs and Macrotask Queue are the same.
+
+
+
+
+
+
+
+==========================================
+
+### How the Event Loop Works
+
+1. **Execution Context:** JavaScript starts by executing the global context, which is the main code file.
+2. **Call Stack:** Functions are pushed onto the Call Stack and executed. If a function contains an asynchronous operation (e.g., `setTimeout`), the operation is offloaded to the browser or Node.js environment.
+3. **Task Queues:**
+   - When an asynchronous operation completes, its callback is placed into the appropriate queue (Micro Task Queue or Macro Task Queue).
+4. **Event Loop:**
+   - The event loop continuously checks the Call Stack. If the Call Stack is empty, it starts processing the Micro Task Queue.
+   - All microtasks are processed before moving on to the Macro Task Queue.
+   - Once the Micro Task Queue is empty, the event loop will process one task from the Macro Task Queue.
+
+### Example
+
+Consider the following code:
+
+```javascript
+console.log("Start");
+
+setTimeout(() => {
+  console.log("Timeout");
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log("Promise");
+});
+
+console.log("End");
+```
+
+**Execution Flow:**
+
+1. `'Start'` is logged to the console.
+2. `setTimeout` is called, its callback is placed in the Macro Task Queue.
+3. `Promise.resolve().then` is called, its callback is placed in the Micro Task Queue.
+4. `'End'` is logged to the console.
+5. The Call Stack is now empty.
+6. The event loop checks the Micro Task Queue and executes the promise callback, logging `'Promise'` to the console.
+7. The event loop then checks the Macro Task Queue and executes the timeout callback, logging `'Timeout'` to the console.
+
+**Output:**
+
+```
+Start
+End
+Promise
+Timeout
+```
+
+By understanding the event loop and its components, you can better manage asynchronous operations in JavaScript and predict the order of execution for your code.
+
+<!-- Microtasks are operations scheduled to run right after the current script finishes but before the browser performs any rendering or handling of input/output operations. -->
+
+<!-- Microtasks are tasks that are executed immediately after the currently executing script and before any rendering or I/O operations. -->
+
+<!--
+The Event loop is a concept that helps us to know the execution of code in Javascript.
+
+The event loop in JavaScript is a fundamental concept that helps manage the execution of asynchronous code, -->
+
+ <!-- single-threaded environment of JavaScript to handle concurrent operations. 
+ It works by constantly checking two queues: the microtask queue and the macrotask queue. These queues store the callbacks of the asynchronous operations that are waiting to be executed.
+
+ The main difference between microtask and macrotask queue is their priority. 
+ The event loop always gives higher priority to the microtask queue, and will process all the callbacks in the microtask queue before moving on to the macrotask queue. -->
+
+<!-- The Call Stack is where the JavaScript engine keeps track of function calls. -->
+
+-->
+
+<!-- Macrotasks are tasks that are scheduled to be executed after the current executing script and after all microtasks have been processed -->
+
+```
+
+//================================= Closure ========================
+
+
+
+1. A closure is the combination of a function and the lexical environment in which it was created.
+
+2 closure in JavaScript function to remember and access variables from its outer (lexical) scope even after the outer function has finished executing.
+
+3. This works because the function maintains a reference to those variables rather than copying their values.
+
+4. Closures are commonly used to maintain state, create private variables, implement callbacks, event handlers, function factories, and memoization.
+
+
+
+
+
+A closure in JavaScript is a function that remembers and can access variables from its outer (lexical) scope even after the outer function has finished executing. This happens because the function maintains a reference to those variables. Closures are commonly used to maintain state, create private variables, implement callbacks, and build function factories.
+
+
+### 🔹 Simple Closure Example:
+
+```javascript
+function outerFunction() {
+  let outerVariable = "I am outer";
+  let a = 20;
+  function innerFunction() {
+    console.log(outerVariable); // Accesses outerVariable via closure
+    console.log(a); // Accesses outerVariable via closure
+  }
+  a = 30;
+  return innerFunction;
+}
+
+const innerFunc = outerFunction();
+innerFunc(); // Output: outerVariable = I am outer and a=30
+```
+
+---
+
+### 🔹 Real-World Use Case – Counter:
+
+```javascript
+function createCounter() {
+  let count = 0;
+  return function () {
+    count++;
+    return count;
+  };
+}
+
+const counter = createCounter();
+console.log(counter()); // 1
+console.log(counter()); // 2
+```
+
+> `count` is private and persistent across function calls due to closure.
+
+When function_a_outer is executed, function_b_inner still retains access to its lexical scope. These variables are held by reference, not as the original values at definition time. As a result, the inner function always accesses the latest value of those variables
+
+When a customer visits an online store:
+
+A new shopping cart is created (via a function).
+
+The cart has a private list of items, not accessible directly from outside.
+
+The cart exposes functions to:
+
+Add items
+
+❌ Remove items
+
+👁️ View cart contents
+
+These functions are closures — they retain access to the private list of items, even after the main cart function has executed.
+
+---
+
+- When a customer visits an online store, a new shopping cart is created.
+- This cart contains a private list of items, inaccessible directly from outside.
+- To manage the cart, specific functions are provided:
+  - One for adding items.
+  - One for removing items.
+  - One for viewing the cart's contents.
+- These functions can access the private list, even though it's hidden from the outside.
+- When a customer adds an item:
+  - The function modifies the private list to include the new item
+- When a customer removes an item:
+  - Another function checks the list and updates it accordingly.
+- To view the cart:
+  - A function reads and displays the list without changing it.
+- This use of closures ensures that the cart’s internal list remains encapsulated and secure, only modifiable through the designated functions.
+- The private list retains its state throughout the customer’s session because the functions maintain a reference to it.
+- This encapsulation:
+  - Enhances security by preventing direct tampering.
+  - Ensures that each customer's cart operates independently and consistently throughout their shopping experience.
+
+<!--
+Certainly! Here's a concise explanation using a continuous format:
+
+When a customer visits an online store, a new shopping cart is created. This cart contains a private list of items, inaccessible directly from outside. To manage the cart, specific functions are provided: one for adding items, one for removing items, and one for viewing the cart's contents. These functions can access the private list, even though it's hidden from the outside. When a customer adds an item, the function modifies the private list to include the new item. When they remove an item, another function checks the list and updates it accordingly. To view the cart, a function reads and displays the list without changing it.
+
+This use of closures ensures that the cart’s internal list remains encapsulated and secure, only modifiable through the designated functions. The private list retains its state throughout the customer’s session because the functions maintain a reference to it. This encapsulation enhances security by preventing direct tampering and ensures that each customer's cart operates independently and consistently throughout their shopping experience. -->
+
+=======================================
+
+for(var x = 1; x < 5; x++) {
+setTimeout(() => {
+console.log(x);
+}, 1000);
+}
+
+for(let x = 1; x < 5; x++) {
+setTimeout(() => {
+console.log(x);
+}, 1);
+}
+
+Since var does not create a new scope for each iteration, all callbacks reference the same x varibale.
+Since let creates a new scope for each iteration, each callback references its own unique x varibale.
+
+
+```
+### `var` with Closure and Event Loop Explanation
+
+In the case of **`var`**, only one variable is created because `var` is **function-scoped**.  
+The `for` loop does not create a new variable for each iteration.
+
+Each `setTimeout` callback creates a **closure** that references the same variable. The closure remembers the variable reference, not the value at the time the callback was created.
+
+The callbacks do not execute immediately; they are moved to the **Macrotask Queue** after the timer completes.
+
+When the **Event Loop** executes them, the loop has already finished and the variable value has become **5**. Since all callbacks reference the same variable, all callbacks print the same value:
+
+Output:
+
+5
+5
+5
+5
+
+
+---
+
+### `let` with Closure and Event Loop Explanation
+
+In the case of **`let`**, a new variable is created for each iteration because `let` is **block-scoped**. The `for` loop creates a separate variable binding for every iteration.
+
+Each `setTimeout` callback creates a **closure** that references its own iteration-specific variable. The closure remembers the value of `x` for that particular iteration.
+
+The callbacks do not execute immediately; they are moved to the **Macrotask Queue** after the timer completes.
+
+When the **Event Loop** executes them, the loop has already finished, but each callback has its own separate `x` variable with the value from its respective iteration.
+
+Therefore, each callback prints its own stored value:
+
+Output:
+
+1
+2
+3
+4
+```
+
+
+
+================================================================================================
+## lexical scope
+
+in JavaScript, lexical scope determines variable accessibility based on where variables
+ and functions are declared in the code.
+
+
+-A lexical scope in JavaScript means that a variable defined outside a function 
+can be accessible inside another function
+
+
+When a function (Function B) is declared inside another function (Function A), JavaScript uses lexical scoping to determine what variables Function B has access to.
+// 🌍 Global scope
+let globalVar = "I am global";
+
+function Function_A_outer() {
+  // 🔹 Lexical Scope Level 1 (outer)
+  let outerVar = "I am outer";
+
+  function Function_b_inner() {
+    // 🔸 Lexical Scope Level 2 (inner)
+    let innerVar = "I am inner";
+
+    //  Accessing variables through lexical scope
+    console.log(globalVar); // ← from Global Scope
+    console.log(outerVar);  // ← from outer()'s Lexical Scope
+    console.log(innerVar);  // ← from inner()'s own scope
+  }
+
+  Function_b_inner(); // Call the inner function
+}
+
+Function_A_outer(); // Call the outer function
+
+
+
