@@ -1,72 +1,3 @@
-====================== functions====================================
-
-
-function greet(name) { // 'name' is a parameter
-    console.log('Hello, ' + name);
-}
-
-greet('Alice'); // 'Alice' is an argument
-
-
-function sum(a, b) {  // 'a' and 'b' are parameters
-  return a + b;
-}
-
-console.log(sum(5, 10));  // '5' and '10' are arguments
-
-
-
-```javascript
-// Parameters (in function definition)
-// Arguments (when calling function)
-```
-
-### 🔹 Meaning:
-
-* Parameters → written inside function definition
-* Arguments → passed when calling the function
-
-Remember this simple rule:
-
-Outside an object → Function
-Inside an object → Method
-
-
-
-===============================Rest operator:-========================
-
-
-Rest operator:-
-
-
-The rest operator (...) is used in function parameters to collect all remaining arguments which do not have any matching parameters. into a single array. 
-
-It allows a function to accept a variable number of arguments.
-
-The rest parameter (...args) must always be the last parameter
-You cannot place anything after it (d after ...args is not allowed)
-it will throw error SyntaxError: Rest parameter must be last formal parameter
-
-
-
-Example:
-
-function add(a, b, ...args) {
-console.log(a, b);
-console.log(args);
-}
-
-add(10, 20);
-add(10, 20, 30, 40, 50);
-
-
-
-
-
--The rest operator is used to store all the arguments which do not have matching parameters.
--The rest is an array.
--Rest operator basic help to pass infinite number of argument in a function
-
 
 ======================================================================
 ### ⏱️ Short Answer:
@@ -83,15 +14,14 @@ add(10, 20, 30, 40, 50);
 
 ======================================================================
 
-### what is asynchronous and asynchronous programming 
-
+what is asynchronous programming 
 synchronous: task execute one at a time order. next task wait for the current one to finsh
  
 asynchronous : task can start and finish independently without blocking other code
 
-### common asynchronous opertions
-- api calls (fetch)
-- setTimeout / setInterval
+common asynchronous opertions
+-api calls (fetch)
+-setTimeout / setInterval
 - file i/o 
 - Database queries
 
@@ -273,12 +203,12 @@ const p = new Promise((resolve, reject) => {
 ========================================================================
 
 
+
 ### 2. What is Promise Chaining?
 
 
-Promise chaining is a technique in JavaScript that allows multiple asynchronous operations to be executed sequentially by chaining .then(), .catch(), and .finally() methods.
-
-Each operation returns a promise, and the result of one operation is passed to the next
+Promise chaining is a technique in JavaScript that allows multiple asynchronous operations to be executed sequentially by chaining .then(), .catch(), and .finally() methods.\
+ Each operation returns a promise, and the result of one operation is passed to the next
 
 ### *Why Use Promise Chaining?
 
@@ -316,17 +246,10 @@ getUser()
 ### Why Use Promises Instead of Callbacks?
 
 
-Promises are preferred over callbacks because they avoid callback hell, 
-
-improve readability, support chaining, and provide better error handling using catch . 
-
-Promises can be support composed using methods like Promise.all, Promise.race, Promise.allSettled, and Promise.any. 
-
-This allows for running multiple asynchronous operations in parallel and handling their results collectively.
-
-Promises makes code easier to debug, test, and modify over time.
-
+Promises are preferred over callbacks because they avoid callback hell, improve readability, support chaining, and provide better error handling using catch . 
 They also support composition of asynchronous operations using methods like Promise.all and Promise.race.
+
+Promises can be composed using methods like Promise.all, Promise.race, Promise.allSettled, and Promise.any. This allows for running multiple asynchronous operations in parallel and handling their results collectively.
 
 
 
@@ -336,17 +259,15 @@ They also support composition of asynchronous operations using methods like Prom
 ### Async/Await (5 Lines for Interview)
 
 - `async` and `await` are features introduced in ES8 (ES2017) that simplify working with Promises.
-
 - The `async` keyword is used to declare an asynchronous function, which always returns a Promise.
-
 - The `await` keyword pauses the execution of an async function until the Promise is 
    resolved or rejected.
 
-- Error handling can be done easily using `try...catch` blocks.
-- await should only be used inside the async function.
-
 
 - This helps avoid deeply nested `.then()` chains, making async code cleaner and  improving readability and maintainability .
+
+- Error handling can be done easily using `try...catch` blocks.
+- await should only be used inside the async function.
 
 - They make asynchronous code look synchronous, improving readability and maintainability.
 
@@ -384,8 +305,6 @@ async function fetchData() {
 
 
 ========================================================================
-
-
 ### Use `async/await` when:
 
 - You need to execute asynchronous operations sequentially.
@@ -417,22 +336,135 @@ const [user, posts] = await Promise.all([
 ]);
 ```
 
+
+//=========================== global object =========================
+## 1. What is the Global Object in JavaScript? 
+
+
+A global object is the top-level object that exists in the global scope and provides access to globally available variables, functions, and built-in objects.
+
+* In a browser, the global object is `window`.
+* In Node.js, the global object is `global`.
+* In modern JavaScript, `globalThis` is used to access the global object in any environment.
+
+
+```javascript
+var name = "Deepak";
+
+console.log(window.name); // "Deepak"
+```
+
+---
+
+## 2. What is the `window` Object? (Interview Answer)
+
+ The `window` object is the global object in browsers. It represents the browser window (or tab) and provides access to browser-related features. such as `alert()`, `setTimeout()`, `localStorage`, and `location`.
+
+It includes:
+
+* `document`
+* `location`
+* `history`
+* `navigator`
+* `setTimeout`, `alert`, etc.
+
+
+
+### Example:
+
+```javascript
+window.alert("Hello");
+console.log(window.innerWidth);
+```
+
+
+
+
+### What is the `document` object?
+
+The `document` object represents the HTML page loaded inside the browser window. It is a property of the `window` object.
+
+It is used to:
+
+* Access HTML elements
+* Modify content dynamically
+* Handle DOM manipulation
+
+
+
+### Relationship
+
+```javascript
+window.document === document; // true
+document.getElementById("demo");
+document.querySelector(".btn");
+```
+
+
+## One-line Interview Answers
+
+* Global Object: The top-level object that provides globally accessible variables and functions.
+* Window Object: The global object in browsers that represents the browser window.
+* Document Object: An object that represents the HTML document and allows DOM manipulation.
+Your content is mostly correct, just needs a bit of polishing for accuracy + interview clarity.
+
+
+//=========================== global object =========================
+
+
+### what is global object in javascript?
+
+
+-A global object is an object that always exists in the global scope
+-In a web browser, the global object is the window object
+-The global object can be accessed using the "this" operator in the global scope
+-The global object in JavaScript is an always defined object that provides
+variables and functions, and is available anywhere.
+
+
+
+window is a global object of javascript it is used to load / display a web page
+content in the web browser.
+
+The window object represents a tab of a web browser, it includes navigation model, histoy,
+location, document, etc.
+
+document represents a web page in the web browser.
+
+document object is a part of window object.
+
+Using document object you can dynamically update the content on the viewport.
+
+
 =========================================Set====================
 
 ### Set
 
-- `Set is a built-in object` in javascript that `stores unique values ` of any type data .
-- meaning duplicate values are not allowed. 
+- Set is a built-in object that stores unique values of any type.
+- meaning duplicate values are not allowed. It can store any type of value, such as numbers, strings, objects, or even functions
 
-- It can store any type of value, such as numbers, strings, objects, or even functions
+ A `Set` also preserves the insertion order of elements. It is useful when you need to remove duplicates or quickly check whether a value exists.
 
-- A Set maintains insertion order new values are always added at the end. 
-- we cannot insert a value in the middle of a Set or at a specific position.
 
-- It is useful when you need to remove duplicates or quickly check whether a value exists.
+> A `Set` is a built-in object, so `typeof new Set()` returns `"object"`.
 
+A JavaScript Set stores unique values and does not use indexes for accessing elements. 
+
+Values are accessed by checking their existence using .has() or by iterating through the Set.
+
+### Example
+
+```javascript
 const set = new Set();
 
+set.add(10);
+set.add(20);
+set.add(10); // Duplicate, ignored
+
+console.log(set);      // Set(2) {10, 20}
+console.log(set.has(20)); // true
+console.log(set.size);    // 2
+```
 
 ### Common Methods
 
@@ -443,8 +475,7 @@ const set = new Set();
 * `size` – Returns the number of elements.
 
 
-
-```javascript
+```js
 
 const mySet = new Set([
     "Hello",          // String
@@ -458,22 +489,9 @@ const mySet = new Set([
     [1, 2, 3],        // Array
     function test() {} // Function
 ]);
-
-const set = new Set();
-
-set.add(10);
-set.add(20);
-set.add(10); // Duplicate, ignored
-
-console.log(set);      // Set(2) {10, 20}
-console.log(set.has(20)); // true
-console.log(set.size);    // 2
-
+```
 console.log(mySet);
 
-
-===========================================================
-```
 ### Real-world Use Case
 
 One of the most common uses of a `Set` is to remove duplicate values from an array.
@@ -486,430 +504,823 @@ const uniqueNumbers = [...new Set(numbers)];
 console.log(uniqueNumbers); // [1, 2, 3, 4, 5]
 ```
 
-===========================================================
 
 
-### Set
+Insertion order means the Set adds elements line by line, in the same order the code is executed. Whatever value we add first will come first, and the next value will come after it. It does not change the order or sort the values. It just stores them in the same sequence as we write and run the code. A Set is not index-based like an array.
 
-1. Stores only unique values.
-2. Uses `add()` to insert elements.
-3. Uses `has()` to check if a value exists.
-4. Values are accessed by value, not by index.
-5. Best for storing unique values and fast lookups.
+It only stores values in insertion order, and new values are always added at the end.
 
----
+So this is NOT possible:
 
-### Array
+insert in middle ❌
+insert at index ❌
+sort automatically ❌
+make some  dash point
 
-1. Can store duplicate values.
-2. Uses `push()` to insert elements.
-3. Uses `includes()` to check if a value exists.
-4. Elements are accessed by index (`arr[0]`).
-5. Best for ordered collections and indexed access.
+Set can store different types of values like numbers, strings, objects, and functions together. It does not restrict data type, but it ensures all values are unique.
+
+
+
+Here's a corrected and more complete version for interview notes:
+
+### `Set` Constructor (Interview Points)
+
+1. The `Set` constructor accepts only one optional argument, which must be an iterable object.
+2. Examples of valid iterables:
+
+   * Array `[]`
+   * String `""`
+   * Another `Set`
+   * `Map` (its entries are iterable)
+3. A plain object `{}` is not iterable, so the following throws a TypeError:
+
+   ```javascript
+   new Set({});
+   // TypeError: object is not iterable
+   ```
+4. To store an object in a `Set`, wrap it inside an iterable (such as an array):
+
+   ```javascript
+   const set = new Set([{ name: "Deepak" }]);
+   console.log(set);
+   ```
+5. You can also create an empty `Set` by calling the constructor without any arguments:
+
+   ```javascript
+   const set = new Set();
+   ```
+6. Since a `Set` stores unique values, duplicate elements are automatically removed:
+
+   ```javascript
+   const set = new Set([1, 2, 2, 3, 3]);
+   console.log(set); // Set(3) {1, 2, 3}
+   ```
+
+============================================
+
+
+
+### Interview Follow-up: Set vs Array
+
+| Set                                  | Array                                           |
+| ------------------------------------ | ----------------------------------------------- |
+| Stores only unique values            | Can store duplicate values                      |
+| Uses `add()` to insert elements      | Uses `push()`                                   |
+| Uses `has()` to check existence      | Uses `includes()`                               |
+| Access by value, not index           | Access by index (`arr[0]`)                      |
+| Best for uniqueness and fast lookups | Best for ordered collections and indexed access |
+
+
 
 
 //============================map ===============================
-# `Map`
 
-`Map` is a built-in JavaScript object introduced in ES6.
+# `Map` 
 
-1. `Map` is a built-in JavaScript object that stores **key-value pairs**.
-2. Keys can be of any data type (string, number, object, function, etc.).
-3. A `Map` maintains the **insertion order** of elements.
-4. Duplicate keys are not allowed; if an existing key is set again, the latest value overwrites the previous value.
-5. `typeof new Map()` returns `"object"`.
+1. `Map` is a built-in JavaScript object that stores key-value pairs. 
+   It allows keys of any data type, maintains insertion order,
+ and provides methods for efficient data management.
+  `Map` is a built-in JavaScript object introduced in ES6.
+2. It stores data in key-value pairs.
+3. Keys can be of any data type (string, number, object, function, etc.).
+4. A `Map` maintains the insertion order of elements.
+5. Duplicate keys are not allowed; the latest value overwrites the previous value.
+6. The `Map` constructor accepts an iterable of key-value pairs.
+7. `typeof new Map()` returns `"object"`.
+8. The size of a Map can be obtained using the `.size` property.
+9. A `Map` provides methods such as `.set()`, `.get()`, `.has()`, `.delete()`, and `.clear()`.
+10. Unlike objects, `Map` keys are not limited to strings or symbols.
 
-### Map Methods
 
-1. `set()` – Add or update a key-value pair.
-2. `get()` – Get the value by key.
-3. `has()` – Check if a key exists.
-4. `delete()` – Remove a key-value pair.
-5. `clear()` – Remove all entries.
-6. `keys()` – Get all keys.
-7. `values()` – Get all values.
-8. `entries()` – Get all key-value pairs.
-9. `forEach()` – Iterate over the Map.
-10. `size` – Get the number of entries.
+in Map method key are unique. 
+If you set a key that already exists in the Map, 
+the value associated with that key is updated, not duplicated.
 
----
 
-### 1. `set(key, value)`
 
+1. `set()` – Add or update a key-value pair
+2. `get()` – Get the value by key
+3. `has()` – Check if a key exists
+4. `delete()` – Remove a key-value pair
+5. `clear()` – Remove all entries
+6. `keys()` – Get all keys
+7. `values()` – Get all values
+8. `entries()` – Get all key-value pairs
+9. `forEach()` – Iterate over the Map
+10. `size` – Get the number of entries
+
+
+#### 1. `set(key, value)`  
 Adds or updates a key-value pair in the `Map`.
 
-```javascript
 const map = new Map();
-
 map.set('name', 'Alice');
 map.set(42, 'The answer');
+console.log(map); // Map(2) { 'name' => 'Alice', 42 => 'The answer' }
 
-console.log(map);
-// Map(2) { 'name' => 'Alice', 42 => 'The answer' }
+
+
+
+#### Adding and Updating Data
+```javascript
+const userRoles = new Map();
+userRoles.set('Alice', 'Admin');
+userRoles.set('Bob', 'Editor');
+userRoles.set('Alice', 'Super Admin'); // Updates Alice's role
+
+console.log(userRoles.get('Alice')); // 'Super Admin'
+```
+
+#### Using Objects as Keys
+```javascript
+const obj = { id: 1 };
+const map = new Map();
+
+map.set(obj, 'Object Value');
+console.log(map.get(obj)); // 'Object Value'
+```
+
+#### Iterating Over a Map
+```javascript
+const items = new Map([
+  ['apple', 10],
+  ['banana', 5],
+  ['cherry', 7],
+]);
+
+for (const [key, value] of items) {
+  console.log(`${key}: ${value}`);
+}
+// Output:
+// apple: 10
+// banana: 5
+// cherry: 7
+```
+
+#### Counting Occurrences
+```javascript
+const words = ['hello', 'world', 'hello', 'map'];
+const wordCount = new Map();
+
+words.forEach(word => {
+  wordCount.set(word, (wordCount.get(word) || 0) + 1);
+});
+
+console.log(wordCount); // Map(3) { 'hello' => 2, 'world' => 1, 'map' => 1 }
 ```
 
 
-//============================== call,apply,bind =========================
+========================= ===============================================
+
+8. When to Use Map
+Use a Map when:
+
+You need non-string keys.
+You need to maintain the order of entries.
+You need efficient lookups and insertions.
+You want built-in iteration over entries.
+
+Use an object when:
+
+You need simple key-value pairs with string keys.
+You want inheritance or prototype-based features.
 
 
 
-A] call():
+========================= ===============================================
 
-- Call method is predefined method in JavaScript
-- call() method is used to execute a function with a specified object as this.
- It invokes the function immediately and accepts arguments individually.
+### Set vs. Map
+#Map
+A Map is a built-in JavaScript object that stores key-value pairs.
 
- - An object can use a method belonging to another object
+A key value pair is called an entry
+Keys in a Map must be unique, 
+while values can be duplicated.
+
+  - Stores: Key-value pairs.
+  - Uniqueness: Keys must be unique; values can be duplicated.
+  - Methods: `set(key, value)`, `get(key)`, `delete(key)`, `has(key)`, `size`.
+
+It allows you to associate each key with a specific value and provides efficient methods for adding, retrieving, and deleting key-value pairs.
+------------------------------------
+- Set:
+ - Definition: A `Set` stores unique values, with no key-value pairs. It automatically removes duplicates.
+
+  - Key-Value: No key-value pairs.
+  - Uniqueness: Ensures all values are unique.
+  - Methods: `add(value)`, `delete(value)`, `has(value)`, `size`.
+
+ has(value): Check if a value exists in the Set.
+forEach(callback): Iterates through the Set.
+keys(), values(), entries(): Provides iterators for advanced use cases.
+clear(): Clears the entire Set.
 
 
-- call method is Immediately invokes a function with a given `this` value and arguments provided individually
+//===========================this =========================
 
-- accepts arguments as separate values
+Q2. What is this?
+ 
+1. Global context:
+In the global scope, `this` refers to the global object, which is `window` in web browsers and `global` in Node.js.
 
-```js
-var employee1 = {firstName: 'John', lastName: 'Rodson'};
-var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
+console.log(this === window); // true in a browser environment
 
-function invite(greeting1, greeting2) {
-  console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName+ ', ' + greeting2);
+
+2. Function context: Inside a function, the value of `this` depends on how the function is called. If the normal function is called as a method of an object, `this` refers to that object.
+
+const obj = {
+name: 'example',
+greet: function() {
+console.log('Hello, ' + this.name);
 }
-
-invite.call(employee1, 'Hello', 'How are you?'); // Hello John Rodson, How are you?
-invite.call(employee2, 'Hello', 'How are you?'); // Hello Jimmy Baily, How are you?
-
-
-var employee1 = {
-  firstName: 'John',
-  lastName: 'Rodson',
-  invite: function(greeting1, greeting2) {
-      console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName + ', ' + greeting2);
-  }
 };
 
-var employee2 = {
-  firstName: 'Jimmy',
-  lastName: 'Baily'
-};
+obj.greet(); // Output: Hello, example
 
-employee1.invite.call(employee2, "Hello", "World"); // Hello Jimmy Baily, World
-```
 
-------------------------------------------------------------
+3. Constructor context: When a function is used as a constructor with the `new` keyword, `this` refers to the newly created instance.
 
-B] apply():
-
-- apply() method is similar to call() method
-- call method argument takes separately
-- apply method argument takes as an array
-- invoke the function with a given this value and arguments provided by an array
-- accepts arguments as array elements
-
-```js
-var employee1 = {firstName: 'John', lastName: 'Rodson'};
-var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
-
-function invite(greeting1, greeting2) {
-  console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName+ ', ' + greeting2);
+function Person(name) {
+this.name = name;
 }
 
-invite.apply(employee1, ['Hello', 'How are you?']); // Hello John Rodson, How are you?
-invite.apply(employee2, ['Hello', 'How are you?']); // Hello Jimmy Baily, How are you?
-```
-
-------------------------------------------------------------
+const person1 = new Person('John');
+console.log(person1.name); // Output: John
 
 
-C] bind():
-bind() is a method that creates and returns a new function with a specified object as this value. 
-Unlike call() and apply(), it does not execute the function immediately. 
-Instead, it returns a new function that can be invoked later.
+4. Explicit binding: You can explicitly set the value of `this` using `call()`, `apply()`, or `bind()` methods.
 
-
-The main reason we use bind() in projects is to prevent losing the correct this value.
-
-```js
-const person = {
-  name: "John",
-};
-
-function greet(city) {
-  console.log(`Hi, I'm ${this.name} from ${city}`);
+function greet() {
+console.log('Hello, ' + this.name);
 }
 
-// bind() creates and returns a new function
-const boundGreet = greet.bind(person);
+const obj1 = { name: 'Alice' };
+const obj2 = { name: 'Bob' };
 
-// Function is executed later
-boundGreet("Mumbai");
+greet.call(obj1); // Output: Hello, Alice
+greet.apply(obj2); // Output: Hello, Bob
 
-bind() is commonly used when passing object methods as callbacks, such as in event listeners, timers (setTimeout), or promises, to ensure that this continues to refer to the intended object."
+const greetBob = greet.bind(obj2);
+greetBob(); // Output: Hello, Bob
 
+<button id="myButton">Click Me</button>
+<script>
+  document.getElementById('myButton').addEventListener('click', function() {
+    console.log(this); // Refers to the button element
+  });
 
-
---------------------------------------------------------------------------------------------------------
-
-
-
-bind() is a method used to create a new function with a specified object as this.
-- bind() method we can bind an object to a common function so that the 
-  function gives different result when it needs
-
-- bind() returns a new function with a fixed this context and optional preset arguments, 
-but doesnt invoke it immediately.
-
-- bind method takes an object as the first argument and creates a new function
-- bind does not invoke the function immediately*- (unlike call or apply)  // added for clarity
-- return a new function, allow you to pass any number of arguments
-- it binds a function with an object and returns the bound function
-- it does not bind the existing function, instead it creates a new function to bind // added for clarity
-
-```js
-var employee1 = {firstName: 'John', lastName: 'Rodson'};
-var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
-
-function invite(greeting1, greeting2) {
-  console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName+ ', ' + greeting2);
-}
-
-var inviteEmployee1 = invite.bind(employee1);
-var inviteEmployee2 = invite.bind(employee2);
-
-inviteEmployee1('Hello', 'How are you?'); // Hello John Rodson, How are you?
-inviteEmployee2('Hello', 'How are you?'); // Hello Jimmy Baily, How are you?
-```
-
-```js
-const person = {
-  firstName: 'John',
-  lastName: 'Doe',
-  fullName: function() {
-      return this.firstName + ' ' + this.lastName;
-  }
-};
-
-const printFullName = person.fullName;
-
-// console.log(printFullName()); // Output: "undefined undefined" because `this` is lost
-
-const boundPrintFullName = printFullName.bind(person);
-console.log(boundPrintFullName()); // Output: "John Doe"
-```
+  document.getElementById('myButton').addEventListener('click', () => {
+    console.log(this); // Refers to the global object or undefined (depending on the environment), not the button element
+  });
+</script>
 
 
-call() → Executes the function immediately.
-apply() → Executes the function immediately.
-bind() → Does not execute immediately. It returns a new function that you can call later.
+
+
+
+========================== Prototype ==================================
+### Prototype:-
+```java
+- Prototypes in javaScript objects iinherit properties and method from one another.
+- Every object in JavaScript has a prototype,
+ -Every JavaScript object has an internal link to another object called its prototype.
+
+#### Why do we need prototypes?
+
+We need prototypes because JavaScript creates a shared method only once and stores it in the constructors prototype. 
+Every object created from that constructor uses this single shared method instead of creating duplicate copies for each object. 
+This improves memory efficiency because only one function exists in memory, even though many objects can call it. 
+
+
+When an object tries to access a method, JavaScript first searches the object itself. 
+
+If the method isn't found, it automatically searches the object's prototype. 
+
+This lookup process is called the prototype chain.
+
+
+
+
+
+
+
+
+There are two main ways to set the prototype of an object:
+
+1. By using `__proto__`
+   - The `__proto__` property can be used to directly set the prototype of an object.
+   let animal = { eats: true };
+   let rabbit = { jumps: true };
+   rabbit.__proto__ = animal; // Setting the prototype
+   console.log(rabbit.eats); // Output: true
+   
+
+2. By using `Object.setPrototypeOf()`
+   - The `Object.setPrototypeOf(obj, prototype)` method sets the prototype of `obj` to `prototype`.
+   let animal = { eats: true };
+   let rabbit = { jumps: true };
+   Object.setPrototypeOf(rabbit, animal); // Setting the prototype
+   console.log(rabbit.eats); // Output: true
+
+
+
+--------------------------------------------------------
+
+
+
+
+
+### Types of Prototypes in JavaScript
+
+
+Object Prototype
+Function Prototype
+Prototype Chain
+
+1. Object Prototype
+
+-Every JavaScript object has an internal link to another object called its prototype.
+                     
+  -This prototype object can also have its own prototype, creating a prototype chain.
+   - Every object has a prototype, from which it inherits properties and methods.
+   - Access via `Object.getPrototypeOf(obj)` or `obj.__proto__`.
+
+   let obj = {};
+   console.log(obj.__proto__); // Output: {}
+   
+
+2. Function Prototype
+   - Functions have a `prototype` property used when creating objects with `new`.
+   - Example:
+       function Person(name) {
+         this.name = name;
+     }
+     Person.prototype.greet = function() {
+         console.log('Hello, ' + this.name);
+     };
+     let alice = new Person('Alice');
+     alice.greet(); // Output: Hello, Alice
+     
+
+3. Prototype Chain
+   If a property or method is not found on an object, JavaScript looks for it up the prototype chain until it either finds it or reaches the end (null).
+
+   - Objects inherit properties and methods from their prototype, forming a chain.
+   - Example:
+       let animal = { eats: true };
+     let rabbit = { jumps: true };
+     rabbit.__proto__ = animal;
+     console.log(rabbit.eats); // Output: true
+
+
+     
+======================= Prototype vs __proto__ ==================================
+
+
+### prototype:
+
+-To define methods and properties that should be shared by all objects created from a constructor function.
+When creating objects using the new keyword.
+
+- Defines properties and methods for constructor functions.
+- Exists only on functions (constructor functions).
+- Used for inheritance in object creation with new.
+
+### __proto__:
+
+- Accesses or sets the prototype of individual objects.
+- Exists on all objects.
+-Used to access or set the prototype of an individual object.
+
+prototype is used to define properties and methods for constructor functions.
+prototype exists only on functions (specifically, constructor functions).
+
+__proto__ is used to access or set the prototype of an individual object.
+__proto__ exists on all objects.
+
+
 ========================================================================
+ difference between `__proto__` and `Object.setPrototypeOf()` 
 
+### By using `__proto__`
+- Introduced in early JavaScript implementations (pre-ES3).
+ - Legacy, deprecated, and slower.
+  - Still supported for backward compatibility.
+  - Simple but not suitable for modern applications.
 
-- A common use case for the `bind` method in JavaScript 
-is to maintain the correct context (`this`) when passing methods as callbacks or event handlers.
-- In JavaScript, the value of `this` 
-can change depending on how a function is called.
-- For instance, when a method is used as an event handler, 
-`this` usually refers to the element that triggered the event, not the object that owns the method.
-- By using `bind`, you can create a new function where `this` is explicitly set to the desired context, ensuring that the method behaves correctly regardless of how it's called.
 
-- This is particularly useful in scenarios such as object-oriented programming and event handling, where preserving the context is crucial for the method's functionality.
-- `bind` can also be used to preset initial arguments, allowing partial application of functions.
+### By using `Object.setPrototypeOf()`
+- Introduced in ECMAScript 2015 (ES6).
+-  `Object.setPrototypeOf()`:
+  - Modern, standardized, and better optimized.
+  - Recommended for modern JavaScript and production environments. 
 
 
 
-### 1. Plain JavaScript Event Handling with `bind`
 
+=================================================================================================================
+let and const var keywords
 
+-In javascript to declare a variable you can use 'var' keyword, 
+-since ES6 there are 2 more keywords introduced to declare the variables let and const.
 
-Interview Answer:
 
-> In JavaScript, the value of `this` depends on how a function is called, which can lead to unexpected behavior when passing methods as callbacks or event handlers. The `bind` method fixes this by creating a new function with `this` explicitly set to the desired object. This ensures the method retains the correct context regardless of how or where it’s called, which is especially useful in event handling and object-oriented programming.
+--------------------------------------------------------------------
+### var
+- It is function scoped
+- it is hoisted
 
-```javascript
+- It  reassignment
+- Can be redeclaration within the same scope
 
-const user = {
-  name: 'John',
-  sayHello: function(greeting) {
-    console.log(greeting + ', ' + this.name);
-  }
-};
 
-const button = document.getElementById('myBtn');
 
-// Without bind - `this` refers to button, not user
-button.addEventListener('click', user.sayHello); // this.name is undefined
+- It  reassignment
+var x = 10;
+x = 20; // Valid: Updates the value of x
 
-// With bind - `this` fixed to `user`
-button.addEventListener('click', user.sayHello.bind(user, 'Hello')); 
-// Output on click: "Hello, John"
-```
+- Can be redeclaration within the same scope
+var x = 5;
+var x = 10;
 
 
-In summary:
-- `bind` creates a new function for later use, while `call` and `apply` execute the function immediately.
-- `call` takes arguments individually, whereas `apply` takes arguments as an array.
+var declarations are hoisted to the top of their scope (global or function) Only the declaration is hoisted, not the initialization. 
 
-------------------------------------------------------------------------------
 
-### 2. React Class Component Event Handler with `bind`
+why var less preferred today. ?
 
+`var` is function-scoped and hoisted to the top of its function or global scope,
+ but It is initialized as undefined during hoisting
+ we can both reassign and redeclare `var` variables in the same scope, 
 
+ which can lead to bugs. It's not block-scoped, 
+ so variables declared inside `if` or `for` blocks are still accessible outside, 
+ which is one reason it's less preferred today.
 
-React.js Interview Answer:
 
-> In React class components, event handler methods lose their class instance context (`this`) when passed as callbacks. Using `bind` in the constructor or inline fixes this by explicitly setting `this` to the component instance. This ensures methods can access component state and props correctly during events, preventing common bugs related to `this` being `undefined` or incorrect.
 
+Initialization means assigning a value to a declared variable.
 
-```jsx
-import React from 'react';
 
-class MyComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { count: 0 };
 
-    // Bind the event handler to fix 'this' context
-    this.handleClick = this.handleClick.bind(this);
-  }
+conditions == false
 
-  handleClick() {
-    // Accessing this.state and this.setState works because of bind
-    this.setState({ count: this.state.count + 1 });
-    console.log('Count is:', this.state.count + 1);
-  }
+var is hoisted and initialized as undefined. 
+Since the if block is false, assignment never happens, 
+so abc remains undefined in the entire scope.
 
-  render() {
-    return (
-      <button onClick={this.handleClick}>
-        Click me ({this.state.count})
-      </button>
-    );
-  }
-}
 
-export default MyComponent;
+conditions ==true
+var abc is hoisted and initialized as undefined, 
+but since the if condition is true, it gets assigned "deep", so both logs print "deep".
 
-```
 
 
 
-In React class components, event handler methods don’t automatically bind `this` to the component instance. To fix that, we usually bind methods to `this` so they work correctly when called, especially as event handlers.
+var abc; // hoisted abc = undefined
 
-The most efficient way to bind is in the constructor, where the binding happens once when the component is created. This avoids creating new functions on every render, improving performance and preventing unnecessary re-renders.
 
-Alternatively, using arrow functions as class properties automatically binds `this` and offers cleaner syntax, which is common in modern React code.
+ if(false){
+   var abc = deep
 
-Binding inside `render()` is discouraged because it creates a new function every time the component re-renders, which hurts performance.
+     console.log(abc)
 
+ }else{
+  console.log(abc)//undefined
+ }
 
+ console.log(abc)//undefined
 
-
-
-
-
-
-
-========================== Object cloning=================================
-
-
-
--creating a duplicate object of an existing object is called object cloning
-
-There are 2 types of object cloning
-
-### Shallow Cloning  
-
-1] A shallow clone creates a new object by cloning only the top-level properties. Any nested objects or arrays are not cloned; instead their references are copied .
-
-2] As a result, the original object and the cloned object share the same nested objects. If you change a nested object or array in the shallow copy, the change will also be reflected in the original object.  because they both point to the same reference object.
-
-3] To avoid unexpected bugs, 
-don’t modify nested data in a shallow clone if you want the original unchanged. 
-For full independence, use deep cloning, which copies all nested structures as well.
-
-- Examples: `Object.assign()`, Spread operator (`...`).  
-
-
-```javascript
-
-const original = {
-  name: "Alice",
-  address: {
-    city: "New York"
-  }
-};
-
-
-// 1]
- const clone1 = Object.assign({}, original);//Using Object.assign()
-// 2]
-const clone2 = { ...original };// Using Spread operator
-
-clone1.address.city = "Los Angeles";
-
-console.log(original.address.city); // Outputs: "Los Angeles" — nested object is shared
-console.log(clone2.address.city);   // Outputs: "Los Angeles" — nested object is shared
-
-//This happens because original.address.city and clone.address.city point to the same object in memory.
-
-console.log(clone1 === original);        // false — different top-level objects
-console.log(clone1.address === original.address); // true — nested object shared (same reference)
-
-
------------------------
-
-### Deep Cloning  
-
--In deep cloning all the object direct/main and nested objects will be cloned. Menas all parts of the object are fully cloned. completely independent object
-
-if you change a nested object property in either the original or the clone, the change will not affect both, because they both point to the different reference object.
-- Nested objects or arrays are independent from the original.  
-
-
-- Examples: `
-1] JSON.parse(JSON.stringify())`, Better Alternative 
-2] structuredClone() (modern built-in method), 
-3] Lodashs cloneDeep()`, 
-
- Recursive cloning.  
-
-
-```javascript
-
-const original = {
-  name: 'John',
-  age: 30,
-  address: { city: 'New York', country: 'USA' }
-};
-
-const deepClone = JSON.parse(JSON.stringify(original));
-const structuredCloneDeep = structuredClone(original);
-
-console.log(deepClone === original); // false (different objects)
-console.log(deepClone.address === original.address); // false (different objects)
-
-
-
-JavaScript objects are reference types. 
-When two objects are compared using == or ===, 
-JavaScript does not compare their contents (values). 
-It compares their references, which are the memory locations where the objects are stored.
-
-If two objects have the same properties
- and values but are stored at different memory locations, 
- they are considered different objects. Therefore, the comparison returns false.
-
-So, although the objects have identical contents, 
-they are not the same object because their references are different.
 
 --------------------------------------------------------------------
 
-Deep cloning in JavaScript means creating a completely independent copy of an object,
- including all nested objects and arrays.
-  Changes to the clone do not affect the original object.
-  means all the properties are cloned 
+### let:-
+- It is block scope
+- It is hoisted but not initialized, so accessing it before declaration causes a ReferenceError due to the Temporal Dead Zone
+- It is reassignment
+- Cannot be redeclaration within the same block scope
+
+
+let y = 10;
+y = 20; // Valid: Updates the value of y
+
+
+- Cannot be redeclaration within the same block scope
+let y = 5;
+let y = 10; // SyntaxError: Identifier 'y' has already been declared
+
+
+###  30-Second Summary for `let`:
+
+let is block-scoped 
+and hoisted but not initialized, 
+so accessing it before declaration causes a ReferenceError due to the Temporal Dead Zone. 
+It allows reassignment but not redeclaration in the same scope. 
+It does not attach to the global object and provides safer, predictable scoping compared to var, especially in loops and block structures.
+
+--------------------------------------------------------------------
 
 
 
 
+### const:-
+- const is hoisted, but it's not initialized, which means it’s in the Temporal Dead Zone until its declaration is reached. hoisting error ReferenceError: Cannot access 'a' before initialization
+
+- It is block scoped
+-const is not  reassignment
+- Cannot be redeclaration within the same block scope
+-Must be initialized at the time of declaration not declare it will throw error SyntaxError: Missing initializer in const declaratio
+
+
+const creates an immutable binding, meaning the variable identifier cannot be reassigned to a new value; however, if the value is an object or array, the contents of that object or array can still be modified.
+
+-const is not  reassignment
+const x = 10;
+x = 20; //  TypeError: Assignment to constant variable.
+
+-Cannot be redeclaration within the same block scope
+const z = 5;
+const z = 10; // SyntaxError: Identifier 'z' has already been declared
+
+
+
+###  30-Second Summary for `const`:
+
+`const` is block-scoped, like `let`, and 
+it's hoisted but not initialized — so accessing it before declaration
+ throws a ReferenceError due to the Temporal Dead Zone. 
+You can't reassign or redeclare a `const` variable in the same scope. 
+However, if it's assigned an object or array, t
+he reference stays constant, but the internal contents can still be modified. 
+So, `const` protects the reference, not the data inside non-primitives.
+
+
+
+
+
+
+
+| Loop type                   | `const i++` allowed? | Why                   |
+| --------------------------- | -------------------- | --------------------- |
+| `for (const i = 0; ...)`    | ❌                    | reassignment happens  |
+| `for...of (const x of ...)` |                     | new binding each loop |
+| `for...in (const k in ...)` |                     | new binding each loop |
+
+
+
+
+
+ 
+
+* `let` and `const` are hoisted, but not initialized until their declaration is executed. 
+Accessing them before that causes a ReferenceError due to the Temporal Dead Zone (TDZ).
+
+* `var` is hoisted and initialized with `undefined` immediately,
+ so you can access it before the declaration without an error (it will just be `undefined`).
+
+
+================================================
+
+
+var declared in global scope becomes a property of window, so it is accessible via window.y. 
+Output value of declared variable:
+
+```js
+var y = 10;
+
+console.log(y);        // 10
+console.log(window.y); // 10
+```
+
+let/const does NOT create a property on the global object (window in browser).
+ It exists only in the scope environment, not on window,
+  so its output is undefined because it is not attached to the global object:
+
+```js
+let x = 20;
+
+console.log(x);        // 20
+console.log(window.x); // undefined
+```
+
+####
+var → becomes property of window
+let → does NOT become property of window, but still exists in scope
+
+
+
+//============================ Temporal Dead Zone (TDZ)=============================
+
+
+
+
+Temporal Dead Zone (TDZ): 
+
+
+The Temporal Dead Zone (TDZ) is the phase between the creation/start of a block scope
+ and the point where a let or const variable is initialized.
+
+  During this period, the variable is hoisted but remains uninitialized, 
+  and accessing it results in a ReferenceError.
+
+During the TDZ:
+
+* The variable exists (it’s hoisted),
+* But cannot be accessed,
+* Attempting to access it throws a ReferenceError.
+
+
+### Visualizing TDZ with an example:
+
+```js
+{
+  // TDZ starts here for 'x'
+  console.log(x); // ReferenceError: Cannot access 'x' before initialization
+  
+  let x = 5; // TDZ ends here (x is initialized)
+  console.log(x); // 5 (now accessible)
+}
+```
+
+
+
+======================================================
+
+Why can we change the content of non-primitive values when a variable is declared with const, 
+but we cannot change primitive values?
+
+
+
+ Because primitives and non-primitives (objects and arrays) behave differently in memory.
+ Primitive values (like `number`, `string`, `boolean`) are stored directly in the variable, not as references.
+ Primitive values are immutable by nature. When you use `const` with a primitive, you cannot change its value.
+ Any "change" creates a new primitive value and tries to reassign the variable.
+ Reassignment is not allowed with `const` because `const` is designed to prevent reassignment.
+
+ Non-primitive values (objects and arrays) are stored by reference in memory.
+ `const` prevents changing the reference, but not the internal structure it points to.
+ For example, you can modify properties or array elements because the variable still points to the same object in memory.
+
+
+```javascript
+// Primitive
+const num = 10;
+// num = 20; // ❌ TypeError: Assignment to constant variable.
+
+// Non-primitive
+const person = { name: "John" };
+
+person.name = "Jane"; //  Allowed
+// person = {}; // ❌ TypeError: Assignment to constant variable.
+```
+
+* Primitive + `const` → value cannot be reassigned
+* Object/Array + `const` → reference cannot be reassigned, but contents can be changed
+
+
+
+
+
+
+=================================== Immutable vs Mutable Values ============================================================
+
+
+### Immutable
+
+Immutable = Cannot be changed
+If a value is immutable, once it is created, it can never be modified.
+Instead, JavaScript creates a new value.
+Cannot be changed after creation if happnen then Assignment after a change Variable points to a new value
+-Primitive data types are immutable
+
+primitive types:
+
+  * `String`
+  * `Number`
+  * `Boolean`
+  * `null`
+  * `undefined`
+  * `BigInt`
+  * `Symbol`
+
+### Mutable
+
+Mutable = Can be changed
+-Can be changed after creation.
+-Assignment after a change Variable still points to the same object, whose contents changed
+Objects are mutable.
+
+-Non-primitive data types (objects) are mutable.
+
+
+* Examples include:
+
+  * `Objects`
+  * `Arrays`
+  * `Functions`
+
+
+
+
+===============================================================================================
+
+
+# Primitive Data Types
+
+1. String
+2. Number
+3. BigInt
+4. Boolean
+5. undefined
+6. null
+7. Symbol
+
+# Non-Primitive (Reference) Data Types
+
+1. Object
+2. Array
+3. Function
+4. Date
+5. RegExp
+
+---
+
+# A] Primitive Variables
+
+- Primitive variables are used to store primitive values.
+- When a primitive value is assigned to a variable, the value is stored directly in the variable.
+- When a primitive variable is assigned to another variable, the value is copied (passed by value).
+- Both variables have different values stored independently.
+- The variables themselves have different memory locations.
+- Changing one variable does not affect the other.
+- Primitive values are typically stored in stack memory. -(For learning purposes this is acceptable, although the JavaScript specification does not require stack memory.)-
+
+### Example
+
+```javascript
+let a = 42;
+let b = a;
+
+b = 100;
+
+console.log(a); // 42
+console.log(b); // 100
+```
+
+Explanation:
+
+- `a` stores the value `42`.
+- When `a` is assigned to `b`, a copy of `42` is created.
+- Each variable has its own copy.
+- Changing one variable does not affect the other.
+
+---
+
+# B] Reference Variables
+
+- Reference variables are used to store non-primitive values.
+- The variable stores a reference (memory address/pointer) to an object.
+- When a reference variable is assigned to another variable, the reference is copied, not the object.
+- Both variables point to the same object in memory.
+- Both variables do NOT have the same memory location.
+
+  
+- The variables (`obj1` and `obj2`) are different variables.
+  
+- They both store the same reference, which points to the same object.
+- Changing the object through one variable is reflected when accessed through the other variable.
+- Reference values (objects) are typically stored in heap memory. -(Again, this is a common implementation detail, not a language guarantee.)*
+
+### Example
+
+```javascript
+let obj1 = { name: "Alice", age: 30 };
+let obj2 = obj1;
+
+obj2.age = 31;
+
+console.log(obj1.age); // 31
+console.log(obj2.age); // 31
+```
+
+### Another Example
+
+```javascript
+var x = { name: "abcd" };
+var y = x;
+
+x.name = "pqr";
+
+console.log(x.name); // pqr
+console.log(y.name); // pqr
+```
+
+Explanation:
+
+* `obj1` stores a reference to an object.
+* When `obj1` is assigned to `obj2`, the reference is copied, not the object.
+* Both variables point to the same object.
+* Any change made through one variable is visible through the other.
 
 =============================================================================================================
 
@@ -1134,575 +1545,72 @@ console.log(...iterObj);\\name mobile email
 4 Pass array items as function arguments
 5 Convert iterables to arrays
 
+====================== functions====================================
 
 
-
-
-
-
-//===========================this =========================
-
-Q2. What is this?
- 
-1. Global context:
-In the global scope, `this` refers to the global object, which is `window` in web browsers and `global` in Node.js.
-
-console.log(this === window); // true in a browser environment
-
-
-2. Function context: Inside a function, the value of `this` depends on how the function is called. If the function is called as a method of an object, `this` refers to that object.
-
-const obj = {
-name: 'example',
-greet: function() {
-console.log('Hello, ' + this.name);
-}
-};
-
-obj.greet(); // Output: Hello, example
-
-
-3. Constructor context: When a function is used as a constructor with the `new` keyword, `this` refers to the newly created instance.
-
-function Person(name) {
-this.name = name;
+function greet(name) { // 'name' is a parameter
+    console.log('Hello, ' + name);
 }
 
-const person1 = new Person('John');
-console.log(person1.name); // Output: John
+greet('Alice'); // 'Alice' is an argument
 
 
-4. Explicit binding: You can explicitly set the value of `this` using `call()`, `apply()`, or `bind()` methods.
-
-function greet() {
-console.log('Hello, ' + this.name);
+function sum(a, b) {  // 'a' and 'b' are parameters
+  return a + b;
 }
 
-const obj1 = { name: 'Alice' };
-const obj2 = { name: 'Bob' };
+console.log(sum(5, 10));  // '5' and '10' are arguments
 
-greet.call(obj1); // Output: Hello, Alice
-greet.apply(obj2); // Output: Hello, Bob
 
-const greetBob = greet.bind(obj2);
-greetBob(); // Output: Hello, Bob
-
-<button id="myButton">Click Me</button>
-<script>
-  document.getElementById('myButton').addEventListener('click', function() {
-    console.log(this); // Refers to the button element
-  });
-
-  document.getElementById('myButton').addEventListener('click', () => {
-    console.log(this); // Refers to the global object or undefined (depending on the environment), not the button element
-  });
-</script>
-
-======================================================================================
-
-let and const var keywords
-
--In javascript to declare a variable you can use 'var' keyword, 
--since ES6 there are 2 more keywords introduced to declare the variables let and const.
-
-
-### var
-
-`var` is function-scoped and hoisted, meaning its declaration is moved to the top of its scope and initialized with `undefined`. Only the declaration is hoisted, not the value assignment. 
-A `var` variable can be reassigned and redeclared in the same scope. 
-
-Since it is not block-scoped, variables declared inside `if` or `for` blocks are still accessible outside those blocks. Because of these behaviors, `let` and `const` are preferred in modern JavaScript.
-
-
-### `let`:
-
-let is block-scoped 
-and hoisted but not initialized, 
-so accessing it before declaration causes a ReferenceError due to the Temporal Dead Zone. 
-It allows reassignment but not redeclaration in the same scope. 
-
-It does not attach to the global object and provides safer, predictable scoping compared to var, especially in loops and block structures.
-
-
-
-
-###  `const`:
-
-`const` is block-scoped, like `let`, and 
-it's hoisted but not initialized — so accessing it before declaration
- throws a ReferenceError due to the Temporal Dead Zone. 
-You can't reassign or redeclare a `const` variable in the same scope. 
-
-
-However, if it's assigned an object or array, 
-the reference stays constant, but the internal contents can still be modified. 
-So, `const` protects the reference, not the data inside non-primitives.
-
-
-
-======================================================================================
-
-### var
-
-
-
-- It is function scoped
-- it is hoisted
-
-- It  reassignment
-- Can be redeclaration within the same scope
-
-
-
-- It  reassignment
-var x = 10;
-x = 20; // Valid: Updates the value of x
-
-- Can be redeclaration within the same scope
-var x = 5;
-var x = 10;
-
-
-var declarations are hoisted to the top of their scope (global or function) Only the declaration is hoisted, not the initialization. 
-
-
-why var less preferred today. ?
-
-`var` is function-scoped and hoisted to the top of its function or global scope,
- but It is initialized as undefined during hoisting
- we can both reassign and redeclare `var` variables in the same scope, 
-
- which can lead to bugs. It's not block-scoped, 
- so variables declared inside `if` or `for` blocks are still accessible outside, 
- which is one reason it's less preferred today.
-
-
-
-Initialization means assigning a value to a declared variable.
-
-
-
-conditions == false
-
-var is hoisted and initialized as undefined. 
-Since the if block is false, assignment never happens, 
-so abc remains undefined in the entire scope.
-
-
-conditions ==true
-var abc is hoisted and initialized as undefined, 
-but since the if condition is true, it gets assigned "deep", so both logs print "deep".
-
-
-
-
-var abc; // hoisted abc = undefined
-
-
- if(false){
-   var abc = deep
-
-     console.log(abc)
-
- }else{
-  console.log(abc)//undefined
- }
-
- console.log(abc)//undefined
-
-
---------------------------------------------------------------------
-
-### let:-
-- It is block scope
-- It is hoisted but not initialized, so accessing it before declaration causes a ReferenceError due to the Temporal Dead Zone
-- It is reassignment
-- Cannot be redeclaration within the same block scope
-
-
-let y = 10;
-y = 20; // Valid: Updates the value of y
-
-
-- Cannot be redeclaration within the same block scope
-let y = 5;
-let y = 10; // SyntaxError: Identifier 'y' has already been declared
-
-
-###  30-Second Summary for `let`:
-
-let is block-scoped 
-and hoisted but not initialized, 
-so accessing it before declaration causes a ReferenceError due to the Temporal Dead Zone. 
-It allows reassignment but not redeclaration in the same scope. 
-
-It does not attach to the global object and provides safer, predictable scoping compared to var, especially in loops and block structures.
-
---------------------------------------------------------------------
-
-
-
-
-### const:-
-- const is hoisted, but it's not initialized, which means it’s in the Temporal Dead Zone until its declaration is reached. hoisting error ReferenceError: Cannot access 'a' before initialization
-
-- It is block scoped
--const is not  reassignment
-- Cannot be redeclaration within the same block scope
--Must be initialized at the time of declaration not declare it will throw error SyntaxError: Missing initializer in const declaratio
-
-
-const creates an immutable binding, meaning the variable identifier cannot be reassigned to a new value; however, if the value is an object or array, the contents of that object or array can still be modified.
-
--const is not  reassignment
-const x = 10;
-x = 20; //  TypeError: Assignment to constant variable.
-
--Cannot be redeclaration within the same block scope
-const z = 5;
-const z = 10; // SyntaxError: Identifier 'z' has already been declared
-
-
-
-###  30-Second Summary for `const`:
-
-`const` is block-scoped, like `let`, and 
-it's hoisted but not initialized — so accessing it before declaration
- throws a ReferenceError due to the Temporal Dead Zone. 
-You can't reassign or redeclare a `const` variable in the same scope. 
-
-
-However, if it's assigned an object or array, 
-the reference stays constant, but the internal contents can still be modified. 
-So, `const` protects the reference, not the data inside non-primitives.
-
-
-
-
-
-
-
-| Loop type                   | `const i++` allowed? | Why                   |
-| --------------------------- | -------------------- | --------------------- |
-| `for (const i = 0; ...)`    | ❌                    | reassignment happens  |
-| `for...of (const x of ...)` |                     | new binding each loop |
-| `for...in (const k in ...)` |                     | new binding each loop |
-
-
-
-
-
- 
-
-* `let` and `const` are hoisted, but not initialized until their declaration is executed. 
-Accessing them before that causes a ReferenceError due to the Temporal Dead Zone (TDZ).
-
-* `var` is hoisted and initialized with `undefined` immediately,
- so you can access it before the declaration without an error (it will just be `undefined`).
-
-
-================================================
-
-
-var declared in global scope becomes a property of window,
- so it is accessible via window.y. 
- 
- Output value of declared variable:
-
-```js
-var y = 10;
-
-console.log(y);        // 10
-console.log(window.y); // 10
-```
-
-- let/const does NOT create a property on the global object (window in browser).
-- It exists only in the scope environment, not on window,
-- so its output is undefined because it is not attached to the global object:
-
-```js
-let x = 20;
-
-console.log(x);        // 20
-console.log(window.x); // undefined
-
-
-####
-var → becomes property of window
-let → does NOT become property of window, but still exists in scope
-
-
-
-//============================ Temporal Dead Zone (TDZ)=============================
-
-Temporal Dead Zone (TDZ):  
-
-"TDZ is the phase between the start of the block scope and the point where the let or const variable is initialized. This phase is called the Temporal Dead Zone."
-
-  During this period, the variable is hoisted but remains uninitialized, 
-  and accessing it results in a ReferenceError.
-
-During the TDZ:
-
-* The variable exists (it’s hoisted),
-* But cannot be accessed,
-* Attempting to access it throws a ReferenceError.
-
-
-### Visualizing TDZ with an example:
-
-
-{
-  // TDZ starts here for 'x'
-  console.log(x); // ReferenceError: Cannot access 'x' before initialization
-  
-  let x = 5; // TDZ ends here (x is initialized)
-  console.log(x); // 5 (now accessible)
-}
-
-
-TDZ is phase between where block scope start and at the point where we decleare the const/let varaible that phase called as tdz
-
-
-The Temporal Dead Zone (TDZ) is the phase between the creation/start of a block scope
- and the point where a let or const variable is initialized.
-
-
-======================================================
-
-Why can we change the content of non-primitive values when a variable is declared with const, 
-but we cannot change primitive values?
-
-- const creates an immutable binding, meaning the variable cannot be reassigned.
-
-- primitives and non-primitives (objects and arrays) behave differently in memory.
-  
- - Primitive values (like `number`, `string`, `boolean`) are stored directly in the variable, not as references.
- 
- - When we use `const` with a primitive, we cannot change its value because of any "change" creates a new primitive value and tries to reassign the variable.
-
- - Reassignment is not allowed with `const` because `const` is designed to prevent reassignment.
-
-- Primitive values are immutable by nature. 
-
-
-
- Non-primitive values (objects and arrays) are stored/accessed through reference in memory.
- 
-const prevents changing the reference, but contents can be changed
-
-For example, we  can modify object properties or array elements because the variable still points to the same  reference in the  memory.
-
-const prevents reassignment of the variable, but it does not make the object immutable. We can still modify the properties or elements inside the object.
-
-// Primitive
-const num = 10;
-// num = 20; // ❌ TypeError: Assignment to constant variable.
-
-// Non-primitive
-const person = { name: "John" };
-
-person.name = "Jane"; //  Allowed
-// person = {}; // ❌ TypeError: Assignment to constant variable.
-```
-
-* Primitive + `const` → value cannot be reassigned
-* Object/Array + `const` → reference cannot be reassigned, but contents can be changed
-
-
-
-
-
-
-===============================================================================================
-Immutable vs Mutable Values 
-
-### Immutable
-
-Immutable = Cannot be changed
-If a value is immutable, once it is created, it can never be modified.
-Instead, JavaScript creates a new value.
-Cannot be changed after creation if happnen then Assignment after a change Variable points to a new value
--Primitive data types are immutable
-
-primitive types:
-
-  * `String`
-  * `Number`
-  * `Boolean`
-  * `null`
-  * `undefined`
-  * `BigInt`
-  * `Symbol`
-
-### Mutable
-
-Mutable = Can be changed
--Can be changed after creation.
--Assignment after a change Variable still points to the same object, whose contents changed
-Objects are mutable.
-
--Non-primitive data types (objects) are mutable.
-
-
-* Examples include:
-
-  * `Objects`
-  * `Arrays`
-  * `Functions`
-
-
-
-
-===============================================================================================
-
-
-# Primitive Data Types
-
-1. String
-2. Number
-3. BigInt
-4. Boolean
-5. undefined
-6. null
-7. Symbol
-
-# Non-Primitive (Reference) Data Types
-
-1. Object
-2. Array
-3. Function
-4. Date
-5. RegExp
-
----
-
-# A] Primitive Variables
-
-- Primitive variables are used to store primitive values.
-- When a primitive value is assigned to a variable, the value is stored directly in the variable.
-- When a primitive variable is assigned to another variable, the value is copied (passed by value).
-- Both variables have different values stored independently.
-- The variables themselves have different memory locations.
-- Changing one variable does not affect the other.
-- Primitive values are typically stored in stack memory. -(For learning purposes this is acceptable, although the JavaScript specification does not require stack memory.)-
-
-### Example
 
 ```javascript
-let a = 42;
-let b = a;
-
-b = 100;
-
-console.log(a); // 42
-console.log(b); // 100
+// Parameters (in function definition)
+// Arguments (when calling function)
 ```
 
-Explanation:
+### 🔹 Meaning:
 
-- `a` stores the value `42`.
-- When `a` is assigned to `b`, a copy of `42` is created.
-- Each variable has its own copy.
-- Changing one variable does not affect the other.
+* **Parameters** → written inside function definition
+* **Arguments** → passed when calling the function
 
----
+Remember this simple rule:
 
-# B] Reference Variables
+Outside an object → Function
+Inside an object → Method
 
-- Reference variables are used to store non-primitive values.
-- The variable stores a reference (memory address/pointer) to an object.
-- When a reference variable is assigned to another variable, the reference is copied, not the object.
-- Both variables point to the same object in memory.
-- Both variables do NOT have the same memory location.
 
-  
-- The variables (`obj1` and `obj2`) are different variables.
-  
-- They both store the same reference, which points to the same object.
-- Changing the object through one variable is reflected when accessed through the other variable.
-- Reference values (objects) are typically stored in heap memory. -(Again, this is a common implementation detail, not a language guarantee.)*
+======================================Rest operator:-========================
 
-### Example
 
-```javascript
-let obj1 = { name: "Alice", age: 30 };
-let obj2 = obj1;
+Rest operator:-
 
-obj2.age = 31;
 
-console.log(obj1.age); // 31
-console.log(obj2.age); // 31
-```
+The rest operator (...) is used in function parameters to collect all remaining arguments into a single array. 
+It allows a function to accept a variable number of arguments.
 
-### Another Example
+The rest parameter (...args) must always be the last parameter
+You cannot place anything after it (d after ...args is not allowed)
+it will throw error SyntaxError: Rest parameter must be last formal parameter
 
-```javascript
-var x = { name: "abcd" };
-var y = x;
 
-x.name = "pqr";
-
-console.log(x.name); // pqr
-console.log(y.name); // pqr
-```
-
-Explanation:
-
-* `obj1` stores a reference to an object.
-* When `obj1` is assigned to `obj2`, the reference is copied, not the object.
-* Both variables point to the same object.
-* Any change made through one variable is visible through the other.
-
-=========================================
-
-Because primitive values are copied by value, not by reference so varible value be same 
-Objects are reference types. When a property contains an object, the reference (memory address) is copied, not the object itself. variable will change value
-
-You're very close. Here's the interview-friendly explanation:
-
-### Primitive Values
-
-> Primitive values are copied by value, not by reference.
-> Both variables initially have the same value, but they are stored independently, so changing one does not affect the other.
 
 Example:
 
-```javascript
-let a = 10;
-let b = a;
+function add(a, b, ...args) {
+console.log(a, b);
+console.log(args);
+}
 
-b = 20;
-
-console.log(a); // 10
-console.log(b); // 20
-```
-
----
-
-### Objects (Non-Primitive Values)
-
-> Objects are copied by reference, not by value.
-> Both variables point to the same object in memory, so changing the object's properties through one variable is reflected in the other.
-
-Example:
-
-```javascript
-const obj1 = { name: "John" };
-const obj2 = obj1;
-
-obj2.name = "Alice";
-
-console.log(obj1.name); // Alice
-console.log(obj2.name); // Alice
-```
-
-One-line interview rule:
-
-* Primitive → copied by value → changes don't affect the original.
-* Non-primitive (Object/Array) → copied by reference → changes affect the original.
+add(10, 20);
+add(10, 20, 30, 40, 50);
 
 
+
+
+
+-The rest operator is used to store all the arguments which do not have matching parameters.
+-The rest is an array.
+-Rest operator basic help to pass infinite number of argument in a function
 
 
 //============================ arguments object vs rest perator===================================
@@ -1721,8 +1629,6 @@ matching parameters
 
 -The arguments object is built-in
 -The rest operation is not built, you need to declare it after all the parameters of a function
-
-
 
 
 
@@ -1772,6 +1678,416 @@ let squareNum = x => x * x;
 arrow functions do not have their own this value.
 Instead, they inherit the this value from the enclosing lexical scop
 
+
+//============================== call,apply,bind =========================
+
+
+
+A] call():
+
+- Call method is predefined method in JavaScript
+
+-call() is used to execute a function with a specified object as this.
+ It invokes the function immediately and accepts arguments individually.
+
+ - An object can use a method belonging to another object
+
+
+- call method is Immediately invokes a function with a given `this` value and arguments provided individually
+
+- accepts arguments as separate values
+
+```js
+var employee1 = {firstName: 'John', lastName: 'Rodson'};
+var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
+
+function invite(greeting1, greeting2) {
+  console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName+ ', ' + greeting2);
+}
+
+invite.call(employee1, 'Hello', 'How are you?'); // Hello John Rodson, How are you?
+invite.call(employee2, 'Hello', 'How are you?'); // Hello Jimmy Baily, How are you?
+
+
+var employee1 = {
+  firstName: 'John',
+  lastName: 'Rodson',
+  invite: function(greeting1, greeting2) {
+      console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName + ', ' + greeting2);
+  }
+};
+
+var employee2 = {
+  firstName: 'Jimmy',
+  lastName: 'Baily'
+};
+
+employee1.invite.call(employee2, "Hello", "World"); // Hello Jimmy Baily, World
+```
+
+
+
+B] apply():
+
+- apply() method is similar to call() method
+- call method argument takes separately
+- apply method argument takes as an array
+- invoke the function with a given this value and arguments provided by an array
+- accepts arguments as array elements
+
+```js
+var employee1 = {firstName: 'John', lastName: 'Rodson'};
+var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
+
+function invite(greeting1, greeting2) {
+  console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName+ ', ' + greeting2);
+}
+
+invite.apply(employee1, ['Hello', 'How are you?']); // Hello John Rodson, How are you?
+invite.apply(employee2, ['Hello', 'How are you?']); // Hello Jimmy Baily, How are you?
+```
+
+
+
+C] bind():
+
+
+bind() is a method used to create a creates and returns a new function with a specified this value. 
+Unlike call() and apply(), it does not execute the function immediately.
+
+bind() is a method used to create a new function with a specified object as this.
+
+The main reason we use bind() in projects is to prevent losing the correct this value.
+
+
+
+
+
+- bind() method we can bind an object to a common function so that the 
+  function gives different result when it needs
+
+- bind() returns a new function with a fixed this context and optional preset arguments, 
+but doesnt invoke it immediately.
+
+- bind method takes an object as the first argument and creates a new function
+- bind does not invoke the function immediately*- (unlike call or apply)  // added for clarity
+- return a new function, allow you to pass any number of arguments
+- it binds a function with an object and returns the bound function
+- it does not bind the existing function, instead it creates a new function to bind // added for clarity
+
+```js
+var employee1 = {firstName: 'John', lastName: 'Rodson'};
+var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
+
+function invite(greeting1, greeting2) {
+  console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName+ ', ' + greeting2);
+}
+
+var inviteEmployee1 = invite.bind(employee1);
+var inviteEmployee2 = invite.bind(employee2);
+
+inviteEmployee1('Hello', 'How are you?'); // Hello John Rodson, How are you?
+inviteEmployee2('Hello', 'How are you?'); // Hello Jimmy Baily, How are you?
+```
+
+```js
+const person = {
+  firstName: 'John',
+  lastName: 'Doe',
+  fullName: function() {
+      return this.firstName + ' ' + this.lastName;
+  }
+};
+
+const printFullName = person.fullName;
+
+// console.log(printFullName()); // Output: "undefined undefined" because `this` is lost
+
+const boundPrintFullName = printFullName.bind(person);
+console.log(boundPrintFullName()); // Output: "John Doe"
+```
+
+
+call() → Executes the function immediately.
+apply() → Executes the function immediately.
+bind() → Does not execute immediately. It returns a new function that you can call later.
+========================================================================
+
+
+- A common use case for the `bind` method in JavaScript 
+is to maintain the correct context (`this`) when passing methods as callbacks or event handlers.
+- In JavaScript, the value of `this` 
+can change depending on how a function is called.
+- For instance, when a method is used as an event handler, 
+`this` usually refers to the element that triggered the event, not the object that owns the method.
+- By using `bind`, you can create a new function where `this` is explicitly set to the desired context, ensuring that the method behaves correctly regardless of how it's called.
+
+- This is particularly useful in scenarios such as object-oriented programming and event handling, where preserving the context is crucial for the method's functionality.
+- `bind` can also be used to preset initial arguments, allowing partial application of functions.
+
+
+
+### 1. Plain JavaScript Event Handling with `bind`
+
+
+
+Interview Answer:
+
+> In JavaScript, the value of `this` depends on how a function is called, which can lead to unexpected behavior when passing methods as callbacks or event handlers. The `bind` method fixes this by creating a new function with `this` explicitly set to the desired object. This ensures the method retains the correct context regardless of how or where it’s called, which is especially useful in event handling and object-oriented programming.
+
+```javascript
+
+const user = {
+  name: 'John',
+  sayHello: function(greeting) {
+    console.log(greeting + ', ' + this.name);
+  }
+};
+
+const button = document.getElementById('myBtn');
+
+// Without bind - `this` refers to button, not user
+button.addEventListener('click', user.sayHello); // this.name is undefined
+
+// With bind - `this` fixed to `user`
+button.addEventListener('click', user.sayHello.bind(user, 'Hello')); 
+// Output on click: "Hello, John"
+```
+
+
+In summary:
+- `bind` creates a new function for later use, while `call` and `apply` execute the function immediately.
+- `call` takes arguments individually, whereas `apply` takes arguments as an array.
+
+------------------------------------------------------------------------------
+
+### 2. React Class Component Event Handler with `bind`
+
+
+
+React.js Interview Answer:
+
+> In React class components, event handler methods lose their class instance context (`this`) when passed as callbacks. Using `bind` in the constructor or inline fixes this by explicitly setting `this` to the component instance. This ensures methods can access component state and props correctly during events, preventing common bugs related to `this` being `undefined` or incorrect.
+
+
+```jsx
+import React from 'react';
+
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { count: 0 };
+
+    // Bind the event handler to fix 'this' context
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    // Accessing this.state and this.setState works because of bind
+    this.setState({ count: this.state.count + 1 });
+    console.log('Count is:', this.state.count + 1);
+  }
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        Click me ({this.state.count})
+      </button>
+    );
+  }
+}
+
+export default MyComponent;
+
+```
+
+
+
+In React class components, event handler methods don’t automatically bind `this` to the component instance. To fix that, we usually bind methods to `this` so they work correctly when called, especially as event handlers.
+
+The most efficient way to bind is in the constructor, where the binding happens once when the component is created. This avoids creating new functions on every render, improving performance and preventing unnecessary re-renders.
+
+Alternatively, using arrow functions as class properties automatically binds `this` and offers cleaner syntax, which is common in modern React code.
+
+Binding inside `render()` is discouraged because it creates a new function every time the component re-renders, which hurts performance.
+
+
+
+
+
+
+
+
+
+
+=========================================
+
+Because primitive values are copied by value, not by reference so varible value be same 
+Objects are reference types. When a property contains an object, the reference (memory address) is copied, not the object itself. variable will change value
+
+You're very close. Here's the interview-friendly explanation:
+
+### Primitive Values
+
+> **Primitive values are copied by value, not by reference.**
+> Both variables initially have the same value, but they are stored independently, so changing one does not affect the other.
+
+Example:
+
+```javascript
+let a = 10;
+let b = a;
+
+b = 20;
+
+console.log(a); // 10
+console.log(b); // 20
+```
+
+---
+
+### Objects (Non-Primitive Values)
+
+> **Objects are copied by reference, not by value.**
+> Both variables point to the same object in memory, so changing the object's properties through one variable is reflected in the other.
+
+Example:
+
+```javascript
+const obj1 = { name: "John" };
+const obj2 = obj1;
+
+obj2.name = "Alice";
+
+console.log(obj1.name); // Alice
+console.log(obj2.name); // Alice
+```
+
+**One-line interview rule:**
+
+* **Primitive → copied by value → changes don't affect the original.**
+* **Non-primitive (Object/Array) → copied by reference → changes affect the original.**
+
+
+
+
+================================== Object cloning=============================================
+
+
+
+-creating a duplicate object of an existing object is called object cloning
+
+There are 2 types of object cloning
+
+### Shallow Cloning  
+
+A shallow clone creates a new object, but any nested objects or arrays are copied by reference,
+ so they are still shared with the original object.
+
+If you change a nested object or array in the shallow copy, 
+ the change will also be reflected in the original object because both objects share the same reference.
+
+
+Shallow cloning Only the top-level properties of an object are cloned it does not clone nested objects
+ — it only copies their references. 
+ This means that if you change a nested object property in either the original or the clone,
+the change will affect both, because they both point to the same reference object.
+
+To avoid unexpected bugs, 
+don’t modify nested data in a shallow clone if you want the original unchanged. 
+For full independence, use deep cloning, which copies all nested structures as well.
+
+- Examples: `Object.assign()`, Spread operator (`...`).  
+
+
+```javascript
+
+const original = {
+  name: "Alice",
+  address: {
+    city: "New York"
+  }
+};
+
+
+const clone1 = Object.assign({}, original);//Using Object.assign()
+
+const clone2 = { ...original };// Using Spread operator
+
+clone1.address.city = "Los Angeles";
+
+console.log(original.address.city); // Outputs: "Los Angeles" — nested object is shared
+console.log(clone2.address.city);   // Outputs: "Los Angeles" — nested object is shared
+
+//This happens because original.address.city and clone.address.city point to the same object in memory.
+
+console.log(clone1 === original);        // false — different top-level objects
+console.log(clone1.address === original.address); // true — nested object shared (same reference)
+
+```
+
+Shallow cloning copies only the top level; nested objects are shared.
+
+
+- Copies only the top-level properties of an object.  
+- Nested objects or arrays are referenced, not cloned.  
+- Changes in nested structures reflect in both original and cloned objects.  
+
+-In shallow cloning only direct/main object gets cloned but not the object
+which are referred by the properties of main object.
+
+-changing value of cloned object will be refect into
+orginal object as well because both are point same refrance object
+
+-----------------------
+
+### Deep Cloning  
+
+Deep cloning in JavaScript means creating a completely independent copy of an object,
+ including all nested objects and arrays.
+  Changes to the clone do not affect the original object.
+  means all the properties are cloned 
+
+
+-In deep cloning all the object direct/main and nested objects will be cloned. Menas all parts of the object are fully cloned.
+if you change a nested object property in either the original or the clone, the change will not affect both, because they both point to the different reference object.
+- Nested objects or arrays are independent from the original.  
+
+
+- Examples: `JSON.parse(JSON.stringify())`, 
+Better Alternative 
+– structuredClone() (modern built-in method), 
+ Lodashs cloneDeep()`, 
+ Recursive cloning.  
+
+
+```javascript
+
+const original = {
+  name: 'John',
+  age: 30,
+  address: { city: 'New York', country: 'USA' }
+};
+
+const deepClone = JSON.parse(JSON.stringify(original));
+const structuredCloneDeep = structuredClone(original);
+
+console.log(deepClone === original); // false (different objects)
+console.log(deepClone.address === original.address); // false (different objects)
+
+--------------------------------------------------------------------
+
+JavaScript objects are reference types. 
+When two objects are compared using == or ===, 
+JavaScript does not compare their contents (values). 
+It compares their references, which are the memory locations where the objects are stored.
+
+If two objects have the same properties
+ and values but are stored at different memory locations, 
+ they are considered different objects. Therefore, the comparison returns false.
+
+So, although the objects have identical contents, 
+they are not the same object because their references are different.
 
 
 ========================== typeof ==================================
@@ -1830,3 +2146,17 @@ const greetArrow = (name) => {
 console.log(typeof greetArrow); // "function"
 
 
+
+
+
+============================
+
+In JavaScript, objects and functions are reference types.
+ When a new object is created, it gets a new reference, 
+ so two objects with the same values are considered different 
+ if their references are different.
+
+When a function is assigned to another variable,
+ only the reference is copied. 
+ Both variables point to the same function object,
+  so the type remains "function" and the references are equal.

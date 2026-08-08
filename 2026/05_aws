@@ -1,0 +1,122 @@
+-
+====================================================
+## Route Table (RT)
+
+A **Route Table (RT)** is a set of **rules (routes)** that determines **where network traffic should go** from a subnet. such as to an Internet Gateway, NAT Gateway, or another network.**
+
+
+ommon Targets
+Local – Routes traffic within the VPC.
+Internet Gateway (IGW) – Provides internet access for public subnets.
+NAT Gateway – Allows instances in private subnets to access the internet without being directly reachable.
+Virtual Private Gateway (VGW) – Connects the VPC to an on-premises network via VPN.
+Transit Gateway (TGW) – Connects multiple VPCs and on-premises networks.
+VPC Peering Connection – Enables communication between two VPCs.
+
+### Why do we use a Route Table?
+
+It tells AWS:
+
+* If traffic is for the same VPC → send it locally.
+* If traffic is for the Internet → send it to the **Internet Gateway (IGW)**.
+* If traffic is from a private subnet to the Internet → send it to the **NAT Gateway**.
+* If traffic is for another network → send it to the appropriate target (such as a VPN or VPC peering connection).
+
+### Example
+
+Suppose you have:
+
+* VPC: `10.0.0.0/16`
+* Public Subnet: `10.0.1.0/24`
+
+
+====================================================
+
+
+
+### 9. What is Amazon VPC?
+
+A **Virtual Private Cloud (VPC)** is a logically isolated virtual network where you launch AWS resources. You control IP ranges, subnets, route tables, gateways, and security.
+
+====================================================
+
+
+### 10. What is an Internet Gateway (IGW)?
+
+An **Internet Gateway (IGW)** is a fully managed AWS networking component that connects an **Amazon VPC** to the **public internet**.\
+ 
+ It enables communication between resources in the VPC and the internet. 
+ 
+ An Internet Gateway is required for EC2 instances in **public subnets** to send and receive internet traffic.
+
+### Key Features
+
+* Connects an Amazon VPC to the public internet.
+* Allows both **inbound** and **outbound** internet communication.
+* Performs **1:1 Network Address Translation (NAT)** for instances with **public IPv4 addresses**.
+* Fully managed by AWS, so no maintenance or scaling is required.
+* Must be attached to a VPC before internet access is possible.
+
+### How It Works
+
+1. Create or use an existing **VPC**.
+2. Attach an **Internet Gateway (IGW)** to the VPC.
+3. Update the VPC's **route table** by adding the default route:
+
+   * `0.0.0.0/0 → Internet Gateway`
+4. Launch an EC2 instance in a **public subnet** and assign it a **public IP address** or **Elastic IP**.
+5. Configure the **Security Group** and **Network ACL (NACL)** to allow the required inbound and outbound traffic.
+
+### Example
+
+Suppose you launch an EC2 instance to host a website:
+
+* The EC2 instance is placed in a **public subnet**.
+* The subnet's route table has the route `0.0.0.0/0 → Internet Gateway`.
+* The instance has a **public IP address**.
+* Users on the internet can access the website, and the EC2 instance can also access the internet to download updates.
+
+### Interview Answer (1–2 Minutes)
+
+> **An Internet Gateway (IGW)** is a fully managed AWS component that connects an Amazon VPC to the public internet. It allows resources in public subnets to communicate with the internet by enabling both inbound and outbound traffic. To use an Internet Gateway, you attach it to a VPC, add a default route (`0.0.0.0/0`) in the route table pointing to the IGW, assign a public IP or Elastic IP to the EC2 instance, and configure the Security Group and NACL to allow the required traffic. Without an Internet Gateway, resources in a VPC cannot directly access the public internet.
+
+
+
+====================================================
+
+Q10. Does an Internet Gateway allow private subnets to access the internet directly?
+
+Does not allow resources in private subnets to access the internet directly. 
+
+Private subnets typically use a NAT Gateway for outbound internet access.**
+
+### Why?
+
+* An **Internet Gateway (IGW)** provides internet connectivity only for instances that:
+
+  * Have a **public IP address** (or Elastic IP), and
+  * Are in a subnet whose route table points to the **IGW**.
+* Instances in **private subnets** do **not** have public IP addresses, so they cannot access the internet directly through an IGW.
+* If instances in a private subnet need **outbound-only** internet access (for software updates, package downloads, etc.), they use a **NAT Gateway** (or NAT instance) located in a public subnet.
+
+### Interview Answer
+
+> **An Internet Gateway does not provide direct internet access to private subnets. To enable outbound internet access for resources in private subnets, AWS typically uses a NAT Gateway deployed in a public subnet.**
+
+This is the standard and expected explanation in AWS interviews.
+
+
+====================================================
+
+
+Q12. What is the public internet?
+
+Answer:
+
+The public internet is a global network of interconnected computers, servers, and devices that anyone can access using an internet connection. It allows communication and data exchange between users, applications, and services across the world.
+
+In AWS, the public internet refers to external networks outside your AWS VPC, such as:
+
+Users accessing your website from their browsers.
+External applications communicating with your public APIs.
+Software repositories used to download updates and packages.
