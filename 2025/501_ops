@@ -1,4 +1,57 @@
 # ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+
+- A parent component can easily pass any necessary content, including dynamically generated layout features or other components,
+  to its child component
+
+- child component can then access this content through props.children and render it accordingly.
+
+- Children is a prop (this.props.children) that allows you to pass components as data to other components, just like any other prop you use. Component tree put between component's opening and closing tag will be passed to that component as children prop.
+
+const Layout = (props) => {
+return (
+<div className="layout">
+<header>Header Section</header>
+<main>{props.children}</main>
+<footer>Footer Section</footer>
+</div>
+);
+};
+
+const App = () => {
+const generateContent = () => {
+return <p>This is dynamically generated content!</p>;
+};
+
+    return (
+      <Layout>
+        <h1>Main Title</h1>
+        {generateContent()}
+        <p>Some additional content.</p>
+      </Layout>
+    );
+
+};
+
+<!--
+using props.children.
+
+parent component can easily pass whatever is necessary to its child, even generated layout features or other component
+props.children its access the that content  and  to render whatever content is passed to it. -->
 
 --------------------------------------------------------------
 

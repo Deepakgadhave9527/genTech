@@ -16,14 +16,6 @@ Patch vs Put
   - PATCH updates only the specified fields.
   - If your form or component allows the user to update only specific fields (e.g., changing the user's email address or password), you might use PATCH.
 
-===========================================================================
-
-
-
-A framework is a set of pre-written code that provides a structure for developing software applications. 
-
-A library, on the other hand, is a collection of pre-written code that can be used to perform specific tasks.
-
 ========================================================
 
 

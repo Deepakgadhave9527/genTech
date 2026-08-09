@@ -112,7 +112,7 @@ A native browser event is an event created directly by the browser
 when something happens, like a click or key press.
 It can be handled using browser APIs such as addEventListener().
 
-Examples of **native browser events**:
+Examples of `native browser events`:
 
 click
 keydown
@@ -125,7 +125,7 @@ scroll
 focus
 blur
 
-For example, **`click`** is a native browser event:
+For example, ``click`` is a native browser event:
 
 ```js
 button.addEventListener("click", () => {
@@ -133,7 +133,7 @@ button.addEventListener("click", () => {
 });
 ```
 
-Here, **`click` = native browser event**.
+Here, ``click` = native browser event`.
 
 
 `React wraps the native browser event and gives it to you as a Synthetic Event.`
@@ -144,36 +144,36 @@ Here, **`click` = native browser event**.
 
 -In React, `synthetic events` are a layer of abstraction over native browser events. 
 
-It means React does not give you the original browser event directly. 
-
-Instead, React wraps the browser event inside its own object called SyntheticEvent.
+- It means React does not give you the original browser event directly. 
+- Instead, React wraps the browser event inside its own object called SyntheticEvent.
 
 - They provide a `consistent interface` for handling events across different browsers
 
-- offer `additional features` to improve event handling.
+- Synthetic Events `offer additional features` to improve event handling, 
 
-When you attach an event handler, like onClick, to a React element, React passes a SyntheticEvent object to your handler function. This object contains information about the event, such as the target element, and provides methods like stopPropagation() and preventDefault() for controlling event behavior.
+such as preventDefault() to prevent the browser's default behavior and stopPropagation() to stop the event from propagating to parent elements.
+
+When you attach an event handler, like onClick to a React element, 
+React passes a SyntheticEvent object to  handler function.
+
+- This object contains information about the event, such as the target element, and provides methods like stopPropagation() and preventDefault() for controlling event behavior.
+
+
 
 
 
 =========================== props children========================
 
-
-
-
 ### What is `props.children` in React?
 
-* A parent component can pass any content to a child component, including `HTML elements, dynamically generated layouts, or other React components`.
+- A parent component can pass any content to a child component, including `HTML elements, dynamically generated layouts, or other React components`.
 
-* The child component can access this passed content through `props.children` and decide where and how to render it.
+- The child component can access this passed content through `props.children` 
 
-* `children` is a special built-in prop provided by React. It allows components to receive other components or elements as data, similar to how we pass normal props like `name`, `value`, or `id`.`
+- Any content placed between a component's opening and closing tags is automatically passed to that component as the `children` prop`.
 
-* Any content placed between a component's opening and closing tags is automatically passed to that component as the `children` prop`.
 
-Example:
-
-``jsx
+```jsx
 function Card(props) {
   return (
     <div className="card">
@@ -194,60 +194,24 @@ function App() {
 
 Here, the `<h1>` and `<p>` elements inside `<Card>` are passed from the parent component and are available inside `Card` through `props.children`.
 
-`Think of `props.children` as a placeholder that allows a component to wrap and display custom content provided by its parent.`
 
-`It helps create reusable and flexible components, because the same component can display different content depending on what the parent passes.`
+=========================== 
 
-Interview summary:
+### Normal Props
 
-> `props.children` is a special React prop that contains the elements or components placed between a component's opening and closing tags. It allows a parent component to pass UI content to a child component, making components more reusable and flexible.`
+Normal props are used to send `specific data or values` to a component.
+We can send strings, numbers, objects, arrays, functions, etc. through named props.
+We can also send `HTML elements or React components` as a prop value.
+The receiving component accesses them using `props.propName`.
+Example: `<User name="John" profile={<Profile />} />`
 
+### `props.children`
 
-
-
-
-
-
-
----------------------------------------------------------------
-
-- A parent component can easily pass any necessary content, including dynamically generated layout features or other components,
-  to its child component
-
-- child component can then access this content through props.children and render it accordingly.
-
-- Children is a prop (this.props.children) that allows you to pass components as data to other components, just like any other prop you use. Component tree put between component's opening and closing tag will be passed to that component as children prop.
-
-const Layout = (props) => {
-return (
-<div className="layout">
-<header>Header Section</header>
-<main>{props.children}</main>
-<footer>Footer Section</footer>
-</div>
-);
-};
-
-const App = () => {
-const generateContent = () => {
-return <p>This is dynamically generated content!</p>;
-};
-
-    return (
-      <Layout>
-        <h1>Main Title</h1>
-        {generateContent()}
-        <p>Some additional content.</p>
-      </Layout>
-    );
-
-};
-
-<!--
-using props.children.
-
-parent component can easily pass whatever is necessary to its child, even generated layout features or other component
-props.children its access the that content  and  to render whatever content is passed to it. -->
+`props.children` is used to send `content inside a component`.
+We can send text, HTML elements, dynamically generated layouts, or other React components.
+The content is written between the component's opening and closing tags.
+The receiving component accesses this content using `props.children`.
+Example: `<Card><h1>Hello</h1><Profile /></Card>` → both elements are `props.children`.
 
 ========================================================
 
@@ -264,15 +228,6 @@ Browsers cannot understand JSX directly.
 Older browsers may not support newer JavaScript features (ES6+).
 Babel converts modern syntax into compatible JavaScript.
 
-==============================================================
-
-
-What are PropTypes?
-PropTypes is a type-checking library included with React.
-It allows you to specify the expected types for props that a component should receive, providing runtime type validation.
-
-npm install prop-types
-
 
 
 ==============================================================
@@ -281,7 +236,7 @@ npm install prop-types
 
 ### React Suspense
 
-``Suspense`` is a React feature that allows us to `show fallback UI while a component is waiting for something to load`, most commonly a `lazy-loaded component`.
+``Suspense` is a React feature that allows us to `show fallback UI while a component is waiting for something to load`, most commonly a `lazy-loaded component`.
 
 ```jsx
 import { Suspense, lazy } from "react";
@@ -303,18 +258,35 @@ Here, while `Profile` is being loaded, React displays:
 Loading...
 ```
 
-Once `Profile` finishes loading, React displays the `Profile` component.
-
-`Interview line:`
-
-> ``Suspense` allows React to display fallback UI while a component is waiting to load, commonly used with `React.lazy()` for code splitting and lazy loading.`
-
 ==============================================================
 
-Here's why we use return () => { ... }:
 
-Cleanup Function Definition: The return statement defines the cleanup function.
-This function will be called when the component unmounts or before the effect runs again if any dependencies change.
+### Why do we use `return () => { ... }` in `useEffect()`?
+
+- The function returned from `useEffect()` is called the `cleanup function`.
+- React runs the cleanup `before the effect runs again when dependencies change`.
+- React also runs the cleanup `when the component unmounts`.
+- We use it to clean up resources created by the effect, such as `event listeners, timers, subscriptions, and connections`.
+- This prevents `memory leaks and unwanted side effects`.
+
+`Example:`
+
+```jsx
+useEffect(() => {
+  const timer = setInterval(() => {
+    console.log("Running");
+  }, 1000);
+
+  return () => {
+    clearInterval(timer);
+  };
+}, []);
+```
+
+`Interview explanation:`
+
+> “The function returned from `useEffect` is called the cleanup function. React executes it before re-running the effect when dependencies change and when the component unmounts. We use it to clean up resources such as timers, event listeners, and subscriptions.”
+
 
 
 ==============================================================

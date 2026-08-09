@@ -1,47 +1,435 @@
+=========================================================================
 
-================================================================================
-How many way object will create
+# JavaScript Web Storage
+
+JavaScript provides two types of Web Storage:
+
+- **Session Storage (`sessionStorage`)**
+- **Local Storage (`localStorage`)**
+
+Both store data as **key-value pairs**, and **both can only store strings**. If you want to store objects or arrays, use `JSON.stringify()` while storing and `JSON.parse()` while retrieving.
+
+---
+
+# Session Storage (`sessionStorage`)
+
+### Features
+
+`sessionStorage` stores data only for the current browser session
+and is available only in the same browser tab that created it.
+Each tab has its own separate session storage, so the data is not shared across tabs.
+The stored data is automatically cleared when the tab or browser window is closed.
+It stores data as key-value pairs and typically provides up to **5 MB** of storage, depending on the browser.
+
+### Methods
+
+### 1. Store Data
+
+```javascript
+sessionStorage.setItem("username", "John");
+```
+
+### 2. Retrieve Data
+
+```javascript
+let username = sessionStorage.getItem("username");
+console.log(username);
+```
+
+### 3. Update Data
+
+```javascript
+sessionStorage.setItem("username", "David");
+```
+
+### 4. Remove One Item
+
+```javascript
+sessionStorage.removeItem("username");
+```
+
+### 5. Clear All Data
+
+```javascript
+sessionStorage.clear();
+```
+
+### 6. Check Number of Stored Items
+
+```javascript
+console.log(sessionStorage.length);
+```
+
+### 7. Get Key by Index
+
+```javascript
+console.log(sessionStorage.key(0));
+```
+
+### Store an Object
+
+```javascript
+const user = {
+  id: 1,
+  name: "John",
+  age: 25,
+};
+
+sessionStorage.setItem("user", JSON.stringify(user));
+```
+
+### Retrieve an Object
+
+```javascript
+const user = JSON.parse(sessionStorage.getItem("user"));
+console.log(user);
+```
+
+---
+
+# Local Storage (`localStorage`)
+
+### Features
+
+- Data is stored permanently until it is manually removed.
+- Data remains available even after the browser is closed and reopened.
+- Data is shared across all tabs and windows of the same origin (protocol, domain, and port).
+- Different websites cannot access each other's local storage.
+- Maximum storage is typically around **5–10 MB**, depending on the browser.
+- Stores data as **key-value pairs**.
+- Only strings can be stored directly.
+
+### Methods
+
+### 1. Store Data
+
+```javascript
+localStorage.setItem("username", "John");
+```
+
+### 2. Retrieve Data
+
+```javascript
+let username = localStorage.getItem("username");
+console.log(username);
+```
+
+### 3. Update Data
+
+```javascript
+localStorage.setItem("username", "David");
+```
+
+### 4. Remove One Item
+
+```javascript
+localStorage.removeItem("username");
+```
+
+### 5. Clear All Data
+
+```javascript
+localStorage.clear();
+```
+
+### 6. Check Number of Stored Items
+
+```javascript
+console.log(localStorage.length);
+```
+
+### 7. Get Key by Index
+
+```javascript
+console.log(localStorage.key(0));
+```
+
+### Store an Object
+
+```javascript
+const user = {
+  id: 1,
+  name: "John",
+  age: 25,
+};
+
+localStorage.setItem("user", JSON.stringify(user));
+```
+
+### Retrieve an Object
+
+```javascript
+const user = JSON.parse(localStorage.getItem("user"));
+console.log(user);
+```
+
+# Common Methods
+
+| Method                | Description                            |
+| --------------------- | -------------------------------------- |
+| `setItem(key, value)` | Adds or updates a value                |
+| `getItem(key)`        | Returns the stored value               |
+| `removeItem(key)`     | Removes a specific item                |
+| `clear()`             | Removes all stored items               |
+| `key(index)`          | Returns the key at the specified index |
+| `length`              | Returns the number of stored items     |
+
+---
+
+## Important Notes
+
+- Both `sessionStorage` and `localStorage` store **only strings**.
+- To store objects or arrays, use `JSON.stringify()`.
+- To retrieve objects or arrays, use `JSON.parse()`.
+- `getItem()` returns `null` if the key does not exist.
+- Avoid storing sensitive information (such as passwords or tokens) in Web Storage because it is accessible through JavaScript.
+- Storage is limited (typically 5–10 MB depending on the browser).
+
+This version is accurate, complete, and suitable for JavaScript interview notes or learning material.
 
 
-1. Object Literal
-2. Object Constructor
-3. The new Keyword
-4. Object.assign()
-5. Object.create()
-6. Object.fromEntries()
-
-1. **Using Object Literal:**
-   const obj = {
-     name: "John",
-     age: 30,
-   };
+//===========================Bubbling and Capturing =========================
 
 
-2. **Using Object Constructor:**
-   const obj = new Object();
-   obj.name = "John";
-   obj.age = 30;
+A) Bubbling
 
-3. **Using the new Keyword:**
-   function ObjectName(name, age) {
-     this.name = name;
-     this.age = age;
-   }
-   const obj = new ObjectName("John", 30);
+Event Bubbling is the default event propagation method in JavaScript.
+ When an event occurs on a child element, it first runs on the target element and then propagates upward through its parent elements to the root (document).
+
+-The bubbling principle is simple.
+-When an event happens on an element, it first runs the handlers on it,
+then on its parent, then all the way up on other ancestors.
+
+-With bubbling, the event is first captured and handled by the innermost element and
+then propagated to outer elements.
 
 
-4. **Using Object.assign():**
-   const obj = Object.assign({}, { name: "John", age: 30 });
+B] capturing
 
-5. **Using Object.create():**
-   const protoObj = { name: "John", age: 30 };
-   const obj = Object.create(protoObj);
+Event Capturing (also called the capture phase) is the opposite of bubbling. The event starts from the outermost parent and travels down to the target element.
 
-6. **Using Object.fromEntries():**
-   const entries = [['name', 'John'], ['age', 30]];
-   const obj = Object.fromEntries(entries);
+-when an event happen on element ,it first run the parent element of then lastly run handler
 
-   
+
+-With capturing, the event is first captured by the outermost element and
+propagated to the inner elements.
+
+In event capturing, the event is handled before it reaches the target. You must explicitly enable it by passing true as the third argument in addEventListener
+
+document.getElementById("parent").addEventListener("click", () => {
+  console.log("Parent clicked (capture)");
+}, true);
+
+
+
+-Capturing is also called "trickling", which helps remember the propagation order:
+
+stopPropagation prevents further propagation of the current event in the capturing and bubbling phases.
+
+preventDefault prevents the default action the browser makes on that event.
+
+
+
+
+
+=========================================================================
+### Pure Functions
+- *Deterministic*: Always return the same output for the same input.
+- *No Side Effects*: Do not alter external state or rely on it.
+- *Benefits*: Easier to understand, test, compose, and optimize (e.g., memoization).
+
+*Example*:
+javascript
+function add(a, b) {
+    return a + b;
+}
+
+console.log(add(2, 3)); // Always returns 5
+
+
+### Impure Functions
+- *Non-deterministic*: Output can vary for the same input.
+- *Side Effects*: Modify external state, perform I/O operations, etc.
+- *Challenges*: Harder to reason about, test, and maintain.
+
+*Example*:
+javascript
+let count = 0;
+
+function increment() {
+    count += 1;
+    return count;
+}
+
+console.log(increment()); // Output depends on external `count` variable
+
+
+### Summary
+- *Pure functions*: Predictable, testable, and composable.
+- *Impure functions*: Necessary for state changes and I/O operations but harder to manage.
+
+
+
+=========================================================================
+
+Generators and iterators are closely related concepts in JavaScript that allow for efficient handling of sequences and collections of data. Here's an overview of both, including their definitions, usage, and how they interrelate.
+
+
+### Iterators
+
+```
+
+### Iterators
+
+**Iterators** are objects that allow for sequential access to elements in a collection, one at a time.
+
+The `next()` method returns an object with two properties:
+
+- **`value`**: The current value in the sequence.
+- **`done`**: A boolean that tells whether the iteration has finished (`true`) or not (`false`).
+
+#### Example of an Iterator:
+
+const myArray = [1, 2, 3];
+const iterator = myArray[Symbol.iterator]();
+
+console.log(iterator.next()); // { value: 1, done: false }
+console.log(iterator.next()); // { value: 2, done: false }
+console.log(iterator.next()); // { value: 3, done: false }
+console.log(iterator.next()); // { value: undefined, done: true }
+
+### How it works:
+
+1. `Symbol.iterator` creates an iterator object for the array.
+2. Each call to `next()` moves the iterator to the next element.
+3. When there are no more elements, `done` becomes `true`.
+
+Iterators are used internally by features like `for...of`, spread syntax (`...`), and destructuring.
+
+Example using `for...of`:
+
+```javascript
+const myArray = [1, 2, 3];
+
+for (const value of myArray) {
+  console.log(value);
+}
+```
+
+Output:
+
+```
+1
+2
+3
+```
+
+Here, JavaScript automatically calls the iterator's `next()` method behind the scenes.
+
+``
+
+====================================================================
+
+### Generators
+
+**Generators** are special functions that can pause their execution and resume it later.
+allowing for control over the function's execution.
+
+They are defined using the function\* syntax and use the yield keyword to pause execution and produce values one at a time.
+
+normal function, which runs from start to finish in a single call, a generator function remembers its state between calls beacuse pause execution
+
+The generator object provides the next() method.
+
+The result of next() is always an object with two properties:
+value: the yielded value.
+done: true if the function code has finished, otherwise false.
+
+#### Example of a Generator:
+
+function\* simpleGenerator() {
+yield 1;
+yield 2;
+yield 3;
+}
+
+const gen = simpleGenerator();
+
+console.log(gen.next()); // { value: 1, done: false }
+console.log(gen.next()); // { value: 2, done: false }
+console.log(gen.next()); // { value: 3, done: false }
+console.log(gen.next()); // { value: undefined, done: true }
+
+- simpleGenerator is a generator function.
+- Calling simpleGenerator() returns a generator object gen.
+- gen is an object that implements the iterator protocol, with a next() - method that returns the next value in the sequence.
+- Generators are objects in JavaScript.
+
+<!-- It allow to control excuation of function
+They return a generator object, which is both an iterator and an iterable. -->
+
+### project scenarios of generators in one line each\*\*:
+
+1. Pagination:
+   Use generators to fetch API data page by page instead of loading thousands of records at once.
+
+2. Infinite Scrolling:
+   Use generators to generate the next set of posts/products when a user keeps scrolling (like Instagram or Amazon).
+
+3. Redux-Saga:
+   Use generators to handle async workflows like API calls, loading states, and navigation steps in React applications.
+
+4. Large File Processing:
+   Use generators to read and process large files (CSV, logs, videos) chunk by chunk to save memory.
+
+5. Unique ID Generation:
+   Use generators to create sequential IDs, invoice numbers, ticket numbers, or order numbers dynamically.
+========================================================
+
+Event delegation\
+
+Event delegation is a JavaScript technique where you attach one event listener to a parent element instead of adding separate listeners to each child element.
+
+Event delegation in JavaScript is a technique where you attach a single event listener to a parent element, rather than to multiple child elements individually.
+This approach leverages event bubbling in the DOM, where an event occurring on a nested element will bubble up through its ancestors.
+
+Here's how event delegation works:
+
+1. **Attach Listener to Parent Element**: Instead of attaching event listeners to each child element, you attach a single event listener to the parent element that contains all the child elements you are interested in.
+
+2. **Use Event Bubbling**: When an event happens (like a click) on a child element, the event bubbles up through its ancestors in the DOM hierarchy.
+
+3. **Check the Target Element**: In the event handler function attached to the parent element, you can check the `event.target` property to determine which specific child element triggered the event. This allows you to conditionally execute different actions based on which child element was clicked.
+
+### Example:
+
+Suppose you have a list of items in an unordered list (`<ul>`) and you want to handle click events on each list item (`<li>`).
+
+<ul id="parentList">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+</ul>
+
+In JavaScript, you can delegate the click event handling to the parent `<ul>` element:
+
+const parentList = document.getElementById('parentList');
+
+parentList.addEventListener('click', function(event) {
+if (event.target.tagName === 'LI') {
+console.log('Clicked on:', event.target.textContent);
+// Perform actions based on the clicked list item
+}
+});
+
+In this example:
+
+- The `click` event listener is added to the `parentList`.
+- When a `<li>` element is clicked, the event bubbles up to the `parentList`.
+- Inside the event handler, `event.target` refers to the actual element that triggered the event (in this case, the `<li>`).
+- You can then perform actions based on the specific `<li>` element that was clicked.
+
+=
 ================================================================================
 Callback hell
 
@@ -172,100 +560,6 @@ doSomething()
    
    
 
-
-
-
-================================================================================
-
-Q12 what is dom ?
-
-
-
--DOM: DOM stands for ‘Document Object Model’.
-DOM is a tree-like representation of an HTML document created by the browser.
-It represents every HTML element, attribute, and text as objects (nodes).
-JavaScript interacts with the DOM through the document object, 
-allowing it to access, modify, add, or remove HTML elements,
- attributes, styles, and content dynamically without reloading the page.
-
-
-
--DOM: DOM stands for ‘Document Object Model’.
--It is a structured representation of the HTML elements
-that are present in a webpage or web-app.
-- JavaScript interacts with the DOM using the document object.  
-- The DOM represents all elements, attributes, and content of a web page as objects that can be accessed and manipulated using JavaScript.
-
-
-
-
-- Includes element nodes, text nodes, and attribute nodes.  
-- Enables adding, removing, or modifying elements and attributes dynamically.  
-- Handles user interactions like clicks, key presses, and other events.  
-- Provides methods for navigation (parentNode, childNodes) and modification (setAttribute, appendChild).  
-- Allows real-time updates and interactivity in web pages.  
-
-
-
-================================================================================
-
-
-
-1. **Split Method**:
-   - Splits a string into an array of substrings based on a specified separator.
-   const str = "Hello,World";
-   const arr = str.split(","); // ['Hello', 'World']
-   
-
-2. **Reverse Method**:
-   - Reverses the order of elements in an array.
-   const arr = [1, 2, 3, 4, 5];
-   arr.reverse(); // [5, 4, 3, 2, 1]
-   
-
-3. **Join Method**:
-   - Joins all elements of an array into a single string, separated by a specified separator.
-   const arr = ['Hello', 'World'];
-   const str = arr.join(", "); // 'Hello, World'
-   
-
-These examples demonstrate how each method works in a simple and straightforward manner.
-
-
-
-================================================================================
-
-
-
-### Differences between `map()` and `forEach()`
-
-b
-1. **Return Value**:
-
-   * `map()` returns a **new array** with transformed elements.
-   * `forEach()` returns **undefined**.
-
-2. **Immutability**:
-
-   * `map()` is **immutable** — it does not change the original array.
-   * `forEach()` is **mutable** — it can change the n original array **if you modify elements inside the loop**.
-   * ➕ If you don't modify anything inside `forEach()`, the array remains unchanged — but it's **capable of mutating**.
-
-3. **Chaining**:
-
-   * `map()` supports **chaining** other array methods like `filter()`, `reduce()`, etc.
-   * `forEach()` does **not support chaining** since it returns `undefined`.
-
-4. **Purpose / Use Case**:
-
-   * Use `map()` when you want to **transform and return a new array**.
-   * Use `forEach()` when you just need to **loop through items** and perform **side effects** (like logging or DOM updates), without returning anything.
-
----
-
-
-Use map() when you want to transform and return a new array.
-Use forEach() when you just need to loop through items and perform side effects (like logging or DOM updates), without returning anything.
 
 
 
@@ -716,42 +1010,6 @@ Output:
 3
 4
 ```
-
-
-
-================================================================================================
-## lexical scope
-
-in JavaScript, lexical scope determines variable accessibility based on where variables
- and functions are declared in the code.
-
-
--A lexical scope in JavaScript means that a variable defined outside a function 
-can be accessible inside another function
-
-
-When a function (Function B) is declared inside another function (Function A), JavaScript uses lexical scoping to determine what variables Function B has access to.
-// 🌍 Global scope
-let globalVar = "I am global";
-
-function Function_A_outer() {
-  // 🔹 Lexical Scope Level 1 (outer)
-  let outerVar = "I am outer";
-
-  function Function_b_inner() {
-    // 🔸 Lexical Scope Level 2 (inner)
-    let innerVar = "I am inner";
-
-    //  Accessing variables through lexical scope
-    console.log(globalVar); // ← from Global Scope
-    console.log(outerVar);  // ← from outer()'s Lexical Scope
-    console.log(innerVar);  // ← from inner()'s own scope
-  }
-
-  Function_b_inner(); // Call the inner function
-}
-
-Function_A_outer(); // Call the outer function
 
 
 

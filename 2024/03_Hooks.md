@@ -592,24 +592,3 @@ const OnHandleChange = (e) => {
   });
 };
 ```
-===========================
-
-  Custom Hooks:
-  Custom Hooks are a mechanism to reuse stateful logic
-  Custom hooks are nothing but these are javascript functions,
-  if we have something common logic that we want to share between components
-  then we use custom hooks.
-  These are logic that will be reused in many components.
-  We can create hooks using the name start with “use” keyword.
-
-  {/_
-  A custom Hook is basically a JavaScript function.
-  Its name begins with "use" that could invoke other Hooks.
-  The working of a custom Hook is identical to a regular function.
-  The "use" in the starting describes that this particular function conforms to the rules of Hooks.
-  Moreover, building custom Hooks enables you to extract component logic inside reusable functions.
-  We create a different function and write a shared logic here. _/}
-
-
-
-
