@@ -1,6 +1,54 @@
 # ===========================================
+
+--------------------------------------------------------------
+
+`Synthetic Events in React`:
+
+In React, `synthetic events` are a layer of abstraction over native browser events. 
+They provide a `consistent interface` for handling events across different browsers
+
+ and offer `additional features` to improve event handling.
+
+You can attach event handlers, like `onClick`, to React elements, and React passes a `synthetic event object` to your handler function. This object contains information about the event, such as the `target element`, and provides methods like `stopPropagation()` and `preventDefault()` for controlling event behavior.
+
+These methods allow you to `prevent the event from propagating` through the DOM or `prevent the default browser action` (like following a link or submitting a form).
+
+- Synthetic events ensure consistent and efficient event handling in React components. -->
 # ===========================================
+### Suspense
+
+- Suspense is a feature in React that allows you to handle loading states for asynchronous operations,
+- such as dynamically loading components or data.
+
+- It helps manage the user experience by showing fallback content while the main content is being loaded.
+
+========================================================================
+React Fiber
+
+React Fiber is React's reconciliation algorithm introduced in React 16. 
+
+It is React's internal rendering engine that determines what changes need to be made to the UI and updates them efficiently.
+
+
+It improves rendering by breaking work into small units, prioritizing important updates, and allowing rendering to be paused and resumed. This results in better performance, a more responsive UI, and support for features like Concurrent Rendering.
 # ===========================================
+
+Conditional rendering is the displaying different UI elements based on specific conditions.
+
+### Example
+
+In React:
+
+javascript
+function Greeting({ isLoggedIn }) {
+return isLoggedIn ? <h1>Welcome back!</h1> : <h1>Please sign in.</h1>;
+}
+
+### Summary
+
+- Purpose: Show different content based on conditions.
+- How: Use conditional statements like `if` or the ternary operator within the render method.
+
 # ===========================================
 
 in batching mutiple state are grouped and that grouped state are update into single render

@@ -13,7 +13,7 @@ Even though the UI is rendered at a different location in the `DOM`, it is still
 
 React Portals are commonly used for `modals, tooltips, dropdowns, popups, and overlays`,
 
- especially when we need to avoid CSS issues caused by the parent element, such as ``overflow: hidden``, `stacking contexts`, and ``z-index`` problems.
+ especially when we need to avoid CSS issues caused by the parent element, such as `overflow: hidden`, `stacking contexts`, and `z-index` problems.
 
  positioning/layout constraints hierarchy` is necessary to avoid `styling or z-index issues`.
 
@@ -22,9 +22,9 @@ React Portals are commonly used for `modals, tooltips, dropdowns, popups, and ov
 
 - It’s created using:
 
-```jsx
+``jsx
 ReactDOM.createPortal(child, container);
-```
+``
 
 - `child`: The React element you want to render.
 - `container`: The DOM node where you want the child to be rendered.
@@ -43,11 +43,11 @@ Automatic Batching
 
 - In batching mutiple state are grouped and that grouped state are update into single render
 
-- React performs only one re-render instead of re-rendering after each individual state update.
+- React performs only one re-render instead of re-rendering of each individual state to update.
 
-- its improving performance.
+- thats  improving performance applications.
 
--Before React 18, React mainly batched state updates inside React event handlers. 
+-Before React 18, React provides automatic batching only for event handlers
 
 - From React 18, with createRoot, React provides automatic batching for updates from event handlers as well as asynchronous operations such as 
 setTimeout, 
@@ -58,37 +58,34 @@ async/await, resulting in fewer unnecessary renders.
 
 =================================
 
-### Conditional Rendering
+### Conditional Rendering in ReactJS
 
-Conditional rendering is the displaying different UI elements based on specific conditions.
+`Conditional rendering in React means displaying different UI elements based on a condition.` 
 
-### Example
+React provides different ways to achieve conditional rendering:
 
-In React:
+- `if/else` → Checks a condition and renders different UI based on whether the condition is `true or false`.
 
-javascript
-function Greeting({ isLoggedIn }) {
-return isLoggedIn ? <h1>Welcome back!</h1> : <h1>Please sign in.</h1>;
-}
+- `Ternary operator (`? :`)` → Checks a condition and renders `one UI when true and another UI when false`.
 
-### Summary
+- `Logical AND (`&&`)` → Renders the UI `only when the condition is true`; if the condition is false, nothing is rendered.
 
-- Purpose: Show different content based on conditions.
-- How: Use conditional statements like `if` or the ternary operator within the render method.
 
 ========================================================
 
-What are rule use hooks in react
+### What are rule use hooks in react
 
-Hook Rules
 There are 3 rules for hooks:
-Hooks can only be called inside React function components.
-Hooks can only be called at the top level of a component.
-Hooks cannot be conditional.
+
+1]Hooks can only be called inside React function components.
+
+2]Hooks can only be called at the top level of a component.
+
+3]Hooks cannot be conditional.
 
 ========================================================
 
-StrictMode
+### StrictMode
 
 - React StrictMode is a tool for identifying/highlighting potential problems in an application.
 
@@ -105,11 +102,51 @@ It does not affect production builds.
 
 - Like Fragment, StrictMode does not render any visible UI.
 
+We commonly add StrictMode at the root of the application so React can perform development-time checks on the entire component tree.
+
 ========================================================
+### native browser event
+
+A native browser event is an event created directly by the browser 
+
+when something happens, like a click or key press.
+It can be handled using browser APIs such as addEventListener().
+
+Examples of **native browser events**:
+
+click
+keydown
+keyup
+input
+change
+submit
+mouseover
+scroll
+focus
+blur
+
+For example, **`click`** is a native browser event:
+
+```js
+button.addEventListener("click", () => {
+  console.log("Clicked!");
+});
+```
+
+Here, **`click` = native browser event**.
+
+
+`React wraps the native browser event and gives it to you as a Synthetic Event.`
+
+========================================================
+### synthetic events
+
 
 -In React, `synthetic events` are a layer of abstraction over native browser events. 
 
-It means React does not give you the original browser event directly. Instead, React wraps the browser event inside its own object called SyntheticEvent.
+It means React does not give you the original browser event directly. 
+
+Instead, React wraps the browser event inside its own object called SyntheticEvent.
 
 - They provide a `consistent interface` for handling events across different browsers
 
@@ -117,20 +154,6 @@ It means React does not give you the original browser event directly. Instead, R
 
 When you attach an event handler, like onClick, to a React element, React passes a SyntheticEvent object to your handler function. This object contains information about the event, such as the target element, and provides methods like stopPropagation() and preventDefault() for controlling event behavior.
 
---------------------------------------------------------------
-
-`Synthetic Events in React`:
-
-In React, `synthetic events` are a layer of abstraction over native browser events. 
-They provide a `consistent interface` for handling events across different browsers
-
- and offer `additional features` to improve event handling.
-
-You can attach event handlers, like ``onClick``, to React elements, and React passes a `synthetic event object` to your handler function. This object contains information about the event, such as the `target element`, and provides methods like ``stopPropagation()`` and ``preventDefault()`` for controlling event behavior.
-
-These methods allow you to `prevent the event from propagating` through the DOM or `prevent the default browser action` (like following a link or submitting a form).
-
-- Synthetic events ensure consistent and efficient event handling in React components. -->
 
 
 =========================== props children========================
@@ -142,15 +165,15 @@ These methods allow you to `prevent the event from propagating` through the DOM 
 
 * A parent component can pass any content to a child component, including `HTML elements, dynamically generated layouts, or other React components`.
 
-* The child component can access this passed content through ``props.children`` and decide where and how to render it.
+* The child component can access this passed content through `props.children` and decide where and how to render it.
 
-* ``children` is a special built-in prop provided by React. It allows components to receive other components or elements as data, similar to how we pass normal props like `name`, `value`, or `id`.`
+* `children` is a special built-in prop provided by React. It allows components to receive other components or elements as data, similar to how we pass normal props like `name`, `value`, or `id`.`
 
-* Any content placed between a component's opening and closing tags is automatically passed to that component as the ``children` prop`.
+* Any content placed between a component's opening and closing tags is automatically passed to that component as the `children` prop`.
 
 Example:
 
-```jsx
+``jsx
 function Card(props) {
   return (
     <div className="card">
@@ -167,7 +190,7 @@ function App() {
     </Card>
   );
 }
-```
+``
 
 Here, the `<h1>` and `<p>` elements inside `<Card>` are passed from the parent component and are available inside `Card` through `props.children`.
 
@@ -177,7 +200,7 @@ Here, the `<h1>` and `<p>` elements inside `<Card>` are passed from the parent c
 
 Interview summary:
 
-> ``props.children` is a special React prop that contains the elements or components placed between a component's opening and closing tags. It allows a parent component to pass UI content to a child component, making components more reusable and flexible.`
+> `props.children` is a special React prop that contains the elements or components placed between a component's opening and closing tags. It allows a parent component to pass UI content to a child component, making components more reusable and flexible.`
 
 
 
@@ -250,23 +273,41 @@ It allows you to specify the expected types for props that a component should re
 
 npm install prop-types
 
-========================================================================
-React Fiber
 
-React Fiber is React's reconciliation algorithm introduced in React 16. 
-
-It is React's internal rendering engine that determines what changes need to be made to the UI and updates them efficiently.
-
-
-It improves rendering by breaking work into small units, prioritizing important updates, and allowing rendering to be paused and resumed. This results in better performance, a more responsive UI, and support for features like Concurrent Rendering.
 
 ==============================================================
 
-### Suspense
 
-- Suspense is a feature in React that allows you to handle loading states for asynchronous operations,
-- such as dynamically loading components or data.
-- It helps manage the user experience by showing fallback content while the main content is being loaded.
+
+### React Suspense
+
+``Suspense`` is a React feature that allows us to `show fallback UI while a component is waiting for something to load`, most commonly a `lazy-loaded component`.
+
+```jsx
+import { Suspense, lazy } from "react";
+
+const Profile = lazy(() => import("./Profile"));
+
+function App() {
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <Profile />
+    </Suspense>
+  );
+}
+```
+
+Here, while `Profile` is being loaded, React displays:
+
+```text
+Loading...
+```
+
+Once `Profile` finishes loading, React displays the `Profile` component.
+
+`Interview line:`
+
+> ``Suspense` allows React to display fallback UI while a component is waiting to load, commonly used with `React.lazy()` for code splitting and lazy loading.`
 
 ==============================================================
 
@@ -333,91 +374,3 @@ Do not use a leading slash when you want to navigate to a path relative to the c
 When you see the error about absolute paths in nested routes, it usually means that you’ve defined a child route path as an absolute path, which is not allowed. Nested routes must use relative paths.
 
 
-========================================================
-
-`Code Optimization in React:`
-
-Code optimization is the process of improving the performance of a React application by making the code more efficient and reducing unnecessary work.
-
-It helps to:
-- Reduce unnecessary re-renders.
-- Improve application speed and responsiveness.
-- Reduce memory usage.
-- Improve overall user experience.
-
-Common React optimization techniques:
-
-- Use `React.memo` to prevent unnecessary re-renders of components.
-- Use `useMemo` to memoize expensive calculations.
-- Use `useCallback` to memoize functions and prevent unnecessary function recreations.
-- Use `lazy loading` and `code splitting` to load only the required code.
-- Avoid unnecessary state updates.
-- Keep component state as local as possible.
-- Use proper `keys` when rendering lists.
-- Optimize large lists using techniques like virtualization.
-
-
-
-----------------------------
- 
-Code optimization
-
-Code optimization in React.js involves improving the efficiency, performance,
-and overall quality of your codebase without changing its functionality.
-
-It includes techniques such as minimizing unnecessary re-renders,
-reducing bundle size, optimizing network requests, managing state efficiently,
-enhancing code readability, and maintaining code maintainability.
-
-1. React.StrictMode:
-
-- Use React.StrictMode to detect potential issues in your codebase during development.
-  -It helps identify unsafe lifecycles, deprecated APIs, and other potential problems.
-
-2. Memoization:
-   Memoization is a technique used to optimize expensive computations by caching the results.
-   React provides a useMemo hook for memoizing values.
-
-import React, { useMemo } from 'react';
-
-const Component = ({ data }) => {
-const processedData = useMemo(() => {
-// Expensive computation
-return data.map(item => item \* 2);
-}, [data]);
-
-    return (
-      <div>
-        {processedData.map((item, index) => (
-          <div key={index}>{item}</div>
-        ))}
-      </div>
-    );
-
-};
-
-3. Code Splitting:
-   Splitting your code into smaller chunks allows lazy-loading components when needed,
-   reducing the initial bundle size and speeding up the initial load time.
-
-import React, { lazy, Suspense } from 'react';
-
-const LazyComponent = lazy(() => import('./LazyComponent'));
-
-const App = () => (
-<Suspense fallback={<div>Loading...</div>}>
-<LazyComponent />
-</Suspense>
-);
-
-4. Avoid Inline Styles:
-
-- Inline styles can clutter your components and make maintenance difficult.
-  -Prefer using CSS classes or styled-components for better separation of concerns and easier styling management.
-
-5. Debouncing and Throttling:
-
-- Debouncing and throttling are code optimization techniques that help improve performance by
-  controlling the rate at which functions are executed in response to frequent events.
-- Debouncing function is excuated after specif delay perdia passes since las time function invokde
-  while throttling limits the number of times the function can be called over a certain period.
