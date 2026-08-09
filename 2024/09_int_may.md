@@ -1,4 +1,38 @@
 
+==============================================================
+
+4. Difference between “ == “ and “ === “ operators.
+Both are comparison operators.
+The difference between both the operators is that “==” is used to compare values whereas,
+ “ === “ is used to compare both values and types.
+
+
+
+
+==============================================================
+
+```js
+(null == undefined) // true  
+(null === undefined) // false  
+```
+
+**null:**
+Type: object
+Represents an intentional "no value" set by the programmer.
+
+**undefined:**
+Type: undefined
+Typically means a variable has been declared but not assigned a value yet.
+
+**Why `==` considers them equal:**
+Both `null` and `undefined` represent absence of a value or non-existence. Therefore, when using loose equality (`==`), JavaScript treats them as equal.
+
+**Why `===` considers them different:**
+In strict equality (`===`), JavaScript compares both value and type. Since `null` and `undefined` have different types (`object` and `undefined`), they are not equal.
+
+
+
+
 
 
 

@@ -220,11 +220,8 @@ Example: `<Card><h1>Hello</h1><Profile /></Card>` → both elements are `props.c
 - Babel is a JavaScript compiler used in React applications.
 
 - It converts JSX code into regular JavaScript that browsers can understand.
-- It also converts modern JavaScript syntax into compatible JavaScript when needed.
 
-- It allows developers to use the latest JavaScript language features while maintaining browser compatibility.
-
-
+- Babel converts modern JavaScript syntax into older, it like a browser-compatible JavaScript.
 
 
 #### Why do we need Babel?
@@ -233,6 +230,7 @@ Older browsers may not support newer JavaScript features (ES6+).
 Babel converts modern syntax into compatible JavaScript.
 
 
+- It allows developers to use the latest JavaScript language features while maintaining browser compatibility.
 
 ==============================================================
 
