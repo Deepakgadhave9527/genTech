@@ -884,7 +884,6 @@ Arrow functions are used in JavaScript because they provide a shorter and cleane
  
 Explain Hoisting in javascript.
 
-Hoisting is the default behaviour of javascript where the variable and function declarations to the top of their scope before code execution.
 
 Hoisting is a `JavaScript behavior` where `variable and function declarations are moved to the top of their scope` (global or function) `before code execution`.
 
@@ -937,6 +936,65 @@ declarations are moved on top during the compilation phase
 
 ========================================================
 
+PUT
+  - The PUT method is used to update or replace an entire resource.
+
+PATCH
+- The `PATCH` method is used to `partially update a resource`.
+- It updates only the `specified fields`, while the other fields remain unchanged.
+========================================================
+
+
+### PUT
+
+* The `PUT` method is used to `update or replace an entire resource`.
+* It generally expects the complete resource data in the request body.
+* If some fields are missing, they may be replaced or reset, depending on the API implementation.
+
+### PATCH
+
+* The `PATCH` method is used to `partially update a resource`.
+* It updates only the `specified fields`, while the other fields remain unchanged.
+
+### Simple Example
+
+Suppose a user has:
+
+```json
+{
+  "name": "John",
+  "age": 25,
+  "city": "Pune"
+}
+```
+
+`PUT:`
+
+```json
+{
+  "name": "John",
+  "age": 26,
+  "city": "Mumbai"
+}
+```
+
+→ Updates/replaces the `entire resource`.
+
+`PATCH:`
+
+```json
+{
+  "age": 26
+}
+```
+
+→ Updates `only the age`, while `name` and `city` remain unchanged.
+
+`In short:`
+
+> `PUT → Update/replace the entire resource`
+> `PATCH → Update specific fields of a resource`
+
 
 Patch vs Put
 
@@ -960,18 +1018,14 @@ Patch vs Put
 
 accessibility
 
-Web accessibility  is the design and creation of websites that can be used by everyone.
+- Web accessibility  is the design and creation of websites that can be used by everyone.
 
-Accessibility (a11y) means making web applications usable for everyone,
+- Accessibility (a11y) means making web applications usable for everyone, including people with disabilities. 
+
+- Accessibility ensures that users can navigate and interact with applications using keyboards, screen readers, and other assistive technologies.
 
 
- including people with disabilities. It ensures users can navigate and interact using keyboards, screen readers, and other assistive technologies.
-
-  accessibility is achieved using 
-  semantic HTML, 
-  proper ARIA attributes, 
-  keyboard support, and focus management. Good accessibility improves usability and follows web standards like WCAG.
-
+  In ReactJS, accessibility can be achieved using semantic HTML, ARIA attributes, keyboard support, focus management, and proper handling of dynamic content. Good accessibility improves usability and helps applications follow standards such as WCAG (Web Content Accessibility Guidelines).
 
 
 
@@ -1045,20 +1099,17 @@ Localization (l10n) is the process of translating and customizing an application
 
 
 ==================================================================================
+
 ### `What is an Event Listener?`
 
-An Event Listener is a JavaScript function that waits for a specific event to occur on an HTML element. When the event occurs, it executes a callback function. It is added using the addEventListener() method. Common events include click, keydown, submit, and mouseover.
+An Event Listener is a JavaScript function that waits for a specific event to occur on an HTML element. When the event occurs, it executes a callback function. 
 
+- Event listeners are commonly added using the addEventListener() method.
 
-An event listener is a function or piece of code that waits for a specific event (such as a mouse click, key press, or form submission) to occur on an element. When the event happens, the event listener automatically executes the associated function.
+- Common events include click, keydown, submit, and mouseover.
 
-An `event listener` in JavaScript is a function that waits for a specific event to occur on a particular element and then executes a predefined action when the event is triggered. Events can be things like:
-
-
-An event listener in JavaScript is a functions() that waits for a specific event to occur on an element and then executes a specified action. Events can be user actions like clicks, key presses, mouse movements, or system-generated events like page load.
-
-Use addEventListener() to attach an event listener to an element.
-Use removeEventListener() to detach an event listener.
+Use `addEventListener()` to attach an event listener to an element.
+Use `removeEventListener() `to detach an event listener.
 
 
 
@@ -1116,6 +1167,12 @@ Use removeEventListener() to detach an event listener.
 - `removeEventListener()` requires the exact same reference to the function used when adding the event listener. If an anonymous function was used, you cannot remove it.
 
 
+An event listener is a function or piece of code that waits for a specific event (such as a mouse click, key press, or form submission) to occur on an element. When the event happens, the event listener automatically executes the associated function.
+
+An `event listener` in JavaScript is a function that waits for a specific event to occur on a particular element and then executes a predefined action when the event is triggered. Events can be things like:
+
+
+An event listener in JavaScript is a functions() that waits for a specific event to occur on an element and then executes a specified action. Events can be user actions like clicks, key presses, mouse movements, or system-generated events like page load.
 
 
 
@@ -1150,58 +1207,112 @@ When to Use <form onSubmit> vs <button onClick>?
 
 =============== memoization ===================================
 
-
-
 ### What does memoizing mean?
 
 Memoization is a technique where the result of a function call is cached (stored), so if the same inputs occur again, the cached result is returned immediately instead of recalculating.
 
-========================================================================
-## Memoization
-
-Memoization is an optimization technique that stores (caches) the result of an 
-expensive function so that if the function is called again with the same inputs, 
-it returns the cached result instead of recalculating it.
-
 This improves performance by avoiding repeated computations.
-
-- It is especially useful for functions with heavy calculations,
- recursive algorithms, or repeated inputs.
-
-- memoization only provides a benefit when the same inputs occur again.
-
-- If the input is different, there's no cache entry for it, 
-so the function must compute the result normally and then store it.
-
-- Memoization is an optimization technique that improves the performance of functions 
-by caching the results of expensive function calls.
-When the same inputs occur again, 
-the function returns the stored (cached) result instead of recomputing it.
-
 
 ==============================================================
 
-Immediately Invoked Function Expression (IIFE)
+
+# Immediately Invoked Function Expression (IIFE)
+
+An `Immediately Invoked Function Expression (IIFE)` is a JavaScript function that is `executed immediately after it is created`.
 
 
-IIFE is a JavaScript function that runs immediately after it is created / defined.
+1. IIFE created its own local scope 
+2.  Runs code immediately after declaration, useful for initialization tasks,
+    configuring settings, or starting applications at the desired moment. ?
+
+IIFE creates a private scope for variables, providing encapsulation and data privacy by hiding internal data through closures.
 
 
-- It is often used to create a local scope to avoid polluting the global scope.
+### Syntax
 
-- Runs code immediately after declaration, useful for initialization tasks, c
-onfiguring settings, or starting applications at the desired moment.
-
-
+```javascript
 (function() {
-console.log("This function runs immediately!");
+  console.log("This function runs immediately!");
+})(); //The function is created and immediately executed.
+
+```
+
+
+### IIFE with Parameters
+
+An IIFE can also accept arguments:
+
+```javascript
+(function(name) {
+  console.log("Hello, " + name + "!");
+})("World");//Hello, World!
+
+
+
+=========================================================
+
+1. `Creates a private scope for variables, providing encapsulation and data privacy.`
+
+2. `Hides internal data using closures, preventing direct access from outside.`
+
+
+
+### Why Use IIFE?
+
+`1. Creates a Private Scope`
+
+Variables declared inside an IIFE are not directly accessible from outside.
+
+```javascript
+(function() {
+  const secret = "12345";
+  console.log(secret);
 })();
 
-(function(name) {
-console.log("Hello, " + name + "!");
-})("World");
+// console.log(secret); // Error
+```
+
+`2. Data Privacy`
+
+IIFEs can be used to hide internal variables and implementation details from the outside code.
+
+`3. Avoids Global Namespace Pollution`
+
+Variables inside an IIFE do not become global variables, which helps prevent naming conflicts.
+
+`4. Initialization`
+
+IIFEs can be useful when some code needs to run `once immediately`, such as initialization or configuration code.
+
+### IIFE and Closures
+
+An IIFE can also be combined with `closures` to create private data.
+
+```javascript
+const counter = (function() {
+  let count = 0;
+
+  return function() {
+    count++;
+    return count;
+  };
+})();
+
+console.log(counter()); // 1
+console.log(counter()); // 2
+```
+
+Here, `count` cannot be accessed directly from outside, but the returned function can access it because of the `closure`.
+
+### In Short
+
+> `IIFE = Create a function + execute it immediately.`
+
+It is mainly useful for `private scope, data encapsulation, avoiding global variables, and one-time initialization`.
 
 
+
+----------------------------------------------------------
 
 
 | Feature                    | Purpose                                                    |
@@ -1213,6 +1324,7 @@ console.log("Hello, " + name + "!");
 
 
 
+- It is often used to create a local scope to avoid polluting the global scope.
 
 
 
@@ -1224,104 +1336,6 @@ Avoiding Global Pollution: Keeps the global namespace clean, minimizing naming c
 Data Privacy: Utilizes closures to maintain data privacy, hiding internal variables and functions while exposing only necessary parts, fundamental to the Module Pattern.
 
 
-
-==============================================================
-
-
-
-##  Correct Explanation of Constructor Function Behavior in JavaScript
-
-### 🔹1. Default Behavior of Constructor Functions
-
-In JavaScript, when you use a `constructor function` with `new`, it automatically returns the new object instance unless you `explicitly return an object`.
-
-```js
-function Person(first, last) {
-  this.firstName = first;
-  this.lastName = last;
-}
-
-const person1 = new Person("John", "Doe");
-console.log(person1); //  Person { firstName: 'John', lastName: 'Doe' }
-```
-
----
-
-### 🔹2. Returning a `Primitive` from a Constructor
-
-If a constructor explicitly returns a `primitive value` (like a string, number, boolean, etc.), `that return value is ignored`, and the newly created object is returned instead.
-
-```js
-function Person(first, last) {
-  this.firstName = first;
-  this.lastName = last;
-
-  return "Hello"; // 🔴 This return is ignored
-}
-
-const person2 = new Person("Jane", "Doe");
-console.log(person2); //  Person { firstName: 'Jane', lastName: 'Doe' }
-```
-
-> ✔️ `this` is still returned, not the string `"Hello"`.
-
----
-
-### 🔹3. Returning an `Object` from a Constructor
-
-If a constructor explicitly returns an `object`, that object `overrides` the default `this`.
-
-```js
-function Person(first, last) {
-  this.firstName = first;
-  this.lastName = last;
-
-  return { custom: "object" }; //  This replaces the created object
-}
-
-const person3 = new Person("Alice", "Smith");
-console.log(person3); //  { custom: 'object' }
-```
-
----
-
-### 🔹4. Your Incorrect/Mismatched Example
-
-You wrote:
-
-```js
-function Person(first, last, age, eye) {
-  this.firstName = first;
-  this.lastName = last;
-  this.age = age;
-  this.eyeColor = eye;
-  this.nationality = "English";
-
-  // Returning a primitive value (string)
-  return this.firstName;
-}
-
-const myFather = new Person("John", "Doe", 50, "blue");
-console.log(myFather); 
-// ❌ You wrote: Outputs Person {...}
-//  Actually: Still returns the object, NOT the string
-```
-
-This example is labeled as `"returning a primitive"` but wrongly states that the object is replaced. It should clarify that `the primitive is ignored`, and the object is returned.
-
----
-
-##  Summary
-
-| Return Type       | What Happens                      |
-| ----------------- | --------------------------------- |
-| Nothing (default) | `this` (new instance) is returned |
-| Primitive         | Ignored, `this` is still returned |
-| Object            | Returned instead of `this`        |
-
----
-
-If you're writing this for documentation or teaching, I’d recommend presenting `two clearly separated examples`, like above, with matching labels. Let me know if you’d like a polished markdown or HTML version.
 
 
 ========================================================================
@@ -1373,135 +1387,40 @@ javascript
 
 Why is a primitive ignored?
 
-Primitives are not objects and cannot hold properties or behavior, whereas non-primitives (objects) can hold properties and methods.
+1. `Primitive values are ignored` because when using `new`, JavaScript expects the constructor to return an `object`. A primitive cannot replace the newly created `this` object.
+
+2. `Objects are returned` because an object can replace the newly created `this` object and become the result of the `new` expression.
+
+> `Important:` Don't say primitives are ignored simply because they cannot hold properties or methods. The key reason is the `special behavior of the `new` operator`.
 
 
 =========================================
 
-#  JavaScript Type Coercion
+### JavaScript Type Coercion — Short Interview Answer
 
-`Type coercion in JavaScript` means converting values from one type to another — either automatically (implicit) or manually (explicit).
+**Type coercion** in JavaScript means converting a value from one data type to another.
 
-- `Implicit coercion` happens automatically (e.g., `'5' + 1` → `'51'`).
-- `Explicit coercion` is done deliberately using `Number()`, `String()`, `Boolean()`, etc.
+There are two types:
 
-> \ To avoid bugs prefer `explicit conversion` and `strict equality (`===`)`.
+1. **Implicit Coercion** – JavaScript automatically converts the type.
 
+   ```js
+   "5" + 1   // "51"
+   "5" - 1   // 4
+   ```
 
-## 🔹 Types of Coercion
+2. **Explicit Coercion** – We manually convert the type.
 
-### 1. Implicit Coercion (Automatic)
+   ```js
+   Number("5")   // 5
+   String(10)    // "10"
+   Boolean(1)    // true
+   ```
 
-JS converts types automatically when an operation requires it:
+* `+` with string → **concatenation**: `"5" + 1` → `"51"`
+* `-`, `*`, `/`, `%` → **convert to number**: `"5" - 1` → `4`
+* `==` → **allows type conversion**: `5 == "5"` → `true`
+* `===` → **does not convert types**: `5 === "5"` → `false`
 
-```js
-console.log(1 + "2");   // "12"   (number → string, concatenation)
-console.log(1 - "2");   // -1     (string → number, subtraction)
-console.log("5" - "2"); // 10     (both strings → number)
-console.log(1 == "1");  // true   (loose equality coerces string → number)
-```
-
-### 2. Explicit Coercion (Manual)
-
-You convert types on purpose:
-
-```js
-console.log(Number("123"));   // 123
-console.log(String(456));     // "456"
-console.log(Boolean(0));      // false
-console.log(Boolean("hi"));   // true
-```
-
----
-
-##  Implicit Coercion — Operator behaviors & examples
-
-### 🔸 `+` prefers `strings`
-
-```js
-'5' + 1         // "51"
-false + '1'     // "false1"
-"Hello " + 5    // "Hello 5"
-```
-
-### 🔸 `-`, `*`, `/` prefer `numbers`
-
-```js
-'5' - 1         // 4
-true + 1        // 2       (true → 1)
-true + true     // 2
-null + 1        // 1       (null → 0)
-undefined + 1   // NaN     (undefined → NaN)
-```
-
-### 🔸 Comparison with `==` (loose equality)
-
-```js
-0 == false           // true
-" " == 0             // true
-null == 0            // false
-undefined == null    // true
-```
-
-### 🔸 Boolean Context
-
-```js
-if ("") console.log("runs");       // doesn't run ("" is falsy)
-if ("hello") console.log("runs");  // runs ("hello" is truthy)
-```
-
----
-
-##  Truthy & Falsy Values
-
-- `Falsy values:`
-  `false, 0, -0, 0n, "", null, undefined, NaN`
-
-- `Truthy values:`
-  Everything else (for example: `"0"`, `"false"`, `[]`, `{}`, `function(){}`).
-
----
-
-##  Operator Preferences Summary
-
-| Operator      | Coercion Preference |
-| ------------- | ------------------- |
-| `+`           | `Strings`         |
-| `-`, `*`, `/` | `Numbers`         |
-
----
-
-##  Explicit Type Coercion (manual conversions)
-
-```js
-Number('5')       // 5
-String(10)        // "10"
-Boolean(0)        // false
-parseInt('42')    // 42
-'' + 123          // "123"   // shortcut to string
-```
-
----
-
-##  Loose (`==`) vs Strict (`===`) equality — Best Practice
-
-```js
-0 == false   // true   (coerced)
-0 === false  // false  (no coercion)
-```
-
-✔️ Use `strict equality (`===`)` instead of `==`.
-✔️ Use `explicit conversion` for clarity.
-
----
-
-## 🔁 Quick Conversion Rules (Cheat Sheet)
-
-- `+` with a string → `string concatenation`.
-- `-`, `*`, `/`, `%` → operands coerced to `numbers`.
-- `if(...)`, `while(...)`, `||`, `&&` → values coerced to `boolean` (truthy/falsy).
-- `==` → performs type conversion (many special cases).
-- `===` → compares `without coercion`.
-
-
-
+ **`==` may automatically convert types before comparing, 
+while `===` compares both value and type without conversion.**
