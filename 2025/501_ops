@@ -10,8 +10,204 @@
 # ===========================================
 # ===========================================
 # ===========================================
+----------------------------------------------------------
+### How it works:
+
+1. `Symbol.iterator` creates an iterator object for the array.
+2. Each call to `next()` moves the iterator to the next element.
+3. When there are no more elements, `done` becomes `true`.
+
+Iterators are used internally by features like `for...of`, spread syntax (`...`), and destructuring.
+
+Example using `for...of`:
+
+```javascript
+const myArray = [1, 2, 3];
+
+for (const value of myArray) {
+  console.log(value);
+}
+```
+
+Output:
+
+```
+1
+2
+3
+```
+`Iterators` are objects that allow for sequential access to elements in a collection, one at a time.
+- collection simply means a group of values/elements stored together.
+n
 # ===========================================
+-------------------------------------------------------------
+
+
+- simpleGenerator is a generator function.
+- Calling simpleGenerator() returns a generator object gen.
+- gen is an object that implements the iterator protocol, with a next() - method that returns the next value in the sequence.
+- Generators are objects in JavaScript.
+
+### The result of next() is always an object with two properties:
+
+
+<!-- It allow to control excuation of function
+They return a generator object, which is both an iterator and an iterable. -->
+
+### project scenarios of generators in one line each\*\*:
+
+1. Pagination:
+   Use generators to fetch API data page by page instead of loading thousands of records at once.
+
+2. Infinite Scrolling:
+   Use generators to generate the next set of posts/products when a user keeps scrolling (like Instagram or Amazon).
+
+3. Redux-Saga:
+   Use generators to handle async workflows like API calls, loading states, and navigation steps in React applications.
+
+4. Large File Processing:
+   Use generators to read and process large files (CSV, logs, videos) chunk by chunk to save memory.
+
+5. Unique ID Generation:
+   Use generators to create sequential IDs, invoice numbers, ticket numbers, or order numbers dynamically.
+
+
 # ===========================================
+
+
+### Methods
+
+### 1. Store Data
+
+```javascript
+sessionStorage.setItem("username", "John");
+```
+
+### 2. Retrieve Data
+
+```javascript
+let username = sessionStorage.getItem("username");
+console.log(username);
+```
+
+### 3. Update Data
+
+```javascript
+sessionStorage.setItem("username", "David");
+```
+
+### 4. Remove One Item
+
+```javascript
+sessionStorage.removeItem("username");
+```
+
+### 5. Clear All Data
+
+```javascript
+sessionStorage.clear();
+```
+
+### 6. Check Number of Stored Items
+
+```javascript
+console.log(sessionStorage.length);
+```
+
+### 7. Get Key by Index
+
+```javascript
+console.log(sessionStorage.key(0));
+```
+
+### Store an Object
+
+```javascript
+const user = {
+  id: 1,
+  name: "John",
+  age: 25,
+};
+
+sessionStorage.setItem("user", JSON.stringify(user));
+```
+
+### Retrieve an Object
+
+```javascript
+const user = JSON.parse(sessionStorage.getItem("user"));
+console.log(user);
+```
+
+
+
+
+
+### Methods
+
+### 1. Store Data
+
+```javascript
+localStorage.setItem("username", "John");
+```
+
+### 2. Retrieve Data
+
+```javascript
+let username = localStorage.getItem("username");
+console.log(username);
+```
+
+### 3. Update Data
+
+```javascript
+localStorage.setItem("username", "David");
+```
+
+### 4. Remove One Item
+
+```javascript
+localStorage.removeItem("username");
+```
+
+### 5. Clear All Data
+
+```javascript
+localStorage.clear();
+```
+
+### 6. Check Number of Stored Items
+
+```javascript
+console.log(localStorage.length);
+```
+
+### 7. Get Key by Index
+
+```javascript
+console.log(localStorage.key(0));
+```
+
+### Store an Object
+
+```javascript
+const user = {
+  id: 1,
+  name: "John",
+  age: 25,
+};
+
+localStorage.setItem("user", JSON.stringify(user));
+```
+
+### Retrieve an Object
+
+```javascript
+const user = JSON.parse(localStorage.getItem("user"));
+console.log(user);
+```
+
+
 # ===========================================
 
 Babel

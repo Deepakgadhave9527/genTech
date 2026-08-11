@@ -4,88 +4,30 @@
 
 JavaScript provides two types of Web Storage:
 
-- **Session Storage (`sessionStorage`)**
-- **Local Storage (`localStorage`)**
+- `Session Storage (`sessionStorage`)`
+- `Local Storage (`localStorage`)`
 
-Both store data as **key-value pairs**, and **both can only store strings**. If you want to store objects or arrays, use `JSON.stringify()` while storing and `JSON.parse()` while retrieving.
+Both store data as `key-value pairs`, and `both can only store strings`. If you want to store objects or arrays, use `JSON.stringify()` while storing and `JSON.parse()` while retrieving.
 
----
 
 # Session Storage (`sessionStorage`)
 
 ### Features
 
-`sessionStorage` stores data only for the current browser session
+- `sessionStorage` stores data only for the current browser session
 and is available only in the same browser tab that created it.
-Each tab has its own separate session storage, so the data is not shared across tabs.
-The stored data is automatically cleared when the tab or browser window is closed.
-It stores data as key-value pairs and typically provides up to **5 MB** of storage, depending on the browser.
 
-### Methods
+- Each tab has its own separate session storage, so the data is not shared across tabs.
 
-### 1. Store Data
+- The stored data is automatically cleared when the tab or browser window is closed.
 
-```javascript
-sessionStorage.setItem("username", "John");
+It stores data as key-value pairs and typically provides up to `5 MB` of storage, depending on the browser.
+
+
+```js
+sessionStorage.method(key, value);
 ```
 
-### 2. Retrieve Data
-
-```javascript
-let username = sessionStorage.getItem("username");
-console.log(username);
-```
-
-### 3. Update Data
-
-```javascript
-sessionStorage.setItem("username", "David");
-```
-
-### 4. Remove One Item
-
-```javascript
-sessionStorage.removeItem("username");
-```
-
-### 5. Clear All Data
-
-```javascript
-sessionStorage.clear();
-```
-
-### 6. Check Number of Stored Items
-
-```javascript
-console.log(sessionStorage.length);
-```
-
-### 7. Get Key by Index
-
-```javascript
-console.log(sessionStorage.key(0));
-```
-
-### Store an Object
-
-```javascript
-const user = {
-  id: 1,
-  name: "John",
-  age: 25,
-};
-
-sessionStorage.setItem("user", JSON.stringify(user));
-```
-
-### Retrieve an Object
-
-```javascript
-const user = JSON.parse(sessionStorage.getItem("user"));
-console.log(user);
-```
-
----
 
 # Local Storage (`localStorage`)
 
@@ -95,146 +37,135 @@ console.log(user);
 - Data remains available even after the browser is closed and reopened.
 - Data is shared across all tabs and windows of the same origin (protocol, domain, and port).
 - Different websites cannot access each other's local storage.
-- Maximum storage is typically around **5–10 MB**, depending on the browser.
-- Stores data as **key-value pairs**.
+- Maximum storage is typically around `5–10 MB`, depending on the browser.
+- Stores data as `key-value pairs`.
 - Only strings can be stored directly.
 
-### Methods
-
-### 1. Store Data
-
-```javascript
-localStorage.setItem("username", "John");
+```js
+localStorage.method(key, value);
 ```
-
-### 2. Retrieve Data
-
-```javascript
-let username = localStorage.getItem("username");
-console.log(username);
-```
-
-### 3. Update Data
-
-```javascript
-localStorage.setItem("username", "David");
-```
-
-### 4. Remove One Item
-
-```javascript
-localStorage.removeItem("username");
-```
-
-### 5. Clear All Data
-
-```javascript
-localStorage.clear();
-```
-
-### 6. Check Number of Stored Items
-
-```javascript
-console.log(localStorage.length);
-```
-
-### 7. Get Key by Index
-
-```javascript
-console.log(localStorage.key(0));
-```
-
-### Store an Object
-
-```javascript
-const user = {
-  id: 1,
-  name: "John",
-  age: 25,
-};
-
-localStorage.setItem("user", JSON.stringify(user));
-```
-
-### Retrieve an Object
-
-```javascript
-const user = JSON.parse(localStorage.getItem("user"));
-console.log(user);
-```
+sessionStorage and localStorage use the same methods:
 
 # Common Methods
+1. `setItem(key, value)` = Adds or updates a value.
+2. `getItem(key)` = Returns the stored value.
+3. `removeItem(key)` = Removes a specific item.
+4. `clear()` = Removes all stored items.
+5. `key(index)` = Returns the key at the specified index.
+6. `length` = Returns the number of stored items.
 
-| Method                | Description                            |
-| --------------------- | -------------------------------------- |
-| `setItem(key, value)` | Adds or updates a value                |
-| `getItem(key)`        | Returns the stored value               |
-| `removeItem(key)`     | Removes a specific item                |
-| `clear()`             | Removes all stored items               |
-| `key(index)`          | Returns the key at the specified index |
-| `length`              | Returns the number of stored items     |
-
----
+=========================================================================
 
 ## Important Notes
 
-- Both `sessionStorage` and `localStorage` store **only strings**.
+
+`localStorage` and `sessionStorage` can store `only string values`.
+
+If we directly pass an object to `setItem()`, JavaScript converts the object into the string ``[object Object]``. When we retrieve that value, we also get ``[object Object]``, not the original object.
+
+Therefore, if we want to store an object or array, we use `JSON.stringify()` to convert the object or array into a JSON string before storing it. When retrieving the data, we use `JSON.parse()` to convert the JSON string back into a JavaScript object or array.
+
+`In simple terms:`
+
+`Object → JSON.stringify() → String → Storage`
+
+`String → JSON.parse() → Object`
+
+
+
+
+- Both `sessionStorage` and `localStorage` store `only strings`.
 - To store objects or arrays, use `JSON.stringify()`.
 - To retrieve objects or arrays, use `JSON.parse()`.
 - `getItem()` returns `null` if the key does not exist.
 - Avoid storing sensitive information (such as passwords or tokens) in Web Storage because it is accessible through JavaScript.
 - Storage is limited (typically 5–10 MB depending on the browser).
 
-This version is accurate, complete, and suitable for JavaScript interview notes or learning material.
 
 
-//===========================Bubbling and Capturing =========================
-
+=========================================================================
+### Bubbling and capturing
 
 A) Bubbling
 
-Event Bubbling is the default event propagation method in JavaScript.
- When an event occurs on a child element, it first runs on the target element and then propagates upward through its parent elements to the root (document).
+- Event Bubbling is the default behavior of an event in JavaScript
 
--The bubbling principle is simple.
--When an event happens on an element, it first runs the handlers on it,
-then on its parent, then all the way up on other ancestors.
-
--With bubbling, the event is first captured and handled by the innermost element and
-then propagated to outer elements.
-
+When an event occurs on a child element, it first runs on the target element and then propagates upward through its parent elements to the root (document).
 
 B] capturing
 
-Event Capturing (also called the capture phase) is the opposite of bubbling. The event starts from the outermost parent and travels down to the target element.
+- Event Capturing (also called the capture phase) is the opposite of bubbling. 
 
--when an event happen on element ,it first run the parent element of then lastly run handler
+- when an event happen on element ,it first run the parent element of then move to downward of child element then lastly run handler
+
+- The event starts from the outermost parent and travels down to the target element.
+
+- Capturing is also called "trickling",
+
+- stopPropagation prevents further propagation of the current event in the capturing and bubbling phases.
 
 
--With capturing, the event is first captured by the outermost element and
-propagated to the inner elements.
+```javascript
 
-In event capturing, the event is handled before it reaches the target. You must explicitly enable it by passing true as the third argument in addEventListener
 
 document.getElementById("parent").addEventListener("click", () => {
   console.log("Parent clicked (capture)");
 }, true);
 
 
+* `true` = `Capturing phase`
+* `false` = `Bubbling phase` (default)
 
--Capturing is also called "trickling", which helps remember the propagation order:
-
-stopPropagation prevents further propagation of the current event in the capturing and bubbling phases.
-
-preventDefault prevents the default action the browser makes on that event.
+```
 
 
+
+---------------------------------------------------------------------------
+- `stopPropagation()`
+
+- event.stopPropagation() is a JavaScript method used to stop event propagation in the DOM.
+
+- It can stop both event bubbling and event capturing.
+
+- When an event occurs on a child element, it first runs on the target element and then propagates upward through its parent elements to the root (document).
+
+- By calling event.stopPropagation() inside the child element's event handler,we can stop the event propagation from reaching parent elements.
+
+```js
+child.addEventListener("click", (event) => {
+    event.stopPropagation();
+    console.log("Child clicked");
+  });
+```
+
+-------------------------------------------------------------------------
+
+
+### `stopImmediatePropagation()`
+
+event.stopImmediatePropagation() is a JavaScript method that used to stops the event propagating bubbling and capturing phase
+and also stop any other event listeners attached to the same element 
 
 
 
 =========================================================================
+
+####
+
+-preventDefault() is a JavaScript method that `prevents the browsers default action` that associated with an event .
+
+- used to stop the default action associated with an event from occurring.
+
+  - Example: Prevent a form from submitting.
+  - Example: Prevent a link from navigating to a new page.
+  - Example: Prevent a context menu from appearing.
+
+
+=========================================================================
+
+
 ### Pure Functions
-- *Deterministic*: Always return the same output for the same input.
+- *Deterministic*: Always return the `same output for the same input`.
 - *No Side Effects*: Do not alter external state or rely on it.
 - *Benefits*: Easier to understand, test, compose, and optimize (e.g., memoization).
 
@@ -248,7 +179,7 @@ console.log(add(2, 3)); // Always returns 5
 
 
 ### Impure Functions
-- *Non-deterministic*: Output can vary for the same input.
+- *Non-deterministic*: `different output for the same input`.
 - *Side Effects*: Modify external state, perform I/O operations, etc.
 - *Challenges*: Harder to reason about, test, and maintain.
 
@@ -272,21 +203,25 @@ console.log(increment()); // Output depends on external `count` variable
 
 =========================================================================
 
-Generators and iterators are closely related concepts in JavaScript that allow for efficient handling of sequences and collections of data. Here's an overview of both, including their definitions, usage, and how they interrelate.
-
-
 ### Iterators
 
-```
+Iterators` are objects
 
-### Iterators
+with help of iterators we can access sequential elements in a collection one at a time 
 
-**Iterators** are objects that allow for sequential access to elements in a collection, one at a time.
 
-The `next()` method returns an object with two properties:
+-An iterator provides a next() method. Each time next() is called, it returns an object with two properties:
 
-- **`value`**: The current value in the sequence.
-- **`done`**: A boolean that tells whether the iteration has finished (`true`) or not (`false`).
+1. value – the current value in the sequence.
+2. done – a boolean indicating whether the iteration is finished.
+   - false → there are more values.
+   - true → there are no more values.e
+
+
+```js
+const iterator = collection[Symbol.iterator]();
+iterator.next();
+
 
 #### Example of an Iterator:
 
@@ -298,52 +233,31 @@ console.log(iterator.next()); // { value: 2, done: false }
 console.log(iterator.next()); // { value: 3, done: false }
 console.log(iterator.next()); // { value: undefined, done: true }
 
-### How it works:
+javaScript uses the iterator protocol in features such as:
 
-1. `Symbol.iterator` creates an iterator object for the array.
-2. Each call to `next()` moves the iterator to the next element.
-3. When there are no more elements, `done` becomes `true`.
+for...of
+Spread syntax (...)
+Array/string destructuring
+Array.from()
+Map and Set iteratio
 
-Iterators are used internally by features like `for...of`, spread syntax (`...`), and destructuring.
 
-Example using `for...of`:
-
-```javascript
-const myArray = [1, 2, 3];
-
-for (const value of myArray) {
-  console.log(value);
-}
-```
-
-Output:
-
-```
-1
-2
-3
-```
-
-Here, JavaScript automatically calls the iterator's `next()` method behind the scenes.
-
-``
 
 ====================================================================
 
 ### Generators
 
-**Generators** are special functions that can pause their execution and resume it later.
-allowing for control over the function's execution.
+- `Generators` are special functions that can `pause their execution and   resume it later`. 
+its means  control over the function's execution.
 
-They are defined using the function\* syntax and use the yield keyword to pause execution and produce values one at a time.
+They are defined using the `function\* syntax` and use the `yield keyword to pause execution` and produce values one at a time.
 
-normal function, which runs from start to finish in a single call, a generator function remembers its state between calls beacuse pause execution
+normal function, which runs from start to finish in a single call,  bur generator function remembers its state between calls beacuse pause execution
 
-The generator object provides the next() method.
+The generator object provides the next() method. and it returns an object with two properties:
 
-The result of next() is always an object with two properties:
-value: the yielded value.
-done: true if the function code has finished, otherwise false.
+1] value: the yielded value.
+2] done: true if the function code has finished, otherwise false.
 
 #### Example of a Generator:
 
@@ -360,33 +274,17 @@ console.log(gen.next()); // { value: 2, done: false }
 console.log(gen.next()); // { value: 3, done: false }
 console.log(gen.next()); // { value: undefined, done: true }
 
-- simpleGenerator is a generator function.
-- Calling simpleGenerator() returns a generator object gen.
-- gen is an object that implements the iterator protocol, with a next() - method that returns the next value in the sequence.
-- Generators are objects in JavaScript.
+1. `Pagination` — Fetch data page by page instead of loading everything at once
+2. `Infinite Scrolling` — Generate the next set of posts or products as the user scrolls
+3. `Redux-Saga` — Control and manage asynchronous workflows step by step
+4. `Large File Processing` — Process large files chunk by chunk to save memory
+5. `Unique ID Generation` — Generate sequential IDs dynamically as needed
 
-<!-- It allow to control excuation of function
-They return a generator object, which is both an iterator and an iterable. -->
 
-### project scenarios of generators in one line each\*\*:
-
-1. Pagination:
-   Use generators to fetch API data page by page instead of loading thousands of records at once.
-
-2. Infinite Scrolling:
-   Use generators to generate the next set of posts/products when a user keeps scrolling (like Instagram or Amazon).
-
-3. Redux-Saga:
-   Use generators to handle async workflows like API calls, loading states, and navigation steps in React applications.
-
-4. Large File Processing:
-   Use generators to read and process large files (CSV, logs, videos) chunk by chunk to save memory.
-
-5. Unique ID Generation:
-   Use generators to create sequential IDs, invoice numbers, ticket numbers, or order numbers dynamically.
+```
 ========================================================
 
-Event delegation\
+### Event delegation
 
 Event delegation is a JavaScript technique where you attach one event listener to a parent element instead of adding separate listeners to each child element.
 
@@ -395,11 +293,11 @@ This approach leverages event bubbling in the DOM, where an event occurring on a
 
 Here's how event delegation works:
 
-1. **Attach Listener to Parent Element**: Instead of attaching event listeners to each child element, you attach a single event listener to the parent element that contains all the child elements you are interested in.
+1. `Attach Listener to Parent Element`: Instead of attaching event listeners to each child element, you attach a single event listener to the parent element that contains all the child elements you are interested in.
 
-2. **Use Event Bubbling**: When an event happens (like a click) on a child element, the event bubbles up through its ancestors in the DOM hierarchy.
+2. `Use Event Bubbling`: When an event happens (like a click) on a child element, the event bubbles up through its ancestors in the DOM hierarchy.
 
-3. **Check the Target Element**: In the event handler function attached to the parent element, you can check the `event.target` property to determine which specific child element triggered the event. This allows you to conditionally execute different actions based on which child element was clicked.
+3. `Check the Target Element`: In the event handler function attached to the parent element, you can check the `event.target` property to determine which specific child element triggered the event. This allows you to conditionally execute different actions based on which child element was clicked.
 
 ### Example:
 
@@ -568,44 +466,6 @@ doSomething()
 
 
 
-=========================================================================
-####
--preventDefault() is a JavaScript method that prevents the browsers default action for an event.
-
-- used to stop the default action associated with an event from occurring.
-
-  - Example: Prevent a form from submitting.
-  - Example: Prevent a link from navigating to a new page.
-  - Example: Prevent a context menu from appearing.
-
-
----------------------------------------------------------------------------
-- `stopPropagation()`
-event.stopPropagation() is a JavaScript method used to stop event propagation in the DOM.
-
-(stop event bubbling or capturing.)
-
-When an event occurs on a nested child element, it normally bubbles from the child element to its parent elements.
-By calling event.stopPropagation() inside the child element's event handler,
-- we stop the event from reaching parent elements.
-It allows the current element's event handler to execute, 
-but parent elements handlers will not be triggered.
-It does not affect sibling elements because siblings are not part of the event propagation path.
-
-
--------------------------------------------------------------------------
-
-
-### `stopImmediatePropagation()`
-
-event.stopImmediatePropagation() is a JavaScript method that stops the event from propagating to parent elements
-and also prevents any other event listeners attached to the same element from executing.
-
-
-
-```
-```
-
  ========================
 
 
@@ -646,7 +506,7 @@ it is removed (popped) from the stack, and execution continues with the function
 
 # Web APIs
 
-**Web APIs** are provided by the browser (or Node.js APIs in Node.js) to handle asynchronous operations.
+`Web APIs` are provided by the browser (or Node.js APIs in Node.js) to handle asynchronous operations.
 
 Examples include:
 
@@ -657,7 +517,7 @@ Examples include:
 - I/O Operations
 
 Once an asynchronous operation is completed, 
-its callback is placed into either the **Microtask Queue** or the **Macrotask Queue**, 
+its callback is placed into either the `Microtask Queue` or the `Macrotask Queue`, 
 depending on the type of operation.
 
 
@@ -677,7 +537,7 @@ Examples of microtasks:
 - `queueMicrotask()`
 - `MutationObserver` callbacks
 
-The Event Loop executes **all pending microtasks** before moving to the Macrotask Queue.
+The Event Loop executes `all pending microtasks` before moving to the Macrotask Queue.
 
 
 ### Macro Task Queue
@@ -710,9 +570,9 @@ and will process all the callbacks in the microtask queue before moving on to th
 
 ### Web APIs - Definition
 
-> **"Web APIs are browser-provided (or Node.js runtime-provided) features that allow JavaScript to perform asynchronous operations outside the JavaScript engine, such as timers, network requests, and DOM events. Once the operation is completed, the callback is sent to the appropriate queue for execution."**
+> `"Web APIs are browser-provided (or Node.js runtime-provided) features that allow JavaScript to perform asynchronous operations outside the JavaScript engine, such as timers, network requests, and DOM events. Once the operation is completed, the callback is sent to the appropriate queue for execution."`
 
-**Examples:**
+`Examples:`
 
 * `setTimeout()`
 * `setInterval()`
@@ -724,9 +584,9 @@ and will process all the callbacks in the microtask queue before moving on to th
 
 ### Macrotask Queue - Definition
 
-> **"The Macrotask Queue is a queue that stores callbacks of completed asynchronous operations such as `setTimeout`, `setInterval`, DOM events, and I/O operations. The Event Loop moves these callbacks to the Call Stack for execution only after the Call Stack is empty and all Microtasks have been completed."**
+> `"The Macrotask Queue is a queue that stores callbacks of completed asynchronous operations such as `setTimeout`, `setInterval`, DOM events, and I/O operations. The Event Loop moves these callbacks to the Call Stack for execution only after the Call Stack is empty and all Microtasks have been completed."`
 
-**Examples:**
+`Examples:`
 
 * `setTimeout()` callback
 * `setInterval()` callback
@@ -737,7 +597,7 @@ and will process all the callbacks in the microtask queue before moving on to th
 
 ### Simple difference for interview:
 
-> **"Web APIs perform the asynchronous work, while the Macrotask Queue stores the callbacks after the work is completed and waits for the Event Loop to execute them."** ✅
+> `"Web APIs perform the asynchronous work, while the Macrotask Queue stores the callbacks after the work is completed and waits for the Event Loop to execute them."` ✅
 
 Example:
 
@@ -776,11 +636,11 @@ This distinction is important in interviews because many people incorrectly say 
 
 ### How the Event Loop Works
 
-1. **Execution Context:** JavaScript starts by executing the global context, which is the main code file.
-2. **Call Stack:** Functions are pushed onto the Call Stack and executed. If a function contains an asynchronous operation (e.g., `setTimeout`), the operation is offloaded to the browser or Node.js environment.
-3. **Task Queues:**
+1. `Execution Context:` JavaScript starts by executing the global context, which is the main code file.
+2. `Call Stack:` Functions are pushed onto the Call Stack and executed. If a function contains an asynchronous operation (e.g., `setTimeout`), the operation is offloaded to the browser or Node.js environment.
+3. `Task Queues:`
    - When an asynchronous operation completes, its callback is placed into the appropriate queue (Micro Task Queue or Macro Task Queue).
-4. **Event Loop:**
+4. `Event Loop:`
    - The event loop continuously checks the Call Stack. If the Call Stack is empty, it starts processing the Micro Task Queue.
    - All microtasks are processed before moving on to the Macro Task Queue.
    - Once the Micro Task Queue is empty, the event loop will process one task from the Macro Task Queue.
@@ -803,7 +663,7 @@ Promise.resolve().then(() => {
 console.log("End");
 ```
 
-**Execution Flow:**
+`Execution Flow:`
 
 1. `'Start'` is logged to the console.
 2. `setTimeout` is called, its callback is placed in the Macro Task Queue.
@@ -813,7 +673,7 @@ console.log("End");
 6. The event loop checks the Micro Task Queue and executes the promise callback, logging `'Promise'` to the console.
 7. The event loop then checks the Macro Task Queue and executes the timeout callback, logging `'Timeout'` to the console.
 
-**Output:**
+`Output:`
 
 ```
 Start
@@ -971,14 +831,14 @@ Since let creates a new scope for each iteration, each callback references its o
 ```
 ### `var` with Closure and Event Loop Explanation
 
-In the case of **`var`**, only one variable is created because `var` is **function-scoped**.  
+In the case of ``var``, only one variable is created because `var` is `function-scoped`.  
 The `for` loop does not create a new variable for each iteration.
 
-Each `setTimeout` callback creates a **closure** that references the same variable. The closure remembers the variable reference, not the value at the time the callback was created.
+Each `setTimeout` callback creates a `closure` that references the same variable. The closure remembers the variable reference, not the value at the time the callback was created.
 
-The callbacks do not execute immediately; they are moved to the **Macrotask Queue** after the timer completes.
+The callbacks do not execute immediately; they are moved to the `Macrotask Queue` after the timer completes.
 
-When the **Event Loop** executes them, the loop has already finished and the variable value has become **5**. Since all callbacks reference the same variable, all callbacks print the same value:
+When the `Event Loop` executes them, the loop has already finished and the variable value has become `5`. Since all callbacks reference the same variable, all callbacks print the same value:
 
 Output:
 
@@ -992,13 +852,13 @@ Output:
 
 ### `let` with Closure and Event Loop Explanation
 
-In the case of **`let`**, a new variable is created for each iteration because `let` is **block-scoped**. The `for` loop creates a separate variable binding for every iteration.
+In the case of ``let``, a new variable is created for each iteration because `let` is `block-scoped`. The `for` loop creates a separate variable binding for every iteration.
 
-Each `setTimeout` callback creates a **closure** that references its own iteration-specific variable. The closure remembers the value of `x` for that particular iteration.
+Each `setTimeout` callback creates a `closure` that references its own iteration-specific variable. The closure remembers the value of `x` for that particular iteration.
 
-The callbacks do not execute immediately; they are moved to the **Macrotask Queue** after the timer completes.
+The callbacks do not execute immediately; they are moved to the `Macrotask Queue` after the timer completes.
 
-When the **Event Loop** executes them, the loop has already finished, but each callback has its own separate `x` variable with the value from its respective iteration.
+When the `Event Loop` executes them, the loop has already finished, but each callback has its own separate `x` variable with the value from its respective iteration.
 
 Therefore, each callback prints its own stored value:
 
@@ -1045,16 +905,16 @@ Hoisting is the default behaviour of javascript where the variable and function 
 
 
 
-Hoisting is a **JavaScript behavior** where **variable and function declarations are moved to the top of their scope** (global or function) **before code execution**.
+Hoisting is a `JavaScript behavior` where `variable and function declarations are moved to the top of their scope` (global or function) `before code execution`.
 
-* **Variables declared with `var`** are **hoisted and initialized with `undefined`**.
-* **`let` and `const`** are hoisted but **not initialized** (they are in a “temporal dead zone” until their declaration).
-* **Function declarations** are hoisted **with their entire definition**, so they can be called before they appear in the code.
-* **Function expressions** (assigned to a variable) behave like variables: hoisted only as **undefined** if declared with `var`.
+* `Variables declared with `var`` are `hoisted and initialized with `undefined``.
+* ``let` and `const`` are hoisted but `not initialized` (they are in a “temporal dead zone” until their declaration).
+* `Function declarations` are hoisted `with their entire definition`, so they can be called before they appear in the code.
+* `Function expressions` (assigned to a variable) behave like variables: hoisted only as `undefined` if declared with `var`.
 
 ---
 
-### **Examples**
+### `Examples`
 
 ```js
 // var hoisting
@@ -1080,9 +940,9 @@ var sayHi = function() {
 
 ---
 
- **Key points:**
+ `Key points:`
 
-* Hoisting moves **declarations**, not **initializations**.
+* Hoisting moves `declarations`, not `initializations`.
 * `var` → undefined, `let/const` → temporal dead zone, function declarations → fully hoisted.
 
 
@@ -1099,14 +959,14 @@ declarations are moved on top during the compilation phase
 
 Patch vs Put
 
-- **PUT**
+- `PUT`
 
   - The PUT method is used to update an entire resource.
   - If the resource exists, it will be completely replaced with the new data provided.
   - PUT replaces the entire resource.
   - If your form or component allows the user to update an entire resource (e.g., editing all fields of a user profile), you might use PUT.
 
-- **PATCH**
+- `PATCH`
   - The PATCH method is used to apply partial updates to a resource.
   - This means you only send the fields you want to update, and the rest of the resource remains unchanged.
   - PATCH updates only the specified fields.
@@ -1202,14 +1062,14 @@ Localization (l10n) is the process of translating and customizing an application
 
 
 ==================================================================================
-### **What is an Event Listener?**
+### `What is an Event Listener?`
 
 An Event Listener is a JavaScript function that waits for a specific event to occur on an HTML element. When the event occurs, it executes a callback function. It is added using the addEventListener() method. Common events include click, keydown, submit, and mouseover.
 
 
 An event listener is a function or piece of code that waits for a specific event (such as a mouse click, key press, or form submission) to occur on an element. When the event happens, the event listener automatically executes the associated function.
 
-An **event listener** in JavaScript is a function that waits for a specific event to occur on a particular element and then executes a predefined action when the event is triggered. Events can be things like:
+An `event listener` in JavaScript is a function that waits for a specific event to occur on a particular element and then executes a predefined action when the event is triggered. Events can be things like:
 
 
 An event listener in JavaScript is a functions() that waits for a specific event to occur on an element and then executes a specified action. Events can be user actions like clicks, key presses, mouse movements, or system-generated events like page load.
@@ -1219,17 +1079,17 @@ Use removeEventListener() to detach an event listener.
 
 
 
-- **User Actions**: Clicks, key presses, mouse movements, etc.
-- **System-generated Events**: Page load, resize, etc.
+- `User Actions`: Clicks, key presses, mouse movements, etc.
+- `System-generated Events`: Page load, resize, etc.
 
-### **How to Use Event Listeners:**
+### `How to Use Event Listeners:`
 
-1. **Adding an Event Listener**  
+1. `Adding an Event Listener`  
    To attach an event listener to an element, use the `addEventListener()` method. This method allows you to specify:
    - The type of event (e.g., `click`, `keydown`, etc.)
    - The function to be executed when the event is triggered.
 
-   **Syntax**:
+   `Syntax`:
    ```javascript
    element.addEventListener('event', function, useCapture);
    ```
@@ -1238,7 +1098,7 @@ Use removeEventListener() to detach an event listener.
    - `function`: The callback function to be executed when the event occurs.
    - `useCapture` (optional): A boolean value that determines whether the event should be captured during the capturing phase (`true`) or the bubbling phase (`false`).
 
-   **Example**:
+   `Example`:
    ```javascript
    const button = document.querySelector('button');
    button.addEventListener('click', () => {
@@ -1246,15 +1106,15 @@ Use removeEventListener() to detach an event listener.
    });
    ```
 
-2. **Removing an Event Listener**  
+2. `Removing an Event Listener`  
    To remove an event listener, use the `removeEventListener()` method. You need to pass the same event type and the function that was originally attached to the event.
 
-   **Syntax**:
+   `Syntax`:
    ```javascript
    element.removeEventListener('event', function);
    ```
 
-   **Example**:
+   `Example`:
    ```javascript
    const button = document.querySelector('button');
    function handleClick() {
@@ -1268,7 +1128,7 @@ Use removeEventListener() to detach an event listener.
 
 ---
 
-### **Key Notes:**
+### `Key Notes:`
 - `addEventListener()` allows you to add multiple listeners for the same event type on the same element.
 - `removeEventListener()` requires the exact same reference to the function used when adding the event listener. If an anonymous function was used, you cannot remove it.
 
@@ -1282,28 +1142,28 @@ Use removeEventListener() to detach an event listener.
 When to Use <form onSubmit> vs <button onClick>?
 
 
-### **Use `<form onSubmit>`:**
-- **Primary Purpose**: Specifically used for **submitting forms**.
-- **Form Handling**: Triggers when the form’s submit button is clicked or the Enter key is pressed while focused on an input.
-- **Keyboard Accessibility**: Automatically listens for both the Enter key and button clicks, making it more **keyboard-friendly** and accessible.
-- **Page Refresh**: By default, submitting a form will refresh the page unless you call `e.preventDefault()` in your handler.
-- **Semantic HTML**: Provides better structure for **accessibility**, logically grouping inputs and actions.
+### `Use `<form onSubmit>`:`
+- `Primary Purpose`: Specifically used for `submitting forms`.
+- `Form Handling`: Triggers when the form’s submit button is clicked or the Enter key is pressed while focused on an input.
+- `Keyboard Accessibility`: Automatically listens for both the Enter key and button clicks, making it more `keyboard-friendly` and accessible.
+- `Page Refresh`: By default, submitting a form will refresh the page unless you call `e.preventDefault()` in your handler.
+- `Semantic HTML`: Provides better structure for `accessibility`, logically grouping inputs and actions.
 
 
-### **Use `<button onClick>`:**
-- **Primary Purpose**: Used to **trigger standalone actions** (not tied to form submission).
-- **Form Handling**: Only triggers when the button is clicked; does not handle form submission or listen for the Enter key.
-- **No Page Refresh**: The button will **not refresh the page** unless you manually trigger it.
-- **Use Case**: Ideal for actions like **showing modals, fetching data, or toggling UI elements**, but **not for form submission**.
+### `Use `<button onClick>`:`
+- `Primary Purpose`: Used to `trigger standalone actions` (not tied to form submission).
+- `Form Handling`: Only triggers when the button is clicked; does not handle form submission or listen for the Enter key.
+- `No Page Refresh`: The button will `not refresh the page` unless you manually trigger it.
+- `Use Case`: Ideal for actions like `showing modals, fetching data, or toggling UI elements`, but `not for form submission`.
 
 
 
-**Conclusion:**  
-- **`<form onSubmit>`** is preferred for **form submissions** because it offers better accessibility, handles both Enter key and button clicks, and provides a more **semantic structure**.
-- **`<button onClick>`** is better suited for **triggering actions** not related to form submission.
+`Conclusion:`  
+- ``<form onSubmit>`` is preferred for `form submissions` because it offers better accessibility, handles both Enter key and button clicks, and provides a more `semantic structure`.
+- ``<button onClick>`` is better suited for `triggering actions` not related to form submission.
 
 
-**Both approaches are valid**, but `<form onSubmit>` is preferred for form-based interactions because it provides better semantic structure, accessibility, and seamless behavior for users.
+`Both approaches are valid`, but `<form onSubmit>` is preferred for form-based interactions because it provides better semantic structure, accessibility, and seamless behavior for users.
 
 =============== memoization ===================================
 
@@ -1390,7 +1250,7 @@ Data Privacy: Utilizes closures to maintain data privacy, hiding internal variab
 
 ### 🔹1. Default Behavior of Constructor Functions
 
-In JavaScript, when you use a **constructor function** with `new`, it automatically returns the new object instance unless you **explicitly return an object**.
+In JavaScript, when you use a `constructor function` with `new`, it automatically returns the new object instance unless you `explicitly return an object`.
 
 ```js
 function Person(first, last) {
@@ -1404,9 +1264,9 @@ console.log(person1); //  Person { firstName: 'John', lastName: 'Doe' }
 
 ---
 
-### 🔹2. Returning a **Primitive** from a Constructor
+### 🔹2. Returning a `Primitive` from a Constructor
 
-If a constructor explicitly returns a **primitive value** (like a string, number, boolean, etc.), **that return value is ignored**, and the newly created object is returned instead.
+If a constructor explicitly returns a `primitive value` (like a string, number, boolean, etc.), `that return value is ignored`, and the newly created object is returned instead.
 
 ```js
 function Person(first, last) {
@@ -1424,9 +1284,9 @@ console.log(person2); //  Person { firstName: 'Jane', lastName: 'Doe' }
 
 ---
 
-### 🔹3. Returning an **Object** from a Constructor
+### 🔹3. Returning an `Object` from a Constructor
 
-If a constructor explicitly returns an **object**, that object **overrides** the default `this`.
+If a constructor explicitly returns an `object`, that object `overrides` the default `this`.
 
 ```js
 function Person(first, last) {
@@ -1464,7 +1324,7 @@ console.log(myFather);
 //  Actually: Still returns the object, NOT the string
 ```
 
-This example is labeled as **"returning a primitive"** but wrongly states that the object is replaced. It should clarify that **the primitive is ignored**, and the object is returned.
+This example is labeled as `"returning a primitive"` but wrongly states that the object is replaced. It should clarify that `the primitive is ignored`, and the object is returned.
 
 ---
 
@@ -1478,7 +1338,7 @@ This example is labeled as **"returning a primitive"** but wrongly states that t
 
 ---
 
-If you're writing this for documentation or teaching, I’d recommend presenting **two clearly separated examples**, like above, with matching labels. Let me know if you’d like a polished markdown or HTML version.
+If you're writing this for documentation or teaching, I’d recommend presenting `two clearly separated examples`, like above, with matching labels. Let me know if you’d like a polished markdown or HTML version.
 
 
 ========================================================================
@@ -1537,12 +1397,12 @@ Primitives are not objects and cannot hold properties or behavior, whereas non-p
 
 #  JavaScript Type Coercion
 
-**Type coercion in JavaScript** means converting values from one type to another — either automatically (implicit) or manually (explicit).
+`Type coercion in JavaScript` means converting values from one type to another — either automatically (implicit) or manually (explicit).
 
-* **Implicit coercion** happens automatically (e.g., `'5' + 1` → `'51'`).
-* **Explicit coercion** is done deliberately using `Number()`, `String()`, `Boolean()`, etc.
+* `Implicit coercion` happens automatically (e.g., `'5' + 1` → `'51'`).
+* `Explicit coercion` is done deliberately using `Number()`, `String()`, `Boolean()`, etc.
 
-> \ To avoid bugs prefer **explicit conversion** and **strict equality (`===`)**.
+> \ To avoid bugs prefer `explicit conversion` and `strict equality (`===`)`.
 
 
 ## 🔹 Types of Coercion
@@ -1573,7 +1433,7 @@ console.log(Boolean("hi"));   // true
 
 ##  Implicit Coercion — Operator behaviors & examples
 
-### 🔸 `+` prefers **strings**
+### 🔸 `+` prefers `strings`
 
 ```js
 '5' + 1         // "51"
@@ -1581,7 +1441,7 @@ false + '1'     // "false1"
 "Hello " + 5    // "Hello 5"
 ```
 
-### 🔸 `-`, `*`, `/` prefer **numbers**
+### 🔸 `-`, `*`, `/` prefer `numbers`
 
 ```js
 '5' - 1         // 4
@@ -1611,10 +1471,10 @@ if ("hello") console.log("runs");  // runs ("hello" is truthy)
 
 ##  Truthy & Falsy Values
 
-* **Falsy values:**
+* `Falsy values:`
   `false, 0, -0, 0n, "", null, undefined, NaN`
 
-* **Truthy values:**
+* `Truthy values:`
   Everything else (for example: `"0"`, `"false"`, `[]`, `{}`, `function(){}`).
 
 ---
@@ -1623,8 +1483,8 @@ if ("hello") console.log("runs");  // runs ("hello" is truthy)
 
 | Operator      | Coercion Preference |
 | ------------- | ------------------- |
-| `+`           | **Strings**         |
-| `-`, `*`, `/` | **Numbers**         |
+| `+`           | `Strings`         |
+| `-`, `*`, `/` | `Numbers`         |
 
 ---
 
@@ -1647,18 +1507,18 @@ parseInt('42')    // 42
 0 === false  // false  (no coercion)
 ```
 
-✔️ Use **strict equality (`===`)** instead of `==`.
-✔️ Use **explicit conversion** for clarity.
+✔️ Use `strict equality (`===`)` instead of `==`.
+✔️ Use `explicit conversion` for clarity.
 
 ---
 
 ## 🔁 Quick Conversion Rules (Cheat Sheet)
 
-* `+` with a string → **string concatenation**.
-* `-`, `*`, `/`, `%` → operands coerced to **numbers**.
-* `if(...)`, `while(...)`, `||`, `&&` → values coerced to **boolean** (truthy/falsy).
+* `+` with a string → `string concatenation`.
+* `-`, `*`, `/`, `%` → operands coerced to `numbers`.
+* `if(...)`, `while(...)`, `||`, `&&` → values coerced to `boolean` (truthy/falsy).
 * `==` → performs type conversion (many special cases).
-* `===` → compares **without coercion**.
+* `===` → compares `without coercion`.
 
 
 
