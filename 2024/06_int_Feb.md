@@ -603,14 +603,13 @@ and also prevents any other event listeners attached to the same element from ex
 
 
 
+```
+```
+
+ ========================
 
 
-
-
-### ======================== Event loop =========================================
-
-
- Event loop
+ ### Event loop
 
 - The event loop is a mechanism that allows JavaScript to execute asynchronous code in a single-threaded environment.
 

@@ -260,46 +260,20 @@ Here, while `Profile` is being loaded, React displays:
 Loading...
 ```
 
-==============================================================
-
-
-### Why do we use `return () => { ... }` in `useEffect()`?
-
-- The function returned from `useEffect()` is called the `cleanup function`.
-- React runs the cleanup `before the effect runs again when dependencies change`.
-- React also runs the cleanup `when the component unmounts`.
-- We use it to clean up resources created by the effect, such as `event listeners, timers, subscriptions, and connections`.
-- This prevents `memory leaks and unwanted side effects`.
-
-`Example:`
-
-```jsx
-useEffect(() => {
-  const timer = setInterval(() => {
-    console.log("Running");
-  }, 1000);
-
-  return () => {
-    clearInterval(timer);
-  };
-}, []);
-```
-
-`Interview explanation:`
-
-> “The function returned from `useEffect` is called the cleanup function. React executes it before re-running the effect when dependencies change and when the component unmounts. We use it to clean up resources such as timers, event listeners, and subscriptions.”
-
 
 
 ==============================================================
+### what is routing in react js
 
 
-what is routing in react js
+Routing in React.js is the process of displaying different components or pages based on the URL in the browser. 
 
-In a single-page React Application,
-routing refers to the process of navigating between different pages without triggering a full page reload.
+RR allows users to navigate between different parts of a React application without entire reloading the page.
 
-React Router DOM is an npm package that enables you to implement dynamic routing in a web app.
+This provides a faster and smoother user experience because only the required component is updated instead of loading the whole webpage again. 
+
+React Router DOM is an npm package that enables dynamic routing in React applications.
+
 
 ===================================================================
 
