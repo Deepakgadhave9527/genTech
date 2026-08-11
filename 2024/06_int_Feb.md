@@ -113,8 +113,8 @@ document.getElementById("parent").addEventListener("click", () => {
 }, true);
 
 
-* `true` = `Capturing phase`
-* `false` = `Bubbling phase` (default)
+- `true` = `Capturing phase`
+- `false` = `Bubbling phase` (default)
 
 ```
 
@@ -250,7 +250,7 @@ Map and Set iteratio
 - `Generators` are special functions that can `pause their execution and   resume it later`. 
 its means  control over the function's execution.
 
-They are defined using the `function\* syntax` and use the `yield keyword to pause execution` and produce values one at a time.
+They are defined using the `function\- syntax` and use the `yield keyword to pause execution` and produce values one at a time.
 
 normal function, which runs from start to finish in a single call,  bur generator function remembers its state between calls beacuse pause execution
 
@@ -261,7 +261,7 @@ The generator object provides the next() method. and it returns an object with t
 
 #### Example of a Generator:
 
-function\* simpleGenerator() {
+function\- simpleGenerator() {
 yield 1;
 yield 2;
 yield 3;
@@ -286,18 +286,11 @@ console.log(gen.next()); // { value: undefined, done: true }
 
 ### Event delegation
 
-Event delegation is a JavaScript technique where you attach one event listener to a parent element instead of adding separate listeners to each child element.
+- Event delegation is a JavaScript technique 
+- where we can attach one event listener to a parent element instead of adding separate  event listeners to each child element individually.
 
-Event delegation in JavaScript is a technique where you attach a single event listener to a parent element, rather than to multiple child elements individually.
 This approach leverages event bubbling in the DOM, where an event occurring on a nested element will bubble up through its ancestors.
 
-Here's how event delegation works:
-
-1. `Attach Listener to Parent Element`: Instead of attaching event listeners to each child element, you attach a single event listener to the parent element that contains all the child elements you are interested in.
-
-2. `Use Event Bubbling`: When an event happens (like a click) on a child element, the event bubbles up through its ancestors in the DOM hierarchy.
-
-3. `Check the Target Element`: In the event handler function attached to the parent element, you can check the `event.target` property to determine which specific child element triggered the event. This allows you to conditionally execute different actions based on which child element was clicked.
 
 ### Example:
 
@@ -310,7 +303,7 @@ Suppose you have a list of items in an unordered list (`<ul>`) and you want to h
 </ul>
 
 In JavaScript, you can delegate the click event handling to the parent `<ul>` element:
-
+```js
 const parentList = document.getElementById('parentList');
 
 parentList.addEventListener('click', function(event) {
@@ -327,20 +320,37 @@ In this example:
 - Inside the event handler, `event.target` refers to the actual element that triggered the event (in this case, the `<li>`).
 - You can then perform actions based on the specific `<li>` element that was clicked.
 
-=
-================================================================================
-Callback hell
+
+
+Here's how event delegation works:
+
+1. `Attach Listener to Parent Element`: Instead of attaching event listeners to each child element, you attach a single event listener to the parent element that contains all the child elements you are interested in.
+
+2. `Use Event Bubbling`: When an event happens (like a click) on a child element, the event bubbles up through its ancestors in the DOM hierarchy.
+
+3. `Check the Target Element`: In the event handler function attached to the parent element, you can check the `event.target` property to determine which specific child element triggered the event. This allows you to conditionally execute different actions based on which child element was clicked.
+
+
+Event delegation in JavaScript is a technique where you attach a single event listener to a parent element, rather than to multiple child elements individually.
+```
+=============================================================
+
+### Callback hell
 
 
 
-Callback hell is a phenomenon where a Callback is called inside another Callback. 
-It is the nesting of multiple Callbacks inside a function. 
+- Callback hell is a phenomenon where a Callback is called inside another Callback.
+- It is the nesting of multiple Callbacks inside a function. 
 
-where multiple asynchronous operations are nested within each other as callbacks.
-This can result in code that is difficult to read, understand, and maintain
 
- The two common ways of escaping the callback Hell heare are by using promises and async/await.
+- Callback hell is a situation where `multiple asynchronous callbacks are deeply nested inside one another`, making the code difficult to read, understand, debug, and maintain.
 
+- The two common ways of escaping the callback Hell heare are by using promises and async/await.
+
+ It is also called the `Pyramid of Doom` because the code starts moving deeper and deeper to the right.
+
+
+```js
 // Nested callbacks
 doSomething(function(result1) {
   doSomethingElse(result1, function(result2) {
@@ -368,16 +378,16 @@ doSomething()
 
 
 
-================================================================================
-```js
-   curried function
+where multiple asynchronous operations are nested within each other as callbacks.
+This can result in code that is difficult to read, understand, and maintain
+
+```
+===================================================================
+### curried function
    
-    curried function is a function that takes one argument at a time, returning a new function each time,
-    until all arguments are provided and the final return the result
-   
-   <!-- This allows for partial application and greater flexibility in function composition and usage. -->
-   
-   
+  curried function is a function that takes one argument at a time, returning a new function each time, until all arguments are provided and the final return the result
+      
+   ```js
    function add(a) {
        return function(b) {
            return function(c) {
@@ -407,7 +417,7 @@ doSomething()
                    if (isPremiumCustomer) {
                        discount += 5; // Additional discount for premium customers
                    }
-                   return amount - (amount * (discount / 100));
+                   return amount - (amount - (discount / 100));
                };
            };
        };
@@ -431,7 +441,7 @@ doSomething()
    function calculateTotalPrice(discount) {
      return function(items) {
        const totalPrice = items.reduce((acc, item) => acc + item.price, 0);
-       return totalPrice * (1 - discount);
+       return totalPrice - (1 - discount);
      };
    }
    
@@ -456,17 +466,8 @@ doSomething()
    
    ```
    
-   
 
-
-
-
-
-
-
-
-
- ========================
+ ================================================
 
 
  ### Event loop
@@ -487,9 +488,10 @@ doSomething()
 ### Call Stack
 
 
-1. with help of  Call Stack e JavaScriptengine to keep track of function execution.
-2. Whenever a function is called, it is pushed onto the Call Stack, and when the function completes,
- it is removed from the stack.
+1. with help of  Call Stack e JavaScript engine to keep track of function execution.
+
+2. Whenever a function is called, it is pushed onto the Call Stack, and when the function completes,it is removed from the stack.
+
 3. JavaScript follows the LIFO principle, 
 meaning the last function added to the stack will be executed and removed first.
 
@@ -499,9 +501,9 @@ This means the most recently added function is at the top of the stack,
 so JavaScript executes it first. Once its execution is completed, 
 it is removed (popped) from the stack, and execution continues with the function below it."
 
-4. JavaScript executes all synchronous code in the Call Stack until it becomes empty.
+4. JavaScript executes first synchronous code until the Call Stack becomes empty.
 
-5. then Event Loop starts processing asynchronous callbacks only when the Call Stack becomes empty.
+5. When the current synchronous execution is complete, the Event Loop  start the processes pending microtasks first and then the next macrotask.`
 
 
 # Web APIs
@@ -525,9 +527,8 @@ depending on the type of operation.
 ### Micro Task Queue
 
 
-The Microtask Queue is a queue that stores high-priority asynchronous tasks.
- These tasks are executed after the current synchronous code finishes 
- and the Call Stack becomes empty, but before the Event Loop processes the next macrotask.
+The Microtask Queue is a queue that s`tores high-priority asynchronous tasks`.these tasks are executed after the current synchronous code finishes 
+and the Call Stack becomes empty, but before the Event Loop processes the next macrotask.
 
 Microtasks are given higher priority than macrotasks.
 
@@ -574,11 +575,11 @@ and will process all the callbacks in the microtask queue before moving on to th
 
 `Examples:`
 
-* `setTimeout()`
-* `setInterval()`
-* `fetch()`
-* DOM Events (`click`, `load`)
-* I/O operations
+- `setTimeout()`
+- `setInterval()`
+- `fetch()`
+- DOM Events (`click`, `load`)
+- I/O operations
 
 ---
 
@@ -588,10 +589,10 @@ and will process all the callbacks in the microtask queue before moving on to th
 
 `Examples:`
 
-* `setTimeout()` callback
-* `setInterval()` callback
-* DOM event callbacks
-* I/O callbacks
+- `setTimeout()` callback
+- `setInterval()` callback
+- DOM event callbacks
+- I/O callbacks
 
 ---
 
@@ -705,30 +706,22 @@ The event loop in JavaScript is a fundamental concept that helps manage the exec
 
 <!-- Macrotasks are tasks that are scheduled to be executed after the current executing script and after all microtasks have been processed -->
 
-```
+```js
 
-//================================= Closure ========================
-
-
-
-1. A closure is the combination of a function and the lexical environment in which it was created.
-
-2 closure in JavaScript function to remember and access variables from its outer (lexical) scope even after the outer function has finished executing.
-
-3. This works because the function maintains a reference to those variables rather than copying their values.
-
-4. Closures are commonly used to maintain state, create private variables, implement callbacks, event handlers, function factories, and memoization.
+================================= Closure ========================
 
 
+A closure in JavaScript is a function that remembers outer (lexical) scope variables  and can access them even after the outer function has finished executing.
 
+This happens because the function maintains a reference to those variables.
 
+Closures are commonly used to maintain state, create private variables, implement callbacks, and build function factories.
 
-A closure in JavaScript is a function that remembers and can access variables from its outer (lexical) scope even after the outer function has finished executing. This happens because the function maintains a reference to those variables. Closures are commonly used to maintain state, create private variables, implement callbacks, and build function factories.
-
+==========================================================
 
 ### 🔹 Simple Closure Example:
 
-```javascript
+``javascript
 function outerFunction() {
   let outerVariable = "I am outer";
   let a = 20;
@@ -743,6 +736,8 @@ function outerFunction() {
 const innerFunc = outerFunction();
 innerFunc(); // Output: outerVariable = I am outer and a=30
 ```
+
+In JavaScript, a closure does not remember a copy of the variable's value; instead, it maintains access to the actual variable from the outer lexical scope. In this example, `a` is initially `20`, but before `outerFunction()` finishes, `a` is changed to `30`. The `innerFunction` still has access to that same `a` variable through the closure, so when `innerFunc()` is called later, it reads the current value of `a`, which is `30`.
 
 ---
 
@@ -766,23 +761,7 @@ console.log(counter()); // 2
 
 When function_a_outer is executed, function_b_inner still retains access to its lexical scope. These variables are held by reference, not as the original values at definition time. As a result, the inner function always accesses the latest value of those variables
 
-When a customer visits an online store:
-
-A new shopping cart is created (via a function).
-
-The cart has a private list of items, not accessible directly from outside.
-
-The cart exposes functions to:
-
-Add items
-
-❌ Remove items
-
-👁️ View cart contents
-
-These functions are closures — they retain access to the private list of items, even after the main cart function has executed.
-
----
+==========================================================
 
 - When a customer visits an online store, a new shopping cart is created.
 - This cart contains a private list of items, inaccessible directly from outside.
@@ -825,10 +804,13 @@ console.log(x);
 }
 
 Since var does not create a new scope for each iteration, all callbacks reference the same x varibale.
+
 Since let creates a new scope for each iteration, each callback references its own unique x varibale.
 
+in case of var , var is function scope  , only one varible is created and for loop doest not crated each interation new variable, setTimeout callback create clouse , clouse is rember only refeance not value , here for exuation time  setTimeout callback pushed macro task quea , first it finshded time then pushedout from stack , then loop is shynchrounse task it fished first then value of var is is five Since all callbacks reference the same variable, beasue dose not crate new varible
 
-```
+
+```js
 ### `var` with Closure and Event Loop Explanation
 
 In the case of ``var``, only one variable is created because `var` is `function-scoped`.  
@@ -854,7 +836,7 @@ Output:
 
 In the case of ``let``, a new variable is created for each iteration because `let` is `block-scoped`. The `for` loop creates a separate variable binding for every iteration.
 
-Each `setTimeout` callback creates a `closure` that references its own iteration-specific variable. The closure remembers the value of `x` for that particular iteration.
+Each `setTimeout` callback creates a `closure` that references its own iteration-specific variable. Each callback creates a closure that references its own iteration-specific x variable.
 
 The callbacks do not execute immediately; they are moved to the `Macrotask Queue` after the timer completes.
 
@@ -877,24 +859,25 @@ Output:
 
 ==============================================================
 
+### Why are Arrow Functions Used?
 
-why arrow functions ?
+Arrow functions are used in JavaScript because they provide a shorter and cleaner syntax for writing functions.
 
--Arrow functions do not have their own this context; instead, 
-they inherit this from the parent scope at the time they are defined.
+- Arrow functions do not have their own `this` context. Instead, they `inherit `this` from the surrounding (parent) scope` at the time they are defined.
+- This is especially useful in:
 
-This is especially useful in:
-Callbacks
-Event handlers
+  - `Callbacks`
+  - `Event handlers`
+  - `Array methods` such as `map()`, `filter()`, and `forEach()`
 
- - Lexical this binding, avoiding this confusion.
-- Concise syntax for defining functions.
-- no need to return for single-expression functions.
-- No binding of arguments object.
-- Convenient for use in callbacks, especially with array methods.
+- They provide `lexical `this` binding`, which helps avoid confusion with `this`.
+- They have a `concise syntax`, making functions easier to write and read.
+- For a `single-expression function`, the `return` keyword and curly braces are not required.
+- Arrow functions do not have their own ``arguments` object`; they use the `arguments` from the surrounding scope.
+- They are convenient for writing short callback functions.
 
-Arrow functions streamline JavaScript code 
-making it shorter, clearer, and more expressive, particularly in modern development practices
+`In short:` Arrow functions make JavaScript code `shorter, cleaner, and more expressive`, especially when working with callbacks and array methods.
+
 .
 
 ==============================================================
@@ -903,14 +886,12 @@ Explain Hoisting in javascript.
 
 Hoisting is the default behaviour of javascript where the variable and function declarations to the top of their scope before code execution.
 
-
-
 Hoisting is a `JavaScript behavior` where `variable and function declarations are moved to the top of their scope` (global or function) `before code execution`.
 
-* `Variables declared with `var`` are `hoisted and initialized with `undefined``.
-* ``let` and `const`` are hoisted but `not initialized` (they are in a “temporal dead zone” until their declaration).
-* `Function declarations` are hoisted `with their entire definition`, so they can be called before they appear in the code.
-* `Function expressions` (assigned to a variable) behave like variables: hoisted only as `undefined` if declared with `var`.
+- `Variables declared with `var`` are `hoisted and initialized with `undefined``.
+- ``let` and `const`` are hoisted but `not initialized` (they are in a “temporal dead zone” until their declaration).
+- `Function declarations` are hoisted `with their entire definition`, so they can be called before they appear in the code.
+- `Function expressions` (assigned to a variable) behave like variables: hoisted only as `undefined` if declared with `var`.
 
 ---
 
@@ -942,8 +923,8 @@ var sayHi = function() {
 
  `Key points:`
 
-* Hoisting moves `declarations`, not `initializations`.
-* `var` → undefined, `let/const` → temporal dead zone, function declarations → fully hoisted.
+- Hoisting moves `declarations`, not `initializations`.
+- `var` → undefined, `let/const` → temporal dead zone, function declarations → fully hoisted.
 
 
 
@@ -1029,6 +1010,8 @@ to the web applications built with React are usable by people with disabilities.
 <!-- This includes individuals who may have visual, auditory, motor, or cognitive impairments.  -->
 
 ==============================================
+
+
 What is assistive technology in websites?
 Screen readers, voice recognition software, reading assistants, and switch devices that replace the need to use a keyboard or mouse are examples of assistive technologies.
 
@@ -1399,8 +1382,8 @@ Primitives are not objects and cannot hold properties or behavior, whereas non-p
 
 `Type coercion in JavaScript` means converting values from one type to another — either automatically (implicit) or manually (explicit).
 
-* `Implicit coercion` happens automatically (e.g., `'5' + 1` → `'51'`).
-* `Explicit coercion` is done deliberately using `Number()`, `String()`, `Boolean()`, etc.
+- `Implicit coercion` happens automatically (e.g., `'5' + 1` → `'51'`).
+- `Explicit coercion` is done deliberately using `Number()`, `String()`, `Boolean()`, etc.
 
 > \ To avoid bugs prefer `explicit conversion` and `strict equality (`===`)`.
 
@@ -1414,7 +1397,7 @@ JS converts types automatically when an operation requires it:
 ```js
 console.log(1 + "2");   // "12"   (number → string, concatenation)
 console.log(1 - "2");   // -1     (string → number, subtraction)
-console.log("5" * "2"); // 10     (both strings → number)
+console.log("5" - "2"); // 10     (both strings → number)
 console.log(1 == "1");  // true   (loose equality coerces string → number)
 ```
 
@@ -1471,10 +1454,10 @@ if ("hello") console.log("runs");  // runs ("hello" is truthy)
 
 ##  Truthy & Falsy Values
 
-* `Falsy values:`
+- `Falsy values:`
   `false, 0, -0, 0n, "", null, undefined, NaN`
 
-* `Truthy values:`
+- `Truthy values:`
   Everything else (for example: `"0"`, `"false"`, `[]`, `{}`, `function(){}`).
 
 ---
@@ -1514,11 +1497,11 @@ parseInt('42')    // 42
 
 ## 🔁 Quick Conversion Rules (Cheat Sheet)
 
-* `+` with a string → `string concatenation`.
-* `-`, `*`, `/`, `%` → operands coerced to `numbers`.
-* `if(...)`, `while(...)`, `||`, `&&` → values coerced to `boolean` (truthy/falsy).
-* `==` → performs type conversion (many special cases).
-* `===` → compares `without coercion`.
+- `+` with a string → `string concatenation`.
+- `-`, `*`, `/`, `%` → operands coerced to `numbers`.
+- `if(...)`, `while(...)`, `||`, `&&` → values coerced to `boolean` (truthy/falsy).
+- `==` → performs type conversion (many special cases).
+- `===` → compares `without coercion`.
 
 
 
