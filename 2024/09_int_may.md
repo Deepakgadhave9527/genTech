@@ -1,4 +1,58 @@
 
+
+
+
+### 1. Looping through objects
+
+const user = { name: "Rahul", age: 25 };
+
+for (let key of Object.keys(user)) {
+  console.log(key, user[key]);
+}
+
+Output:
+
+name Rahul
+age 25
+
+### 2. Converting object to array (for map/filter)
+
+const prices = { apple: 100, banana: 50, mango: 80 };
+
+const updated = Object.entries(prices).map(([fruit, price]) => {
+  return [fruit, price + 10];
+});
+
+console.log(updated);
+
+Output:
+
+[["apple", 110], ["banana", 60], ["mango", 90]]
+
+
+
+### 3. Working with dynamic API data
+
+const apiData = {
+  id: 1,
+  title: "Post",
+  status: "active"
+};
+
+Object.entries(apiData).forEach(([key, value]) => {
+  console.log(`${key} => ${value}`);
+});
+
+
+Output:
+
+id => 1
+title => Post
+status => active
+
+
+
+
 ==============================================================
 
 4. Difference between “ == “ and “ === “ operators.
