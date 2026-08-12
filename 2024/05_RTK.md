@@ -1,812 +1,4 @@
 
-
-
-======================================================================
- 
- React useContext 
- 
-
- - useContext hook is used to create common data that can be accessed throughout 
-  the component hierarchy without passing the props down manually to each level.
-
- -useContext is a React Hook used to consume values from the Context API.
- 
- - It helps share data between components without prop drilling.
-
- First, we create a context using createContext().
- Then we provide the value using Context.Provider.
- Finally, we access the value in any child component using useContext(ContextName).
-
- Common Uses:
- ✔ Theme (Dark/Light Mode)
- ✔ User Information
- ✔ Authentication
- ✔ Language
- ✔ Global Settings
-
-  
- 1. Create Context
-
-import { createContext } from "react";
-
-export const ThemeContext = createContext("Default Value");
-
-
- 2. Provide Context
-
-import { ThemeContext } from "./ThemeContext";
-
-function App() {
-  const theme = "Dark";
-
-  return (
-    <ThemeContext.Provider value={theme}>
-      <Component />
-    </ThemeContext.Provider>
-  );
-}
-
-
- 3. Consume Context using useContext (Recommended)
-
-import { useContext } from "react";
-import { ThemeContext } from "./ThemeContext";
-
-function Component() {
-  const theme = useContext(ThemeContext);
-
-  return <h1>{theme}</h1>;
-}
-
-
-// 4. Consume Context using Consumer (Older Method)
-
-import { ThemeContext } from "./ThemeContext";
-
-function Component() {
-  return (
-    <ThemeContext.Consumer>
-      {(theme) => <h1>{theme}</h1>}
-    </ThemeContext.Consumer>
-  );
-}
-
-
-
-======================================================================
-
-
-
-
-useContext vs Redux
-
-useContext
-
-- useContext hook is used to create common data that can be accessed throughout the component hierarchy without passing the props down manually to each level.
-
-- It helps share data between components without prop drilling.
-
-- we create a context using createContext().
- Then we provide the value using Context.Provider.
- Finally, we access the value in any child component using useContext(ContextName).
-
-- When the Provider's value changes, all components consuming that Context re-render.
-
-- `useContext` does not provide built-in features like actions,
-     reducers, or middleware for state management.
-
-- Async operations need to be handled separately using tools like `useEffect`, async functions, or custom hooks.
-
-- Best suited for simple or global data such as Theme, Authentication, Language, User Preferences, etc.
-
- Common Uses:
- ✔ Theme (Dark/Light Mode)
- ✔ User Information
- ✔ Authentication
- ✔ Language
- ✔ Global Settings
-
-
-
-Redux
-
-- Redux is a predictable state container for JavaScript applications.
-- Redux is a state management library used to manage and share application state.
-- There is a central store that holds the entire state of the application.
-- Each component can access the stored state without having to pass props from
- one component to another (avoids prop drilling).
-
-- Redux provides powerful debugging tools like Redux DevTools, which help track state changes and actions.
-- Redux provides a structured way to manage complex state updates using actions and reducers.
-- Redux supports async operations using middleware like Redux Thunk and Redux Saga.
-
-Redux is better suited for large-scale applications where many components 
-need to share and update complex state.
-
-----------------------------------------------------------------------------
-
-I use useContext for sharing simple global data like theme, language, authentication, or user preferences. 
-For complex state that is shared across many components, changes frequently, 
-or requires async operations—such as products, shopping carts, orders, or dashboard data—I use Redux.
-In production applications, it's common to use both: useContext for lightweight global settings
- and Redux for application state management."
-
-======================================================================
-
-# Q. What is Redux?
-
-- Redux is a predictable state container for JavaScript applications.
-- Redux is a state management library used to manage and share application state.
-- There is a central store that holds the entire state of the application.
-- Each component can access the stored state without having to pass props from one component to another (avoids prop drilling).
-- There are three main building blocks: Actions, Reducers, and Store.
-- Redux follows a one-way data flow: Component → Dispatch Action → Reducer → Store Updates → UI Re-renders.
-- Redux Toolkit (RTK) is the official and recommended way to write Redux code.
-
----
-
-# 1] Action
-
-- An Action is a plain JavaScript object that describes what happened in the application.
-- Actions are used to send information/data from the application to the Redux store.
-- Every action must have a `type` property that describes the event/action.
-- `payload` is optional and contains additional data required to update the state.
-
-- Actions are dispatched using the `dispatch()` method.
-
-type is a property of an action that describes what action/event happened. 
-The type tells the reducer what happened or which action to perform.
-
-payload is a property of an action that contains the data/information needed to update the state.
-
-Example:
-
-```js
-{
-  type: "counter/increment",
-  payload: 1
-}
-```
-
-Actions are dispatched using:
-
-```js
-dispatch(action);
-```
-
-Example:
-
-```js
-dispatch(increment());
-dispatch(incrementByAmount(5));
-```
-
-----------------------------------------------------------------------------
-
-# 2] Reducer
-
-A Reducer is a pure function that takes the current state and an action, then returns a new state without modifying the existing one.
-
-const initialState = {
-  count: 0,
-};
-
-function counterReducer(state = initialState, action) {
-  switch (action.type) {
-
-    case "counter/increment":
-      return {
-        ...state,
-        count: state.count + 1,
-      };
-
-    case "counter/decrement":
-      return {
-        ...state,
-        count: state.count - 1,
-      };
-
-    case "counter/incrementByAmount":
-      return {
-        ...state,
-        count: state.count + action.payload,
-      };
-
-    default:
-      return state;
-  }
-}
-
-- The action describes what happened.
-- The reducer decides how to update the state.
-- Reducers should not directly mutate the state.
-
-
-- Redux Toolkit uses Immer internally, so code like `state.count++` is safe and actually creates an immutable update.
-
-Example:
-
-```js
-increment: (state) => {
-  state.count++;
-}
-```
-
--------------------------------------------------------------------------
-
-
-# 3] Store
-
-- A Store is an object that holds the entire state tree of the application.
-- There is only one store in a Redux application.
-- The store is responsible for storing the application state and managing state updates.
-- When creating a store using `configureStore()`, we need to provide the reducer because the reducer contains the logic for updating the state.
-- The store imports the reducer and uses it to update the state when an action is dispatched.
-
-- Components access the Redux store using `Provider`, `useSelector()`, and `useDispatch()`.
-
-### Store Methods
-
-- `getState()` → Returns the current state of the store.
-- `dispatch()` → Sends an action to the reducer to update the state.
-- `subscribe()` → Adds a listener that runs whenever the state changes.
-- `unsubscribe()` → Removes the listener.
-
-
-- React components using `useSelector()` automatically re-render when the selected state changes.
-
-
-Example:
-
-```js
-import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "./counterSlice";
-
-const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-  },
-});
-
-export default store;
-
-======================================================================
-# useSelector()
-
-`useSelector()` is a React-Redux hook used to read/access data from the Redux store inside a React component.
-
-
-Example:
-
-const count = useSelector((state) => state.counter.count);
-
--------------------------------------------------------------------------
-
-# useDispatch()
-
-`useDispatch()` is a React-Redux hook used to dispatch (send) actions from a React component to the Redux store.
-
-useDispatch() → Send actions that update data in the store (through reducers)
-
-Works:
-- Sends actions to the Redux store.
-- The reducer receives the action and updates the state based on that action.
-
-Example:
-
-const dispatch = useDispatch();
-
-dispatch(increment());
-
--------------------------------------------------------------------------
-
-# "Provider"
-
-`Provider` is a React-Redux component that connects the Redux store to the React application.
-
-Works:
-- Makes the Redux store available to all React components.
-- Allows components to use `useSelector()` and `useDispatch()`.
-
-Example:
-
-<Provider store={store}>
-  <App />
-</Provider>
-
--------------------------------------------------------------------------
-
-# createSlice()
-
-Definition:
-
-createSlice is a Redux Toolkit function used to create a slice of Redux state. It combines the initial state, reducer functions, and automatically generated action creators in one place. 
-
-It also uses Immer internally, which allows us to write simpler mutable-looking state updates while keeping Redux state immutable.
-
-
-`createSlice()` is a Redux Toolkit function that creates a slice of the Redux state and automatically generates reducers and action creators.
-
-Works:
-- Creates the initial state.
-- Creates reducer functions.
-- Automatically creates action types and action creators.
-- Reduces Redux boilerplate code.
-
-Example:
-
-const counterSlice = createSlice({
-  name: "counter",
-
-  initialState: { count: 0 },
-
-  reducers: {
-    increment: (state) => {
-      state.count++;
-    },
-  },
-});
-
-# createSlice() Explanation (Redux Toolkit)
-
-Before Redux Toolkit, you had to write:
-
-- Action types
-- Action creators
-- Reducers separately
-
-`createSlice()` combines all of them into one place.
-
-Example: Counter Slice
-
-
-## Without createSlice (Old Redux Style)
-
-const INCREMENT = "INCREMENT";
-
-function increment() {
-  return {
-    type: INCREMENT
-  };
-}
-
-function reducer(state, action) {
-  switch(action.type) {
-    case INCREMENT:
-      return state + 1;
-
-    default:
-      return state;
-  }
-}
-
-
-This required writing a lot of extra code.
-
-
-## Using createSlice()
-
-import { createSlice } from "@reduxjs/toolkit";
-
-const counterSlice = createSlice({
-
-  name: "counter",
-
-  initialState: {
-    value: 0
-  },
-
-  reducers: {
-
-    increment: (state) => {
-      state.value += 1;
-    },
-
-    decrement: (state) => {
-      state.value -= 1;
-    }
-
-  }
-
-});
-
-
-export const { increment, decrement } = counterSlice.actions;
-
-export default counterSlice.reducer;
-
-
-# What does each part mean?
-
-
-## 1. name: "counter"
-Definition:
-The name of your slice.
-It is used to create unique action types automatically.
-
-Examples:
-
-- user slice
-- cart slice
-- product slice
-
-
----
-
-## 2. initialState
-initialState: {
-  value: 0
-}
-
-Definition:
-The starting data or initial value of this slice.
-
-Examples:
-
-initialState: {
-  username: "",
-  isLoggedIn: false
-}
-
-
----
-
-## 3. reducers
-reducers: {
-
-  increment: (state) => {
-    state.value += 1;
-  }
-
-}
-
-Definition:
-Reducers define how the state changes when an action is dispatched.
-
-
-Example:
-
-Current state:
-
-value = 0
-
-
-increment action happens
-
-
-New state:
-
-value = 1
-
-
----
-
-## 4. Actions are created automatically
-
-
-From this:
-
-reducers: {
-
-  increment: (state) => {
-    state.value += 1;
-  }
-
-}
-
-
-Redux Toolkit automatically creates:
-
-
-{
-  type: "counter/increment"
-}
-
-
-You do not need to manually create:
-
-- Action types
-- Action creators
-
-
-
-# Why use createSlice()?
-
-- Less boilerplate code
-- Automatically creates actions
-- Automatically creates reducers
-- Easier to maintain
-- Recommended Redux approach
-
-======================================================================
-
-
-# Middleware
-
-Definition:
-Middleware is a function that runs between dispatching an action and the reducer receiving it.
-
-Works:
-- Intercepts actions before they reach the reducer.
-- Used for logging, API calls, async operations, and error handling.
-
-Flow:
-
-Component
-    |
-    ↓
-dispatch(action)
-    |
-    ↓
-Middleware
-    |
-    ↓
-Reducer
-    |
-    ↓
-Store Update
-
-
-Examples of Middleware:
-
-Redux Thunk:
-Handles asynchronous actions like API requests.
-
-Logger Middleware:
-Logs actions and state changes.
-```
-
-====================================================================
-### Middleware
-Redux middleware is a function that intercepts dispatched actions before they reach the reducers. 
-It allows you to perform additional processing, such as handling asynchronous operations (e.g., API calls), logging, or other side effects.
-
-By keeping business logic separate from UI components, middleware makes applications more scalable, maintainable, and easier to test.
-
-Common Redux middleware includes Redux Thunk, Redux Saga, and Redux Logger.
-
-
-
-
-Whenever you send an action using dispatch(), middleware receives that action first. It can perform extra work such as API calls, logging, authentication, or validation. After completing that work, it forwards the action to the reducer, which then updates the Redux state.
-
-
-================================================================================
-
-### Why middleware is required in React?
-
-- Middleware is commonly used in React applications to:
-  - Manage side effects, handle asynchronous actions,
-    and facilitate communication between components and the application’s state management system (like Redux).
-- Middleware allows you to manage these side effects without cluttering your components with complex logic.
-  - It helps separate business logic from UI logic, making the code more maintainable.
-  - Improves code reusability by handling common tasks in middleware, reducing the need for repeating logic.
-
-- For example, in Redux, middleware like redux-thunk or redux-saga is used to handle asynchronous actions (like API calls) in a more structured manner:
-  - It organizes side effects outside of components, improving readability and maintainability.
-
-- Middleware is required in React applications, particularly when using state management libraries like Redux, to handle asynchronous operations and side effects effectively.
-
-### Middleware allows developers to:
-
-- Intercept Actions: Middleware can intercept actions dispatched to the store before they reach the reducers.
-- Perform Asynchronous Tasks: Middleware can handle asynchronous operations, such as making API calls, within the action dispatching process.
-- Dispatch New Actions: After completing the asynchronous tasks, middleware can dispatch new actions\*\* with the results of these tasks to update the store.
-
-
-========================================================
-
-In React applications, asynchronous operations like making API calls or handling side effects can be managed effectively using middleware.
-Middleware allows developers to intercept certain actions, perform asynchronous tasks,
-and then dispatch new actions with the results once the tasks are complete.
-
-Middleware, in the context of web development,
-
-- acts as a bridge between different components of an application, providing a layer of processing and functionality.
-- It intercepts incoming requests, performs specific actions, and then passes the modified request to the next middleware or the final destination
-
-=========================================================
-# Redux floder structure
-
-src
-│
-├── app
-│   └── store.js
-│
-├── features
-│   └── counter
-│       └── counterSlice.js
-│
-├── components
-│   └── Counter.jsx
-│
-├── App.js
-└── main.js
-```
-```
-# Redux Toolkit Flow
-
-1. User performs an action (click button)
-
-↓
-
-2. Component calls dispatch(action)
-
-↓
-
-3. Action creator creates action object
-
-↓
-
-4. Reducer receives (state, action)
-
-↓
-
-5. Reducer updates state and returns new state
-
-↓
-
-6. Store updates
-
-↓
-
-7. useSelector gets updated state
-
-↓
-
-8. UI re-renders automatically
-
-
-# Slice
-
-import { createSlice } from "@reduxjs/toolkit";
-
-const initialState = {
-  count: 0,
-};
-
-const counterSlice = createSlice({
-  name: "counter",
-
-  initialState,
-
-  reducers: {
-
-    increment: (state) => {
-      state.count++;
-    },
-
-    decrement: (state) => {
-      state.count--;
-    },
-
-    incrementByAmount: (state, action) => {
-      state.count += action.payload;
-    },
-
-  },
-});
-
-
-export const {
-  increment,
-  decrement,
-  incrementByAmount,
-} = counterSlice.actions;
-
-
-export default counterSlice.reducer;
-
-
-# Store
-
-import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "./counterSlice";
-
-
-const store = configureStore({
-
-  reducer: {
-    counter: counterReducer,
-  },
-
-});
-
-
-export default store;
-
-
-# Provider
-
-import { Provider } from "react-redux";
-import store from "./store";
-import App from "./App";
-
-
-function Root() {
-
-  return (
-
-    <Provider store={store}>
-      <App />
-    </Provider>
-
-  );
-
-}
-
-
-export default Root;
-
-
-# useSelector
-
-import { useSelector } from "react-redux";
-
-
-const count = useSelector(
-  (state) => state.counter.count
-);
-
-
-# useDispatch
-
-import { useDispatch } from "react-redux";
-import { increment } from "./counterSlice";
-
-
-const dispatch = useDispatch();
-
-
-dispatch(increment());
-
-
-# Counter Component
-
-import { useSelector, useDispatch } from "react-redux";
-import { increment, decrement } from "./counterSlice";
-
-
-function Counter() {
-
-  const count = useSelector(
-    (state) => state.counter.count
-  );
-
-
-  const dispatch = useDispatch();
-
-
-  return (
-
-    <div>
-
-      <h1>{count}</h1>
-
-
-      <button onClick={() => dispatch(increment())}>
-        Increment
-      </button>
-
-
-      <button onClick={() => dispatch(decrement())}>
-        Decrement
-      </button>
-
-
-    </div>
-
-  );
-
-}
-
-
-export default Counter;
-
-
-
-```
-```
 ======================================================================
 
 # Difference Between Props and Redux
@@ -1094,6 +286,821 @@ Redux vs Redux Toolkit
 
 - Seamless integration with Redux DevTools Extension.
 
+
+======================================================================
+
+
+# Middleware
+
+Definition:
+Middleware is a function that runs between dispatching an action and the reducer receiving it.
+
+Works:
+- Intercepts actions before they reach the reducer.
+- Used for logging, API calls, async operations, and error handling.
+
+Flow:
+
+Component
+    |
+    ↓
+dispatch(action)
+    |
+    ↓
+Middleware
+    |
+    ↓
+Reducer
+    |
+    ↓
+Store Update
+
+
+Examples of Middleware:
+
+Redux Thunk:
+Handles asynchronous actions like API requests.
+
+Logger Middleware:
+Logs actions and state changes.
+```
+
+====================================================================
+### Middleware
+Redux middleware is a function that intercepts dispatched actions before they reach the reducers. 
+It allows you to perform additional processing, such as handling asynchronous operations (e.g., API calls), logging, or other side effects.
+
+By keeping business logic separate from UI components, middleware makes applications more scalable, maintainable, and easier to test.
+
+Common Redux middleware includes Redux Thunk, Redux Saga, and Redux Logger.
+
+
+
+
+Whenever you send an action using dispatch(), middleware receives that action first. It can perform extra work such as API calls, logging, authentication, or validation. After completing that work, it forwards the action to the reducer, which then updates the Redux state.
+
+
+================================================================================
+
+### Why middleware is required in React?
+
+- Middleware is commonly used in React applications to:
+  - Manage side effects, handle asynchronous actions,
+    and facilitate communication between components and the application’s state management system (like Redux).
+- Middleware allows you to manage these side effects without cluttering your components with complex logic.
+  - It helps separate business logic from UI logic, making the code more maintainable.
+  - Improves code reusability by handling common tasks in middleware, reducing the need for repeating logic.
+
+- For example, in Redux, middleware like redux-thunk or redux-saga is used to handle asynchronous actions (like API calls) in a more structured manner:
+  - It organizes side effects outside of components, improving readability and maintainability.
+
+- Middleware is required in React applications, particularly when using state management libraries like Redux, to handle asynchronous operations and side effects effectively.
+
+### Middleware allows developers to:
+
+- Intercept Actions: Middleware can intercept actions dispatched to the store before they reach the reducers.
+- Perform Asynchronous Tasks: Middleware can handle asynchronous operations, such as making API calls, within the action dispatching process.
+- Dispatch New Actions: After completing the asynchronous tasks, middleware can dispatch new actions\*\* with the results of these tasks to update the store.
+
+
+========================================================
+
+In React applications, asynchronous operations like making API calls or handling side effects can be managed effectively using middleware.
+Middleware allows developers to intercept certain actions, perform asynchronous tasks,
+and then dispatch new actions with the results once the tasks are complete.
+
+Middleware, in the context of web development,
+
+- acts as a bridge between different components of an application, providing a layer of processing and functionality.
+- It intercepts incoming requests, performs specific actions, and then passes the modified request to the next middleware or the final destination
+
+
+======================================================================
+ 
+ React useContext 
+ 
+
+ - useContext hook is used to create common data that can be accessed throughout 
+  the component hierarchy without passing the props down manually to each level.
+
+ -useContext is a React Hook used to consume values from the Context API.
+ 
+ - It helps share data between components without prop drilling.
+
+ First, we create a context using createContext().
+ Then we provide the value using Context.Provider.
+ Finally, we access the value in any child component using useContext(ContextName).
+
+ Common Uses:
+ ✔ Theme (Dark/Light Mode)
+ ✔ User Information
+ ✔ Authentication
+ ✔ Language
+ ✔ Global Settings
+
+
+======================================================================
+  
+ 1. Create Context
+
+import { createContext } from "react";
+
+export const ThemeContext = createContext("Default Value");
+
+
+ 2. Provide Context
+
+import { ThemeContext } from "./ThemeContext";
+
+function App() {
+  const theme = "Dark";
+
+  return (
+    <ThemeContext.Provider value={theme}>
+      <Component />
+    </ThemeContext.Provider>
+  );
+}
+
+
+ 3. Consume Context using useContext (Recommended)
+
+import { useContext } from "react";
+import { ThemeContext } from "./ThemeContext";
+
+function Component() {
+  const theme = useContext(ThemeContext);
+
+  return <h1>{theme}</h1>;
+}
+
+
+// 4. Consume Context using Consumer (Older Method)
+
+import { ThemeContext } from "./ThemeContext";
+
+function Component() {
+  return (
+    <ThemeContext.Consumer>
+      {(theme) => <h1>{theme}</h1>}
+    </ThemeContext.Consumer>
+  );
+}
+
+
+
+======================================================================
+
+
+
+
+useContext vs Redux
+
+useContext
+
+- useContext hook is used to create common data that can be accessed throughout the component hierarchy without passing the props down manually to each level.
+
+- It helps share data between components without prop drilling.
+
+- we create a context using createContext().
+ Then we provide the value using Context.Provider.
+ Finally, we access the value in any child component using useContext(ContextName).
+
+- When the Provider's value changes, all components consuming that Context re-render.
+
+- `useContext` does not provide built-in features like actions,
+     reducers, or middleware for state management.
+
+- Async operations need to be handled separately using tools like `useEffect`, async functions, or custom hooks.
+
+- Best suited for simple or global data such as Theme, Authentication, Language, User Preferences, etc.
+
+ Common Uses:
+ ✔ Theme (Dark/Light Mode)
+ ✔ User Information
+ ✔ Authentication
+ ✔ Language
+ ✔ Global Settings
+
+
+
+Redux
+
+- Redux is a predictable state container for JavaScript applications.
+- Redux is a state management library used to manage and share application state.
+- There is a central store that holds the entire state of the application.
+- Each component can access the stored state without having to pass props from
+ one component to another (avoids prop drilling).
+
+- Redux provides powerful debugging tools like Redux DevTools, which help track state changes and actions.
+- Redux provides a structured way to manage complex state updates using actions and reducers.
+- Redux supports async operations using middleware like Redux Thunk and Redux Saga.
+
+Redux is better suited for large-scale applications where many components 
+need to share and update complex state.
+
+----------------------------------------------------------------------------
+
+I use useContext for sharing simple global data like theme, language, authentication, or user preferences. 
+For complex state that is shared across many components, changes frequently, 
+or requires async operations—such as products, shopping carts, orders, or dashboard data—I use Redux.
+In production applications, it's common to use both: useContext for lightweight global settings
+ and Redux for application state management."
+
+======================================================================
+ 
+1] predictable state means you can easily understand how and why the state changed.
+======================================================================
+
+# Q. What is Redux?
+
+- Redux is a predictable state container for JavaScript applications.
+- Redux is a state management library used to manage and share application state.
+- There is a central store that holds the entire state of the application.
+- Each component can access the stored state without having to pass props from one component to another (avoids prop drilling).
+- There are three main building blocks: Actions, Reducers, and Store.
+- Redux follows a one-way data flow: Component → Dispatch Action → Reducer → Store Updates → UI Re-renders.
+- Redux Toolkit (RTK) is the official and recommended way to write Redux code.
+
+---
+
+# 1] Action
+
+- An Action is a plain JavaScript object that describes what happened in the application.
+
+- Actions are used to send information/data from the application to the Redux store.
+- Every action must have a `type` property that describes the event/action.
+- `payload` is optional and contains additional data required to update the state.
+
+- Actions are dispatched using the `dispatch()` method.
+
+type is a property of an action that describes what action/event happened. 
+The type tells the reducer what happened or which action to perform.
+
+payload is a property of an action that contains the data/information needed to update the state.
+
+Example:
+
+```js
+{
+  type: "counter/increment",
+  payload: 1
+}
+```
+
+Actions are dispatched using:
+
+```js
+dispatch(action);
+```
+
+Example:
+
+```js
+dispatch(increment());
+dispatch(incrementByAmount(5));
+```
+
+----------------------------------------------------------------------------
+
+# 2] Reducer
+
+A Reducer is a pure function that takes the current state and an action, then returns a new state without modifying the existing one.
+
+const initialState = {
+  count: 0,
+};
+
+function counterReducer(state = initialState, action) {
+  switch (action.type) {
+
+    case "counter/increment":
+      return {
+        ...state,
+        count: state.count + 1,
+      };
+
+    case "counter/decrement":
+      return {
+        ...state,
+        count: state.count - 1,
+      };
+
+    case "counter/incrementByAmount":
+      return {
+        ...state,
+        count: state.count + action.payload,
+      };
+
+    default:
+      return state;
+  }
+}
+
+- The action describes what happened.
+- The reducer decides how to update the state.
+- Reducers should not directly mutate the state.
+
+
+- Redux Toolkit uses Immer internally, so code like `state.count++` is safe and actually creates an immutable update.
+
+Example:
+
+```js
+increment: (state) => {
+  state.count++;
+}
+```
+
+-------------------------------------------------------------------------
+
+
+# 3] Store
+
+- A Store is an object that holds the entire state tree of the application.
+- There is only one store in a Redux application.
+- The store is responsible for storing the application state and managing state updates.
+- When creating a store using `configureStore()`, we need to provide the reducer because the reducer contains the logic for updating the state.
+- The store imports the reducer and uses it to update the state when an action is dispatched.
+
+- Components access the Redux store using `Provider`, `useSelector()`, and `useDispatch()`.
+
+### Store Methods
+
+- `getState()` → Returns the current state of the store.
+- `dispatch()` → Sends an action to the reducer to update the state.
+- `subscribe()` → Adds a listener that runs whenever the state changes.
+- `unsubscribe()` → Removes the listener.
+
+
+- React components using `useSelector()` automatically re-render when the selected state changes.
+
+
+Example:
+
+```js
+import { configureStore } from "@reduxjs/toolkit";
+import counterReducer from "./counterSlice";
+
+const store = configureStore({
+  reducer: {
+    counter: counterReducer,
+  },
+});
+
+export default store;
+
+======================================================================
+# useSelector()
+
+`useSelector()` is a React-Redux hook used to read/access data from the Redux store inside a React component.
+
+
+Example:
+
+const count = useSelector((state) => state.counter.count);
+
+-------------------------------------------------------------------------
+
+# useDispatch()
+
+`useDispatch()` is a React-Redux hook used to dispatch (send) actions from a React component to the Redux store.
+
+useDispatch() → Send actions that update data in the store (through reducers)
+
+Works:
+- Sends actions to the Redux store.
+- The reducer receives the action and updates the state based on that action.
+
+Example:
+
+const dispatch = useDispatch();
+
+dispatch(increment());
+
+-------------------------------------------------------------------------
+
+# "Provider"
+
+`Provider` is a React-Redux component that `connects the Redux store to the React application`.
+
+Works:
+- Makes the Redux store available to all React components.
+- Allows components to use `useSelector()` and `useDispatch()`.
+
+Example:
+
+<Provider store={store}>
+  <App />
+</Provider>
+```
+
+======================================================================
+
+# createSlice()
+
+Definition:
+
+createSlice is a Redux Toolkit function used to create a slice of Redux state. It combines the initial state, reducer functions, and automatically generated action creators in one place. 
+
+It also uses Immer internally, which allows us to write simpler mutable-looking state updates while keeping Redux state immutable.
+
+
+`createSlice()` is a Redux Toolkit function that creates a slice of the Redux state and automatically generates reducers and action creators.
+
+Works:
+- Creates the initial state.
+- Creates reducer functions.
+- Automatically creates action types and action creators.
+- Reduces Redux boilerplate code.
+
+Example:
+
+const counterSlice = createSlice({
+  name: "counter",
+
+  initialState: { count: 0 },
+
+  reducers: {
+    increment: (state) => {
+      state.count++;
+    },
+  },
+});
+
+# createSlice() Explanation (Redux Toolkit)
+
+Before Redux Toolkit, you had to write:
+
+- Action types
+- Action creators
+- Reducers separately
+
+`createSlice()` combines all of them into one place.
+
+Example: Counter Slice
+
+
+## Without createSlice (Old Redux Style)
+
+const INCREMENT = "INCREMENT";
+
+function increment() {
+  return {
+    type: INCREMENT
+  };
+}
+
+function reducer(state, action) {
+  switch(action.type) {
+    case INCREMENT:
+      return state + 1;
+
+    default:
+      return state;
+  }
+}
+
+
+This required writing a lot of extra code.
+
+
+## Using createSlice()
+
+import { createSlice } from "@reduxjs/toolkit";
+
+const counterSlice = createSlice({
+
+  name: "counter",
+
+  initialState: {
+    value: 0
+  },
+
+  reducers: {
+
+    increment: (state) => {
+      state.value += 1;
+    },
+
+    decrement: (state) => {
+      state.value -= 1;
+    }
+
+  }
+
+});
+
+
+export const { increment, decrement } = counterSlice.actions;
+
+export default counterSlice.reducer;
+
+
+# What does each part mean?
+
+
+## 1. name: "counter"
+Definition:
+The name of your slice.
+It is used to create unique action types automatically.
+
+Examples:
+
+- user slice
+- cart slice
+- product slice
+
+
+---
+
+## 2. initialState
+initialState: {
+  value: 0
+}
+
+Definition:
+The starting data or initial value of this slice.
+
+Examples:
+
+initialState: {
+  username: "",
+  isLoggedIn: false
+}
+
+
+---
+
+## 3. reducers
+reducers: {
+
+  increment: (state) => {
+    state.value += 1;
+  }
+
+}
+
+Definition:
+Reducers define how the state changes when an action is dispatched.
+
+
+Example:
+
+Current state:
+
+value = 0
+
+
+increment action happens
+
+
+New state:
+
+value = 1
+
+
+---
+
+## 4. Actions are created automatically
+
+
+From this:
+
+reducers: {
+
+  increment: (state) => {
+    state.value += 1;
+  }
+
+}
+
+
+Redux Toolkit automatically creates:
+
+
+{
+  type: "counter/increment"
+}
+
+
+You do not need to manually create:
+
+- Action types
+- Action creators
+
+
+
+# Why use createSlice()?
+
+- Less boilerplate code
+- Automatically creates actions
+- Automatically creates reducers
+- Easier to maintain
+- Recommended Redux approach
+
+=========================================================
+# Redux floder structure
+
+src
+│
+├── app
+│   └── store.js
+│
+├── features
+│   └── counter
+│       └── counterSlice.js
+│
+├── components
+│   └── Counter.jsx
+│
+├── App.js
+└── main.js
+```
+```
+# Redux Toolkit Flow
+
+1. User performs an action (click button)
+
+↓
+
+2. Component calls dispatch(action)
+
+↓
+
+3. Action creator creates action object
+
+↓
+
+4. Reducer receives (state, action)
+
+↓
+
+5. Reducer updates state and returns new state
+
+↓
+
+6. Store updates
+
+↓
+
+7. useSelector gets updated state
+
+↓
+
+8. UI re-renders automatically
+
+
+# Slice
+
+import { createSlice } from "@reduxjs/toolkit";
+
+const initialState = {
+  count: 0,
+};
+
+const counterSlice = createSlice({
+  name: "counter",
+
+  initialState,
+
+  reducers: {
+
+    increment: (state) => {
+      state.count++;
+    },
+
+    decrement: (state) => {
+      state.count--;
+    },
+
+    incrementByAmount: (state, action) => {
+      state.count += action.payload;
+    },
+
+  },
+});
+
+
+export const {
+  increment,
+  decrement,
+  incrementByAmount,
+} = counterSlice.actions;
+
+
+export default counterSlice.reducer;
+
+
+# Store
+
+import { configureStore } from "@reduxjs/toolkit";
+import counterReducer from "./counterSlice";
+
+
+const store = configureStore({
+
+  reducer: {
+    counter: counterReducer,
+  },
+
+});
+
+
+export default store;
+
+
+# Provider
+
+import { Provider } from "react-redux";
+import store from "./store";
+import App from "./App";
+
+
+function Root() {
+
+  return (
+
+    <Provider store={store}>
+      <App />
+    </Provider>
+
+  );
+
+}
+
+
+export default Root;
+
+
+# useSelector
+
+import { useSelector } from "react-redux";
+
+
+const count = useSelector(
+  (state) => state.counter.count
+);
+
+
+# useDispatch
+
+import { useDispatch } from "react-redux";
+import { increment } from "./counterSlice";
+
+
+const dispatch = useDispatch();
+
+
+dispatch(increment());
+
+
+# Counter Component
+
+import { useSelector, useDispatch } from "react-redux";
+import { increment, decrement } from "./counterSlice";
+
+
+function Counter() {
+
+  const count = useSelector(
+    (state) => state.counter.count
+  );
+
+
+  const dispatch = useDispatch();
+
+
+  return (
+
+    <div>
+
+      <h1>{count}</h1>
+
+
+      <button onClick={() => dispatch(increment())}>
+        Increment
+      </button>
+
+
+      <button onClick={() => dispatch(decrement())}>
+        Decrement
+      </button>
+
+
+    </div>
+
+  );
+
+}
+
+
+export default Counter;
+
+
+
+```
+```
 
 ========
 
