@@ -269,7 +269,7 @@ from the normal document flow.
 - The element is positioned based on the user's scroll position.
 - It behaves like `position: relative` initially and stays in the normal document flow.
 - When the element reaches the specified offset (`top`, `right`, `bottom`, `left`) during scrolling, it behaves like `position: fixed` within its scrolling container.
-- The element does occupy space in the layout because it is not removed from the normal document flow.
+- The element  hold space in the layout because it is not removed from the normal document flow.
 - The `top`, `right`, `bottom`, and `left` properties define the point at which the element becomes sticky.
 
 

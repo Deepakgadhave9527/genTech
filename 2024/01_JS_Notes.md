@@ -337,105 +337,6 @@ const [user, posts] = await Promise.all([
 ```
 
 
-//=========================== global object =========================
-## 1. What is the Global Object in JavaScript? 
-
-
-A global object is the top-level object that exists in the global scope and provides access to globally available variables, functions, and built-in objects.
-
-* In a browser, the global object is `window`.
-* In Node.js, the global object is `global`.
-* In modern JavaScript, `globalThis` is used to access the global object in any environment.
-
-
-```javascript
-var name = "Deepak";
-
-console.log(window.name); // "Deepak"
-```
-
----
-
-## 2. What is the `window` Object? (Interview Answer)
-
- The `window` object is the global object in browsers. It represents the browser window (or tab) and provides access to browser-related features. such as `alert()`, `setTimeout()`, `localStorage`, and `location`.
-
-It includes:
-
-* `document`
-* `location`
-* `history`
-* `navigator`
-* `setTimeout`, `alert`, etc.
-
-
-
-### Example:
-
-```javascript
-window.alert("Hello");
-console.log(window.innerWidth);
-```
-
-
-
-
-### What is the `document` object?
-
-The `document` object represents the HTML page loaded inside the browser window. It is a property of the `window` object.
-
-It is used to:
-
-* Access HTML elements
-* Modify content dynamically
-* Handle DOM manipulation
-
-
-
-### Relationship
-
-```javascript
-window.document === document; // true
-document.getElementById("demo");
-document.querySelector(".btn");
-```
-
-
-## One-line Interview Answers
-
-* Global Object: The top-level object that provides globally accessible variables and functions.
-* Window Object: The global object in browsers that represents the browser window.
-* Document Object: An object that represents the HTML document and allows DOM manipulation.
-Your content is mostly correct, just needs a bit of polishing for accuracy + interview clarity.
-
-
-//=========================== global object =========================
-
-
-### what is global object in javascript?
-
-
--A global object is an object that always exists in the global scope
--In a web browser, the global object is the window object
--The global object can be accessed using the "this" operator in the global scope
--The global object in JavaScript is an always defined object that provides
-variables and functions, and is available anywhere.
-
-
-
-window is a global object of javascript it is used to load / display a web page
-content in the web browser.
-
-The window object represents a tab of a web browser, it includes navigation model, histoy,
-location, document, etc.
-
-document represents a web page in the web browser.
-
-document object is a part of window object.
-
-Using document object you can dynamically update the content on the viewport.
-
-
 =========================================Set====================
 
 ### Set
@@ -443,12 +344,20 @@ Using document object you can dynamically update the content on the viewport.
 - Set is a built-in object that stores unique values of any type.
 - meaning duplicate values are not allowed. It can store any type of value, such as numbers, strings, objects, or even functions
 
- A `Set` also preserves the insertion order of elements. It is useful when you need to remove duplicates or quickly check whether a value exists.
-
-
-> A `Set` is a built-in object, so `typeof new Set()` returns `"object"`.
-
 A JavaScript Set stores unique values and does not use indexes for accessing elements. 
+
+
+It only stores values in insertion order, and new values are always added at the end.
+
+So this is NOT possible:
+
+insert in middle ❌
+insert at index ❌
+sort automatically ❌
+make some  dash point
+
+- `typeof new Set()` returns `"object"`.
+
 
 Values are accessed by checking their existence using .has() or by iterating through the Set.
 
@@ -1024,7 +933,7 @@ It does not attach to the global object and provides safer, predictable scoping 
 
 
 ### const:-
-- const is hoisted, but it's not initialized, which means it’s in the Temporal Dead Zone until its declaration is reached. hoisting error ReferenceError: Cannot access 'a' before initialization
+- const is hoisted, but its not initialized, which means it’s in the Temporal Dead Zone until its declaration is reached. hoisting error ReferenceError: Cannot access 'a' before initialization
 
 - It is block scoped
 -const is not  reassignment
@@ -1050,13 +959,14 @@ const z = 10; // SyntaxError: Identifier 'z' has already been declared
 it's hoisted but not initialized — so accessing it before declaration
  throws a ReferenceError due to the Temporal Dead Zone. 
 You can't reassign or redeclare a `const` variable in the same scope. 
-However, if it's assigned an object or array, t
+However, if its assigned an object or array, t
 he reference stays constant, but the internal contents can still be modified. 
 So, `const` protects the reference, not the data inside non-primitives.
 
 
 
 
+```js
 
 
 
@@ -1582,7 +1492,7 @@ Inside an object → Method
 ======================================Rest operator:-========================
 
 
-Rest operator:-
+### Rest operator:-
 
 
 The rest operator (...) is used in function parameters to collect all remaining arguments into a single array. 
@@ -1691,8 +1601,6 @@ A] call():
  It invokes the function immediately and accepts arguments individually.
 
  - An object can use a method belonging to another object
-
-
 - call method is Immediately invokes a function with a given `this` value and arguments provided individually
 
 - accepts arguments as separate values
@@ -2160,3 +2068,105 @@ When a function is assigned to another variable,
  only the reference is copied. 
  Both variables point to the same function object,
   so the type remains "function" and the references are equal.
+
+
+
+
+//=========================== global object =========================
+## 1. What is the Global Object in JavaScript? 
+
+
+A global object is the top-level object that exists in the global scope and provides access to globally available variables, functions, and built-in objects.
+
+* In a browser, the global object is `window`.
+* In Node.js, the global object is `global`.
+* In modern JavaScript, `globalThis` is used to access the global object in any environment.
+
+
+```javascript
+var name = "Deepak";
+
+console.log(window.name); // "Deepak"
+```
+
+---
+
+## 2. What is the `window` Object? (Interview Answer)
+
+ The `window` object is the global object in browsers. It represents the browser window (or tab) and provides access to browser-related features. such as `alert()`, `setTimeout()`, `localStorage`, and `location`.
+
+It includes:
+
+* `document`
+* `location`
+* `history`
+* `navigator`
+* `setTimeout`, `alert`, etc.
+
+
+
+### Example:
+
+```javascript
+window.alert("Hello");
+console.log(window.innerWidth);
+```
+
+
+
+
+### What is the `document` object?
+
+The `document` object represents the HTML page loaded inside the browser window. It is a property of the `window` object.
+
+It is used to:
+
+* Access HTML elements
+* Modify content dynamically
+* Handle DOM manipulation
+
+
+
+### Relationship
+
+```javascript
+window.document === document; // true
+document.getElementById("demo");
+document.querySelector(".btn");
+```
+
+
+## One-line Interview Answers
+
+* Global Object: The top-level object that provides globally accessible variables and functions.
+* Window Object: The global object in browsers that represents the browser window.
+* Document Object: An object that represents the HTML document and allows DOM manipulation.
+Your content is mostly correct, just needs a bit of polishing for accuracy + interview clarity.
+
+
+//=========================== global object =========================
+
+
+### what is global object in javascript?
+
+
+-A global object is an object that always exists in the global scope
+-In a web browser, the global object is the window object
+-The global object can be accessed using the "this" operator in the global scope
+-The global object in JavaScript is an always defined object that provides
+variables and functions, and is available anywhere.
+
+
+
+window is a global object of javascript it is used to load / display a web page
+content in the web browser.
+
+The window object represents a tab of a web browser, it includes navigation model, histoy,
+location, document, etc.
+
+document represents a web page in the web browser.
+
+document object is a part of window object.
+
+Using document object you can dynamically update the content on the viewport.
+
