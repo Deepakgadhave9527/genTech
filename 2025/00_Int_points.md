@@ -1,3 +1,244 @@
+
+
+
+webworker
+webpack
+flex-gird
+
+
+================================================================================
+
+
+### Axios
+
+* Axios is a `third-party HTTP client library` used to communicate with backend APIs.
+* `npm install axios` installation is required because Axios is an `external dependency`.
+* Axios automatically `parses JSON responses into JavaScript objects` in typical JSON API usage.
+* Error checking is usually handled with ``try/catch``, especially when using `async/await`.
+* Axios has built-in support for `request and response interceptors` for modifying requests and handling responses globally.
+* Axios provides a `simple timeout configuration` to reject requests that take too long.
+* Common headers are `easy to configure globally`, which helps avoid repeating the same headers in every request.
+* Both Axios and Fetch are `Promise-based`, support `Async/Await`, and support `request cancellation` using `AbortController`.
+
+### Fetch
+
+* Fetch is a `native Web API` used to communicate with backend APIs without installing an external library.
+
+* `No installation is required` because Fetch is available in modern browsers and Node.js environments.
+* Fetch requires you to call ``response.json()`` to explicitly parse a JSON response into a JavaScript object.
+* Error checking requires checking ``response.ok` or `response.status``, because HTTP errors like `404` or `500` do not automatically reject the Promise.
+* Fetch has `no simple built-in timeout option` like Axios; timeout behavior can be implemented using `AbortController`.
+* Common headers require `manual configuration or a reusable wrapper` if you want to avoid repeating them.
+* Both Axios and Fetch are `Promise-based`, support `Async/Await`, and support `request cancellation` using `AbortController`.
+
+
+
+//=========================== global object =========================
+## 1. What is the Global Object in JavaScript?
+
+A **global object** is the top-level object that always exists in the global scope. It provides access to globally available variables, functions, and built-in objects.
+
+- In browsers, the global object is `window`.
+- In Node.js, the global object is `global`.
+- In modern JavaScript, `globalThis` is the standard way to access the global object across all environments.
+- The global object contains built-in APIs such as `setTimeout()`, `setInterval()`, `console`, and more.
+
+> **Note:** In browsers, global variables declared with `var` become properties of the `window` object, whereas `let` and `const` do not.
+
+### Example
+
+```javascript
+var name = "Deepak";
+let age = 25;
+
+console.log(window.name); // "Deepak"
+console.log(window.age);  // undefined
+
+console.log(globalThis.name); // "Deepak"
+```
+========================================================================
+## What is the `window` Object? (Interview Answer)
+
+The **`window` object** is the global object in web browsers.
+It represents the browser window (or tab) and provides access to browser-specific APIs and features.
+
+It provides access to:
+- `document`
+- `location`
+- `history`
+- `navigator`
+- `localStorage`
+- `sessionStorage`
+- `alert()`
+- `setTimeout()`
+- `setInterval()`
+- `fetch()` and more.
+
+### Example
+
+```javascript
+window.alert("Hello");
+console.log(window.innerWidth);
+```
+
+========================================================================
+
+## What is the `document` Object?
+
+The **`document` object** represents the HTML document loaded in the browser. 
+It is a property of the `window` object and is used to access and manipulate the DOM (Document Object Model).
+
+It is used to:
+- Access HTML elements
+- Modify HTML content and attributes
+- Change CSS styles
+- Create and remove elements
+- Handle DOM events
+
+### Example
+
+```javascript
+document.getElementById("demo");
+document.querySelector(".btn");
+
+
+========================================================================-
+
+## Relationship Between `window` and `document`
+
+The `document` object is a property of the `window` object.
+
+window.document === document; // true
+
+window
+│
+├── document
+├── location
+├── history
+├── navigator
+├── localStorage
+├── sessionStorage
+├── alert()
+├── setTimeout()
+└── fetch()
+```
+
+---
+
+## One-Line Interview Answers
+
+- **Global Object:** The top-level object that provides globally accessible variables, functions, and built-in objects.
+- **Window Object:** The global object in browsers that represents the browser window and provides browser-specific APIs.
+- **Document Object:** An object that represents the HTML document and provides methods to access and manipulate the DOM.
+
+
+  
+
+
+===========================
+
+  Custom Hooks:
+  Custom Hooks are a mechanism to reuse stateful logic
+  Custom hooks are nothing but these are javascript functions,
+  if we have something common logic that we want to share between components
+  then we use custom hooks.
+  These are logic that will be reused in many components.
+  We can create hooks using the name start with “use” keyword.
+
+  {/_
+  A custom Hook is basically a JavaScript function.
+  Its name begins with "use" that could invoke other Hooks.
+  The working of a custom Hook is identical to a regular function.
+  The "use" in the starting describes that this particular function conforms to the rules of Hooks.
+  Moreover, building custom Hooks enables you to extract component logic inside reusable functions.
+  We create a different function and write a shared logic here. _/}
+
+
+
+
+
+==============================================================
+
+### What are PropTypes?
+
+- `PropTypes` is a library used for `runtime type-checking of props` in React.
+- It allows us to define the `expected type` of each prop a component should receive.
+- If a component receives an incorrect prop type, React can show a `warning in the console during development`.
+- PropTypes can also specify whether a prop is `required` using `.isRequired`.
+- It is mainly useful for `catching incorrect prop usage during development`.
+
+Install it with:
+
+```bash
+npm install prop-types
+```
+
+Example:
+
+```jsx
+import PropTypes from "prop-types";
+
+function User({ name, age }) {
+  return <h1>{name} - {age}</h1>;
+}
+
+User.propTypes = {
+  name: PropTypes.string.isRequired,
+  age: PropTypes.number.isRequired,
+};
+```
+
+### Interview answer
+
+PropTypes is a separate library used for runtime type-checking of props in React. We define the expected data type for each prop, such as string, number, or boolean. If an incorrect type is passed, React shows a warning in the development console. We can also use `.isRequired` to indicate that a prop must be provided.”`
+
+
+
+==============================================================
+
+Q12 what is dom ?
+
+
+
+-DOM: DOM stands for ‘Document Object Model’.
+DOM is a tree-like representation of an HTML document created by the browser.
+It represents every HTML element, attribute, and text as objects (nodes).
+JavaScript interacts with the DOM through the document object, 
+allowing it to access, modify, add, or remove HTML elements,
+ attributes, styles, and content dynamically without reloading the page.
+
+
+
+-DOM: DOM stands for ‘Document Object Model’.
+-It is a structured representation of the HTML elements
+that are present in a webpage or web-app.
+- JavaScript interacts with the DOM using the document object.  
+- The DOM represents all elements, attributes, and content of a web page as objects that can be accessed and manipulated using JavaScript.
+
+
+
+
+- Includes element nodes, text nodes, and attribute nodes.  
+- Enables adding, removing, or modifying elements and attributes dynamically.  
+- Handles user interactions like clicks, key presses, and other events.  
+- Provides methods for navigation (parentNode, childNodes) and modification (setAttribute, appendChild).  
+- Allows real-time updates and interactivity in web pages.  
+
+
+
+
+
+===========================================================================
+
+
+
+A framework is a set of pre-written code that provides a structure for developing software applications. 
+
+A library, on the other hand, is a collection of pre-written code that can be used to perform specific tasks.
+
+
+
+
 ========================================================================
 
 
@@ -188,83 +429,6 @@ This should give you a deeper, more thorough understanding of Webpack in the con
 why typescript is used in react
 
 TypeScript provides a type system that allows developers to catch type-related errors at compile time rather than at runtime. This feature makes it easier to write and maintain high-quality code. For example, in a React component, TypeScript can help catch errors related to the props and state of the component
-
-================================================================================
-
-- ``package.json``:
-  - `Project Metadata`: Includes essential information such as the project’s name, version, description, author, and license.
-
-  - `Dependencies`: Lists the libraries and packages that the project depends on, with version ranges (e.g., `"^18.0.0"` allows for minor updates).
-  - `Scripts`: Defines command-line scripts for various tasks like starting the app, building it, or running tests (e.g., `npm run start`).
-
-  - `Configurations`: Can include settings for tools and libraries used in the project, such as Babel or ESLint.
-
-- ``package-lock.json``:
-  - `Exact Versions`: Records the precise versions of all dependencies and sub-dependencies installed, ensuring consistency.
-
-  - `Dependency Tree`: Captures the complete hierarchy of dependencies, including nested dependencies, to match the exact installed versions.
-
-  - `Consistent Installations`: Ensures that the same versions are installed
-
-========================================================================
-
-### Dependencies
-
-- Essential packages for running the application in production.
-- The `dependencies` property lists the packages required for the project to operate in a production or deployment environment.
-- When you run `npm install`, the packages listed in the `dependencies` section are installed.
-
-  npm i <package_name>
-
-- Example packages: Express, React, lodash.
-
-### DevDependencies
-
-- Packages needed only during development and testing, not required for production deployment.
-
-- The `devDependencies` property lists packages used during development, such as testing frameworks, build tools, and development utilities.
-
-- These packages are not necessary for running the application in a production environment but are helpful for development and testing.
-
-  npm i <package_name> --save-dev
-
-- Example packages: Mocha, Webpack, Babel.
-
-dependencies` includes packages needed for the application to run in a production environment,
-
-while `devDependencies` includes packages required during development and testing but are not necessary for the production deployment.
-
-
-
-========================================================
-
- ### Higher Order Components (HOCs)
-
--In React, Higher Order Component is an advanced technique for reusing component logic.
-
-An HOC is a function_that accepts a component as its argument and returns a new component with some added functionality
-
-`Purpose`: HOCs are used to abstract and reuse logic in a single place, which can then be applied to multiple components. 
-They allow for code reusability, manipulation of props, and handling state in a consistent manner.
-
-
-With help of HoC You can do many tasks
-Code Reusability
-Props manipulation
-State manipulation
-
-
-
--According to the official website,
--Higher-Order Components are not part of the React API.
--but They are pattern that emerges from Reacts compositional nature.
-
-
-
-
-
-
-
 
 ====================================================================================
 
