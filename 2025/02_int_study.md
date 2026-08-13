@@ -1,4 +1,108 @@
 
+
+//=========================== global object =========================
+## 1. What is the Global Object in JavaScript?
+
+A **global object** is the top-level object that always exists in the global scope. It provides access to globally available variables, functions, and built-in objects.
+
+- In browsers, the global object is `window`.
+- In Node.js, the global object is `global`.
+- In modern JavaScript, `globalThis` is the standard way to access the global object across all environments.
+- The global object contains built-in APIs such as `setTimeout()`, `setInterval()`, `console`, and more.
+
+> **Note:** In browsers, global variables declared with `var` become properties of the `window` object, whereas `let` and `const` do not.
+
+### Example
+
+```javascript
+var name = "Deepak";
+let age = 25;
+
+console.log(window.name); // "Deepak"
+console.log(window.age);  // undefined
+
+console.log(globalThis.name); // "Deepak"
+```
+========================================================================
+## What is the `window` Object? (Interview Answer)
+
+The **`window` object** is the global object in web browsers.
+It represents the browser window (or tab) and provides access to browser-specific APIs and features.
+
+It provides access to:
+- `document`
+- `location`
+- `history`
+- `navigator`
+- `localStorage`
+- `sessionStorage`
+- `alert()`
+- `setTimeout()`
+- `setInterval()`
+- `fetch()` and more.
+
+### Example
+
+```javascript
+window.alert("Hello");
+console.log(window.innerWidth);
+```
+
+========================================================================
+
+## What is the `document` Object?
+
+The **`document` object** represents the HTML document loaded in the browser. 
+It is a property of the `window` object and is used to access and manipulate the DOM (Document Object Model).
+
+It is used to:
+- Access HTML elements
+- Modify HTML content and attributes
+- Change CSS styles
+- Create and remove elements
+- Handle DOM events
+
+### Example
+
+```javascript
+document.getElementById("demo");
+document.querySelector(".btn");
+
+
+========================================================================-
+
+## Relationship Between `window` and `document`
+
+The `document` object is a property of the `window` object.
+
+window.document === document; // true
+
+window
+│
+├── document
+├── location
+├── history
+├── navigator
+├── localStorage
+├── sessionStorage
+├── alert()
+├── setTimeout()
+└── fetch()
+```
+
+---
+
+## One-Line Interview Answers
+
+- **Global Object:** The top-level object that provides globally accessible variables, functions, and built-in objects.
+- **Window Object:** The global object in browsers that represents the browser window and provides browser-specific APIs.
+- **Document Object:** An object that represents the HTML document and provides methods to access and manipulate the DOM.
+
+
+  
+
+
+
 ===========================================================================
 
 ## lexical scope
