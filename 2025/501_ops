@@ -6,9 +6,1051 @@
 # ===========================================
 # ===========================================
 # ===========================================
+
+
+
+### Axios
+- Axios is a third-party HTTP client library.
+- npm install axios installation is required.
+- Axios automatically parses JSON responses
+
+- Error Checking Usually handled with try/catch
+- build in supoort inInterceptors for request and response handling.
+- Simple timeout configuration
+Common Headers  Easy to configure globally
+ - both Axios and  Fetch Promise-based, Async/Await Supports, Request Cancellation Supports
+
+
+### Fetch
+Fetch is Native Web API
+No installation is required.
+while Fetch requires you to call:response.json();
+Error Checking Need to check response.ok or response.status
+Timeout No simple built-in timeout option; use AbortController
+Common Headers Requires manual configuration/wrapper
+- both Axios and  Fetch Promise-based, Async/Await Supports, Request Cancellation Supports
+### Use Axios If:
+
+- You need built-in support for interceptors, request cancellation, or automatic JSON parsing.
+- Cross-browser compatibility is important, including older browsers.
+- You prefer simplified error handling and configuration.
 # ===========================================
+
+
+### Axios
+- Axios is a third-party HTTP client library.
+- npm install axios installation is required.
+- Axios automatically parses JSON responses
+
+- Popular Promise-based HTTP client for making AJAX requests in the browser and Node.js.
+- Interceptors for request and response handling.
+- Automatic transformation of JSON data.
+- Support for browser and Node.js environments.
+- Ability to cancel requests.
+- CSRF protection by default.
+- Error handling with meaningful error messages.
+- Interceptors provide global request/response handling.
+
+### Fetch
+
+- Modern API for making network requests in the browser, built into modern browsers (ES6 feature).
+- Promise-based API.
+- Streamlined API surface compared to XMLHttpRequest (XHR).
+- No third-party dependencies.
+- Support for streaming responses.
+
+Fetch is a built-in Web API available in modern browsers.
+No installation is required.
+while Fetch requires you to call:response.json();
+
+
 # ===========================================
+
+
+Interceptors
+
+Interceptors are a powerful feature provided by libraries such as Axios or HTML5 Fetch api 
+that allow you to intercept and manipulate HTTP requests or responses globally 
+before they are handled by your application. 
+In the context of React.js, interceptors can be used to perform tasks such as adding authentication headers, logging requests, modifying responses, or handling errors.
+
+================================================================================
+
+**Why is `console.log(obj2)` empty?**
+
+Because `Object.create()` creates an object with the given object as its prototype, not its own properties.
+
+```js
+var obj2 = Object.create({ name: "av5" });
+console.log(obj2);          // 👉 Outputs: {}
+console.log(obj2.name);     // 👉 Outputs: "av5"
+
+obj2 = {
+  // No own properties
+  __proto__: {
+    name: "av5"
+  }
+}
+```
+
+`console.log(obj2)` shows `{}` because `obj2` has no own properties — it inherits `name` from its prototype.
+`Object.create()` sets the passed object as the prototype, not as direct properties.
+
+
+
+
+
+   
+
+=========================================================================
+
+================================================================================================================================================================
+Single-Threaded Execution:
+
+JavaScript executes code in a single-threaded manner, meaning one operation is performed at a time.
+The event loop helps manage this single-threaded execution, especially for asynchronous tasks.
+
+
+
 # ===========================================
+
+
+In React class components, event handler methods don’t automatically bind `this` to the component instance. To fix that, we usually bind methods to `this` so they work correctly when called, especially as event handlers.
+
+The most efficient way to bind is in the constructor, where the binding happens once when the component is created. This avoids creating new functions on every render, improving performance and preventing unnecessary re-renders.
+
+Alternatively, using arrow functions as class properties automatically binds `this` and offers cleaner syntax, which is common in modern React code.
+
+Binding inside `render()` is discouraged because it creates a new function every time the component re-renders, which hurts performance.
+
+
+
+================================================================================
+
+compare Flexbox and CSS Grid across various aspects:
+
+1.  ##Layout Model ##:
+ - Flexbox: One-dimensional layout model.
+ - CSS Grid: Two-dimensional layout system.
+
+2.  ##Axis Control ##:
+ - Flexbox: Controls layout along a single axis (either horizontally or vertically).
+ - CSS Grid: Organizes content in rows and columns simultaneously.
+
+3.  ##Suitability ##:
+ - Flexbox: Best for smaller-scale layouts and components.
+ - CSS Grid: Ideal for larger-scale layouts that are not linear in design.
+
+
+7.  ##Usage ##:
+- Flexbox: Commonly used for navigation menus, card layouts, and aligning content within containers.
+- CSS Grid: Frequently used for complex page layouts, responsive grids, and magazine-style layouts.
+
+
+4.  ##Alignment and Distribution ##:
+ - Flexbox: Offers fine-tuning of alignment and space distribution between items.
+ - CSS Grid: Provides precise control over layout and placement of items.
+
+5.  ##Flexibility ##:
+ - Flexbox: Works well for layouts with dynamic content and varying screen sizes.
+ - CSS Grid: Offers flexibility with flexible widths and two-dimensional layout capabilities.
+
+6.  ##Item Management ##:
+ - Flexbox: Uses a parent-child relationship (Flex Container and Flex Item) to adjust item dimensions.
+ - CSS Grid: Supports both implicit and explicit content placement, with built-in automation for extending line items.
+
+In summary, Flexbox is well-suited for simpler layouts and alignment tasks, while CSS Grid excels in creating complex layouts with precise control over rows and columns. Both layout models have their strengths and are often used together to create highly customized and responsive web designs.
+
+================================================
+
+
+In JavaScript, objects and functions are reference types.
+ When a new object is created, it gets a new reference, 
+ so two objects with the same values are considered different 
+ if their references are different.
+
+When a function is assigned to another variable,
+ only the reference is copied. 
+ Both variables point to the same function object,
+  so the type remains "function" and the references are equal.
+
+
+========================================================================
+
+
+- A common use case for the `bind` method in JavaScript 
+is to maintain the correct context (`this`) when passing methods as callbacks or event handlers.
+- In JavaScript, the value of `this` 
+can change depending on how a function is called.
+- For instance, when a method is used as an event handler, 
+`this` usually refers to the element that triggered the event, not the object that owns the method.
+- By using `bind`, you can create a new function where `this` is explicitly set to the desired context, ensuring that the method behaves correctly regardless of how it's called.
+
+- This is particularly useful in scenarios such as object-oriented programming and event handling, where preserving the context is crucial for the method's functionality.
+- `bind` can also be used to preset initial arguments, allowing partial application of functions.
+
+
+
+### 1. Plain JavaScript Event Handling with `bind`
+
+
+
+Interview Answer:
+
+> In JavaScript, the value of `this` depends on how a function is called, which can lead to unexpected behavior when passing methods as callbacks or event handlers. The `bind` method fixes this by creating a new function with `this` explicitly set to the desired object. This ensures the method retains the correct context regardless of how or where it’s called, which is especially useful in event handling and object-oriented programming.
+
+```javascript
+
+const user = {
+  name: 'John',
+  sayHello: function(greeting) {
+    console.log(greeting + ', ' + this.name);
+  }
+};
+
+const button = document.getElementById('myBtn');
+
+// Without bind - `this` refers to button, not user
+button.addEventListener('click', user.sayHello); // this.name is undefined
+
+// With bind - `this` fixed to `user`
+button.addEventListener('click', user.sayHello.bind(user, 'Hello')); 
+// Output on click: "Hello, John"
+```
+
+
+In summary:
+- `bind` creates a new function for later use, while `call` and `apply` execute the function immediately.
+- `call` takes arguments individually, whereas `apply` takes arguments as an array.
+
+------------------------------------------------------------------------------
+
+### 2. React Class Component Event Handler with `bind`
+
+
+
+React.js Interview Answer:
+
+> In React class components, event handler methods lose their class instance context (`this`) when passed as callbacks. Using `bind` in the constructor or inline fixes this by explicitly setting `this` to the component instance. This ensures methods can access component state and props correctly during events, preventing common bugs related to `this` being `undefined` or incorrect.
+
+
+```jsx
+import React from 'react';
+
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { count: 0 };
+
+    // Bind the event handler to fix 'this' context
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    // Accessing this.state and this.setState works because of bind
+    this.setState({ count: this.state.count + 1 });
+    console.log('Count is:', this.state.count + 1);
+  }
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        Click me ({this.state.count})
+      </button>
+    );
+  }
+}
+
+export default MyComponent;
+
+```
+
+
+
+
+
+
+========================================================================
+
+
+
+8. When to Use Map
+Use a Map when:
+
+You need non-string keys.
+You need to maintain the order of entries.
+You need efficient lookups and insertions.
+You want built-in iteration over entries.
+
+Use an object when:
+
+You need simple key-value pairs with string keys.
+You want inheritance or prototype-based features.
+
+
+
+========================= ===============================================
+
+### Set vs. Map
+#Map
+A Map is a built-in JavaScript object that stores key-value pairs.
+
+A key value pair is called an entry
+Keys in a Map must be unique, 
+while values can be duplicated.
+
+  - Stores: Key-value pairs.
+  - Uniqueness: Keys must be unique; values can be duplicated.
+  - Methods: `set(key, value)`, `get(key)`, `delete(key)`, `has(key)`, `size`.
+
+It allows you to associate each key with a specific value and provides efficient methods for adding, retrieving, and deleting key-value pairs.
+------------------------------------
+- Set:
+ - Definition: A `Set` stores unique values, with no key-value pairs. It automatically removes duplicates.
+
+  - Key-Value: No key-value pairs.
+  - Uniqueness: Ensures all values are unique.
+  - Methods: `add(value)`, `delete(value)`, `has(value)`, `size`.
+
+ has(value): Check if a value exists in the Set.
+forEach(callback): Iterates through the Set.
+keys(), values(), entries(): Provides iterators for advanced use cases.
+clear(): Clears the entire Set.
+
+
+
+
+### `Object.assign({}, obj1, obj2)` vs `Object.assign(obj1, obj2)` (Theoretical Answer)
+
+`Object.assign()` is used to **copy properties from one or more source objects into a target object**.
+
+Syntax:
+
+```javascript
+Object.assign(target, source1, source2, ...)
+```
+
+The **first parameter is always the target object**. All remaining parameters are source objects.
+
+---
+
+### 1. `Object.assign({}, obj1, obj2)`
+
+Here, `{}` is the target object.
+
+* A new empty object is created.
+* Properties from `obj1` and `obj2` are copied into this new object.
+* The original `obj1` and `obj2` objects are not modified.
+* It is commonly used to create a shallow copy of objects.
+
+Example:
+
+```javascript
+Object.assign({}, obj1, obj2);
+```
+
+Result:
+
+```javascript
+{
+  name: "Rahul",
+  age: 25
+}
+```
+
+But `obj1` remains:
+
+```javascript
+{
+  name: "Rahul"
+}
+```
+
+---
+
+### 2. `Object.assign(obj1, obj2)`
+
+Here, `obj1` is the target object.
+
+* Properties from `obj2` are copied directly into `obj1`.
+* The original `obj1` object is modified.
+* This is called **object mutation**.
+
+Example:
+
+```javascript
+Object.assign(obj1, obj2);
+```
+
+After execution:
+
+```javascript
+obj1 = {
+  name: "Rahul",
+  age: 25
+}
+```
+
+---
+
+### Main Difference
+
+| `Object.assign({}, obj1, obj2)` | `Object.assign(obj1, obj2)`              |
+| ------------------------------- | ---------------------------------------- |
+| Creates a new object            | Modifies existing object                 |
+| Does not mutate original object | Mutates `obj1`                           |
+| Used for immutability           | Used for updating an object directly     |
+| Returns a new object reference  | Returns the same target object reference |
+
+---
+
+### React Interview Perspective
+
+In React, immutability is preferred because React detects changes using object references.
+
+Therefore, developers usually use:
+
+```javascript
+Object.assign({}, oldObject, updatedValues)
+```
+
+or the spread operator:
+
+```javascript
+{
+  ...oldObject,
+  ...updatedValues
+}
+```
+
+instead of directly modifying the existing state object.
+
+
+
+```javascript
+
+    ---------------------- ### Additional Hooks:  ##------------------------------
+
+   ### 01 useHistory
+
+    - The useHistory hook gives you access to the history instance that you may use to navigate.
+
+    - Provides access to the history prop in React Router
+    - Refers to the history package dependency that the router uses
+    - A primary use case would be for programmatic routing with functions, like push,goback replace, etc.
+
+```
+
+
+    02 useLocation
+
+    Provides access to the location prop in React Router
+
+    It is similar to window.location in the browser itself, but this is accessible everywhere as it represents the * Router
+    state and location.
+    A primary use case for this would be to access the query params or the complete route string.
+
+    03 useParams
+
+    Provides access to search parameters in the URL
+    This was possible earlier only using match.params.
+
+    Route paramater;
+    the route paramater is value passed one component to another component
+    while nevigating
+
+    useParams() hook access the  route paramater;
+
+
+    04 useRouteMatch
+
+    Provides access to the match object
+    If it is provided with no arguments, it returns the closest match in the component or its parents.
+    A primary use case would be to construct nested paths.
+
+
+
+    
+
+================================================================
+## `useLayoutEffect` vs `useEffect` (Theory – Interview Notes)
+
+### **`useLayoutEffect`**
+
+1. `useLayoutEffect` is a React Hook used to perform side effects that need to happen **before the browser paints (displays) the updated UI on the screen**.
+
+2. It runs **after React updates the DOM** but **before the browser displays the UI** to the user.
+
+3. Because it runs before the browser paints, it **blocks the browser from rendering** until the effect finishes.
+
+4. It is mainly used when you need to **read, measure, or modify the DOM immediately** before the user sees it.
+
+5. It helps prevent **visual flickering or layout shifts**, because changes are applied before the screen is updated.
+
+6. Common use cases include:
+
+   * Measuring an element's width or height.
+   * Reading an element's position.
+   * Scrolling to an element before it becomes visible.
+   * Applying styles or layout adjustments synchronously.
+
+7. Since it blocks painting, **heavy or time-consuming operations should be avoided**, as they can make the UI feel slow.
+
+8. `useLayoutEffect` has the same syntax and dependency array as `useEffect`.
+
+9. It also supports a **cleanup function**, which runs before the next execution or when the component unmounts.
+
+10. Use `useLayoutEffect` **only when your effect depends on the layout or visual appearance of the page**.
+
+---
+
+# `useEffect`
+
+1. `useEffect` is a React Hook used to perform **side effects** in a functional component.
+
+2. It runs **after React updates the DOM and after the browser paints (displays) the updated UI**.
+
+3. Since it runs after painting, it **does not block the browser from rendering**, making the UI more responsive.
+
+4. It is the **default and recommended Hook** for handling most side effects.
+
+5. Common use cases include:
+
+   * Fetching data from an API.
+   * Making HTTP requests.
+   * Setting timers (`setTimeout`, `setInterval`).
+   * Adding and removing event listeners.
+   * Updating the document title.
+   * Logging or analytics.
+
+6. `useEffect` runs after every render by default, unless a dependency array is provided.
+
+7. The dependency array controls **when the effect should execute**:
+
+   * No dependency array → Runs after every render.
+   * Empty dependency array (`[]`) → Runs only once after the initial render.
+   * Dependencies provided (`[value]`) → Runs when any dependency changes.
+
+8. It supports a **cleanup function**, which is used to remove event listeners, clear timers, cancel subscriptions, or perform other cleanup before the next effect or when the component unmounts.
+
+9. Because it runs after the browser has displayed the UI, users may briefly notice visual changes if the effect modifies the layout.
+
+10. **Use `useEffect` for almost all side effects**, and choose `useLayoutEffect` only when you must measure or synchronously update the DOM before the browser displays it.
+
+### Interview Rule to Remember
+
+* **`useEffect` → After DOM update and after browser paint (UI is visible).**
+* **`useLayoutEffect` → After DOM update but before browser paint (UI is not yet visible).**
+* **Use `useEffect` by default; use `useLayoutEffect` only for layout-related work.**
+
+
+============================
+============================================================
+
+### why need forwardRef in function base ?
+
+Functional components do not expose instances by default. This means if a parent tries to attach a ref, it won’t work — the parent won’t be able to access any internal DOM element or logic inside the functional component. Using `forwardRef` allows functional components to receive a ref from a parent and forward it to a child DOM element or another component. This enables use cases like:
+– focusing an input,
+– scrolling to an element, and
+– measuring a DOM node from the parent.
+
+Class components do expose their instance automatically. When a parent uses a ref, it can access the class instance directly. This allows:
+– calling methods defined in the class, and
+– accessing internal properties.
+
+
+forwardRef is allows the parent component to directly access a DOM element or custom method inside a functional child component.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@===================@@@@@@@@@@@@@@@@@@@@@@@@@
+
+## **React Hooks Overview**
+
+Hooks are a feature introduced in React 16.8 that allow you to use state and other React features without writing a class. They typically start with the `use` keyword. Hooks are used within functional components and enable handling local component state, lifecycle features, and more.
+
+### **Basic Hooks**
+
+1. **useState**
+
+   - **Purpose:** Maintains local state in a functional component.
+   - **Syntax:**
+     ```javascript
+     const [state, setState] = React.useState(initialState);
+     ```
+   - **Example:**
+
+     ```javascript
+     import React, { useState } from "react";
+
+     function Counter() {
+       const [count, setCount] = useState(0);
+
+       return (
+         <div>
+           <p>You clicked {count} times</p>
+           <button onClick={() => setCount(count + 1)}>Click me</button>
+         </div>
+       );
+     }
+     ```
+
+2. **useReducer**
+
+   - **Purpose:** Manages complex state logic and dependencies on previous state.
+   - **Syntax:**
+     ```javascript
+     const [state, dispatch] = useReducer(reducer, initialState);
+     ```
+   - **Example:**
+
+     ```javascript
+     import React, { useReducer } from "react";
+
+     const INITIAL_STATE = { count: 0 };
+
+     function reducer(state, action) {
+       switch (action.type) {
+         case "increment":
+           return { count: state.count + 1 };
+         case "decrement":
+           return { count: state.count - 1 };
+         default:
+           throw new Error();
+       }
+     }
+
+     function Counter() {
+       const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
+
+       return (
+         <div>
+           <p>Count: {state.count}</p>
+           <button onClick={() => dispatch({ type: "increment" })}>
+             Increment
+           </button>
+           <button onClick={() => dispatch({ type: "decrement" })}>
+             Decrement
+           </button>
+         </div>
+       );
+     }
+     ```
+
+3. **useContext**
+
+   - **Purpose:** Allows sharing of values between components without passing props manually.
+   - **Syntax:**
+     ```javascript
+     const Context = React.createContext(defaultValue);
+     ```
+   - **Example:**
+
+     ```javascript
+     import React, { createContext, useContext } from "react";
+
+     const ThemeContext = createContext("light");
+
+     function ThemedComponent() {
+       const theme = useContext(ThemeContext);
+       return <div>The current theme is {theme}</div>;
+     }
+
+     function App() {
+       return (
+         <ThemeContext.Provider value="dark">
+           <ThemedComponent />
+         </ThemeContext.Provider>
+       );
+     }
+     ```
+
+4. **useEffect**
+
+   - **Purpose:** Handles side effects in functional components. It replaces lifecycle methods like `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount`.
+   - **Syntax:**
+     ```javascript
+     useEffect(() => {
+       // Side effect logic here
+       return () => {
+         // Cleanup logic here
+       };
+     }, [dependencies]);
+     ```
+   - **Example:**
+
+     ```javascript
+     import React, { useState, useEffect } from "react";
+
+     function Example() {
+       const [count, setCount] = useState(0);
+
+       useEffect(() => {
+         document.title = `You clicked ${count} times`;
+
+         return () => {
+           document.title = "React App";
+         };
+       }, [count]);
+
+       return (
+         <div>
+           <p>You clicked {count} times</p>
+           <button onClick={() => setCount(count + 1)}>Click me</button>
+         </div>
+       );
+     }
+     ```
+
+### **Additional Hooks**
+
+1. **useCallback**
+
+   - **Purpose:** Memoizes a callback function to prevent unnecessary re-renders.
+   - **Syntax:**
+     ```javascript
+     const memoizedCallback = useCallback(() => {
+       // Callback logic here
+     }, [dependencies]);
+     ```
+   - **Example:**
+
+     ```javascript
+     import React, { useCallback, useState } from "react";
+
+     function ChildComponent({ onClick }) {
+       return <button onClick={onClick}>Click me</button>;
+     }
+
+     function ParentComponent() {
+       const [count, setCount] = useState(0);
+
+       const handleClick = useCallback(() => {
+         setCount(count + 1);
+       }, [count]);
+
+       return (
+         <div>
+           <p>Count: {count}</p>
+           <ChildComponent onClick={handleClick} />
+         </div>
+       );
+     }
+     ```
+
+2. **useMemo**
+
+   - **Purpose:** Memoizes a value to avoid expensive calculations on every render.
+   - **Syntax:**
+     ```javascript
+     const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+     ```
+   - **Example:**
+
+     ```javascript
+     import React, { useMemo, useState } from "react";
+
+     function computeExpensiveValue(a, b) {
+       // Expensive computation
+       return a + b;
+     }
+
+     function Example() {
+       const [a, setA] = useState(1);
+       const [b, setB] = useState(2);
+
+       const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+
+       return (
+         <div>
+           <p>Computed Value: {memoizedValue}</p>
+           <button onClick={() => setA(a + 1)}>Increment A</button>
+           <button onClick={() => setB(b + 1)}>Increment B</button>
+         </div>
+       );
+     }
+     ```
+
+3. **useRef**
+
+   - **Purpose:** Provides a way to access and manage DOM elements directly.
+   - **Syntax:**
+     ```javascript
+     const ref = useRef(initialValue);
+     ```
+   - **Example:**
+
+     ```javascript
+     import React, { useRef } from "react";
+
+     function FocusInput() {
+       const inputRef = useRef(null);
+
+       const focusInput = () => {
+         inputRef.current.focus();
+       };
+
+       return (
+         <div>
+           <input ref={inputRef} type="text" />
+           <button onClick={focusInput}>Focus Input</button>
+         </div>
+       );
+     }
+     ```
+
+4. **useImperativeHandle**
+
+   - **Purpose:** Customizes the instance value that is exposed to parent components when using `ref`.
+   - **Syntax:**
+     ```javascript
+     useImperativeHandle(ref, () => ({
+       // Custom instance values
+     }));
+     ```
+   - **Example:**
+
+     ```javascript
+     import React, { useImperativeHandle, forwardRef, useRef } from "react";
+
+     const CustomInput = forwardRef((props, ref) => {
+       const inputRef = useRef(null);
+
+       useImperativeHandle(ref, () => ({
+         focus: () => {
+           inputRef.current.focus();
+         },
+       }));
+
+       return <input ref={inputRef} />;
+     });
+
+     function App() {
+       const ref = useRef(null);
+
+       const focusInput = () => {
+         ref.current.focus();
+       };
+
+       return (
+         <div>
+           <CustomInput ref={ref} />
+           <button onClick={focusInput}>Focus Input</button>
+         </div>
+       );
+     }
+     ```
+
+### **React.memo**
+
+- **Purpose:** Memoizes a component to prevent unnecessary re-renders if its props haven’t changed.
+- **Syntax:**
+
+  ```javascript
+  const MemoizedComponent = React.memo(Component);
+  ```
+
+- **Example:**
+
+  ```javascript
+  import React from "react";
+
+  function ExpensiveComponent({ data }) {
+    // Expensive calculations
+    return <div>{data}</div>;
+  }
+
+  export default React.memo(ExpensiveComponent);
+  ```
+
+### **Custom Hooks**
+
+- **Purpose:** Allows sharing of stateful logic between components.
+- **Syntax:**
+  ```javascript
+  function useCustomHook() {
+    // Custom hook logic
+  }
+  ```
+- **Example:**
+
+  ```javascript
+  import { useState, useEffect } from "react";
+
+  function useWindowWidth() {
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+      const handleResize = () => setWindowWidth(window.innerWidth);
+
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, []);
+
+    return windowWidth;
+  }
+
+  function Component() {
+    const windowWidth = useWindowWidth();
+
+    return <div>Window width is {windowWidth}</div>;
+  }
+  ```
+
+---
+
+These examples provide a comprehensive overview of how to use various React Hooks effectively in your functional components.
+
+
 # ===========================================
 ----------------------------------------------------------
 ### How it works:

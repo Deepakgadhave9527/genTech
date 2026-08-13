@@ -1,4 +1,44 @@
 
+========================== ES6 features ==================================
+
+Below is the list of top ES6 features every JavaScript developer should know,
+
+
+1. let and const:
+2. Arrow Functions:
+3. Template Literals:
+4. Destructuring Assignment:
+5. Default Parameters:
+6. Rest and Spread Operators:
+7. Classes:
+8. Modules:
+9. Promises:
+10. Symbol:
+11. Iterators and Generators:
+12. Map and Set:
+13. WeakMap and WeakSet:
+14. Enhanced Object Literals:
+15. Object.assign():
+16. String Methods:
+17. Number Methods:
+18. Math Methods:
+19. New Data Structures:
+20. For…of Loop:
+
+
+Default parameters
+Spread and Rest syntaxes (…)
+let and const
+promise
+Destructuring assignment
+Arrow function expressions
+Classes
+
+Template literals (Template strings)
+Tagged Templates
+Object.assign() and Object.is()
+
+
 ======================================================================
 ### ⏱️ Short Answer:
 

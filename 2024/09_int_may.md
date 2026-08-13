@@ -515,6 +515,49 @@ Use forEach() when you just need to loop through items and perform side effects 
 
 ==============================================================
 
+Constructor function
+-A constructor function in JavaScript is a regular function used to create and initialize multiple objects with the same structure
+- By convention, constructor function names start with a capital letter and 
+
+-are called using the new keyword.
+
+- when creating many objects with the same properties
+- this is simply a reference to the newly created object when the constructor is called with new.
+
+```js
+ function Person(name, age) {
+     this.name = name;
+     this.age = age;
+ }
+
+
+ const p1= new Person("Alice", 30);
+ const p2 = new Person("haery",20);
+// add property city to p1
+ p1.city=`nanande`;
+
+ //adding method to p1
+ p1.address = function(){
+    return `${this.name} lives in ${this.city}.`;
+
+ }
+
+// add method in Person prototype
+ Person.prototype.biodate= function(){
+    console.log(this);
+     return `${this.name} is ${this.age} years old and lives in ${this.city}.`;
+ }
+  
+
+ console.log(p1)
+  console.log(p2)
+
+```
+ Methods added to the prototype are shared by all objects created from the constructor. JavaScript stores only one copy of the method in the prototype, and every object accesses that same method through the prototype chain. This saves memory because a new copy of the method is not created for each object.
+
+
+Objects created from a different constructor cannot access those methods unless inheritance or a shared prototype is used.
+
 ## Constructor Function in JavaScript
 
 ### 🔹1. Default Behavior of Constructor Functions

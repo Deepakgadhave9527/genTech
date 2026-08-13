@@ -1,3 +1,123 @@
+
+==============================================
+
+
+
+Interceptors are a powerful feature provided by HTTP client libraries such as Axios that allow us to intercept and manipulate HTTP requests or responses before they are handled by the application.
+
+There are mainly two types of interceptors: request interceptors and response interceptors.
+
+A request interceptor runs before the request is sent and can be used to add authentication tokens, modify headers, add common parameters, or log requests.
+
+A response interceptor runs after a response is received and can be used to` transform response data, handle errors globally, log responses, or handle authentication issues such as 401 Unauthorized and token refresh`.
+
+- In React.js applications:
+  - Interceptors help us avoid repeating common API logic in every component.
+  - They allow us to centralize request and response handling.
+  - This makes the code clean, reusable, and maintainable.
+
+Interceptors are not a native JavaScript or Fetch API feature; they are provided by libraries such as Axios. With Fetch, we would need to create our own wrapper to achieve similar behavior.
+
+==========================================
+
+
+Fetch API doesn't provide built-in interceptors like Axios. However, we can achieve similar functionality by creating a custom wrapper around fetch. In that wrapper, we can add logic before the request, such as adding authentication headers, and after the response, such as global error handling or token refresh."
+
+==========================================
+### Axios
+
+
+
+
+### Fetch
+
+
+==========================================
+
+### Axios
+
+* Axios is a third-party HTTP client library.
+* `npm install axios` installation is required.
+* Axios automatically parses JSON responses.
+* Error checking is usually handled with `try/catch`.
+* Built-in support for **request and response interceptors**.
+* Simple timeout configuration.
+* Common headers are easy to configure globally.
+* Both Axios and Fetch are **Promise-based**, support **Async/Await**, and support **request cancellation**.
+
+### Fetch
+
+* Fetch is a **native Web API**.
+* No installation is required.
+* Fetch requires you to call `response.json()` to parse JSON responses.
+* Error checking requires checking `response.ok` or `response.status`.
+* No simple built-in timeout option; use `AbortController`.
+* Common headers require manual configuration or a wrapper.
+* Both Axios and Fetch are **Promise-based**, support **Async/Await**, and support **request cancellation**.
+
+=============================================================================
+
+### Use Fetch If:
+
+- You want to avoid additional dependencies and rely on native browser APIs.
+- Performance and bundle size are critical, especially in modern environments.
+- You are comfortable handling request/response interception and additional error handling manually.
+
+This format highlights the specific reasons and scenarios where Axios or Fetch would be preferred based on their capabilities and characteristics.
+
+
+### Axios — Missing Points
+
+* Axios supports creating **reusable Axios instances** with common configuration such as base URL and default settings.
+* Axios can **automatically attach authentication tokens** to requests using request interceptors.
+* Axios can handle **global response errors**, such as `401 Unauthorized`, using response interceptors.
+
+### Fetch — Missing Points
+
+* Fetch does **not have built-in Axios-style request and response interceptors**.
+* Authentication tokens need to be **added manually** to request headers or handled through a custom wrapper.
+* Fetch can be wrapped in a **custom reusable function** to centralize common API logic such as headers, authentication, and error handling.
+
+=============================================================================
+
+
+Flexbox:
+
+One-dimensional layout model.
+Best for arranging items in a row or a column.
+Suited for smaller-scale layouts.
+Controls alignment and distribution along a single axis.
+Uses properties like display: flex, flex-direction, justify-content, and align-items.
+
+
+
+CSS Grid:
+
+Two-dimensional layout system.
+Organizes content in rows and columns.
+Ideal for larger-scale layouts.
+Provides precise control over layout and placement of items
+Utilizes properties like display: grid, grid-template-rows, and grid-template-columns.
+
+
+
+
+================================================================================
+
+Webpack
+
+Webpack is a popular open-source module bundler for JavaScript applications.
+
+It's primarily used in web development to bundle JavaScript files for usage in a browser,
+It's managing dependencies and bundling various assets like JavaScript files, images,
+and CSS into a single bundle,
+
+Webpack's behavior is configured through a webpack.config.js file.
+Plugins is used Webpack's functionality for tasks like optimization, asset management,
+It's widely used in modern web development, often alongside frameworks like React, Vue.js, or Angular.
+
+
+
 =========================================================================
 
 # JavaScript Web Storage

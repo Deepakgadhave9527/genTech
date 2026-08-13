@@ -83,12 +83,6 @@ A new binding means a new variable is created.
 
 
 
-
-
-
-
-
-
 ==========================================================
 ### Why the UI Doesn't Reflect Changes Without useState
 
