@@ -78,26 +78,6 @@ This format highlights the specific reasons and scenarios where Axios or Fetch w
 * Authentication tokens need to be **added manually** to request headers or handled through a custom wrapper.
 * Fetch can be wrapped in a **custom reusable function** to centralize common API logic such as headers, authentication, and error handling.
 
-=============================================================================
-
-
-Flexbox:
-
-One-dimensional layout model.
-Best for arranging items in a row or a column.
-Suited for smaller-scale layouts.
-Controls alignment and distribution along a single axis.
-Uses properties like display: flex, flex-direction, justify-content, and align-items.
-
-
-
-CSS Grid:
-
-Two-dimensional layout system.
-Organizes content in rows and columns.
-Ideal for larger-scale layouts.
-Provides precise control over layout and placement of items
-Utilizes properties like display: grid, grid-template-rows, and grid-template-columns.
 
 
 
