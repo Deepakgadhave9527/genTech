@@ -1488,7 +1488,7 @@ Why is a primitive ignored?
 
 =========================================
 
-### JavaScript Type Coercion — Short Interview Answer
+### JavaScript Type Coercion —
 
 **Type coercion** in JavaScript means converting a value from one data type to another.
 

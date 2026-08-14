@@ -5,6 +5,23 @@
 # ===========================================
 # ===========================================
 # ===========================================
+
+Without useState, changing a normal variable does not trigger a 
+re-render because React does not track changes to regular variables.
+ Since React is not notified about the change, the component 
+ function does not run again, and React's reconciliation 
+ process is not initiated for that change,
+  so the UI does not automatically reflect the updated value. 
+With useState, when the state updater function such as setCount() is called,
+   React is notified that the state has changed and schedules a 
+   re-render of the component. During the re-render, 
+   the component function runs again and receives the latest 
+   state value from React. React then performs reconciliation,
+    where it compares the new React element tree with the previous 
+    one to determine what has changed. Based on that comparison, 
+    React updates only the necessary parts of the actual DOM, 
+    which allows the UI to display the latest state value.
+
 # ===========================================
 
 
