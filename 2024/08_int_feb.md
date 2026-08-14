@@ -4,7 +4,7 @@
 
 In React, the function returned from `useEffect()` is called the **cleanup function**.
 
-When a dependency changes, React first runs the cleanup function from the previous effect and then runs the effect again with the updated dependency value.
+When a dependency in the dependency array changes during the update phase, React `first runs the cleanup function` from the previous effect, and then the `main function inside useEffect runs again`.
 
 
 When the component is **unmounted**, React runs the cleanup function one final time because the component is being removed from the UI and the effect is no longer needed. 

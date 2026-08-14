@@ -1,7 +1,7 @@
 
 ==============================================
 
-
+### Interceptors
 
 Interceptors are a powerful feature provided by HTTP client libraries such as Axios that allow us to intercept and manipulate HTTP requests or responses before they are handled by the application.
 
@@ -24,15 +24,7 @@ Interceptors are not a native JavaScript or Fetch API feature; they are provided
 Fetch API doesn't provide built-in interceptors like Axios. However, we can achieve similar functionality by creating a custom wrapper around fetch. In that wrapper, we can add logic before the request, such as adding authentication headers, and after the response, such as global error handling or token refresh."
 
 ==========================================
-### Axios
 
-
-
-
-### Fetch
-
-
-==========================================
 
 ### Axios
 
