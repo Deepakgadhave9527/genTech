@@ -1,0 +1,1035 @@
+Difference between HTML and HTML5
+
+------------------------HTML5 ------------------------------
+-HTML5 language is more mobile-friendly.
+-It supports audio and video controls with the use of </audio> and <video> tags.
+  -Doctype declaration is quite simple and easy.
+  -In HTML5 web storage is used to store the data
+  -It support drag and drop effects.
+  -with help of HTML5 you can draw shapes like circle, rectangle, triangle etc.
+  -html5 intruduce giographical api
+  - Vector graphics is additionally an integral a part of HTML5 like SVG and canvas.
+  -It is capable of handling inaccurate syntax.
+
+  
+
+  html5 indriduces new element
+  <article></article>
+  <header></header>
+  <footer></footer>
+  <aside></aside>
+  <figure></figure>
+  <figcaption></figcaption>
+  <nav></nav>
+
+
+  -------------------- HTML----------------------------
+  -Older version of HTML are less mobile-friendly
+  -It didn’t support audio and video without the use of flash player support.
+  -Doctype declaration is too long and complicated.
+  -it use local storage store data
+  -It does not allow drag and drop effects.
+  -Not possible to draw shapes like circle, rectangle, triangle etc.
+  -It can not handle inaccurate syntax.
+  -Vector graphics is possible in HTML with the help of various technologies such as VML, Silver-light, Flash, etc.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-----------------------   Element and Tag ------------------------ -->
+  tag
+  <p>-> Opening/ starting/ beginning tag
+
+  </p>-> closing / ending tag self closing
+  <br />
+  <hr />
+  <img src="" alt="" />
+
+  element
+
+  <p>content</p>
+
+  attribute attributes are used to pass data to the html element attributes are
+  provided in key value pair Ex:
+  <a href="#"></a>
+
+  <!-- ------------------------ Differ b & strong Element --------------------------------- -->
+
+  <b></b> -> changes the appearance of the content but does not add importance to
+  the content
+
+  <strong></strong> changes the appearance of the content adds importance to the
+  content
+
+  <!-- ------------------Differ i & em Element--------------------- -->
+
+  <i></i> - changes the appearance to italic and does not add importance to the
+  content
+
+  <em></em> - changes the appearance to the italic and add more importance to the
+  content
+
+  <!-- --------------------------- css------------------------------------ -->
+
+
+
+  Number of ways to use
+
+  #01 inline css:- If you write the css properties using
+  style attribute then it is called inline CSS
+
+  Ex:
+  <h1 style="color: aqua">Topper Skills</h1>
+
+  - inline css has highest priority - inline css is not reusable at all 2.
+
+  #02 internal css:- If you write the css properties using style element then it is
+  called internal css
+
+  Ex:
+  <style>
+    /* selector{
+        property-name: value
+    } */
+    h2 {
+      color: red;
+    }
+  </style>
+
+  - internal css has lower priority than inline css and higher priority than
+  external css - internal css is reusable only within the same web page 3.
+  external css:- If your write css properties in a file with .css extension then
+  it is called external css
+
+  <link rel="stylesheet" href="filename.css" />
+
+
+  #03 external css :--
+  - external css has lowest priority - external css is highly reusable - external
+  css is recommended to use
+
+  <!-- ----------------------- #1 anchor element =----- -->
+
+  anchor element is used to create the hyperlink
+  Hyperlinks connects multiple web pages / web resources
+
+  Anchor element is used to load the web resources
+
+  <a href="#"> Placeholder </a>
+
+  possible values of the href attributes
+  - Internal web pages
+  - external web pages
+  - videos
+  - audio
+  - pdf
+  - .zip
+  - phone number
+  - email
+  - API (whatsapp)
+  - section id
+
+  #2 iframe element =
+
+  iframe element provides a window to open/load a web page inside another web page
+  <iframe src="table.html" name="myframe">iframe</iframe>
+
+
+
+
+  <!------------------------- #3 AnchorElement:------------------------------ -->
+
+
+
+  target attribute is used to decide where(window) to load the resource
+
+  <a href="https://www.maroti.com" target="_parent">Topper Skills</a>
+
+
+  _self(default):- opens the web page in same window
+  _blank :- opens the resource in new window
+  _parent:- opens the resource in immediate parent window
+  _top :- opens the resource in top window
+  iframename :- opens the resource in the iframe matching the name
+
+  The link can be either unvisited, visited, active
+  To identify the states of the link each state has a color
+
+  unvisited -> blue
+  visited -> purple
+  active -> red
+
+
+
+  <!-- ------------#4 Picture :- ------------------------- -->
+  png (transparent bg, big in size)
+  jpg (no transparent bg, low in size after compression)
+  gif (animation)
+  svg(Scalable Vector Graphics) logos, icons, graphics, reccomended to use
+  icon (for small images)
+
+  <!------------------------- block  and inline element ------------------------------------>.
+
+
+
+  HTML elements
+
+  block element:
+  -block level element start with new row
+  - takes full width of their parent elements
+  - displays on new line
+  - you can set width and height
+
+  Example:
+  <div></div>
+  <p></p>
+  <li></li>
+  etc.
+
+  inline element:
+  - takes only width required to display their content
+  - displays on same line if there is enough space available
+  - you can not set width and height
+
+  Example:
+  <span></span>
+  <a href=""></a>
+  <img src="" alt="">
+  ect.
+
+  <!--  ----------------  types of list   ---------------------->
+
+
+  In HTML there are 3 types of list
+  1. ordered list
+  if you have list some items by maintaining the order/ sequence then use ordered list
+  <ol></ol>
+  2. unordered list
+  if you have list some items without maintaining the order/ sequence then use unordered list
+  <ul></ul>
+  3. description list
+  <dl></dl>
+  If you want to list out some items having description of each then use
+  description list
+
+  To add items in ordered and unodered list <li></li> is used
+
+
+
+  <!------------------------------ form --------------------------->
+
+
+
+
+  value attribute is used to set the state(data) of the form control
+
+  placeholder is used to display sample text in the place of input value
+
+  readonly:- this attribute makes the form input readonly,
+
+  disabled:- this field is not for u
+
+  Are u NRI?
+  country:
+
+
+
+  <!-- 
+types of images 
+
+jpg -> can be compressed, cannot maintain transparency
+
+png -> lossless, provides transparent background
+
+gif -> prefer for animation
+
+ico -> icon in small sizes
+
+svg -> Scallable Vector Graphics 
+16px * 16px
+
+1600px * 1600px
+
+ -->
+
+
+  there are 3 types of list in HTML
+
+  1. ordered list
+  - ordered list is used to display items in a particular order with counting
+  <ol></ol>
+
+  2. unordered list
+  - unordered list is used to display items without following any order and without counting the items
+  <ul></ul>
+
+  3. description list
+  - description list is used to provide details about each item in the list.
+  <dl></dl>
+
+
+  Semantic element:-
+  In html there are some special elements provided to make the source more readable and meaningful such elements are
+  called semantic elements.
+
+  Example:
+  <header></header>
+  <footer></footer>
+  <nav></nav>
+  <article></article>
+  <aside></aside>
+  <code></code>
+  <section></section>
+  <figure></figure>
+  <figcaption></figcaption>
+  <main></main>
+  etc.
+
+
+  HTML table
+  tables are used to display information in tabular form
+  tables should not be used to create the web page layout
+
+
+  <table>
+    <thead></thead>
+    <tbody></tbody>
+    <tfoot></tfoot>
+  </table>
+
+  <tr></tr>
+
+  <th></th>
+
+  <td></td>
+
+  iframe element provides a window to open/load a web page inside another web page
+
+
+  <!-- #########################################  CSS  ################################### -->
+
+
+  <!-- -------------   BOx Model              -->
+
+  ## Padding:-
+  padding is the transparent space between border and content area of the element
+  e.g
+  padding: top right bottom left;
+  padding: top right/left bottom;
+  padding: top/bottom right/left
+
+  ## Margin
+  padding is the transparent space between border and content area of the element
+
+  margin is transparent space outside the element
+
+  margin-side: value
+
+  margin: top right bottom left;
+  margin: top right/left bottom;
+  margin: top/bottom right/left;
+  margin: allsides;
+
+  <!-----------------           Transition         ---------------------->
+
+  The transition property is a shorthand property for:
+
+  transition-property
+  transition-duration
+  transition-timing-function
+  transition-delay
+
+
+
+  <!--------------------------- selector -------------------------- -->
+
+
+  The CSS selectors are used to select one or more html elements to style
+  There are different categories of CSS selectors
+  - General selectors
+  - Attribute selectors
+  - Pseudo selectors
+  1. Pseudo element selectors
+  2. Pseudo class selectors
+
+
+
+  element selector:- selects all the elements of provided tagname
+
+  /* p {
+  color: red;
+  } */
+
+  id selector:- selects all the elements having provided id
+  id selector should start with #
+  Id selector is preferred to style specific element
+  id selector has more priority than class selector
+
+
+  class selector:- selects all the elements having provided class name
+
+  class selector should start with .
+
+  class selector is used to write reusable css
+  class selector has lower priority than id selector
+
+
+  <!-------------------------- Combinators ---------------------- -->
+
+  A combinator is something that explains the relationship between the selectors.
+
+  There are four different combinators in CSS:
+
+  descendant selector (space)
+  child selector (>)
+  adjacent sibling selector (+)
+  general sibling selector (~)
+
+  1-->Descendant Selector
+  / select all the span elements which are child of div /
+  / space combinator select all the child elements of div which matches the right hand side selector /
+  The descendant selector matches all elements that are descendants of a specified element.
+
+
+  2-->Child Selector (>)
+  > combinator is used to select direct child element
+
+  The child selector selects all elements that are the children of a specified element.
+
+  3-->Adjacent Sibling Selector (+)
+  + select next immediate sibling
+  The adjacent sibling selector is used to select an element that is directly after another specific element.
+  Sibling elements must have the same parent element, and "adjacent" means "immediately following".
+
+
+  4-->General Sibling Selector (~)
+  ~ selects all the next siblings which matches the right hand side selector
+
+  The general sibling selector selects all elements that are siblings of a specified element.
+
+
+  <!-- ------------- Attribute Selector ----------------------->
+
+  /* syntax:
+
+  element[attribute]{}
+  element[attribute=value]{}
+
+  select all the elements having href attribute
+  a[href] {
+  color: red;
+  }
+
+  select all the element which do not have href attribute
+
+  a:not([href]) {
+  color: blue;
+  }
+
+  h1[title] {
+  color: green;
+  Selecting element based on attribute value
+
+  = exact match
+  ^= match the starting part of the attribute value-->starting value
+  $= match the provided value with the end of attribute value-->Ending value
+  *= match the sub string in attribute value--- anyValue
+  ~= match the words in attribute value */--> fullspecific word
+  -------------------------------------------------------------
+  ##01
+
+  select all the links of "https://www.topperskills.com"
+
+  CSS [attribute="value"] Selector
+  The [attribute="value"] selector is used to select elements with a specified attribute and value.
+
+
+  a[href="https://www.topperskills.com"] {
+  color: red;
+  }
+
+  -------------------------------------------------------------
+  ##02
+
+  CSS [attribute^="value"] Selector
+  select all the secure links starting with value
+
+  The [attribute^="value"] selector is used to select elements whose attribute value begins with a specified value.
+
+
+  a[href ^="https"] {
+  color: green;
+  }
+
+
+  ------------------------------------------------------------
+  ##03
+  CSS [attribute$="value"] Selector
+  The [attribute$="value"] selector is used to select elements whose attribute value ends with a specified value.
+  / select all the element whose href attribute value ends with .in /
+
+  a[href $=".in"] {
+  color: orange;
+  }
+
+  --------------------------------------------------------------
+  ##04
+  CSS [attribute*="value"] Selector
+  The [attribute*="value"] selector is used to select elements whose attribute value contains a specified value.
+  / select all elements having topperskills in their href attribute /
+
+  a[href *="topperskills"] {
+  color: cyan;
+  }
+
+
+  ----------------------------------------------------------------------
+  ##05
+  CSS [attribute~="value"] Selector
+  The [attribute~="value"] selector is used to select elements with an attribute value containing a specified word.
+  / select all the elements which have "reactjs" in their title /
+
+  h1[title~="reactjs"] {
+  color: brown;
+  }
+
+
+  <!-------------------    Pseudo Selectors  ---------------------------------->
+
+
+
+  Pseudo Selectors
+  1. Pseudo Element Selector ::
+  It is used to select part of the element
+  --selector that lets you style a specific part of the selected element(s).
+
+  2. Pseudo Class Selector :
+  It is used to select elements based on their state and position
+  A Pseudo class in CSS is used to define the special state of an element.
+  It can be combined with a CSS selector to add
+  an effect to existing elements based on their states.
+
+  <!---------------------------------- Postion --------------------------------- -->
+
+
+  position property is used to set the position of any element
+  By default all the elements are positioned to left to right
+
+  default position is called static, you cannot use top, right, bottom, left
+
+  The position property has differnt values like
+  static (default)
+  relative
+  absolute
+  fixed
+  sticky
+
+
+  ##01 relative:-
+  - measurement of the length (top, right, bottom, left) starts from
+  its default/static position
+  - It will hold the space
+
+
+  ##02 Absolute:-
+  - measurement of the length(top, right, bottom, left) starts
+  from relative positioned parent, but if there is no relative
+  parent then measurement will start from body
+  - It will not hold the initial space.
+
+  ##03 fixed:-
+  - measurement starts from body
+  - it does not hold the space
+  - it does not move on scroll
+
+
+  ##04 sticky:-
+  - measurement starts from body
+  - it holds the space
+  - it moves only within the viewport
+
+  ##05 static:-
+  Static positioned elements are not affected by the top, bottom, left, and right properties.
+  it is always positioned according to the normal flow of the page:
+
+
+
+
+  <!-------------------------------------- Animation------------------------------- -->
+
+  To create an animation you need to create multiple styles (frames) and
+  display those frames at a specific speed
+
+  To create/ define frames there is rule in css @keyframes
+  What are CSS Animations?
+  An animation lets an element gradually change from one style to another.
+
+  You can change as many CSS properties you want, as many times you want.
+
+  To use CSS animation, you must first specify some keyframes for the animation.
+
+  Keyframes hold what styles the element will have at certain times.
+
+  The @keyframes Rule
+  When you specify CSS styles inside the @keyframes rule, the animation will gradually change from the current style
+  to
+  the new style at certain times.
+
+  ## Animation Properties
+
+  @keyframes
+  animation-name
+  animation-duration
+  animation-delay
+  animation-iteration-count
+  animation-direction
+  animation-timing-function
+  animation-fill-mode
+  animation
+
+
+
+  ##01 animation-duration
+  The animation-duration property defines how long time an animation should take to complete.
+  using the keywords "from" and "to" (which represents 0% (start) and 100% (complete)).
+
+  ##02 animation-delay
+  The animation-delay property specifies a delay for the start of an animation.
+
+  ##03 animation-iteration-count
+  The animation-iteration-count property specifies the number of times an animation should run.
+
+  ##04 animation-direction
+  The animation-direction property specifies whether an animation should be played forwards, backwards or in alternate
+  cycles.
+
+  The animation-direction property
+  normal
+  reverse
+  alternate - The animation is played forwards first, then backwards
+  alternate-reverse - The animation is played backwards first, then forwards
+
+  ##05 animation-timing-function
+  The animation-timing-function property specifies the speed curve of the animation.
+  ease
+  linear
+  ease-in
+  ease-out
+  ease-in-out
+  cubic-bezier(n,n,n,n) - Lets you define your own values in a
+
+  ease - Specifies an animation with a slow start, then fast, then end slowly (this is default)
+  linear - Specifies an animation with the same speed from start to end
+  ease-in - Specifies an animation with a slow start
+  ease-out - Specifies an animation with a slow end
+  ease-in-out - Specifies an animation with a slow start and end
+  cubic-bezier(n,n,n,n) - Lets you define your own values in a
+
+
+  animation shortHand properties
+  animation-name: example;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-delay: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+
+
+  <!---------------------------- Transfrom ------------------------------------------ -->
+  The transform property applies a 2D or 3D transformation to an element. This property allows you to rotate, scale,
+  move,
+  skew, etc., elements.
+
+  ## 01 transform-origin
+  The transform-origin CSS property sets the origin for an element's transformations.
+  The transform-origin property allows you to change the position of transformed elements.
+
+  <!-- ----------------------------------2D transform ----------------------------------- ------------------------>
+
+
+  CSS 2D Transforms Methods
+  With the CSS transform property you can use the following 2D transformation methods:
+
+  translate()
+  rotate()
+  scaleX()
+  scaleY()
+  scale()
+  skewX()
+  skewY()
+  skew()
+  matrix()
+
+
+  <!-- Matrix transformation -->
+  matrix()
+  Describes a homogeneous 2D transformation matrix.
+
+  matrix3d()
+  Describes a 3D transformation as a 4×4 homogeneous matrix.
+  <!-- Perspective -->
+  perspective()
+  Sets the distance between the user and the z=0 plane.
+  <!-- Rotation -->
+  rotate()
+  Rotates an element around a fixed point on the 2D plane.
+
+  rotate3d()
+  Rotates an element around a fixed axis in 3D space.
+
+  rotateX()
+  Rotates an element around the horizontal axis.
+
+  rotateY()
+  Rotates an element around the vertical axis.
+
+  rotateZ()
+  Rotates an element around the z-axis.
+  <!-- Scaling (resizing) -->
+  scale()
+  Scales an element up or down on the 2D plane.
+
+  scale3d()
+  Scales an element up or down in 3D space.
+
+  scaleX()
+  Scales an element up or down horizontally.
+
+  scaleY()
+  Scales an element up or down vertically.
+
+  scaleZ()
+  Scales an element up or down along the z-axis.
+  <!-- Skewing (distortion) -->
+  skew()
+  Skews an element on the 2D plane.
+
+  skewX()
+  Skews an element in the horizontal direction.
+
+  skewY()
+  Skews an element in the vertical direction.
+  <!-- Translation (moving) -->
+  translate()
+  Translates an element on the 2D plane.
+
+  translate3d()
+  Translates an element in 3D space.
+
+  translateX()
+  Translates an element horizontally.
+
+  translateY()
+  Translates an element vertically.
+
+  translateZ()
+  Translates an element along the z-axis.
+
+
+
+  ##01 The translate() Method
+  The translate() method moves an element from its current position (according to the parameters given for the X-axis
+  and
+  the Y-axis).
+  The translate() CSS function repositions an element in the horizontal and/or vertical directions. Its result is a
+  <transform-function> data type.
+
+
+    ##02
+    The rotate() Method
+
+    The rotate() method rotates an element clockwise or counter-clockwise according to a given degree.
+
+    Using negative values will rotate the element counter-clockwise.
+    Using postive values will rotate the element clockwise.
+
+
+    ##03 scale()
+
+    A CSS scale() function is defined as a CSS Transformation property which allows resizing an element in the
+    Two-dimensional Plane. It is used to increase or decrease the size of an element.
+    The scale() method increases or decreases the size of an element (according to the parameters given for the width
+    and
+    height).
+
+    Transform: scale(0); Scaled out of the plane and not visible.
+    Transform: scale(3,1); Horizontal size is scaled up by three and the vertical is unchanged
+
+    {it is negative, the result a point reflection in that dimension}.
+
+    ##4 scaleX()
+    The scaleX() CSS function defines a transformation that resizes an element along the x-axis -->horizontally
+
+    ##5 scaleY()
+    The scaleY() CSS function defines a transformation that resizes an element along the y-axis -->Vertically
+
+
+    ##06 skewX()
+    The skewX() method skews an element along the X-axis by the given angle.-->horizontally
+
+    ##07 skewY()
+    The skewY() method skews an element along the Y-axis by the given angle.-->Vertically
+
+    ##08 skew()
+    The skew() method skews an element along the X and Y-axis by the given angles.
+
+    ##09 The rotateX() Method
+    The rotateX() method rotates an element around its X-axis at a given degree:
+    rotate around horizontally
+
+    ##10 The rotateY() Method
+    The rotateY() method rotates an element around its Y-axis at a given degree:
+    rotate around vertically
+
+    ##11 The rotateZ() Method
+    The rotateZ() method rotates an element around its Z-axis at a given degree:
+    rotate around cricle
+
+
+
+    <!-------- ----------------------------  Responsive design vs Adaptive design -------------------------------  -->
+    Responsive design vs Adaptive design
+
+
+    Adaptive design:-
+    - You need to create a separate web page for each targeted device.
+    - content duplication
+    - - requires more man power
+    - device detection happens at server side.
+    - easy to design
+    - suitable for big and complex web pages
+
+    Example:
+
+    https://www.facebook.com -> desktop version
+    https://m.facebook.com -> mobile version
+
+
+    Responsive Design:-
+    If a web page changes its layout according to the device(screen size) is called
+    responsive web page design
+
+    - you need to write styles for all targeted devices
+    - no content duplication
+    - requires less manpower
+    - device detection happens in the web browser
+    - hard to design
+    - suitable for small and less complex designs
+
+
+    Example:
+    https://www.topperskills.com/mean
+
+
+
+    <!---------------------------------------------- Media Query --------------------------------------------------------->
+    
+    Media queries are used to identify the targeted devices based of their features like width,height, orientation,
+    etc. -
+    using
+    media query you can apply specific style for specific Types of Media :- - screen - speech - print - all
+
+    Syntax:-
+
+
+    @media [mediatype], (max-width: 500px){
+
+
+    }
+
+    Media queries can modify the appearance (and even behavior) or a website or app based on a matched set of
+    conditions
+    about the user’s device, browser or system settings.
+
+    Media queries allow you to customize the presentation of your web pages for a specific range of devices like
+    mobile
+    phones, tablets, desktops, etc. without any change in markups
+
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {...}
+
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 600px) {...}
+
+    /* Medium devices (landscape tablets, 768px and up) */
+    @media only screen and (min-width: 768px) {...}
+
+    /* Large devices (laptops/desktops, 992px and up) */
+    @media only screen and (min-width: 992px) {...}
+
+    /* Extra large devices (large laptops and desktops, 1200px and up) */
+    @media only screen and (min-width: 1200px) {...}
+
+
+    The @media rule is used in media queries to apply different styles for different media types/devices.
+
+    Media queries can be used to check many things, such as:
+
+    width and height of the viewport
+    width and height of the device
+    orientation (is the tablet/phone in landscape or portrait mode?)
+
+    @media not|only mediatype and (expressions) {
+    CSS-Code;
+    }
+
+    <!-- 
+mobile (extra small device) xs ->   size  <= 575.98px  
+tablet (small device) sm ->     size >= 576px  &&  size <= 767.98px 
+laptop (medium device) md ->    size >= 768px  &&  size <= 991.98px
+desktop (large device) lg       size >= 991.98px  && size <= 1199.98px
+big screen (extra large device) xl -> size >= 1200px  -->
+
+
+    media types:--
+    all (suitable for all devices)
+    braille
+    embossed
+    handheld
+    print
+    projection
+    screen
+    speech
+    tty
+    TV
+
+
+
+
+    <!----------------------------------------length units ---------------------------------------------------  -->
+
+
+    There are 2 types of length units
+    1. absolute length units
+    absolute length units are not relative to anything else means
+    the length remains same in all cases
+    Example:-
+    px , pt, in, cm, etc;
+
+    2. relative length units
+    The relative length units are relative to something else like
+    parent font, viewport width, viewport height, etc.
+    Example:
+    em (element) - it is relative to font size of parent element
+
+    1em = font size of parent element
+    Ex: parent font-size = 16px;
+    1em = 16px
+    2em = 32px
+    .5em = 8px
+    1.5em = 24px
+
+
+
+    rem (root element) - it is relative to font size of root element (html)
+    1rem = font size of root element
+    Ex: root element font-size = 16px;
+    1rem = 16px
+    2rem = 32px
+    .5rem = 8px
+    1.5rem = 24px
+
+
+    vh -> Viewport height 100vh = total height of viewport
+    vw -> Viewport width 100vw = total width of viewport
+
+
+    viewport is the area on the web browser when the web page gets displyed.
+
+
+
+
+
+    <!------------------------------------------------------------- Flex --------------------------------------------------------------------->
+
+
+    The flex container properties are:
+
+    flex-direction
+    flex-wrap
+    flex-flow
+    justify-content
+    align-items
+    align-content
+
+
+
+    ##01 flex-direction
+    The flex-direction property defines in which direction the container wants to stack the flex items.
+
+    The flex-direction property accepts 4 different values:
+
+    row (default): same as text direction
+    row-reverse: opposite to text direction
+    column: same as row but top to bottom
+    column-reverse: same as row-reverse top to bottom
+
+
+    ##02 flex-wrap
+    The flex-wrap Property
+    The flex-wrap property specifies whether the flex items should wrap or not.
+
+    It defines whether the flex items are forced in a single line or can be flowed into multiple lines. If set to
+    multiple
+    lines, it also defines the cross-axis which determines the direction new lines are stacked in.
+
+    The flex-wrap property accepts 3 different values:
+
+    nowrap (default): single-line which may cause the container to overflow
+    wrap: multi-lines, direction is defined by flex-direction
+    wrap-reverse: multi-lines, opposite to direction defined by flex-direction
+
+    ##03 flex-flow
+    The flex-flow property is a shorthand property for setting both the flex-direction and flex-wrap properties.
+
+    ##04 justify-content
+    The justify-content property is used to align the flex items:
+
+    The justify-content property accepts five different values:
+    flex-start (default): items are packed toward the start line
+    flex-end: items are packed toward to end line
+    center: items are centered along the line
+    space-between: items are evenly distributed in the line; first item is on the start line, last item on the end
+    line
+    space-around: items are evenly distributed in the line with equal space around them
+    space-evenly: items are distributed so that the spacing between any two adjacent alignment subjects, before the
+    first
+    alignment subject, and after the last alignment subject is the same
+
+
+    ##05 align-items
+
+
+    The align-items property accepts 5 different values:
+
+    flex-start: cross-start margin edge of the items is placed on the cross-start line
+    flex-end: cross-end margin edge of the items is placed on the cross-end line
+    center: items are centered in the cross-axis
+    baseline: items are aligned such as their baselines align
+    stretch (default): stretch to fill the container (still respect min-width/max-width)
+
+    ##06 align-content
+    The align-content property is used to align the flex lines.
+    The CSS align-content property sets the distribution of space between and around content items
+    along a flexbox's
+    cross-axis or a grid's block axis.
+    The align-content property accepts 6 different values:
+
+    flex-start: lines packed to the start of the container
+    flex-end: lines packed to the end of the container
+    center: lines packed to the center of the container
+    space-between: lines evenly distributed; the first line is at the start of the container while the last one is at
+    the
+    end
+    space-around: lines evenly distributed with equal space between them
+    stretch (default): lines stretch to take up the remaining space

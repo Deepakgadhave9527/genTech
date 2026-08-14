@@ -1,319 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CSS Fixed Position Example</title>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
 
-    body {
-      font-family: Arial, sans-serif;
-      height: 2000px; /* To demonstrate scrolling */
-      background: #f4f4f4;
-      padding: 20px;
-    }
-
-    h1 {
-      margin-bottom: 20px;
-    }
-
-    .content {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      line-height: 1.6;
-    }
-
-    /* Fixed element */
-    .fixed-box {
-      position: fixed;
-
-      /* Position properties */
-      top: 20px;
-      right: 20px;
-
-      width: 150px;
-      height: 80px;
-
-      background: crimson;
-      color: white;
-      font-weight: bold;
-
+    .flex-container{
+      border: 2px solid black;
+      padding: 2px;
       display: flex;
-      justify-content: center;
-      align-items: center;
-
-      border-radius: 10px;
+flex-flow:row wrap;
+      
     }
-
-    .info {
-      margin-top: 30px;
+    .flex-box{
+      border: 2px solid red;
       padding: 20px;
-      background: lightblue;
+      margin: 10px;
     }
   </style>
 </head>
-
 <body>
+<div class="flex-container">
+  <div class="flex-box">1</div>
+  <div class="flex-box">2</div>
+  <div class="flex-box">3</div>
+  <div class="flex-box">4</div>
+  <div class="flex-box">5</div>
+  <!-- <div class="flex-box">6</div>
+  <div class="flex-box">7</div>
+  <div class="flex-box">8</div>
+  <div class="flex-box">9</div>
+  <div class="flex-box">10</div>
+  <div class="flex-box">11</div>
+  <div class="flex-box">12</div>
+  <div class="flex-box">13</div>
+  <div class="flex-box">14</div>
+  <div class="flex-box">15</div>
+  <div class="flex-box">16</div>
+  <div class="flex-box">17</div>
+  <div class="flex-box">18</div>
+  <div class="flex-box">19</div>
+  <div class="flex-box">20</div> -->
+</div>
 
-  <h1>CSS position: fixed Example</h1>
-
-  <div class="fixed-box">
-    Fixed Box
-  </div>
-
-  <div class="content">
-    <h2>Main Content</h2>
-    <p>
-      Scroll the page and notice that the red box stays fixed in the same
-      position on the screen.
-    </p>
-
-    <div class="info">
-      <p>
-        A fixed positioned element is removed from the normal document flow
-        and positioned relative to the viewport.
-      </p>
-      <p>
-        It does not move when the page is scrolled.
-      </p>
-    </div>
-
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-      Repeat scrolling content to see the fixed behavior.
-    </p>
-  </div>
-<script>
   
-  console.log(globalThis == window)
-  console.log()
-</script>
 </body>
 </html>
-
-# A] Axios Theory
-
-1. **What is Axios?**
-
-   * Axios is a **third-party HTTP client library** used to communicate with backend APIs.
-   * It is commonly used in **React.js, Vue.js, Node.js**, and other JavaScript applications.
-   * It supports HTTP methods such as **GET, POST, PUT, PATCH, and DELETE**.
-
-2. **Why do we use Axios?**
-
-   * To send HTTP requests to the backend.
-   * To receive data from APIs.
-   * To send data to the server.
-   * To handle API errors.
-   * To manage authentication headers.
-   * To centralize API configuration.
-   * To handle request and response processing.
-
-3. **Automatic JSON handling**
-
-   * Axios automatically transforms JSON responses into JavaScript objects in typical JSON API usage.
-   * We generally don't need to manually call a separate JSON parsing method.
-
-4. **Error handling**
-
-   * Axios automatically rejects the Promise for HTTP error status codes such as:
-
-     * `400 Bad Request`
-     * `401 Unauthorized`
-     * `403 Forbidden`
-     * `404 Not Found`
-     * `500 Internal Server Error`
-   * This makes API error handling convenient.
-
-5. **Axios Interceptors**
-
-   * Axios provides **built-in request and response interceptors**.
-   * **Request interceptors** run before the request is sent.
-   * They can be used for:
-
-     * Adding authentication tokens.
-     * Modifying headers.
-     * Adding common parameters.
-     * Logging requests.
-     * Adding request IDs.
-   * **Response interceptors** run after the response is received.
-   * They can be used for:
-
-     * Transforming response data.
-     * Global error handling.
-     * Logging responses.
-     * Handling `401 Unauthorized`.
-     * Refreshing expired tokens.
-     * Retrying requests.
-
-6. **Axios Instance**
-
-   * We can create a reusable Axios instance with common configuration.
-   * For example:
-
-     * Base URL.
-     * Timeout.
-     * Common headers.
-     * Authentication configuration.
-   * This avoids repeating the same configuration throughout the application.
-
-7. **Authentication**
-
-   * Axios is commonly used with JWT or other authentication mechanisms.
-   * A request interceptor can automatically attach the access token to API requests.
-   * A response interceptor can handle expired tokens and token-refresh flows.
-
-8. **Request cancellation**
-
-   * Axios supports request cancellation using `AbortController`.
-   * This is useful when a request is no longer needed, such as when a component is unmounted or a newer request replaces an older one.
-
-9. **Timeout**
-
-   * Axios provides convenient timeout configuration.
-   * If a request takes longer than the configured time, it can be cancelled/rejected.
-
-10. **Advantages of Axios**
-
-    * Easy to use.
-    * Automatic JSON response transformation.
-    * Built-in request interceptors.
-    * Built-in response interceptors.
-    * Convenient error handling.
-    * Easy centralized configuration.
-    * Supports request cancellation.
-    * Convenient for large React applications.
-
-11. **Disadvantages of Axios**
-
-    * It is an external dependency.
-    * It must be installed separately.
-    * For very simple API calls, adding a dependency may not be necessary.
-
-12. **Interview Definition**
-
-    * **“Axios is a third-party HTTP client library used to communicate with APIs. It provides features such as automatic JSON handling, convenient error handling, request and response interceptors, centralized configuration, authentication handling, request cancellation, and timeout support.”**
-
-# B] Fetch API Theory
-
-1. **What is Fetch API?**
-
-   * Fetch is a **native Web API** used to make HTTP requests.
-   * It is available in modern browsers.
-   * It is also available in modern Node.js environments.
-   * It does not require installing an external HTTP library.
-
-2. **Why do we use Fetch?**
-
-   * To communicate with backend APIs.
-   * To send and receive data.
-   * To perform HTTP operations such as:
-
-     * GET
-     * POST
-     * PUT
-     * PATCH
-     * DELETE
-
-3. **Promise-based API**
-
-   * Fetch returns a **Promise**.
-   * It works naturally with `async/await`.
-   * It provides a `Response` object that represents the server response.
-
-4. **JSON handling**
-
-   * Unlike Axios, Fetch does **not automatically give you the parsed JSON data**.
-   * You need to explicitly parse the response using the appropriate response method, such as JSON parsing.
-   * This is an important difference between Axios and Fetch.
-
-5. **Error handling**
-
-   * This is one of the most important interview differences.
-   * Fetch does **not automatically reject its Promise for HTTP errors** such as:
-
-     * `400`
-     * `401`
-     * `403`
-     * `404`
-     * `500`
-   * You need to check the response status, commonly through `response.ok` or `response.status`, and handle the error yourself.
-
-6. **Interceptors**
-
-   * Fetch does **not provide built-in Axios-style request or response interceptors**.
-   * If we need interceptor-like behavior, we can create a **custom Fetch wrapper**.
-   * The wrapper can centralize:
-
-     * Authentication headers.
-     * Logging.
-     * Error handling.
-     * Request configuration.
-     * Response processing.
-
-7. **Authentication**
-
-   * Fetch allows us to send authentication headers.
-   * However, it does not automatically add authentication tokens to every request.
-   * We need to add the authentication logic ourselves or create a reusable wrapper.
-
-8. **Request cancellation**
-
-   * Fetch supports request cancellation through **AbortController**.
-   * This is useful when a request needs to be cancelled before completion.
-
-9. **Timeout**
-
-   * Fetch does not provide the same simple timeout configuration that Axios provides.
-   * Timeout behavior can be implemented using **AbortController** and additional logic.
-
-10. **Advantages of Fetch**
-
-    * Built into modern browsers.
-    * No external dependency.
-    * Lightweight.
-    * Promise-based.
-    * Works well with `async/await`.
-    * Supports request cancellation.
-    * Good choice for simple API requirements.
-
-11. **Disadvantages of Fetch**
-
-    * No built-in Axios-style interceptors.
-    * JSON response parsing requires explicit handling.
-    * HTTP errors such as `404` and `500` don't automatically reject the Promise.
-    * Timeout handling requires additional logic.
-    * Large applications may need a custom API wrapper for centralized API behavior.
-
-12. **Interview Definition**
-
-    * **“Fetch is a native Web API used to make HTTP requests without installing an external library. It is Promise-based and works well with async/await. Unlike Axios, Fetch requires explicit response parsing, does not automatically reject for HTTP error status codes, and does not provide built-in interceptors. We can create a custom wrapper around Fetch when we need centralized request and response handling.”**
-
-# C] Most Important Interview Difference
-
-1. **Axios**
-
-   * Third-party HTTP client library.
-   * Built-in interceptors.
-   * Automatic JSON transformation.
-   * Convenient error handling.
-   * Easy centralized configuration.
-
-2. **Fetch**
-
-   * Native Web API.
-   * No built-in interceptors.
-   * Explicit response parsing.
-   * HTTP error handling must be implemented/check manually.
-   * No external dependency.
-
-3. **One-line answer**
-
-   * **“Axios provides more features out of the box, such as interceptors and convenient error handling, while Fetch is a native, lightweight Web API that gives us more low-level control but requires us to implement some common functionality ourselves.”**

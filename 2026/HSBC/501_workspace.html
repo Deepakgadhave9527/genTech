@@ -1,0 +1,146 @@
+<!-- Create a Todo List application using HTML, CSS, and JavaScript.
+Fetch the todos from the given API:
+https://dummyjson.com/todos?limit=10&skip=0
+Display the fetched todos in the UI.
+Show the total number of todos.
+Use the provided structure and styling.
+Use JavaScript fetch() to get the API data and dynamically create the todo cards. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Todo List</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #1e1e1e;
+      color: #000;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .title {
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    #total {
+      color: white;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    #todo-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .todo-card {
+      background: #e6e6e6;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .todo-card h3 {
+      margin: 0 0 8px;
+    }
+
+    .todo-card p {
+      margin: 8px 0;
+      font-size: 14px;
+    }
+
+    .completed {
+      color: green;
+      font-weight: bold;
+    }
+
+    .pending {
+      color: red;
+      font-weight: bold;
+    }
+
+    .error {
+      color: red;
+      font-size: 18px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1 class="title">Todos</h1>
+
+  <p id="total">Total Todos: 0</p>
+
+  <div id="todo-container"></div>
+
+  <script>
+    "use strict";
+
+    const container = document.getElementById("todo-container");
+    const total = document.getElementById("total");
+
+    fetch("https://dummyjson.com/todos?limit=10&skip=0")
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error("Failed to fetch todos");
+        }
+
+        return response.json();
+      })
+      .then(function (data) {
+        const todos = data.todos;
+
+        // Show total number of todos available in the API
+        total.textContent = "Total Todos: " + data.total;
+
+        for (let i = 0; i < todos.length; i++) {
+          const todo = todos[i];
+
+          // Create card
+          const card = document.createElement("div");
+          card.className = "todo-card";
+
+          // User ID
+          const title = document.createElement("h3");
+          title.textContent = "User # " + todo.userId;
+
+          // Todo text
+          const text = document.createElement("p");
+          text.textContent = todo.todo;
+
+          // Completion status
+          const status = document.createElement("p");
+
+          if (todo.completed) {
+            status.textContent = "Completed";
+            status.className = "completed";
+          } else {
+            status.textContent = "Pending";
+            status.className = "pending";
+          }
+
+          // Add elements to card
+          card.appendChild(title);
+          card.appendChild(text);
+          card.appendChild(status);
+
+          // Add card to container
+          container.appendChild(card);
+        }
+      })
+      .catch(function (error) {
+        console.log("Error fetching todos:", error);
+
+        container.innerHTML =
+          '<p class="error">Unable to load todos.</p>';
+      });
+  </script>
+
+</body>
+</html>
