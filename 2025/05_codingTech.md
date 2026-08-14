@@ -1,11 +1,10 @@
-
+```js
 --------------------------------------------------------------------------------------------------- 
-const object1 = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+### Convert an Array into an Object
 
 const object1 = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 console.log(Object.fromEntries(Object.entries(object1)))
 console.log(Object.assign({},object1))
-
 
 ===========================================
 

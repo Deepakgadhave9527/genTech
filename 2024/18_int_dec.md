@@ -1,5 +1,66 @@
 
 ========================================================================
+## What is the `window` Object? (Interview Answer)
+
+The **`window` object** is the global object in web browsers.
+It represents the browser window (or tab) and provides access to browser-specific APIs and features.
+
+It provides access to:
+- `document`
+- `location`
+- `history`
+- `navigator`
+- `localStorage`
+- `sessionStorage`
+- `alert()`
+- `setTimeout()`
+- `setInterval()`
+- `fetch()` and more.
+
+### Example
+
+```javascript
+window.alert("Hello");
+console.log(window.innerWidth);
+```
+============================================================================
+
+## lexical scope
+
+in JavaScript, lexical scope determines variable accessibility based on where variables
+ and functions are declared in the code.
+
+
+-A lexical scope in JavaScript means that a variable defined outside a function 
+can be accessible inside another function
+
+
+When a function (Function B) is declared inside another function (Function A), JavaScript uses lexical scoping to determine what variables Function B has access to.
+// 🌍 Global scope
+let globalVar = "I am global";
+
+function Function_A_outer() {
+  // 🔹 Lexical Scope Level 1 (outer)
+  let outerVar = "I am outer";
+
+  function Function_b_inner() {
+    // 🔸 Lexical Scope Level 2 (inner)
+    let innerVar = "I am inner";
+
+    //  Accessing variables through lexical scope
+    console.log(globalVar); // ← from Global Scope
+    console.log(outerVar);  // ← from outer()'s Lexical Scope
+    console.log(innerVar);  // ← from inner()'s own scope
+  }
+
+  Function_b_inner(); // Call the inner function
+}
+
+Function_A_outer(); // Call the outer function
+
+
+
+========================================================================
 
 
 Flexbox:
