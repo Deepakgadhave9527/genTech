@@ -85,7 +85,9 @@ It's managing dependencies and bundling various assets like JavaScript files, im
 and CSS into a single bundle,
 
 Webpack's behavior is configured through a webpack.config.js file.
+
 Plugins is used Webpack's functionality for tasks like optimization, asset management,
+
 It's widely used in modern web development, often alongside frameworks like React, Vue.js, or Angular.
 
 
@@ -238,8 +240,39 @@ child.addEventListener("click", (event) => {
 event.stopImmediatePropagation() is a JavaScript method that used to stops the event propagating bubbling and capturing phase
 and also stop any other event listeners attached to the same element 
 
+  <div id="parent">
+    <button id="child">Click Me</button>
+  </div>
 
+  <script>
+    const parent = document.getElementById("parent");
+    const child = document.getElementById("child");
 
+    // First event listener on child
+    child.addEventListener("click", (event) => {
+      alert("Child Listener 1");
+
+      event.stopImmediatePropagation();
+    });
+
+    // Second event listener on the SAME child
+    child.addEventListener("click", () => {
+      alert("Child Listener 2");
+    });
+
+    // Parent listener
+    parent.addEventListener("click", () => {
+      alert("Parent Listener");
+    });
+  </script>
+ouput 
+
+Child Listener 1
+      ↓
+stopImmediatePropagation()
+      ↓
+❌ Child Listener 2 doesn't run
+❌ Parent Listener doesn't run
 =========================================================================
 
 ####
@@ -251,6 +284,22 @@ and also stop any other event listeners attached to the same element
   - Example: Prevent a form from submitting.
   - Example: Prevent a link from navigating to a new page.
   - Example: Prevent a context menu from appearing.
+
+
+  <a id="myLink" href="https://www.google.com">
+    Go to Google
+  </a>
+
+  <script>
+    const link = document.getElementById("myLink");
+
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      alert("Navigation prevented!");
+    });
+  </script>
+
 
 
 =========================================================================
@@ -271,7 +320,7 @@ console.log(add(2, 3)); // Always returns 5
 
 
 ### Impure Functions
-- *Non-deterministic*: `different output for the same input`.
+- *Non-deterministic*: Always return the `different output for the same input`.
 - *Side Effects*: Modify external state, perform I/O operations, etc.
 - *Challenges*: Harder to reason about, test, and maintain.
 
@@ -299,7 +348,7 @@ console.log(increment()); // Output depends on external `count` variable
 
 Iterators` are objects
 
-with help of iterators we can access sequential elements in a collection one at a time 
+with help of iterators we can access sequential elements in the collection one at a time 
 
 
 -An iterator provides a next() method. Each time next() is called, it returns an object with two properties:
@@ -339,14 +388,11 @@ Map and Set iteratio
 
 ### Generators
 
-- `Generators` are special functions that can `pause their execution and   resume it later`. 
-its means  control over the function's execution.
+- `Generators` are special functions that can `pause their execution and   resume it later`. its means  control over the function's execution.
 
-They are defined using the `function\- syntax` and use the `yield keyword to pause execution` and produce values one at a time.
+They are defined using the `function*  syntax`  function with asterisk and use the `yield keyword to pause execution` and produce values one at a time.
 
-normal function, which runs from start to finish in a single call,  bur generator function remembers its state between calls beacuse pause execution
-
-The generator object provides the next() method. and it returns an object with two properties:
+The generator function provides the next() method. and it returns an object with two properties:
 
 1] value: the yielded value.
 2] done: true if the function code has finished, otherwise false.
@@ -374,6 +420,10 @@ console.log(gen.next()); // { value: undefined, done: true }
 
 
 ```
+
+
+normal function, which runs from start to finish in a single call,  but generator function remembers its state between calls beacuse pause execution
+
 ========================================================
 
 ### Event delegation
@@ -619,7 +669,7 @@ depending on the type of operation.
 ### Micro Task Queue
 
 
-The Microtask Queue is a queue that s`tores high-priority asynchronous tasks`.these tasks are executed after the current synchronous code finishes 
+The Microtask Queue is a queue that `stores high-priority asynchronous tasks`.these tasks are executed after the current synchronous code finishes 
 and the Call Stack becomes empty, but before the Event Loop processes the next macrotask.
 
 Microtasks are given higher priority than macrotasks.
@@ -882,7 +932,7 @@ When a customer visits an online store, a new shopping cart is created. This car
 This use of closures ensures that the cart’s internal list remains encapsulated and secure, only modifiable through the designated functions. The private list retains its state throughout the customer’s session because the functions maintain a reference to it. This encapsulation enhances security by preventing direct tampering and ensures that each customer's cart operates independently and consistently throughout their shopping experience. -->
 
 =======================================
-
+```js
 for(var x = 1; x < 5; x++) {
 setTimeout(() => {
 console.log(x);
@@ -899,10 +949,10 @@ Since var does not create a new scope for each iteration, all callbacks referenc
 
 Since let creates a new scope for each iteration, each callback references its own unique x varibale.
 
-in case of var , var is function scope  , only one varible is created and for loop doest not crated each interation new variable, setTimeout callback create clouse , clouse is rember only refeance not value , here for exuation time  setTimeout callback pushed macro task quea , first it finshded time then pushedout from stack , then loop is shynchrounse task it fished first then value of var is is five Since all callbacks reference the same variable, beasue dose not crate new varible
+in case of var , var is function scope  , only one varible is created and 
+ for loop doest not crated each interation new variable, setTimeout callback create clouse , clouse is rember only refeance not value , here for exuation time  setTimeout callback pushed macro task quea , first it finshded time then pushedout from stack , then loop is shynchrounse task it fished first then value of var is is five Since all callbacks reference the same variable, beasue dose not crate new varible
 
 
-```js
 ### `var` with Closure and Event Loop Explanation
 
 In the case of ``var``, only one variable is created because `var` is `function-scoped`.  
