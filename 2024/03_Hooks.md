@@ -1,5 +1,111 @@
 
 
+
+================================================================
+
+### 04 React.memo
+
+- `React.memo` is a higher-order component.
+- It is used to optimize the performance of functional components by memoizing them.
+- It is used to prevent unnecessary re-renders of functional components when their props have not changed.
+
+- React compares the current props with the previous props.
+- If the component receives the same props as the previous render, React skips re-rendering that component.
+- If there’s no change, React reuses the previously rendered result.
+- If props change, the component re-renders normally.
+- This prevents unnecessary re-renders.
+
+**Useful when:**
+
+- Component is heavy (complex UI, large calculations).
+- Props rarely change.
+- Parent re-renders often, but child’s props remain the same.
+
+- If you add a child component inside a parent component, and you are not passing any props to the child, then:
+
+Without React.memo, the child will re-render whenever the parent re-renders.
+
+- With React.memo, since there are no props, React will skip the child’s re-render when the parent re-renders.
+
+========================================================================
+### What does memoizing mean?
+
+Memoization is a technique where the result of a function call is cached (stored), so if the same inputs occur again, the cached result is returned immediately instead of recalculating.
+
+
+
+========================================================================
+
+
+### useMemo
+
+- The useMemo hook is used to memoize the result of a calculation
+
+- useMemo is used to avoid re-running an expensive calculation when a component re-renders. 
+
+- When the parent sends new props or the component's state changes, the component may re-render.
+- Without useMemo, the expensive calculation runs again.
+
+- With useMemo, the cached result is returned until its dependencies change.
+
+- It can improve performance by avoiding unnecessary expensive calculations during component re-renders.
+
+
+“By calculation, I mean any expensive operation such as filtering, sorting, searching, parsing,
+
+### Common Use Cases of `useMemo`
+
+* **Expensive calculations**
+* **Filtering large lists**
+* **Sorting large lists**
+* **Complex data transformations**
+* **Maintaining stable object/array references**
+* **Memoizing Context Provider values**
+
+```js
+const memoziationOfResult = useMemo(()=>{},[])
+```
+
+`useMemo` does not prevent a component from re-rendering. 
+`React.memo` can prevent a component from re-rendering when its props have not changed.
+`useMemo` only prevents an expensive calculation from running again unnecessarily.
+
+
+========================================================================
+- The useMemo hook is used to memoize the result of a calculation
+- It recalculates the value only when its dependencies change; otherwise, it returns the cached value
+
+It is mainly useful for expensive calculations or data transformations, such as filtering, sorting, searching, parsing, or complex calculations.
+
+
+
+-------------------------------------------------------------
+
+### **useCallback**
+
+useCallback hooke memoizes a function and returns the same function reference until its dependencies change.
+
+useCallback can prevent unnecessary child component re-renders when a function is passed as a prop to a child wrapped with React.memo, which can improve application performance.
+
+Mainly to prevent unnecessary re-renders when passing functions to memoized child components or when a function is a dependency of useEffect.
+
+
+
+### 1. Passing a function to a child component (Most Common) ✅
+
+### 2. When a function is a dependency of `useEffect`
+
+### 3. When a function is a dependency of another Hook
+
+### 4. Expensive event handlers
+
+## When NOT to use `useCallback`
+
+
+
+
+
+
 =====================================
 
 
@@ -257,110 +363,6 @@ It is used when you need to read layout measurements or update the DOM immediate
 useLayoutEffect = runs before user sees the screen
 
 useEffect = runs after user sees the screen
-
-
-================================================================
-
-### 04 React.memo
-
-- `React.memo` is a higher-order component.
-- It is used to optimize the performance of functional components by memoizing them.
-- It is used to prevent unnecessary re-renders of functional components when their props have not changed.
-
-- React compares the current props with the previous props.
-- If the component receives the same props as the previous render, React skips re-rendering that component.
-- If there’s no change, React reuses the previously rendered result.
-- If props change, the component re-renders normally.
-- This prevents unnecessary re-renders.
-
-**Useful when:**
-
-- Component is heavy (complex UI, large calculations).
-- Props rarely change.
-- Parent re-renders often, but child’s props remain the same.
-
-- If you add a child component inside a parent component, and you are not passing any props to the child, then:
-
-Without React.memo, the child will re-render whenever the parent re-renders.
-
-- With React.memo, since there are no props, React will skip the child’s re-render when the parent re-renders.
-
-========================================================================
-### What does memoizing mean?
-
-Memoization is a technique where the result of a function call is cached (stored), so if the same inputs occur again, the cached result is returned immediately instead of recalculating.
-
-
-
-========================================================================
-
-
-### useMemo
-
-- The useMemo hook is used to memoize the result of a calculation
-
-- useMemo is used to avoid re-running an expensive calculation when a component re-renders. 
-
-- When the parent sends new props or the component's state changes, the component may re-render.
-- Without useMemo, the expensive calculation runs again.
-
-- With useMemo, the cached result is returned until its dependencies change.
-
-- It can improve performance by avoiding unnecessary expensive calculations during component re-renders.
-
-
-“By calculation, I mean any expensive operation such as filtering, sorting, searching, parsing,
-
-### Common Use Cases of `useMemo`
-
-* **Expensive calculations**
-* **Filtering large lists**
-* **Sorting large lists**
-* **Complex data transformations**
-* **Maintaining stable object/array references**
-* **Memoizing Context Provider values**
-
-```js
-const memoziationOfResult = useMemo(()=>{},[])
-```
-
-`useMemo` does not prevent a component from re-rendering. 
-`React.memo` can prevent a component from re-rendering when its props have not changed.
-`useMemo` only prevents an expensive calculation from running again unnecessarily.
-
-
-========================================================================
-- The useMemo hook is used to memoize the result of a calculation
-- It recalculates the value only when its dependencies change; otherwise, it returns the cached value
-
-It is mainly useful for expensive calculations or data transformations, such as filtering, sorting, searching, parsing, or complex calculations.
-
-
-
--------------------------------------------------------------
-
-### **useCallback**
-
-useCallback hooke memoizes a function and returns the same function reference until its dependencies change.
-
-useCallback can prevent unnecessary child component re-renders when a function is passed as a prop to a child wrapped with React.memo, which can improve application performance.
-
-Mainly to prevent unnecessary re-renders when passing functions to memoized child components or when a function is a dependency of useEffect.
-
-
-
-### 1. Passing a function to a child component (Most Common) ✅
-
-### 2. When a function is a dependency of `useEffect`
-
-### 3. When a function is a dependency of another Hook
-
-### 4. Expensive event handlers
-
-## When NOT to use `useCallback`
-
-
-
 
 ========================================================================
 
