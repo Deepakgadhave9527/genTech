@@ -224,3 +224,72 @@ justify-content = MAIN AXIS
 align-items = CROSS AXIS
 
 The direction of the main axis depends on flex-direction.
+
+
+
+
+----------------------------
+ 
+Code optimization
+
+Code optimization in React.js involves improving the efficiency, performance,
+and overall quality of your codebase without changing its functionality.
+
+It includes techniques such as minimizing unnecessary re-renders,
+reducing bundle size, optimizing network requests, managing state efficiently,
+enhancing code readability, and maintaining code maintainability.
+
+1. React.StrictMode:
+
+- Use React.StrictMode to detect potential issues in your codebase during development.
+  -It helps identify unsafe lifecycles, deprecated APIs, and other potential problems.
+
+2. Memoization:
+   Memoization is a technique used to optimize expensive computations by caching the results.
+   React provides a useMemo hook for memoizing values.
+
+import React, { useMemo } from 'react';
+
+const Component = ({ data }) => {
+const processedData = useMemo(() => {
+// Expensive computation
+return data.map(item => item \* 2);
+}, [data]);
+
+    return (
+      <div>
+        {processedData.map((item, index) => (
+          <div key={index}>{item}</div>
+        ))}
+      </div>
+    );
+
+};
+
+3. Code Splitting:
+   Splitting your code into smaller chunks allows lazy-loading components when needed,
+   reducing the initial bundle size and speeding up the initial load time.
+
+import React, { lazy, Suspense } from 'react';
+
+const LazyComponent = lazy(() => import('./LazyComponent'));
+
+const App = () => (
+<Suspense fallback={<div>Loading...</div>}>
+<LazyComponent />
+</Suspense>
+);
+
+4. Avoid Inline Styles:
+
+- Inline styles can clutter your components and make maintenance difficult.
+  -Prefer using CSS classes or styled-components for better separation of concerns and easier styling management.
+
+5. Debouncing and Throttling:
+
+- Debouncing and throttling are code optimization techniques that help improve performance by
+  controlling the rate at which functions are executed in response to frequent events.
+- Debouncing function is excuated after specif delay perdia passes since las time function invokde
+  while throttling limits the number of times the function can be called over a certain period.
+
+

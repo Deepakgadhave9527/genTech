@@ -2,21 +2,21 @@
 
 ### Why do we use `return () => { ... }` in `useEffect()`?
 
-In React, the function returned from `useEffect()` is called the **cleanup function**.
+In React, the function returned from `useEffect()` is called the `cleanup function`.
 
 When a dependency in the dependency array changes during the update phase, React `first runs the cleanup function` from the previous effect, and then the `main function inside useEffect runs again`.
 
 
-When the component is **unmounted**, React runs the cleanup function one final time because the component is being removed from the UI and the effect is no longer needed. 
+When the component is `unmounted`, React runs the cleanup function one final time because the component is being removed from the UI and the effect is no longer needed. 
 
 
-**unmounted**, it means **React removes that component from the UI**.
+`unmounted`, it means `React removes that component from the UI`.
 
 
 | `useEffect(() => { return cleanup }, [])`   |
 | ------------------------------------------- |
-| `useEffect` → **After initial render only** |
-| `cleanup` → **On unmount only**             |
+| `useEffect` → `After initial render only` |
+| `cleanup` → `On unmount only`             |
 
 
 
@@ -66,7 +66,7 @@ function Child() {
 
 Here, the effect adds a `resize` event listener, and the cleanup function removes it when the component unmounts.
 
-When a component is **unmounted**, it means **React removes that component from the UI**. Since the component is being removed, the effect is no longer needed, so React runs the cleanup function one final time.
+When a component is `unmounted`, it means `React removes that component from the UI`. Since the component is being removed, the effect is no longer needed, so React runs the cleanup function one final time.
 
 ==========================================================
 
@@ -103,7 +103,7 @@ whenever any update happens, the whole app re-renders.”
 
 React Fiber is React``s internal reconciliation engine that manages how React updates the UI.
 
-React Fiber introduced in **React 16 v**.
+React Fiber introduced in `React 16 v`.
 
 Before Fiber, React rendered updates synchronously. Once rendering started, it couldnt be paused until it finished, which could make the UI feel sluggish during expensive updates.
 
@@ -127,7 +127,7 @@ is called multi page application.
 
 - When a user navigates to a new page,the browser reloads and fetches the new HTML content from the server.
 
-- It recreates the DOM for each request
+- The browser creates a new DOM for the newly loaded page
 
 - Multipage application is slow because each request will be send to the server then server
 will return a web page as response.
@@ -140,114 +140,21 @@ will return a web page as response.
 
 B] Single page application
 
+- A `Single Page Application (SPA)` is a web application that initially loads a `single HTML page` in the browser.
 
-- If an application has single requestable web page then that application is called
-single page application.
+- After the initial page load, the application `dynamically updates the content` without completely reloading the entire web page.
 
-- In SPA all the content will get loaded in the web browser on first request, after that
-all the request will be served from web browser itself.
+- In an SPA, `navigation and UI changes are generally handled by JavaScript in the browser`.
 
-- it does not utilizes the server resources for each request because the content will
-be serverd from web browser.
+- The browser can still `send requests to the server/API` to fetch, update, or save
 
-- less bandwidth is required
+- The `initial page load can be slower` because the browser needs to download JavaScript, CSS, images, and other resources.
 
-- it is slow for first request and fast from second request
+- After the initial load, `subsequent navigation can be faster` because the application is already loaded in the browser.
 
-- It does not re create the DOM tree for content change
+- An SPA generally `does not reload the entire page or recreate the entire DOM tree` for every content change. Instead, only the required parts of the UI are updated.
 
-
-
-
-Single-Page Application
-A single-page application is an app that works inside a browser and does not require page reloading during use.
-
-An SPA loads a single HTML page and dynamically updates the content as the user interacts with the app, without refreshing the entire page.
-
-
-
-
-
-
-========================================================
-Server-Side Rendering (SSR) and Client-Side Rendering (CSR)
-========================================================
-
-In web development, there are two main methods for rendering web pages:
-
-1. Server-Side Rendering (SSR)
-2. Client-Side Rendering (CSR)
-
-Both determine where the HTML page is generated—either on the server or in the browser.
-
-========================================================
-What is Server-Side Rendering (SSR)?
-========================================================
-
-- Server-Side Rendering (SSR) is the traditional way of rendering web pages.
-- When a user requests a page, the browser sends a request to the server.
-- The server processes the request and fetches the required data (if needed).
-- The server generates the complete HTML page.
-- The server sends the fully rendered HTML page to the browser.
-- The browser displays the page immediately.
-- JavaScript is then loaded to make the page interactive.
-- Next.js is a popular framework that supports Server-Side Rendering (SSR).
-
-Advantages:
-- Faster initial page load.
-- Better SEO because search engines receive fully rendered HTML.
-- Better performance for the first page load.
-- Content is visible even before JavaScript finishes loading.
-- Suitable for content-heavy websites.
-
-Disadvantages:
-- Increases server workload because HTML is generated for every request.
-- Higher server resources are required.
-- More complex to implement than CSR.
-
-========================================================
-What is Client-Side Rendering (CSR)?
-========================================================
-
-- Client-Side Rendering (CSR) is a modern approach to rendering web pages.
-- When a user requests a page, the server sends a minimal HTML file along with JavaScript, CSS, and other static assets.
-- The browser downloads and executes the JavaScript.
-- JavaScript generates the HTML and renders the user interface in the browser.
-- Data is usually fetched from APIs, and the page updates dynamically without reloading the entire page.
-- React applications commonly use Client-Side Rendering (CSR).
-
-Advantages:
-- Provides a rich and interactive user experience.
-- Faster page navigation after the initial page load.
-- Reduces server rendering workload.
-- Ideal for highly interactive web applications.
-
-Disadvantages:
-- Slower initial page load because JavaScript must be downloaded and executed first.
-- SEO is more challenging compared to SSR.
-- Requires JavaScript to render the page.
-
-========================================================
-SSR vs CSR
-========================================================
-
-SSR (Server-Side Rendering)
-- HTML is generated on the server.
-- Faster initial page load.
-- Better SEO.
-- Higher server workload.
-- Better for content-heavy websites.
-- Next.js commonly uses SSR.
-
-CSR (Client-Side Rendering)
-- HTML is generated in the browser using JavaScript.
-- Slower initial page load.
-- Better user experience after the first load.
-- Lower server workload.
-- Better for highly interactive web applications.
-- React applications commonly use CSR.
-
-server side rendering (SSR) and client side rendering (CSR).
+- SPAs commonly use frameworks and libraries such as `React, Angular, and Vue`.
 
 
 =======================================================
@@ -270,12 +177,12 @@ server side rendering (SSR) and client side rendering (CSR).
 - After successful authentication, the server usually creates a session or issues a JWT/token 
   so the user doesn't need to log in on every request.
 
-- In **Session-based Authentication**, the server creates a session and sends a Session ID 
+- In `Session-based Authentication`, the server creates a session and sends a Session ID 
  (typically stored in a cookie) to the client. 
  For every subsequent request, the browser automatically sends the Session ID, 
  and the server validates it to identify the authenticated user.
 
-- In **Token-based Authentication (JWT)**, the server generates a JWT (JSON Web Token) 
+- In `Token-based Authentication (JWT)`, the server generates a JWT (JSON Web Token) 
 and sends it to the client. The client stores the token and includes 
 it in the Authorization header with every subsequent request. 
 The server validates the token to confirm that the user has already been authenticated.
@@ -310,18 +217,28 @@ Debounce vs Throttling
 - Debouncing and throttling are two commonly used techniques in web development
   to optimize performance and reduce the load on web servers.
 
+  -reduce unnecessary function calls 
+
 - These techniques are particularly useful when dealing with events 
-   that can trigger multiple times in quick succession, such as user inputs or page scrolling.
+   that can trigger multiple times in quick succession, such as user inputs or page scrolling resizing, mouse movement, and button clicks.
 
 - By implementing debouncing and throttling, we can limit the number of times 
   a function is called and prevent the server requests.
 
+
+
 Debounce function is only executed after a specified delay period has passed 
 since the last time the function was invoked.
 
+If the event occurs again before the delay expires, the timer is reset.
+
+Example: Search input — send a search request only after the user stops typing for a specified amount of time.
+
 while throttling limits the number of times the function can be called over a certain period.
 
-- This results in a better user experience and improved website performance.
+- Both techniques can result in a better user experience, improved performance, and reduced unnecessary server requests.
+
+================================================================================
 
 Debounicng real world example
 When you search for something on Flipkart's website, 
@@ -445,9 +362,9 @@ html
 
 ### Summary
 
-- **Debounce** delays the execution of a function until after a specified wait time has passed since the last invocation.
+- `Debounce` delays the execution of a function until after a specified wait time has passed since the last invocation.
 
-- **Throttling** ensures that a function is called at most once in a specified time period.
+- `Throttling` ensures that a function is called at most once in a specified time period.
 
 Both techniques help in optimizing performance and improving user experience by controlling the rate of function execution in response to frequent events.
 
@@ -469,6 +386,7 @@ It helps to:
 
 Common React optimization techniques:
 
+-Use debouncing and throttling for high-frequency events.
 - Use `React.memo` to prevent unnecessary re-renders of components.
 - Use `useMemo` to memoize expensive calculations.
 - Use `useCallback` to memoize functions and prevent unnecessary function recreations.
@@ -479,96 +397,29 @@ Common React optimization techniques:
 - Optimize large lists using techniques like virtualization.
 
 
-
-----------------------------
- 
-Code optimization
-
-Code optimization in React.js involves improving the efficiency, performance,
-and overall quality of your codebase without changing its functionality.
-
-It includes techniques such as minimizing unnecessary re-renders,
-reducing bundle size, optimizing network requests, managing state efficiently,
-enhancing code readability, and maintaining code maintainability.
-
-1. React.StrictMode:
-
-- Use React.StrictMode to detect potential issues in your codebase during development.
-  -It helps identify unsafe lifecycles, deprecated APIs, and other potential problems.
-
-2. Memoization:
-   Memoization is a technique used to optimize expensive computations by caching the results.
-   React provides a useMemo hook for memoizing values.
-
-import React, { useMemo } from 'react';
-
-const Component = ({ data }) => {
-const processedData = useMemo(() => {
-// Expensive computation
-return data.map(item => item \* 2);
-}, [data]);
-
-    return (
-      <div>
-        {processedData.map((item, index) => (
-          <div key={index}>{item}</div>
-        ))}
-      </div>
-    );
-
-};
-
-3. Code Splitting:
-   Splitting your code into smaller chunks allows lazy-loading components when needed,
-   reducing the initial bundle size and speeding up the initial load time.
-
-import React, { lazy, Suspense } from 'react';
-
-const LazyComponent = lazy(() => import('./LazyComponent'));
-
-const App = () => (
-<Suspense fallback={<div>Loading...</div>}>
-<LazyComponent />
-</Suspense>
-);
-
-4. Avoid Inline Styles:
-
-- Inline styles can clutter your components and make maintenance difficult.
-  -Prefer using CSS classes or styled-components for better separation of concerns and easier styling management.
-
-5. Debouncing and Throttling:
-
-- Debouncing and throttling are code optimization techniques that help improve performance by
-  controlling the rate at which functions are executed in response to frequent events.
-- Debouncing function is excuated after specif delay perdia passes since las time function invokde
-  while throttling limits the number of times the function can be called over a certain period.
-
-
-
 ========================================================================
 
 In React.js development, the `window` object is often used for tasks related to application behavior and user interactions. Here are some `window` methods commonly used in React applications:
 
-1. **`window.addEventListener()`**: Registers event listeners for various events (e.g., resize, scroll) to handle changes or interactions in the application.
+1. ``window.addEventListener()``: Registers event listeners for various events (e.g., resize, scroll) to handle changes or interactions in the application.
 
-2. **`window.removeEventListener()`**: Removes event listeners that were previously added, helping to clean up resources and avoid memory leaks.
+2. ``window.removeEventListener()``: Removes event listeners that were previously added, helping to clean up resources and avoid memory leaks.
 
-3. **`window.scrollTo()`**: Used to programmatically scroll the window to a specific position, useful for smooth scrolling or navigation effects.
+3. ``window.scrollTo()``: Used to programmatically scroll the window to a specific position, useful for smooth scrolling or navigation effects.
 
-4. **`window.location.href`**: Gets or sets the URL of the current page, often used for programmatic navigation or redirecting.
+4. ``window.location.href``: Gets or sets the URL of the current page, often used for programmatic navigation or redirecting.
 
-5. **`window.localStorage`**: Provides access to local storage for storing and retrieving data on the client side.
+5. ``window.localStorage``: Provides access to local storage for storing and retrieving data on the client side.
 
-6. **`window.sessionStorage`**: Provides access to session storage for storing data for the duration of the page session.
+6. ``window.sessionStorage``: Provides access to session storage for storing data for the duration of the page session.
 
-7. **`window.matchMedia()`**: Allows for querying and responding to media queries, useful for responsive design and handling different screen sizes.
+7. ``window.matchMedia()``: Allows for querying and responding to media queries, useful for responsive design and handling different screen sizes.
 
-8. **`window.requestAnimationFrame()`**: Schedules a function to be called before the next repaint, useful for implementing animations or optimizing performance.
+8. ``window.requestAnimationFrame()``: Schedules a function to be called before the next repaint, useful for implementing animations or optimizing performance.
 
-9. **`window.history.pushState()`**: Updates the browser history stack without reloading the page, often used in single-page applications (SPAs) for managing navigation.
+9. ``window.history.pushState()``: Updates the browser history stack without reloading the page, often used in single-page applications (SPAs) for managing navigation.
 
-10. **`window.scrollY`**: Gets the number of pixels that the document is currently scrolled vertically, useful for tracking scroll position or implementing infinite scrolling.
+10. ``window.scrollY``: Gets the number of pixels that the document is currently scrolled vertically, useful for tracking scroll position or implementing infinite scrolling.
 
 These methods help manage application state, handle user interactions, and optimize performance in React.js applications.
 
@@ -626,14 +477,14 @@ Object.assign() and Object.is()
    console.log(add(2, 3)); // 5
    ```
 
-3. **Template Literals**
+3. `Template Literals`
    ```javascript
    const name = 'World';
    const greeting = `Hello, ${name}!`;
    console.log(greeting); // Hello, World!
    ```
 
-4. **Destructuring Assignment**
+4. `Destructuring Assignment`
    ```javascript
    const [a, b] = [1, 2];
    const { name, age } = { name: 'Alice', age: 30 };
@@ -641,7 +492,7 @@ Object.assign() and Object.is()
    console.log(name, age); // Alice 30
    ```
 
-5. **Default Parameters**
+5. `Default Parameters`
    ```javascript
    function greet(name = 'Guest') {
      return `Hello, ${name}!`;
@@ -650,22 +501,22 @@ Object.assign() and Object.is()
    console.log(greet('John')); // Hello, John!
    ```
 
-6. **Rest and Spread Operators**
-   - **Rest Operator**:
+6. `Rest and Spread Operators`
+   - `Rest Operator`:
      ```javascript
      function sum(...numbers) {
        return numbers.reduce((acc, num) => acc + num, 0);
      }
      console.log(sum(1, 2, 3, 4)); // 10
      ```
-   - **Spread Operator**:
+   - `Spread Operator`:
      ```javascript
      const arr = [1, 2, 3];
      const newArr = [0, ...arr, 4];
      console.log(newArr); // [0, 1, 2, 3, 4]
      ```
 
-7. **Classes**
+7. `Classes`
    ```javascript
    class Person {
      constructor(name) {
@@ -679,8 +530,8 @@ Object.assign() and Object.is()
    console.log(john.greet()); // Hello, John!
    ```
 
-8. **Modules**
-   - **Export**:
+8. `Modules`
+   - `Export`:
      ```javascript
      // module.js
      export const pi = 3.14;
@@ -688,7 +539,7 @@ Object.assign() and Object.is()
        return a + b;
      }
      ```
-   - **Import**:
+   - `Import`:
      ```javascript
      // main.js
      import { pi, add } from './module.js';
@@ -696,7 +547,7 @@ Object.assign() and Object.is()
      console.log(add(2, 3)); // 5
      ```
 
-9. **Promises**
+9. `Promises`
    ```javascript
    const myPromise = new Promise((resolve, reject) => {
      setTimeout(() => resolve('Done!'), 1000);
@@ -705,14 +556,14 @@ Object.assign() and Object.is()
    myPromise.then(result => console.log(result)); // Done!
    ```
 
-10. **Symbol**
+10. `Symbol`
     ```javascript
     const sym1 = Symbol('description');
     const sym2 = Symbol('description');
     console.log(sym1 === sym2); // false
     ```
 
-11. **Iterators and Generators**
+11. `Iterators and Generators`
     ```javascript
     function* generator() {
       yield 1;
@@ -724,29 +575,29 @@ Object.assign() and Object.is()
     console.log(gen.next().value); // 2
     ```
 
-12. **Map and Set**
-    - **Map**:
+12. `Map and Set`
+    - `Map`:
       ```javascript
       const map = new Map();
       map.set('key1', 'value1');
       console.log(map.get('key1')); // value1
       ```
-    - **Set**:
+    - `Set`:
       ```javascript
       const set = new Set([1, 2, 3]);
       set.add(4);
       console.log(set.has(2)); // true
       ```
 
-13. **WeakMap and WeakSet**
-    - **WeakMap**:
+13. `WeakMap and WeakSet`
+    - `WeakMap`:
       ```javascript
       const weakMap = new WeakMap();
       const obj = {};
       weakMap.set(obj, 'value');
       console.log(weakMap.get(obj)); // value
       ```
-    - **WeakSet**:
+    - `WeakSet`:
       ```javascript
       const weakSet = new WeakSet();
       const obj = {};
@@ -754,7 +605,7 @@ Object.assign() and Object.is()
       console.log(weakSet.has(obj)); // true
       ```
 
-14. **Enhanced Object Literals**
+14. `Enhanced Object Literals`
     ```javascript
     const name = 'Alice';
     const person = {
@@ -766,7 +617,7 @@ Object.assign() and Object.is()
     console.log(person.greet()); // Hello, Alice!
     ```
 
-15. **Object.assign()**
+15. `Object.assign()`
     ```javascript
     const target = { a: 1 };
     const source = { b: 2 };
@@ -774,7 +625,7 @@ Object.assign() and Object.is()
     console.log(target); // { a: 1, b: 2 }
     ```
 
-16. **String Methods**
+16. `String Methods`
     ```javascript
     const str = 'Hello, World!';
     console.log(str.includes('World')); // true
@@ -782,19 +633,19 @@ Object.assign() and Object.is()
     console.log(str.endsWith('!')); // true
     ```
 
-17. **Number Methods**
+17. `Number Methods`
     ```javascript
     console.log(Number.isNaN(NaN)); // true
     console.log(Number.isFinite(123)); // true
     ```
 
-18. **Math Methods**
+18. `Math Methods`
     ```javascript
     console.log(Math.pow(2, 3)); // 8
     console.log(Math.trunc(4.9)); // 4
     ```
 
-19. **For…of Loop**
+19. `For…of Loop`
     ```javascript
     const iterable = [10, 20, 30];
     for (const value of iterable) {
@@ -802,7 +653,7 @@ Object.assign() and Object.is()
     }
     ```
 
-20. **Tagged Templates**
+20. `Tagged Templates`
     ```javascript
     function tag(strings, ...values) {
       return strings.reduce((acc, str, i) => acc + str + (values[i] || ''), '');
@@ -850,13 +701,13 @@ Fiber allows React to schedule and prioritize updates.
 
 For example:
 
-**High priority:**
+`High priority:`
 
 * Typing in an input
 * Button clicks
 * User interactions
 
-**Lower priority:**
+`Lower priority:`
 
 * Loading or rendering a large list
 * Background rendering
@@ -866,15 +717,15 @@ This helps prevent less important work from blocking user interactions.
 
 ### 4. Render Phase and Commit Phase
 
-React Fiber mainly works through two phases: the **render phase** and the **commit phase**.
+React Fiber mainly works through two phases: the `render phase` and the `commit phase`.
 
-During the **render phase**, React creates or updates the work-in-progress Fiber tree, performs reconciliation, and determines what changes need to be made. This phase can be interrupted, restarted, or abandoned.
+During the `render phase`, React creates or updates the work-in-progress Fiber tree, performs reconciliation, and determines what changes need to be made. This phase can be interrupted, restarted, or abandoned.
 
-During the **commit phase**, React applies the calculated changes to the actual DOM and performs the required commit-related side effects. The commit phase is not interruptible because React needs to apply the final UI changes consistently.
+During the `commit phase`, React applies the calculated changes to the actual DOM and performs the required commit-related side effects. The commit phase is not interruptible because React needs to apply the final UI changes consistently.
 
 ### 5. Current and Work-in-Progress Fiber Trees
 
-React maintains a **current Fiber tree** and a **work-in-progress Fiber tree**.
+React maintains a `current Fiber tree` and a `work-in-progress Fiber tree`.
 
 The current tree represents what is currently committed and displayed on the screen, while the work-in-progress tree represents the changes React is preparing.
 
@@ -884,4 +735,4 @@ Once the work is successfully committed, the work-in-progress tree becomes the n
 
 In simple words, Fiber allows React to break rendering work into smaller pieces, prioritize important work, and perform rendering more efficiently.
 
-Fiber is also the architectural foundation for modern React capabilities such as **concurrent rendering, transitions, and Suspense**.`
+Fiber is also the architectural foundation for modern React capabilities such as `concurrent rendering, transitions, and Suspense`.`

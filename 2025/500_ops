@@ -4,6 +4,40 @@
 # ===========================================
 # ===========================================
 # ===========================================
+
+
+
+
+### Definition
+
+> `A Single Page Application (SPA) is a web application that initially loads a single HTML page and dynamically updates its content without performing a full-page reload for every user interaction or navigation.`
+
+
+
+- If an application has single requestable web page then that application is called
+single page application.
+
+- In SPA all the content will get loaded in the web browser on first request, after that
+all the request will be served from web browser itself.
+
+- it does not utilizes the server resources for each request because the content will
+be serverd from web browser.
+
+- less bandwidth is required
+
+- it is slow for first request and fast from second request
+
+- It does not re create the DOM tree for content change
+
+
+
+
+Single-Page Application
+A single-page application is an app that works inside a browser and does not require page reloading during use.
+
+An SPA loads a single HTML page and dynamically updates the content as the user interacts with the app, without refreshing the entire page.
+
+
 # ===========================================
 
 Without useState, changing a normal variable does not trigger a 
