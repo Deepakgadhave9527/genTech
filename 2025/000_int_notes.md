@@ -34,6 +34,7 @@ flex-gird
   - `Code Splitting`: Breaking large bundles into smaller chunks to optimize loading (e.g., per route or feature).
   - `Generating HTML`: Injecting the final bundles into an HTML template (e.g., `HtmlWebpackPlugin`).
 
+
 - `Use with Frameworks`:  
   Webpack is widely used alongside modern front-end frameworks like `React`, `Vue.js`, and `Angular`. It is an essential part of the development setup for many JavaScript applications.
 
@@ -70,6 +71,7 @@ A `module bundler` for JavaScript applications, used to bundle JavaScript, CSS, 
   - ``HtmlWebpackPlugin``: Generates an `index.html` file with injected script tags for the bundled JavaScript.
   - ``DefinePlugin``: Replaces variables with specific values (e.g., setting environment variables).
   - ``MiniCssExtractPlugin``: Extracts CSS into separate files for better caching.
+  
 - `Code Splitting`:  
   Webpack allows you to split your code into smaller chunks, improving the loading time of your application. This means the browser only loads the necessary code for the current page, instead of loading the entire application upfront.
 

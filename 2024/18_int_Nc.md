@@ -1,90 +1,19 @@
 
 
-============================================================================
+======================================
+Webpack
 
-## lexical scope
+Webpack is a module bundler for JavaScript and other web assets. It analyzes the dependencies between modules, processes them according to its configuration, and produces one or more bundles that can be served to the browser.
 
-in JavaScript, lexical scope determines variable accessibility based on where variables
- and functions are declared in the code.
+Webpack can handle JavaScript, CSS, images, fonts, and other assets through appropriate loaders or built-in asset modules.
 
+Its behavior is configured using webpack.config.js, where we can define things such as the entry point, output, loaders, plugins, and optimization settings.
 
--A lexical scope in JavaScript means that a variable defined outside a function 
-can be accessible inside another function
+Loaders allow Webpack to process files before they are included in the bundle. For example, babel-loader can use Babel to transpile modern JavaScript or JSX, while CSS-related loaders can process CSS.
 
+Webpack also provides code splitting, caching, minification, and other optimization techniques to improve application loading performance.
 
-When a function (Function B) is declared inside another function (Function A), JavaScript uses lexical scoping to determine what variables Function B has access to.
-// 🌍 Global scope
-let globalVar = "I am global";
-
-function Function_A_outer() {
-  // 🔹 Lexical Scope Level 1 (outer)
-  let outerVar = "I am outer";
-
-  function Function_b_inner() {
-    // 🔸 Lexical Scope Level 2 (inner)
-    let innerVar = "I am inner";
-
-    //  Accessing variables through lexical scope
-    console.log(globalVar); // ← from Global Scope
-    console.log(outerVar);  // ← from outer()'s Lexical Scope
-    console.log(innerVar);  // ← from inner()'s own scope
-  }
-
-  Function_b_inner(); // Call the inner function
-}
-
-Function_A_outer(); // Call the outer function
-
-
-
-========================================================================
-
-
-Flexbox:
-
-One-dimensional layout model.
-Best for arranging items in a row or a column.
-Suited for smaller-scale layouts.
-Controls alignment and distribution along a single axis.
-Uses properties like display: flex, flex-direction, justify-content, and align-items.
-
-
-
-CSS Grid:
-
-Two-dimensional layout system.
-Organizes content in rows and columns.
-Ideal for larger-scale layouts.
-Provides precise control over layout and placement of items
-Utilizes properties like display: grid, grid-template-rows, and grid-template-columns.
-
-====================================
-
-- Difference between nullish coalescing (??) and logical OR (||).
-
-?? and || both provide a fallback value, but they check different conditions.
-
-Logical OR (||) returns the right-hand value when the left-hand value is falsy.
-
-Falsy values affected by ||:
-false
-0
-""
-null
-undefined
-NaN
-
-
-const name = "" || "Guest";
-console.log(name); // Guest
-
-
-----
-
-Nullish coalescing (??) returns the right-hand value only when the left-hand value is `"null or undefined.`"
-
-const name = null ?? "Guest";
-console.log(name); // Guest
+It is commonly used with applications built using technologies such as React, Vue, and Angular.
 
 
 ======================================

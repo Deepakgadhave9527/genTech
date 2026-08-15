@@ -3,11 +3,11 @@
 
 ### Interceptors
 
-Interceptors are a powerful feature provided by HTTP client libraries such as Axios that allow us to intercept and manipulate HTTP requests or responses before they are handled by the application.
+Interceptors are a powerful feature provided by HTTP client libraries such as Axios that allow us to` intercept and manipulate HTTP requests or responses before they are handled by the application`.
 
 There are mainly two types of interceptors: request interceptors and response interceptors.
 
-A request interceptor runs before the request is sent and can be used to add authentication tokens, modify headers, add common parameters, or log requests.
+A request interceptor runs before the request is sent and can be used to `add authentication tokens, modify headers, add common parameters, or log requests.`
 
 A response interceptor runs after a response is received and can be used to` transform response data, handle errors globally, log responses, or handle authentication issues such as 401 Unauthorized and token refresh`.
 
