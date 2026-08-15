@@ -3,6 +3,59 @@
 # ===========================================
 # ===========================================
 # ===========================================
+
+
+The return this.firstName inside the constructor function will not work as intended 
+because `constructor functions implicitly return the newly created object` unless you explicitly return an object.
+ Returning a primitive value will override the object creation.
+
+### returning an Object:
+If you explicitly return an object from a constructor function, this returned object will replace the default instance that the constructor creates.
+
+function Person(first, last, age, eye) {
+  this.firstName = first;
+  this.lastName = last;
+  this.age = age;
+  this.eyeColor = eye;
+  this.nationality = "English";
+
+  // Returning a primitive value (string)
+  return this.firstName;
+}
+
+const myFather = new Person("John", "Doe", 50, "blue");
+console.log(myFather); // Outputs: Person { firstName: 'John', lastName: 'Doe', age: 50, eyeColor: 'blue', nationality: 'English' }
+
+
+### Returning a Primitive Value:
+If you explicitly return a primitive value (like a string, number, boolean, etc.), 
+this value is ignored, and the newly created instance is returned instead.
+
+
+function Person(first, last, age, eye) {
+  this.firstName = first;
+  this.lastName = last;
+  this.age = age;
+  this.eyeColor = eye;
+  this.nationality = "English";
+
+  // Returning a new object
+  return { custom: 'object' };
+}
+
+const myFather = new Person("John", "Doe", 50, "blue");
+console.log(myFather); // Outputs: { custom: 'object' }
+javascript
+========================================================================
+
+
+Why is a primitive ignored?
+
+1. `Primitive values are ignored` because when using `new`, JavaScript expects the constructor to return an `object`. A primitive cannot replace the newly created `this` object.
+
+2. `Objects are returned` because an object can replace the newly created `this` object and become the result of the `new` expression.
+
+> `Important:` Don't say primitives are ignored simply because they cannot hold properties or methods. The key reason is the `special behavior of the `new` operator`.
 # ===========================================
 
 
