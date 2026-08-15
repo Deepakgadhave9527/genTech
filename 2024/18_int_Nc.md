@@ -1,28 +1,5 @@
 
-========================================================================
-## What is the `window` Object? (Interview Answer)
 
-The **`window` object** is the global object in web browsers.
-It represents the browser window (or tab) and provides access to browser-specific APIs and features.
-
-It provides access to:
-- `document`
-- `location`
-- `history`
-- `navigator`
-- `localStorage`
-- `sessionStorage`
-- `alert()`
-- `setTimeout()`
-- `setInterval()`
-- `fetch()` and more.
-
-### Example
-
-```javascript
-window.alert("Hello");
-console.log(window.innerWidth);
-```
 ============================================================================
 
 ## lexical scope

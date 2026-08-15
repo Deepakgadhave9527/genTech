@@ -2210,18 +2210,49 @@ console.log(window.name); // "Deepak"
 
 ---
 
+
+
+In React.js development, the `window` object is often used for tasks related to application behavior and user interactions. Here are some `window` methods commonly used in React applications:
+
+1. ``window.addEventListener()``: Registers event listeners for various events (e.g., resize, scroll) to handle changes or interactions in the application.
+
+2. ``window.removeEventListener()``: Removes event listeners that were previously added, helping to clean up resources and avoid memory leaks.
+
+3. ``window.scrollTo()``: Used to programmatically scroll the window to a specific position, useful for smooth scrolling or navigation effects.
+
+4. ``window.location.href``: Gets or sets the URL of the current page, often used for programmatic navigation or redirecting.
+
+5. ``window.localStorage``: Provides access to local storage for storing and retrieving data on the client side.
+
+6. ``window.sessionStorage``: Provides access to session storage for storing data for the duration of the page session.
+
+7. ``window.matchMedia()``: Allows for querying and responding to media queries, useful for responsive design and handling different screen sizes.
+
+8. ``window.requestAnimationFrame()``: Schedules a function to be called before the next repaint, useful for implementing animations or optimizing performance.
+
+9. ``window.history.pushState()``: Updates the browser history stack without reloading the page, often used in single-page applications (SPAs) for managing navigation.
+
+10. ``window.scrollY``: Gets the number of pixels that the document is currently scrolled vertically, useful for tracking scroll position or implementing infinite scrolling.
+
+These methods help manage application state, handle user interactions, and optimize performance in React.js applications.
+
+========================================================
 ## 2. What is the `window` Object? (Interview Answer)
 
  The `window` object is the global object in browsers. It represents the browser window (or tab) and provides access to browser-related features. such as `alert()`, `setTimeout()`, `localStorage`, and `location`.
 
-It includes:
+### Commonly Used `window` APIs
 
-* `document`
-* `location`
-* `history`
-* `navigator`
-* `setTimeout`, `alert`, etc.
-
+1. `window.addEventListener()` – Adds an event listener.
+2. `window.removeEventListener()` – Removes an event listener.
+3. `window.scrollTo()` – Scrolls the page to a specific position.
+4. `window.location.href` – Gets or changes the current URL.
+5. `window.localStorage` – Stores data persistently in the browser.
+6. `window.sessionStorage` – Stores data for the current session.
+7. `window.matchMedia()` – Checks media query conditions.
+8. `window.requestAnimationFrame()` – Used for smooth animations.
+9. `window.history.pushState()` – Changes browser history without page reload.
+10. `window.scrollY` – Gets the current vertical scroll position.
 
 
 ### Example:
@@ -2231,7 +2262,7 @@ window.alert("Hello");
 console.log(window.innerWidth);
 ```
 
-
+========================================================
 
 
 ### What is the `document` object?
@@ -2274,6 +2305,7 @@ Your content is mostly correct, just needs a bit of polishing for accuracy + int
 -The global object can be accessed using the "this" operator in the global scope
 -The global object in JavaScript is an always defined object that provides
 variables and functions, and is available anywhere.
+
 
 
 
