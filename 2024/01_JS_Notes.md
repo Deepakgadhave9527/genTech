@@ -1,4 +1,304 @@
 
+======== Object cloning=============================================
+
+
+
+-creating a duplicate object of an existing object is called object cloning
+
+There are 2 types of object cloning
+
+### Shallow Cloning  
+
+A shallow clone creates a new object, but any nested objects or arrays are copied by reference,
+ so they are still shared with the original object.
+
+If you change a nested object or array in the shallow copy, 
+ the change will also be reflected in the original object because both objects share the same reference.
+
+
+Shallow cloning Only the top-level properties of an object are cloned it does not clone nested objects
+ — it only copies their references. 
+ This means that if you change a nested object property in either the original or the clone,
+the change will affect both, because they both point to the same reference object.
+
+To avoid unexpected bugs, 
+don’t modify nested data in a shallow clone if you want the original unchanged. 
+For full independence, use deep cloning, which copies all nested structures as well.
+
+- Examples: `Object.assign()`, Spread operator (`...`).  
+
+
+```javascript
+
+const original = {
+  name: "Alice",
+  address: {
+    city: "New York"
+  }
+};
+
+
+const clone1 = Object.assign({}, original);//Using Object.assign()
+
+const clone2 = { ...original };// Using Spread operator
+
+clone1.address.city = "Los Angeles";
+
+console.log(original.address.city); // Outputs: "Los Angeles" — nested object is shared
+console.log(clone2.address.city);   // Outputs: "Los Angeles" — nested object is shared
+
+//This happens because original.address.city and clone.address.city point to the same object in memory.
+
+console.log(clone1 === original);        // false — different top-level objects
+console.log(clone1.address === original.address); // true — nested object shared (same reference)
+
+```
+
+Shallow cloning copies only the top level; nested objects are shared.
+
+
+- Copies only the top-level properties of an object.  
+- Nested objects or arrays are referenced, not cloned.  
+- Changes in nested structures reflect in both original and cloned objects.  
+
+-In shallow cloning only direct/main object gets cloned but not the object
+which are referred by the properties of main object.
+
+-changing value of cloned object will be refect into
+orginal object as well because both are point same refrance object
+
+-----------------------
+
+### Deep Cloning  
+
+Deep cloning in JavaScript means creating a completely independent copy of an object,
+ including all nested objects and arrays.
+  Changes to the clone do not affect the original object.
+  means all the properties are cloned 
+
+
+-In deep cloning all the object direct/main and nested objects will be cloned. Menas all parts of the object are fully cloned.
+if you change a nested object property in either the original or the clone, the change will not affect both, because they both point to the different reference object.
+- Nested objects or arrays are independent from the original.  
+
+
+- Examples: `JSON.parse(JSON.stringify())`, 
+Better Alternative 
+– structuredClone() (modern built-in method), 
+ Lodashs cloneDeep()`, 
+ Recursive cloning.  
+
+
+```javascript
+
+const original = {
+  name: 'John',
+  age: 30,
+  address: { city: 'New York', country: 'USA' }
+};
+
+const deepClone = JSON.parse(JSON.stringify(original));
+const structuredCloneDeep = structuredClone(original);
+
+console.log(deepClone === original); // false (different objects)
+console.log(deepClone.address === original.address); // false (different objects)
+
+--------------------------------------------------------------------
+
+JavaScript objects are reference types. 
+When two objects are compared using == or ===, 
+JavaScript does not compare their contents (values). 
+It compares their references, which are the memory locations where the objects are stored.
+
+If two objects have the same properties
+ and values but are stored at different memory locations, 
+ they are considered different objects. Therefore, the comparison returns false.
+
+So, although the objects have identical contents, 
+they are not the same object because their references are different.
+
+
+
+
+//============================== call,apply,bind =========================
+
+
+
+A] call():
+
+- Call method is predefined method in JavaScript
+
+-call() is used to execute a function with a specified object as this.
+ It invokes the function immediately and accepts arguments individually.
+
+ - An object can use a method belonging to another object
+- call method is Immediately invokes a function with a given `this` value and arguments provided individually
+
+- accepts arguments as separate values
+
+```js
+var employee1 = {firstName: 'John', lastName: 'Rodson'};
+var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
+
+function invite(greeting1, greeting2) {
+  console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName+ ', ' + greeting2);
+}
+
+invite.call(employee1, 'Hello', 'How are you?'); // Hello John Rodson, How are you?
+invite.call(employee2, 'Hello', 'How are you?'); // Hello Jimmy Baily, How are you?
+
+
+var employee1 = {
+  firstName: 'John',
+  lastName: 'Rodson',
+  invite: function(greeting1, greeting2) {
+      console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName + ', ' + greeting2);
+  }
+};
+
+var employee2 = {
+  firstName: 'Jimmy',
+  lastName: 'Baily'
+};
+
+employee1.invite.call(employee2, "Hello", "World"); // Hello Jimmy Baily, World
+```
+
+
+
+B] apply():
+
+- apply() method is similar to call() method
+- call method argument takes separately
+- apply method argument takes as an array
+- invoke the function with a given this value and arguments provided by an array
+- accepts arguments as array elements
+
+```js
+var employee1 = {firstName: 'John', lastName: 'Rodson'};
+var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
+
+function invite(greeting1, greeting2) {
+  console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName+ ', ' + greeting2);
+}
+
+invite.apply(employee1, ['Hello', 'How are you?']); // Hello John Rodson, How are you?
+invite.apply(employee2, ['Hello', 'How are you?']); // Hello Jimmy Baily, How are you?
+```
+
+
+
+C] bind():
+
+
+bind() is a method used to create a creates and returns a new function with a specified this value. 
+Unlike call() and apply(), it does not execute the function immediately.
+
+bind() is a method used to create a new function with a specified object as this.
+
+The main reason we use bind() in projects is to prevent losing the correct this value.
+
+
+
+
+
+- bind() method we can bind an object to a common function so that the 
+  function gives different result when it needs
+
+- bind() returns a new function with a fixed this context and optional preset arguments, 
+but doesnt invoke it immediately.
+
+- bind method takes an object as the first argument and creates a new function
+- bind does not invoke the function immediately*- (unlike call or apply)  // added for clarity
+- return a new function, allow you to pass any number of arguments
+- it binds a function with an object and returns the bound function
+- it does not bind the existing function, instead it creates a new function to bind // added for clarity
+
+```js
+var employee1 = {firstName: 'John', lastName: 'Rodson'};
+var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
+
+function invite(greeting1, greeting2) {
+  console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName+ ', ' + greeting2);
+}
+
+var inviteEmployee1 = invite.bind(employee1);
+var inviteEmployee2 = invite.bind(employee2);
+
+inviteEmployee1('Hello', 'How are you?'); // Hello John Rodson, How are you?
+inviteEmployee2('Hello', 'How are you?'); // Hello Jimmy Baily, How are you?
+```
+
+```js
+const person = {
+  firstName: 'John',
+  lastName: 'Doe',
+  fullName: function() {
+      return this.firstName + ' ' + this.lastName;
+  }
+};
+
+const printFullName = person.fullName;
+
+// console.log(printFullName()); // Output: "undefined undefined" because `this` is lost
+
+const boundPrintFullName = printFullName.bind(person);
+console.log(boundPrintFullName()); // Output: "John Doe"
+```
+
+
+call() → Executes the function immediately.
+apply() → Executes the function immediately.
+bind() → Does not execute immediately. It returns a new function that you can call later.
+========================================================================
+
+
+- A common use case for the `bind` method in JavaScript 
+is to maintain the correct context (`this`) when passing methods as callbacks or event handlers.
+- In JavaScript, the value of `this` 
+can change depending on how a function is called.
+- For instance, when a method is used as an event handler, 
+`this` usually refers to the element that triggered the event, not the object that owns the method.
+- By using `bind`, you can create a new function where `this` is explicitly set to the desired context, ensuring that the method behaves correctly regardless of how it's called.
+
+- This is particularly useful in scenarios such as object-oriented programming and event handling, where preserving the context is crucial for the method's functionality.
+- `bind` can also be used to preset initial arguments, allowing partial application of functions.
+
+
+
+### 1. Plain JavaScript Event Handling with `bind`
+
+
+
+Interview Answer:
+
+> In JavaScript, the value of `this` depends on how a function is called, which can lead to unexpected behavior when passing methods as callbacks or event handlers. The `bind` method fixes this by creating a new function with `this` explicitly set to the desired object. This ensures the method retains the correct context regardless of how or where it’s called, which is especially useful in event handling and object-oriented programming.
+
+```javascript
+
+const user = {
+  name: 'John',
+  sayHello: function(greeting) {
+    console.log(greeting + ', ' + this.name);
+  }
+};
+
+const button = document.getElementById('myBtn');
+
+// Without bind - `this` refers to button, not user
+button.addEventListener('click', user.sayHello); // this.name is undefined
+
+// With bind - `this` fixed to `user`
+button.addEventListener('click', user.sayHello.bind(user, 'Hello')); 
+// Output on click: "Hello, John"
+```
+
+
+In summary:
+- `bind` creates a new function for later use, while `call` and `apply` execute the function immediately.
+- `call` takes arguments individually, whereas `apply` takes arguments as an array.
+
+
 ========================== ES6 features ==================================
 
 Below is the list of top ES6 features every JavaScript developer should know,
@@ -1629,184 +1929,6 @@ arrow functions do not have their own this value.
 Instead, they inherit the this value from the enclosing lexical scop
 
 
-//============================== call,apply,bind =========================
-
-
-
-A] call():
-
-- Call method is predefined method in JavaScript
-
--call() is used to execute a function with a specified object as this.
- It invokes the function immediately and accepts arguments individually.
-
- - An object can use a method belonging to another object
-- call method is Immediately invokes a function with a given `this` value and arguments provided individually
-
-- accepts arguments as separate values
-
-```js
-var employee1 = {firstName: 'John', lastName: 'Rodson'};
-var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
-
-function invite(greeting1, greeting2) {
-  console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName+ ', ' + greeting2);
-}
-
-invite.call(employee1, 'Hello', 'How are you?'); // Hello John Rodson, How are you?
-invite.call(employee2, 'Hello', 'How are you?'); // Hello Jimmy Baily, How are you?
-
-
-var employee1 = {
-  firstName: 'John',
-  lastName: 'Rodson',
-  invite: function(greeting1, greeting2) {
-      console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName + ', ' + greeting2);
-  }
-};
-
-var employee2 = {
-  firstName: 'Jimmy',
-  lastName: 'Baily'
-};
-
-employee1.invite.call(employee2, "Hello", "World"); // Hello Jimmy Baily, World
-```
-
-
-
-B] apply():
-
-- apply() method is similar to call() method
-- call method argument takes separately
-- apply method argument takes as an array
-- invoke the function with a given this value and arguments provided by an array
-- accepts arguments as array elements
-
-```js
-var employee1 = {firstName: 'John', lastName: 'Rodson'};
-var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
-
-function invite(greeting1, greeting2) {
-  console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName+ ', ' + greeting2);
-}
-
-invite.apply(employee1, ['Hello', 'How are you?']); // Hello John Rodson, How are you?
-invite.apply(employee2, ['Hello', 'How are you?']); // Hello Jimmy Baily, How are you?
-```
-
-
-
-C] bind():
-
-
-bind() is a method used to create a creates and returns a new function with a specified this value. 
-Unlike call() and apply(), it does not execute the function immediately.
-
-bind() is a method used to create a new function with a specified object as this.
-
-The main reason we use bind() in projects is to prevent losing the correct this value.
-
-
-
-
-
-- bind() method we can bind an object to a common function so that the 
-  function gives different result when it needs
-
-- bind() returns a new function with a fixed this context and optional preset arguments, 
-but doesnt invoke it immediately.
-
-- bind method takes an object as the first argument and creates a new function
-- bind does not invoke the function immediately*- (unlike call or apply)  // added for clarity
-- return a new function, allow you to pass any number of arguments
-- it binds a function with an object and returns the bound function
-- it does not bind the existing function, instead it creates a new function to bind // added for clarity
-
-```js
-var employee1 = {firstName: 'John', lastName: 'Rodson'};
-var employee2 = {firstName: 'Jimmy', lastName: 'Baily'};
-
-function invite(greeting1, greeting2) {
-  console.log(greeting1 + ' ' + this.firstName + ' ' + this.lastName+ ', ' + greeting2);
-}
-
-var inviteEmployee1 = invite.bind(employee1);
-var inviteEmployee2 = invite.bind(employee2);
-
-inviteEmployee1('Hello', 'How are you?'); // Hello John Rodson, How are you?
-inviteEmployee2('Hello', 'How are you?'); // Hello Jimmy Baily, How are you?
-```
-
-```js
-const person = {
-  firstName: 'John',
-  lastName: 'Doe',
-  fullName: function() {
-      return this.firstName + ' ' + this.lastName;
-  }
-};
-
-const printFullName = person.fullName;
-
-// console.log(printFullName()); // Output: "undefined undefined" because `this` is lost
-
-const boundPrintFullName = printFullName.bind(person);
-console.log(boundPrintFullName()); // Output: "John Doe"
-```
-
-
-call() → Executes the function immediately.
-apply() → Executes the function immediately.
-bind() → Does not execute immediately. It returns a new function that you can call later.
-========================================================================
-
-
-- A common use case for the `bind` method in JavaScript 
-is to maintain the correct context (`this`) when passing methods as callbacks or event handlers.
-- In JavaScript, the value of `this` 
-can change depending on how a function is called.
-- For instance, when a method is used as an event handler, 
-`this` usually refers to the element that triggered the event, not the object that owns the method.
-- By using `bind`, you can create a new function where `this` is explicitly set to the desired context, ensuring that the method behaves correctly regardless of how it's called.
-
-- This is particularly useful in scenarios such as object-oriented programming and event handling, where preserving the context is crucial for the method's functionality.
-- `bind` can also be used to preset initial arguments, allowing partial application of functions.
-
-
-
-### 1. Plain JavaScript Event Handling with `bind`
-
-
-
-Interview Answer:
-
-> In JavaScript, the value of `this` depends on how a function is called, which can lead to unexpected behavior when passing methods as callbacks or event handlers. The `bind` method fixes this by creating a new function with `this` explicitly set to the desired object. This ensures the method retains the correct context regardless of how or where it’s called, which is especially useful in event handling and object-oriented programming.
-
-```javascript
-
-const user = {
-  name: 'John',
-  sayHello: function(greeting) {
-    console.log(greeting + ', ' + this.name);
-  }
-};
-
-const button = document.getElementById('myBtn');
-
-// Without bind - `this` refers to button, not user
-button.addEventListener('click', user.sayHello); // this.name is undefined
-
-// With bind - `this` fixed to `user`
-button.addEventListener('click', user.sayHello.bind(user, 'Hello')); 
-// Output on click: "Hello, John"
-```
-
-
-In summary:
-- `bind` creates a new function for later use, while `call` and `apply` execute the function immediately.
-- `call` takes arguments individually, whereas `apply` takes arguments as an array.
-
 ------------------------------------------------------------------------------
 
 ### 2. React Class Component Event Handler with `bind`
@@ -1996,126 +2118,6 @@ CSR (Client-Side Rendering)
 - React applications commonly use CSR.
 
 server side rendering (SSR) and client side rendering (CSR).
-
-
-================================== Object cloning=============================================
-
-
-
--creating a duplicate object of an existing object is called object cloning
-
-There are 2 types of object cloning
-
-### Shallow Cloning  
-
-A shallow clone creates a new object, but any nested objects or arrays are copied by reference,
- so they are still shared with the original object.
-
-If you change a nested object or array in the shallow copy, 
- the change will also be reflected in the original object because both objects share the same reference.
-
-
-Shallow cloning Only the top-level properties of an object are cloned it does not clone nested objects
- — it only copies their references. 
- This means that if you change a nested object property in either the original or the clone,
-the change will affect both, because they both point to the same reference object.
-
-To avoid unexpected bugs, 
-don’t modify nested data in a shallow clone if you want the original unchanged. 
-For full independence, use deep cloning, which copies all nested structures as well.
-
-- Examples: `Object.assign()`, Spread operator (`...`).  
-
-
-```javascript
-
-const original = {
-  name: "Alice",
-  address: {
-    city: "New York"
-  }
-};
-
-
-const clone1 = Object.assign({}, original);//Using Object.assign()
-
-const clone2 = { ...original };// Using Spread operator
-
-clone1.address.city = "Los Angeles";
-
-console.log(original.address.city); // Outputs: "Los Angeles" — nested object is shared
-console.log(clone2.address.city);   // Outputs: "Los Angeles" — nested object is shared
-
-//This happens because original.address.city and clone.address.city point to the same object in memory.
-
-console.log(clone1 === original);        // false — different top-level objects
-console.log(clone1.address === original.address); // true — nested object shared (same reference)
-
-```
-
-Shallow cloning copies only the top level; nested objects are shared.
-
-
-- Copies only the top-level properties of an object.  
-- Nested objects or arrays are referenced, not cloned.  
-- Changes in nested structures reflect in both original and cloned objects.  
-
--In shallow cloning only direct/main object gets cloned but not the object
-which are referred by the properties of main object.
-
--changing value of cloned object will be refect into
-orginal object as well because both are point same refrance object
-
------------------------
-
-### Deep Cloning  
-
-Deep cloning in JavaScript means creating a completely independent copy of an object,
- including all nested objects and arrays.
-  Changes to the clone do not affect the original object.
-  means all the properties are cloned 
-
-
--In deep cloning all the object direct/main and nested objects will be cloned. Menas all parts of the object are fully cloned.
-if you change a nested object property in either the original or the clone, the change will not affect both, because they both point to the different reference object.
-- Nested objects or arrays are independent from the original.  
-
-
-- Examples: `JSON.parse(JSON.stringify())`, 
-Better Alternative 
-– structuredClone() (modern built-in method), 
- Lodashs cloneDeep()`, 
- Recursive cloning.  
-
-
-```javascript
-
-const original = {
-  name: 'John',
-  age: 30,
-  address: { city: 'New York', country: 'USA' }
-};
-
-const deepClone = JSON.parse(JSON.stringify(original));
-const structuredCloneDeep = structuredClone(original);
-
-console.log(deepClone === original); // false (different objects)
-console.log(deepClone.address === original.address); // false (different objects)
-
---------------------------------------------------------------------
-
-JavaScript objects are reference types. 
-When two objects are compared using == or ===, 
-JavaScript does not compare their contents (values). 
-It compares their references, which are the memory locations where the objects are stored.
-
-If two objects have the same properties
- and values but are stored at different memory locations, 
- they are considered different objects. Therefore, the comparison returns false.
-
-So, although the objects have identical contents, 
-they are not the same object because their references are different.
-
 
 ========================== typeof ==================================
 

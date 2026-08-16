@@ -1,6 +1,50 @@
 
 ==========
 
+# React Reconciliation
+
+React uses the reconciliation algorithm to update the UI.
+
+
+React does not directly update the Real DOM every time a change happens. Instead, it:
+
+1. Creates a new Virtual DOM when the component re-renders.
+2. Compares it with the previous Virtual DOM.
+3. Finds the differences (changes).
+4. Updates only the required parts of the Real DOM.
+
+This comparison process between the previous Virtual DOM and the new Virtual DOM is called `Reconciliation`.
+
+Reconciliation helps React improve performance by avoiding unnecessary DOM updates.
+
+
+ React uses a diffing algorithm to identify the differences between the two Virtual DOM trees and updates only the changed parts of the real DOM.
+
+ 
+# React Reconciliation
+
+React uses the reconciliation algorithm to update the UI.
+
+
+React does not directly update the Real DOM every time a change happens. Instead, it:
+
+1. Creates a new Virtual DOM when the component re-renders.
+2. Compares it with the previous Virtual DOM.
+3. Finds the differences (changes).
+4. Updates only the required parts of the Real DOM.
+
+This comparison process between the previous Virtual DOM and the new Virtual DOM is called `Reconciliation`.
+
+Reconciliation helps React improve performance by avoiding unnecessary DOM updates.
+
+React uses a Diffing Algorithm during reconciliation to identify the differences between the two Virtual DOM trees and update only the required parts of the Real DOM.
+
+==========
+==========
+==========
+==========
+==========
+
 # Redux Interview Questions and Answers
 
 ## 1. What is Redux?

@@ -220,17 +220,19 @@ The possible values are:
 - By default the all elements postions are the static
 - Elements are positioned according to the normal document flow (block elements stack vertically, inline elements flow left to right).
 - Not affected positioning properties the `top`, `right`, `bottom`, or `left`
-- It occupies space in the layout as normal (Holds space in the layout).
+-   `Its Holds its space in the layout`  
+
+(It occupies space in the layout as normal Holds space in the layout).
 
 ### Relative
 
 - its default/static position of the elwmwnt 
 
 -the measurement of positioning properties top, right, bottom, left starts from the element’s by default (static) position in the normal flow.
-
-- its Holds its space in the layout — other elements behave like it hasn’t moved.
-
 - You can move it using `top`, `right`, `bottom`, `left`.
+
+- `its Holds its space in the layout` — other elements behave like it hasn’t moved.
+
 
 -The element starts in the normal document flow (static positioning) by default.
 
@@ -241,7 +243,8 @@ The possible values are:
 
 - If no relative parent exists, measurement will start from the body/viewport.
 
-- if we set postion absolute then The element is removed from the normal document flow, so it does not occupy space in the layout.
+-  `it does not hold (occupy) space in the layout`.because it is not removed 
+from the normal document flow.t`.
 
 - Can overlap other content because it is removed from the normal document flow.
 
@@ -256,7 +259,7 @@ Use case: Modals, dropdown menus, tooltips, floating buttons.
 - Positioned relative to the viewport.
 - element is fixed to viewport  and does not move when the page is scrolled.
 
-- The element does occupy space in the layout because it is not removed 
+- `it does not hold (occupy) space in the layout`.because it is not removed 
 from the normal document flow.
 
 - the measurement of position properties (top, right, bottom, left,) start from the viewport or body, not from any parent element.
@@ -269,7 +272,7 @@ from the normal document flow.
 - The element is positioned based on the user's scroll position.
 - It behaves like `position: relative` initially and stays in the normal document flow.
 - When the element reaches the specified offset (`top`, `right`, `bottom`, `left`) during scrolling, it behaves like `position: fixed` within its scrolling container.
-- The element  hold space in the layout because it is not removed from the normal document flow.
+- `its Holds its space in the layout`  because it is not removed from the normal document flow.
 - The `top`, `right`, `bottom`, and `left` properties define the point at which the element becomes sticky.
 
 

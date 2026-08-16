@@ -315,12 +315,10 @@ and markup in a single file.
 ### `Props`
 
 1. Props (short for `Properties`) are used to `pass data or functions from a parent component to a child component`.
-2. Props are `immutable (read-only)` in the child component.
-
-3. Props `cannot be modified` by the child component.
+2. Props are `immutable (read-only)` in the child component. means Props `cannot be modified` by the child component.
 4. Props are `controlled by the parent component`.
-
 5. When the parent passes updated props, the child component `automatically re-renders` with the new values.
+
 6. Props are used for `communication between components`.
 
 
@@ -363,47 +361,11 @@ Q15 is the Shadow DOM the same as the Virtual DOM?
 
 ==========================================
 
-
-# React Reconciliation
-
-React uses the reconciliation algorithm to update the UI.
-
-
-React does not directly update the Real DOM every time a change happens. Instead, it:
-
-1. Creates a new Virtual DOM when the component re-renders.
-2. Compares it with the previous Virtual DOM.
-3. Finds the differences (changes).
-4. Updates only the required parts of the Real DOM.
-
-This comparison process between the previous Virtual DOM and the new Virtual DOM is called `Reconciliation`.
-
-Reconciliation helps React improve performance by avoiding unnecessary DOM updates.
-
-
- React uses a diffing algorithm to identify the differences between the two Virtual DOM trees and updates only the changed parts of the real DOM.
-
- 
-# React Reconciliation
+### reconciliation
 
 React uses the reconciliation algorithm to update the UI.
 
-
 React does not directly update the Real DOM every time a change happens. Instead, it:
-
-1. Creates a new Virtual DOM when the component re-renders.
-2. Compares it with the previous Virtual DOM.
-3. Finds the differences (changes).
-4. Updates only the required parts of the Real DOM.
-
-This comparison process between the previous Virtual DOM and the new Virtual DOM is called `Reconciliation`.
-
-Reconciliation helps React improve performance by avoiding unnecessary DOM updates.
-
-React uses a Diffing Algorithm during reconciliation to identify the differences between the two Virtual DOM trees and update only the required parts of the Real DOM.
-
-
--------------
 
 React uses a `diffing algorithm` to identify what has changed between two Virtual DOM trees.
 
@@ -414,6 +376,13 @@ When state or props change:
 3. React compares the new Virtual DOM with the old Virtual DOM.
 4. React identifies the differences.
 5. React updates only the changed elements in the Real DOM.
+
+This comparison process between the previous Virtual DOM and the new Virtual DOM is called `Reconciliation`.
+
+Reconciliation helps React improve performance by avoiding unnecessary DOM updates.
+
+React uses the `Fiber architecture` to manage the reconciliation process.
+
 
 ## Optimization Techniques:
 
@@ -557,8 +526,7 @@ They are used when a component needs to return multiple elements while keeping t
 
  ### What are error boundaries in React?
 
--Error Boundaries are special React class components that catch JavaScript errors anywhere 
-in their child component tree and log those errors.
+-Error Boundaries are special React class components that catch JavaScript errors anywhere in their child component tree and log those errors.
 
 - Error boundaries help prevent the entire React application from crashing because of a single component error.
 
@@ -640,16 +608,62 @@ static getDerivedStateFromError() → Updates the component state to indicate th
   ========================================================
 
   
-  Function components cannot directly implement React Error Boundaries because they don't support
- lifecycle methods like getDerivedStateFromError() and componentDidCatch(). 
- However, 
- function components can be wrapped inside class-based Error Boundaries to catch rendering errors
+Function components cannot directly implement React Error Boundaries because they don't supportlifecycle methods like getDerivedStateFromError() and componentDidCatch(). 
+
+function components can be wrapped inside class-based Error Boundaries to catch rendering errors
 
 ========================================================
 
   ###  What is Lifting State Up in ReactJS?
 
 React follows one-way data flow, from parent to child using props. To send data from a child to a parent, we use lifting state up. The parent keeps the state and passes a callback 
+
+We write the state and state update functions in the parent component. Then we pass the update functions ass a callback to the child component. The child can call that callback and pass the required data to update the parents state. This process is called lifting state up.
+
+function Parent() {
+  // State is created in the Parent component
+  const [name, setName] = useState("");
+
+  // Update function is also created in the Parent
+  const updateName = (newName) => {
+    setName(newName);
+  };
+
+  return (
+    <div>
+      <h1>Parent Component</h1>
+
+      {/* Parent displays its state */}
+      <h2>Name: {name}</h2>
+
+      {/* Passing callback function to Child */}
+      <Child updateName={updateName} />
+    </div>
+  );
+}
+
+function Child({ updateName }) {
+  const handleChange = (event) => {
+    // Child calls the callback function
+    // and sends data to Parent
+    updateName(event.target.value);
+  };
+
+  return (
+    <div>
+      <h2>Child Component</h2>
+
+      <input
+        type="text"
+        placeholder="Enter your name"
+        onChange={handleChange}
+      />
+    </div>
+  );
+}
+
+
+
 
 functions to the child. When an event occurs in the child, it calls the callback with the required data, and the parent updates its state.
 
@@ -678,52 +692,8 @@ Here's how it works:
 
 If parent component needs state of child component then it can be passed to parent component using the concept called 'lifting state up'.
 
-The parent sends a callback function to the child component through props.
+The parent sends a callback function_to the child component through props.
 
-### Example:
-
-
-// Parent Component
-function ParentComponent() {
-  const [childData, setChildData] = useState('');
-
-  // Callback function to update the parent's state
-  const handleDataFromChild = (data) => {
-    setChildData(data);
-  };
-
-  return (
-    <div>
-      <h1>Parent Component</h1>
-      <p>Data from Child: {childData}</p>
-      {/* Pass the callback to the child */}
-      <ChildComponent sendDataToParent={handleDataFromChild} />
-    </div>
-  );
-}
-
-// Child Component
-function ChildComponent({ sendDataToParent }) {
-  const [inputValue, setInputValue] = useState('');
-
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
-  };
-
-  const sendData = () => {
-    // Call the parent's function, passing the input data
-    sendDataToParent(inputValue);
-  };
-
-  return (
-    <div>
-      <h2>Child Component</h2>
-      <input type="text" value={inputValue} onChange={handleInputChange} />
-      <button onClick={sendData}>Send Data to Parent</button>
-    </div>
-  );
-}
-```
 
 
 ========================================================
@@ -731,8 +701,7 @@ function ChildComponent({ sendDataToParent }) {
 
 Q_18. What is the significance of keys in React?
 
-- key is a unique identifier 
-in the elements in a list.
+- key is a unique identifier in the elements in a list.
 
 - Keys help React know which items have changed, been added, or removed, 
 
