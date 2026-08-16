@@ -54,6 +54,7 @@ Flow:
 In JavaScript, we can achieve encapsulation using:
 
 ### 1. Private fields `#`
+"# in JavaScript is used to define a private class field. It provides encapsulation by preventing access to that field from outside the class.
 
 ```js
 class User {
@@ -168,7 +169,12 @@ One thread might handle user interaction, another might perform background work,
 ### Web Vitals — Interview Answer
 
 
-Web Vitals are metrics used to measure the real user experience of a web application. The three Core Web Vitals are LCP for loading performance, INP for interaction responsiveness, and CLS for visual stability. Ideally, we should keep LCP under 2.5 seconds, INP under 200 milliseconds, and CLS under 0.1
+Web Vitals are metrics used to measure the real user experience of a web application.
+
+ The three Core Web Vitals are LCP for loading performance,
+  INP for interaction responsiveness, and CLS for visual stability. 
+ 
+ Ideally, we should keep LCP under 2.5 seconds, INP under 200 milliseconds, and CLS under 0.1
 
 
 `Web Vitals` are a set of metrics introduced by Google to measure the `user experience and performance of a website`.

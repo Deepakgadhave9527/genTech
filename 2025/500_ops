@@ -2,6 +2,53 @@
 # ===========================================
 # ===========================================
 # ===========================================
+========================================================
+
+
+Q4. What are the differences between a classs component and functional component?
+
+
+
+### **Functional Components**  
+- JavaScript functions that accept `props` as arguments and return React elements.  
+-  Functional Components Created using **arrow functions** or **regular function_syntax to define the component.  
+
+- Functionbase Components manage state using **hooks** like `useState`, `useReducer`, and more advanced hooks like `useContext`.  
+- Lifecycle methods are handled via **hooks** like `useEffect`, allowing you to replicate `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount`.  
+
+- Refs are managed using the `useRef` hook, allowing access to DOM elements or component instances.
+
+- Cannot implement error boundaries directly; must wrap them with a classs component.
+
+- JSX is returned directly from the function_body without needing a `render()` method.  
+-React lifecycle methods cannot be used in functional components.
+Functional component is also called as a stateless component.
+
+- Functional components with hooks are preferred, providing a modern approach to managing component behavior and state.  
+- Generally better performance as there is less overhead compared to class components.  
+- Functional components are more concise, making the code easier to read and maintain.  
+
+---
+
+### **Class Components**  
+- Components created using ES6 **class_syntax**, extending `React.Component` or `PureComponent` for optimizations.  
+- State is managed using `this.state` and updated using the `setState()` method, allowing more complex state logic.  
+
+- Class components have built-in lifecycle methods such as `componentDidMount`, `shouldComponentUpdate`, `componentWillUnmount`, and `componentDidUpdate`.  
+
+- Refs are managed using `React.createRef()`, which provides direct access to DOM nodes or_class component instances.  
+
+- Requires a `render()` method to return JSX, ensuring that components always return UI when rendered.  
+
+- Class components can implement **error boundaries** to catch JavaScript errors anywhere in their child component tree using `componentDidCatch`.  
+
+- While functional components with hooks are now preferred, _class components are still widely used in older React codebases and libraries. 
+
+- _Class components can implement **shouldComponentUpdate** or extend `PureComponent` to prevent unnecessary re-renders.  
+
+React _class component is called as a state-full component.
+
+
 # ===========================================
 
 
