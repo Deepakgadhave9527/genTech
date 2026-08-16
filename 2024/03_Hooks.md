@@ -140,12 +140,6 @@ Mainly to prevent unnecessary re-renders when passing functions to memoized chil
 
 ### 4. Expensive event handlers
 
-## When NOT to use `useCallback`
-
-
-
-
-
 
 =====================================
 

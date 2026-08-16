@@ -191,12 +191,12 @@ invite.apply(employee2, ['Hello', 'How are you?']); // Hello Jimmy Baily, How ar
 C] bind():
 
 
-bind() is a method used to create a creates and returns a new function with a specified this value. 
+bind() is a method used to create  and returns a new function with a specified this value. 
 Unlike call() and apply(), it does not execute the function immediately.
 
 bind() is a method used to create a new function with a specified object as this.
 
-The main reason we use bind() in projects is to prevent losing the correct this value.
+The main reason we use bind() in projects is to prevent `losing the correct this value`.
 
 
 
@@ -249,7 +249,7 @@ console.log(boundPrintFullName()); // Output: "John Doe"
 
 call() → Executes the function immediately.
 apply() → Executes the function immediately.
-bind() → Does not execute immediately. It returns a new function that you can call later.
+bind() → Does not execute immediately. It returns a new function that we can call later.
 ========================================================================
 
 
@@ -355,7 +355,7 @@ Object.assign() and Object.is()
 ======================================================================
 
 what is asynchronous programming 
-synchronous: task execute one at a time order. next task wait for the current one to finsh
+synchronous: task execute one at a time , order next task wait for the current one to finsh
  
 asynchronous : task can start and finish independently without blocking other code
 
@@ -550,6 +550,8 @@ const p = new Promise((resolve, reject) => {
 Promise chaining is a technique in JavaScript that allows multiple asynchronous operations to be executed sequentially by chaining .then(), .catch(), and .finally() methods.\
  Each operation returns a promise, and the result of one operation is passed to the next
 
+ improving code readability, avoiding callback hell & Provides centralized error handling using .catch().
+
 ### *Why Use Promise Chaining?
 
 
@@ -600,7 +602,7 @@ Promises can be composed using methods like Promise.all, Promise.race, Promise.a
 
 - `async` and `await` are features introduced in ES8 (ES2017) that simplify working with Promises.
 - The `async` keyword is used to declare an asynchronous function, which always returns a Promise.
-- The `await` keyword pauses the execution of an async function until the Promise is 
+- The `await` keyword pauses the execution of an async function until the Promise is settled
    resolved or rejected.
 
 
@@ -683,20 +685,17 @@ const [user, posts] = await Promise.all([
 
 - Set is a built-in object that stores unique values of any type.
 - meaning duplicate values are not allowed. It can store any type of value, such as numbers, strings, objects, or even functions
+- `typeof new Set()` returns `"object"`.
 
 A JavaScript Set stores unique values and does not use indexes for accessing elements. 
-
-
 It only stores values in insertion order, and new values are always added at the end.
 
 So this is NOT possible:
-
 insert in middle ❌
 insert at index ❌
 sort automatically ❌
-make some  dash point
 
-- `typeof new Set()` returns `"object"`.
+
 
 
 Values are accessed by checking their existence using .has() or by iterating through the Set.
@@ -1030,9 +1029,11 @@ greetBob(); // Output: Hello, Bob
 ========================== Prototype ==================================
 ### Prototype:-
 ```java
-- Prototypes in javaScript objects iinherit properties and method from one another.
-- Every object in JavaScript has a prototype,
+- Prototypes in javaScript objects iinherit properties and method from one object to another object.
  -Every JavaScript object has an internal link to another object called its prototype.
+ 
+ - Every object in JavaScript has a prototype,
+
 
 #### Why do we need prototypes?
 
