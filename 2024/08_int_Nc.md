@@ -1,6 +1,119 @@
 
+==============================================================
 
 
+```js
+
+### CORS – Interview Answer
+
+**CORS stands for Cross-Origin Resource Sharing.** It is a browser security mechanism that controls whether a frontend application from one origin can access resources from another origin.
+
+For example:
+
+```text
+Frontend: http://localhost:3000
+API:      http://localhost:5000
+```
+
+These are **different origins** because the ports are different.
+
+The browser follows the **Same-Origin Policy**, which prevents a website from freely accessing resources from a different origin. CORS provides a controlled way for the server to allow specific origins to access its resources.
+
+For example, the API can send:
+
+```http
+Access-Control-Allow-Origin: http://localhost:3000
+```
+
+This tells the browser that requests from `localhost:3000` are allowed.
+
+2. It is required when frontend and backend are on different **origins**.
+3. An origin consists of **protocol + domain + port**.
+4. `http://localhost:3000` and `http://localhost:5000` are different origins.
+5. The **server/API** decides which origins are allowed through response headers.
+6. Common CORS headers include:
+
+   * `Access-Control-Allow-Origin`
+   * `Access-Control-Allow-Methods`
+   * `Access-Control-Allow-Headers`
+   * `Access-Control-Allow-Credentials`
+7. For some requests, the browser first sends an **OPTIONS request**, called a **preflight request**.
+
+8. The preflight checks whether the actual request is permitted.
+9. CORS does **not** mean that the server is preventing requests from being sent; the browser controls whether frontend JavaScript can access the response.
+
+
+
+
+* What is CORS?
+
+
+CORS stands for Cross-Origin Resource Sharing. It is a browser security mechanism that controls whether a frontend from one origin can access resources from another origin Frontend:
+http://localhost:3000
+API:
+http://localhost:5000 These are different origins because the ports are different.
+
+
+“Same-Origin Policy is a browser security rule that prevents a website from freely accessing resources from a different origin.” A website can’t freely access data from another origin unless that origin allows it.
+
+
+
+Frontend: http://localhost:3000
+API:      http://localhost:5000 
+
+By default, the browser blocks access. CORS is the mechanism that lets the API say, “Yes, this origin is allowed.”
+
+
+Access-Control-Allow-Origin
+→ Which origin is allowed.
+This response header tells the browser which frontend origin is allowed to access the API.
+For example:
+Access-Control-Allow-Origin: http://localhost:3000
+It means the frontend running on localhost:3000 is allowed to access the API.
+==============================================================
+
+Frontend (FE) sends:
+
+→ HTTP Method: GET, POST, PUT, DELETE
+→ Request Headers: Content-Type, Authorization
+→ Request Body: JSON data or form data
+→ Credentials: Cookies, if required
+→ URL/API Endpoint: Backend API URL
+
+Example:
+
+fetch("http://localhost:5000/users", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer token"
+  },
+  body: JSON.stringify({
+    name: "Rahul"
+  })
+});
+
+
+Access-Control-Allow-Methods
+→ Which HTTP methods are allowed.
+This response header tells the browser which HTTP methods the frontend is allowed to use when making requests to the API.
+For example:
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE
+It means the frontend can use GET, POST, PUT, and DELETE methods.
+
+Access-Control-Allow-Headers
+→ Which request headers are allowed.
+This response header tells the browser which headers the frontend is allowed to send with the request.
+For example:
+Access-Control-Allow-Headers: Content-Type, Authorization
+It means the frontend is allowed to send Content-Type and Authorization headers.
+
+Access-Control-Allow-Credentials
+→ Whether cookies or other credentials are allowed.
+This response header tells the browser whether credentials such as cookies can be included in a cross-origin request.
+For example:
+Access-Control-Allow-Credentials: true
+It means the server allows credentials to be included in the cross-origin request.
 
 ==============================================================
 
