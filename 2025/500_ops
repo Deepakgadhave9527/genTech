@@ -1,7 +1,3319 @@
 # ===========================================
 # ===========================================
+
+  What is Closure? Provide a real-world use case.
+- Explain async/await vs Promises. How does the event loop handle them?
+- Deep copy vs Shallow copy in JavaScript objects/arrays.
+
+
+
+- Scenario Based: You're building a real-time chat application where multiple messages arrive simultaneously. How would you ensure the DOM updates efficiently without blocking the main thread?
+
+
+What is React Fiber? How does it improve rendering performance?
+- How does React handle circular dependencies in useEffect?
+- How to implement protected routes with authentication (Context API, Redux)?
+
+
+
+- Difference between ReactDOM.render() and createRoot() in React 18.
+- Scenario Based: You're designing a dashboard where chart updates, user notifications, and data fetches must happen independently. How would you use React Context / Custom Hooks to achieve this?
+
+
+
+ Difference between useState and useReducer.
+- How does React manage re-renders (useMemo, useCallback, React.memo)?
+- How do you implement optimistic updates vs pessimistic updates in React?
+- Explain React reconciliation and the Virtual DOM diffing algorithm.
+- Component lifecycle methods vs Hooks lifecycle (Mounting, Updating, Unmounting).
+
+- Scenario Based: You have an e-commerce product listing where multiple users can add items to cart simultaneously. How would you use React Query / SWR with optimistic updates to prevent stale UI
+
+
+
+
+
+Critical Rendering Path
+- Bundle optimization, code splitting, lazy loading
+- Reflow vs repaint and rendering performance
+- HTTP/1.1 vs HTTP/2 and network optimizations
+
+
+
+
+
+
+- Traversing array of objects
+ - Caching using Map / objects
+
+
+ ndering techniques: CSR, SSR, Streaming
+- UI discussion: Accordion animation & styling
+- Web performance optimization
+- Measuring performance in real projects
+- Coding: Execute promises in series
+
+
+3️⃣ How to cancel previous API requests?
+4️⃣ Difference between SSR and CSR?
+5️⃣ What is WebSocket?
+6️⃣ What is Service Worker?
+7️⃣ How do you prevent XSS and CSRF attacks?
+🟢 React & State Management:
+8️⃣ Explain implementation of Context API?
+9️⃣ Explain implementation of Redux Toolkit?
+🔟 Difference between Redux and Redux Toolkit?
+
+
+
+ What security features should be taken while designing API's?
+💠 What is API throttling?
+💠 How to improve the performance in React Application?
+💠 What is debouncing in React?
+💠 What if in a react app we need to develop a feature of auto save the inputs of a form?
+💠 Which react library is used to represent JSON data into charts, graphs, etc for better visualization and performance?
+💠 If you have to inform the backend developers about some API's are failing how will you do that?
+💠 Which tool is used to improve code standards in react application to show warnings for developers?
+💠 What are the unit testing tools used in React Application?
+💠 How do you handle API test case scenarios in React Application?
+💠 Give me a estimation of completing a auto save functionality with unit testing including?
+💠 Which cloud is used in your app development?
+
+
+
+
+
+If I am taking your React Interview, I’m asking you these 30 questions 100%:
+
+1. What are the limitations of React in building large-scale applications?
+
+2. How does React manage the Virtual DOM, and what are the benefits?
+
+3. Can React Hooks fully replace Redux for state management? Explain why or why not.
+
+4. What are the best practices for managing state in large React applications?
+
+5. How would you optimize performance in a React app with large component trees?
+
+6. Explain React's Strict Mode and its impact on development.
+
+7. How can you prevent unnecessary re-renders in React functional components?
+
+8. Describe the key differences between functional and class components in React.
+
+9. What is the significance of the React Fiber architecture?
+
+10. How does React handle side effects, and how can you manage them effectively?
+
+11. Explain the differences between `useMemo()` and `useCallback()` in React.
+
+12. How would you implement dynamic form handling and validation in React?
+
+13. What is lazy loading in React, and how does it improve application performance?
+
+14. How would you handle errors in a React app, and what is the role of error boundaries?
+
+15. What are the benefits of server-side rendering (SSR) in React applications?
+
+16. How do you handle styling in React components? Discuss different approaches.
+
+17. How would you pass data between sibling components in React without using Redux?
+
+18. Explain the use case of `useEffect()` for fetching data from an API.
+
+19. How do you handle asynchronous operations in React using `async/await` or Promises?
+
+20. How would you re-render a component when the window is resized?
+
+21. Describe how React Context API can be used for state management in an app.
+
+22. What is the role of React Router, and how does it work with dynamic routing?
+
+23. Explain the concept of controlled and uncontrolled components in React.
+
+24. How would you optimize React app performance when handling large lists or grids?
+
+25. Explain the difference between shallow and deep comparison in React's `shouldComponentUpdate`.
+
+26. How do you handle asynchronous code execution and state updates in React?
+
+27. How would you implement custom hooks to abstract logic in React?
+
+28. What are higher-order components (HOCs) in React, and how are they used?
+
+29. How would you implement a search feature with debouncing in React?
+
+30. Explain React's reconciliation process and how it updates the DOM efficiently.
+
+
+💠 What is local storage and why we use local storage?
+💠 What is difference between package.json and package-lock.json file?
+💠 What is json-config file?
+
+
+
+=======================================================
+
+
+ Design a real-time collaborative text editor (like Google Docs).
+- Design a Rate limiter for API calls in a SPA.
+- Design a dynamic pagination system for infinite scrolling.
+- Design a client-side state management system like Redux Toolkit.
+- Design a user authentication flow with social login (OAuth, JWT tokens).
+
+Questions included:
+- Design a scalable Video Player
+
+The discussion revolved around API design, accessibility, theming, performance, scalability, and trade-offs. They wanted to understand how you think about building components used by millions of users and multiple teams. 
+
+=======================================================
+400 Bad Request
+401 Unauthorized
+403 Forbidden
+404 Not Found
+500 Server Error
+
+
+
+
+Here are **20 very common React + JavaScript + API + Authentication interview questions** with answers that are concise, practical, and suitable for interviews.
+
+---
+
+# 1. Tell me about yourself.
+
+### Best Answer
+
+> I am a Frontend Developer with experience building React.js applications. I have worked with JavaScript, React, Redux Toolkit, REST APIs, authentication using JWT, responsive UI development, and state management. I enjoy writing clean, reusable components, optimizing performance, and collaborating with backend teams to deliver scalable applications.
+
+---
+
+# 2. Why React?
+
+### Best Answer
+
+> React allows us to build reusable components, efficiently update the UI using the Virtual DOM, and manage complex applications with hooks and state management. It also has a strong ecosystem and community support.
+
+---
+
+# 3. Explain the React lifecycle.
+
+### Best Answer
+
+For functional components:
+
+* Mount → `useEffect(() => {}, [])`
+* Update → `useEffect(() => {}, [dependency])`
+* Unmount → Cleanup function
+
+```javascript
+useEffect(() => {
+   return () => {
+      console.log("Cleanup");
+   };
+}, []);
+```
+
+---
+
+# 4. Difference between State and Props?
+
+### Best Answer
+
+| State                    | Props                                |
+| ------------------------ | ------------------------------------ |
+| Managed inside component | Passed from parent                   |
+| Mutable                  | Read-only                            |
+| Triggers re-render       | Also triggers re-render when changed |
+
+---
+
+# 5. What is the Virtual DOM?
+
+### Best Answer
+
+> The Virtual DOM is a lightweight copy of the real DOM. React compares the previous and current Virtual DOM using a diffing algorithm and updates only the changed elements in the real DOM, improving performance.
+
+---
+
+# 6. What is the difference between useEffect and useLayoutEffect?
+
+### Best Answer
+
+`useEffect`
+
+* Runs after the browser paints.
+* Used for API calls and side effects.
+
+`useLayoutEffect`
+
+* Runs before the browser paints.
+* Used when measuring or synchronously updating the DOM to avoid visual flicker.
+
+---
+
+# 7. Explain useMemo.
+
+### Best Answer
+
+> `useMemo` memoizes the result of an expensive calculation so it only recomputes when its dependencies change.
+
+---
+
+# 8. Explain useCallback.
+
+### Best Answer
+
+> `useCallback` memoizes a function reference to avoid unnecessary re-renders of child components that receive the function as a prop.
+
+---
+
+# 9. React app is slow. What will you do?
+
+### Best Answer
+
+* Use React.memo
+* Use useMemo
+* Use useCallback
+* Lazy loading
+* Code splitting
+* Virtual scrolling
+* Optimize images
+* Avoid unnecessary API calls
+
+---
+
+# 10. What is JWT?
+
+### Best Answer
+
+> JWT (JSON Web Token) is a compact, signed token used for authentication and authorization. After a user logs in, the server issues a token. The client includes it in subsequent requests so the server can verify the user's identity without storing session state.
+
+---
+
+# 11. JWT vs Session?
+
+### Best Answer
+
+> For modern React applications with separate frontend and backend, I usually choose JWT with HttpOnly cookies. For traditional server-rendered applications where immediate server-side session invalidation is important, I choose sessions.
+
+---
+
+# 12. How do you implement Login?
+
+### Best Answer
+
+1. User enters credentials.
+2. Frontend sends a POST request.
+3. Backend validates credentials.
+4. Backend returns an access token (and optionally a refresh token).
+5. Frontend stores tokens securely.
+6. Include the access token in future API requests.
+
+---
+
+# 13. Where do you store JWT?
+
+### Best Answer
+
+> I prefer storing the refresh token in an HttpOnly, Secure cookie. For the access token, I avoid `localStorage` in security-sensitive applications because of XSS risks.
+
+---
+
+# 14. What happens when the token expires?
+
+### Best Answer
+
+* API returns **401 Unauthorized**.
+* Use the refresh token to obtain a new access token.
+* Retry the failed request.
+* If refresh fails, log the user out.
+
+---
+
+# 15. What is CORS?
+
+### Best Answer
+
+> CORS (Cross-Origin Resource Sharing) is a browser security feature that controls whether a web page can make requests to a different origin. The server enables it by sending the appropriate CORS headers.
+
+---
+
+# 16. Explain Debouncing.
+
+### Best Answer
+
+> Debouncing delays a function call until the user stops triggering an event for a specified time. It's commonly used in search inputs to reduce unnecessary API requests.
+
+---
+
+# 17. Difference between Promise.all and Promise.allSettled?
+
+### Best Answer
+
+`Promise.all`
+
+* Fails immediately if any promise rejects.
+
+`Promise.allSettled`
+
+* Waits for all promises to complete and reports each result, whether fulfilled or rejected.
+
+---
+
+# 18. Explain Closures.
+
+### Best Answer
+
+> A closure is created when an inner function remembers and can access variables from its outer function even after the outer function has finished executing.
+
+---
+
+# 19. Explain the Event Loop.
+
+### Best Answer
+
+> JavaScript is single-threaded. Synchronous code executes first, then microtasks (such as Promise callbacks), and finally macrotasks (such as `setTimeout` callbacks). The event loop coordinates this execution order.
+
+---
+
+# 20. Why should we hire you?
+
+### Best Answer
+
+> I have strong knowledge of React.js, JavaScript, REST APIs, authentication, and modern frontend development practices. I write clean, maintainable code, enjoy solving real-world problems, and adapt quickly to new technologies. I'm also a collaborative team member who focuses on delivering reliable, user-friendly applications.
+
+---
+
+## Bonus: Frequently Asked Scenario-Based Questions
+
+**Q:** How do you protect private routes?
+
+> Check whether the user is authenticated before rendering the route. If not, redirect to the login page.
+
+**Q:** User clicks the Submit button multiple times.
+
+> Disable the button while the request is in progress or use debouncing/throttling to prevent duplicate submissions.
+
+**Q:** An API is taking too long to respond.
+
+> Show a loading indicator or skeleton UI, set a timeout if appropriate, and allow the user to retry.
+
+**Q:** One API succeeds and another fails.
+
+> Use `Promise.allSettled()` so successful results can still be displayed while handling failures gracefully.
+
+**Q:** The user refreshes the browser.
+
+> Restore authentication using a refresh token or a valid server-side session instead of requiring the user to log in again.
+
+These questions and answers cover many of the topics commonly asked in React frontend interviews, especially for developers with around **2–5 years of experience**.
+
+
+==========
+
+
+
+This is a very common interview question. The best answer is **"It depends on the application requirements."** Then explain the trade-offs.
+
+## Interview Answer
+
+> I don't choose JWT or Session by default. I choose based on the application's architecture. For a modern React application with a separate frontend and backend, I usually prefer **JWT with HttpOnly cookies**. For traditional server-rendered applications, I often prefer **session-based authentication** because it's simpler to manage and revoke.
+
+## JWT vs Session
+
+| Feature     | JWT                                                               | Session                                        |
+| ----------- | ----------------------------------------------------------------- | ---------------------------------------------- |
+| Storage     | Client stores token (preferably in HttpOnly cookie)               | Server stores session                          |
+| Scalability | Better for distributed systems and microservices                  | Harder to scale without shared session storage |
+| Logout      | More complex (token remains valid until expiry unless managed)    | Easy (destroy session on server)               |
+| Performance | No database lookup required to validate token (if self-contained) | Usually requires session lookup                |
+| Mobile APIs | Excellent                                                         | Less common                                    |
+| Security    | Good when stored in HttpOnly cookies                              | Good because session data stays on server      |
+
+## When would I choose JWT?
+
+* React + Node.js
+* Separate frontend and backend
+* Mobile apps
+* Microservices
+* REST APIs
+
+Example:
+
+```
+React → API → JWT → Access Token → Protected APIs
+```
+
+## When would I choose Sessions?
+
+* Traditional web applications
+* Server-rendered apps
+* Banking/internal enterprise applications where immediate session invalidation is important
+* Applications with a single backend server or centralized session store
+
+## Interview Follow-up: Which is more secure?
+
+A good answer is:
+
+> Neither is inherently more secure. Security depends on the implementation. A JWT stored in `localStorage` is more vulnerable to XSS than a session using secure, HttpOnly cookies. Likewise, sessions need protection against CSRF. Proper cookie settings, HTTPS, token/session expiration, and secure coding practices are what matter most.
+
+## If the interviewer asks: "What would you use in our React project?"
+
+You can say:
+
+> For a React application, I would use **JWT authentication with a short-lived access token and a refresh token stored in an HttpOnly, Secure cookie**. The frontend sends the access token with API requests, and if it expires, the application uses the refresh token to obtain a new access token automatically. This approach works well for modern SPAs while reducing XSS risk compared with storing tokens in `localStorage`.
+
+This answer demonstrates that you understand both approaches and can choose the one that best fits the application's needs rather than treating one as universally better.
+=============
+
+If you're interviewing for a **Frontend Developer (React.js + JavaScript)** role, especially with **3–6 years of experience**, many interviewers focus on **scenario-based questions** rather than just theory. Authentication is one of the most common topics.
+
+Here are some realistic interview questions with what the interviewer is looking for.
+
+---
+
+# 1. Where do you store the JWT token? LocalStorage or Cookies?
+
+### Scenario
+
+> Your backend returns a JWT after login. Where would you store it and why?
+
+### Good Answer
+
+* **Access Token**
+
+  * Store in **memory** or **HttpOnly Secure Cookie**
+  * Avoid LocalStorage if security is important.
+
+* **Refresh Token**
+
+  * Store in **HttpOnly Secure Cookie**
+  * Cannot be accessed via JavaScript.
+  * Protects against XSS.
+
+### Explain
+
+LocalStorage is vulnerable to XSS.
+
+Cookies are vulnerable to CSRF, but can be protected using:
+
+* SameSite
+* CSRF Token
+* Secure Cookie
+
+---
+
+# 2. User refreshes the page. How do you keep them logged in?
+
+### Scenario
+
+> User logged in successfully. They refresh the page.
+
+What happens?
+
+### Good Answer
+
+When the page refreshes:
+
+1. React state is lost.
+2. Check whether a valid refresh token exists.
+3. Call
+
+```
+POST /refresh-token
+```
+
+4. Backend returns a new access token.
+5. Store access token in memory.
+6. Continue the session.
+
+---
+
+# 3. Token expires while the user is working.
+
+### Scenario
+
+> User is editing a form for 20 minutes.
+
+Access token expires.
+
+What will you do?
+
+### Expected Answer
+
+Use an Axios interceptor.
+
+Flow
+
+```
+API Request
+
+↓
+
+401 Unauthorized
+
+↓
+
+Refresh Token API
+
+↓
+
+New Access Token
+
+↓
+
+Retry Original Request
+```
+
+Never ask the user to log in immediately if refresh succeeds.
+
+---
+
+# 4. Multiple API calls fail with 401 simultaneously.
+
+### Scenario
+
+Five API requests happen together.
+
+All return 401.
+
+Will you call Refresh API five times?
+
+### Good Answer
+
+No.
+
+Use a queue.
+
+```
+Request 1 -> Refresh
+
+Request 2 -> Wait
+
+Request 3 -> Wait
+
+↓
+
+Refresh Success
+
+↓
+
+Retry all requests
+```
+
+Only one refresh request should happen.
+
+---
+
+# 5. How do you protect private routes?
+
+### Example
+
+```
+/dashboard
+
+/profile
+
+/settings
+```
+
+### Good Answer
+
+Create a Protected Route.
+
+```jsx
+if (!user) {
+   return <Navigate to="/login" />;
+}
+
+return children;
+```
+
+---
+
+# 6. User opens the application in two browser tabs.
+
+### Scenario
+
+User logs out from one tab.
+
+The other tab is still open.
+
+How do you synchronize logout?
+
+### Good Answer
+
+Listen to the storage event.
+
+```javascript
+window.addEventListener("storage", () => {
+   logout();
+});
+```
+
+Or use:
+
+```
+BroadcastChannel API
+```
+
+---
+
+# 7. User manually changes the JWT in LocalStorage.
+
+### Scenario
+
+They edit the token using DevTools.
+
+What happens?
+
+### Answer
+
+Frontend should never trust the token.
+
+Every protected API should verify it on the server.
+
+Frontend only uses it to send requests.
+
+---
+
+# 8. Backend suddenly returns 403.
+
+Difference between 401 and 403?
+
+### Answer
+
+401
+
+```
+User is NOT authenticated.
+```
+
+Need Login.
+
+403
+
+```
+User is authenticated
+
+But doesn't have permission.
+```
+
+Example
+
+Admin page
+
+Normal user
+
+↓
+
+403 Forbidden
+
+---
+
+# 9. How do you prevent unauthorized API calls before login?
+
+### Answer
+
+Don't call protected APIs until authentication finishes.
+
+Example
+
+```jsx
+if (!isAuthenticated) return;
+```
+
+Or
+
+```jsx
+enabled: !!user
+```
+
+when using React Query.
+
+---
+
+# 10. How do you implement Role Based Authentication?
+
+### Scenario
+
+```
+Admin
+
+Manager
+
+Employee
+```
+
+### Answer
+
+Backend returns
+
+```json
+{
+  "role":"Admin"
+}
+```
+
+Frontend checks
+
+```jsx
+if(role !== "Admin"){
+   return <AccessDenied />;
+}
+```
+
+Backend must also validate roles.
+
+---
+
+# 11. User changes URL manually.
+
+Example
+
+```
+/admin
+```
+
+What happens?
+
+### Answer
+
+Route Guard
+
+```jsx
+if(user.role!=="Admin"){
+   return <Navigate to="/403"/>
+}
+```
+
+Backend should still verify permissions.
+
+---
+
+# 12. Login API is slow.
+
+### Scenario
+
+User clicks Login five times.
+
+### Answer
+
+Disable button
+
+```jsx
+disabled={loading}
+```
+
+Show spinner.
+
+Prevent duplicate requests.
+
+---
+
+# 13. How do you remember the logged-in user after reopening the browser?
+
+### Answer
+
+Use:
+
+* Refresh Token
+* Silent Login
+* Session Restoration
+
+Never rely only on React Context because it resets when the browser closes.
+
+---
+
+# 14. How do you log out?
+
+### Answer
+
+* Clear access token.
+* Clear refresh token (server-side or via cookie expiration).
+* Clear React state.
+* Clear cache (React Query/Redux if used).
+* Redirect to login.
+
+---
+
+# 15. Why shouldn't you decode a JWT and trust the role?
+
+### Answer
+
+Anyone can decode a JWT.
+
+Never authorize users based only on frontend-decoded claims.
+
+Always validate on the server.
+
+---
+
+# 16. Authentication vs Authorization
+
+Authentication
+
+```
+Who are you?
+```
+
+Authorization
+
+```
+What are you allowed to do?
+```
+
+---
+
+# 17. Explain the complete authentication flow.
+
+```
+Login
+
+↓
+
+Backend verifies credentials
+
+↓
+
+Returns
+
+Access Token
+
+Refresh Token
+
+↓
+
+React stores access token
+
+↓
+
+API Requests
+
+↓
+
+Token expires
+
+↓
+
+Refresh API
+
+↓
+
+New Access Token
+
+↓
+
+Continue working
+
+↓
+
+Logout
+
+↓
+
+Tokens removed
+```
+
+---
+
+# 18. React Coding Scenario
+
+**Q:** Build a protected route.
+
+```jsx
+import { Navigate } from "react-router-dom";
+
+function ProtectedRoute({ children }) {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
+}
+```
+
+---
+
+# 19. Axios Interceptor Example
+
+```javascript
+axios.interceptors.response.use(
+  response => response,
+  async error => {
+    if (error.response?.status === 401) {
+      // Refresh token
+      // Retry original request
+    }
+    return Promise.reject(error);
+  }
+);
+```
+
+---
+
+# 20. Real Interview Scenario
+
+**Interviewer:** A user is filling a long insurance form. After 30 minutes, the token expires. You don't want the user to lose their work. How would you handle it?
+
+**Strong Answer:**
+
+* Use a short-lived access token and a longer-lived refresh token.
+* Intercept `401 Unauthorized` responses with an Axios interceptor.
+* Refresh the access token automatically using the refresh token.
+* Retry the original request once the new access token is obtained.
+* Save in-progress form data locally (React state plus autosave to local storage or draft API if appropriate) so accidental refreshes or network issues don't lose work.
+* If refresh fails (for example, the refresh token has expired), preserve the draft, redirect to the login page, and after successful login restore the user's work.
+
+---
+
+## Other Scenario-Based React Questions You Should Prepare
+
+* Why does a component re-render unexpectedly, and how would you optimize it?
+* How would you manage state across a large React application?
+* When would you use Context API instead of Redux or Zustand?
+* How do you avoid unnecessary API calls?
+* How do you implement infinite scrolling?
+* How do you debounce a search input?
+* How do you handle race conditions when multiple API requests are in flight?
+* How would you optimize the performance of a page rendering thousands of rows?
+* How do you implement optimistic UI updates?
+* How do you handle errors globally in a React application?
+
+These types of practical, scenario-driven questions are very common in React interviews because they assess how you design and troubleshoot real-world applications, not just your knowledge of APIs and syntax.
+
+
+
+Yes. In React interviews, especially for **3–6 years of experience**, interviewers often spend **20–30 minutes just on the login/authentication flow**. They ask "What if...?" scenarios instead of theory.
+
+Here are common scenario-based questions with strong answers.
+
+---
+
+# 1. Explain the complete login flow from clicking Login.
+
+### Interviewer
+
+> What happens from the moment I click the Login button?
+
+### Good Answer
+
+```
+User enters email & password
+        ↓
+Frontend validates input
+        ↓
+POST /login API
+        ↓
+Backend verifies credentials
+        ↓
+Backend returns:
+- Access Token
+- Refresh Token
+        ↓
+Store Refresh Token in HttpOnly Cookie
+Store Access Token in memory (or as per app design)
+        ↓
+Fetch user profile (/me)
+        ↓
+Store user data in Context/Redux
+        ↓
+Navigate to Dashboard
+```
+
+---
+
+# 2. Why do we need both Access Token and Refresh Token?
+
+### Answer
+
+Access Token:
+
+* Short expiry (10–15 minutes)
+* Used for every API request
+
+Refresh Token:
+
+* Long expiry (7–30 days)
+* Used only to get a new access token
+* More secure when stored in an HttpOnly cookie
+
+---
+
+# 3. The access token expires while the user is working. What happens?
+
+### Answer
+
+```
+API Request
+      ↓
+401 Unauthorized
+      ↓
+Axios Interceptor catches it
+      ↓
+Call /refresh-token
+      ↓
+Receive new access token
+      ↓
+Retry original API
+      ↓
+User never notices
+```
+
+---
+
+# 4. What if the Refresh Token is also expired?
+
+### Answer
+
+```
+Refresh API
+      ↓
+401
+      ↓
+Logout User
+      ↓
+Clear tokens
+      ↓
+Redirect Login Page
+      ↓
+Show
+"Your session has expired. Please login again."
+```
+
+---
+
+# 5. Five API requests fail at the same time with 401. What will you do?
+
+### Wrong Answer
+
+Call Refresh API five times.
+
+### Correct Answer
+
+Only one refresh request should happen.
+
+```
+API1 → 401
+API2 → Wait
+API3 → Wait
+API4 → Wait
+API5 → Wait
+
+↓
+
+Refresh Token API
+
+↓
+
+Success
+
+↓
+
+Retry all waiting requests
+```
+
+---
+
+# 6. User refreshes the browser.
+
+### Interviewer
+
+> React state is lost. How do you keep the user logged in?
+
+### Answer
+
+```
+App loads
+
+↓
+
+Check Refresh Token Cookie
+
+↓
+
+Call Refresh API
+
+↓
+
+Get New Access Token
+
+↓
+
+Load User Profile
+
+↓
+
+Dashboard Opens
+```
+
+---
+
+# 7. User closes the browser and opens it tomorrow.
+
+### Answer
+
+If the refresh token is still valid:
+
+* Generate a new access token
+* Restore the session automatically
+
+Otherwise:
+
+* Redirect to Login
+
+---
+
+# 8. User logs out from one browser tab.
+
+Another tab is still open.
+
+How do you logout both?
+
+### Answer
+
+Use:
+
+```
+storage event
+
+or
+
+BroadcastChannel API
+```
+
+When logout happens:
+
+```
+Clear Token
+
+↓
+
+Notify Other Tabs
+
+↓
+
+Other Tabs Logout Automatically
+```
+
+---
+
+# 9. User manually changes the token in LocalStorage.
+
+### Answer
+
+No problem.
+
+Backend validates every JWT.
+
+Even if the frontend sends a fake token,
+
+Backend returns
+
+```
+401 Unauthorized
+```
+
+Never trust the frontend.
+
+---
+
+# 10. User opens
+
+```
+/dashboard
+```
+
+without logging in.
+
+### Answer
+
+Protected Route
+
+```
+if (!token)
+    redirect("/login")
+```
+
+Backend also verifies authentication for every protected API.
+
+---
+
+# 11. User directly opens
+
+```
+/admin
+```
+
+### Answer
+
+Check role.
+
+```
+if(role!="Admin")
+```
+
+Return
+
+```
+403 Forbidden
+```
+
+Both frontend and backend should enforce authorization.
+
+---
+
+# 12. Login button is clicked five times.
+
+### Answer
+
+Disable button after first click.
+
+```
+Loading...
+
+↓
+
+Disable Button
+
+↓
+
+Wait Response
+
+↓
+
+Enable Again
+```
+
+Prevents duplicate requests.
+
+---
+
+# 13. Network is slow during login.
+
+### Answer
+
+Show:
+
+* Spinner
+* Disable button
+* Timeout message if needed
+* Retry option if appropriate
+
+Good UX matters.
+
+---
+
+# 14. Login API succeeds but fetching the user profile fails.
+
+### Answer
+
+```
+Login Success
+
+↓
+
+Token Received
+
+↓
+
+/me API Failed
+
+↓
+
+Retry
+
+↓
+
+If still fails
+
+Logout
+```
+
+The app should avoid entering a partially authenticated state.
+
+---
+
+# 15. Why don't we store passwords?
+
+### Answer
+
+Passwords should never be stored by the frontend.
+
+The frontend only sends them over HTTPS to the login API.
+
+---
+
+# 16. Difference between 401 and 403?
+
+```
+401
+
+Not Logged In
+
+Need Authentication
+```
+
+```
+403
+
+Logged In
+
+No Permission
+```
+
+---
+
+# 17. How do you logout?
+
+### Answer
+
+```
+Click Logout
+
+↓
+
+Backend Invalidates Refresh Token (if implemented)
+
+↓
+
+Clear Access Token
+
+↓
+
+Clear User State
+
+↓
+
+Clear Cache
+
+↓
+
+Redirect Login
+```
+
+---
+
+# 18. Where do you store tokens?
+
+A strong production answer is:
+
+* **Access Token:** In memory (or follow the application's chosen design)
+* **Refresh Token:** HttpOnly Secure Cookie
+
+Avoid storing sensitive tokens in LocalStorage when security is a priority because of XSS risks.
+
+---
+
+# 19. What happens if a user stays idle for one hour?
+
+### Answer
+
+If the refresh token is still valid:
+
+```
+User Makes API
+
+↓
+
+Access Token Expired
+
+↓
+
+Refresh Token
+
+↓
+
+Continue
+```
+
+If both tokens are expired:
+
+```
+Session Expired
+
+↓
+
+Redirect Login
+```
+
+---
+
+# 20. Real Interview Question
+
+**Interviewer:**
+
+> Suppose a user is filling a loan application for 30 minutes. The access token expires during submission. What happens?
+
+**Strong Answer:**
+
+* The submit request returns `401 Unauthorized`.
+* An Axios interceptor catches the error.
+* The app sends a refresh token request.
+* If successful, it receives a new access token.
+* The original submit request is retried automatically.
+* The user sees no interruption and does not lose their entered data.
+* If the refresh request fails, preserve the form data (for example, as a draft), redirect to login, and restore the draft after successful authentication.
+
+## Tips Interviewers Like to Hear
+
+* Never trust the frontend for authentication or authorization.
+* Keep access tokens short-lived.
+* Use refresh tokens for session continuity.
+* Handle `401` responses automatically with interceptors.
+* Avoid multiple simultaneous refresh requests.
+* Protect routes on the frontend for UX, but always enforce security on the backend.
+* Preserve user work during session expiry whenever possible.
+
+These are among the most frequently asked authentication scenarios in React interviews and are often used to assess practical experience rather than memorized definitions.
+
+
+
+If you're interviewing for a **Frontend Developer (React.js + JavaScript)** role, especially with **2–5 years of experience**, expect many **scenario-based questions** instead of simple theory. Below are common interview questions with what the interviewer is looking for.
+
+---
+
+# 1. Authentication & Login
+
+
+# 2. API Questions
+
+---
+
+### Q6. Multiple APIs need to load on page. How?
+
+Use
+
+```javascript
+Promise.all()
+```
+
+Example
+
+```javascript
+const [users, posts] = await Promise.all([
+   getUsers(),
+   getPosts()
+]);
+```
+
+Loads simultaneously.
+
+---
+
+### Q7. API is taking too long.
+
+What will you do?
+
+Answer:
+
+* Loading spinner
+* Skeleton UI
+* Timeout
+* Retry mechanism
+* Lazy loading
+* Pagination
+
+---
+
+### Q8. One API succeeds and another fails.
+
+How will you handle?
+
+Use
+
+```javascript
+Promise.allSettled()
+```
+
+instead of
+
+```javascript
+Promise.all()
+```
+
+---
+
+### Q9. How do you cancel API requests?
+
+Use
+
+```javascript
+AbortController
+```
+
+or Axios Cancel Token.
+
+Useful when:
+
+* User changes page
+* Search input changes
+* Component unmounts
+
+---
+
+### Q10. User clicks Submit multiple times.
+
+How prevent duplicate API?
+
+Options
+
+* Disable button
+* Loading state
+
+```javascript
+disabled={loading}
+```
+
+or debounce.
+
+---
+
+# 3. React Scenario Questions
+
+---
+
+### Q11. Parent component re-renders. Child also re-renders.
+
+How reduce unnecessary renders?
+
+Answer:
+
+```jsx
+React.memo()
+```
+
+Use
+
+* React.memo
+* useMemo
+* useCallback
+
+---
+
+### Q12. Large list (10,000 records). UI becomes slow.
+
+Answer:
+
+Use
+
+* Virtualization
+
+Libraries
+
+* react-window
+* react-virtualized
+
+---
+
+### Q13. Search API on every keystroke.
+
+Bad.
+
+Solution
+
+Debounce
+
+```javascript
+setTimeout()
+```
+
+or
+
+```javascript
+lodash.debounce()
+```
+
+---
+
+### Q14. Component fetches data repeatedly.
+
+Reason?
+
+Wrong dependency array.
+
+Wrong
+
+```javascript
+useEffect(()=>{
+ fetchData();
+});
+```
+
+Correct
+
+```javascript
+useEffect(()=>{
+ fetchData();
+},[]);
+```
+
+---
+
+### Q15. API inside useEffect causing infinite loop.
+
+Wrong
+
+```javascript
+useEffect(()=>{
+ fetchUsers();
+}, [users]);
+```
+
+Correct
+
+```javascript
+useEffect(()=>{
+ fetchUsers();
+}, []);
+```
+
+---
+
+# 4. JavaScript Scenario Questions
+
+---
+
+### Q16. Difference between == and ===
+
+```javascript
+5 == "5"
+```
+
+True
+
+```javascript
+5 === "5"
+```
+
+False
+
+Always prefer
+
+```javascript
+===
+```
+
+---
+
+### Q17. Event Loop
+
+Question:
+
+```javascript
+console.log(1);
+
+setTimeout(()=>{
+ console.log(2);
+},0);
+
+Promise.resolve().then(()=>{
+ console.log(3);
+});
+
+console.log(4);
+```
+
+Output
+
+```
+1
+4
+3
+2
+```
+
+---
+
+### Q18. Closure
+
+```javascript
+function counter(){
+
+ let count=0;
+
+ return function(){
+
+    count++;
+
+    console.log(count);
+
+ }
+
+}
+
+const c=counter();
+
+c();
+c();
+```
+
+Output
+
+```
+1
+2
+```
+
+---
+
+### Q19. var vs let
+
+Interviewers ask many times.
+
+| var            | let                          |
+| -------------- | ---------------------------- |
+| Function scope | Block scope                  |
+| Hoisted        | Hoisted (Temporal Dead Zone) |
+| Can redeclare  | Cannot redeclare             |
+
+---
+
+### Q20. Explain async/await.
+
+Answer:
+
+It makes asynchronous code easier to read. It is built on top of Promises and allows you to write code that looks synchronous while remaining non-blocking.
+
+---
+
+# 5. State Management
+
+### Q21. Context vs Redux
+
+Context
+
+* Small apps
+* Theme
+* Authentication
+* Language
+
+Redux
+
+* Large applications
+* Complex state
+* DevTools
+* Middleware
+
+---
+
+### Q22. Why Redux Toolkit?
+
+Answer
+
+* Less boilerplate
+* Built-in Immer
+* Better performance
+* Easier async using createAsyncThunk
+
+---
+
+# 6. Performance Questions
+
+---
+
+### Q23. React app is slow.
+
+What will you check?
+
+* React.memo
+* useMemo
+* useCallback
+* Lazy loading
+* Code splitting
+* Image optimization
+* Virtual scrolling
+* Remove unnecessary re-renders
+
+---
+
+### Q24. Difference between useMemo and useCallback
+
+```
+useMemo
+Returns memoized value
+
+useCallback
+Returns memoized function
+```
+
+---
+
+# 7. Real Interview Scenarios
+
+### Scenario 1
+
+> User logs in on two browser tabs. One logs out. What happens?
+
+Answer:
+
+* Clear authentication state in both tabs using the `storage` event or `BroadcastChannel`.
+* Redirect all tabs to the login page.
+
+---
+
+### Scenario 2
+
+> API returns 500.
+
+Answer:
+
+* Show a user-friendly error message.
+* Log the error for monitoring.
+* Allow retry if appropriate.
+* Avoid exposing backend details.
+
+---
+
+### Scenario 3
+
+> Dashboard has 10 APIs.
+
+Answer:
+
+* Fetch independent APIs in parallel with `Promise.all`.
+* Lazy-load data that isn't immediately visible.
+* Cache repeated requests if appropriate.
+
+---
+
+### Scenario 4
+
+> Search API fires 100 requests.
+
+Answer:
+
+* Debounce input (e.g., 300–500 ms).
+* Cancel previous request using `AbortController`.
+* Ignore stale responses if a newer request completes first.
+
+---
+
+### Scenario 5
+
+> User token expires while using the application.
+
+Answer:
+
+* API returns 401.
+* Refresh the access token automatically.
+* Retry the failed request.
+* If refresh fails, clear session and redirect to login.
+
+---
+
+# Common Rapid-Fire Questions
+
+* What is the Virtual DOM?
+* Difference between `useEffect` and `useLayoutEffect`?
+* What are controlled and uncontrolled components?
+* Explain React reconciliation.
+* What are React hooks?
+* Difference between state and props?
+* What is prop drilling? How can it be avoided?
+* What is code splitting?
+* What are Higher-Order Components (HOCs)?
+* What is lazy loading in React?
+* What is CORS?
+* What are HTTP status codes (200, 201, 400, 401, 403, 404, 500)?
+* Difference between `PUT` and `PATCH`?
+* Explain REST APIs.
+* What is optimistic UI?
+* How do you handle race conditions in API calls?
+
+These are among the most frequently asked React/JavaScript interview topics, especially for frontend roles that emphasize authentication, API integration, and real-world application scenarios. Being able to explain both **what** you would do and **why** is often more important than memorizing definitions.
+
+
+
+
 # ===========================================
+
+==========
+
+# React Reconciliation
+
+React uses the reconciliation algorithm to update the UI.
+
+
+React does not directly update the Real DOM every time a change happens. Instead, it:
+
+1. Creates a new Virtual DOM when the component re-renders.
+2. Compares it with the previous Virtual DOM.
+3. Finds the differences (changes).
+4. Updates only the required parts of the Real DOM.
+
+This comparison process between the previous Virtual DOM and the new Virtual DOM is called `Reconciliation`.
+
+Reconciliation helps React improve performance by avoiding unnecessary DOM updates.
+
+
+ React uses a diffing algorithm to identify the differences between the two Virtual DOM trees and updates only the changed parts of the real DOM.
+
+ 
+# React Reconciliation
+
+React uses the reconciliation algorithm to update the UI.
+
+
+React does not directly update the Real DOM every time a change happens. Instead, it:
+
+1. Creates a new Virtual DOM when the component re-renders.
+2. Compares it with the previous Virtual DOM.
+3. Finds the differences (changes).
+4. Updates only the required parts of the Real DOM.
+
+This comparison process between the previous Virtual DOM and the new Virtual DOM is called `Reconciliation`.
+
+Reconciliation helps React improve performance by avoiding unnecessary DOM updates.
+
+React uses a Diffing Algorithm during reconciliation to identify the differences between the two Virtual DOM trees and update only the required parts of the Real DOM.
+
+==========
+==========
+==========
+==========
+==========
+
+# Redux Interview Questions and Answers
+
+## 1. What is Redux?
+Redux is a state management library used to manage and share application state in a single, centralized store. It makes state updates predictable using actions and reducers.
+
+## 2. Why do we use Redux?
+Redux is used to:
+- Manage shared application state
+- Avoid prop drilling
+- Make state updates predictable
+- Simplify debugging and testing
+
+## 3. What is a Store?
+A Store is the central object in Redux that holds the entire application's state.
+
+## 4. What is an Action?
+An Action is a plain JavaScript object that describes what happened. It contains a `type` property and can also include a `payload`.
+
+Example:
+{
+  type: "ADD_TODO",
+  payload: "Learn Redux"
+}
+
+## 5. What is a Reducer?
+A Reducer is a pure function that takes the current state and an action, then returns a new state without modifying the existing one.
+
+## 6. What is Dispatch?
+`dispatch()` is a function used to send actions to the Redux store, triggering state updates.
+
+Example:
+dispatch(addTodo("Learn Redux"));
+
+## 7. What is useSelector?
+`useSelector` is a React-Redux hook used to read data from the Redux store.
+
+Example:
+const todos = useSelector(state => state.todos);
+
+## 8. What is useDispatch?
+`useDispatch` is a React-Redux hook that provides access to the `dispatch()` function.
+
+Example:
+const dispatch = useDispatch();
+
+## 9. What is Redux Toolkit (RTK)?
+Redux Toolkit is the official and recommended way to write Redux code. It reduces boilerplate and provides utilities such as:
+- configureStore()
+- createSlice()
+- createAsyncThunk()
+
+## 10. What is createSlice()?
+`createSlice()` automatically creates:
+- Initial state
+- Reducers
+- Action creators
+
+This keeps Redux code shorter and easier to maintain.
+
+## 11. What is configureStore()?
+`configureStore()` creates the Redux store with sensible defaults, including:
+- Redux DevTools support
+- Middleware configuration
+- Easier setup
+
+## 12. Explain the Redux Data Flow.
+User Action
+    ↓
+dispatch()
+    ↓
+Action
+    ↓
+Reducer
+    ↓
+Store Updates
+    ↓
+UI Re-renders
+
+## 13. What is Prop Drilling?
+Prop drilling is passing data through multiple intermediate components just to reach a deeply nested component. Redux avoids this by allowing components to access shared state directly from the store.
+
+## 14. What is a Payload?
+A Payload is the data carried inside an action.
+
+Example:
+{
+  type: "UPDATE_NAME",
+  payload: "John"
+}
+
+## 15. Can Redux replace useState?
+No. `useState` is best for local component state, while Redux is designed for state that needs to be shared across multiple components.
+
+## 16. What is the difference between Redux and Context API?
+
+Redux:
+- Designed for complex global state
+- Uses actions and reducers
+- Better for large applications
+- Excellent debugging with DevTools
+
+Context API:
+- Designed for sharing simple global data
+- Directly provides values
+- Better for small applications
+- Limited debugging
+
+## 17. What is a Pure Function?
+A pure function:
+- Returns the same output for the same input.
+- Has no side effects.
+- Does not modify the original state.
+
+Reducers must always be pure functions.
+
+## 18. Why should state be immutable in Redux?
+Immutability:
+- Makes changes predictable.
+- Enables efficient UI updates.
+- Supports features like time-travel debugging.
+
+## 19. What is createAsyncThunk()?
+`createAsyncThunk()` simplifies handling asynchronous operations such as API requests by automatically generating:
+- pending
+- fulfilled
+- rejected
+
+action types.
+
+## 20. What middleware is commonly used in Redux?
+Middleware intercepts actions before they reach reducers.
+
+Common middleware:
+- redux-thunk (included by default with Redux Toolkit)
+- redux-logger
+
+# Quick Revision (One-Liners)
+
+- Redux → State management library.
+- Store → Holds application state.
+- Action → Describes what happened.
+- Reducer → Returns the new state.
+- Dispatch → Sends actions to the store.
+- Payload → Data inside an action.
+- useSelector → Reads state.
+- useDispatch → Dispatches actions.
+- Redux Toolkit → Simplifies Redux development.
+- createSlice → Creates reducers and actions.
+- configureStore → Creates the Redux store.
+- createAsyncThunk → Handles asynchronous actions.
+- Prop Drilling → Passing props through many components unnecessarily.
+- Immutable State → Never modify state directly; always return a new state.
+- Redux Flow → UI → Dispatch → Action → Reducer → Store → UI.
+
+
+
+================================================================================
+
+
+### Axios
+
+* Axios is a `third-party HTTP client library` used to communicate with backend APIs.
+* `npm install axios` installation is required because Axios is an `external dependency`.
+* Axios automatically `parses JSON responses into JavaScript objects` in typical JSON API usage.
+* Error checking is usually handled with ``try/catch``, especially when using `async/await`.
+* Axios has built-in support for `request and response interceptors` for modifying requests and handling responses globally.
+* Axios provides a `simple timeout configuration` to reject requests that take too long.
+* Common headers are `easy to configure globally`, which helps avoid repeating the same headers in every request.
+* Both Axios and Fetch are `Promise-based`, support `Async/Await`, and support `request cancellation` using `AbortController`.
+
+### Fetch
+
+* Fetch is a `native Web API` used to communicate with backend APIs without installing an external library.
+
+* `No installation is required` because Fetch is available in modern browsers and Node.js environments.
+* Fetch requires you to call ``response.json()`` to explicitly parse a JSON response into a JavaScript object.
+* Error checking requires checking ``response.ok` or `response.status``, because HTTP errors like `404` or `500` do not automatically reject the Promise.
+* Fetch has `no simple built-in timeout option` like Axios; timeout behavior can be implemented using `AbortController`.
+* Common headers require `manual configuration or a reusable wrapper` if you want to avoid repeating them.
+* Both Axios and Fetch are `Promise-based`, support `Async/Await`, and support `request cancellation` using `AbortController`.
+
+
+
+===========================
+
+  Custom Hooks:
+  Custom Hooks are a mechanism to reuse stateful logic
+  Custom hooks are nothing but these are javascript functions,
+  if we have something common logic that we want to share between components
+  then we use custom hooks.
+  These are logic that will be reused in many components.
+  We can create hooks using the name start with “use” keyword.
+
+  {/_
+  A custom Hook is basically a JavaScript function.
+  Its name begins with "use" that could invoke other Hooks.
+  The working of a custom Hook is identical to a regular function.
+  The "use" in the starting describes that this particular function conforms to the rules of Hooks.
+  Moreover, building custom Hooks enables you to extract component logic inside reusable functions.
+  We create a different function and write a shared logic here. _/}
+
+
+
+
+//=========================== global object =========================
+## 1. What is the Global Object in JavaScript?
+
+A **global object** is the top-level object that always exists in the global scope. It provides access to globally available variables, functions, and built-in objects.
+
+- In browsers, the global object is `window`.
+- In Node.js, the global object is `global`.
+- In modern JavaScript, `globalThis` is the standard way to access the global object across all environments.
+- The global object contains built-in APIs such as `setTimeout()`, `setInterval()`, `console`, and more.
+
+> **Note:** In browsers, global variables declared with `var` become properties of the `window` object, whereas `let` and `const` do not.
+
+### Example
+
+```javascript
+var name = "Deepak";
+let age = 25;
+
+console.log(window.name); // "Deepak"
+console.log(window.age);  // undefined
+
+console.log(globalThis.name); // "Deepak"
+```
+
+
+========================================================================
+
+## What is the `document` Object?
+
+The **`document` object** represents the HTML document loaded in the browser. 
+It is a property of the `window` object and is used to access and manipulate the DOM (Document Object Model).
+
+It is used to:
+- Access HTML elements
+- Modify HTML content and attributes
+- Change CSS styles
+- Create and remove elements
+- Handle DOM events
+
+### Example
+
+```javascript
+document.getElementById("demo");
+document.querySelector(".btn");
+
+
+========================================================================-
+
+## Relationship Between `window` and `document`
+
+The `document` object is a property of the `window` object.
+
+window.document === document; // true
+
+window
+│
+├── document
+├── location
+├── history
+├── navigator
+├── localStorage
+├── sessionStorage
+├── alert()
+├── setTimeout()
+└── fetch()
+```
+
+---
+
+## One-Line Interview Answers
+
+- **Global Object:** The top-level object that provides globally accessible variables, functions, and built-in objects.
+- **Window Object:** The global object in browsers that represents the browser window and provides browser-specific APIs.
+- **Document Object:** An object that represents the HTML document and provides methods to access and manipulate the DOM.
+
+
+  
+
+
+
+==============================================================
+
+### What are PropTypes?
+
+- `PropTypes` is a library used for `runtime type-checking of props` in React.
+- It allows us to define the `expected type` of each prop a component should receive.
+- If a component receives an incorrect prop type, React can show a `warning in the console during development`.
+- PropTypes can also specify whether a prop is `required` using `.isRequired`.
+- It is mainly useful for `catching incorrect prop usage during development`.
+
+Install it with:
+
+```bash
+npm install prop-types
+```
+
+Example:
+
+```jsx
+import PropTypes from "prop-types";
+
+function User({ name, age }) {
+  return <h1>{name} - {age}</h1>;
+}
+
+User.propTypes = {
+  name: PropTypes.string.isRequired,
+  age: PropTypes.number.isRequired,
+};
+```
+
+### Interview answer
+
+PropTypes is a separate library used for runtime type-checking of props in React. We define the expected data type for each prop, such as string, number, or boolean. If an incorrect type is passed, React shows a warning in the development console. We can also use `.isRequired` to indicate that a prop must be provided.”`
+
+
+
+==============================================================
+
+Q12 what is dom ?
+
+
+
+-DOM: DOM stands for ‘Document Object Model’.
+DOM is a tree-like representation of an HTML document created by the browser.
+It represents every HTML element, attribute, and text as objects (nodes).
+JavaScript interacts with the DOM through the document object, 
+allowing it to access, modify, add, or remove HTML elements,
+ attributes, styles, and content dynamically without reloading the page.
+
+
+
+-DOM: DOM stands for ‘Document Object Model’.
+-It is a structured representation of the HTML elements
+that are present in a webpage or web-app.
+- JavaScript interacts with the DOM using the document object.  
+- The DOM represents all elements, attributes, and content of a web page as objects that can be accessed and manipulated using JavaScript.
+
+
+
+
+- Includes element nodes, text nodes, and attribute nodes.  
+- Enables adding, removing, or modifying elements and attributes dynamically.  
+- Handles user interactions like clicks, key presses, and other events.  
+- Provides methods for navigation (parentNode, childNodes) and modification (setAttribute, appendChild).  
+- Allows real-time updates and interactivity in web pages.  
+
+
+
+
+
+===========================================================================
+
+
+
+A framework is a set of pre-written code that provides a structure for developing software applications. 
+
+A library, on the other hand, is a collection of pre-written code that can be used to perform specific tasks.
+
+
+
+
+
+- Interceptors are a powerful feature provided by HTTP client libraries such as Axios that allow us to intercept and manipulate HTTP requests or responses before they are handled by the application.
+
+- There are mainly two types of interceptors:
+  - Request Interceptor
+  - Response Interceptor
+
+- Request Interceptor:
+  - Runs before the request is sent.
+  - Used to:
+    - Add authentication tokens.
+    - Modify request headers.
+    - Add common parameters.
+    - Log requests.
+    - Add request IDs or other common configurations.
+
+    import axios from "axios";
+
+// Create Axios instance
+
+const api = axios.create({
+  baseURL: "https://jsonplaceholder.typicode.com",
+});
+
+// ================================
+// REQUEST INTERCEPTOR
+// ================================
+
+api.interceptors.request.use(
+  (config) => {
+
+    // 1. Add Authentication Token
+    const token = "my-demo-token";
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
+
+    // 2. Modify Request Headers
+    config.headers["Content-Type"] = "application/json";
+    config.headers["X-App-Name"] = "My React App";
+
+
+    // 3. Add Common Parameters
+    config.params = {
+      ...config.params,
+      userId: 1,
+    };
+
+
+    // 4. Log Request
+    console.log("========== REQUEST ==========");
+    console.log("Method:", config.method?.toUpperCase());
+    console.log("URL:", config.baseURL + config.url);
+    console.log("Headers:", config.headers);
+    console.log("Params:", config.params);
+
+
+    // 5. Add Request ID
+    config.headers["X-Request-ID"] = crypto.randomUUID();
+
+    console.log("Request ID:", config.headers["X-Request-ID"]);
+    console.log("=============================");
+
+
+    // IMPORTANT: return config
+    return config;
+  },
+
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+
+// ================================
+// API CALL
+// ================================
+
+async function getPosts() {
+  try {
+    const response = await api.get("/posts");
+
+    console.log("Response:", response.data);
+
+  } catch (error) {
+    console.error("API Error:", error);
+  }
+}
+
+getPosts();
+
+
+```
+
+- Response Interceptor:
+  - Runs after a response is received.
+  - Used to:
+    - Transform response data.
+    - Handle errors globally.
+    - Log responses.
+    - Handle 401 Unauthorized errors.
+    - Refresh expired authentication tokens.
+    - Retry the original request when appropriate.
+
+    import axios from "axios";
+
+// ========================================
+// CREATE AXIOS INSTANCE
+// ========================================
+
+const api = axios.create({
+  baseURL: "https://jsonplaceholder.typicode.com",
+});
+
+
+// ========================================
+// RESPONSE INTERCEPTOR
+// ========================================
+
+api.interceptors.response.use(
+
+  // ======================================
+  // SUCCESS RESPONSE
+  // ======================================
+
+  (response) => {
+
+    // 1. Log Response
+    console.log("========== RESPONSE ==========");
+    console.log("Status:", response.status);
+    console.log("URL:", response.config.url);
+    console.log("Data:", response.data);
+    console.log("==============================");
+
+
+    // 2. Transform Response Data
+    // Example: Return only response.data
+    return response.data;
+  },
+
+
+  // ======================================
+  // ERROR RESPONSE
+  // ======================================
+
+  async (error) => {
+
+    // 3. Log Response Error
+    console.error("========== RESPONSE ERROR ==========");
+    console.error("Status:", error.response?.status);
+    console.error("URL:", error.config?.url);
+    console.error("Message:", error.message);
+    console.error("====================================");
+
+
+    // 4. Handle 401 Unauthorized
+    if (error.response?.status === 401) {
+
+      console.log("User is unauthorized");
+
+      // 5. Refresh Expired Authentication Token
+      try {
+
+        console.log("Refreshing authentication token...");
+
+        // In a real application:
+        //
+        // const refreshResponse = await axios.post(
+        //   "/auth/refresh",
+        //   {
+        //     refreshToken: localStorage.getItem("refreshToken")
+        //   }
+        // );
+        //
+        // const newToken = refreshResponse.data.accessToken;
+
+        const newToken = "new-demo-token";
+
+
+        // Update token
+        localStorage.setItem("accessToken", newToken);
+
+
+        // 6. Retry Original Request
+        const originalRequest = error.config;
+
+        originalRequest.headers.Authorization =
+          `Bearer ${newToken}`;
+
+        console.log("Retrying original request...");
+
+        return api(originalRequest);
+
+      } catch (refreshError) {
+
+        console.error("Token refresh failed");
+
+        // Redirect user to login
+        // window.location.href = "/login";
+
+        return Promise.reject(refreshError);
+      }
+    }
+
+
+    // 7. Handle Other Errors Globally
+
+    if (error.response?.status === 404) {
+      console.error("Resource not found");
+    }
+
+    if (error.response?.status === 500) {
+      console.error("Internal server error");
+    }
+
+
+    // Pass error to the calling code
+    return Promise.reject(error);
+  }
+);
+
+
+// ========================================
+// API CALL
+// ========================================
+
+async function getPosts() {
+
+  try {
+
+    const posts = await api.get("/posts");
+
+    console.log("Posts received:", posts);
+
+  } catch (error) {
+
+    console.error("Final API Error:", error);
+  }
+}
+
+getPosts();
+
+- In React.js applications:
+  - Interceptors help us avoid repeating common API logic in every component.
+  - They allow us to centralize request and response handling.
+  - This makes the code clean, reusable, and maintainable.
+
+- Important point:
+  - Interceptors are not a native JavaScript feature.
+  - The Fetch API does not provide built-in Axios-style interceptors.
+  - Libraries such as Axios provide interceptor functionality.
+  - With Fetch, we can create our own wrapper function to achieve similar behavior.
+
+- Real-world example:
+  - Request → Add JWT token → Send API request.
+  - Response → Check status → If 401, refresh token → Retry request or redirect to login.
+
+- In short:
+  - Request Interceptor → Before API request.
+  - Response Interceptor → After API response.
+  - Main purpose → Centralize common API logic.
+
+
+
+
+
+
+
+
+
+====
+
+==================================================
+IMPORTANT DIFFERENCE:
+align-items vs align-content
+==================================================
+
+align-items:
+
+    Aligns ITEMS within a flex line.
+
+align-content:
+
+    Aligns MULTIPLE FLEX LINES within the container.
+
+
+Example:
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: space-between;
+}
+
+
+==================================================
+MOST IMPORTANT INTERVIEW CONCEPT
+==================================================
+
+Question:
+What is the difference between justify-content and align-items?
+
+Answer:
+
+justify-content → Aligns items along the MAIN AXIS.
+
+align-items → Aligns items along the CROSS AXIS.
+
+
+For:
+
+flex-direction: row;
+
+justify-content → Horizontal
+align-items      → Vertical
+
+
+For:
+
+flex-direction: column;
+
+justify-content → Vertical
+align-items      → Horizontal
+
+
+==================================================
+EASY WAY TO REMEMBER
+==================================================
+
+justify-content
+    ↓
+MAIN AXIS
+
+align-items
+    ↓
+CROSS AXIS
+
+align-content
+    ↓
+MULTIPLE FLEX LINES
+
+
+==================================================
+COMMON INTERVIEW QUESTIONS
+==================================================
+
+Q1. What is Flexbox?
+
+Answer:
+Flexbox is a one-dimensional CSS layout system used to arrange and align elements in rows or columns.
+
+--------------------------------------------------
+
+Q2. How do you enable Flexbox?
+
+Answer:
+
+.container {
+    display: flex;
+}
+
+--------------------------------------------------
+
+Q3. What are the six important flex container properties?
+
+Answer:
+
+1. flex-direction
+2. flex-wrap
+3. flex-flow
+4. justify-content
+5. align-items
+6. align-content
+
+--------------------------------------------------
+
+Q4. What is the default value of flex-direction?
+
+Answer:
+
+row
+
+--------------------------------------------------
+
+Q5. What is the default value of flex-wrap?
+
+Answer:
+
+nowrap
+
+--------------------------------------------------
+
+Q6. What is the default value of justify-content?
+
+Answer:
+
+flex-start
+
+--------------------------------------------------
+
+Q7. What is the default value of align-items?
+
+Answer:
+
+stretch
+
+--------------------------------------------------
+
+Q8. What is the default value of align-content?
+
+Answer:
+
+stretch
+
+--------------------------------------------------
+
+Q9. What is the difference between row and column?
+
+Answer:
+
+row:
+Items are arranged horizontally.
+
+column:
+Items are arranged vertically.
+
+--------------------------------------------------
+
+Q10. What is the difference between justify-content and align-items?
+
+Answer:
+
+justify-content → Main axis
+align-items      → Cross axis
+
+--------------------------------------------------
+
+Q11. What is the difference between align-items and align-content?
+
+Answer:
+
+align-items:
+Aligns individual flex items within a flex line.
+
+align-content:
+Aligns multiple flex lines within the flex container.
+
+--------------------------------------------------
+
+Q12. Does align-content work with a single flex line?
+
+Answer:
+
+Generally no. align-content is useful when there are multiple flex lines,
+usually created using flex-wrap: wrap.
+
+--------------------------------------------------
+
+Q13. What is flex-flow?
+
+Answer:
+
+flex-flow is shorthand for flex-direction and flex-wrap.
+
+Example:
+
+flex-flow: row wrap;
+
+
+==================================================
+ONE-LINE REVISION
+==================================================
+
+flex-direction → Direction
+flex-wrap       → Wrap or not
+flex-flow       → Direction + Wrap
+justify-content → Main axis
+align-items     → Cross axis
+align-content   → Multiple flex lines
+
+
+==================================================
+INTERVIEW GOLDEN RULE
+==================================================
+
+DO NOT MEMORIZE:
+
+justify-content = horizontal
+align-items = vertical
+
+Instead, remember:
+
+justify-content = MAIN AXIS
+align-items = CROSS AXIS
+
+The direction of the main axis depends on flex-direction.
+
+
+
+
+----------------------------
+ 
+Code optimization
+
+Code optimization in React.js involves improving the efficiency, performance,
+and overall quality of your codebase without changing its functionality.
+
+It includes techniques such as minimizing unnecessary re-renders,
+reducing bundle size, optimizing network requests, managing state efficiently,
+enhancing code readability, and maintaining code maintainability.
+
+1. React.StrictMode:
+
+- Use React.StrictMode to detect potential issues in your codebase during development.
+  -It helps identify unsafe lifecycles, deprecated APIs, and other potential problems.
+
+2. Memoization:
+   Memoization is a technique used to optimize expensive computations by caching the results.
+   React provides a useMemo hook for memoizing values.
+
+import React, { useMemo } from 'react';
+
+const Component = ({ data }) => {
+const processedData = useMemo(() => {
+// Expensive computation
+return data.map(item => item \* 2);
+}, [data]);
+
+    return (
+      <div>
+        {processedData.map((item, index) => (
+          <div key={index}>{item}</div>
+        ))}
+      </div>
+    );
+
+};
+
+3. Code Splitting:
+   Splitting your code into smaller chunks allows lazy-loading components when needed,
+   reducing the initial bundle size and speeding up the initial load time.
+
+import React, { lazy, Suspense } from 'react';
+
+const LazyComponent = lazy(() => import('./LazyComponent'));
+
+const App = () => (
+<Suspense fallback={<div>Loading...</div>}>
+<LazyComponent />
+</Suspense>
+);
+
+4. Avoid Inline Styles:
+
+- Inline styles can clutter your components and make maintenance difficult.
+  -Prefer using CSS classes or styled-components for better separation of concerns and easier styling management.
+
+5. Debouncing and Throttling:
+
+- Debouncing and throttling are code optimization techniques that help improve performance by
+  controlling the rate at which functions are executed in response to frequent events.
+- Debouncing function is excuated after specif delay perdia passes since las time function invokde
+  while throttling limits the number of times the function can be called over a certain period.
+
+
+
+========================================================================
+
+
+========================== ES6 features ==================================
+
+Below is the list of top ES6 features every JavaScript developer should know,
+
+
+1. let and const:
+2. Arrow Functions:
+3. Template Literals:
+4. Destructuring Assignment:
+5. Default Parameters:
+6. Rest and Spread Operators:
+7. Classes:
+8. Modules:
+9. Promises:
+10. Symbol:
+11. Iterators and Generators:
+12. Map and Set:
+13. WeakMap and WeakSet:
+14. Enhanced Object Literals:
+15. Object.assign():
+16. String Methods:
+17. Number Methods:
+18. Math Methods:
+19. New Data Structures:
+20. For…of Loop:
+
+
+Default parameters
+Spread and Rest syntaxes (…)
+let and const
+promise
+Destructuring assignment
+Arrow function expressions
+Classes
+
+Template literals (Template strings)
+Tagged Templates
+Object.assign() and Object.is()
+
+1. let and const
+   ```javascript
+   let x = 10;
+   const y = 20;
+   x = 15; // Allowed
+   // y = 25; // Error: Assignment to constant variable
+   ```
+
+2. Arrow Functions
+   ```javascript
+   const add = (a, b) => a + b;
+   console.log(add(2, 3)); // 5
+   ```
+
+3. `Template Literals`
+   ```javascript
+   const name = 'World';
+   const greeting = `Hello, ${name}!`;
+   console.log(greeting); // Hello, World!
+   ```
+
+4. `Destructuring Assignment`
+   ```javascript
+   const [a, b] = [1, 2];
+   const { name, age } = { name: 'Alice', age: 30 };
+   console.log(a, b); // 1 2
+   console.log(name, age); // Alice 30
+   ```
+
+5. `Default Parameters`
+   ```javascript
+   function greet(name = 'Guest') {
+     return `Hello, ${name}!`;
+   }
+   console.log(greet()); // Hello, Guest!
+   console.log(greet('John')); // Hello, John!
+   ```
+
+6. `Rest and Spread Operators`
+   - `Rest Operator`:
+     ```javascript
+     function sum(...numbers) {
+       return numbers.reduce((acc, num) => acc + num, 0);
+     }
+     console.log(sum(1, 2, 3, 4)); // 10
+     ```
+   - `Spread Operator`:
+     ```javascript
+     const arr = [1, 2, 3];
+     const newArr = [0, ...arr, 4];
+     console.log(newArr); // [0, 1, 2, 3, 4]
+     ```
+
+7. `Classes`
+   ```javascript
+   class Person {
+     constructor(name) {
+       this.name = name;
+     }
+     greet() {
+       return `Hello, ${this.name}!`;
+     }
+   }
+   const john = new Person('John');
+   console.log(john.greet()); // Hello, John!
+   ```
+
+8. `Modules`
+   - `Export`:
+     ```javascript
+     // module.js
+     export const pi = 3.14;
+     export function add(a, b) {
+       return a + b;
+     }
+     ```
+   - `Import`:
+     ```javascript
+     // main.js
+     import { pi, add } from './module.js';
+     console.log(pi); // 3.14
+     console.log(add(2, 3)); // 5
+     ```
+
+9. `Promises`
+   ```javascript
+   const myPromise = new Promise((resolve, reject) => {
+     setTimeout(() => resolve('Done!'), 1000);
+   });
+
+   myPromise.then(result => console.log(result)); // Done!
+   ```
+
+10. `Symbol`
+    ```javascript
+    const sym1 = Symbol('description');
+    const sym2 = Symbol('description');
+    console.log(sym1 === sym2); // false
+    ```
+
+11. `Iterators and Generators`
+    ```javascript
+    function* generator() {
+      yield 1;
+      yield 2;
+      yield 3;
+    }
+    const gen = generator();
+    console.log(gen.next().value); // 1
+    console.log(gen.next().value); // 2
+    ```
+
+12. `Map and Set`
+    - `Map`:
+      ```javascript
+      const map = new Map();
+      map.set('key1', 'value1');
+      console.log(map.get('key1')); // value1
+      ```
+    - `Set`:
+      ```javascript
+      const set = new Set([1, 2, 3]);
+      set.add(4);
+      console.log(set.has(2)); // true
+      ```
+
+13. `WeakMap and WeakSet`
+    - `WeakMap`:
+      ```javascript
+      const weakMap = new WeakMap();
+      const obj = {};
+      weakMap.set(obj, 'value');
+      console.log(weakMap.get(obj)); // value
+      ```
+    - `WeakSet`:
+      ```javascript
+      const weakSet = new WeakSet();
+      const obj = {};
+      weakSet.add(obj);
+      console.log(weakSet.has(obj)); // true
+      ```
+
+14. `Enhanced Object Literals`
+    ```javascript
+    const name = 'Alice';
+    const person = {
+      name,
+      greet() {
+        return `Hello, ${this.name}!`;
+      }
+    };
+    console.log(person.greet()); // Hello, Alice!
+    ```
+
+15. `Object.assign()`
+    ```javascript
+    const target = { a: 1 };
+    const source = { b: 2 };
+    Object.assign(target, source);
+    console.log(target); // { a: 1, b: 2 }
+    ```
+
+16. `String Methods`
+    ```javascript
+    const str = 'Hello, World!';
+    console.log(str.includes('World')); // true
+    console.log(str.startsWith('Hello')); // true
+    console.log(str.endsWith('!')); // true
+    ```
+
+17. `Number Methods`
+    ```javascript
+    console.log(Number.isNaN(NaN)); // true
+    console.log(Number.isFinite(123)); // true
+    ```
+
+18. `Math Methods`
+    ```javascript
+    console.log(Math.pow(2, 3)); // 8
+    console.log(Math.trunc(4.9)); // 4
+    ```
+
+19. `For…of Loop`
+    ```javascript
+    const iterable = [10, 20, 30];
+    for (const value of iterable) {
+      console.log(value); // 10, 20, 30
+    }
+    ```
+
+20. `Tagged Templates`
+    ```javascript
+    function tag(strings, ...values) {
+      return strings.reduce((acc, str, i) => acc + str + (values[i] || ''), '');
+    }
+    const name = 'World';
+    const message = tag`Hello, ${name}!`;
+    console.log(message); // Hello, World!
+    ```
+
+These examples demonstrate how each ES6 feature can be used in practice.
+
+
+
+
+==========================================================
+
+Fiber solves this by allowing React to:
+
+* Break rendering work into smaller units.
+* Pause and resume rendering.
+* Prioritize more important updates (like user input).
+* Keep the UI responsive.
+
+### 1. Fiber Node
+
+A Fiber is a JavaScript object that represents a unit of work for a React component.
+
+Each Fiber contains information such as:
+
+* Component type
+* Props
+* State
+* Parent, child, and sibling references
+* Effects or work that need to be performed during updates
+
+### 2. Reconciliation
+
+Reconciliation is React's process of determining what needs to change when the UI is updated.
+
+Fiber provides the data structure and architecture that allow React to efficiently perform this reconciliation and determine the necessary DOM updates.
+
+### 3. Scheduling
+
+Fiber allows React to schedule and prioritize updates.
+
+For example:
+
+`High priority:`
+
+* Typing in an input
+* Button clicks
+* User interactions
+
+`Lower priority:`
+
+* Loading or rendering a large list
+* Background rendering
+* Non-urgent updates
+
+This helps prevent less important work from blocking user interactions.
+
+### 4. Render Phase and Commit Phase
+
+React Fiber mainly works through two phases: the `render phase` and the `commit phase`.
+
+During the `render phase`, React creates or updates the work-in-progress Fiber tree, performs reconciliation, and determines what changes need to be made. This phase can be interrupted, restarted, or abandoned.
+
+During the `commit phase`, React applies the calculated changes to the actual DOM and performs the required commit-related side effects. The commit phase is not interruptible because React needs to apply the final UI changes consistently.
+
+### 5. Current and Work-in-Progress Fiber Trees
+
+React maintains a `current Fiber tree` and a `work-in-progress Fiber tree`.
+
+The current tree represents what is currently committed and displayed on the screen, while the work-in-progress tree represents the changes React is preparing.
+
+Once the work is successfully committed, the work-in-progress tree becomes the new current tree.
+
+### 6. Simple Explanation
+
+In simple words, Fiber allows React to break rendering work into smaller pieces, prioritize important work, and perform rendering more efficiently.
+
+Fiber is also the architectural foundation for modern React capabilities such as `concurrent rendering, transitions, and Suspense`.`
 # ===========================================
+
+
+Definition:
+Middleware is a function that runs between dispatching an action and the reducer receiving it.
+
+Works:
+- Intercepts actions before they reach the reducer.
+- Used for logging, API calls, async operations, and error handling.
+
+Flow:
+
+Component
+    |
+    ↓
+dispatch(action)
+    |
+    ↓
+Middleware
+    |
+    ↓
+Reducer
+    |
+    ↓
+Store Update
+
+
+Examples of Middleware:
+
+Redux Thunk:
+Handles asynchronous actions like API requests.
+
+Logger Middleware:
+Logs actions and state changes.
+```
+
+====================================================================
+### Middleware
+Redux middleware is a function that intercepts dispatched actions before they reach the reducers. 
+It allows you to perform additional processing, such as handling asynchronous operations (e.g., API calls), logging, or other side effects.
+
+By keeping business logic separate from UI components, middleware makes applications more scalable, maintainable, and easier to test.
+
+Common Redux middleware includes Redux Thunk, Redux Saga, and Redux Logger.
+
+
+```
+
+Whenever you send an action using dispatch(), middleware receives that action first. It can perform extra work such as API calls, logging, authentication, or validation. After completing that work, it forwards the action to the reducer, which then updates the Redux state.
+
+
+================================================================================
+
+### Why middleware is required in React?
+
+- Middleware is commonly used in React applications to:
+  - Manage side effects, handle asynchronous actions,
+    and facilitate communication between components and the application’s state management system (like Redux).
+- Middleware allows you to manage these side effects without cluttering your components with complex logic.
+  - It helps separate business logic from UI logic, making the code more maintainable.
+  - Improves code reusability by handling common tasks in middleware, reducing the need for repeating logic.
+
+- For example, in Redux, middleware like redux-thunk or redux-saga is used to handle asynchronous actions (like API calls) in a more structured manner:
+  - It organizes side effects outside of components, improving readability and maintainability.
+
+- Middleware is required in React applications, particularly when using state management libraries like Redux, to handle asynchronous operations and side effects effectively.
+
+### Middleware allows developers to:
+
+- Intercept Actions: Middleware can intercept actions dispatched to the store before they reach the reducers.
+- Perform Asynchronous Tasks: Middleware can handle asynchronous operations, such as making API calls, within the action dispatching process.
+- Dispatch New Actions: After completing the asynchronous tasks, middleware can dispatch new actions\*\* with the results of these tasks to update the store.
+
+
+========================================================
+
+In React applications, asynchronous operations like making API calls or handling side effects can be managed effectively using middleware.
+Middleware allows developers to intercept certain actions, perform asynchronous tasks,
+and then dispatch new actions with the results once the tasks are complete.
+
+Middleware, in the context of web development,
+
+- acts as a bridge between different components of an application, providing a layer of processing and functionality.
+- It intercepts incoming requests, performs specific actions, and then passes the modified request to the next middleware or the final destination
+
+
+
 ========================================================
 
 
