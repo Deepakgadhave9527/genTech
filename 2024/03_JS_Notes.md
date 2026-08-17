@@ -1,4 +1,61 @@
 
+=============================================
+sort()
+
+The sort() method is used to sort the elements of an array.
+
+By default, .sort() converts values to strings and sorts them lexicographically.
+
+Basic strings       → sort()
+Language-aware      → sort((a, b) => a.localeCompare(b))
+Numbers             → sort((a, b) => a - b) //ascending
+numbers.sort((a, b) => b - a); // descending
+
+
+.sort() modifies the original array AND returns that array.
+
+=============================================
+
+
+- push() — Adds one or more elements to the end of an array.
+
+- pop() — Removes and returns the last element of an array.
+
+- shift() — Removes and returns the first element of an array.
+
+- unshift() — Adds one or more elements to the beginning of an array.
+
+
+- slice() — Returns a portion of an array without modifying the original array.
+
+- splice() — Adds, removes, or replaces elements in an array and modifies the original array.
+
+- reduce() — Reduces an array to a single value by accumulating its elements.
+
+
+- map() — Creates a new array by transforming each element.
+
+- filter() — Creates a new array containing elements that satisfy a condition.
+
+
+- forEach() — Executes a function once for each element in an array.
+
+- find() — Returns the first element that satisfies a condition.
+
+- findIndex() — Returns the index of the first element that satisfies a condition.
+
+- some() — Checks whether at least one element satisfies a condition.
+
+- every() — Checks whether all elements satisfy a condition.
+
+- includes() — Checks whether an array contains a specific value.
+
+- sort() — Sorts the elements of an array.
+
+
+- concat() — Combines two or more arrays into a new array.
+
+
 ======== Object cloning=============================================
 
 

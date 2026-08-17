@@ -124,6 +124,45 @@ console.log("5" / 3); // Output: 1.6666666666666667
 
 // Problem: Flatten a nested array
 
+function flatten(arr) {
+  return arr.reduce((acc, value) => {
+    return acc.concat(Array.isArray(value) ? flatten(value) : value);
+  }, []);
+}
+
+const arr = [1, [2, [3, [4]], 5]];
+
+console.log(flatten(arr));
+
+// [1, 2, 3, 4, 5]
+
+wihout reduce
+
+let nestedArray3 = [1, [2, 3], [4, [5, 6]], 7, [8, [9, 10, [11, [13]]]]];
+
+
+
+function flatten(arr) {
+    let result = [];
+
+    for (const item of arr) {
+        if (Array.isArray(item)) {
+            result.push(...flatten(item));
+        } else {
+            result.push(item);
+        }
+    }
+
+    return result;
+}
+
+console.log(flatten( [1, [2, 3], [4, [5, 6]], 7, [8, [9, 10, [11, [13]]]]]));
+
+
+
+// [1, 2, 3, 4, 5]
+
+
 
 // Problem 1: Flatten a Nested Array
 

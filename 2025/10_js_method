@@ -1,0 +1,803 @@
+
+1. Array methods
+
+map()
+filter()
+reduce()
+forEach()
+find()
+findIndex()
+some()
+every()
+includes()
+sort()
+slice()
+splice()
+concat()
+push()
+pop()
+shift()
+unshift()
+
+
+Example:
+
+const nums = [1, 2, 3, 4, 5];
+
+const doubled = nums.map(n => n * 2);
+const even = nums.filter(n => n % 2 === 0);
+const sum = nums.reduce((acc, n) => acc + n, 0);
+
+
+2. String methods
+
+charAt()
+includes()
+indexOf()
+startsWith()
+endsWith()
+slice()
+substring()
+split()
+replace()
+replaceAll()
+trim()
+toUpperCase()
+toLowerCase()
+
+
+3. Object methods
+
+Object.keys()
+Object.values()
+Object.entries()
+Object.assign()
+Object.create()
+Object.freeze()
+Object.seal()
+
+
+Example:
+
+const user = { name: "John", age: 25 };
+
+console.log(Object.keys(user));
+console.log(Object.values(user));
+console.log(Object.entries(user));
+
+
+4. Important interview concepts/methods
+
+call()
+apply()
+bind()
+
+
+Example:
+
+const person = {
+  name: "John"
+};
+
+function greet(city) {
+  console.log(`Hi, I'm ${this.name} from ${city}`);
+}
+
+greet.call(person, "Mumbai");
+greet.apply(person, ["Mumbai"]);
+
+const fn = greet.bind(person);
+fn("Mumbai");
+
+
+5. Promise methods
+
+Promise.all()
+Promise.allSettled()
+Promise.race()
+Promise.any()
+
+⭐ If you're preparing for a JavaScript interview
+
+I would prioritize these 10 first:
+
+map()
+filter()
+reduce()
+forEach()
+find()
+sort()
+slice() vs splice()
+call() vs apply() vs bind()
+Object.keys() / values() / entries()
+Promise.all() / allSettled() / race() / any()
+
+Interviewers often ask you to implement these methods yourself, especially map, filter, reduce, forEach, and bind.
+
+
+===========================================
+```js
+
+
+
+What is filter()?
+filter() is used to select elements from an array based on a condition.
+
+It creates a new array containing only the elements for which the condition is true.
+
+array.filter(function(currentValue, index, arr), thisValue)
+
+
+2. filter() with even numbers
+const numbers = [1, 2, 3, 4, 5, 6];
+
+const evenNumbers = numbers.filter(num => num % 2 === 0);
+
+console.log(evenNumbers);
+
+Output:
+
+[2, 4, 6]
+
+5. filter() does not modify the original array
+
+===========================================
+
+3. reduce()
+
+reduce method in javascript
+
+The reduce() method in JavaScript is used to reduce an array to a single value by executing a callback function on each element.
+
+Syntax
+array.reduce(callback(accumulator, currentValue, index, array), initialValue);
+
+Parameters
+callback: Function executed for each array element.
+accumulator: Stores the accumulated result.
+currentValue: Current array element.
+index (optional): Current element index.
+array (optional): The original array.
+initialValue (optional): Initial value for the accumulator.
+
+
+This one can look confusing at first.
+
+What does it do?
+reduce() takes all the array values and produces one final value.
+
+For example, adding numbers:
+
+const numbers = [10, 20, 30, 40];
+
+const total = numbers.reduce((sum, num) => {
+  return sum + num;
+}, 0);
+
+console.log(total);
+
+Output:
+
+100
+
+Think:
+
+"Take many values and reduce them to one value."
+
+How it works
+0 + 10 = 10
+10 + 20 = 30
+30 + 30 = 60
+60 + 40 = 100
+
+Very common interview question:
+
+const numbers = [1, 2, 3, 4, 5];
+
+const sum = numbers.reduce((acc, value) => acc + value, 0);
+
+console.log(sum); /
+
+
+When to Use reduce()
+Use reduce() when you want to:
+
+Calculate a sum or average
+Find the minimum or maximum value
+Count occurrences of items
+Group objects by a property
+Flatten arrays
+Transform an array into an object or another single value
+Key Points
+reduce() returns one value (number, object, string, array, etc.).
+Always provide an initialValue when possible to avoid unexpected behavior, especially with empty arrays.
+Unlike map() or filter(), which return new arrays, reduce() returns a single accumulated result.
+
+
+
+===========================================
+5. find() in JavaScript
+
+The find() method is used to find the first element in an array that satisfies a condition.
+
+Syntax
+array.find(callback);
+
+
+The callback receives:
+
+element — current element
+index — current index (optional)
+array — original array (optional)
+Example 1: Find a number
+const numbers = [10, 20, 30, 40];
+
+const result = numbers.find(num => num > 25);
+
+console.log(result); // 30
+
+
+find() stops as soon as it finds the first matching element.
+
+Example 2: Find an object
+const users = [
+  { id: 1, name: "John" },
+  { id: 2, name: "Alice" },
+  { id: 3, name: "Bob" }
+];
+
+const user = users.find(user => user.id === 2);
+
+console.log(user);
+// { id: 2, name: "Alice" }
+
+If nothing is found
+
+find() returns undefined.
+
+const numbers = [1, 2, 3];
+
+const result = numbers.find(num => num > 10);
+
+console.log(result); // undefined
+
+find() vs filter()
+const numbers = [10, 20, 30, 40];
+
+numbers.find(num => num > 20);
+// 30
+
+
+Returns the first matching element.
+
+numbers.filter(num => num > 20);
+// [30, 40]
+
+
+Returns all matching elements.
+
+Easy way to remember:
+find() → find ONE matching element.
+filter() → filter ALL matching elements.
+
+
+
+===========================================
+
+6. findIndex() in JavaScript
+
+The findIndex() method returns the index of the first element in an array that satisfies a condition.
+
+Syntax
+array.findIndex(callback);
+
+Example 1: Find the index of a number
+const numbers = [10, 20, 30, 40];
+
+const index = numbers.findIndex(num => num > 25);
+
+console.log(index); // 2
+
+const users = [
+  { id: 1, name: "John" },
+  { id: 2, name: "Alice" }
+];
+
+const index = users.findIndex(user => user.id === 2);
+
+if (index !== -1) {
+  users[index].name = "Alex";
+}
+
+console.log(users);
+
+
+Easy way to remember:
+
+find() → give me the element
+findIndex() → give me the element's index
+If no match: find() → undefined, findIndex() → -1
+
+
+===========================================
+
+
+some() — Short explanation
+
+some() checks whether at least one element in an array satisfies a condition.
+
+It returns true or false.
+
+const numbers = [1, 3, 5, 8];
+
+const result = numbers.some(num => num % 2 === 0);
+
+console.log(result);
+// true
+
+
+Why? Because 8 is even.
+
+Real-world example
+const users = [
+    { name: "John", age: 25 },
+    { name: "Alex", age: 17 }
+];
+
+const hasMinor = users.some(user => user.age < 18);
+
+console.log(hasMinor);
+// true
+
+
+Remember:
+
+some() → "Is there at least ONE?"
+
+some() → at least one matches → true
+every() → all match → true
+
+
+
+
+
+
+
+
+
+
+===========================================
+every() — Short explanation
+
+every() checks whether all elements in an array satisfy a condition.
+
+It returns true or false.
+
+const numbers = [2, 4, 6, 8];
+
+const result = numbers.every(num => num % 2 === 0);
+
+console.log(result);
+// true
+
+
+All numbers are even, so it returns true.
+
+Real-world example
+const users = [
+    { name: "John", age: 25 },
+    { name: "Alex", age: 30 }
+];
+
+const allAdults = users.every(user => user.age >= 18);
+
+console.log(allAdults);
+// true
+
+
+Remember:
+
+some()  → Is there at least ONE?
+every() → Are ALL of them?
+
+
+
+===========================================
+includes() — Short explanation
+
+includes() checks whether an array or string contains a specific value.
+
+It returns true or false.
+
+const fruits = ["apple", "banana", "mango"];
+
+console.log(fruits.includes("banana"));
+// true
+
+console.log(fruits.includes("orange"));
+// false
+
+Real-world example
+const allowedRoles = ["admin", "manager", "editor"];
+
+const userRole = "manager";
+
+console.log(allowedRoles.includes(userRole));
+// true
+
+
+Remember:
+
+includes() → "Does it contain this value?"
+
+
+For strings:
+
+const name = "JavaScript";
+
+console.log(name.includes("Script"));
+// true
+
+
+
+===========================================
+
+
+
+=============================================
+
+For basic strings: fruits.sort();
+
+
+fruits.sort((a, b) => a.localeCompare(b)) localeCompare() specifically need locale/language-aware string comparison.
+
+
+1. Basic strings → sort()
+
+Definition:
+sort() arranges strings in their default lexicographical (alphabetical-like) order.
+
+const fruits = ["banana", "apple", "orange"];
+
+fruits.sort();
+
+console.log(fruits);
+// ["apple", "banana", "orange"]
+
+2. Language-aware strings → sort((a, b) => a.localeCompare(b))
+
+Definition:
+localeCompare() compares two strings according to language/locale rules, and sort() uses that comparison to arrange the strings.
+
+const words = ["éclair", "apple", "banana"];
+
+words.sort((a, b) => a.localeCompare(b));
+
+
+Useful when sorting involves different languages, accents, or special characters.
+
+3. Numbers → sort((a, b) => a - b)
+
+Definition:
+The comparison function tells sort() to arrange numbers based on their numeric value, from smallest to largest.
+
+const numbers = [10, 2, 5, 1];
+
+numbers.sort((a, b) => a - b);
+
+console.log(numbers);
+// [1, 2, 5, 10]
+
+
+Without (a, b) => a - b, JavaScript treats the numbers like strings when sorting by default.
+
+🧠 Easy to remember
+sort()
+→ Basic/default string sorting
+
+localeCompare()
+→ Language-aware string comparison
+
+a - b
+→ Numeric ascending comparison
+
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+===========================================
+
+
+
+
+

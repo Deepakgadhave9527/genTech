@@ -1,4 +1,32 @@
+==============================================================
 
+JavaScript String Methods — Definitions Only
+
+- charAt() — Returns the character at a specified index.
+
+- includes() — Checks whether a string contains a specified value.
+
+- indexOf() — Returns the index of the first occurrence of a specified value.
+
+- startsWith() — Checks whether a string starts with a specified value.
+
+- endsWith() — Checks whether a string ends with a specified value.
+
+- slice() — Extracts a portion of a string and returns it as a new string.
+
+- substring() — Extracts characters between two specified indexes.
+
+- split() — Splits a string into an array based on a specified separator.
+
+- replace() — Replaces the first matching value in a string.
+
+- replaceAll() — Replaces all matching occurrences in a string.
+
+- trim() — Removes whitespace from both ends of a string.
+
+- toUpperCase() — Converts a string to uppercase.
+
+- toLowerCase() — Converts a string to lowercase.
 
 ==============================================================
 
