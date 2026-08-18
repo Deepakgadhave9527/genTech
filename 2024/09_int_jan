@@ -1,0 +1,483 @@
+Dependencies
+
+=============================================================
+
+### Web Vitals 
+
+Web Vitals are metrics used to measure the real user experience of a web application.
+
+ The three Core Web Vitals are LCP for loading performance, INP for interaction responsiveness, and CLS for visual stability. Ideally, we should keep LCP under 2.5 seconds, INP under 200 milliseconds, and CLS under 0.1.”
+
+
+
+`Web Vitals` are a set of metrics introduced by Google to measure the `user experience and performance of a website`.
+
+The most important ones are the `Core Web Vitals`:
+
+1. `LCP – Largest Contentful Paint`
+
+   * Measures `loading performance`.
+   * How quickly the largest visible content appears.
+   * Good: `≤ 2.5 seconds`
+
+2. `INP – Interaction to Next Paint`
+
+   * Measures `responsiveness`.
+   * How quickly the page responds after a user interaction like a click or tap.
+   * Good: `≤ 200 ms`
+
+3. `CLS – Cumulative Layout Shift`
+
+   * Measures `visual stability`.
+   * Checks whether elements unexpectedly move while the page loads.
+   * Good: `≤ 100ms`
+
+
+
+==============================================================
+
+## How to encapsulate data in JavaScript?
+
+
+
+Encapsulation means `keeping data private and allowing access to it only through controlled methods`. In JavaScript, encapsulation can be achieved using `private class fields (`#`), closures, and methods` that control access to the data.
+
+`The `#` symbol is used to define private class fields, which cannot be accessed directly from outside the class.`
+
+
+### 1. Private fields `#`
+"`# in JavaScript is used to define a private class field`. It provides encapsulation by preventing access to that field from outside the class.
+
+```js
+class User {
+  #password;
+
+  constructor(password) {
+    this.#password = password;
+  }
+
+  getPassword() {
+    return this.#password;
+  }
+}
+
+const user = new User("12345");
+
+console.log(user.getPassword()); // 12345
+console.log(user.#password);     // Error
+```
+
+Here, `#password` is `private` and cannot be directly accessed from outside the class.
+
+### 2. Closures
+
+We can also keep data private using a closure.
+
+```js
+function counter() {
+  let count = 0;
+
+  return {
+    increment() {
+      count++;
+    },
+    getCount() {
+      return count;
+    }
+  };
+}
+
+const c = counter();
+
+c.increment();
+console.log(c.getCount()); // 1
+```
+
+Here, `count` cannot be directly accessed from outside.
+
+
+==================================================
+```js
+
+## Lexical Scope
+
+In JavaScript, `lexical scope determines variable accessibility based on where variables and functions are declared in the code.`
+
+-`A lexical scope in JavaScript means that a variable defined outside a function 
+can be accessible inside another function`
+
+
+* A function can access variables declared in `its own scope and its outer (parent) scopes`.
+
+* If a function is declared inside another function, the inner function can access variables from the outer function.
+
+* However, the outer function `cannot access variables declared inside the inner function`.
+
+
+let a = 10;
+
+function A() {
+  let b = 20;
+
+  function B() {
+    let c = 30;
+
+    console.log(a); // ✅
+    console.log(b); // ✅
+    console.log(c); // ✅
+  }
+
+  console.log(c); // ❌
+}
+
+
+
+
+// 🌍 Global scope
+let globalVar = "I am global";
+
+function Function_A_outer() {
+  // 🔹 Lexical Scope Level 1 (outer)
+  let outerVar = "I am outer";
+
+  function Function_b_inner() {
+    // 🔸 Lexical Scope Level 2 (inner)
+    let innerVar = "I am inner";
+
+    //  Accessing variables through lexical scope
+    console.log(globalVar); // ← from Global Scope
+    console.log(outerVar);  // ← from outer()'s Lexical Scope
+    console.log(innerVar);  // ← from inner()'s own scope
+  }
+
+  Function_b_inner(); // Call the inner function
+}
+
+Function_A_outer(); // Call the outer function
+
+
+
+
+
+in JavaScript, lexical scope determines variable accessibility based on where variables
+ and functions are declared in the code.
+
+
+
+When a function (Function B) is declared inside another function (Function A), JavaScript uses lexical scoping to determine what variables Function B has access to.
+
+
+
+====================================
+
+### `Difference between nullish coalescing (??) and logical OR (||).`
+
+?? and || both provide a fallback value, but they check different conditions.
+
+1] Logical OR (||) returns the right-hand value when the left-hand value is falsy.
+
+Falsy values affected by ||:
+
+false
+0
+""
+null
+undefined
+NaN
+
+
+const name = "" || "Guest";
+console.log(name); // Guest
+
+
+
+
+b] Nullish coalescing (??) returns the right-hand value only when the left-hand value is `"null or undefined.`"
+
+const name = null ?? "Guest";
+console.log(name); // Guest
+
+
+
+
+==============================================================
+```js
+
+### CORS –
+
+`CORS stands for Cross-Origin Resource Sharing.` It is a browser security mechanism that controls whether a frontend application from one origin can access resources from another origin.
+
+For example:
+
+```text
+Frontend: http://localhost:3000
+API:      http://localhost:5000
+```
+
+These are `different origins` because the ports are different.
+
+The browser follows the `Same-Origin Policy`, which prevents a website from freely accessing resources from a different origin. 
+
+CORS provides a controlled way for the server to allow specific origins to access its resources.
+
+
+==============================================================
+
+
+### Dependencies
+
+**Dependencies** are packages that are **required for the application to run in production**. They are installed when you install the project dependencies.
+Example:
+
+```json
+"dependencies": {
+  "react": "^19.0.0",
+  "axios": "^1.7.0"
+}
+```
+
+Here, React and Axios are required by the application, so they are placed under `dependencies`.
+
+
+
+### Dependencies
+
+- Essential packages for running the application in production.
+- The `dependencies` property lists the packages required for the project to operate in a production or deployment environment.
+- When you run `npm install`, the packages listed in the `dependencies` section are installed.
+
+  npm i <package_name>
+
+- Example packages: Express, React, lodash.
+
+
+---
+
+### DevDependencies
+
+**DevDependencies** are packages that are **required only during development**, such as tools for testing, building, linting, or formatting code.
+
+Example:
+
+```json
+"devDependencies": {
+  "vite": "^7.0.0",
+  "eslint": "^9.0.0"
+}
+```
+
+Here, Vite and ESLint help developers build and check the application but are generally not required by the application at runtime.
+
+### Easy way to remember
+
+**`dependencies` → Needed to run the application**
+**`devDependencies` → Needed to develop/build the application**
+
+
+- Packages needed only during development and testing, not required for production deployment.
+
+- The `devDependencies` property lists packages used during development, such as testing frameworks, build tools, and development utilities.
+
+- These packages are not necessary for running the application in a production environment but are helpful for development and testing.
+
+  npm i <package_name> --save-dev
+
+- Example packages: Mocha, Webpack, Babel.
+
+dependencies` includes packages needed for the application to run in a production environment,
+
+while `devDependencies` includes packages required during development and testing but are not necessary for the production deployment.
+
+
+==============
+
+### `package.json`
+
+`package.json` is a **configuration file** in a JavaScript/Node.js project. It contains important information about the project, such as the project name, version, scripts, and dependencies. It is also used to define commands such as `npm start`, `npm test`, or `npm run build`.
+
+Example:
+
+```json
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "vite"
+  },
+  "dependencies": {
+    "react": "^19.0.0"
+  }
+}
+```
+
+### `package-lock.json`
+
+`package-lock.json` is a file automatically generated by **npm**. It records the **exact versions of the installed packages and their dependencies**. This helps ensure that the same versions of packages are installed when the project is installed on another computer or in production.
+
+**In short:**
+
+> `package.json` → Defines **what packages the project needs**.
+> `package-lock.json` → Records **the exact versions that were installed**.
+
+========================
+
+
+why typescript is used in react
+
+TypeScript provides a type system that allows developers to catch type-related errors at compile time rather than at runtime. This feature makes it easier to write and maintain high-quality code. For example, in a React component, TypeScript can help catch errors related to the props and state of the component
+
+
+### Q1. How would you implement login in a React application?
+
+`Expected Answer:`
+
+* User enters email/password.
+* Send credentials to the backend using POST.
+* Backend validates user.
+* Backend returns:
+
+  * Access Token
+  * Refresh Token (optional)
+* Store tokens securely.
+* Redirect to dashboard.
+* Send Access Token in Authorization header for every API request.
+
+Example:
+
+```http
+POST /login
+
+{
+   "email":"abc@gmail.com",
+   "password":"123456"
+}
+```
+
+Response
+
+```json
+{
+   "accessToken":"xxxxx",
+   "refreshToken":"yyyy"
+}
+```
+
+---
+
+### Q2. Where should you store JWT?
+
+`Best Answer`
+
+Avoid LocalStorage for sensitive apps because of XSS risk.
+
+Preferred:
+
+* HttpOnly Secure Cookies ✅
+* Memory (Redux/Context) for access token
+* Refresh token inside HttpOnly Cookie
+
+If interviewer asks about LocalStorage:
+
+> It is easy to implement but vulnerable to XSS.
+
+---
+
+### Q3. User refreshes the page. How do you keep them logged in?
+
+Answer:
+
+* Access token may be lost.
+* Use Refresh Token.
+* Call
+
+```http
+POST /refresh-token
+```
+
+Backend returns a new access token.
+
+---
+
+### Q4. API returns 401 Unauthorized. What will you do?
+
+Answer:
+
+1. Intercept response.
+2. Call Refresh Token API.
+3. Get new access token.
+4. Retry original request.
+5. If refresh also fails → logout user.
+
+Usually done with Axios Interceptors.
+
+---
+
+### Q5. How do you protect private routes?
+
+Example
+
+```jsx
+<Route
+ path="/dashboard"
+ element={
+   isAuthenticated
+      ? <Dashboard/>
+      : <Navigate to="/login"/>
+ }
+/>
+```
+
+Or create
+
+```jsx
+<PrivateRoute>
+```
+
+component.
+
+---
+==============================================================
+### SSR and Hydration — Interview Answer
+
+#### 1. Server-Side Rendering (SSR)
+
+`SSR means the HTML of a web page is generated on the server and sent to the browser.`
+
+Instead of the browser waiting for JavaScript to create the page, it initially receives `HTML that already contains the content`.
+
+Example flow:
+
+`Browser → Server → HTML → Browser → JavaScript`
+
+Benefits:
+
+* Faster initial content display
+* Better SEO
+* Good for content-heavy pages
+
+---
+
+#### 2. Hydration
+
+`Hydration is the process where JavaScript takes the HTML generated by the server and makes it interactive.`
+
+For example, the server sends:
+
+```html
+<button>Click Me</button>
+```
+
+The user can `see` the button immediately, but the click behavior may not work until JavaScript loads and `hydrates` the page.
+
+Flow:
+
+`SSR → HTML displayed → JS loads → Hydration → Page becomes interactive`
+
+### 🎤 Interview answer
+
+> “Server-side rendering means generating the initial HTML on the server and sending it to the browser, which improves initial loading and SEO. Hydration happens after that, when the JavaScript loads and attaches the application logic and event handlers to the server-rendered HTML, making the page interactive.”
+
+### ⭐ Easy difference
+
+`SSR = Server creates the HTML.`
+`Hydration = JavaScript makes that HTML interactive.`

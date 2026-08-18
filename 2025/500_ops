@@ -1,4 +1,64 @@
 # ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+# ===========================================
+========================================================================
+
+Lexical scope = rule
+
+Where a function is written determines which variables it can access.
+
+Closure = behavior
+
+When that function is retained and used later, it can still access those outer variables. c
+
+Example:
+
+function outer() {
+  let count = 0;
+
+  function inner() {
+    count++;
+    console.log(count);
+  }
+
+  return inner;
+}
+
+const counter = outer();
+
+counter(); // 1
+counter(); // 2
+counter(); // 3
+
+`Lexical scope:`
+`inner()` is written inside `outer()`, so it can access `count`.
+
+`Closure:`
+`outer()` has already finished, but `counter` still remembers/accesses `count`.
+
+So your definition is excellent:
+
+> `Lexical scope = rule` → *Where the function is written determines what it can access.*
+
+> `Closure = behavior` → *The function retains access to those outer variables when used later.*
+
+One small refinement: a closure doesnt necessarily require the function to be called "later"; technically, a closure is the `function together with its preserved lexical environment`.
+
+# ===========================================
 
   What is Closure? Provide a real-world use case.
 - Explain async/await vs Promises. How does the event loop handle them?

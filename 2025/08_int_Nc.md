@@ -1,12 +1,10 @@
 
 ==============================================================
-
-
 ```js
 
-### CORS – Interview Answer
+### CORS –
 
-**CORS stands for Cross-Origin Resource Sharing.** It is a browser security mechanism that controls whether a frontend application from one origin can access resources from another origin.
+`CORS stands for Cross-Origin Resource Sharing.` It is a browser security mechanism that controls whether a frontend application from one origin can access resources from another origin.
 
 For example:
 
@@ -15,32 +13,35 @@ Frontend: http://localhost:3000
 API:      http://localhost:5000
 ```
 
-These are **different origins** because the ports are different.
+These are `different origins` because the ports are different.
 
-The browser follows the **Same-Origin Policy**, which prevents a website from freely accessing resources from a different origin. CORS provides a controlled way for the server to allow specific origins to access its resources.
+The browser follows the `Same-Origin Policy`, which prevents a website from freely accessing resources from a different origin. 
+
+CORS provides a controlled way for the server to allow specific origins to access its resources.
+
+
+
 
 For example, the API can send:
 
-```http
-Access-Control-Allow-Origin: http://localhost:3000
-```
+`Access-Control-Allow-Origin: http://localhost:3000`
 
 This tells the browser that requests from `localhost:3000` are allowed.
 
-2. It is required when frontend and backend are on different **origins**.
-3. An origin consists of **protocol + domain + port**.
+2. It is required when frontend and backend are on different `origins`.
+3. An origin consists of `protocol + domain + port`.
 4. `http://localhost:3000` and `http://localhost:5000` are different origins.
-5. The **server/API** decides which origins are allowed through response headers.
+5. The `server/API` decides which origins are allowed through response headers.
 6. Common CORS headers include:
 
    * `Access-Control-Allow-Origin`
    * `Access-Control-Allow-Methods`
    * `Access-Control-Allow-Headers`
    * `Access-Control-Allow-Credentials`
-7. For some requests, the browser first sends an **OPTIONS request**, called a **preflight request**.
+7. For some requests, the browser first sends an `OPTIONS request`, called a `preflight request`.
 
 8. The preflight checks whether the actual request is permitted.
-9. CORS does **not** mean that the server is preventing requests from being sent; the browser controls whether frontend JavaScript can access the response.
+9. CORS does `not` mean that the server is preventing requests from being sent; the browser controls whether frontend JavaScript can access the response.
 
 
 
@@ -114,554 +115,7 @@ This response header tells the browser whether credentials such as cookies can b
 For example:
 Access-Control-Allow-Credentials: true
 It means the server allows credentials to be included in the cross-origin request.
-
 ==============================================================
-
-## How to encapsulate data in JavaScript?
-
-`Encapsulation` means `keeping data private and allowing access to it only through controlled methods`.
-
-In JavaScript, we can achieve encapsulation using:
-
-### 1. Private fields `#`
-"# in JavaScript is used to define a private class field. It provides encapsulation by preventing access to that field from outside the class.
-
-```js
-class User {
-  #password;
-
-  constructor(password) {
-    this.#password = password;
-  }
-
-  getPassword() {
-    return this.#password;
-  }
-}
-
-const user = new User("12345");
-
-console.log(user.getPassword()); // 12345
-console.log(user.#password);     // Error
-```
-
-Here, `#password` is `private` and cannot be directly accessed from outside the class.
-
-### 2. Closures
-
-We can also keep data private using a closure.
-
-```js
-function counter() {
-  let count = 0;
-
-  return {
-    increment() {
-      count++;
-    },
-    getCount() {
-      return count;
-    }
-  };
-}
-
-const c = counter();
-
-c.increment();
-console.log(c.getCount()); // 1
-```
-
-Here, `count` cannot be directly accessed from outside.
-
-### Interview answer
-
-> `Encapsulation means hiding the internal data and providing controlled access to it. In JavaScript, we can achieve encapsulation using private class fields, closures, and methods that control access to the data.`
-
-==============================================================
-###  What is `z-index` in CSS?
-
-`z-index` controls the `stacking order of overlapping elements`. 
-The element with a higher `z-index` appears above an element with a lower `z-index`. It works within the element’s `stacking context`.”
-
-```js
-
-.box1 {
-  position: relative;
-  z-index: 1;
-}
-
-.box2 {
-  position: relative;
-  z-index: 2;
-}
-
-Here, .box2 appears in front of .box1 because 2 > 1.
-```
-
-==============================================================
-
-100vh = full height of the viewport (screen).
-
-100vh → 100% of viewport height
-50vh → 50% of viewport height
-100vw → 100% of viewport width
-
-==============================================================
-align-items vs align-content
-align-items is used to align flex items within a single flex line along the cross-axis.
-
-align-content is used to align multiple flex lines (rows or columns) within the flex container along the cross-axis.
-==============================================================
-
-### Interview Question: How do you center text inside a box?
-
-`Answer:`
- “I use Flexbox on the parent container. `justify-content: center` centers the text horizontally, and `align-items: center` centers it vertically.”
-
-```css
-.box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-```
-
-`No `100vh` is required` when you only want to center text inside a specific box.
-
-==============================================================
-###  How do you center text in the viewport?
-
-`Answer:`
-
- “Using Flexbox, set the parent to `display: flex`, then use `justify-content: center` and `align-items: center`. `min-height: 100vh` makes the container fill the viewport.”
-
-```css
-1. CSS flex — simplest
-
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
-`Short:` `justify-content` → horizontal center, `align-items` → vertical center.
-
-2. CSS grid — simplest
-
-
-.container {
-  display: grid;
-  place-items: center;
-  min-height: 100vh;
-}
-
-```
-
-
-
-
-==============================================================
-
-Flexbox is a one-dimensional CSS layout system used to arrange elements 
-in a row or column.
-
-There are 6 main properties used on a flex container:
-
-
-flex-direction  → row
-flex-wrap       → nowrap
-flex-flow       → row nowrap
-justify-content → flex-start
-align-items     → stretch
-align-content   → normal
-
-
-To use Flexbox:
-
-.container {
-    display: flex;
-}
-
-==================================================
-1. flex-direction
-
-
-Question: What is flex-direction?
-
-Answer:
-The flex-direction property defines the direction in which flex items are placed inside a flex container.
-
-Values:
-
-row             → Items are placed left to right (default)
-row-reverse     → Items are placed right to left
-column          → Items are placed top to bottom
-column-reverse  → Items are placed bottom to top
-
-Example:
-
-.container {
-    display: flex;
-    flex-direction: row;
-}
-
-Interview Point:
-flex-direction determines the MAIN AXIS.
-
-If flex-direction is row:
-    Main axis  → Horizontal
-    Cross axis → Vertical
-
-If flex-direction is column:
-    Main axis  → Vertical
-    Cross axis → Horizontal
-
-
-==================================================
-2. flex-wrap
-
-
-Question: What is flex-wrap?
-
-Answer:
-The flex-wrap property determines whether flex items should remain on a single line or move to multiple lines when there is not enough space.
-
-Values:
-
-nowrap         → All items stay on one line (default)
-wrap           → Items move to multiple lines
-wrap-reverse   → Items move to multiple lines in the opposite direction
-
-Example:
-
-.container {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-Interview Point:
-flex-wrap is useful when the container has many items and they cannot fit in a single line.
-
-
-==================================================
-3. flex-flow
-
-
-Question: What is flex-flow?
-
-Answer:
-flex-flow is a shorthand property for:
-
-    flex-direction
-    flex-wrap
-
-Instead of:
-
-.container {
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-We can write:
-
-.container {
-    flex-flow: row wrap;
-}
-
-Syntax:
-
-flex-flow: <flex-direction> <flex-wrap>;
-
-
-==================================================
-4. justify-content
-
-
-Question: What is justify-content?
-
-Answer:
-justify-content is used to align and distribute flex items along the MAIN AXIS.
-
-Values:
-
-flex-start    → Items are placed at the start (default)
-flex-end      → Items are placed at the end
-center        → Items are centered
-space-between → Equal space between items
-space-around  → Equal space around items
-space-evenly  → Equal space between and around items
-
-Example:
-
-.container {
-    display: flex;
-    justify-content: center;
-}
-
-IMPORTANT INTERVIEW POINT:
-
-justify-content works on the MAIN AXIS.
-
-If:
-
-flex-direction: row;
-
-Then:
-
-justify-content → Horizontal alignment
-
-If:
-
-flex-direction: column;
-
-Then:
-
-justify-content → Vertical alignment
-
-
-==================================================
-5. align-items
-
-
-Question: What is align-items?
-
-Answer:
-align-items is used to align flex items along the CROSS AXIS.
-
-Values:
-
-flex-start → Items are placed at the cross-start
-flex-end   → Items are placed at the cross-end
-center     → Items are centered
-baseline   → Items are aligned according to their text baseline
-stretch    → Items stretch to fill the container (default)
-
-Example:
-
-.container {
-    display: flex;
-    align-items: center;
-}
-
-IMPORTANT INTERVIEW POINT:
-
-align-items works on the CROSS AXIS.
-
-If:
-
-flex-direction: row;
-
-Then:
-
-align-items → Vertical alignment
-
-If:
-
-flex-direction: column;
-
-Then:
-
-align-items → Horizontal alignment
-
-
-==================================================
-6. align-content
-
-
-Question: What is align-content?
-
-Answer:
-align-content is used to align and distribute MULTIPLE FLEX LINES along the CROSS AXIS.
-
-Values:
-
-flex-start    → Lines are packed at the start
-flex-end      → Lines are packed at the end
-center        → Lines are centered
-space-between → Equal space between lines
-space-around  → Equal space around lines
-stretch       → Lines stretch to fill available space (default)
-
-Example:
-
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-}
-
-IMPORTANT:
-align-content works only when there are MULTIPLE FLEX LINES.
-
-Therefore, if flex-wrap is nowrap and there is only one line,
-align-content generally has no effect.
-
-==================================================
-```js
-
-## Lexical Scope
-
-In JavaScript, `lexical scope determines variable accessibility based on where variables and functions are declared in the code.`
-
--`A lexical scope in JavaScript means that a variable defined outside a function 
-can be accessible inside another function`
-
-
-* A function can access variables declared in `its own scope and its outer (parent) scopes`.
-
-* If a function is declared inside another function, the inner function can access variables from the outer function.
-
-* However, the outer function `cannot access variables declared inside the inner function`.
-
-
-let a = 10;
-
-function A() {
-  let b = 20;
-
-  function B() {
-    let c = 30;
-
-    console.log(a); // ✅
-    console.log(b); // ✅
-    console.log(c); // ✅
-  }
-
-  console.log(c); // ❌
-}
-
-
-
-
-// 🌍 Global scope
-let globalVar = "I am global";
-
-function Function_A_outer() {
-  // 🔹 Lexical Scope Level 1 (outer)
-  let outerVar = "I am outer";
-
-  function Function_b_inner() {
-    // 🔸 Lexical Scope Level 2 (inner)
-    let innerVar = "I am inner";
-
-    //  Accessing variables through lexical scope
-    console.log(globalVar); // ← from Global Scope
-    console.log(outerVar);  // ← from outer()'s Lexical Scope
-    console.log(innerVar);  // ← from inner()'s own scope
-  }
-
-  Function_b_inner(); // Call the inner function
-}
-
-Function_A_outer(); // Call the outer function
-
-
-
-
-
-in JavaScript, lexical scope determines variable accessibility based on where variables
- and functions are declared in the code.
-
-
-
-When a function (Function B) is declared inside another function (Function A), JavaScript uses lexical scoping to determine what variables Function B has access to.
-
-========================================================================
-
-Lexical scope = rule
-
-Where a function is written determines which variables it can access.
-
-Closure = behavior
-
-When that function is retained and used later, it can still access those outer variables. c
-
-Example:
-
-function outer() {
-  let count = 0;
-
-  function inner() {
-    count++;
-    console.log(count);
-  }
-
-  return inner;
-}
-
-const counter = outer();
-
-counter(); // 1
-counter(); // 2
-counter(); // 3
-
-`Lexical scope:`
-`inner()` is written inside `outer()`, so it can access `count`.
-
-`Closure:`
-`outer()` has already finished, but `counter` still remembers/accesses `count`.
-
-So your definition is excellent:
-
-> `Lexical scope = rule` → *Where the function is written determines what it can access.*
-
-> `Closure = behavior` → *The function retains access to those outer variables when used later.*
-
-One small refinement: a closure doesnt necessarily require the function to be called "later"; technically, a closure is the `function together with its preserved lexical environment`.
-
-
-========================================================================
-Flexbox:
-
-One-dimensional layout model.
-Best for arranging items in a row or a column.
-Suited for smaller-scale layouts.
-Controls alignment and distribution along a single axis.
-Uses properties like display: flex, flex-direction, justify-content, and align-items.
-
-
-
-CSS Grid:
-
-Two-dimensional layout system.
-Organizes content in rows and columns.
-Ideal for larger-scale layouts.
-Provides precise control over layout and placement of items
-Utilizes properties like display: grid, grid-template-rows, and grid-template-columns.
-
-====================================
-
-### `Difference between nullish coalescing (??) and logical OR (||).`
-
-?? and || both provide a fallback value, but they check different conditions.
-
-1] Logical OR (||) returns the right-hand value when the left-hand value is falsy.
-
-Falsy values affected by ||:
-
-false
-0
-""
-null
-undefined
-NaN
-
-
-const name = "" || "Guest";
-console.log(name); // Guest
-
-
-
-
-b] Nullish coalescing (??) returns the right-hand value only when the left-hand value is `"null or undefined.`"
-
-const name = null ?? "Guest";
-console.log(name); // Guest
-
-
-==============================================================
-
 ### Process
 
 A `process` is a program that is currently running.
@@ -715,78 +169,36 @@ One thread might handle user interaction, another might perform background work,
 
 > A thread is the smallest unit of execution within a process.
 
-==============================================================
+=
 
-### Web Vitals — Interview Answer
+======================================
+### Webpack
 
+Webpack is a **JavaScript module bundler** used to combine JavaScript, CSS, images, and other files into optimized bundles for web applications. It analyzes the dependencies between files and creates bundles that can be loaded efficiently by the browser.
 
-Web Vitals are metrics used to measure the real user experience of a web application.
+Webpack is highly **configurable and flexible**. It provides features such as loaders, plugins, code splitting, lazy loading, and asset management. Because of its large ecosystem, it can be customized for complex application requirements.
 
- The three Core Web Vitals are LCP for loading performance,
-  INP for interaction responsiveness, and CLS for visual stability. 
- 
- Ideally, we should keep LCP under 2.5 seconds, INP under 200 milliseconds, and CLS under 0.1
+The main disadvantage of Webpack is that its configuration can be **complex**, especially for beginners. It may also have slower development startup compared with modern tools like Vite. Webpack is commonly preferred when a project requires extensive customization and control over the build process.
 
+---
 
-`Web Vitals` are a set of metrics introduced by Google to measure the `user experience and performance of a website`.
+### Vite
 
-The most important ones are the `Core Web Vitals`:
+Vite is a **modern frontend build tool** designed to provide a fast development experience. During development, Vite uses **native ES modules (ESM)**, which allows the browser to load modules directly without first bundling the entire application.
 
-1. `LCP – Largest Contentful Paint`
+Vite provides features such as **fast startup, Hot Module Replacement (HMR), and simple configuration**. When a file is changed, Vite updates only the affected part of the application, making development very fast.
 
-   * Measures `loading performance`.
-   * How quickly the largest visible content appears.
-   * Good: `≤ 2.5 seconds`
+For production, Vite creates an **optimized build using Rollup-based tooling** in current Vite versions. Vite is commonly used with modern frameworks such as React, Vue, and Svelte because it is easy to configure and provides a fast development experience.
 
-2. `INP – Interaction to Next Paint`
+---
 
-   * Measures `responsiveness`.
-   * How quickly the page responds after a user interaction like a click or tap.
-   * Good: `≤ 200 ms`
+### esbuild
 
-3. `CLS – Cumulative Layout Shift`
+esbuild is a **very fast JavaScript and CSS bundler and transpiler**. It is written in **Go** and is designed to perform build operations much faster than many traditional JavaScript-based tools.
 
-   * Measures `visual stability`.
-   * Checks whether elements unexpectedly move while the page loads.
-   * Good: `≤ 0.1`
+esbuild can perform tasks such as **bundling, minification, and transpilation**. Its simple configuration and high performance make it useful when build speed is an important requirement.
 
-### 🎤 Simple interview answer
-
-> “Web Vitals are metrics used to measure the real user experience of a web application. The three Core Web Vitals are LCP for loading performance, INP for interaction responsiveness, and CLS for visual stability. Ideally, we should keep LCP under 2.5 seconds, INP under 200 milliseconds, and CLS under 0.1.”
-
-`Easy way to remember:`
-`LCP = Loading | INP = Interaction | CLS = Layout stability`.
-### Web Vitals — Interview Answer
-
-`Web Vitals` are a set of metrics introduced by Google to measure the `user experience and performance of a website`.
-
-The most important ones are the `Core Web Vitals`:
-
-1. `LCP – Largest Contentful Paint`
-
-   * Measures `loading performance`.
-   * How quickly the largest visible content appears.
-   * Good: `≤ 2.5 seconds`
-
-2. `INP – Interaction to Next Paint`
-
-   * Measures `responsiveness`.
-   * How quickly the page responds after a user interaction like a click or tap.
-   * Good: `≤ 200 ms`
-
-3. `CLS – Cumulative Layout Shift`
-
-   * Measures `visual stability`.
-   * Checks whether elements unexpectedly move while the page loads.
-   * Good: `≤ 0.1`
-
-### 🎤 Simple interview answer
-
-> “.”
-
-`Easy way to remember:`
-`LCP = Loading | INP = Interaction | CLS = Layout stability`.
-
+The main advantage of esbuild is its **extremely fast build speed**. However, compared with Webpack and Vite, its ecosystem and customization options are more limited for some complex frontend requirements. It is often used directly or as part of other modern development tools.
 
 ======================================
 Webpack
@@ -850,35 +262,6 @@ Like WeakMap, objects are automatically removed when they are no longer referenc
   - `Dependency Tree`: Captures the complete hierarchy of dependencies, including nested dependencies, to match the exact installed versions.
 
   - `Consistent Installations`: Ensures that the same versions are installed
-
-========================================================================
-
-### Dependencies
-
-- Essential packages for running the application in production.
-- The `dependencies` property lists the packages required for the project to operate in a production or deployment environment.
-- When you run `npm install`, the packages listed in the `dependencies` section are installed.
-
-  npm i <package_name>
-
-- Example packages: Express, React, lodash.
-
-### DevDependencies
-
-- Packages needed only during development and testing, not required for production deployment.
-
-- The `devDependencies` property lists packages used during development, such as testing frameworks, build tools, and development utilities.
-
-- These packages are not necessary for running the application in a production environment but are helpful for development and testing.
-
-  npm i <package_name> --save-dev
-
-- Example packages: Mocha, Webpack, Babel.
-
-dependencies` includes packages needed for the application to run in a production environment,
-
-while `devDependencies` includes packages required during development and testing but are not necessary for the production deployment.
-
 
 
 ========================================================
@@ -974,7 +357,6 @@ console.log(weakMap.has(user)); // true
 "WeakMap is a JavaScript collection used to store key-value pairs where the keys must be objects. It holds those keys weakly, so it doesn't prevent them from being garbage-collected when there are no other references to them. WeakMap provides set, get, has, and delete methods, but unlike Map, it is not iterable and doesn't have a size property."
 
 
-=========================================================
 =========================================================
 
 ## IndexedDB — Interview Answer ⭐
@@ -1091,8 +473,8 @@ So, your explanation is close, but it’s important to emphasize that the scope 
 ## Scope Chain vs. Context in JavaScript
 
 ### Scope Chain
-- **Definition**: The order in which the JavaScript engine looks for variables, starting from the innermost scope and moving outward until it finds the variable or reaches the global scope.
-- **Example**:
+- `Definition`: The order in which the JavaScript engine looks for variables, starting from the innermost scope and moving outward until it finds the variable or reaches the global scope.
+- `Example`:
   ```javascript
   function outer() {
       let outerVar = 'I am outer';
@@ -1105,8 +487,8 @@ So, your explanation is close, but it’s important to emphasize that the scope 
   ```
 
 ### Context
-- **Definition**: Refers to the value of `this` within a function and is determined by how the function is called.
-- **Example**:
+- `Definition`: Refers to the value of `this` within a function and is determined by how the function is called.
+- `Example`:
   ```javascript
   const obj = {
       value: 42,
@@ -1303,166 +685,3 @@ module.exports = {
  it for you, and you can always customize the setup as needed.
 
 This should give you a deeper, more thorough understanding of Webpack in the context of React development, while remaining interview-friendly!
-
-========================
-
-
-why typescript is used in react
-
-TypeScript provides a type system that allows developers to catch type-related errors at compile time rather than at runtime. This feature makes it easier to write and maintain high-quality code. For example, in a React component, TypeScript can help catch errors related to the props and state of the component
-
-
-### Q1. How would you implement login in a React application?
-
-**Expected Answer:**
-
-* User enters email/password.
-* Send credentials to the backend using POST.
-* Backend validates user.
-* Backend returns:
-
-  * Access Token
-  * Refresh Token (optional)
-* Store tokens securely.
-* Redirect to dashboard.
-* Send Access Token in Authorization header for every API request.
-
-Example:
-
-```http
-POST /login
-
-{
-   "email":"abc@gmail.com",
-   "password":"123456"
-}
-```
-
-Response
-
-```json
-{
-   "accessToken":"xxxxx",
-   "refreshToken":"yyyy"
-}
-```
-
----
-
-### Q2. Where should you store JWT?
-
-**Best Answer**
-
-Avoid LocalStorage for sensitive apps because of XSS risk.
-
-Preferred:
-
-* HttpOnly Secure Cookies ✅
-* Memory (Redux/Context) for access token
-* Refresh token inside HttpOnly Cookie
-
-If interviewer asks about LocalStorage:
-
-> It is easy to implement but vulnerable to XSS.
-
----
-
-### Q3. User refreshes the page. How do you keep them logged in?
-
-Answer:
-
-* Access token may be lost.
-* Use Refresh Token.
-* Call
-
-```http
-POST /refresh-token
-```
-
-Backend returns a new access token.
-
----
-
-### Q4. API returns 401 Unauthorized. What will you do?
-
-Answer:
-
-1. Intercept response.
-2. Call Refresh Token API.
-3. Get new access token.
-4. Retry original request.
-5. If refresh also fails → logout user.
-
-Usually done with Axios Interceptors.
-
----
-
-### Q5. How do you protect private routes?
-
-Example
-
-```jsx
-<Route
- path="/dashboard"
- element={
-   isAuthenticated
-      ? <Dashboard/>
-      : <Navigate to="/login"/>
- }
-/>
-```
-
-Or create
-
-```jsx
-<PrivateRoute>
-```
-
-component.
-
----
-==============================================================
-### SSR and Hydration — Interview Answer
-
-#### 1. Server-Side Rendering (SSR)
-
-`SSR means the HTML of a web page is generated on the server and sent to the browser.`
-
-Instead of the browser waiting for JavaScript to create the page, it initially receives `HTML that already contains the content`.
-
-Example flow:
-
-`Browser → Server → HTML → Browser → JavaScript`
-
-Benefits:
-
-* Faster initial content display
-* Better SEO
-* Good for content-heavy pages
-
----
-
-#### 2. Hydration
-
-`Hydration is the process where JavaScript takes the HTML generated by the server and makes it interactive.`
-
-For example, the server sends:
-
-```html
-<button>Click Me</button>
-```
-
-The user can `see` the button immediately, but the click behavior may not work until JavaScript loads and `hydrates` the page.
-
-Flow:
-
-`SSR → HTML displayed → JS loads → Hydration → Page becomes interactive`
-
-### 🎤 Interview answer
-
-> “Server-side rendering means generating the initial HTML on the server and sending it to the browser, which improves initial loading and SEO. Hydration happens after that, when the JavaScript loads and attaches the application logic and event handlers to the server-rendered HTML, making the page interactive.”
-
-### ⭐ Easy difference
-
-`SSR = Server creates the HTML.`
-`Hydration = JavaScript makes that HTML interactive.`

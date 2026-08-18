@@ -1,4 +1,437 @@
 ```js
+//=================================================================================
+
+// Problem 1: Find uncommon values between two arrays
+const array1 = [1, 2, 3, 4, 5, 6];
+const array2 = [4, 5, 6, 7, 8, 9];
+
+const findUncVal = (array1, array2) => {
+  const uncommon1 = array1.filter(value => !array2.includes(value));
+  const uncommon2 = array2.filter(value => !array1.includes(value));
+  return [...uncommon1, ...uncommon2];
+};
+
+console.log(findUncVal(array1, array2)); 
+// Output: [1, 2, 3, 7, 8, 9]
+
+// Alternative method to find uncommon values
+const findUncVal2 = (array1, array2) => {
+  const unCommon = [];
+  
+  const contains = (array, value) => {
+    for (let i = 0; i < array.length; i++) {
+      if (array[i] == value) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  for (let i = 0; i < array1.length; i++) {
+    if (!contains(array2, array1[i])) {
+      unCommon.push(array1[i]);
+    }
+  }
+
+  for (let i = 0; i < array2.length; i++) {
+    if (!contains(array1, array2[i])) {
+      unCommon.push(array2[i]);
+    }
+  }
+
+  return unCommon;
+};
+
+console.log(findUncVal2(array1, array2)); 
+// Output: [1, 2, 3, 7, 8, 9]
+
+//=================================================================================
+
+// Problem 2: Empty an array
+console.log(" Q.1 HoW to empty an array in JavaScript");
+
+var arrayList = ["a", "b", "c", "d", "e", "f"];
+
+// Method 1
+arrayList = [];
+console.log(arrayList); 
+// Output: []
+
+// Method 2
+var arrayList = ["a", "b", "c", "d", "e", "f"];
+arrayList.length = 0;
+console.log(arrayList); 
+// Output: []
+
+// Method 3
+var arrayList = ["a", "b", "c", "d", "e", "f"];
+arrayList.splice(0, arrayList.length);
+console.log(arrayList); 
+// Output: []
+
+//=================================================================================
+
+// Problem 3: Duplicate elements in an array
+console.log("Q2 duplicate");
+
+var duplicate = [1, 2, 3, 4, 5];
+const duplicate2 = duplicate.concat(duplicate);
+console.log(duplicate2); 
+// Output: [1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
+
+//=================================================================================
+
+// Problem 4: Nested functions
+console.log("Q3 nested function");
+
+const mul = (x) => {
+  return function (y) {
+    return function (z) {
+      return x * y * z;
+    };
+  };
+};
+
+console.log(mul(2)(3)(4)); 
+// Output: 24
+
+console.log(mul(4)(3)(4)); 
+// Output: 48
+
+//=================================================================================
+
+// Problem 5: Remove duplicates from an array
+console.log("4 Remove duplicates from an array");
+
+var chars = ["A", "B", "A", "C", "B"];
+var uniqueChars = [...new Set(chars)];
+console.log(uniqueChars); 
+// Output: ['A', 'B', 'C']
+
+// Alternative methods
+var array = ["A", "B", "A", "C", "B"];
+
+// Method 1
+var uniqueArray = array.filter((val, i) => {
+  return array.indexOf(val) == i;
+});
+console.log(uniqueArray); 
+// Output: ['A', 'B', 'C']
+
+// Method 2
+var uniqueArray = [];
+array.forEach((val) => {
+  if (!uniqueArray.includes(val)) {
+    uniqueArray.push(val);
+  }
+});
+console.log(uniqueArray); 
+// Output: ['A', 'B', 'C']
+
+//=================================================================================
+
+// Problem 6: Reverse a string
+var reverse = "reverse String";
+
+// Example of reversing a string (not explicitly shown in the given code)
+// const reversedString = reverse.split('').reverse().join('');
+// console.log(reversedString); 
+
+//=================================================================================
+
+// Problem 7: Join array elements into a string
+console.log("simple JavaScript program to join all elements of the following array into a string.");
+
+var myColor = ["Red", "Green", "White", "Black"];
+console.log(myColor.toString()); 
+// Output: Red,Green,White,Black
+
+console.log(myColor.join("  ")); 
+// Output: Red  Green  White  Black
+
+console.log(myColor.join("+")); 
+// Output: Red+Green+White+Black
+
+//=================================================================================
+
+// Problem 8: Pre and Post increment
+console.log("=======Pre first it will increment and then assign value to variable =============");
+
+var a = 10;
+var b = ++a;
+console.log(a); 
+// Output: 11
+
+console.log(b); 
+// Output: 11
+
+console.log("=======Post it will not increment, same value is applied to variable =============");
+
+var a = 10;
+var b = a++;
+console.log(a); 
+// Output: 11
+
+console.log(b); 
+// Output: 10
+
+console.log("Pre and post decrement");
+
+var x = 10;
+var y = --x;
+console.log(x); 
+// Output: 9
+
+console.log(y); 
+// Output: 9
+
+var x = 10;
+var y = x--;
+console.log(x); 
+// Output: 9
+
+console.log(y); 
+// Output: 10
+
+//=================================================================================
+
+// Problem 9: Find maximum element in an array
+console.log("Q.1 Find the maximum element in an array");
+
+const array = [5, 2, 8, 10, 3];
+
+let max = array[0];
+
+const maxFun = () => {
+  for (let i = 0; i < array.length; i++) {
+    if (max < array[i]) {
+      max = array[i];
+    }
+  }
+  return max;
+};
+
+console.log(maxFun()); 
+// Output: 10
+
+//=================================================================================
+
+// Problem 10: Convert array to object
+const arrayToObject = (arr) => {
+  const obj = {};
+  arr.forEach((item, index) => {
+    obj[index] = item;
+  });
+  return obj;
+};
+
+const myArray = ['a', 'b', 'c'];
+const myObject = arrayToObject(myArray);
+console.log(myObject); 
+// Output: { 0: 'a', 1: 'b', 2: 'c' }
+
+//=================================================================================
+
+// Problem 11: Shopping cart with closures
+function createShoppingCart() {
+  let items = []; // Private variable to store items in the cart
+  
+  function addItem(item) {
+    items.push(item);
+    console.log(item.name + " added to cart.");
+  }
+  
+  function removeItem(item) {
+    let index = items.findIndex(i => i.id === item.id);
+    if (index !== -1) {
+      items.splice(index, 1);
+      console.log(item.name + " removed from cart.");
+    } else {
+      console.log("Item not found in cart.");
+    }
+  }
+  
+  function getCartItems() {
+    return items.slice(); // Return a copy of items array
+  }
+  
+  return {
+    addItem,
+    removeItem,
+    getCartItems
+  };
+}
+
+const shoppingCart = createShoppingCart();
+
+shoppingCart.addItem({ id: 1, name: "Product 1", price: 10 });
+shoppingCart.addItem({ id: 2, name: "Product 2", price: 20 });
+
+const cartItems = shoppingCart.getCartItems();
+console.log("Items in the cart:", cartItems); 
+// Output: Items in the cart: [ { id: 1, name: 'Product 1', price: 10 }, { id: 2, name: 'Product 2', price: 20 } ]
+
+shoppingCart.removeItem({ id: 1, name: "Product 1", price: 10 });
+
+const updatedCartItems = shoppingCart.getCartItems();
+console.log("Updated items in the cart:", updatedCartItems); 
+// Output: Updated items in the cart: [ { id: 2, name: 'Product 2', price: 20 } ]
+
+//=================================================================================
+
+// Problem 12: Convert array of arrays to array of objects
+let array = [
+  ['1', 40],
+  ['2', 60],
+  ['3', 50],
+  ['5', 20]
+];
+
+let arrayOfObjects = array.map(subArray => {
+  return { id: subArray[0], value: subArray[1] };
+});
+
+console.log(arrayOfObjects);
+// Output: [ { id: '1', value: 40 }, { id: '2', value: 60 }, { id: '3', value: 50 }, { id: '5', value: 20 } ]
+
+//=================================================================================
+
+// Problem 13: Sort array of arrays by second element
+let array = [
+  ['4', 3],
+  ['1', 13],
+  ['5', 1],
+  ['6', 4],
+  ['2', 1],
+  ['7', 3],
+  ['7', 32],
+  ['9', 11],
+  ['10', 1]
+];
+
+
+
+const sortOfArray = array.sort((a, b) => a[1] - b[1]);
+
+console.log(sortOfArray);
+// Output: [ [ '5', 1 ], [ '2', 1 ], [ '10', 1 ], [ '4', 3 ], [ '7', 3 ], [ '6', 4 ], [ '9', 11 ], [ '1', 13 ], [ '7', 32 ] ]
+
+//=================================================================================
+
+// Problem 14: Sort array of numbers in ascending and descending order
+let array = [5, 3, 8, 1, 2];
+
+// Ascending order
+array.sort((a, b) => a - b);
+console.log(array); 
+// Output: [1, 2, 3, 5, 8]
+
+// Descending order
+array.sort((a, b) => b - a);
+console.log(array); 
+// Output: [8, 5, 3, 2, 1]
+
+//=================================================================================
+
+// Problem 15: Sort array of strings in ascending and descending alphabetical order
+let stringArray = ["banana", "apple", "cherry", "date"];
+
+// Ascending order (alphabetical)
+stringArray.sort((a, b) => a.localeCompare(b));
+console.log(stringArray); 
+// Output: ["apple", "banana", "cherry", "date"]
+
+// Descending order (reverse alphabetical)
+stringArray.sort((a, b) => b.localeCompare(a));
+console.log(stringArray); 
+// Output: ["date", "cherry", "banana", "apple"]
+
+//=================================================================================
+
+// Problem 16: Sort array of strings based on second part
+let stringArray3 = ["banana aw", "apple mz", "cherry op", "date bc"];
+
+stringArray3.sort((a, b) => {
+  const aSecondPart = a.split(' ')[1];
+  const bSecondPart = b.split(' ')[1];
+  return aSecondPart.localeCompare(bSecondPart);
+});
+
+console.log(stringArray3); 
+// Output: ["banana aw", "date bc", "apple mz", "cherry op"]
+
+
+  //=================================================================================
+
+  anagrams example in javascript with and without using sort
+
+  function Compare(str1, str2) {
+    if (str1.length !== str2.length) {
+        return false;
+    }
+
+    const frequencyCounter = {};
+
+    for (let char of str1.toLowerCase()) {
+        frequencyCounter[char] = (frequencyCounter[char] || 0) + 1;
+    }
+
+    for (let char of str2.toLowerCase()) {
+        if (!frequencyCounter[char]) {
+            return false;
+        }
+        frequencyCounter[char] -= 1;
+    }
+
+    for (let count in frequencyCounter) {
+        if (frequencyCounter[count] !== 0) {
+            return false;
+        }
+    }
+
+    return true;
+}
+//------------------------------------------------------------------------
+function Compare(str1, str2){
+     if (str1.length !== str2.length) {
+        return false
+     }
+  
+    return str1.toLowerCase().split("").sort().join("") === str2.toLowerCase().split("").sort().join("")
+}
+
+console.log(Compare("Listen", "Silent")) //true
+console.log(Compare("Mary", "arms")) //false
+
+//=================================================================================
+flatten the resulting array of arrays. //
+How can make flattenf array for single array to fllatend
+
+function splitArray(arr, chunkSize) {
+    const result = [];
+    for (let i = 0; i < arr.length; i += chunkSize) {
+        result.push(arr.slice(i, i + chunkSize));
+    }
+    return result;
+}
+
+
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+const chunkSize = 3;
+
+const arr_new = splitArray(arr, chunkSize);
+console.log(arr_new);
+
+//=================================================================================
+flat array
+const flat2 =[[1,2,3,],[1,2,3,4,5]]
+const output=[1,2,3,4,5] 
+
+const result1=Array.from(new Set(flat2.flat()))
+console.log(result1)
+
+
+```js
 --------------------------------------------------------------------------------------------------- 
 ### Convert an Array into an Object
 
@@ -1365,434 +1798,3 @@ var a = 20;
 // Output: undefined
 // 10
 
-
-//=================================================================================
-
-// Problem 1: Find uncommon values between two arrays
-const array1 = [1, 2, 3, 4, 5, 6];
-const array2 = [4, 5, 6, 7, 8, 9];
-
-const findUncVal = (array1, array2) => {
-  const uncommon1 = array1.filter(value => !array2.includes(value));
-  const uncommon2 = array2.filter(value => !array1.includes(value));
-  return [...uncommon1, ...uncommon2];
-};
-
-console.log(findUncVal(array1, array2)); 
-// Output: [1, 2, 3, 7, 8, 9]
-
-// Alternative method to find uncommon values
-const findUncVal2 = (array1, array2) => {
-  const unCommon = [];
-  
-  const contains = (array, value) => {
-    for (let i = 0; i < array.length; i++) {
-      if (array[i] == value) {
-        return true;
-      }
-    }
-    return false;
-  };
-
-  for (let i = 0; i < array1.length; i++) {
-    if (!contains(array2, array1[i])) {
-      unCommon.push(array1[i]);
-    }
-  }
-
-  for (let i = 0; i < array2.length; i++) {
-    if (!contains(array1, array2[i])) {
-      unCommon.push(array2[i]);
-    }
-  }
-
-  return unCommon;
-};
-
-console.log(findUncVal2(array1, array2)); 
-// Output: [1, 2, 3, 7, 8, 9]
-
-//=================================================================================
-
-// Problem 2: Empty an array
-console.log(" Q.1 HoW to empty an array in JavaScript");
-
-var arrayList = ["a", "b", "c", "d", "e", "f"];
-
-// Method 1
-arrayList = [];
-console.log(arrayList); 
-// Output: []
-
-// Method 2
-var arrayList = ["a", "b", "c", "d", "e", "f"];
-arrayList.length = 0;
-console.log(arrayList); 
-// Output: []
-
-// Method 3
-var arrayList = ["a", "b", "c", "d", "e", "f"];
-arrayList.splice(0, arrayList.length);
-console.log(arrayList); 
-// Output: []
-
-//=================================================================================
-
-// Problem 3: Duplicate elements in an array
-console.log("Q2 duplicate");
-
-var duplicate = [1, 2, 3, 4, 5];
-const duplicate2 = duplicate.concat(duplicate);
-console.log(duplicate2); 
-// Output: [1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
-
-//=================================================================================
-
-// Problem 4: Nested functions
-console.log("Q3 nested function");
-
-const mul = (x) => {
-  return function (y) {
-    return function (z) {
-      return x * y * z;
-    };
-  };
-};
-
-console.log(mul(2)(3)(4)); 
-// Output: 24
-
-console.log(mul(4)(3)(4)); 
-// Output: 48
-
-//=================================================================================
-
-// Problem 5: Remove duplicates from an array
-console.log("4 Remove duplicates from an array");
-
-var chars = ["A", "B", "A", "C", "B"];
-var uniqueChars = [...new Set(chars)];
-console.log(uniqueChars); 
-// Output: ['A', 'B', 'C']
-
-// Alternative methods
-var array = ["A", "B", "A", "C", "B"];
-
-// Method 1
-var uniqueArray = array.filter((val, i) => {
-  return array.indexOf(val) == i;
-});
-console.log(uniqueArray); 
-// Output: ['A', 'B', 'C']
-
-// Method 2
-var uniqueArray = [];
-array.forEach((val) => {
-  if (!uniqueArray.includes(val)) {
-    uniqueArray.push(val);
-  }
-});
-console.log(uniqueArray); 
-// Output: ['A', 'B', 'C']
-
-//=================================================================================
-
-// Problem 6: Reverse a string
-var reverse = "reverse String";
-
-// Example of reversing a string (not explicitly shown in the given code)
-// const reversedString = reverse.split('').reverse().join('');
-// console.log(reversedString); 
-
-//=================================================================================
-
-// Problem 7: Join array elements into a string
-console.log("simple JavaScript program to join all elements of the following array into a string.");
-
-var myColor = ["Red", "Green", "White", "Black"];
-console.log(myColor.toString()); 
-// Output: Red,Green,White,Black
-
-console.log(myColor.join("  ")); 
-// Output: Red  Green  White  Black
-
-console.log(myColor.join("+")); 
-// Output: Red+Green+White+Black
-
-//=================================================================================
-
-// Problem 8: Pre and Post increment
-console.log("=======Pre first it will increment and then assign value to variable =============");
-
-var a = 10;
-var b = ++a;
-console.log(a); 
-// Output: 11
-
-console.log(b); 
-// Output: 11
-
-console.log("=======Post it will not increment, same value is applied to variable =============");
-
-var a = 10;
-var b = a++;
-console.log(a); 
-// Output: 11
-
-console.log(b); 
-// Output: 10
-
-console.log("Pre and post decrement");
-
-var x = 10;
-var y = --x;
-console.log(x); 
-// Output: 9
-
-console.log(y); 
-// Output: 9
-
-var x = 10;
-var y = x--;
-console.log(x); 
-// Output: 9
-
-console.log(y); 
-// Output: 10
-
-//=================================================================================
-
-// Problem 9: Find maximum element in an array
-console.log("Q.1 Find the maximum element in an array");
-
-const array = [5, 2, 8, 10, 3];
-
-let max = array[0];
-
-const maxFun = () => {
-  for (let i = 0; i < array.length; i++) {
-    if (max < array[i]) {
-      max = array[i];
-    }
-  }
-  return max;
-};
-
-console.log(maxFun()); 
-// Output: 10
-
-//=================================================================================
-
-// Problem 10: Convert array to object
-const arrayToObject = (arr) => {
-  const obj = {};
-  arr.forEach((item, index) => {
-    obj[index] = item;
-  });
-  return obj;
-};
-
-const myArray = ['a', 'b', 'c'];
-const myObject = arrayToObject(myArray);
-console.log(myObject); 
-// Output: { 0: 'a', 1: 'b', 2: 'c' }
-
-//=================================================================================
-
-// Problem 11: Shopping cart with closures
-function createShoppingCart() {
-  let items = []; // Private variable to store items in the cart
-  
-  function addItem(item) {
-    items.push(item);
-    console.log(item.name + " added to cart.");
-  }
-  
-  function removeItem(item) {
-    let index = items.findIndex(i => i.id === item.id);
-    if (index !== -1) {
-      items.splice(index, 1);
-      console.log(item.name + " removed from cart.");
-    } else {
-      console.log("Item not found in cart.");
-    }
-  }
-  
-  function getCartItems() {
-    return items.slice(); // Return a copy of items array
-  }
-  
-  return {
-    addItem,
-    removeItem,
-    getCartItems
-  };
-}
-
-const shoppingCart = createShoppingCart();
-
-shoppingCart.addItem({ id: 1, name: "Product 1", price: 10 });
-shoppingCart.addItem({ id: 2, name: "Product 2", price: 20 });
-
-const cartItems = shoppingCart.getCartItems();
-console.log("Items in the cart:", cartItems); 
-// Output: Items in the cart: [ { id: 1, name: 'Product 1', price: 10 }, { id: 2, name: 'Product 2', price: 20 } ]
-
-shoppingCart.removeItem({ id: 1, name: "Product 1", price: 10 });
-
-const updatedCartItems = shoppingCart.getCartItems();
-console.log("Updated items in the cart:", updatedCartItems); 
-// Output: Updated items in the cart: [ { id: 2, name: 'Product 2', price: 20 } ]
-
-//=================================================================================
-
-// Problem 12: Convert array of arrays to array of objects
-let array = [
-  ['1', 40],
-  ['2', 60],
-  ['3', 50],
-  ['5', 20]
-];
-
-let arrayOfObjects = array.map(subArray => {
-  return { id: subArray[0], value: subArray[1] };
-});
-
-console.log(arrayOfObjects);
-// Output: [ { id: '1', value: 40 }, { id: '2', value: 60 }, { id: '3', value: 50 }, { id: '5', value: 20 } ]
-
-//=================================================================================
-
-// Problem 13: Sort array of arrays by second element
-let array = [
-  ['4', 3],
-  ['1', 13],
-  ['5', 1],
-  ['6', 4],
-  ['2', 1],
-  ['7', 3],
-  ['7', 32],
-  ['9', 11],
-  ['10', 1]
-];
-
-
-
-const sortOfArray = array.sort((a, b) => a[1] - b[1]);
-
-console.log(sortOfArray);
-// Output: [ [ '5', 1 ], [ '2', 1 ], [ '10', 1 ], [ '4', 3 ], [ '7', 3 ], [ '6', 4 ], [ '9', 11 ], [ '1', 13 ], [ '7', 32 ] ]
-
-//=================================================================================
-
-// Problem 14: Sort array of numbers in ascending and descending order
-let array = [5, 3, 8, 1, 2];
-
-// Ascending order
-array.sort((a, b) => a - b);
-console.log(array); 
-// Output: [1, 2, 3, 5, 8]
-
-// Descending order
-array.sort((a, b) => b - a);
-console.log(array); 
-// Output: [8, 5, 3, 2, 1]
-
-//=================================================================================
-
-// Problem 15: Sort array of strings in ascending and descending alphabetical order
-let stringArray = ["banana", "apple", "cherry", "date"];
-
-// Ascending order (alphabetical)
-stringArray.sort((a, b) => a.localeCompare(b));
-console.log(stringArray); 
-// Output: ["apple", "banana", "cherry", "date"]
-
-// Descending order (reverse alphabetical)
-stringArray.sort((a, b) => b.localeCompare(a));
-console.log(stringArray); 
-// Output: ["date", "cherry", "banana", "apple"]
-
-//=================================================================================
-
-// Problem 16: Sort array of strings based on second part
-let stringArray3 = ["banana aw", "apple mz", "cherry op", "date bc"];
-
-stringArray3.sort((a, b) => {
-  const aSecondPart = a.split(' ')[1];
-  const bSecondPart = b.split(' ')[1];
-  return aSecondPart.localeCompare(bSecondPart);
-});
-
-console.log(stringArray3); 
-// Output: ["banana aw", "date bc", "apple mz", "cherry op"]
-
-
-  //=================================================================================
-
-  anagrams example in javascript with and without using sort
-
-  function Compare(str1, str2) {
-    if (str1.length !== str2.length) {
-        return false;
-    }
-
-    const frequencyCounter = {};
-
-    for (let char of str1.toLowerCase()) {
-        frequencyCounter[char] = (frequencyCounter[char] || 0) + 1;
-    }
-
-    for (let char of str2.toLowerCase()) {
-        if (!frequencyCounter[char]) {
-            return false;
-        }
-        frequencyCounter[char] -= 1;
-    }
-
-    for (let count in frequencyCounter) {
-        if (frequencyCounter[count] !== 0) {
-            return false;
-        }
-    }
-
-    return true;
-}
-//------------------------------------------------------------------------
-function Compare(str1, str2){
-     if (str1.length !== str2.length) {
-        return false
-     }
-  
-    return str1.toLowerCase().split("").sort().join("") === str2.toLowerCase().split("").sort().join("")
-}
-
-console.log(Compare("Listen", "Silent")) //true
-console.log(Compare("Mary", "arms")) //false
-
-//=================================================================================
-flatten the resulting array of arrays. //
-How can make flattenf array for single array to fllatend
-
-function splitArray(arr, chunkSize) {
-    const result = [];
-    for (let i = 0; i < arr.length; i += chunkSize) {
-        result.push(arr.slice(i, i + chunkSize));
-    }
-    return result;
-}
-
-
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-const chunkSize = 3;
-
-const arr_new = splitArray(arr, chunkSize);
-console.log(arr_new);
-
-//=================================================================================
-flat array
-const flat2 =[[1,2,3,],[1,2,3,4,5]]
-const output=[1,2,3,4,5] 
-
-const result1=Array.from(new Set(flat2.flat()))
-console.log(result1)
