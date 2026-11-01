@@ -1,67 +1,9 @@
 
 
-
-============================================================
-
-### can forwardRef is required after react 19 version?
-
-In React 18 and below, we need forwardRef to pass refs to functional components.
-But in React 19, React allows ref to be passed as a regular prop — so forwardRef is no longer required in many cases.
-
-
-
-========================================================
-
-Why is createRef() not recommended in functional components?
-
-"createRef() is not recommended in functional components because it creates a new ref on every render ,previous ref is loss , whereas useRef() preserves the same ref object across  every renders."
-
-
-
-- Class-based components use React.createRef() and this.myRef.
--Function-based components use the useRef hook.
-
-Using createRef() inside a functional component is not recommended because 
-it creates a new ref object on every render and does not preserve the previous value.
-which resets the ref value each time. 
-
-**`useRef()` returns a persistent ref object that remains the same across all renders 
-and preserves its value throughout the components lifecycle.**
-
-
-
-
-================================================================
-
-### 04 React.memo
-
-- `React.memo` is a higher-order component.
-- It is used to optimize the performance of functional components by memoizing them.
-- It is used to prevent unnecessary re-renders of functional components when their props have not changed.
-
-- React compares the current props with the previous props.
-- If the component receives the same props as the previous render, React skips re-rendering that component.
-- If there’s no change, React reuses the previously rendered result.
-- If props change, the component re-renders normally.
-- This prevents unnecessary re-renders.
-
-**Useful when:**
-
-- Component is heavy (complex UI, large calculations).
-- Props rarely change.
-- Parent re-renders often, but child’s props remain the same.
-
-- If you add a child component inside a parent component, and you are not passing any props to the child, then:
-
-Without React.memo, the child will re-render whenever the parent re-renders.
-
-- With React.memo, since there are no props, React will skip the child’s re-render when the parent re-renders.
-
 ========================================================================
 ### What does memoizing mean?
 
-Memoization is a technique where the result of a function call is cached (stored), so if the same inputs occur again, the cached result is returned immediately instead of recalculating.
-
+Memoization is a technique where the `result of a function call is cached (stored)`, so if the `same inputs occur again, the cached result is returned immediately` instead of recalculating.
 
 
 ========================================================================
@@ -86,12 +28,12 @@ Memoization is a technique where the result of a function call is cached (stored
 
 ### Common Use Cases of `useMemo`
 
-* **Expensive calculations**
-* **Filtering large lists**
-* **Sorting large lists**
-* **Complex data transformations**
-* **Maintaining stable object/array references**
-* **Memoizing Context Provider values**
+* `Expensive calculations`
+* `Filtering large lists`
+* `Sorting large lists`
+* `Complex data transformations`
+* `Maintaining stable object/array references`
+* `Memoizing Context Provider values`
 
 ```js
 const memoziationOfResult = useMemo(()=>{},[])
@@ -114,7 +56,7 @@ It is mainly useful for expensive calculations or data transformations, such as 
 
 
 
-### **useCallback**
+### `useCallback`
 
 useCallback hooke is used to memoizes a function and returns the same function reference until its dependencies change.
 
@@ -141,17 +83,62 @@ Mainly to prevent unnecessary re-renders when passing functions to memoized chil
 ### 4. Expensive event handlers
 
 
+============================================================
+
+### can forwardRef is required after react 19 version?
+
+In React 18 and below, we need forwardRef to pass refs to functional components.
+But in React 19, React allows ref to be passed as a regular prop — so forwardRef is no longer required in many cases.
+
+
+
+========================================================
+
+### Why is createRef() not recommended in functional components?
+
+- createRef() is not recommended in functional components because it `creates a new ref on every render ,previous ref is loss` 
+
+- `useRef() preserves the same ref object across every renders.`"
+
+
+================================================================
+
+### 04 React.memo
+
+- `React.memo` is a higher-order component.
+- It is used to optimize the performance of functional components by memoizing them.
+- It is used to prevent unnecessary re-renders of functional components when their props have not changed.
+
+- React compares the current props with the previous props.
+- If the component receives the same props as the previous render, React skips re-rendering that component.
+- If there’s no change, React reuses the previously rendered result.
+- If props change, the component re-renders normally.
+- This prevents unnecessary re-renders.
+
+`Useful when:`
+
+- Component is heavy (complex UI, large calculations).
+- Props rarely change.
+- Parent re-renders often, but child’s props remain the same.
+
+- If you add a child component inside a parent component, and you are not passing any props to the child, then:
+
+Without React.memo, the child will re-render whenever the parent re-renders.
+
+- With React.memo, since there are no props, React will skip the child’s re-render when the parent re-renders.
+
+
 =====================================
 
 
 
 #### Ref
 
-With the help of **ref**, we can directly access and interact with a DOM element.
+With the help of `ref`, we can directly access and interact with a DOM element.
 
-In React, a **ref (reference)** is an object that allows us to directly access a DOM element or store a mutable value.
+In React, a `ref (reference)` is an object that allows us to directly access a DOM element or store a mutable value.
 
-* Refs are attached to React elements using the special **`ref`** attribute.
+* Refs are attached to React elements using the special ``ref`` attribute.
 
 Refs are commonly used when you need to:
 
@@ -169,7 +156,7 @@ Refs are commonly used when you need to:
 
 createRef()
 
-**Class-Based Components**:
+`Class-Based Components`:
 
 - createRef()` is primarily used in class base components to create ref .
 
@@ -238,7 +225,7 @@ export default MyComponent;
 
   ### `useRef()`
 
-With the help of **ref**, we can directly access and interact with a DOM element.
+With the help of `ref`, we can directly access and interact with a DOM element.
 
   The useRef is a hook that allows to directly create a reference to the DOM element in the functional component.
 - Use the `useRef()` hook to create a ref in Functional Components
@@ -280,7 +267,7 @@ With the help of **ref**, we can directly access and interact with a DOM element
 – `forwardRef` in React function component
 with help of forwardRef we can pass a ref from a parent component to a child component.
 
-– This is useful when you want to access a **DOM element** from the child component in the parent component.
+– This is useful when you want to access a `DOM element` from the child component in the parent component.
 
 
 
@@ -439,8 +426,8 @@ useEffect = runs after user sees the screen
 
 ## ✅ 1. `useEffect(() => { ... }, [])`
 
-**Equivalent to:** `componentDidMount`
-**Runs:** **Once** after the **initial render**
+`Equivalent to:` `componentDidMount`
+`Runs:` `Once` after the `initial render`
 
 - Fetching data when the component loads
 - Setting up a subscription
@@ -455,15 +442,15 @@ useEffect(() => {
 
 Why only once?
 
-- Because the **dependency array is empty**, React knows this effect doesn’t depend on any state or props.
-- So it only runs **after the first render**, like `componentDidMount`.
+- Because the `dependency array is empty`, React knows this effect doesn’t depend on any state or props.
+- So it only runs `after the first render`, like `componentDidMount`.
 
 ## ✅ 2. `useEffect(() => { ... }, [dep])`
 
-**Equivalent to:** `componentDidUpdate` (but for specific dependencies)
+`Equivalent to:` `componentDidUpdate` (but for specific dependencies)
 
-- After **initial render**
-- Then **every time `dep` changes**
+- After `initial render`
+- Then `every time `dep` changes`
 
 - Responding to changes in props or state
 - Making API calls when a user selects something
@@ -477,16 +464,16 @@ useEffect(() => {
 
 ### 🔄 Why controlled?
 
-- React tracks `userId`, and only reruns the effect **when `userId` changes**.
+- React tracks `userId`, and only reruns the effect `when `userId` changes`.
 
 ---
 
 ## ✅ 3. `useEffect(() => { return () => { ... } }, [])`
 
-**Equivalent to:** `componentWillUnmount`
-**Runs:**
+`Equivalent to:` `componentWillUnmount`
+`Runs:`
 
-- The **cleanup function** runs when the component is about to unmount.
+- The `cleanup function` runs when the component is about to unmount.
 
 - Cleaning up event listeners
 - Stopping intervals/timers
@@ -518,7 +505,7 @@ useEffect(() => {
 });
 ```
 
-- This can cause **performance issues** if heavy logic is inside.
+- This can cause `performance issues` if heavy logic is inside.
 - Prefer using `[deps]` to control when it runs.
 
       The purpose of the useEffect hook is to allow you to perform side effects in a functional components.
@@ -659,9 +646,9 @@ const OnHandleChange = (e) => {
 
 ### can forwardRef use in class base componet ?
 
-– Functional components can directly handle refs using `React.useRef()`, but only for accessing **DOM elements within the same component**. To pass a ref from **parent to child**, `forwardRef()` must be used.
+– Functional components can directly handle refs using `React.useRef()`, but only for accessing `DOM elements within the same component`. To pass a ref from `parent to child`, `forwardRef()` must be used.
 
-– **Class components** can directly handle refs using `React.createRef()`, and a parent component can interact with a **child class component instance** directly, **without using forwardRef**.
+– `Class components` can directly handle refs using `React.createRef()`, and a parent component can interact with a `child class component instance` directly, `without using forwardRef`.
 
 
 ### Can forwardRef be used in class components?

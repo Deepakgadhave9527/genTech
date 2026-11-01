@@ -6,8 +6,8 @@ const array1 = [1, 2, 3, 4, 5, 6];
 const array2 = [4, 5, 6, 7, 8, 9];
 
 const findUncVal = (array1, array2) => {
-  const uncommon1 = array1.filter(value => !array2.includes(value));
-  const uncommon2 = array2.filter(value => !array1.includes(value));
+  const uncommon1 = array1.filter(value => array2.includes(value));
+  const uncommon2 = array2.filter(value => array1.includes(value));
   return [...uncommon1, ...uncommon2];
 };
 
