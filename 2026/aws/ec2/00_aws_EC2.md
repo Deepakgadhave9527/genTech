@@ -16,6 +16,18 @@
 
 A **Route Table (RT)** is a set of **rules (routes)** that determines **where network traffic should go** from a subnet. such as to an Internet Gateway, NAT Gateway, or another network.**
 
+Hi Sajit/Balan,
+
+I will be on planned leave, as already discussed, from 28 September to 1 October for four days, as my nephew is undergoing duplication cyst surgery during this period.
+
+I have already updated the leave details in the Excel sheet and HCM system. Kindly review and approve my leave request.
+
+Thank you for your understanding and support.
+
+Best regards,
+Deepak Gadhave
+9764010173 
+
 
 ommon Targets
 Local – Routes traffic within the VPC.

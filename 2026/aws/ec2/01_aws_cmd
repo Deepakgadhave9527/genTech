@@ -1,7 +1,60 @@
+Step 2: Remove the old code
+Inside Nano:
 
+Press Ctrl + K repeatedly to delete each line until the file is empty. (You can hold the keys or repeat them.)
+
+Copy the complete cache.py code I provided above.
+
+Paste it into the terminal window.
+
+Step 3: Save the file
+Press these keys in order:
+
+Ctrl + O — save the file.
+
+Press Enter — confirm the filename cache.py.
+
+Ctrl + X — exit Nano.
+
+
+===================
+
+
+2. Run AWS CLI commands
+Try these commands to interact with AWS services.
+
+Goal
+
+Command
+
+Check AWS CLI version
+
+aws --version
+
+Check your AWS identity
+
+aws sts get-caller-identity
+
+List S3 buckets
+
+aws s3 ls
+
+List EC2 instances
+
+aws ec2 describe-instances
+
+Check your AWS Region
+
+aws configure get region
 ====================================================
+Remember this command
+Whenever you reconnect to the first EC2 instance, use:
 
 
+bash
+sudo su -
+ssh -i /root/server1.pem ec2-user@10.0.128.129
+====================================================
 vi filename
 i
 Esc
