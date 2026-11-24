@@ -7,3 +7,5 @@ https://samber.github.io/awesome-prometheus-alerts/rules/basic-resource-monitori
 
 
 kuberay
+
+Master and Slave Nodes
