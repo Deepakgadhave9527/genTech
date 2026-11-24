@@ -65,3 +65,9 @@ ls /home &> output.txt
 - `0` – STDIN (Input)
 - `1` – STDOUT (Normal Output)
 - `2` – STDERR (Error Output)
+
+
+
+
+========================================================================
+
